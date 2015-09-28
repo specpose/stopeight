@@ -20,7 +20,6 @@ Switch back to the master::
 
 In order to rebuild the docs, do::
 
-    $ sudo apt-get install python-sphinx
     $ cd doc/
     $ make html
     $ cd ../
