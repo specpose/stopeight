@@ -21,6 +21,13 @@ Getting Started
 
     scripts
 
+Developer Notes
+===============
+
+.. toctree::
+   :maxdepth: 2
+
+   developer
 
 Indices and tables
 ==================
