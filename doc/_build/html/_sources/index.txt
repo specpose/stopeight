@@ -1,0 +1,38 @@
+.. matchline documentation master file, created by
+   sphinx-quickstart on Wed Sep 12 14:27:50 2012.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. image:: http://www.specpose.com/images/specpose_logo470x230.png
+
+Installation Instructions
+=========================
+
+.. toctree::
+   :maxdepth: 2
+
+   installation
+
+Getting Started
+===============
+
+.. toctree::
+    :maxdepth: 2
+
+    scripts
+
+Developer Notes
+===============
+
+.. toctree::
+   :maxdepth: 2
+
+   developer
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
