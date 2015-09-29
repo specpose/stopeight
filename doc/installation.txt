@@ -5,7 +5,7 @@ Multiprocessing
 
 requestProcessing is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell::
 
-        from multiprocessing import synchronize
+        >>> from multiprocessing import synchronize
 
 Windows 64-Bit
 ==============
@@ -58,22 +58,3 @@ It's usually faster and easier to use pip to install the python requirements for
     $ easy_install pip
     $ pip install ZSI
     $ pip install ZODB3
-
-
-Different Storage Setups
-========================
-
-You can switch to a SQL storage backend by modifying 3 lines of code. Change occurences of::
-
-    "from zodbTools import DBLine"
-
-to::
-
-    "from elixirTools import DBLine"
-
-and change the database connection string in elixirTools according to you database installation. I have successfully tested MySQL. The elixir code follows the rails ActiveRecord convention.
-
-You will also need to::
-
-    $ pip install mysql-python
-    $ pip install elixir

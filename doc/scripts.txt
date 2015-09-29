@@ -3,12 +3,14 @@
 Server
 ======
 
-To launch the server do the following from within your code::
+To launch the server do the following from within a python shell::
 
-    import sys
-    sys.path.append('/path/to/where/matchline')
-    from matchline import server_soap
-    server_soap.run()
+    >>> import sys
+    >>> sys.path.append('/path/to/where/stopeight')
+    >>> import os
+    >>> os.chdir('/path/to/where/stopeight')
+    >>> from stopeight import server_soap
+    >>> server_soap.run()
 
 This will launch a SOAP server listening on port 8888.
 

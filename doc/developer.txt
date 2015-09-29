@@ -1,5 +1,42 @@
 .. image:: http://www.specpose.com/images/specpose_logo470x230.png
 
+Strict Dependencies
+===================
+
+As of 09/2015 only python version 2.7 is supported!
+
+Get numpy on ubuntu::
+
+    $ sudo apt-get install python-numpy
+
+Different Storage Setups
+========================
+
+For running against a rails2.3 style db, you need pyXML, ZSI, elixir, SQLAlchemy, MySQL-python::
+
+    $ sudo apt-get install python-mysqldb
+
+Tested working with old versions::
+
+sourceforge_PyXML-0.8.4.tar.gz
+ZSI-2.1-a1.tar.gz
+Elixir-0.7.1.tar.gz
+SQLAlchemy-0.7.8.tar.gz
+
+Run in each directory and check sys.path:
+
+    $ sudo python setup.py install
+
+You can switch to a SQL storage backend by modifying 3 lines of code. Change occurences of::
+
+    "from zodbTools import DBLine"
+
+to::
+
+    "from elixirTools import DBLine"
+
+and change the database connection string in elixirTools according to you database installation. I have successfully tested MySQL. The elixir code follows the rails ActiveRecord convention.
+
 GitHub & Sphinx
 ===============
 
