@@ -1,0 +1,161 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Strict Dependencies &mdash; matchline 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="matchline 0.1.0 documentation" href="index.html" />
+    <link rel="prev" title="Server" href="scripts.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="scripts.html" title="Server"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">matchline 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <img alt="http://www.specpose.com/images/specpose_logo470x230.png" src="http://www.specpose.com/images/specpose_logo470x230.png" />
+<div class="section" id="strict-dependencies">
+<h1>Strict Dependencies<a class="headerlink" href="#strict-dependencies" title="Permalink to this headline">¶</a></h1>
+<p>As of 09/2015 only python version 2.7 is supported!</p>
+<p>Get numpy on ubuntu:</p>
+<div class="highlight-python"><pre>$ sudo apt-get install python-numpy</pre>
+</div>
+</div>
+<div class="section" id="different-storage-setups">
+<h1>Different Storage Setups<a class="headerlink" href="#different-storage-setups" title="Permalink to this headline">¶</a></h1>
+<p>For running against a rails2.3 style db, you need pyXML, ZSI, elixir, SQLAlchemy, MySQL-python:</p>
+<div class="highlight-python"><pre>$ sudo apt-get install python-mysqldb</pre>
+</div>
+<p>Tested working with old versions:</p>
+<p>sourceforge_PyXML-0.8.4.tar.gz
+ZSI-2.1-a1.tar.gz
+Elixir-0.7.1.tar.gz
+SQLAlchemy-0.7.8.tar.gz</p>
+<p>Run in each directory and check sys.path:</p>
+<blockquote>
+<div>$ sudo python setup.py install</div></blockquote>
+<p>You can switch to a SQL storage backend by modifying 3 lines of code. Change occurences of:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;from zodbTools import DBLine&quot;</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;from elixirTools import DBLine&quot;</span>
+</pre></div>
+</div>
+<p>and change the database connection string in elixirTools according to you database installation. I have successfully tested MySQL. The elixir code follows the rails ActiveRecord convention.</p>
+</div>
+<div class="section" id="github-sphinx">
+<h1>GitHub &amp; Sphinx<a class="headerlink" href="#github-sphinx" title="Permalink to this headline">¶</a></h1>
+<p>Get python sphinx on ubuntu:</p>
+<div class="highlight-python"><pre>$ sudo apt-get install python-sphinx</pre>
+</div>
+<p>First remove the old docs from the gh-pages repo:</p>
+<div class="highlight-python"><pre>$ git checkout gh-pages
+$ git rm -r doc/_build/html/*
+$ git commit -m "Deleted old documentation"
+$ git push</pre>
+</div>
+<p>Switch back to the master:</p>
+<div class="highlight-python"><pre>$ git checkout master</pre>
+</div>
+<p>In order to rebuild the docs, do:</p>
+<div class="highlight-python"><pre>$ cd doc/
+$ make html
+$ cd ../
+$ git checkout gh-pages
+$ git add doc/_build/html/*
+$ git commit -m "Documentation vX.Y.Z"
+$ git push</pre>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Strict Dependencies</a></li>
+<li><a class="reference internal" href="#different-storage-setups">Different Storage Setups</a></li>
+<li><a class="reference internal" href="#github-sphinx">GitHub &amp; Sphinx</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="scripts.html"
+                        title="previous chapter">Server</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/developer.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="scripts.html" title="Server"
+             >previous</a> |</li>
+        <li><a href="index.html">matchline 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Specific Purpose Software GmbH.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
