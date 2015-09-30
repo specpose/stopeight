@@ -1,3 +1,3 @@
 # stopeight
 
-Documentation can be found at http://fassio.github.io/index.html
+Documentation can be found at http://fassio.github.io/stopeight/index.html

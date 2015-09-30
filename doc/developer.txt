@@ -50,17 +50,14 @@ In order to rebuild the docs, do::
     $ make html
     $ cd ../
     $ git checkout gh-pages
-
-manually remove all the auto-generated files in the root directory, then:
-
+    $ git rm `git ls-files`
     $ git add doc/_build/html/*
-    $ git mv doc/_build/html/* ./
+    $ git mv -v doc/_build/html/_static ./
+    $ git mv -v doc/_build/html/_sources ./
+    $ git mv -v doc/_build/html/* ./
     $ touch .nojekyll
     $ git add .nojekyll
     $ git commit -m "Documentation vX.Y.Z"
     $ git push
-
-Switch back to the master::
-
     $ git checkout master
 
