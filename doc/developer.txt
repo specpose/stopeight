@@ -44,23 +44,22 @@ Get python sphinx on ubuntu::
 
     $ sudo apt-get install python-sphinx
 
-First remove the old docs from the gh-pages repo::
-
-    $ git checkout gh-pages
-    $ git rm -r doc/_build/html/*
-    $ git commit -m "Deleted old documentation"
-    $ git push
-
-Switch back to the master::
-
-    $ git checkout master
-
 In order to rebuild the docs, do::
 
     $ cd doc/
     $ make html
     $ cd ../
     $ git checkout gh-pages
-    $ git add doc/_build/html/*
+
+careful::
+
+    $ git rm -R ./*
+    $ mv doc/_build/html/* ./
+    $ git add ./*
     $ git commit -m "Documentation vX.Y.Z"
     $ git push
+
+Switch back to the master::
+
+    $ git checkout master
+
