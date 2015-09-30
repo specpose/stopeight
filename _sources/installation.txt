@@ -53,7 +53,7 @@ The dependencies should compile and install out-of-the box within a few minutes.
 Using pip and easy_setup
 ========================
 
-It's usually faster and easier to use pip to install the python requirements for matchline. It's as easy as::
+It's usually faster and easier to use pip to install the python requirements for stopeight. It's as easy as::
 
     $ easy_install pip
     $ pip install ZSI

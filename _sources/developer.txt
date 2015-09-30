@@ -9,6 +9,16 @@ Get numpy on ubuntu::
 
     $ sudo apt-get install python-numpy
 
+It relies on SOAP for client/server communication, therefore you need::
+
+sourceforge_PyXML-0.8.4.tar.gz
+
+ZSI-2.1-a1.tar.gz
+
+Download and run in each directory:
+
+    $ sudo python setup.py install
+
 Different Storage Setups
 ========================
 
@@ -16,10 +26,8 @@ For running against a rails2.3 style db, you need pyXML, ZSI, elixir, SQLAlchemy
 
     $ sudo apt-get install python-mysqldb
 
-Tested working with old versions::
+Tested working with versions::
 
-sourceforge_PyXML-0.8.4.tar.gz
-ZSI-2.1-a1.tar.gz
 Elixir-0.7.1.tar.gz
 SQLAlchemy-0.7.8.tar.gz
 
@@ -50,17 +58,14 @@ In order to rebuild the docs, do::
     $ make html
     $ cd ../
     $ git checkout gh-pages
-
-manually remove all the auto-generated files in the root directory, then:
-
+    $ git rm `git ls-files`
     $ git add doc/_build/html/*
-    $ git mv doc/_build/html/* ./
+    $ git mv -v doc/_build/html/_static ./
+    $ git mv -v doc/_build/html/_sources ./
+    $ git mv -v doc/_build/html/* ./
     $ touch .nojekyll
     $ git add .nojekyll
     $ git commit -m "Documentation vX.Y.Z"
     $ git push
-
-Switch back to the master::
-
     $ git checkout master
 
