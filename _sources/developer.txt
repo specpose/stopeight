@@ -9,29 +9,28 @@ Get numpy on ubuntu::
 
     $ sudo apt-get install python-numpy
 
-It relies on SOAP for client/server communication, therefore you need::
+It relies on SOAP for client/server communication, therefore you need:
 
 sourceforge_PyXML-0.8.4.tar.gz
-
 ZSI-2.1-a1.tar.gz
 
-Download and run in each directory:
+Download and run in each directory::
 
     $ sudo python setup.py install
 
 Different Storage Setups
 ========================
 
-For running against a rails2.3 style db, you need pyXML, ZSI, elixir, SQLAlchemy, MySQL-python::
+For running against a rails2.3 style db, you need elixir, SQLAlchemy, MySQL-python::
 
     $ sudo apt-get install python-mysqldb
 
-Tested working with versions::
+Tested working with versions:
 
 Elixir-0.7.1.tar.gz
 SQLAlchemy-0.7.8.tar.gz
 
-Run in each directory and check sys.path:
+Run in each directory and check sys.path::
 
     $ sudo python setup.py install
 

@@ -55,23 +55,23 @@
 <div class="highlight-python"><pre>$ sudo apt-get install python-numpy</pre>
 </div>
 <p>It relies on SOAP for client/server communication, therefore you need:</p>
-<p>sourceforge_PyXML-0.8.4.tar.gz</p>
-<p>ZSI-2.1-a1.tar.gz</p>
+<p>sourceforge_PyXML-0.8.4.tar.gz
+ZSI-2.1-a1.tar.gz</p>
 <p>Download and run in each directory:</p>
-<blockquote>
-<div>$ sudo python setup.py install</div></blockquote>
+<div class="highlight-python"><pre>$ sudo python setup.py install</pre>
+</div>
 </div>
 <div class="section" id="different-storage-setups">
 <h1>Different Storage Setups<a class="headerlink" href="#different-storage-setups" title="Permalink to this headline">¶</a></h1>
-<p>For running against a rails2.3 style db, you need pyXML, ZSI, elixir, SQLAlchemy, MySQL-python:</p>
+<p>For running against a rails2.3 style db, you need elixir, SQLAlchemy, MySQL-python:</p>
 <div class="highlight-python"><pre>$ sudo apt-get install python-mysqldb</pre>
 </div>
 <p>Tested working with versions:</p>
 <p>Elixir-0.7.1.tar.gz
 SQLAlchemy-0.7.8.tar.gz</p>
 <p>Run in each directory and check sys.path:</p>
-<blockquote>
-<div>$ sudo python setup.py install</div></blockquote>
+<div class="highlight-python"><pre>$ sudo python setup.py install</pre>
+</div>
 <p>You can switch to a SQL storage backend by modifying 3 lines of code. Change occurences of:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;from zodbTools import DBLine&quot;</span>
 </pre></div>
