@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'stopeight'
-copyright = u'2012, Specific Purpose Software GmbH'
+copyright = u'2015, http://github.com/fassio/stopeight'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
