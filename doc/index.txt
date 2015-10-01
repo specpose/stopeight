@@ -1,4 +1,4 @@
-.. matchline documentation master file, created by
+.. stopeight documentation master file, created by
    sphinx-quickstart on Wed Sep 12 14:27:50 2012.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
