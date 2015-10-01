@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Strict Dependencies &mdash; matchline 0.1.0 documentation</title>
+    <title>Strict Dependencies &mdash; stopeight 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="matchline 0.1.0 documentation" href="index.html" />
+    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
     <link rel="prev" title="Server" href="scripts.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="scripts.html" title="Server"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">matchline 0.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -55,8 +55,8 @@
 <div class="highlight-python"><pre>$ sudo apt-get install python-numpy</pre>
 </div>
 <p>It relies on SOAP for client/server communication, therefore you need:</p>
-<p>sourceforge_PyXML-0.8.4.tar.gz
-ZSI-2.1-a1.tar.gz</p>
+<p>sourceforge_PyXML-0.8.4.tar.gz</p>
+<p>ZSI-2.1-a1.tar.gz</p>
 <p>Download and run in each directory:</p>
 <div class="highlight-python"><pre>$ sudo python setup.py install</pre>
 </div>
@@ -67,8 +67,8 @@ ZSI-2.1-a1.tar.gz</p>
 <div class="highlight-python"><pre>$ sudo apt-get install python-mysqldb</pre>
 </div>
 <p>Tested working with versions:</p>
-<p>Elixir-0.7.1.tar.gz
-SQLAlchemy-0.7.8.tar.gz</p>
+<p>Elixir-0.7.1.tar.gz</p>
+<p>SQLAlchemy-0.7.8.tar.gz</p>
 <p>Run in each directory and check sys.path:</p>
 <div class="highlight-python"><pre>$ sudo python setup.py install</pre>
 </div>
@@ -97,6 +97,8 @@ $ git add doc/_build/html/*
 $ git mv -v doc/_build/html/_static ./
 $ git mv -v doc/_build/html/_sources ./
 $ git mv -v doc/_build/html/* ./
+$ echo "www.stopeight.com" &gt; ./CNAME
+$ git add ./CNAME
 $ touch .nojekyll
 $ git add .nojekyll
 $ git commit -m "Documentation vX.Y.Z"
@@ -152,11 +154,11 @@ $ git checkout master</pre>
         <li class="right" >
           <a href="scripts.html" title="Server"
              >previous</a> |</li>
-        <li><a href="index.html">matchline 0.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2012, Specific Purpose Software GmbH.
+        &copy; Copyright 2015, http://github.com/fassio/stopeight.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

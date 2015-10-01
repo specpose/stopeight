@@ -12,6 +12,7 @@ Get numpy on ubuntu::
 It relies on SOAP for client/server communication, therefore you need:
 
 sourceforge_PyXML-0.8.4.tar.gz
+
 ZSI-2.1-a1.tar.gz
 
 Download and run in each directory::
@@ -28,6 +29,7 @@ For running against a rails2.3 style db, you need elixir, SQLAlchemy, MySQL-pyth
 Tested working with versions:
 
 Elixir-0.7.1.tar.gz
+
 SQLAlchemy-0.7.8.tar.gz
 
 Run in each directory and check sys.path::
@@ -62,6 +64,8 @@ In order to rebuild the docs, do::
     $ git mv -v doc/_build/html/_static ./
     $ git mv -v doc/_build/html/_sources ./
     $ git mv -v doc/_build/html/* ./
+    $ echo "www.stopeight.com" > ./CNAME
+    $ git add ./CNAME
     $ touch .nojekyll
     $ git add .nojekyll
     $ git commit -m "Documentation vX.Y.Z"
