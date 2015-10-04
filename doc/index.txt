@@ -5,6 +5,14 @@
 
 .. image:: http://www.specpose.com/images/specpose_logo470x230.png
 
+Data Acquisition
+================
+
+.. toctree::
+   :maxdepth: 2
+
+   acquisition
+
 Installation Instructions
 =========================
 

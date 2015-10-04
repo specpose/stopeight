@@ -1,0 +1,14 @@
+Data Acquisition
+================
+
+.. image:: _static/function_graph.svg
+
+.. image:: _static/vector_graph.svg
+
+.. image:: _static/vector_construction.svg
+
+.. image:: _static/vector_graph2.svg
+
+.. image:: _static/vector_graph3.svg
+
+.. image:: _static/extraction_sequence.svg
