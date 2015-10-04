@@ -1,14 +1,60 @@
 Data Acquisition
 ================
 
+Preparing the data involves the following two steps::
+
+1. Turning a function graph into a vector graph.
+2. Extracting feature points for matchline overlay comparison.
+
+It can be applied to a large number of applications:
+
+* Analyzing a time-based series of graph data.
+* Analyzing pen-strokes from a 2D input device.
+   In this case you can skip the first step.
+
+   An example for this implementation is http://www.symboloh.com
+
+In different fields:
+
+* Signal Processing
+* Data Visualisation
+
+Turning a Function Graph into a Vector Graph
+--------------------------------------------
+
+Function Graph
+^^^^^^^^^^^^^^
+
+Any time-based data set with an accurate sampling rate can be used to build a function f(x).
+
 .. image:: _static/function_graph.svg
+
+Vector Graph
+^^^^^^^^^^^^
+
+This function graph can be converted into a sequence of vectors in a two-dimensional plane.
 
 .. image:: _static/vector_graph.svg
 
+The construction of the graph can be seen here:
+
 .. image:: _static/vector_construction.svg
+
+By varying the step-size you can achieve:
 
 .. image:: _static/vector_graph2.svg
 
+And by making it even smaller you can get:
+
 .. image:: _static/vector_graph3.svg
 
+This last step reduces the impulse scaling to half the frequency found in the previous example. So for matchline overlay comparison the previous vector graph is preferred.
+
+Extraction of Feature Points
+----------------------------
+
+The vector graph is then converted into a sequence of one Turn, one Corner and one Turn. The sequence - starting with a Turn - has one Corner terminated by a turn and can be concatenated into Turn-Corner-Turn-Corner-Turn.
+
 .. image:: _static/extraction_sequence.svg
+
+This input can be used to make a matchline overlay comparison to previously recorded vector graphs.
