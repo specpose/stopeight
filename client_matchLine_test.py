@@ -24,7 +24,7 @@ import sys
 import traceback
 
 import server_include
-url=server_url+server_port
+url=server_include.server_url+server_include.server_port
 
 fp = open(__file__+'.log', 'a')
 b = NamedParamBinding(typesmodule=zsiTools,url=url, tracefile=fp)

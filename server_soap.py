@@ -20,11 +20,11 @@ from ZSI import dispatch
 import zsiTools
 import zsiServer
 
-import server_include
 #: This will launch a SOAP server.
-def run(port=server_include.server_port):
+def run(port):
     dispatch.AsServer(port,modules=(zsiServer,),typesmodule=zsiTools,rpc=True)
     """ Default port can be found in server_include or supplied in run command """
 
 if __name__ == "__main__":
-    run()
+    import server_include
+    run(server_include.server_port)
