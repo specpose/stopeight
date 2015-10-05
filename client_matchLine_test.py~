@@ -19,12 +19,10 @@
 from ZSI.client import Binding, NamedParamBinding
 from zsiTools import ABCPoint,ABCLine,ABCSymbol
 import zsiTools
-#from numpy import *
+from numpy import ndarray
 import sys
 import traceback
-from ZSI import TC
 
-import server_include
 url=server_url+server_port
 
 fp = open(__file__+'.log', 'a')
@@ -32,25 +30,28 @@ b = NamedParamBinding(typesmodule=zsiTools,url=url, tracefile=fp)
 
 try:
     input = ABCSymbol()
-    line = ABCLine()
 
-    # the id of the line has to be known in advance
-    line.id=1
-    input.add_line(line)
+    #line = ABCLine.from_numpy_array([[0,50],[25,25],[50,0],[70,70]])
+    line = ABCLine.from_numpy_array([[0,50],[25,25],[50,0]])
 
     # for identifying echo in result
+    line.id=0
+    input.add_line(line)
+
+    #for identifying echo in result
     input.id=0
     for i in input.lines:
-        print 'Input line id: %d'%(i.id)
-    print 'sending SOAP method: getLine...'
-    # parameter name doesn't seem to matter
-    result = b.getLine(sdklffjkdsla=input)
-    for i in result['ABCSymbol']:
-        print 'Received line id: %d'%(i.id)
+        print 'Input line: '
         for p in i:
             print p.x,p.y
             pass
-
+    print 'sending SOAP method: matchLine...'
+    result = b.matchLine(sdklffjkdsla=input)
+    for i in result['ABCSymbol']:
+        print 'Matched line: '
+        for p in i:
+            print p.x,p.y
+            pass
 except:
     exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
     print "*** print_tb:"

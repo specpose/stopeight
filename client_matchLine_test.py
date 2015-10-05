@@ -23,7 +23,8 @@ from numpy import ndarray
 import sys
 import traceback
 
-url='http://localhost:8888'
+import server_include
+url=server_url+server_port
 
 fp = open(__file__+'.log', 'a')
 b = NamedParamBinding(typesmodule=zsiTools,url=url, tracefile=fp)
