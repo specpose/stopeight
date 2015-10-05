@@ -64,9 +64,11 @@ In order to rebuild the docs, do::
     $ git mv -v doc/_build/html/_static ./
     $ git mv -v doc/_build/html/_sources ./
 
-Only for sphinx version lower than 1.2::
+Only if Sphinx version is lower than 1.2::
 
-    $ git show master:doc/_extra/* > ./
+    $ git show master:doc/_extra/CNAME > ./CNAME
+    $ git show master:doc/_extra/robots.txt > ./robots.txt
+    $ git show master:doc/_extra/.nojekyll > ./.nojekyll
 
 Continue::
 
