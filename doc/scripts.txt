@@ -10,7 +10,7 @@ To launch the server do the following from within a python shell::
     >>> import sys
     >>> sys.path.append(os.path.dirname(os.getcwd()))
     >>> from stopeight import server_soap
-    >>> server_soap.run()
+    >>> server_soap.run(8888)
 
 #.. autoclass server_soap
 
