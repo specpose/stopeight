@@ -1,0 +1,173 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Data Acquisition &mdash; stopeight 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="Multiprocessing" href="installation.html" />
+    <link rel="prev" title="Data Acquisition" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Multiprocessing"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Data Acquisition"
+             accesskey="P">previous</a> |</li>
+    <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
+    
+        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
+ 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="data-acquisition">
+<h1>Data Acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this headline">¶</a></h1>
+<p>Preparing the data involves the following two steps:</p>
+<ol class="arabic simple">
+<li>Turning a function graph into a vector graph.</li>
+<li>Extracting feature points for matchline overlay comparison.</li>
+</ol>
+<p>It can be applied to a large number of applications:</p>
+<ul>
+<li><p class="first">Analyzing a time-based series of graph data.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Analyzing pen-strokes from a 2D input device.</dt>
+<dd><p class="first">In this case you can skip the first step.</p>
+<p class="last">An example for this implementation is <a class="reference external" href="http://www.symboloh.com">http://www.symboloh.com</a></p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>In different fields:</p>
+<ul class="simple">
+<li>Signal Processing</li>
+<li>Data Visualisation</li>
+</ul>
+<div class="section" id="turning-a-function-graph-into-a-vector-graph">
+<h2>Turning a Function Graph into a Vector Graph<a class="headerlink" href="#turning-a-function-graph-into-a-vector-graph" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="function-graph">
+<h3>Function Graph<a class="headerlink" href="#function-graph" title="Permalink to this headline">¶</a></h3>
+<p>Any time-based data set with an accurate sampling rate can be used to build a function f(x).</p>
+<img src="_images/function_graph.svg" /></div>
+<div class="section" id="vector-graph">
+<h3>Vector Graph<a class="headerlink" href="#vector-graph" title="Permalink to this headline">¶</a></h3>
+<p>This function graph can be converted into a sequence of vectors in a two-dimensional plane.</p>
+<img src="_images/vector_graph.svg" /><p>The construction of the graph can be seen here:</p>
+<img src="_images/vector_construction.svg" /><p>By varying the step-size you can achieve:</p>
+<img src="_images/vector_graph2.svg" /><p>And by making it even smaller you can get:</p>
+<img src="_images/vector_graph3.svg" /><p>This last step reduces the impulse scaling to half the frequency found in the previous example. So for matchline overlay comparison the previous vector graph is preferred.</p>
+</div>
+</div>
+<div class="section" id="extraction-of-feature-points">
+<h2>Extraction of Feature Points<a class="headerlink" href="#extraction-of-feature-points" title="Permalink to this headline">¶</a></h2>
+<p>The vector graph is then converted into a sequence of one Turn, one Corner and one Turn. The sequence - starting with a Turn - has one Corner terminated by a turn and can be concatenated into Turn-Corner-Turn-Corner-Turn.</p>
+<img src="_images/extraction_sequence.svg" /><p>This input can be used to make a matchline overlay comparison to previously recorded vector graphs.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Data Acquisition</a><ul>
+<li><a class="reference internal" href="#turning-a-function-graph-into-a-vector-graph">Turning a Function Graph into a Vector Graph</a><ul>
+<li><a class="reference internal" href="#function-graph">Function Graph</a></li>
+<li><a class="reference internal" href="#vector-graph">Vector Graph</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extraction-of-feature-points">Extraction of Feature Points</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Data Acquisition</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">Multiprocessing</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/acquisition.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="installation.html" title="Multiprocessing"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Data Acquisition"
+             >previous</a> |</li>
+    <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
+    
+        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+      Last updated on Oct 05, 2015.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
