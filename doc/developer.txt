@@ -63,6 +63,13 @@ In order to rebuild the docs, do::
     $ git add doc/_build/html/*
     $ git mv -v doc/_build/html/_static ./
     $ git mv -v doc/_build/html/_sources ./
+
+Only for sphinx version lower than 1.2::
+
+    $ git mv -v doc/_build/html/_extra ./
+
+Continue::
+
     $ git mv -v doc/_build/html/* ./
     $ git commit -m "Documentation vX.Y.Z"
     $ git push
