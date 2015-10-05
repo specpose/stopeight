@@ -16,48 +16,52 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-from ZSI.client import Binding, NamedParamBinding
-from zsiTools import ABCPoint,ABCLine,ABCSymbol
-import zsiTools
-from numpy import ndarray
-import sys
-import traceback
+def run():
+	from ZSI.client import Binding, NamedParamBinding
+	from zsiTools import ABCPoint,ABCLine,ABCSymbol
+	import zsiTools
+	from numpy import ndarray
+	import sys
+	import traceback
 
-import server_include
-url=server_include.server_url+str(server_include.server_port)
+	import server_include
+	url=server_include.server_url+str(server_include.server_port)
 
-fp = open(__file__+'.log', 'a')
-b = NamedParamBinding(typesmodule=zsiTools,url=url, tracefile=fp)
+	fp = open(__file__+'.log', 'a')
+	b = NamedParamBinding(typesmodule=zsiTools,url=url, tracefile=fp)
 
-try:
-    input = ABCSymbol()
+	try:
+	    input = ABCSymbol()
 
-    #line = ABCLine.from_numpy_array([[0,50],[25,25],[50,0],[70,70]])
-    line = ABCLine.from_numpy_array([[0,50],[25,25],[50,0]])
+	    #line = ABCLine.from_numpy_array([[0,50],[25,25],[50,0],[70,70]])
+	    line = ABCLine.from_numpy_array([[0,50],[25,25],[50,0]])
 
-    # for identifying echo in result
-    line.id=0
-    input.add_line(line)
+	    # for identifying echo in result
+	    line.id=0
+	    input.add_line(line)
 
-    #for identifying echo in result
-    input.id=0
-    for i in input.lines:
-        print 'Input line: '
-        for p in i:
-            print p.x,p.y
-            pass
-    print 'sending SOAP method: matchLine...'
-    result = b.matchLine(sdklffjkdsla=input)
-    for i in result['ABCSymbol']:
-        print 'Matched line: '
-        for p in i:
-            print p.x,p.y
-            pass
-except:
-    exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
-    print "*** print_tb:"
-    traceback.print_tb(exceptionTraceback, limit=1, file=sys.stdout)
-    print "*** print_exception:"
-    traceback.print_exception(exceptionType, exceptionValue, exceptionTraceback,
-                              limit=10, file=sys.stdout)
-fp.close()
+	    #for identifying echo in result
+	    input.id=0
+	    for i in input.lines:
+		print 'Input line: '
+		for p in i:
+		    print p.x,p.y
+		    pass
+	    print 'sending SOAP method: matchLine...'
+	    result = b.matchLine(sdklffjkdsla=input)
+	    for i in result['ABCSymbol']:
+		print 'Matched line: '
+		for p in i:
+		    print p.x,p.y
+		    pass
+	except:
+	    exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
+	    print "*** print_tb:"
+	    traceback.print_tb(exceptionTraceback, limit=1, file=sys.stdout)
+	    print "*** print_exception:"
+	    traceback.print_exception(exceptionType, exceptionValue, exceptionTraceback,
+		                      limit=10, file=sys.stdout)
+	fp.close()
+
+if __name__ == "__main__":
+	run()

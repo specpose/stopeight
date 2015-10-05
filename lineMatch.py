@@ -169,8 +169,8 @@ class LineMatchClass:
             log.warning('No match.')
             return False
 
-import vectorTools
 if __name__ == "__main__":
+    import vectorTools
     log = logSwitch.logPrint()
     log.info('Starting lineMatch...')
     input = array([[20,20],[55,130],[80,60],[120,85],[200,10]]).view(vectorTools.NumpyLine)

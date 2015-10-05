@@ -48,8 +48,8 @@ class ShapeMatchSubSectionClass:
             if unweightedReverse.match(reordered):
                 return True
 
-import vectorTools
 if __name__ == "__main__":
+    import vectorTools
     log = logSwitch.logPrint()
     log.info('Starting shapeMatch...')
     input = array([[20,20],[55,130],[80,60],[120,85],[200,10]]).view(vectorTools.NumpyLine)
