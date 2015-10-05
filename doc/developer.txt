@@ -10,15 +10,13 @@ Get numpy on ubuntu::
     $ sudo apt-get install python-numpy
 
 Recommended Dependencies
-=====================
+========================
 
-It relies on SOAP for client/server communication, therefore you need:
+It relies on SOAP for client/server communication, therefore you need. Note: This is a version that does not require PyXML anymore::
 
-sourceforge_PyXML-0.8.4.tar.gz
+    $ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
 
-ZSI-2.1-a1.tar.gz
-
-Download and run in each directory::
+Download and run in subdirectory zsi::
 
     $ sudo python setup.py install
 
