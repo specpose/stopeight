@@ -1,4 +1,0 @@
-Data Acquisition
-================
-
-.. image:: _static/function_graph.svg

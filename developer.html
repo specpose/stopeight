@@ -98,12 +98,13 @@ $ git checkout gh-pages
 $ git rm `git ls-files`
 $ git add doc/_build/html/*
 $ git mv -v doc/_build/html/_static ./
-$ git mv -v doc/_build/html/_sources ./
-$ git mv -v doc/_build/html/* ./
-$ echo "www.stopeight.com" &gt; ./CNAME
-$ git add ./CNAME
-$ touch .nojekyll
-$ git add .nojekyll
+$ git mv -v doc/_build/html/_sources ./</pre>
+</div>
+<p>Only for sphinx version lower than 1.2:</p>
+<div class="highlight-python"><pre>$ git mv -v doc/_build/html/_extra ./</pre>
+</div>
+<p>Continue:</p>
+<div class="highlight-python"><pre>$ git mv -v doc/_build/html/* ./
 $ git commit -m "Documentation vX.Y.Z"
 $ git push
 $ git checkout master</pre>
@@ -164,7 +165,7 @@ $ git checkout master</pre>
       </ul>
     </div>
     <div class="footer">
-      Last updated on Oct 02, 2015.
+      Last updated on Oct 05, 2015.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
