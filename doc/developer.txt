@@ -10,15 +10,13 @@ Get numpy on ubuntu::
     $ sudo apt-get install python-numpy
 
 Recommended Dependencies
-=====================
+========================
 
-It relies on SOAP for client/server communication, therefore you need:
+It relies on SOAP for client/server communication, therefore you need. Note: This is a version that does not require PyXML anymore::
 
-sourceforge_PyXML-0.8.4.tar.gz
+    $ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
 
-ZSI-2.1-a1.tar.gz
-
-Download and run in each directory::
+Download and run in subdirectory zsi::
 
     $ sudo python setup.py install
 
@@ -80,6 +78,9 @@ Only if Sphinx version is lower than 1.2::
     $ git show master:doc/_extra/CNAME > ./CNAME
     $ git show master:doc/_extra/robots.txt > ./robots.txt
     $ git show master:doc/_extra/.nojekyll > ./.nojekyll
+    $ git add ./CNAME
+    $ git add ./robots.txt
+    $ git add ./.nojekyll
 
 Continue::
 

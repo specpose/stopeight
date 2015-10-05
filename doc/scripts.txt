@@ -12,7 +12,8 @@ To launch the server do the following from within a python shell::
     >>> from stopeight import server_soap
     >>> server_soap.run(8888)
 
-#.. autoclass server_soap
+.. automodule:: server_soap
+   :members:
 
 Testing it
 ==========

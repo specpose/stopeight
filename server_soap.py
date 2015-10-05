@@ -20,10 +20,11 @@ from ZSI import dispatch
 import zsiTools
 import zsiServer
 
-#: This will launch a SOAP server.
 def run(port):
+    """ This will launch a SOAP server.
+        The default port can be found in :mod:`stopeight.server_include` or supplied as an argument
+    """
     dispatch.AsServer(port,modules=(zsiServer,),typesmodule=zsiTools,rpc=True)
-    """ Default port can be found in server_include or supplied in run command """
 
 if __name__ == "__main__":
     import server_include
