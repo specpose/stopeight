@@ -5,14 +5,14 @@ Server
 
 To launch the server do the following from within a python shell::
 
-    >>> import sys
-    >>> sys.path.append('/path/to/where/stopeight')
     >>> import os
     >>> os.chdir('/path/to/where/stopeight')
+    >>> import sys
+    >>> sys.path.append(os.path.dirname(os.getcwd()))
     >>> from stopeight import server_soap
     >>> server_soap.run()
 
-This will launch a SOAP server listening on port 8888.
+#.. autoclass server_soap
 
 Testing it
 ==========

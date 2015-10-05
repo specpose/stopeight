@@ -15,8 +15,6 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 import logSwitch
-# Note: This is done once at start of server
-logSwitch.initialize_config()
 # Note: This is done depending on logging context
 log = logSwitch.logServer()
 

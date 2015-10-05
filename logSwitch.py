@@ -20,7 +20,8 @@ import logging
 # Note: This is done once at start of server
 def initialize_config():
     import logging.config
-    logging.config.fileConfig('logging.conf')
+    import os
+    logging.config.fileConfig(os.path.join(os.path.dirname(os.path.abspath(__file__)),'logging.conf'))
 
 def concatenate_traceback(sys):
     tb = traceback.format_exception(sys.exc_info()[0],sys.exc_info()[1],sys.exc_info()[2],limit=None)
