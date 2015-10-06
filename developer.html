@@ -36,6 +36,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="scripts.html" title="Server"
              accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
@@ -57,15 +60,23 @@
 <p>Get numpy on ubuntu:</p>
 <div class="highlight-python"><pre>$ sudo apt-get install python-numpy</pre>
 </div>
-<p>It relies on SOAP for client/server communication, therefore you need:</p>
-<p>sourceforge_PyXML-0.8.4.tar.gz</p>
-<p>ZSI-2.1-a1.tar.gz</p>
-<p>Download and run in each directory:</p>
+</div>
+<div class="section" id="recommended-dependencies">
+<h1>Recommended Dependencies<a class="headerlink" href="#recommended-dependencies" title="Permalink to this headline">¶</a></h1>
+<p>It relies on SOAP for client/server communication, therefore you need. Note: This is a version that does not require PyXML anymore:</p>
+<div class="highlight-python"><pre>$ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code</pre>
+</div>
+<p>Download and run in subdirectory zsi:</p>
 <div class="highlight-python"><pre>$ sudo python setup.py install</pre>
 </div>
 </div>
 <div class="section" id="different-storage-setups">
 <h1>Different Storage Setups<a class="headerlink" href="#different-storage-setups" title="Permalink to this headline">¶</a></h1>
+<p>For running against a file storage, you need ZODB:</p>
+<div class="highlight-python"><pre>sudo apt-get install python-zodb</pre>
+</div>
+<p>Tested working with version:</p>
+<p>ZODB3-3.10.5.tar.gz</p>
 <p>For running against a rails2.3 style db, you need elixir, SQLAlchemy, MySQL-python:</p>
 <div class="highlight-python"><pre>$ sudo apt-get install python-mysqldb</pre>
 </div>
@@ -122,6 +133,7 @@ $ git checkout master</pre>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Strict Dependencies</a></li>
+<li><a class="reference internal" href="#recommended-dependencies">Recommended Dependencies</a></li>
 <li><a class="reference internal" href="#different-storage-setups">Different Storage Setups</a></li>
 <li><a class="reference internal" href="#github-sphinx">GitHub &amp; Sphinx</a></li>
 </ul>
@@ -158,6 +170,9 @@ $ git checkout master</pre>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="scripts.html" title="Server"
              >previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
@@ -167,7 +182,7 @@ $ git checkout master</pre>
       </ul>
     </div>
     <div class="footer">
-      Last updated on Oct 05, 2015.
+      Last updated on Oct 06, 2015.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

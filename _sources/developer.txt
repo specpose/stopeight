@@ -9,18 +9,27 @@ Get numpy on ubuntu::
 
     $ sudo apt-get install python-numpy
 
-It relies on SOAP for client/server communication, therefore you need:
+Recommended Dependencies
+========================
 
-sourceforge_PyXML-0.8.4.tar.gz
+It relies on SOAP for client/server communication, therefore you need. Note: This is a version that does not require PyXML anymore::
 
-ZSI-2.1-a1.tar.gz
+    $ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
 
-Download and run in each directory::
+Download and run in subdirectory zsi::
 
     $ sudo python setup.py install
 
 Different Storage Setups
 ========================
+
+For running against a file storage, you need ZODB::
+
+    sudo apt-get install python-zodb
+
+Tested working with version:
+
+ZODB3-3.10.5.tar.gz
 
 For running against a rails2.3 style db, you need elixir, SQLAlchemy, MySQL-python::
 

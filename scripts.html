@@ -37,6 +37,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="developer.html" title="Strict Dependencies"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -66,29 +69,39 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">server_soap</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">8888</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>#.. autoclass server_soap</p>
+<span class="target" id="module-server_soap"></span><dl class="function">
+<dt id="server_soap.run">
+<tt class="descclassname">server_soap.</tt><tt class="descname">run</tt><big>(</big><em>port</em><big>)</big><a class="reference internal" href="_modules/server_soap.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#server_soap.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>This will launch a SOAP server.
+The default port can be found in <tt class="xref py py-mod docutils literal"><span class="pre">stopeight.server_include</span></tt> or supplied as an argument</p>
+</dd></dl>
+
 </div>
 <div class="section" id="testing-it">
 <h1>Testing it<a class="headerlink" href="#testing-it" title="Permalink to this headline">¶</a></h1>
 <p>I have provided example-scripts for all of the SOAP commands.</p>
 <p>To save your first line on the server, run:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">client_saveLine_test</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight</span> <span class="kn">import</span> <span class="n">client_saveLine_test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client_saveLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This should produce output containing the id of your newly created line.
 Keep this id to your records.</p>
 <p>To check whether an input line matches any of the reference lines, do the following:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">client_matchLine_test</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight</span> <span class="kn">import</span> <span class="n">client_matchLine_test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client_matchLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This will return both the data and the id&#8217;s that have matched your input.</p>
 <p>If you want to just retrieve the data of a reference line, you can do so by submitting the id:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">client_getLine_test</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight</span> <span class="kn">import</span> <span class="n">client_getLine_test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client_getLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This will return the data associated to the reference line on record.</p>
 <p>And finally, if you want to delete a reference line in the database, send the id:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">client_deleteLine_test</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight</span> <span class="kn">import</span> <span class="n">client_deleteLine_test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client_deleteLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Please refer to the code-samples for further information on how to use this from within your code.</p>
@@ -140,6 +153,9 @@ Keep this id to your records.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
         <li class="right" >
           <a href="developer.html" title="Strict Dependencies"
              >next</a> |</li>
