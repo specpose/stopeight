@@ -12,7 +12,7 @@ Data Acquisition
    :maxdepth: 2
 
    acquisition
-   analyzer
+   stroke-analyzer
 
 Installation Instructions
 =========================
