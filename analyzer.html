@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Python Module Index &mdash; stopeight 0.1.0 documentation</title>
+    <title>Analyzer &mdash; stopeight 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,13 +26,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
- 
-
-    <script type="text/javascript">
-      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
-    </script>
-
-
+    <link rel="next" title="Multiprocessing" href="installation.html" />
+    <link rel="prev" title="Data Acquisition" href="acquisition.html" /> 
   </head>
   <body>
     <div class="related">
@@ -42,8 +37,14 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="#" title="Python Module Index"
+          <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Multiprocessing"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="acquisition.html" title="Data Acquisition"
+             accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
         <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
@@ -56,23 +57,31 @@
         <div class="bodywrapper">
           <div class="body">
             
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-s"><strong>s</strong></a>
-   </div>
-
-   <table class="indextable modindextable" cellspacing="0" cellpadding="2">
-     <tr class="pcap"><td></td><td>&nbsp;</td><td></td></tr>
-     <tr class="cap" id="cap-s"><td></td><td>
-       <strong>s</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="scripts.html#module-server_soap"><tt class="xref">server_soap</tt></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="analyzer">
+<h1>Analyzer<a class="headerlink" href="#analyzer" title="Permalink to this headline">¶</a></h1>
+<p>Stroke test data can be found here:</p>
+<p>To use the stopeight-clibs-legacy for the (stroke) analyzer, get:</p>
+<div class="highlight-python"><pre>$ git checkout</pre>
+</div>
+<p>Then compile it:</p>
+<div class="highlight-python"><pre>$ cd /path/to/where/stopeight-clibs/legacy
+$ make</pre>
+</div>
+<p>And add it to the library path:</p>
+<div class="highlight-python"><pre>$ sudo ldconfig /path/to/where/stopeight-clibs/legacy/
+$ cd /path/to/where/stopeight-clibs/legacy-wrappers</pre>
+</div>
+<p>Run the interpreter:</p>
+<div class="highlight-python"><pre>$ python setup.py build
+$ python
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.path.append('/path/to/where/stopeight-clibs/legacy-wrappers/build/lib.linux-x86_64-2.7')
+&gt;&gt;&gt; import stopeight_clibs_legacy
+&gt;&gt;&gt; line = stopeight_clibs_legacy.parse_file('/path/to/where/test.sp')
+&gt;&gt;&gt; print line</pre>
+</div>
+<p>As you can see you have now loaded a pen-stroke. The test files have been generated with a Wacom Cintiq 21UX using the editor binary.</p>
+</div>
 
 
           </div>
@@ -80,6 +89,17 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="acquisition.html"
+                        title="previous chapter">Data Acquisition</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">Multiprocessing</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/analyzer.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -104,8 +124,14 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="#" title="Python Module Index"
+          <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Multiprocessing"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="acquisition.html" title="Data Acquisition"
+             >previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
         <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>

@@ -1,0 +1,33 @@
+Analyzing pen-strokes from a 2D input device.
+=============================================
+
+Pen stroke test data has to be extracted::
+
+    $ cd /path/to/where/stopeight-clibs/tests
+    $ tar xvfz v0-1-0.tar.gz
+
+To use the stopeight-clibs-legacy for the (stroke) analyzer, get::
+
+    $ git checkout
+
+Then compile it::
+
+    $ cd /path/to/where/stopeight-clibs/legacy
+    $ make
+
+And add it to the library path::
+    
+    $ sudo ldconfig /path/to/where/stopeight-clibs/legacy/
+    $ cd /path/to/where/stopeight-clibs/legacy-wrappers
+
+Run the interpreter::
+    
+    $ python setup.py build
+    $ python
+    >>> import sys
+    >>> sys.path.append('/path/to/where/stopeight-clibs/legacy-wrappers/build/lib.linux-x86_64-2.7')
+    >>> import stopeight_clibs_legacy
+    >>> line = stopeight_clibs_legacy.parse_file('/path/to/where/test.sp')
+    >>> print line
+
+As you can see you have now loaded the raw data of a pen-stroke. The test files have been generated with a Wacom Cintiq 21UX using the editor binary.

@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
-    <link rel="next" title="Multiprocessing" href="installation.html" />
+    <link rel="next" title="Analyzing pen-strokes from a 2D input device." href="stroke-analyzer.html" />
     <link rel="prev" title="Data Acquisition" href="index.html" /> 
   </head>
   <body>
@@ -40,7 +40,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Multiprocessing"
+          <a href="stroke-analyzer.html" title="Analyzing pen-strokes from a 2D input device."
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Data Acquisition"
@@ -66,10 +66,14 @@
 </ol>
 <p>It can be applied to a large number of applications:</p>
 <ul>
-<li><p class="first">Analyzing a time-based series of graph data.</p>
+<li><dl class="first docutils">
+<dt>Analyzing a time-based series of graph data.</dt>
+<dd><p class="first last">Frontend for non-realtime signal analysis.</p>
+</dd>
+</dl>
 </li>
 <li><dl class="first docutils">
-<dt>Analyzing pen-strokes from a 2D input device.</dt>
+<dt><a class="reference internal" href="stroke-analyzer.html"><em>Analyzing pen-strokes from a 2D input device.</em></a></dt>
 <dd><p class="first">In this case you can skip the first step.</p>
 <p class="last">An example for this implementation is <a class="reference external" href="http://www.symboloh.com">http://www.symboloh.com</a></p>
 </dd>
@@ -78,7 +82,7 @@
 </ul>
 <p>In different fields:</p>
 <ul class="simple">
-<li>Signal Processing</li>
+<li>Signal Analysis</li>
 <li>Data Visualisation</li>
 </ul>
 <div class="section" id="turning-a-function-graph-into-a-vector-graph">
@@ -91,15 +95,18 @@
 <h3>Vector Graph<a class="headerlink" href="#vector-graph" title="Permalink to this headline">¶</a></h3>
 <p>This function graph can be converted into a sequence of vectors in a two-dimensional plane.</p>
 <img src="_images/vector_graph.svg" /><p>The construction of the graph can be seen here:</p>
-<img src="_images/vector_construction.svg" /><p>By varying the step-size you can achieve:</p>
+<img src="_images/vector_construction.svg" /><p>Definition of the ratio between opposite and adjacent of the right triangle:</p>
+<p>Delta f(x) at point A / the average of all Delta f(x) of the Delta x&#8217;s between x0 and x1.</p>
+<p>Condition: All Delta x are invariant.</p>
+<p>By varying the step-size you can achieve:</p>
 <img src="_images/vector_graph2.svg" /><p>And by making it even smaller you can get:</p>
 <img src="_images/vector_graph3.svg" /><p>This last step reduces the impulse scaling to half the frequency found in the previous example. So for matchline overlay comparison the previous vector graph is preferred.</p>
 </div>
 </div>
 <div class="section" id="extraction-of-feature-points">
 <h2>Extraction of Feature Points<a class="headerlink" href="#extraction-of-feature-points" title="Permalink to this headline">¶</a></h2>
-<p>The vector graph is then converted into a sequence of one Turn, one Corner and one Turn. The sequence - starting with a Turn - has one Corner terminated by a turn and can be concatenated into Turn-Corner-Turn-Corner-Turn.</p>
-<img src="_images/extraction_sequence.svg" /><p>This input can be used to make a matchline overlay comparison to previously recorded vector graphs.</p>
+<p>The analyzer then converts the vector graph into a sequence of one Turn, one Corner and one Turn. The sequence - starting with a Turn - has one Corner terminated by a turn and is concatenated into Turn-Corner-Turn-Corner-Turn.</p>
+<img src="_images/extraction_sequence.svg" /><p>This input can be used to make a matchline overlay comparison (See <a class="reference internal" href="scripts.html"><em>Server</em></a>) to previously recorded vector graphs.</p>
 </div>
 </div>
 
@@ -126,8 +133,8 @@
   <p class="topless"><a href="index.html"
                         title="previous chapter">Data Acquisition</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="installation.html"
-                        title="next chapter">Multiprocessing</a></p>
+  <p class="topless"><a href="stroke-analyzer.html"
+                        title="next chapter">Analyzing pen-strokes from a 2D input device.</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/acquisition.txt"
@@ -160,7 +167,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Multiprocessing"
+          <a href="stroke-analyzer.html" title="Analyzing pen-strokes from a 2D input device."
              >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Data Acquisition"
@@ -172,7 +179,7 @@
       </ul>
     </div>
     <div class="footer">
-      Last updated on Oct 05, 2015.
+      Last updated on Oct 30, 2015.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

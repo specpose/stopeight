@@ -25,7 +25,7 @@ Different Storage Setups
 
 For running against a file storage, you need ZODB::
 
-    sudo apt-get install python-zodb
+    $ sudo apt-get install python-zodb
 
 Tested working with version:
 
@@ -78,6 +78,9 @@ Only if Sphinx version is lower than 1.2::
     $ git show master:doc/_extra/CNAME > ./CNAME
     $ git show master:doc/_extra/robots.txt > ./robots.txt
     $ git show master:doc/_extra/.nojekyll > ./.nojekyll
+    $ git add ./CNAME
+    $ git add ./robots.txt
+    $ git add ./.nojekyll
 
 Continue::
 
