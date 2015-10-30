@@ -9,6 +9,7 @@ Preparing the data involves the following two steps::
 It can be applied to a large number of applications:
 
 * Analyzing a time-based series of graph data.
+   Frontend for non-realtime signal analysis.
 * Analyzing pen-strokes from a 2D input device.
    In this case you can skip the first step.
 
@@ -16,7 +17,7 @@ It can be applied to a large number of applications:
 
 In different fields:
 
-* Signal Processing
+* Signal Analysis
 * Data Visualisation
 
 Turning a Function Graph into a Vector Graph
@@ -39,6 +40,10 @@ This function graph can be converted into a sequence of vectors in a two-dimensi
 The construction of the graph can be seen here:
 
 .. image:: _static/vector_construction.svg
+
+Definition of the ratio between opposite and adjacent of the right triangle:
+Delta f(x) at point A / the average of all Delta f(x) of the Delta x's between x0 and x1.
+Condition: All Delta x are invariant.
 
 By varying the step-size you can achieve:
 
