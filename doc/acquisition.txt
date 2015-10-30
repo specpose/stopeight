@@ -1,7 +1,7 @@
 Data Acquisition
 ================
 
-Preparing the data involves the following two steps::
+Preparing the data involves the following two steps:
 
 1. Turning a function graph into a vector graph.
 2. Extracting feature points for matchline overlay comparison.
