@@ -12,6 +12,7 @@ Data Acquisition
    :maxdepth: 2
 
    acquisition
+   analyzer
 
 Installation Instructions
 =========================
