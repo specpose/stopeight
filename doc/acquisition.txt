@@ -3,20 +3,20 @@ Data Acquisition
 
 Preparing the data involves the following two steps:
 
-1. Turning a function graph into a vector graph.
-2. Extracting feature points for matchline overlay comparison.
+1. Turning a Function Graph into a Vector Graph.
+2. Extracting feature points from a Vector Graph for matchline overlay comparison.
 
 It can be applied to a large number of applications:
 
-* Analyzing a time-based series of graph data.
-   Frontend for non-realtime signal analysis.
 * :doc:`stroke-analyzer`
-   In this case you can skip the first step.
 
    An example for this implementation is http://www.symboloh.com
+* Analyzing a time-based series of graph data.
+   Frontend for non-realtime signal analysis.
 
 In different fields:
 
+* Pen-Stroke UI
 * Signal Analysis
 * Data Visualisation
 

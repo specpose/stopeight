@@ -1,33 +1,44 @@
 Analyzing pen-strokes from a 2D input device.
 =============================================
 
-To use the stopeight-clibs-legacy for the (stroke) analyzer, get::
+Note: Needs qt4-core and qt4-gui::
+
+    $ sudo apt-get install libqt4-core
+    $ sudo apt-get install libqt4-gui
+
+The stroke analyzer is part of stopeight-clibs-legacy. Get::
 
     $ git clone https://github.com/fassio/stopeight-clibs.git
+
+Run qmake in qt-creator to generate the Makefile, compile, install and add to library path::
+
+    $ cd /path/to/where/stopeight-clibs/legacy
+    $ qmake-qt4 -o build/Makefile legacy.pro
+    $ make
+    $ sudo make install
+    $ sudo ldconfig
+
+Build and install the python API for pen-strokes::
+    
+    $ cd /path/to/where/stopeight-clibs/legacy-wrappers
+    $ python setup.py build
+    $ sudo python setup.py install
 
 Pen stroke test data has to be extracted::
 
     $ cd /path/to/where/stopeight-clibs/tests
     $ tar xvfz v0-1-0.tar.gz
 
-Compile it::
+Load a file with pen-stroke test data:
 
-    $ cd /path/to/where/stopeight-clibs/legacy
-    $ make
-
-And add it to the library path::
-    
-    $ sudo ldconfig /path/to/where/stopeight-clibs/legacy/
-    $ cd /path/to/where/stopeight-clibs/legacy-wrappers
-
-Run the interpreter::
-    
-    $ python setup.py build
     $ python
-    >>> import sys
-    >>> sys.path.append('/path/to/where/stopeight-clibs/legacy-wrappers/build/lib.linux-x86_64-2.7')
     >>> import stopeight_clibs_legacy
     >>> line = stopeight_clibs_legacy.parse_file('/path/to/where/FILENAME.sp')
     >>> print line
 
-As you can see you have now loaded the raw data of a pen-stroke. The test files have been generated with a Wacom Cintiq 21UX using the editor binary.
+As you can see you have now loaded the raw data of a pen-stroke. Any arc-wise connected series of 2D points can be loaded however you have to provide your own GUI. The test files have been generated with a Wacom Cintiq 21UX using the editor binary.
+
+To extract the feature points from the pen-stroke::
+
+    >>> points = stopeight_clibs_legacy.stroke_spirals(line)
+    >>> print points

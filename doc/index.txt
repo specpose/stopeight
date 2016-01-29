@@ -5,17 +5,16 @@
 
 .. image:: http://www.specpose.com/images/specpose_logo470x230.png
 
-Data Acquisition
-================
+Frontends
+=========
 
 .. toctree::
    :maxdepth: 2
 
    acquisition
-   stroke-analyzer
 
-Installation Instructions
-=========================
+Server Installation Instructions
+================================
 
 .. toctree::
    :maxdepth: 2
