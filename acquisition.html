@@ -26,8 +26,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
-    <link rel="next" title="Analyzing pen-strokes from a 2D input device." href="stroke-analyzer.html" />
-    <link rel="prev" title="Data Acquisition" href="index.html" /> 
+    <link rel="next" title="Multiprocessing" href="installation.html" />
+    <link rel="prev" title="Frontends" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -40,10 +40,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="stroke-analyzer.html" title="Analyzing pen-strokes from a 2D input device."
+          <a href="installation.html" title="Multiprocessing"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Data Acquisition"
+          <a href="index.html" title="Frontends"
              accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
@@ -59,29 +59,34 @@
             
   <div class="section" id="data-acquisition">
 <h1>Data Acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this headline">¶</a></h1>
-<p>Preparing the data involves the following two steps:</p>
+<p>Preparing the data involves the following one or two steps:</p>
 <ol class="arabic simple">
-<li>Turning a function graph into a vector graph.</li>
-<li>Extracting feature points for matchline overlay comparison.</li>
+<li>Turning a Function Graph into a Vector Graph.</li>
+<li>Extracting feature points from a Vector Graph for matchline overlay comparison.</li>
 </ol>
-<p>It can be applied to a large number of applications:</p>
+<p>It can be applied to a lot of different applications:</p>
 <ul>
 <li><dl class="first docutils">
-<dt>Analyzing a time-based series of graph data.</dt>
-<dd><p class="first last">Frontend for non-realtime signal analysis.</p>
+<dt><a class="reference internal" href="stroke-analyzer.html"><em>Analyzing pen-strokes from a 2D input device.</em></a></dt>
+<dd><p class="first">Partially working.</p>
+<p>Generic frontend for pen-strokes.</p>
+<p class="last">Example: Recognising Asian characters. (See <a class="reference external" href="http://www.symboloh.com">http://www.symboloh.com</a>)</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="stroke-analyzer.html"><em>Analyzing pen-strokes from a 2D input device.</em></a></dt>
-<dd><p class="first">In this case you can skip the first step.</p>
-<p class="last">An example for this implementation is <a class="reference external" href="http://www.symboloh.com">http://www.symboloh.com</a></p>
+<dt>Analyzing a time-based series of Function Graph data.</dt>
+<dd><p class="first">Not yet implemented :)</p>
+<p>Turns a Function Graph into a Vector Graph. Extracts feature points.</p>
+<p>Example: Frontend for non-realtime signal analysis.</p>
+<p class="last">Example: Frontend for stock market quotes.</p>
 </dd>
 </dl>
 </li>
 </ul>
 <p>In different fields:</p>
 <ul class="simple">
+<li>Pen-Stroke UI</li>
 <li>Signal Analysis</li>
 <li>Data Visualisation</li>
 </ul>
@@ -131,10 +136,10 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Data Acquisition</a></p>
+                        title="previous chapter">Frontends</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="stroke-analyzer.html"
-                        title="next chapter">Analyzing pen-strokes from a 2D input device.</a></p>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">Multiprocessing</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/acquisition.txt"
@@ -167,10 +172,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="stroke-analyzer.html" title="Analyzing pen-strokes from a 2D input device."
+          <a href="installation.html" title="Multiprocessing"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Data Acquisition"
+          <a href="index.html" title="Frontends"
              >previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
@@ -179,7 +184,7 @@
       </ul>
     </div>
     <div class="footer">
-      Last updated on Oct 30, 2015.
+      Last updated on Jan 29, 2016.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>
