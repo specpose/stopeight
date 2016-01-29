@@ -53,7 +53,7 @@ to::
 
     "from elixirTools import DBLine"
 
-and change the database connection string in elixirTools according to you database installation. I have successfully tested MySQL. The elixir code follows the rails ActiveRecord convention.
+And setting the database connection in stopeight.server.server_include according to your database installation. I have successfully tested MySQL. The elixir code follows the rails ActiveRecord convention.
 
 GitHub & Sphinx
 ===============

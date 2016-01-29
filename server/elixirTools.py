@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
-import vectorTools
-from zsiTools import *
-from elixir import *
+# Copyright (C) 2009-2012 Specific Purpose Software GmbH
+
+from stopeight.comparator import vectorTools
+from stopeight.server import zsiTools
+from stopeight.server import Elixir
 
 metadata.bind = 'mysql://matchLine_user@localhost/matchLine'
 metadata.bind.echo = False

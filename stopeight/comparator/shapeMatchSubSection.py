@@ -1,26 +1,12 @@
 #!/usr/bin/env python
 
-# matchline: Comparing sequences of points in 2 dimensions.
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; NO OTHER VERSION than version 2.0 of the License.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, write to the Free Software Foundation, Inc.,
-# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-from matrixTools import *
-from vectorTools import *
-from shapeMatch import ShapeMatchClass
+from stopeight.comparator.matrixTools import *
+from stopeight.comparator import vectorTools
+from stopeight.comparator.shapeMatch import ShapeMatchClass
 
-import logSwitch
+from stopeight.logging import logSwitch
 log = logSwitch.logMath()
 
 class ShapeMatchSubSectionClass:
@@ -49,7 +35,7 @@ class ShapeMatchSubSectionClass:
                 return True
 
 if __name__ == "__main__":
-    import vectorTools
+    from stopeight.comparator import vectorTools
     log = logSwitch.logPrint()
     log.info('Starting shapeMatch...')
     input = array([[20,20],[55,130],[80,60],[120,85],[200,10]]).view(vectorTools.NumpyLine)

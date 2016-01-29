@@ -18,14 +18,13 @@
 
 def run():
 	from ZSI.client import Binding, NamedParamBinding
-	from zsiTools import ABCPoint,ABCLine,ABCSymbol
-	import zsiTools
-	#from numpy import *
+	from stopeight.server.zsiTools import ABCPoint,ABCLine,ABCSymbol
+	from stopeight.server import zsiTools
+	from numpy import ndarray
 	import sys
 	import traceback
-	from ZSI import TC
 
-	import server_include
+	from stopeight.server import server_include
 	url=server_include.server_url+str(server_include.server_port)
 
 	fp = open(__file__+'.log', 'a')
@@ -33,24 +32,28 @@ def run():
 
 	try:
 	    input = ABCSymbol()
-	    line = ABCLine()
-	    # This line id is going to be deleted
-	    line.id=1
-	    input.add_line(line)
+
+	    #line = ABCLine.from_numpy_array([[0,50],[25,25],[50,0],[70,70]])
+	    line = ABCLine.from_numpy_array([[0,50],[25,25],[50,0]])
 
 	    # for identifying echo in result
+	    line.id=0
+	    input.add_line(line)
+
+	    #for identifying echo in result
 	    input.id=0
 	    for i in input.lines:
-		print 'Input line id: %d'%(i.id)
-	    print 'sending SOAP method: deleteLine...'
-	    # parameter name doesn't seem to matter
-	    result = b.deleteLine(sdklffjkdsla=input)
-	    for i in result['ABCSymbol']:
-		print 'Deleted line id: %d'%(i.id)
+		print 'Input line: '
 		for p in i:
 		    print p.x,p.y
 		    pass
-
+	    print 'sending SOAP method: matchLine...'
+	    result = b.matchLine(sdklffjkdsla=input)
+	    for i in result['ABCSymbol']:
+		print 'Matched line: '
+		for p in i:
+		    print p.x,p.y
+		    pass
 	except:
 	    exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
 	    print "*** print_tb:"

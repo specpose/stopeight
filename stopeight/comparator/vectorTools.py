@@ -1,24 +1,10 @@
-# matchline: Comparing sequences of points in 2 dimensions.
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; NO OTHER VERSION than version 2.0 of the License.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License along
-# with this program; if not, write to the Free Software Foundation, Inc.,
-# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 from operator import itemgetter
 from numpy import ndarray,sqrt,square,zeros_like,pi
 from numpy.core.umath import arctan2, arctan2
-from SVG import Line
-from matrixTools import *
+#from SVG import Line
+from stopeight.comparator.matrixTools import *
 
 class NumpyLine(ndarray):
 
@@ -62,12 +48,12 @@ class NumpyLine(ndarray):
         deg = (rad/pi)*180.0 + 180.0;
         return deg
 
-    def printVectors(self,filename):
-        scene = Scene(filename,255,255)
-        for count,v in enumerate(self[:len(self)-1]):
-            scene.add(Line(center(v),center(self[count+1])))
-        scene.write_svg()
-        scene.display()
+#    def printVectors(self,filename):
+#        scene = Scene(filename,255,255)
+#        for count,v in enumerate(self[:len(self)-1]):
+#            scene.add(Line(center(v),center(self[count+1])))
+#        scene.write_svg()
+#        scene.display()
 
     def to_tuple(self):
         line = [(float(L[0]),float(L[1])) for L in self]

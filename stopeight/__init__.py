@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # matchline: Comparing sequences of points in 2 dimensions.
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 #
@@ -16,16 +14,3 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-from ZSI import dispatch
-import zsiTools
-import zsiServer
-
-def run(port):
-    """ This will launch a SOAP server.
-        The default port can be found in :mod:`stopeight.server_include` or supplied as an argument
-    """
-    dispatch.AsServer(port,modules=(zsiServer,),typesmodule=zsiTools,rpc=True)
-
-if __name__ == "__main__":
-    import server_include
-    run(server_include.server_port)

@@ -18,14 +18,14 @@
 
 def run():
 	from ZSI.client import Binding, NamedParamBinding
-	from zsiTools import ABCPoint,ABCLine,ABCSymbol
-	import zsiTools
+	from stopeight.server.zsiTools import ABCPoint,ABCLine,ABCSymbol
+	from stopeight.server import zsiTools
 	#from numpy import *
 	import sys
 	import traceback
 	from ZSI import TC
 
-	import server_include
+	from stopeight.server import server_include
 	url=server_include.server_url+str(server_include.server_port)
 
 	fp = open(__file__+'.log', 'a')
@@ -34,8 +34,7 @@ def run():
 	try:
 	    input = ABCSymbol()
 	    line = ABCLine()
-
-	    # the id of the line has to be known in advance
+	    # This line id is going to be deleted
 	    line.id=1
 	    input.add_line(line)
 
@@ -43,11 +42,11 @@ def run():
 	    input.id=0
 	    for i in input.lines:
 		print 'Input line id: %d'%(i.id)
-	    print 'sending SOAP method: getLine...'
+	    print 'sending SOAP method: deleteLine...'
 	    # parameter name doesn't seem to matter
-	    result = b.getLine(sdklffjkdsla=input)
+	    result = b.deleteLine(sdklffjkdsla=input)
 	    for i in result['ABCSymbol']:
-		print 'Received line id: %d'%(i.id)
+		print 'Deleted line id: %d'%(i.id)
 		for p in i:
 		    print p.x,p.y
 		    pass
