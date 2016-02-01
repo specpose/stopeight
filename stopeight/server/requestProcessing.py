@@ -5,6 +5,7 @@ from stopeight.server.zodbTools import DBLine
 from stopeight.server.zsiTools import ABCSymbol
 import time
 import sys
+from stopeight.multiprocessing import pooling
 
 from stopeight.logging import logSwitch
 # Note: This is done depending on logging context
@@ -34,19 +35,25 @@ def populate_lines(echo, lines):
     return varray
 
 def match_line(line):
-    symbol = symbolTools.MPLine()
     db0 = time.clock()
-    allLines = DBLine.getAll()
+    dbLines = DBLine.getAll()
+    allLines = []
+    for dbrecord in dbLines:
+        allLines.append(dbrecord.to_numpy_array())
     log.debug('m_l db: '+str(time.clock()-db0)+'s')
     py0 = time.clock()
-    lines = symbol.matchLine(line, allLines)
+
+    result = pooling.run(allLines,line.to_numpy_array()) 
+##    symbol = pooling.MPLine(allLines)
+##    lines = symbol.matchLine(line.to_numpy_array())
     log.debug('m_l py: '+str(time.clock()-py0)+'s')
     pop0 = time.clock()
     #build set (might be buggy!)
+    log.info('found %d matches out of %d records!'%(len(result),len(dbLines)))
     resultSet = set()
-    log.warning('found %d matches out of %d records!'%(len(lines),len(allLines)))
-    for record in lines:
-        resultSet.add(record)
+    for recordNumber in result:
+        resultSet.add(dbLines[recordNumber].id)
+    
     response = populate_lines(line, resultSet)
     log.debug('m_l pop: '+str(time.clock()-pop0)+'s')
     log.debug('m_l total: '+str(time.clock()-db0)+'s')
@@ -54,15 +61,15 @@ def match_line(line):
 
 def save_line(ABCLine):
     log.debug('saving line')
-    id = symbolTools.MPLine.save(ABCLine)
+    id = symbolTools.STLine.save(ABCLine)
     return id
 
 def delete_line(ABCLine):
     log.debug('deleting line')
-    line = symbolTools.MPLine.delete(ABCLine)
+    line = symbolTools.STLine.delete(ABCLine)
     return line
 
 def get_line(ABCLine):
     log.debug('retrieving line')
-    line = symbolTools.MPLine.get(ABCLine)
+    line = symbolTools.STLine.get(ABCLine)
     return line

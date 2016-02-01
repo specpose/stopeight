@@ -2,7 +2,7 @@
 
 from stopeight.logging import logSwitch
 # Note: This is done depending on logging context
-log = logSwitch.logServer()
+log = logSwitch.logPrint()
 
 from stopeight.server import zsiTools
 from stopeight.server import requestProcessing

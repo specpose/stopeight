@@ -7,6 +7,8 @@ from numpy.core.umath import arctan2, arctan2
 from stopeight.comparator.matrixTools import *
 
 class NumpyLine(ndarray):
+    def __new__(cls,*args,**kwargs):
+        return ndarray.__new__(cls,*args,**kwargs)
 
     def reorderToNStart(self,n):
         reordered = zeros_like(self)

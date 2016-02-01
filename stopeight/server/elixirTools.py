@@ -4,10 +4,8 @@
 
 from stopeight.comparator import vectorTools
 from stopeight.server import zsiTools
-from stopeight.server import Elixir
 
-metadata.bind = 'mysql://matchLine_user@localhost/matchLine'
-metadata.bind.echo = False
+from stopeight.server import server_include
 
 class DBPoint(ABCPoint,Entity):
     using_options(tablename='points')
@@ -56,7 +54,7 @@ setup_all()
 
 def create_database():
     create_all()
-    print 'elixirTools.py::main: created database on %s'%(metadata.bind)
+    print 'elixirTools.py::create_database on %s'%(metadata.bind)
 
 if __name__ == "__main__":
     create_database()

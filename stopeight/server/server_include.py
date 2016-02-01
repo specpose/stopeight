@@ -4,3 +4,9 @@
 server_port=8888
 # Only used by clients
 server_url='http://localhost:'
+# if DBLine from zodbTools
+zodb_filename='Data.fs'
+# if DBLine from elixirTools
+#from elixir import *
+#metadata.bind = 'mysql://matchLine_user@localhost/matchLine'
+#metadata.bind.echo = False
