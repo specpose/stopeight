@@ -1,22 +1,21 @@
+#!/usr/bin/env python
+
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 
 from stopeight.logging import logSwitch
 # Note: This is done depending on logging context
-log = logSwitch.logPrint()
+log = logSwitch.logNone()
 
 import numpy
-#from stopeight.server.zodbTools import DBLine
 from stopeight.comparator import vectorTools
 from stopeight.comparator.shapeMatch import ShapeMatchClass
 from stopeight.comparator.shapeMatchSubSection import ShapeMatchSubSectionClass
 import multiprocessing
-#from stopeight.server import symbolTools
 from types import NoneType
 from stopeight.comparator.vectorTools import NumpyLine
 
 class mp_data_line():
     def __init__(self,input,dbrecord,listpos):
-        log.debug('mp_data_line():'+'dataline'+str(listpos)+'added')
         if (isinstance(input, numpy.ndarray) and isinstance(dbrecord, numpy.ndarray)):
             self.input_line=input
             self.record_line=dbrecord
@@ -39,26 +38,14 @@ def mp_match_line(next_record,results):
             results.append((data.record_id))
 
 class MPLine():
-#    def __new__(cls):
-#        log.debug('MPLine.new(): hello')
     allLines = []
     def __init__(cls, lines):
-        log.debug('MPLine.new():'+'records'+str(len(lines))+'before check')
         if isinstance(lines, list):
-            log.debug('MPLine.new():'+'records'+str(len(lines))+'added')
+            log.debug('MPLine.init():'+str(len(lines))+'records added')
             cls.allLines = lines
         else:
-            log.error('MPLine(): Numpy array please '+str(type(lines)))
+            log.error('MPLine.init(): Numpy array please '+str(type(lines)))
     
-#    def __init__(self, nothing):
-#        log.debug('MPLine.new(): hello')
-#        pass
-#        self.manager = multiprocessing.Manager()
-
-    def __del__(self):
-        pass
-#        self.manager.shutdown
-
     def matchLine(self,line):
         if (isinstance(line, numpy.ndarray)):
             manager = multiprocessing.Manager()
@@ -107,7 +94,7 @@ def runNPopulate(dbrecords,line):
 def populate(result):
     results = []
     for pos in result:
-        print 'matched line position '+str(pos)
+        log.info('matched line position '+str(pos))
         results.append(dbrecords[pos])
     return results
     
@@ -125,4 +112,4 @@ if __name__ == "__main__":
     dbrecords.append(dbrecord)
     res = runNPopulate(dbrecords,s)    
     if len(res)>0:
-        print 'Hooray! '+str(len(res))+'results'
+        log.info('Hooray! '+str(len(res))+'results')

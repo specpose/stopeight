@@ -5,6 +5,7 @@ import logging
 
 def initialize_config():
     """ Note: Goes into corresponding __init__.py file. This is done once at import of module that needs logging.
+        The directory for searching the logging conf is the stopeight.logging package directory.
     """
     import os
     if os.path.isfile(os.path.join(os.path.dirname(os.path.abspath(__file__)),'logging.conf')):
@@ -67,16 +68,15 @@ class logPrint:
         print "CRITICAL: ",message
 
 # python logging module (slow)
-# alerts
 #class logServer(logging.getLoggerClass()):
-# fails silently
+#or
 class logServer(logNone):
     def __new__(cls):
         return logging.getLogger('server')
 
 # python logging module (slow)
 #class logMath(logging.getLoggerClass()):
-# fails silently
+#or
 class logMath(logNone):
     def __new__(cls):
         return logging.getLogger('math')

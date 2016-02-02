@@ -1,60 +1,5 @@
 .. image:: http://www.specpose.com/images/specpose_logo470x230.png
 
-Strict Dependencies
-===================
-
-As of 09/2015 only python version 2.7 is supported!
-
-Get numpy on ubuntu::
-
-    $ sudo apt-get install python-numpy
-
-Recommended Dependencies
-========================
-
-It relies on SOAP for client/server communication, therefore you need. Note: This is a version that does not require PyXML anymore::
-
-    $ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
-
-Download and run in subdirectory zsi::
-
-    $ sudo python setup.py install
-
-Different Storage Setups
-========================
-
-For running against a file storage, you need ZODB::
-
-    $ sudo apt-get install python-zodb
-
-Tested working with version:
-
-ZODB3-3.10.5.tar.gz
-
-For running against a rails2.3 style db, you need elixir, SQLAlchemy, MySQL-python::
-
-    $ sudo apt-get install python-mysqldb
-
-Tested working with versions:
-
-Elixir-0.7.1.tar.gz
-
-SQLAlchemy-0.7.8.tar.gz
-
-Run in each directory and check sys.path::
-
-    $ sudo python setup.py install
-
-You can switch to a SQL storage backend by modifying 3 lines of code. Change occurences of::
-
-    "from zodbTools import DBLine"
-
-to::
-
-    "from elixirTools import DBLine"
-
-And setting the database connection in stopeight.server.server_include according to your database installation. I have successfully tested MySQL. The elixir code follows the rails ActiveRecord convention.
-
 GitHub & Sphinx
 ===============
 
@@ -65,6 +10,7 @@ Get python sphinx on ubuntu::
 In order to rebuild the docs, do::
 
     $ cd doc/
+    $ rm -R ./_build
     $ make html
     $ cd ../
     $ git checkout gh-pages

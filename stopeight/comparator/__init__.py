@@ -1,4 +1,4 @@
-# matchline: Comparing sequences of points in 2 dimensions.
+# stopeight: Comparing sequences of points in 2 dimensions.
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 #
 # This program is free software; you can redistribute it and/or modify

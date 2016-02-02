@@ -8,7 +8,6 @@ import numpy
 from stopeight.server.zodbTools import DBLine
 from stopeight.server.zsiTools import ABCSymbol,ABCLine
 import time
-#from stopeight.server import symbolTools
 from types import NoneType
 
 class STLine():

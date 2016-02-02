@@ -1,7 +1,9 @@
+#!/usr/bin/env python
+
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 
 from stopeight.logging import logSwitch
-log = logSwitch.logMath()
+log = logSwitch.logNone()
 
 from stopeight.comparator.matrixTools import *
 from stopeight.comparator import vectorTools

@@ -5,29 +5,34 @@
 
 .. image:: http://www.specpose.com/images/specpose_logo470x230.png
 
-Frontends
-=========
+Frontend: Analyzer
+==============================
 
 .. toctree::
    :maxdepth: 2
 
    acquisition
 
-Server Installation Instructions
-================================
+   stroke-analyzer
+
+Backend: Comparator
+===================
+
+.. toctree::
+    :maxdepth: 2
+
+    comparator
+
+Installation Instructions
+=========================
 
 .. toctree::
    :maxdepth: 2
 
    installation
 
-Getting Started
-===============
+   scripts
 
-.. toctree::
-    :maxdepth: 2
-
-    scripts
 
 Developer Notes
 ===============
