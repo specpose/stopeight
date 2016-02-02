@@ -1,10 +1,18 @@
-Analyzing pen-strokes from a 2D input device.
-=============================================
+.. image:: http://www.specpose.com/images/specpose_logo470x230.png
+
+Stroke Analyzer
+===============
+
+Dependencies
+^^^^^^^^^^^^
 
 Note: Needs qt4-core and qt4-gui::
 
     $ sudo apt-get install libqt4-core
     $ sudo apt-get install libqt4-gui
+
+Analyzing pen-strokes from a 2D input device.
+---------------------------------------------
 
 The stroke analyzer is part of stopeight-clibs-legacy. Get::
 
@@ -41,3 +49,6 @@ To extract the feature points from the pen-stroke::
 
     >>> points = stopeight_clibs_legacy.stroke_spirals(line)
     >>> print points
+
+.. automodule:: stopeight-clibs-legacy
+   :members:

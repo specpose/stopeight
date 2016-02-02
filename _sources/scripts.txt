@@ -3,26 +3,93 @@
 Server
 ======
 
-To launch the server do the following from within a python shell::
+Dependencies
+^^^^^^^^^^^^
 
-    >>> import os
-    >>> os.chdir('/path/to/where/stopeight')
-    >>> import sys
-    >>> sys.path.append(os.path.dirname(os.getcwd()))
-    >>> from stopeight import server_soap
+It relies on SOAP for client/server communication, therefore you need. Note: This is a version that does not require PyXML anymore::
+
+    $ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
+
+Download and run in subdirectory zsi::
+
+    $ sudo python setup.py install
+
+Storage Setups
+^^^^^^^^^^^^^^
+
+For running against a file storage, you need ZODB::
+
+    $ sudo apt-get install python-zodb
+
+Tested working with version:
+
+ZODB3-3.10.5.tar.gz
+
+AND RUN stopeight.server.zodbTools TO MAKE DATA.FS FILE
+
+For running against a rails2.3 style db, you need elixir, SQLAlchemy, MySQL-python::
+
+    $ sudo apt-get install python-mysqldb
+
+Tested working with versions:
+
+Elixir-0.7.1.tar.gz
+
+SQLAlchemy-0.7.8.tar.gz
+
+Run in each directory and check sys.path::
+
+    $ sudo python setup.py install
+
+You can switch to a SQL storage backend by modifying 3 lines of code. Change occurences of::
+
+    "from zodbTools import DBLine"
+
+to::
+
+    "from elixirTools import DBLine"
+
+And setting the database connection in stopeight.server.server_include according to your database installation. I have successfully tested MySQL. The elixir code follows the rails ActiveRecord convention.
+
+Deployment
+----------
+
+The server is in the main repo. Get::
+
+    $ git clone https://github.com/fassio/stopeight.git
+
+Build and install stopeight.comparator and stopeight.server::
+    
+    $ cd /path/to/where/stopeight
+    $ python setup.py build
+    $ sudo python setup.py install
+
+To create a ZODB storage file::
+
+    $ cd /path/to/where/stopeight/run
+    >>> import stopeight.server.zodbTools
+    >>> from stopeight.server import server_include
+    >>> stopeight.server.zodbTools.create_database(server_include.zodb_filename)
+
+To launch the server do the following from the same directory::
+
+    >>> from stopeight.server import server_soap
     >>> server_soap.run(8888)
 
-.. automodule:: server_soap
+.. automodule:: stopeight.server.server_soap
    :members:
 
 Testing it
-==========
+----------
 
-I have provided example-scripts for all of the SOAP commands.
+I have provided example-scripts for all of the SOAP commands::
+
+    $ cd /path/to/where/stopeight/tests
+    $ python
 
 To save your first line on the server, run::
 
-    >>> from stopeight import client_saveLine_test
+    >>> import client_saveLine_test
     >>> client_saveLine_test.run()
 
 This should produce output containing the id of your newly created line.
@@ -30,21 +97,21 @@ Keep this id to your records.
 
 To check whether an input line matches any of the reference lines, do the following::
 
-    >>> from stopeight import client_matchLine_test
+    >>> import client_matchLine_test
     >>> client_matchLine_test.run()
 
 This will return both the data and the id's that have matched your input.
 
 If you want to just retrieve the data of a reference line, you can do so by submitting the id::
 
-    >>> from stopeight import client_getLine_test
+    >>> import client_getLine_test
     >>> client_getLine_test.run()
 
 This will return the data associated to the reference line on record.
 
 And finally, if you want to delete a reference line in the database, send the id::
 
-    >>> from stopeight import client_deleteLine_test
+    >>> import client_deleteLine_test
     >>> client_deleteLine_test.run()
 
 Please refer to the code-samples for further information on how to use this from within your code.

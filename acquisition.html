@@ -26,8 +26,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
-    <link rel="next" title="Multiprocessing" href="installation.html" />
-    <link rel="prev" title="Frontends" href="index.html" /> 
+    <link rel="next" title="Stroke Analyzer" href="stroke-analyzer.html" />
+    <link rel="prev" title="Frontend: Analyzer" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -40,10 +40,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Multiprocessing"
+          <a href="stroke-analyzer.html" title="Stroke Analyzer"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Frontends"
+          <a href="index.html" title="Frontend: Analyzer"
              accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
@@ -57,17 +57,33 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="data-acquisition">
+  <img alt="http://www.specpose.com/images/specpose_logo470x230.png" src="http://www.specpose.com/images/specpose_logo470x230.png" />
+<div class="section" id="data-acquisition">
 <h1>Data Acquisition<a class="headerlink" href="#data-acquisition" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
 <p>Preparing the data involves the following one or two steps:</p>
-<ol class="arabic simple">
-<li>Turning a Function Graph into a Vector Graph.</li>
-<li>Extracting feature points from a Vector Graph for matchline overlay comparison.</li>
-</ol>
+<ul>
+<li><dl class="first docutils">
+<dt><a class="reference internal" href="vector-graph.html"><em>Grapher</em></a></dt>
+<dd><p class="first last">Turning a Function Graph into a Vector Graph.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><a class="reference internal" href="analyzer.html"><em>Analyzer</em></a></dt>
+<dd><p class="first last">Extracting feature points from a Vector Graph for matchline overlay comparison.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
 <p>It can be applied to a lot of different applications:</p>
 <ul>
 <li><dl class="first docutils">
-<dt><a class="reference internal" href="stroke-analyzer.html"><em>Analyzing pen-strokes from a 2D input device.</em></a></dt>
+<dt><a class="reference internal" href="stroke-analyzer.html"><em>Stroke Analyzer</em></a></dt>
 <dd><p class="first">Partially working.</p>
 <p>Generic frontend for pen-strokes.</p>
 <p class="last">Example: Recognising Asian characters. (See <a class="reference external" href="http://www.symboloh.com">http://www.symboloh.com</a>)</p>
@@ -90,28 +106,6 @@
 <li>Signal Analysis</li>
 <li>Data Visualisation</li>
 </ul>
-<div class="section" id="turning-a-function-graph-into-a-vector-graph">
-<h2>Turning a Function Graph into a Vector Graph<a class="headerlink" href="#turning-a-function-graph-into-a-vector-graph" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="function-graph">
-<h3>Function Graph<a class="headerlink" href="#function-graph" title="Permalink to this headline">¶</a></h3>
-<p>Any time-based data set with an accurate sampling rate can be used to build a function f(x).</p>
-<img src="_images/function_graph.svg" /></div>
-<div class="section" id="vector-graph">
-<h3>Vector Graph<a class="headerlink" href="#vector-graph" title="Permalink to this headline">¶</a></h3>
-<p>This function graph can be converted into a sequence of vectors in a two-dimensional plane.</p>
-<img src="_images/vector_graph.svg" /><p>The construction of the graph can be seen here:</p>
-<img src="_images/vector_construction.svg" /><p>Definition of the ratio between opposite and adjacent of the right triangle:</p>
-<p>Delta f(x) at point A / the average of all Delta f(x) of the Delta x&#8217;s between x0 and x1.</p>
-<p>Condition: All Delta x are invariant.</p>
-<p>By varying the step-size you can achieve:</p>
-<img src="_images/vector_graph2.svg" /><p>And by making it even smaller you can get:</p>
-<img src="_images/vector_graph3.svg" /><p>This last step reduces the impulse scaling to half the frequency found in the previous example. So for matchline overlay comparison the previous vector graph is preferred.</p>
-</div>
-</div>
-<div class="section" id="extraction-of-feature-points">
-<h2>Extraction of Feature Points<a class="headerlink" href="#extraction-of-feature-points" title="Permalink to this headline">¶</a></h2>
-<p>The analyzer then converts the vector graph into a sequence of one Turn, one Corner and one Turn. The sequence - starting with a Turn - has one Corner terminated by a turn and is concatenated into Turn-Corner-Turn-Corner-Turn.</p>
-<img src="_images/extraction_sequence.svg" /><p>This input can be used to make a matchline overlay comparison (See <a class="reference internal" href="scripts.html"><em>Server</em></a>) to previously recorded vector graphs.</p>
 </div>
 </div>
 
@@ -124,22 +118,18 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Data Acquisition</a><ul>
-<li><a class="reference internal" href="#turning-a-function-graph-into-a-vector-graph">Turning a Function Graph into a Vector Graph</a><ul>
-<li><a class="reference internal" href="#function-graph">Function Graph</a></li>
-<li><a class="reference internal" href="#vector-graph">Vector Graph</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#extraction-of-feature-points">Extraction of Feature Points</a></li>
+<li><a class="reference internal" href="#theory">Theory</a></li>
+<li><a class="reference internal" href="#applications">Applications</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Frontends</a></p>
+                        title="previous chapter">Frontend: Analyzer</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="installation.html"
-                        title="next chapter">Multiprocessing</a></p>
+  <p class="topless"><a href="stroke-analyzer.html"
+                        title="next chapter">Stroke Analyzer</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/acquisition.txt"
@@ -172,10 +162,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Multiprocessing"
+          <a href="stroke-analyzer.html" title="Stroke Analyzer"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Frontends"
+          <a href="index.html" title="Frontend: Analyzer"
              >previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
@@ -184,7 +174,7 @@
       </ul>
     </div>
     <div class="footer">
-      Last updated on Jan 29, 2016.
+      Last updated on Feb 02, 2016.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

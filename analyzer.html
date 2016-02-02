@@ -8,38 +8,38 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; stopeight 0.1.0 documentation</title>
+    <title>Analyzer &mdash; stopeight 0.1.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
+        URL_ROOT:    '',
         VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="stopeight 0.1.0 documentation" href="../index.html" /> 
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
+          <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
+          <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
-        <li><a href="../index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
+        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
  
       </ul>
     </div>  
@@ -49,8 +49,15 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <p>User-agent: *
-Disallow:</p>
+  <img alt="http://www.specpose.com/images/specpose_logo470x230.png" src="http://www.specpose.com/images/specpose_logo470x230.png" />
+<div class="section" id="analyzer">
+<h1>Analyzer<a class="headerlink" href="#analyzer" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="extraction-of-feature-points">
+<h2>Extraction of Feature Points<a class="headerlink" href="#extraction-of-feature-points" title="Permalink to this headline">¶</a></h2>
+<p>The analyzer then converts the vector graph into a sequence of one Turn, one Corner and one Turn. The sequence - starting with a Turn - has one Corner terminated by a turn and is concatenated into Turn-Corner-Turn-Corner-Turn.</p>
+<img src="_images/extraction_sequence.svg" /><p>This input can be used to make a matchline overlay comparison (See <a class="reference internal" href="scripts.html"><em>Server</em></a>) to previously recorded vector graphs.</p>
+</div>
+</div>
 
 
           </div>
@@ -58,14 +65,22 @@ Disallow:</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Analyzer</a><ul>
+<li><a class="reference internal" href="#extraction-of-feature-points">Extraction of Feature Points</a></li>
+</ul>
+</li>
+</ul>
+
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/_extra/robots.txt"
+    <li><a href="_sources/analyzer.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
@@ -84,14 +99,14 @@ Disallow:</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
+          <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
+          <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
-        <li><a href="../index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
+        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
  
       </ul>
     </div>

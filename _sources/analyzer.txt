@@ -1,0 +1,13 @@
+.. image:: http://www.specpose.com/images/specpose_logo470x230.png
+
+Analyzer
+========
+
+Extraction of Feature Points
+----------------------------
+
+The analyzer then converts the vector graph into a sequence of one Turn, one Corner and one Turn. The sequence - starting with a Turn - has one Corner terminated by a turn and is concatenated into Turn-Corner-Turn-Corner-Turn.
+
+.. image:: _static/extraction_sequence.svg
+
+This input can be used to make a matchline overlay comparison (See :doc:`scripts`) to previously recorded vector graphs.

@@ -1,7 +1,5 @@
 
 
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -10,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Index &mdash; stopeight 0.1.0 documentation</title>
+    <title>Comparator &mdash; stopeight 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -27,18 +25,26 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" /> 
+    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="Operating Systems" href="installation.html" />
+    <link rel="prev" title="Stroke Analyzer" href="stroke-analyzer.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="#" title="General Index"
+          <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Operating Systems"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="stroke-analyzer.html" title="Stroke Analyzer"
+             accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
         <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
@@ -51,40 +57,21 @@
         <div class="bodywrapper">
           <div class="body">
             
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- <a href="#R"><strong>R</strong></a>
- | <a href="#S"><strong>S</strong></a>
- 
+  <img alt="http://www.specpose.com/images/specpose_logo470x230.png" src="http://www.specpose.com/images/specpose_logo470x230.png" />
+<div class="section" id="comparator">
+<h1>Comparator<a class="headerlink" href="#comparator" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>As of 09/2015 only python version 2.7 has been tested.</p>
+<p>Get numpy on ubuntu:</p>
+<div class="highlight-python"><pre>$ sudo apt-get install python-numpy</pre>
 </div>
-<h2 id="R">R</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="scripts.html#stopeight.server.server_soap.run">run() (in module stopeight.server.server_soap)</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
-<h2 id="S">S</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="comparator.html#module-stopeight.multiprocessing.pooling">stopeight.multiprocessing.pooling (module)</a>
-  </dt>
-
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
-      
-  <dt><a href="scripts.html#module-stopeight.server.server_soap">stopeight.server.server_soap (module)</a>
-  </dt>
-
-  </dl></td>
-</tr></table>
-
+<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p>Is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">synchronize</span>
+</pre></div>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -92,9 +79,25 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Comparator</a><ul>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
 
-   
-
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="stroke-analyzer.html"
+                        title="previous chapter">Stroke Analyzer</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="next chapter">Operating Systems</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/comparator.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -116,11 +119,17 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="#" title="General Index"
+          <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Operating Systems"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="stroke-analyzer.html" title="Stroke Analyzer"
+             >previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
         <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
