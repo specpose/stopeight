@@ -7,7 +7,7 @@ from stopeight.comparator import vectorTools
 from stopeight.comparator.shapeMatch import ShapeMatchClass
 
 from stopeight.logging import logSwitch
-log = logSwitch.logMath()
+log = logSwitch.logNone()
 
 class ShapeMatchSubSectionClass:
     def __init__(self,compvec,toleranceDivider = 2):

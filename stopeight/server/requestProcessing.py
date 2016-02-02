@@ -8,8 +8,7 @@ import sys
 from stopeight.multiprocessing import pooling
 
 from stopeight.logging import logSwitch
-# Note: This is done depending on logging context
-log = logSwitch.logServer()
+log = logSwitch.logPrint()
 
 def log_set(name, myset):
     log.debug(name)

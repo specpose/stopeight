@@ -6,36 +6,27 @@ from ZODB.FileStorage import FileStorage
 from ZODB.DB import DB
 
 from stopeight.logging import logSwitch
-log = logSwitch.logServer()
+log = logSwitch.logNone()
 
 from stopeight.server import server_include
 
-#class Database():
-#    pass
-#    __new__(cls, fileName):
-#        if not os.path.isfile(fileName):
-#            storage = FileStorage(fileName)
-print 'zodbTools.py::create_database ZODB file '+server_include.zodb_filename+' created'
+import os
+if not os.path.isfile(server_include.zodb_filename):
+    print('import stopeight.server.zodbTools: Please create database file first.')
+    print('Like: '+'storage = FileStorage(server_include.zodb_filename)')
+else:
+    storage = FileStorage(server_include.zodb_filename)
+    db = DB(storage)
+    connection = db.open()
+    root = connection.root()
+    log.debug('zodb File-Database connection opened...')
 
-#def open_database():
-#    if os.path.isfile(server_include.zodb_filename):
-storage = FileStorage(server_include.zodb_filename)
-db = DB(storage)
-connection = db.open()
-root = connection.root()
-log.debug('zodb File-Database connection opened...')
-#        return db
-#    else:
-#        print 'zodbTools.py::open_database ZODB file'+server_include.zodb_filename+' not found.'
-#        print 'Try stopeight.server.zodbTools.create_database(server_include.zodb_filename)'
-#db = open_database()
+    import atexit
+    def close_database():
+        db.close()
+        log.debug('...zodb Database connection closed.')
 
-import atexit
-def close_database():
-    db.close()
-    log.debug('...zodb Database connection closed.')
-
-atexit.register(close_database)
+    atexit.register(close_database)
 
 from stopeight.comparator import vectorTools
 from stopeight.server import zsiTools
@@ -89,7 +80,6 @@ class DBLine(ABCLine,persistent.Persistent):
 
 if __name__ == "__main__":
     pass
-#    Database(server_include.zodb_filename)
     
 def storage_example():
     vector = DBLine.from_numpy_array(array([[13,40],[50,125],[80,61],[123,79],[191,11]]))

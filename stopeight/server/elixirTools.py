@@ -7,6 +7,9 @@ from stopeight.server import zsiTools
 
 from stopeight.server import server_include
 
+metadata.bind = server_include.metadata_bind
+metadata.bind.echo = server_include.metadata_bind_echo
+
 class DBPoint(ABCPoint,Entity):
     using_options(tablename='points')
     x = Field(Integer)
