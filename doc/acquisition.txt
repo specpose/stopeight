@@ -1,5 +1,3 @@
-.. image:: http://www.specpose.com/images/specpose_logo470x230.png
-
 Data Acquisition
 ================
 

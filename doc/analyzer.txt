@@ -1,5 +1,3 @@
-.. image:: http://www.specpose.com/images/specpose_logo470x230.png
-
 Analyzer
 ========
 
@@ -10,4 +8,4 @@ The analyzer then converts the vector graph into a sequence of one Turn, one Cor
 
 .. image:: _static/extraction_sequence.svg
 
-This input can be used to make a matchline overlay comparison (See :doc:`scripts`) to previously recorded vector graphs.
+This input can be used to make a matchline overlay comparison (See :doc:`comparator`) to previously recorded vector graphs.

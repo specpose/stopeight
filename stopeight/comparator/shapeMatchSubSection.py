@@ -14,10 +14,13 @@ class ShapeMatchSubSectionClass:
         self.reference = compvec.copy()
         self.toleranceDivider = toleranceDivider
 
-    # unequal length
-    # multiple (instantiations) after change
-    # order of vectors doesn't matter, will be flipped
     def match(self,invec):
+        '''
+        This gives a boolean result for every line that is contained within another line.
+        unequal length
+        '''
+        #multiple (instantiations) after change
+        #order of vectors doesn't matter, will be flipped
         if (len(self.reference)<len(invec)):
             return False
             # under certain circumstances it may make sense to match a long input to a short reference

@@ -1,10 +1,5 @@
-.. image:: http://www.specpose.com/images/specpose_logo470x230.png
-
 Server
 ======
-
-Dependencies
-^^^^^^^^^^^^
 
 It relies on SOAP for client/server communication, therefore you need. Note: This is a version that does not require PyXML anymore::
 
@@ -15,7 +10,7 @@ Download and run in subdirectory zsi::
     $ sudo python setup.py install
 
 Storage Setups
-^^^^^^^^^^^^^^
+--------------
 
 For running against a file storage, you need ZODB::
 
@@ -53,16 +48,6 @@ And setting the database connection in stopeight.server.server_include according
 
 Deployment
 ----------
-
-The server is in the main repo. Get::
-
-    $ git clone https://github.com/fassio/stopeight.git
-
-Build and install stopeight.comparator and stopeight.server::
-    
-    $ cd /path/to/where/stopeight
-    $ python setup.py build
-    $ sudo python setup.py install
 
 To create a ZODB storage file::
 

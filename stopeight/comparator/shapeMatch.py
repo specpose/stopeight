@@ -11,13 +11,16 @@ class ShapeMatchClass(LineMatchClass):
     def __init__(self, compvec, toleranceDivider=2):
         LineMatchClass.__init__(self,compvec,toleranceDivider)
 
-    # overwrite method in lineMatch for now
-    # if we don't have SubSection matching,
-    # and we don't have Directional matching,
-    # it's only weighted (to be implemented: align from center not start)
-    # this should be weighted, noreverse
-    # is unweighted, reverse at the moment
     def match(self,invec):
+        '''
+        This gives a boolean result for every line that entirely matches another line of the same length.
+        '''
+        #overwrite method in lineMatch for now
+        #if we don't have SubSection matching,
+        #and we don't have Directional matching,
+        #it's only weighted (to be implemented: align from center not start)
+        #this should be weighted, noreverse
+        #is unweighted, reverse at the moment
         comparison = invec.copy()
 
         log.debug(dir(LineMatchClass))

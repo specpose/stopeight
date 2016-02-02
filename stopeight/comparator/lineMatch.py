@@ -106,8 +106,10 @@ class LineMatchClass:
         log.info('Adjusting tolerance to: %s' %tolerance)
         return tolerance
 
-    # Will not return matches with uneven lengths!
-    # toleranceDivider = 2 is suitable for lineMatch, maybe use different value for symbolposition
+    '''
+    Will not return matches with uneven lengths!
+    toleranceDivider = 2 is suitable for lineMatch, maybe use different value for symbolposition
+    '''
     def __init__(self,compvec,toleranceDivider = 2):
         # Note: We are caching reference here, because tolerance depends on it
         self.reference = compvec.copy()

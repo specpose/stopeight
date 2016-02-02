@@ -8,7 +8,7 @@ log = logSwitch.logNone()
 
 import numpy
 from stopeight.comparator import vectorTools
-from stopeight.comparator.shapeMatch import ShapeMatchClass
+#from stopeight.comparator.shapeMatch import ShapeMatchClass
 from stopeight.comparator.shapeMatchSubSection import ShapeMatchSubSectionClass
 import multiprocessing
 from types import NoneType
@@ -25,6 +25,13 @@ class mp_data_line():
         else:
             log.error('mp_data_line(): Numpy array expected')
 
+def _mp_match_func_name(nline):
+    '''
+    ShapeMatchSubSectionClass: unweightedReverseSubSection
+    ShapeMatchClass: unweightedReverse
+    '''
+    return ShapeMatchSubSectionClass(nline)
+
 def mp_match_line(next_record,results):
     counter = 0
     while 1:
@@ -33,18 +40,18 @@ def mp_match_line(next_record,results):
         except:
             break
         counter += 1
-        unweightedReverseSubSection = ShapeMatchSubSectionClass(data.record_line.view(NumpyLine))
-        if unweightedReverseSubSection.match(data.input_line.view(NumpyLine)):
+        Geometry = _mp_match_func_name(data.record_line.view(NumpyLine))
+        if Geometry.match(data.input_line.view(NumpyLine)):
             results.append((data.record_id))
 
 class MPLine():
     allLines = []
     def __init__(cls, lines):
-        if isinstance(lines, list):
-            log.debug('MPLine.init():'+str(len(lines))+'records added')
+        if isinstance(lines, list) and all(isinstance(item,numpy.ndarray) for item in lines):
             cls.allLines = lines
+            log.debug('MPLine.init():'+str(len(lines))+'records added')
         else:
-            log.error('MPLine.init(): Numpy array please '+str(type(lines)))
+            log.error('MPLine.init(): list of Numpy arrays please '+str(type(lines)))
     
     def matchLine(self,line):
         if (isinstance(line, numpy.ndarray)):
