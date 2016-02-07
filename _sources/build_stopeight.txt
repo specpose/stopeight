@@ -1,0 +1,39 @@
+stopeight
+---------
+
+As of 09/2015 only python version 2.7 has been tested.
+
+Get numpy on ubuntu::
+
+    $ sudo apt-get install python-numpy
+
+.. automodule:: stopeight.multiprocessing.pooling
+   :members:
+
+:mod:`stopeight.multiprocessing` is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell::
+
+    >>> from multiprocessing import synchronize
+
+Clone into the repository::
+
+    $ git clone https://github.com/fassio/stopeight.git
+
+Due to the development status and likeliness to change API interfaces these modules are not yet available in the Python package repository:
+
+:mod:`stopeight.comparator`
+
+:mod:`stopeight.logging`
+
+:mod:`stopeight.multiprocessing`
+
+If you want to install  to your system::
+    
+    $ cd /path/to/where/stopeight
+    $ python setup.py build
+    $ sudo python setup.py install
+
+Non-API modules are not installed, they are available in the repository only:
+
+:mod:`stopeight.server`
+
+:mod:`stopeight.tests`

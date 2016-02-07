@@ -29,10 +29,11 @@ Installation Instructions
 .. toctree::
    :maxdepth: 2
 
-   installation
+   build
 
    scripts
 
+   installation
 
 Developer Notes
 ===============

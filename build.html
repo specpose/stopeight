@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Stroke Analyzer &mdash; stopeight 0.1.0 documentation</title>
+    <title>Build &mdash; stopeight 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,8 +26,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
-    <link rel="next" title="Comparator" href="comparator.html" />
-    <link rel="prev" title="Data Acquisition" href="acquisition.html" /> 
+    <link rel="next" title="Server" href="scripts.html" />
+    <link rel="prev" title="Comparator" href="comparator.html" /> 
   </head>
   <body>
     <div class="related">
@@ -40,10 +40,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="comparator.html" title="Comparator"
+          <a href="scripts.html" title="Server"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="acquisition.html" title="Data Acquisition"
+          <a href="comparator.html" title="Comparator"
              accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
@@ -57,8 +57,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="stroke-analyzer">
-<h1>Stroke Analyzer<a class="headerlink" href="#stroke-analyzer" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="build">
+<h1>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="stopeight-clibs-legacy">
 <h2>stopeight-clibs-legacy<a class="headerlink" href="#stopeight-clibs-legacy" title="Permalink to this headline">¶</a></h2>
 <p>As of 09/2015 only python version 2.7 has been tested.</p>
@@ -82,24 +82,31 @@ $ python setup.py build
 $ sudo python setup.py install</pre>
 </div>
 </div>
-<div class="section" id="analyzing-pen-strokes-from-a-2d-input-device">
-<h2>Analyzing pen-strokes from a 2D input device.<a class="headerlink" href="#analyzing-pen-strokes-from-a-2d-input-device" title="Permalink to this headline">¶</a></h2>
-<p>Pen stroke test data can be found in the repository stopeight-clibs. As you can see you have now loaded the raw data of a pen-stroke. Any arc-wise connected series of 2D points can be loaded but you have to provide your own GUI at the time being. The sample data has been hand-drawn on a Wacom Cintiq 21UX and plain mouse using the editor binary.</p>
-<p>It has to be extracted from here:</p>
-<div class="highlight-python"><pre>$ cd /path/to/where/stopeight-clibs/tests
-$ tar xvfz v0-1-0.tar.gz</pre>
+<div class="section" id="stopeight">
+<h2>stopeight<a class="headerlink" href="#stopeight" title="Permalink to this headline">¶</a></h2>
+<p>As of 09/2015 only python version 2.7 has been tested.</p>
+<p>Get numpy on ubuntu:</p>
+<div class="highlight-python"><pre>$ sudo apt-get install python-numpy</pre>
 </div>
-<p>Load a file with pen-stroke test data:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">stopeight_clibs_legacy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">line</span> <span class="o">=</span> <span class="n">stopeight_clibs_legacy</span><span class="o">.</span><span class="n">parse_file</span><span class="p">(</span><span class="s">&#39;/path/to/where/FILENAME.sp&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">line</span>
+<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">synchronize</span>
 </pre></div>
 </div>
-<p>To extract the feature points from the pen-stroke:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">points</span> <span class="o">=</span> <span class="n">stopeight_clibs_legacy</span><span class="o">.</span><span class="n">stroke_parallel</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">points</span>
-</pre></div>
+<p>Clone into the repository:</p>
+<div class="highlight-python"><pre>$ git clone https://github.com/fassio/stopeight.git</pre>
 </div>
+<p>Due to the development status and likeliness to change API interfaces these modules are not yet available in the Python package repository:</p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></tt></p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.logging</span></tt></p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt></p>
+<p>If you want to install  to your system:</p>
+<div class="highlight-python"><pre>$ cd /path/to/where/stopeight
+$ python setup.py build
+$ sudo python setup.py install</pre>
+</div>
+<p>Non-API modules are not installed, they are available in the repository only:</p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.server</span></tt></p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.tests</span></tt></p>
 </div>
 </div>
 
@@ -111,22 +118,22 @@ $ tar xvfz v0-1-0.tar.gz</pre>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Stroke Analyzer</a><ul>
+<li><a class="reference internal" href="#">Build</a><ul>
 <li><a class="reference internal" href="#stopeight-clibs-legacy">stopeight-clibs-legacy</a></li>
-<li><a class="reference internal" href="#analyzing-pen-strokes-from-a-2d-input-device">Analyzing pen-strokes from a 2D input device.</a></li>
+<li><a class="reference internal" href="#stopeight">stopeight</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="acquisition.html"
-                        title="previous chapter">Data Acquisition</a></p>
-  <h4>Next topic</h4>
   <p class="topless"><a href="comparator.html"
-                        title="next chapter">Comparator</a></p>
+                        title="previous chapter">Comparator</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="scripts.html"
+                        title="next chapter">Server</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/stroke-analyzer.txt"
+    <li><a href="_sources/build.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -156,10 +163,10 @@ $ tar xvfz v0-1-0.tar.gz</pre>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="comparator.html" title="Comparator"
+          <a href="scripts.html" title="Server"
              >next</a> |</li>
         <li class="right" >
-          <a href="acquisition.html" title="Data Acquisition"
+          <a href="comparator.html" title="Comparator"
              >previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     

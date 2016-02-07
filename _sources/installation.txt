@@ -1,5 +1,3 @@
-.. image:: http://www.specpose.com/images/specpose_logo470x230.png
-
 Operating Systems
 -----------------
 
@@ -45,12 +43,3 @@ I have tested installing all of the dependencies from within Ubuntu 12.04 and Ge
 Usually they have more up-to date packages with bug-fixes which should be preferred over the pip/easy_setup packages.
 
 The dependencies should compile and install out-of-the box within a few minutes.
-
-Using pip and easy_setup
-------------------------
-
-It's usually faster and easier to use pip to install the python requirements for stopeight. The stopeight.server scripts and stopeight.tests are not yet available in the distribution. For the requirements it's as easy as::
-
-    $ easy_install pip
-    $ pip install ZSI
-    $ pip install ZODB3

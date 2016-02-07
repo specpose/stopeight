@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
-    <link rel="next" title="Operating Systems" href="installation.html" />
+    <link rel="next" title="Build" href="build.html" />
     <link rel="prev" title="Stroke Analyzer" href="stroke-analyzer.html" /> 
   </head>
   <body>
@@ -40,7 +40,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Operating Systems"
+          <a href="build.html" title="Build"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="stroke-analyzer.html" title="Stroke Analyzer"
@@ -57,17 +57,65 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <img alt="http://www.specpose.com/images/specpose_logo470x230.png" src="http://www.specpose.com/images/specpose_logo470x230.png" />
-<div class="section" id="comparator">
+  <div class="section" id="comparator">
 <h1>Comparator<a class="headerlink" href="#comparator" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="stopeight">
+<h2>stopeight<a class="headerlink" href="#stopeight" title="Permalink to this headline">¶</a></h2>
 <p>As of 09/2015 only python version 2.7 has been tested.</p>
 <p>Get numpy on ubuntu:</p>
 <div class="highlight-python"><pre>$ sudo apt-get install python-numpy</pre>
 </div>
-<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p>Is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
+<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">synchronize</span>
+</pre></div>
+</div>
+<p>Clone into the repository:</p>
+<div class="highlight-python"><pre>$ git clone https://github.com/fassio/stopeight.git</pre>
+</div>
+<p>Due to the development status and likeliness to change API interfaces these modules are not yet available in the Python package repository:</p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></tt></p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.logging</span></tt></p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt></p>
+<p>If you want to install  to your system:</p>
+<div class="highlight-python"><pre>$ cd /path/to/where/stopeight
+$ python setup.py build
+$ sudo python setup.py install</pre>
+</div>
+<p>Non-API modules are not installed, they are available in the repository only:</p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.server</span></tt></p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.tests</span></tt></p>
+</div>
+<div class="section" id="api-access">
+<h2>API Access<a class="headerlink" href="#api-access" title="Permalink to this headline">¶</a></h2>
+<p>This example uses the <tt class="xref py py-mod docutils literal"><span class="pre">stopeight-clibs-legacy</span></tt> as a frontend and sample data. Please refer to <a class="reference internal" href="stroke-analyzer.html"><em>Stroke Analyzer</em></a> on how to install and use them.</p>
+<p>This attempts to load all the files with &#8221;.sp&#8221; extension:</p>
+<div class="highlight-python"><pre>$ cd /path/to/where/stopeight
+&gt;&gt;&gt; from stopeight.tests import parser
+&gt;&gt;&gt; lines = parser.parse_directory('/path/to/where/extracted/sample/data')</pre>
+</div>
+<p>The <a class="reference internal" href="#module-stopeight.multiprocessing.pooling" title="stopeight.multiprocessing.pooling"><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing.pooling</span></tt></a> makes parallel calls to <tt class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></tt>.
+Note: The IDLE shell does not support spawning. Run from a Python shell instead:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight.multiprocessing</span> <span class="kn">import</span> <span class="n">pooling</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">comparator</span> <span class="o">=</span> <span class="n">pooling</span><span class="o">.</span><span class="n">MPLine</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass">
+<em class="property">class </em><tt class="descclassname">stopeight.comparator.shapeMatchSubSection.</tt><tt class="descname">ShapeMatchSubSectionClass</tt><big>(</big><em>compvec</em>, <em>toleranceDivider=2</em><big>)</big><a class="reference internal" href="_modules/stopeight/comparator/shapeMatchSubSection.html#ShapeMatchSubSectionClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="stopeight.multiprocessing.pooling.ShapeMatchSubSectionClass.match">
+<tt class="descname">match</tt><big>(</big><em>invec</em><big>)</big><a class="headerlink" href="#stopeight.multiprocessing.pooling.ShapeMatchSubSectionClass.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>This gives a boolean result for every line that is contained within another line.
+unequal length</p>
+</dd></dl>
+
+<p>Note: This includes a check for occurences in reverse order.</p>
+</dd></dl>
+
+<p>It tests every line against the whole dataset and itself:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">matches</span> <span class="o">=</span> <span class="n">comparator</span><span class="o">.</span><span class="n">matchLine</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="k">print</span><span class="p">(</span><span class="s">&#39;Line &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s">&#39; matched &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">matches</span><span class="p">))</span><span class="o">+</span><span class="s">&#39; occurences &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">matches</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -82,7 +130,8 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Comparator</a><ul>
-<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li><a class="reference internal" href="#stopeight">stopeight</a></li>
+<li><a class="reference internal" href="#api-access">API Access</a></li>
 </ul>
 </li>
 </ul>
@@ -91,8 +140,8 @@
   <p class="topless"><a href="stroke-analyzer.html"
                         title="previous chapter">Stroke Analyzer</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="installation.html"
-                        title="next chapter">Operating Systems</a></p>
+  <p class="topless"><a href="build.html"
+                        title="next chapter">Build</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/comparator.txt"
@@ -125,7 +174,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Operating Systems"
+          <a href="build.html" title="Build"
              >next</a> |</li>
         <li class="right" >
           <a href="stroke-analyzer.html" title="Stroke Analyzer"
@@ -137,7 +186,7 @@
       </ul>
     </div>
     <div class="footer">
-      Last updated on Feb 02, 2016.
+      Last updated on Feb 07, 2016.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

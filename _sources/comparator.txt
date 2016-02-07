@@ -1,21 +1,33 @@
-.. image:: http://www.specpose.com/images/specpose_logo470x230.png
-
 Comparator
 ==========
 
-Dependencies
-------------
+.. include:: build_stopeight.txt
 
-As of 09/2015 only python version 2.7 has been tested.
+API Access
+----------
 
-Get numpy on ubuntu::
+This example uses the :mod:`stopeight-clibs-legacy` as a frontend and sample data. Please refer to :doc:`stroke-analyzer` on how to install and use them.
 
-    $ sudo apt-get install python-numpy
+This attempts to load all the files with ".sp" extension::
 
-.. automodule:: stopeight.multiprocessing.pooling
-   :members:
+    $ cd /path/to/where/stopeight
+    >>> from stopeight.tests import parser
+    >>> lines = parser.parse_directory('/path/to/where/extracted/sample/data')
 
-Is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell::
+The :mod:`stopeight.multiprocessing.pooling` makes parallel calls to :mod:`stopeight.comparator`.
+Note: The IDLE shell does not support spawning. Run from a Python shell instead::
 
-    >>> from multiprocessing import synchronize
+    >>> from stopeight.multiprocessing import pooling
+    >>> comparator = pooling.MPLine(lines)
 
+.. autoclass:: stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass
+
+   .. automethod:: ShapeMatchSubSectionClass.match
+
+   Note: This includes a check for occurences in reverse order.
+
+It tests every line against the whole dataset and itself::
+
+    >>> for i,line in enumerate(lines):
+    >>>     matches = comparator.matchLine(line)
+    >>>     print('Line '+str(i)+' matched '+str(len(matches))+' occurences '+str(matches))

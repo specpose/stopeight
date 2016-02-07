@@ -1,0 +1,27 @@
+stopeight-clibs-legacy
+----------------------
+
+As of 09/2015 only python version 2.7 has been tested.
+
+Note: Needs qt4-core and qt4-gui::
+
+    $ sudo apt-get install libqt4-core
+    $ sudo apt-get install libqt4-gui
+
+stopeight-clibs-legacy. Get::
+
+    $ git clone https://github.com/fassio/stopeight-clibs.git
+
+Run qmake to generate the Makefile, then compile, install and add to library path::
+
+    $ cd /path/to/where/stopeight-clibs/legacy
+    $ qmake-qt4 -o ./Makefile legacy.pro
+    $ make
+    $ sudo make install
+    $ sudo ldconfig
+
+Build and install the python API for pen-strokes::
+    
+    $ cd /path/to/where/stopeight-clibs/legacy-wrappers
+    $ python setup.py build
+    $ sudo python setup.py install
