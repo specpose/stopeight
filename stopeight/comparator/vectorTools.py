@@ -3,7 +3,6 @@
 from operator import itemgetter
 from numpy import ndarray,sqrt,square,zeros_like,pi
 from numpy.core.umath import arctan2, arctan2
-#from SVG import Line
 from stopeight.comparator.matrixTools import *
 
 class NumpyLine(ndarray):
@@ -49,13 +48,6 @@ class NumpyLine(ndarray):
         rad = arctan2( self[1], self[0]);
         deg = (rad/pi)*180.0 + 180.0;
         return deg
-
-#    def printVectors(self,filename):
-#        scene = Scene(filename,255,255)
-#        for count,v in enumerate(self[:len(self)-1]):
-#            scene.add(Line(center(v),center(self[count+1])))
-#        scene.write_svg()
-#        scene.display()
 
     def to_tuple(self):
         line = [(float(L[0]),float(L[1])) for L in self]

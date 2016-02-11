@@ -7,7 +7,8 @@ import os
 display_prog = 'display' # Command to execute to display images.
 
 class Scene:
-    def __init__(self,name="svg",height=400,width=400):
+    def __init__(self,name="SVG",height=400,width=400):
+        #width="744.09448"
         self.name = name
         self.items = []
         self.height = height
@@ -25,7 +26,10 @@ class Scene:
         var += [" </g>\n</svg>\n"]
         return var
 
-    def write_svg(self,filename=None):
+    def set_height(self,height):
+        self.height=height
+
+    def write_svg(self,fileName=None):
         #if filename:
         #    self.svgname = filename
         #else:
@@ -79,7 +83,7 @@ class Rectangle:
                 (self.width,colorstr(self.color))]
 
 class Text:
-    def __init__(self,origin,text,size=24):
+    def __init__(self,origin,text,size=8):
         self.origin = origin
         self.text = text
         self.size = size
