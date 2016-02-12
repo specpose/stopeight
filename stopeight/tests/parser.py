@@ -41,8 +41,8 @@ def parse_directory(dir_path,analyzer=stopeight_clibs_legacy.stroke_parallel):
                             tprinter.text('#'+str(count)+f+' failed.')
                     except:
                         log.info('Loading Failed')
+        tprinter.text('Extracted '+str(len(lines))+' Comparator lines out of '+str(count)+' readable Graph files.')
         tprinter.write()
-        log.debug('Extracted '+str(len(lines))+' Comparator lines out of '+str(count)+' readable Graph files.')
     else:
         raise Exception('Path '+dir_path+' is not a directory')
     return lines
@@ -50,7 +50,7 @@ def parse_directory(dir_path,analyzer=stopeight_clibs_legacy.stroke_parallel):
 from stopeight.multiprocessing import pooling
 
 if __name__=='__main__':
-    lines = parse_directory('../stopeight-clibs/legacy/tests.local/',stopeight_clibs_legacy.stroke_parallel)
+    lines = parse_directory('../stopeight-clibs/legacy/tests.local/',stopeight_clibs_legacy.stroke_sequential)
     comparator = pooling.MPLine(lines)
     for i,line in enumerate(lines):
         matches = comparator.matchLine(line)
