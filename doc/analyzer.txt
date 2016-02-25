@@ -8,4 +8,6 @@ The analyzer then converts the vector graph into a sequence of one Turn, one Cor
 
 .. image:: _static/extraction_sequence.svg
 
+For developer information on how this is done see :doc:`dev_analyzer`
+
 This input can be used to make a matchline overlay comparison (See :doc:`comparator`) to previously recorded vector graphs.

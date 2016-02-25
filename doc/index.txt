@@ -41,6 +41,8 @@ Developer Notes
 .. toctree::
    :maxdepth: 2
 
+   dev_analyzer
+
    developer
 
 Indices and tables

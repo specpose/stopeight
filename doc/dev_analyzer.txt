@@ -1,0 +1,21 @@
+Analyzer Algorithm
+==================
+
+The Analyzer subdivides into half-circles, represented by only one tangent on-curve control point per half-circle.
+This is the equivalent of four hyperbolic / two parabolic subsegments. It is the ideal format for :doc:`comparator`.
+
+.. image:: https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle_and_quadratic_bezier.svg/256px-Circle_and_quadratic_bezier.svg.png
+
+See `Composite Bezier Splines <https://en.wikipedia.org/wiki/Composite_B%C3%A9zier_curve>`_
+
+Corners are surrounded/terminated by turns (TCT). This is the final representation format after analysis, where turn can refer to a starting/ending point, a crest/spike or a cliff in the Vector Graph.
+
+.. image:: _static/sinus.svg
+
+Frontside/backside crests have to be detected going both forward and backward.
+
+.. image:: _static/crest.svg
+
+Cliffs have to be centered from both sides if there is an even number of occurences.
+
+.. image:: _static/cliff.svg
