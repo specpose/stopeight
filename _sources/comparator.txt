@@ -8,11 +8,11 @@ API Access
 
 This example uses the :mod:`stopeight-clibs-legacy` as a frontend and sample data. Please refer to :doc:`stroke-analyzer` on how to install and use them.
 
-This attempts to load all the files with ".sp" extension::
+This attempts to load all the files with ".sp" extension into parallel implementation of stroke analyzer::
 
     $ cd /path/to/where/stopeight
     >>> from stopeight.tests import parser
-    >>> lines = parser.parse_directory('/path/to/where/extracted/sample/data')
+    >>> lines = parser.parse_directory('/path/to/where/extracted/sample/data','stopeight_clibs_legacy.stroke_parallel')
 
 The :mod:`stopeight.multiprocessing.pooling` makes parallel calls to :mod:`stopeight.comparator`.
 Note: The IDLE shell does not support spawning. Run from a Python shell instead::

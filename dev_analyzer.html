@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Grapher &mdash; stopeight 0.1.0 documentation</title>
+    <title>Analyzer Algorithm &mdash; stopeight 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,7 +25,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" /> 
+    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="GitHub &amp; Sphinx" href="developer.html" />
+    <link rel="prev" title="Operating Systems" href="installation.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,6 +39,12 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="developer.html" title="GitHub &amp; Sphinx"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Operating Systems"
+             accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
         <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
@@ -49,24 +57,16 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="grapher">
-<h1>Grapher<a class="headerlink" href="#grapher" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="function-graph">
-<h2>Function Graph<a class="headerlink" href="#function-graph" title="Permalink to this headline">¶</a></h2>
-<p>Any time-based data set with an accurate sampling rate can be used to build a function f(x).</p>
-<img src="_images/function_graph.svg" /></div>
-<div class="section" id="vector-graph">
-<h2>Vector Graph<a class="headerlink" href="#vector-graph" title="Permalink to this headline">¶</a></h2>
-<p>This function graph can be converted into a sequence of vectors in a two-dimensional plane.</p>
-<img src="_images/vector_graph.svg" /><p>The construction of the graph can be seen here:</p>
-<img src="_images/vector_construction.svg" /><p>Definition of the ratio between opposite and adjacent of the right triangle:</p>
-<p>Delta f(x) at point A / the average of all Delta f(x) of the Delta x&#8217;s between x0 and x1.</p>
-<p>Condition: All Delta x are invariant.</p>
-<p>By varying the step-size you can achieve:</p>
-<img src="_images/vector_graph2.svg" /><p>And by making it even smaller you can get:</p>
-<img src="_images/vector_graph3.svg" /><p>This last step reduces the impulse scaling to half the frequency found in the previous example. So for matchline overlay comparison the previous vector graph is preferred.</p>
-</div>
-</div>
+  <div class="section" id="analyzer-algorithm">
+<h1>Analyzer Algorithm<a class="headerlink" href="#analyzer-algorithm" title="Permalink to this headline">¶</a></h1>
+<p>The Analyzer subdivides into half-circles, represented by only one tangent on-curve control point per half-circle.
+This is the equivalent of four hyperbolic / two parabolic subsegments. It is the ideal format for <a class="reference internal" href="comparator.html"><em>Comparator</em></a>.</p>
+<img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle_and_quadratic_bezier.svg/256px-Circle_and_quadratic_bezier.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle_and_quadratic_bezier.svg/256px-Circle_and_quadratic_bezier.svg.png" />
+<p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Composite_B%C3%A9zier_curve">Composite Bezier Splines</a></p>
+<p>Corners are surrounded/terminated by turns (TCT). This is the final representation format after analysis, where turn can refer to a starting/ending point, a crest/spike or a cliff in the Vector Graph.</p>
+<img src="_images/sinus.svg" /><p>Frontside/backside crests have to be detected going both forward and backward.</p>
+<img src="_images/crest.svg" /><p>Cliffs have to be centered from both sides if there is an even number of occurences.</p>
+<img src="_images/cliff.svg" /></div>
 
 
           </div>
@@ -74,18 +74,15 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Grapher</a><ul>
-<li><a class="reference internal" href="#function-graph">Function Graph</a></li>
-<li><a class="reference internal" href="#vector-graph">Vector Graph</a></li>
-</ul>
-</li>
-</ul>
-
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">Operating Systems</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="developer.html"
+                        title="next chapter">GitHub &amp; Sphinx</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/vector-graph.txt"
+    <li><a href="_sources/dev_analyzer.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -114,6 +111,12 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="developer.html" title="GitHub &amp; Sphinx"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Operating Systems"
+             >previous</a> |</li>
     <li><a href="http://github.com/fassio/stopeight">http://github.com/fassio/stopeight</a> &raquo;</li>
     
         <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
