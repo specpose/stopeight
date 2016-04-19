@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -15,7 +13,7 @@
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    './',
         VERSION:     '0.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
@@ -36,9 +34,6 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
         <li class="right" >
           <a href="build.html" title="Build"
              accesskey="N">next</a> |</li>
@@ -63,23 +58,26 @@
 <h2>stopeight<a class="headerlink" href="#stopeight" title="Permalink to this headline">¶</a></h2>
 <p>As of 09/2015 only python version 2.7 has been tested.</p>
 <p>Get numpy on ubuntu:</p>
-<div class="highlight-python"><pre>$ sudo apt-get install python-numpy</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-numpy
+</pre></div>
 </div>
-<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
+<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">synchronize</span>
 </pre></div>
 </div>
 <p>Clone into the repository:</p>
-<div class="highlight-python"><pre>$ git clone https://github.com/specpose/stopeight.git</pre>
+<div class="highlight-python"><div class="highlight"><pre>$ git clone https://github.com/specpose/stopeight.git
+</pre></div>
 </div>
 <p>Due to the development status and likeliness to change API interfaces these modules are not yet available in the Python package repository:</p>
 <p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></tt></p>
 <p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.logging</span></tt></p>
 <p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt></p>
 <p>If you want to install  to your system:</p>
-<div class="highlight-python"><pre>$ cd /path/to/where/stopeight
+<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight
 $ python setup.py build
-$ sudo python setup.py install</pre>
+$ sudo python setup.py install
+</pre></div>
 </div>
 <p>Non-API modules are not installed, they are available in the repository only:</p>
 <p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.server</span></tt></p>
@@ -89,29 +87,17 @@ $ sudo python setup.py install</pre>
 <h2>API Access<a class="headerlink" href="#api-access" title="Permalink to this headline">¶</a></h2>
 <p>This example uses the <tt class="xref py py-mod docutils literal"><span class="pre">stopeight-clibs-legacy</span></tt> as a frontend and sample data. Please refer to <a class="reference internal" href="stroke-analyzer.html"><em>Stroke Analyzer</em></a> on how to install and use them.</p>
 <p>This attempts to load all the files with &#8221;.sp&#8221; extension into parallel implementation of stroke analyzer:</p>
-<div class="highlight-python"><pre>$ cd /path/to/where/stopeight
+<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight
 &gt;&gt;&gt; from stopeight.tests import parser
-&gt;&gt;&gt; lines = parser.parse_directory('/path/to/where/extracted/sample/data','stopeight_clibs_legacy.stroke_parallel')</pre>
+&gt;&gt;&gt; lines = parser.parse_directory(&#39;/path/to/where/extracted/sample/data&#39;,&#39;stopeight_clibs_legacy.stroke_parallel&#39;)
+</pre></div>
 </div>
-<p>The <a class="reference internal" href="#module-stopeight.multiprocessing.pooling" title="stopeight.multiprocessing.pooling"><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing.pooling</span></tt></a> makes parallel calls to <tt class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></tt>.
+<p>The <tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing.pooling</span></tt> makes parallel calls to <tt class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></tt>.
 Note: The IDLE shell does not support spawning. Run from a Python shell instead:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight.multiprocessing</span> <span class="kn">import</span> <span class="n">pooling</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">comparator</span> <span class="o">=</span> <span class="n">pooling</span><span class="o">.</span><span class="n">MPLine</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="class">
-<dt id="stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass">
-<em class="property">class </em><tt class="descclassname">stopeight.comparator.shapeMatchSubSection.</tt><tt class="descname">ShapeMatchSubSectionClass</tt><big>(</big><em>compvec</em>, <em>toleranceDivider=2</em><big>)</big><a class="reference internal" href="_modules/stopeight/comparator/shapeMatchSubSection.html#ShapeMatchSubSectionClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="stopeight.multiprocessing.pooling.ShapeMatchSubSectionClass.match">
-<tt class="descname">match</tt><big>(</big><em>invec</em><big>)</big><a class="headerlink" href="#stopeight.multiprocessing.pooling.ShapeMatchSubSectionClass.match" title="Permalink to this definition">¶</a></dt>
-<dd><p>This gives a boolean result for every line that is contained within another line.
-unequal length</p>
-</dd></dl>
-
-<p>Note: This includes a check for occurences in reverse order.</p>
-</dd></dl>
-
 <p>It tests every line against the whole dataset and itself:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">matches</span> <span class="o">=</span> <span class="n">comparator</span><span class="o">.</span><span class="n">matchLine</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
@@ -174,9 +160,6 @@ unequal length</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="build.html" title="Build"
              >next</a> |</li>
         <li class="right" >
@@ -190,7 +173,7 @@ unequal length</p>
     </div>
     <div class="footer">
       Last updated on Apr 19, 2016.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
 </html>
