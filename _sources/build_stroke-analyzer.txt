@@ -10,7 +10,7 @@ Note: Needs qt4-core and qt4-gui::
 
 stopeight-clibs-legacy. Get::
 
-    $ git clone https://github.com/fassio/stopeight-clibs.git
+    $ git clone https://github.com/specpose/stopeight-clibs.git
 
 Run qmake to generate the Makefile, then compile, install and add to library path::
 

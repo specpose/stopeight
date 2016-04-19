@@ -16,7 +16,7 @@ Get numpy on ubuntu::
 
 Clone into the repository::
 
-    $ git clone https://github.com/fassio/stopeight.git
+    $ git clone https://github.com/specpose/stopeight.git
 
 Due to the development status and likeliness to change API interfaces these modules are not yet available in the Python package repository:
 
