@@ -35,6 +35,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="scripts.html" title="Server"
              accesskey="N">next</a> |</li>
         <li class="right" >
@@ -56,10 +59,13 @@
 <h1>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="stopeight-clibs-legacy">
 <h2>stopeight-clibs-legacy<a class="headerlink" href="#stopeight-clibs-legacy" title="Permalink to this headline">¶</a></h2>
-<p>As of 09/2015 only python version 2.7 has been tested.</p>
-<p>Note: Needs qt4-core and qt4-gui:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install libqt4-core
-$ sudo apt-get install libqt4-gui
+<p>As of 05/2016 only python version 2.7, qt4 and Ubuntu 14.04 have been tested.</p>
+<p>If you installed qt-creator version 4 you already have them:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install qt4-qmake g++ libqt4-dev
+</pre></div>
+</div>
+<p>In Ubuntu 14.04 these libraries are pre-installed:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install libqt4-core libqt4-gui
 </pre></div>
 </div>
 <p>stopeight-clibs-legacy. Get:</p>
@@ -74,6 +80,10 @@ $ sudo make install
 $ sudo ldconfig
 </pre></div>
 </div>
+<p>You will need python development headers:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python2.7-dev
+</pre></div>
+</div>
 <p>Build and install the python API for pen-strokes:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/legacy-wrappers
 $ python setup.py build
@@ -83,12 +93,12 @@ $ sudo python setup.py install
 </div>
 <div class="section" id="stopeight">
 <h2>stopeight<a class="headerlink" href="#stopeight" title="Permalink to this headline">¶</a></h2>
-<p>As of 09/2015 only python version 2.7 has been tested.</p>
+<p>As of 05/2016 only python version 2.7 and Ubuntu 14.04 have been tested.</p>
 <p>Get numpy on ubuntu:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-numpy
 </pre></div>
 </div>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
+<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">synchronize</span>
 </pre></div>
 </div>
@@ -100,8 +110,9 @@ $ sudo python setup.py install
 <p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></tt></p>
 <p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.logging</span></tt></p>
 <p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt></p>
-<p>If you want to install  to your system:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight
+<p>If you want to install to your system:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-setuptools
+$ cd /path/to/where/stopeight
 $ python setup.py build
 $ sudo python setup.py install
 </pre></div>
@@ -165,6 +176,9 @@ $ sudo python setup.py install
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="scripts.html" title="Server"
              >next</a> |</li>
         <li class="right" >
@@ -177,7 +191,7 @@ $ sudo python setup.py install
       </ul>
     </div>
     <div class="footer">
-      Last updated on Apr 19, 2016.
+      Last updated on May 04, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

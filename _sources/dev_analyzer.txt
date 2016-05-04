@@ -12,6 +12,10 @@ Corners are surrounded/terminated by turns (TCT). This is the final representati
 
 .. image:: _static/sinus.svg
 
+The difference between a sinusoid corner and a crest turn.
+
+.. image:: _static/crest_or_sinusoid.svg
+
 Frontside/backside crests have to be detected going both forward and backward.
 
 .. image:: _static/crest.svg

@@ -34,6 +34,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="dev_analyzer.html" title="Analyzer Algorithm"
              accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
@@ -69,14 +72,14 @@ $ git mv -v doc/_build/html/_sources ./
 <p>Only if Sphinx version is lower than 1.2:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git show master:doc/_extra/CNAME &gt; ./CNAME
 $ git show master:doc/_extra/robots.txt &gt; ./robots.txt
-$ git show master:doc/_extra/.nojekyll &gt; ./.nojekyll
 $ git add ./CNAME
 $ git add ./robots.txt
-$ git add ./.nojekyll
 </pre></div>
 </div>
 <p>Continue:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ git mv -v doc/_build/html/* ./
+$ touch ./.nojekyll
+$ git add ./.nojekyll
 $ git commit -m &quot;Documentation vX.Y.Z&quot;
 $ git push
 $ git checkout master
@@ -125,6 +128,9 @@ $ git checkout master
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
           <a href="dev_analyzer.html" title="Analyzer Algorithm"
              >previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
@@ -134,7 +140,7 @@ $ git checkout master
       </ul>
     </div>
     <div class="footer">
-      Last updated on Apr 19, 2016.
+      Last updated on May 04, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
