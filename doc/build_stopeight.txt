@@ -26,7 +26,7 @@ Due to the development status and likeliness to change API interfaces these modu
 
 :mod:`stopeight.multiprocessing`
 
-If you want to install  to your system::
+If you want to install to your system::
     
     $ cd /path/to/where/stopeight
     $ python setup.py build
