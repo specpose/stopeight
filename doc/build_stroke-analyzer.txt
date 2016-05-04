@@ -5,14 +5,11 @@ As of 05/2016 only python version 2.7, qt4 and Ubuntu 14.04 have been tested.
 
 If you installed qt-creator version 4 you already have them::
 
-    $ sudo apt-get install qt4-qmake
-    $ sudo apt-get install g++
-    $ sudo apt-get install libqt4-dev
+    $ sudo apt-get install qt4-qmake g++ libqt4-dev
 
-Requirement: Needs qt4-core and qt4-gui::
+In Ubuntu 14.04 these libraries are pre-installed::
 
-    $ sudo apt-get install libqt4-core
-    $ sudo apt-get install libqt4-gui
+    $ sudo apt-get install libqt4-core libqt4-gui
 
 stopeight-clibs-legacy. Get::
 

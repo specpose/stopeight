@@ -1,7 +1,7 @@
 stopeight
 ---------
 
-As of 09/2015 only python version 2.7 has been tested.
+As of 05/2016 only python version 2.7 and Ubuntu 14.04 have been tested.
 
 Get numpy on ubuntu::
 
@@ -27,7 +27,8 @@ Due to the development status and likeliness to change API interfaces these modu
 :mod:`stopeight.multiprocessing`
 
 If you want to install to your system::
-    
+
+    $ sudo apt-get install python-setuptools
     $ cd /path/to/where/stopeight
     $ python setup.py build
     $ sudo python setup.py install
