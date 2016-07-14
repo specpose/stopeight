@@ -49,9 +49,17 @@
             
   <div class="section" id="stopeight-clibs-legacy">
 <h1>stopeight-clibs-legacy<a class="headerlink" href="#stopeight-clibs-legacy" title="Permalink to this headline">¶</a></h1>
-<p>As of 05/2016 only python version 2.7, qt4 and Ubuntu 14.04 have been tested.</p>
+<p>As of 05/2016 only python version 2.7, qt4, qt5 and Ubuntu 14.04 have been tested.</p>
 <p>If you installed qt-creator version 4 you already have them:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install qt4-qmake g++ libqt4-dev
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install qt4-qmake libqt4-dev
+</pre></div>
+</div>
+<p>If you installed qt-creator version 5 you already have them:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install qt5-qmake qtbase5-dev qt5-default
+</pre></div>
+</div>
+<p>And the GCC compiler and tools:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install g++ make
 </pre></div>
 </div>
 <p>In Ubuntu 14.04 these libraries are pre-installed:</p>
@@ -64,9 +72,12 @@
 </div>
 <p>Run qmake to generate the Makefile, then compile, install and add to library path:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/legacy
-$ qmake-qt4 -o ./Makefile legacy.pro
+$ qmake-qt4 -o ./build/Makefile legacy.pro
 $ make
-$ sudo make install
+</pre></div>
+</div>
+<p>You may need to install them to your library path:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo make install
 $ sudo ldconfig
 </pre></div>
 </div>
@@ -77,7 +88,10 @@ $ sudo ldconfig
 <p>Build and install the python API for pen-strokes:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/legacy-wrappers
 $ python setup.py build
-$ sudo python setup.py install
+</pre></div>
+</div>
+<p>You may need to install the wrappers to the python path:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo python setup.py install
 </pre></div>
 </div>
 </div>
@@ -129,7 +143,7 @@ $ sudo python setup.py install
       </ul>
     </div>
     <div class="footer">
-      Last updated on May 04, 2016.
+      Last updated on Jul 14, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

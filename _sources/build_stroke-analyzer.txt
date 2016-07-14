@@ -1,11 +1,19 @@
 stopeight-clibs-legacy
 ----------------------
 
-As of 05/2016 only python version 2.7, qt4 and Ubuntu 14.04 have been tested.
+As of 05/2016 only python version 2.7, qt4, qt5 and Ubuntu 14.04 have been tested.
 
 If you installed qt-creator version 4 you already have them::
 
-    $ sudo apt-get install qt4-qmake g++ libqt4-dev
+    $ sudo apt-get install qt4-qmake libqt4-dev
+
+If you installed qt-creator version 5 you already have them::
+
+    $ sudo apt-get install qt5-qmake qtbase5-dev qt5-default
+
+And the GCC compiler and tools::
+
+    $ sudo apt-get install g++ make
 
 In Ubuntu 14.04 these libraries are pre-installed::
 
@@ -18,8 +26,11 @@ stopeight-clibs-legacy. Get::
 Run qmake to generate the Makefile, then compile, install and add to library path::
 
     $ cd /path/to/where/stopeight-clibs/legacy
-    $ qmake-qt4 -o ./Makefile legacy.pro
+    $ qmake-qt4 -o ./build/Makefile legacy.pro
     $ make
+
+You may need to install them to your library path::
+
     $ sudo make install
     $ sudo ldconfig
 
@@ -31,4 +42,7 @@ Build and install the python API for pen-strokes::
     
     $ cd /path/to/where/stopeight-clibs/legacy-wrappers
     $ python setup.py build
+
+You may need to install the wrappers to the python path::
+
     $ sudo python setup.py install
