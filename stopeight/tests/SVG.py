@@ -40,8 +40,8 @@ class Scene:
         return
 
     def display(self,prog=display_prog):
-        os.system("%s %s &" % (prog,self.svgname))
-        print 'Displaying %s' %self.svgname
+        #os.system("%s %s &" % (prog,self.svgname))
+        #print 'Displaying %s' %self.svgname
         return
 
 

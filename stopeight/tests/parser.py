@@ -44,7 +44,7 @@ def parse_directory(dir_path,analyzer=stopeight_clibs_legacy.stroke_parallel):
         tprinter.text('Extracted '+str(len(lines))+' Comparator lines out of '+str(count)+' readable Graph files.')
         tprinter.write()
     else:
-        raise Exception('Path '+dir_path+' is not a directory')
+        raise Exception('Path '+dir_path+' is not a directory under '+os.getcwd())
     return lines
 
 from stopeight.multiprocessing import pooling
