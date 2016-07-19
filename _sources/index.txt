@@ -27,17 +27,23 @@ Installation Instructions
 .. toctree::
    :maxdepth: 2
 
-   build
+   build_stroke-analyzer
+
+   build_qt4
+
+   build_stopeight
 
    scripts
-
-   installation
 
 Developer Notes
 ===============
 
 .. toctree::
    :maxdepth: 2
+
+   build_win
+
+   dev_build
 
    dev_analyzer
 

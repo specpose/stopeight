@@ -1,0 +1,9 @@
+Build Issues
+------------
+
+Note: You may need to manually reinstall after a rebuild::
+
+    $ cp libstopeight-clibs-* /path/to/where/your/syslibs
+    $ sudo ldconfig
+
+Or: Add them to your path

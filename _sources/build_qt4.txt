@@ -1,11 +1,15 @@
-stopeight-clibs qt5
+stopeight-clibs qt4
 -------------------
 
-As of 07/2016 only python version 2.7, qt5 and Ubuntu 14.04 have been tested.
+As of 05/2016 python version 2.7, qt4 and Ubuntu 12.04 have been tested.
 
-If you installed qt-creator version 5 you already have them::
+If you installed qt-creator version 4 you already have them::
 
-    $ sudo apt-get install qt5-qmake qtbase5-dev qt5-default
+    $ sudo apt-get install qt4-qmake libqt4-dev
+
+In Ubuntu 14.04 these libraries are pre-installed::
+
+    $ sudo apt-get install libqt4-core libqt4-gui
 
 And the GCC compiler and tools::
 
@@ -18,7 +22,7 @@ stopeight-clibs-legacy. Get::
 Run qmake to generate the Makefile, then compile, install and add to library path::
 
     $ cd /path/to/where/stopeight-clibs/legacy
-    $ qmake -o ./Makefile legacy.pro
+    $ qmake-qt4 -o ./Makefile legacy.pro
     $ make
 
 You may need to install them to your system's library path::
@@ -26,10 +30,10 @@ You may need to install them to your system's library path::
     $ sudo make install
     $ sudo ldconfig
 
-Do the same for analyzer::
+Do the same for analyzer. It needs C++11::
 
     $ cd /path/to/where/stopeight-clibs/analyzer
-    $ qmake -o ./Makefile analyzer.pro
+    $ qmake-qt4 -o ./Makefile analyzer.pro
     $ make
     $ sudo make install
     $ sudo ldconfig
