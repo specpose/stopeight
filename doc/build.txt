@@ -1,6 +1,0 @@
-Build
-=====
-
-.. include:: build_stroke-analyzer.txt
-
-.. include:: build_stopeight.txt

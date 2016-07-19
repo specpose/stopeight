@@ -1,25 +1,29 @@
 Visual Studio Integration
 =========================
 
-1. Download Visual Studio 2015 Update 3 from `Microsoft <http://visualstudio.com>`_
+Install: Visual Studio 2015 Update 3 from `Microsoft <http://visualstudio.com>`_
+--------------------------------------------------------------------------------
 
 Common Tools for Visual C++ 2015
 
 Python Tools for Visual Studio (June 2016)
 
-2. From `Digia <http://qt.io/download-open-source/#section-2>`_ download
+Install: `Digia <http://qt.io/download-open-source/#section-2>`_
+----------------------------------------------------------------
 
 `Qt 5.7.0 MSVC <http://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-msvc2015_64-5.7.0.exe>`_
 
 msvc2015 64-bit
 
-3. From `Python Software Foundation `<http://python.org/downloads/release/python-2712>`_
+Install: `Python Software Foundation <http://python.org/downloads/release/python-2712>`_
+----------------------------------------------------------------------------------------
 
-`Download Python 2.7 x86_64 <https://www.python.org/ftp/python/2.7.12/python-2.7.12.amd64.msi>`_
+`Python 2.7 x86_64 <https://www.python.org/ftp/python/2.7.12/python-2.7.12.amd64.msi>`_
 
 Install just for me
 
-4. In Visual Studio 2015 build
+Build: Visual Studio 2015
+-------------------------
 
 Extensions and Updates, click online and search for Qt5Package
 
@@ -43,7 +47,8 @@ Do the same for stopeight-clibs/legacy-wrappers/legacy-wrappers.pro
 
 This should have converted the qmake project files to VS projects. Build the Debug version of the C++ projects.
 
-5. In Visual Studio 2015 create a new Python project From Existing Python Code
+Create: Visual Studio 2015, Python project From Existing Python Code
+--------------------------------------------------------------------
 
 Add stopeight-clibs/analyzer-wrappers/debug
 
