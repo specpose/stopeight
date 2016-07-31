@@ -7,7 +7,7 @@ import os
 display_prog = 'display' # Command to execute to display images.
 
 class Scene:
-    def __init__(self,name="SVG",height=400,width=400):
+    def __init__(self,name="SVG.out",height=400,width=400):
         #width="744.09448"
         self.name = name
         self.items = []
