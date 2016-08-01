@@ -3,6 +3,10 @@
 # This code is from an example found on the web.
 # only used for debugging math stuff.
 
+# <!-- The quadratic Bezier curve -->
+#     <path id = "quadcurveABC" d = "M 100 350 q 150 -300 300 0" stroke = "blue" stroke-width = "5" fill = "none"/>
+
+
 import os
 display_prog = 'display' # Command to execute to display images.
 
@@ -19,7 +23,7 @@ class Scene:
 
     def strarray(self):
         var = ["<?xml version=\"1.0\"?>\n",
-               "<svg height=\"%d\" width=\"%d\" >\n" % (self.height,self.width),
+               "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 %d %d\">\n" % (self.height,self.width),
                " <g style=\"fill-opacity:1.0; stroke:black;\n",
                "  stroke-width:1;\">\n"]
         for item in self.items: var += item.strarray()
@@ -82,6 +86,15 @@ class Rectangle:
                 "    width=\"%d\" style=\"fill:%s;\" />\n" %\
                 (self.width,colorstr(self.color))]
 
+class Quad:
+    def __init__(self,start,mid,end):
+        self.start = start
+        self.mid = mid
+        self.end = end
+
+    def strarray(self):
+        return ["  <path id = \"quadcurveABC\" d = \"M 100 350 q 150 -300 300 0\" stroke = \"blue\" stroke-width = \"5\" fill = \"none\"/>"]
+
 class Text:
     def __init__(self,origin,text,size=8):
         self.origin = origin
@@ -111,6 +124,7 @@ def test():
     scene.add(Circle((100,200),30,(255,255,0)))
     scene.add(Circle((200,100),30,(255,0,255)))
     scene.add(Text((50,50),"Testing SVG"))
+    scene.add(Quad((0,0),(0,0),(0,0)))
     scene.write_svg()
     scene.display()
     return
