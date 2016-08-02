@@ -2,7 +2,7 @@
 
 from stopeight.logging import logSwitch
 log = logSwitch.logNone()
-from stopeight.tests import SVG
+from stopeight.analyzer import SVG
 import os
 
 class tPrinter:

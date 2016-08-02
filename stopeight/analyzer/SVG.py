@@ -93,7 +93,14 @@ class Quad:
         self.end = end
 
     def strarray(self):
-        return ["  <path id = \"quadcurveABC\" d = \"M 100 350 q 150 -300 300 0\" stroke = \"blue\" stroke-width = \"5\" fill = \"none\"/>"]
+        # start-x start-y q rel-mid-x 2x:rel-mid-y rel-end-x rel-end-y %d
+        #return ["  <path d = \"M 70 230 q 130 -320 260 0\"  fill = \"none\"/>"]
+        return ["  <path d = \"M %d %d q %d %d %d %d\"  fill = \"none\"/>" % \
+            (self.start[0],self.start[1],\
+            (self.mid[0]-self.start[0]),\
+            (self.mid[1]-self.start[1]),\
+            (self.end[0]-self.start[0]),\
+            (self.end[1]-self.start[1]))]
 
 class Text:
     def __init__(self,origin,text,size=8):
@@ -124,7 +131,7 @@ def test():
     scene.add(Circle((100,200),30,(255,255,0)))
     scene.add(Circle((200,100),30,(255,0,255)))
     scene.add(Text((50,50),"Testing SVG"))
-    scene.add(Quad((0,0),(0,0),(0,0)))
+    scene.add(Quad((70,230),(130,-320),(260,0)))
     scene.write_svg()
     scene.display()
     return
