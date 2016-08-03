@@ -95,12 +95,12 @@ class Quad:
     def strarray(self):
         # start-x start-y q rel-mid-x 2x:rel-mid-y rel-end-x rel-end-y %d
         #return ["  <path d = \"M 70 230 q 130 -320 260 0\"  fill = \"none\"/>"]
-        return ["  <path d = \"M %d %d q %d %d %d %d\"  fill = \"none\"/>" % \
+        return ["  <path d = \"M %d %d Q %d %d %d %d\"  fill = \"none\"/>" % \
             (self.start[0],self.start[1],\
-            (self.mid[0]-self.start[0]),\
-            (self.mid[1]-self.start[1]),\
-            (self.end[0]-self.start[0]),\
-            (self.end[1]-self.start[1]))]
+            (self.mid[0]),\
+            (self.mid[1]),\
+            (self.end[0]),\
+            (self.end[1]))]
 
 class Text:
     def __init__(self,origin,text,size=8):
