@@ -20,5 +20,6 @@ if __name__=='__main__':
     fileline = stopeight_clibs_legacy.parse_file('../stopeight-clibs/legacy/tests.local/stage3-build04-authWorking/almostStraightLeg.sp')
     myprinter.lines(fileline)
     fileline = stopeight_clibs_legacy.stroke_sequential(fileline)
+    fileline = stopeight_clibs_legacy.TCT_to_bezier(fileline)
     myprinter.TCTs(fileline)
     myprinter.write()

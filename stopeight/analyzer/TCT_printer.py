@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from stopeight.logging import logSwitch
-log = logSwitch.logNone()
+log = logSwitch.logNone
 from stopeight.analyzer import SVG
 import os
 
@@ -21,7 +21,7 @@ class TCTPrinter:
     def TCTs(self,TCTpath):
         log.debug('Segments adding to quad queue '+str(TCTpath))
         for quad in [TCTpath[x:x+3] for x in range(len(TCTpath)-2) if (x % 2 == 0)]:
-            log.debug('Graphics starting quad ')
+            log.debug('Graphics starting quad '+str(quad))
             self.scene.add(SVG.Quad(quad[0],quad[1],quad[2]))
 
     def text(self,text):
