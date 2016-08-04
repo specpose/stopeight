@@ -1,16 +1,5 @@
-from stopeight.comparator.vectorTools import NumpyLine
-from SVG import Scene,Line
 import os
 from stopeight.analyzer.TCT_printer import TCTPrinter
-
-class lPrinter(TCTPrinter):
-    
-    def printVectors(self,filename='line_printer.out'):
-        scene = Scene(filename,255,255)
-        for count,v in enumerate(self[:len(self)-1]):
-            scene.add(Line(center(v),center(self[count+1])))
-        scene.write_svg()
-        scene.display()
 
 if __name__=='__main__':
     import os

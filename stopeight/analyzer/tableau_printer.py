@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from stopeight.logging import logSwitch
-log = logSwitch.logNone()
+log = logSwitch.logNone
 from stopeight.analyzer import SVG
 import os
 

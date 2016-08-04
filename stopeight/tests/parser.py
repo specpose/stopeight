@@ -1,6 +1,6 @@
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
-from stopeight.tests import tableau_printer
+from stopeight.analyzer import tableau_printer
 
 import os
 
