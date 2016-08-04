@@ -10,12 +10,13 @@ class TCTPrinter:
         self.width=256
         self.height=256 #default, override before write
         self.scene = SVG.Scene(filename,self.height,self.width)
+        self.offset = lambda (x,y): (x,y)
     
     def lines(self,nline):
         log.debug('Graphics adding to line queue '+str(nline))
         for i,l in enumerate(nline[0:-1]):
             log.debug('Graphics starting line from '+str(nline[i]))
-            self.scene.add(SVG.Line((nline[i]),(nline[i+1])))
+            self.scene.add(SVG.Line((self.offset(nline[i])),(self.offset(nline[i+1]))))
             #self.scene.add(SVG.Line((200,200),(200,300)))
 
     def TCTs(self,TCTpath):
@@ -25,7 +26,7 @@ class TCTPrinter:
             self.scene.add(SVG.Quad(quad[0],quad[1],quad[2]))
 
     def text(self,text):
-        self.scene.add(SVG.Text((0,128),text))
+        self.scene.add(SVG.Text(self.offset((0,128)),text))
 
     def write(self):
         self.scene.set_height(self.height)
