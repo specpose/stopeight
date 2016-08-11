@@ -1,7 +1,7 @@
 stopeight-clibs qt5
 -------------------
 
-As of 07/2016 only python version 2.7, qt5 and Ubuntu 14.04 have been tested.
+As of 07/2016 only python version 2.7, qt5 and Ubuntu 16.04 have been tested.
 
 If you installed qt-creator version 5 you already have them::
 
@@ -9,7 +9,7 @@ If you installed qt-creator version 5 you already have them::
 
 And the GCC compiler and tools::
 
-    $ sudo apt-get install g++ make
+    $ sudo apt-get install g++ make libboost-dev
 
 stopeight-clibs-legacy. Get::
 
@@ -18,7 +18,7 @@ stopeight-clibs-legacy. Get::
 Run qmake to generate the Makefile, then compile, install and add to library path::
 
     $ cd /path/to/where/stopeight-clibs/legacy
-    $ qmake -o ./Makefile legacy.pro
+    $ QT_SELECT=qt5 qmake -o ./Makefile legacy.pro
     $ make
 
 You may need to install them to your system's library path::
@@ -29,7 +29,7 @@ You may need to install them to your system's library path::
 Do the same for analyzer::
 
     $ cd /path/to/where/stopeight-clibs/analyzer
-    $ qmake -o ./Makefile analyzer.pro
+    $ QT_SELECT=qt5 qmake -o ./Makefile analyzer.pro
     $ make
     $ sudo make install
     $ sudo ldconfig
