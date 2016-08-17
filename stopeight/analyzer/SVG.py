@@ -6,7 +6,7 @@
 # <!-- The quadratic Bezier curve -->
 #     <path id = "quadcurveABC" d = "M 100 350 q 150 -300 300 0" stroke = "blue" stroke-width = "5" fill = "none"/>
 
-
+import sys
 import os
 display_prog = 'display' # Command to execute to display images.
 
@@ -23,7 +23,7 @@ class Scene:
 
     def strarray(self):
         var = ["<?xml version=\"1.0\"?>\n",
-               "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 %d %d\">\n" % (self.height,self.width),
+               "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 %d %d\" height=\"%d\" width=\"%d\">\n" % (self.height,self.width,self.height,self.width),
                " <g style=\"fill-opacity:1.0; stroke:black;\n",
                "  stroke-width:1;\">\n"]
         for item in self.items: var += item.strarray()
@@ -44,8 +44,17 @@ class Scene:
         return
 
     def display(self,prog=display_prog):
-        #os.system("%s %s &" % (prog,self.svgname))
-        #print 'Displaying %s' %self.svgname
+        if os.system("%s %s &" % (prog,self.svgname)):
+            print('Displaying %s' %self.svgname)
+        else:
+#            import importlib
+#            if importlib.find_loader('SVGViewer') is not None:
+            try:
+                from stopeight.analyzer import SVGViewer
+                SVGViewer.show(self.svgname)
+            except BaseException as e:
+                print(e)
+                print('SVGViewer not found')
         return
 
 
@@ -116,7 +125,7 @@ class Text:
                 "  </text>\n"]
 
 
-def colorstr(rgb): return "#%x%x%x" % (rgb[0]/16,rgb[1]/16,rgb[2]/16)
+def colorstr(rgb): return ("#%x%x%x" % (int(rgb[0]/16),int(rgb[1]/16),int(rgb[2]/16)))
 
 def test():
     scene = Scene('SVG')

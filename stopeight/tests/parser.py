@@ -8,16 +8,13 @@ import stopeight_clibs_legacy
 
 import numpy
 
-def test(g):
-    return g
-
-def parse_directory(dir_path):
+def find_files(dir_path,suffix='.sp'):
     paths = []
     if os.path.isdir(dir_path):
         log.debug('Parsing directory ' + dir_path)
         for root, dirs, files in os.walk(dir_path):
             for f in files:
-                if f.endswith('.sp'):
+                if f.endswith(suffix):
                     final_path = os.path.join(root,f)
                     paths.append(final_path)
     else:
@@ -27,7 +24,7 @@ def parse_directory(dir_path):
 def process_directory(dir_path,analyzer=stopeight_clibs_legacy.stroke_parallel):
     tprinter = tableau_printer.tPrinter('parser.out',6)
     lines = []
-    files = parse_directory(dir_path)
+    files = find_files(dir_path)
     count = 0
     for final_path in files:
         log.info('Loading file ' + final_path + '... ')
@@ -36,8 +33,6 @@ def process_directory(dir_path,analyzer=stopeight_clibs_legacy.stroke_parallel):
             count+=1
             tprinter.draw(graph)
             try:
-                #points =
-                #stopeight_clibs_legacy.stroke_parallel(graph)
                 points = analyzer(graph)
                 tprinter.draw(points)
                 try:
@@ -47,8 +42,6 @@ def process_directory(dir_path,analyzer=stopeight_clibs_legacy.stroke_parallel):
                 log.info('Success')
             except:
                 log.info('Analyzer Failed')
-                #tprinter.text(f+' '+str(analyzer.__name__)+'
-                #failed.')
                 tprinter.text('#' + str(count) + f + ' failed.')
         except:
             log.info('Loading Failed')

@@ -95,7 +95,7 @@ Under projects properties / Debug enable native code debugging
 
 In the same window add the following line to Environment Variables and save
 
-PATH=%PATH%;C:\\Python27\\libs;C:\\Qt\\Qt5.7.0\\5.7\\msvc2015_64\\bin
+PATH=%PATH%;C:\\Python27\\libs;C:\\Qt\\Qt5.7.0\\5.7\\msvc2015_64\\bin;
 
 Right click on stopeight/tests/analyzer_hello_world.py and start debugging
 
