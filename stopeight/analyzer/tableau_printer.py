@@ -12,7 +12,7 @@ class tPrinter(TCT_printer.TCTPrinter):
         self.scene = SVG.Scene(filename,self.height,self.columns*self.width)
         offset_x = lambda x: x+((self.counter % self.columns) * self.width)
         offset_y = lambda y: y+((self.counter//self.columns) * self.height)
-        self.offset = lambda (x,y): (offset_x(x),offset_y(y))
+        self.offset = lambda xy: (offset_x(xy[0]),offset_y(xy[1]))
         self.scroll = lambda c: ((c//self.columns)+1) * self.height
     
     def draw(self,nline):

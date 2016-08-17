@@ -167,7 +167,7 @@ if __name__ == "__main__":
     log.info('rendering dbrecord.svg')
     #dbrecord.printVectors('dbrecord')
     matcher = LineMatchClass(dbrecord)
-    print type(matcher)
-    print dir(matcher)
+    print(type(matcher))
+    print(dir(matcher))
     if matcher.match(input):
-        print 'Hooray!'
+        print('Hooray!')

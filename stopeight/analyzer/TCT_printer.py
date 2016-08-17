@@ -10,7 +10,7 @@ class TCTPrinter:
         self.width=256
         self.height=256 #default, override before write
         self.scene = SVG.Scene(filename,self.height,self.width)
-        self.offset = lambda (x,y): (x,y)
+        self.offset = lambda xy: (xy[0],xy[1])
     
     def lines(self,nline):
         log.debug('Graphics adding to line queue '+str(nline))

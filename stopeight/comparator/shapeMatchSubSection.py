@@ -49,4 +49,4 @@ if __name__ == "__main__":
     dbrecord.printVectors('dbrecord')
     matcher = ShapeMatchSubSectionClass(dbrecord)
     if matcher.match(input):
-        print 'Hooray!'
+        print('Hooray!')

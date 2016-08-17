@@ -11,7 +11,6 @@ from stopeight.comparator import vectorTools
 #from stopeight.comparator.shapeMatch import ShapeMatchClass
 from stopeight.comparator.shapeMatchSubSection import ShapeMatchSubSectionClass
 import multiprocessing
-from types import NoneType
 from stopeight.comparator.vectorTools import NumpyLine
 
 class mp_data_line():

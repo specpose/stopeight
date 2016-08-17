@@ -9,8 +9,8 @@ def initialize_config():
     """
     import os
     if os.path.isfile(os.path.join(os.path.dirname(os.path.abspath(__file__)),'logging.conf')):
-	import logging.config
-    	logging.config.fileConfig(os.path.join(os.path.dirname(os.path.abspath(__file__)),'logging.conf'))
+        import logging.config
+        logging.config.fileConfig(os.path.join(os.path.dirname(os.path.abspath(__file__)),'logging.conf'))
 
 def concatenate_traceback(sys):
     tb = traceback.format_exception(sys.exc_info()[0],sys.exc_info()[1],sys.exc_info()[2],limit=None)
@@ -49,23 +49,23 @@ class logPrint:
 
     @staticmethod
     def debug(message):
-        print "debug: ",message
+        print("debug: ",message)
     
     @staticmethod
     def info(message):
-        print "info: ",message
+        print("info: ",message)
 
     @staticmethod
     def warning(message):
-        print "WARN: ",message
+        print("WARN: ",message)
 
     @staticmethod
     def error(message):
-        print "ERROR: ",message
+        print("ERROR: ",message)
 
     @staticmethod
     def critical(message):
-        print "CRITICAL: ",message
+        print("CRITICAL: ",message)
 
 # python logging module (slow)
 #class logServer(logging.getLoggerClass()):
