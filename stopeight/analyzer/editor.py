@@ -17,27 +17,7 @@ log = logSwitch.logPrint()
 class MyScribble(ScribbleArea):
     def __init__(self, parent = None):
         super(MyScribble,self).__init__(parent)
-        _DATA['Input']= []
-        _DATA['Output']= []
         _DATA['MyScribble'] = self
-
-    def _input(self, event):
-        #if len(_DATA['Input']) == 0: self.clearImage()
-        _DATA['Input'].append((event.pos().x(),event.pos().y()))
-
-    def mousePressEvent(self, event):
-        super(MyScribble,self).mousePressEvent(event)
-        self.clearImage()
-        _DATA['Input']= []
-        _DATA['Output']= []
-
-    def mouseMoveEvent(self, event):
-        super(MyScribble,self).mouseMoveEvent(event)
-        self._input(event)
-
-    def mouseReleaseEvent(self, event):
-        super(MyScribble,self).mouseReleaseEvent(event)
-        self._input(event)
 
 class Algorithm(QGroupBox):
     def __init__(self, **kwargs):
@@ -65,22 +45,22 @@ class Algorithm_Run(QPushButton):
         self.clicked.connect(self.run)
 
     def run(self):
-        if (len(_DATA['Output'])>0):
-            _DATA['Input'] = _DATA['Output']
-            _DATA['Output']= []
+        if (len(_DATA['MyScribble'].OUTPUT)>0):
+            _DATA['MyScribble'].INPUT = _DATA['MyScribble'].OUTPUT
+            _DATA['MyScribble'].OUTPUT= []
         try:
-            log.debug("Invoking "+_DATA['Algorithm_Box'].currentText()+" with "+str(len(_DATA['Input']))+" Points...")
-            log.info(_DATA['Input'])
-            _DATA['Output'] = loader[_DATA['Module_Name']].__dict__[_DATA['Algorithm_Box'].currentText()](_DATA['Input'])
+            log.debug("Invoking "+_DATA['Algorithm_Box'].currentText()+" with "+str(len(_DATA['MyScribble'].INPUT))+" Points...")
+            log.info(_DATA['MyScribble'].INPUT)
+            _DATA['MyScribble'].OUTPUT = loader[_DATA['Module_Name']].__dict__[_DATA['Algorithm_Box'].currentText()](_DATA['MyScribble'].INPUT)
         #except:
         except BaseException as e:
             print(e)
-            _DATA['Input']= []
-            _DATA['Output']= []
+            _DATA['MyScribble'].INPUT= []
+            _DATA['MyScribble'].OUTPUT= []
         _DATA['MyScribble'].clearImage()
-        _DATA['MyScribble'].drawData(_DATA['Input'],Qt.blue)
-        _DATA['MyScribble'].drawData(_DATA['Output'],Qt.red)
-        log.info("Size after call: Input "+str(len(_DATA['Input']))+", Output "+str(len(_DATA['Output'])))
+        _DATA['MyScribble'].drawData(_DATA['MyScribble'].INPUT,Qt.blue)
+        _DATA['MyScribble'].drawData(_DATA['MyScribble'].OUTPUT,Qt.red)
+        log.info("Size after call: Input "+str(len(_DATA['MyScribble'].INPUT))+", Output "+str(len(_DATA['MyScribble'].OUTPUT)))
             
 
 if __name__ == '__main__':

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+# Copyright (C) 2016 Specific Purpose Software GmbH
 
 #############################################################################
 ##
@@ -48,6 +49,8 @@ from PyQt5.QtWidgets import (QAction, QApplication, QColorDialog, QFileDialog,
         QInputDialog, QMainWindow, QMenu, QMessageBox, QWidget)
 from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
 
+from PyQt5.QtGui import QTabletEvent
+from PyQt5.QtCore import QEvent
 
 class ScribbleArea(QWidget):
     def __init__(self, parent=None):
@@ -60,6 +63,9 @@ class ScribbleArea(QWidget):
         self.image = QImage()
         self.lastPoint = QPoint()
 
+        self.INPUT = []
+        self.OUTPUT = []
+
     def setPenColor(self, newColor):
         self.myPenColor = newColor
 
@@ -70,19 +76,49 @@ class ScribbleArea(QWidget):
         self.image.fill(qRgb(255, 255, 255))
         self.update()
 
+    def _input(self, x, y):
+        self.INPUT.append((x,y))
+
+    def _press(self,event):
+        self.lastPoint = event.pos()
+        self.scribbling = True
+        self.clearImage()
+        self.INPUT= []
+        self.OUTPUT= []
+
+    def _move(self, event):
+        if self.scribbling:
+            self.drawLineTo(event.pos())
+
+    def _release(self, event):
+        if self.scribbling:
+            self.drawLineTo(event.pos())
+            self.scribbling = False
+
+    def tabletEvent(self, event):
+        if event.type() == QEvent.TabletPress:
+            self._press(event)
+        elif (event.type() == QEvent.TabletMove) and self.scribbling:
+            self._move(event)
+            self._input(event.posF().x(),event.posF().y())            
+        elif (event.type() == QEvent.TabletRelease) and self.scribbling:
+            self._release(event)
+            self._input(event.posF().x(),event.posF().y())            
+
+
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
-            self.lastPoint = event.pos()
-            self.scribbling = True
+            self._press(event)
 
     def mouseMoveEvent(self, event):
         if (event.buttons() & Qt.LeftButton) and self.scribbling:
-            self.drawLineTo(event.pos())
+            self._move(event)
+            self._input(event.pos().x(),event.pos().y())            
 
     def mouseReleaseEvent(self, event):
-        if event.button() == Qt.LeftButton and self.scribbling:
-            self.drawLineTo(event.pos())
-            self.scribbling = False
+        if (event.button() == Qt.LeftButton) and self.scribbling:
+            self._release(event)
+            self._input(event.pos().x(),event.pos().y())            
 
     def paintEvent(self, event):
         painter = QPainter(self)
