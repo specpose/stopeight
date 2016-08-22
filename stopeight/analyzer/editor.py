@@ -3,7 +3,9 @@
 # Copyright (C) 2009-2016 Specific Purpose Software GmbH
 
 from PyQt5.QtWidgets import QComboBox,QApplication,QMainWindow,QToolBar,QPushButton,QGroupBox,QHBoxLayout
-from scribble import ScribbleArea
+from scribble2 import ScribbleArea
+from PyQt5.QtCore import Qt
+
 
 _DATA = {'Module_Name':'stopeight_clibs_legacy'}
 __import__(_DATA['Module_Name'])
@@ -17,13 +19,15 @@ class MyScribble(ScribbleArea):
         super(MyScribble,self).__init__(parent)
         _DATA['Input']= []
         _DATA['Output']= []
+        _DATA['MyScribble'] = self
 
     def _input(self, event):
-        if len(_DATA['Input']) == 0: self.clearImage()
+        #if len(_DATA['Input']) == 0: self.clearImage()
         _DATA['Input'].append((event.pos().x(),event.pos().y()))
 
     def mousePressEvent(self, event):
         super(MyScribble,self).mousePressEvent(event)
+        self.clearImage()
         _DATA['Input']= []
         _DATA['Output']= []
 
@@ -50,6 +54,7 @@ class Algorithm_Select(QComboBox):
     def __init__(self, **kwargs):
         super(Algorithm_Select,self).__init__(**kwargs)
         for key in (loader[_DATA['Module_Name']].__dict__.keys()):
+            print(key)
             if isinstance(loader[_DATA['Module_Name']].__dict__[key],callable.__class__):
                 self.addItem(loader[_DATA['Module_Name']].__dict__[key].__name__)
 
@@ -72,6 +77,9 @@ class Algorithm_Run(QPushButton):
             print(e)
             _DATA['Input']= []
             _DATA['Output']= []
+        _DATA['MyScribble'].clearImage()
+        _DATA['MyScribble'].drawData(_DATA['Input'],Qt.blue)
+        _DATA['MyScribble'].drawData(_DATA['Output'],Qt.red)
         log.info("Size after call: Input "+str(len(_DATA['Input']))+", Output "+str(len(_DATA['Output'])))
             
 
