@@ -80,20 +80,18 @@ class ScribbleArea(QWidget):
         self.INPUT.append((x,y))
 
     def _press(self,event):
-        self.lastPoint = event.pos()
         self.scribbling = True
+        self.lastPoint = event.pos()
         self.clearImage()
         self.INPUT= []
         self.OUTPUT= []
 
     def _move(self, event):
-        if self.scribbling:
-            self.drawLineTo(event.pos())
+        self.drawLineTo(event.pos())
 
     def _release(self, event):
-        if self.scribbling:
-            self.drawLineTo(event.pos())
-            self.scribbling = False
+        self.drawLineTo(event.pos())
+        self.scribbling = False
 
     def tabletEvent(self, event):
         if event.type() == QEvent.TabletPress:
