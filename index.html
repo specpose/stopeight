@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Frontend: Analyzer &mdash; stopeight 0.1.0 documentation</title>
+    <title>Background &mdash; stopeight 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -51,30 +51,13 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="frontend-analyzer">
-<h1>Frontend: Analyzer<a class="headerlink" href="#frontend-analyzer" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="background">
+<h1>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="acquisition.html">Data Acquisition</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="acquisition.html#theory">Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acquisition.html#applications">Applications</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="stroke-analyzer.html">Stroke Analyzer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="stroke-analyzer.html#stopeight-clibs-qt5">stopeight-clibs qt5</a></li>
-<li class="toctree-l2"><a class="reference internal" href="stroke-analyzer.html#analyzing-pen-strokes-from-a-2d-input-device">Analyzing pen-strokes from a 2D input device.</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="backend-comparator">
-<h1>Backend: Comparator<a class="headerlink" href="#backend-comparator" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="comparator.html">Comparator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="comparator.html#stopeight">stopeight</a></li>
-<li class="toctree-l2"><a class="reference internal" href="comparator.html#api-access">API Access</a></li>
 </ul>
 </li>
 </ul>
@@ -84,13 +67,16 @@
 <h1>Installation Instructions<a class="headerlink" href="#installation-instructions" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="build_stroke-analyzer.html">stopeight-clibs qt5</a></li>
-<li class="toctree-l1"><a class="reference internal" href="build_qt4.html">stopeight-clibs qt4</a></li>
-<li class="toctree-l1"><a class="reference internal" href="build_stopeight.html">stopeight</a></li>
-<li class="toctree-l1"><a class="reference internal" href="scripts.html">stopeight Server</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="scripts.html#storage-setups">Storage Setups</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scripts.html#deployment">Deployment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scripts.html#testing-it">Testing it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_analyzer.html">stopeight-clibs analyzer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stroke-analyzer.html">Stroke Analyzer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stroke-analyzer.html#stopeight-clibs-legacy">stopeight-clibs legacy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stroke-analyzer.html#analyzing-pen-strokes-from-a-2d-input-device">Analyzing pen-strokes from a 2D input device.</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="comparator.html">Comparator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="comparator.html#stopeight-comparator">stopeight comparator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparator.html#api-access">API Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="comparator.html#stopeight-server">stopeight Server</a></li>
 </ul>
 </li>
 </ul>
@@ -105,12 +91,16 @@
 <li class="toctree-l2"><a class="reference internal" href="build_win.html#install-digia">Install: Digia</a></li>
 <li class="toctree-l2"><a class="reference internal" href="build_win.html#install-python-software-foundation">Install: Python Software Foundation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="build_win.html#build-visual-studio-2015">Build: Visual Studio 2015</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_win.html#install-llvm-4-0">Install: LLVM &gt;= 4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_win.html#extract-boost">Extract: Boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_win.html#clone-amd-trisycl">Clone: amd/triSYCL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_win.html#build-new-code-base-using-sycl">Build: New Code-Base using SYCL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="build_win.html#create-visual-studio-2015-python-project-from-existing-python-code">Create: Visual Studio 2015, Python project From Existing Python Code</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dev_build.html">Build Issues</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev_analyzer.html">Analyzer Algorithm</a></li>
-<li class="toctree-l1"><a class="reference internal" href="developer.html">GitHub &amp; Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_doc.html">GitHub &amp; Sphinx</a></li>
 </ul>
 </div>
 </div>
@@ -134,8 +124,7 @@
             </a></p>
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Frontend: Analyzer</a></li>
-<li><a class="reference internal" href="#backend-comparator">Backend: Comparator</a></li>
+<li><a class="reference internal" href="#">Background</a></li>
 <li><a class="reference internal" href="#installation-instructions">Installation Instructions</a></li>
 <li><a class="reference internal" href="#developer-notes">Developer Notes</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
@@ -185,7 +174,7 @@
       </ul>
     </div>
     <div class="footer">
-      Last updated on Jul 19, 2016.
+      Last updated on Aug 24, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

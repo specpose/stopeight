@@ -1,7 +1,7 @@
-stopeight
----------
+stopeight comparator
+--------------------
 
-As of 05/2016 only python version 2.7 and Ubuntu 14.04 have been tested.
+As of 08/2016 python version 3.5, 2.7 and Ubuntu 14.04 have been tested.
 
 Get numpy on ubuntu::
 
@@ -33,7 +33,7 @@ If you want to install to your system::
     $ python setup.py build
     $ sudo python setup.py install
 
-Non-API modules are not installed, they are available in the repository only:
+Non-API modules are not installed and tested with python >2.7, they are available in the repository only:
 
 :mod:`stopeight.server`
 

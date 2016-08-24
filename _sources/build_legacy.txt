@@ -1,5 +1,5 @@
-stopeight-clibs qt4
--------------------
+stopeight-clibs legacy
+----------------------
 
 As of 05/2016 python version 2.7, qt4 and Ubuntu 12.04 have been tested.
 
@@ -27,14 +27,6 @@ Run qmake to generate the Makefile, then compile, install and add to library pat
 
 You may need to install them to your system's library path::
 
-    $ sudo make install
-    $ sudo ldconfig
-
-Do the same for analyzer. It needs C++11::
-
-    $ cd /path/to/where/stopeight-clibs/analyzer
-    $ qmake-qt4 -o ./Makefile analyzer.pro
-    $ make
     $ sudo make install
     $ sudo ldconfig
 

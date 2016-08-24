@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>stopeight-clibs qt5 &mdash; stopeight 0.1.0 documentation</title>
+    <title>stopeight-clibs legacy &mdash; stopeight 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -23,9 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
-    <link rel="next" title="stopeight-clibs qt4" href="build_qt4.html" />
-    <link rel="prev" title="Comparator" href="comparator.html" /> 
+    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,12 +35,6 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="build_qt4.html" title="stopeight-clibs qt4"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="comparator.html" title="Comparator"
-             accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
     
         <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
@@ -55,11 +47,15 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="stopeight-clibs-qt5">
-<h1>stopeight-clibs qt5<a class="headerlink" href="#stopeight-clibs-qt5" title="Permalink to this headline">¶</a></h1>
-<p>As of 07/2016 only python version 2.7, qt5 and Ubuntu 14.04 have been tested.</p>
-<p>If you installed qt-creator version 5 you already have them:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install qt5-qmake qtbase5-dev qt5-default
+  <div class="section" id="stopeight-clibs-legacy">
+<h1>stopeight-clibs legacy<a class="headerlink" href="#stopeight-clibs-legacy" title="Permalink to this headline">¶</a></h1>
+<p>As of 05/2016 python version 2.7, qt4 and Ubuntu 12.04 have been tested.</p>
+<p>If you installed qt-creator version 4 you already have them:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install qt4-qmake libqt4-dev
+</pre></div>
+</div>
+<p>In Ubuntu 14.04 these libraries are pre-installed:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install libqt4-core libqt4-gui
 </pre></div>
 </div>
 <p>And the GCC compiler and tools:</p>
@@ -72,20 +68,12 @@
 </div>
 <p>Run qmake to generate the Makefile, then compile, install and add to library path:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/legacy
-$ qmake -o ./Makefile legacy.pro
+$ qmake-qt4 -o ./Makefile legacy.pro
 $ make
 </pre></div>
 </div>
 <p>You may need to install them to your system&#8217;s library path:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo make install
-$ sudo ldconfig
-</pre></div>
-</div>
-<p>Do the same for analyzer:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/analyzer
-$ qmake -o ./Makefile analyzer.pro
-$ make
-$ sudo make install
 $ sudo ldconfig
 </pre></div>
 </div>
@@ -113,15 +101,9 @@ $ python setup.py build
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/crab.png" alt="Logo"/>
             </a></p>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="comparator.html"
-                        title="previous chapter">Comparator</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="build_qt4.html"
-                        title="next chapter">stopeight-clibs qt4</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/build_stroke-analyzer.txt"
+    <li><a href="_sources/build_legacy.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -150,12 +132,6 @@ $ python setup.py build
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="build_qt4.html" title="stopeight-clibs qt4"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="comparator.html" title="Comparator"
-             >previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
     
         <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
@@ -163,7 +139,7 @@ $ python setup.py build
       </ul>
     </div>
     <div class="footer">
-      Last updated on Jul 19, 2016.
+      Last updated on Aug 24, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
-    <link rel="next" title="stopeight-clibs qt5" href="build_stroke-analyzer.html" />
+    <link rel="next" title="Visual Studio Integration" href="build_win.html" />
     <link rel="prev" title="Stroke Analyzer" href="stroke-analyzer.html" /> 
   </head>
   <body>
@@ -38,7 +38,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="build_stroke-analyzer.html" title="stopeight-clibs qt5"
+          <a href="build_win.html" title="Visual Studio Integration"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="stroke-analyzer.html" title="Stroke Analyzer"
@@ -57,9 +57,9 @@
             
   <div class="section" id="comparator">
 <h1>Comparator<a class="headerlink" href="#comparator" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="stopeight">
-<h2>stopeight<a class="headerlink" href="#stopeight" title="Permalink to this headline">¶</a></h2>
-<p>As of 05/2016 only python version 2.7 and Ubuntu 14.04 have been tested.</p>
+<div class="section" id="stopeight-comparator">
+<h2>stopeight comparator<a class="headerlink" href="#stopeight-comparator" title="Permalink to this headline">¶</a></h2>
+<p>As of 08/2016 python version 3.5, 2.7 and Ubuntu 14.04 have been tested.</p>
 <p>Get numpy on ubuntu:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-numpy
 </pre></div>
@@ -83,7 +83,7 @@ $ python setup.py build
 $ sudo python setup.py install
 </pre></div>
 </div>
-<p>Non-API modules are not installed, they are available in the repository only:</p>
+<p>Non-API modules are not installed and tested with python &gt;2.7, they are available in the repository only:</p>
 <p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.server</span></tt></p>
 <p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.tests</span></tt></p>
 </div>
@@ -122,6 +122,103 @@ unequal length</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="stopeight-server">
+<h2>stopeight Server<a class="headerlink" href="#stopeight-server" title="Permalink to this headline">¶</a></h2>
+<p>It relies on SOAP for client/server communication, therefore you need Python version 2.7!:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
+</pre></div>
+</div>
+<p>Note: This is a version that does not require PyXML anymore</p>
+<p>Download and run in subdirectory zsi:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo python setup.py install
+</pre></div>
+</div>
+<div class="section" id="stopeight-server-storage-setups">
+<h3>stopeight Server: Storage Setups<a class="headerlink" href="#stopeight-server-storage-setups" title="Permalink to this headline">¶</a></h3>
+<p>For running against a file storage, you need ZODB:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-zodb
+</pre></div>
+</div>
+<p>Tested working with version:</p>
+<p>ZODB3-3.10.5.tar.gz</p>
+<p>AND RUN stopeight.server.zodbTools TO MAKE DATA.FS FILE</p>
+<p>For running against a rails2.3 style db, you need elixir, SQLAlchemy, MySQL-python:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-mysqldb
+</pre></div>
+</div>
+<p>Tested working with versions:</p>
+<p>Elixir-0.7.1.tar.gz</p>
+<p>SQLAlchemy-0.7.8.tar.gz</p>
+<p>Run in each directory and check sys.path:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo python setup.py install
+</pre></div>
+</div>
+<p>You can switch to a SQL storage backend by modifying 3 lines of code. Change occurences of:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;from zodbTools import DBLine&quot;</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;from elixirTools import DBLine&quot;</span>
+</pre></div>
+</div>
+<p>And setting the database connection in stopeight.server.server_include according to your database installation. I have successfully tested MySQL. The elixir code follows the rails ActiveRecord convention.</p>
+</div>
+<div class="section" id="stopeight-server-deployment">
+<h3>stopeight Server: Deployment<a class="headerlink" href="#stopeight-server-deployment" title="Permalink to this headline">¶</a></h3>
+<p>To create a ZODB storage file:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight/run
+&gt;&gt;&gt; import stopeight.server.zodbTools
+&gt;&gt;&gt; from stopeight.server import server_include
+&gt;&gt;&gt; stopeight.server.zodbTools.create_database(server_include.zodb_filename)
+</pre></div>
+</div>
+<p>To launch the server do the following from the same directory:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight.server</span> <span class="kn">import</span> <span class="n">server_soap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">server_soap</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">8888</span><span class="p">)</span>
+</pre></div>
+</div>
+<span class="target" id="module-stopeight.server.server_soap"></span><dl class="function">
+<dt id="stopeight.server.server_soap.run">
+<tt class="descclassname">stopeight.server.server_soap.</tt><tt class="descname">run</tt><big>(</big><em>port</em><big>)</big><a class="reference internal" href="_modules/stopeight/server/server_soap.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stopeight.server.server_soap.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>This will launch a SOAP server.
+The default port can be found in <tt class="xref py py-mod docutils literal"><span class="pre">stopeight.server.server_include</span></tt> or supplied as an argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="stopeight-server-testing-it">
+<h3>stopeight Server: Testing it<a class="headerlink" href="#stopeight-server-testing-it" title="Permalink to this headline">¶</a></h3>
+<p>I have provided example-scripts for all of the SOAP commands:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight/tests
+$ python
+</pre></div>
+</div>
+<p>To save your first line on the server, run:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">client_saveLine_test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client_saveLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This should produce output containing the id of your newly created line.
+Keep this id to your records.</p>
+<p>To check whether an input line matches any of the reference lines, do the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">client_matchLine_test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client_matchLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will return both the data and the id&#8217;s that have matched your input.</p>
+<p>If you want to just retrieve the data of a reference line, you can do so by submitting the id:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">client_getLine_test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client_getLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will return the data associated to the reference line on record.</p>
+<p>And finally, if you want to delete a reference line in the database, send the id:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">client_deleteLine_test</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client_deleteLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Please refer to the code-samples for further information on how to use this from within your code.</p>
+</div>
+</div>
 </div>
 
 
@@ -136,8 +233,14 @@ unequal length</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Comparator</a><ul>
-<li><a class="reference internal" href="#stopeight">stopeight</a></li>
+<li><a class="reference internal" href="#stopeight-comparator">stopeight comparator</a></li>
 <li><a class="reference internal" href="#api-access">API Access</a></li>
+<li><a class="reference internal" href="#stopeight-server">stopeight Server</a><ul>
+<li><a class="reference internal" href="#stopeight-server-storage-setups">stopeight Server: Storage Setups</a></li>
+<li><a class="reference internal" href="#stopeight-server-deployment">stopeight Server: Deployment</a></li>
+<li><a class="reference internal" href="#stopeight-server-testing-it">stopeight Server: Testing it</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -146,8 +249,8 @@ unequal length</p>
   <p class="topless"><a href="stroke-analyzer.html"
                         title="previous chapter">Stroke Analyzer</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="build_stroke-analyzer.html"
-                        title="next chapter">stopeight-clibs qt5</a></p>
+  <p class="topless"><a href="build_win.html"
+                        title="next chapter">Visual Studio Integration</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/comparator.txt"
@@ -180,7 +283,7 @@ unequal length</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="build_stroke-analyzer.html" title="stopeight-clibs qt5"
+          <a href="build_win.html" title="Visual Studio Integration"
              >next</a> |</li>
         <li class="right" >
           <a href="stroke-analyzer.html" title="Stroke Analyzer"
@@ -192,7 +295,7 @@ unequal length</p>
       </ul>
     </div>
     <div class="footer">
-      Last updated on Jul 19, 2016.
+      Last updated on Aug 24, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

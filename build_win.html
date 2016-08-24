@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
     <link rel="next" title="Build Issues" href="dev_build.html" />
-    <link rel="prev" title="stopeight Server" href="scripts.html" /> 
+    <link rel="prev" title="Comparator" href="comparator.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,7 +41,7 @@
           <a href="dev_build.html" title="Build Issues"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="scripts.html" title="stopeight Server"
+          <a href="comparator.html" title="Comparator"
              accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
     
@@ -79,12 +79,36 @@
 <p>From Qt5 menu in Visual studio, open</p>
 <p>Open stopeight-clibs/analyzer/analyzer.pro</p>
 <p>Open stopeight-clibs/legacy/legacy.pro</p>
+<p>Open stopeight-clibs/legacy-wrappers/legacy-wrappers.pro</p>
+<p>Right-click legacy-wrappers project and modify two entries:</p>
+<p>Change Target Extension from .dll to .pyd</p>
+<p>Change Linker Output File extension from .dll to .pyd</p>
+<p>This should have converted the qmake project files to VS projects. Build the Debug version of the C++ projects.</p>
+</div>
+<div class="section" id="install-llvm-4-0">
+<h2>Install: <a class="reference external" href="http://llvm.org/builds/">LLVM &gt;= 4.0</a><a class="headerlink" href="#install-llvm-4-0" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://llvm.org/pre-releases/win-snapshots/LLVM-4.0.0-r277442-win64.exe">LLVM 4 x86_64</a></p>
+</div>
+<div class="section" id="extract-boost">
+<h2>Extract: <a class="reference external" href="http://www.boost.org/users/history/version_1_61_0.html">Boost</a><a class="headerlink" href="#extract-boost" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.zip">Boost.MultiArray</a></p>
+</div>
+<div class="section" id="clone-amd-trisycl">
+<h2>Clone: <a class="reference external" href="https://github.com/amd/triSYCL">amd/triSYCL</a><a class="headerlink" href="#clone-amd-trisycl" title="Permalink to this headline">¶</a></h2>
+<p>$ cd /path/to/where/the/sources
+$ git clone <a class="reference external" href="https://github.com/amd/triSYCL.git">https://github.com/amd/triSYCL.git</a></p>
+</div>
+<div class="section" id="build-new-code-base-using-sycl">
+<h2>Build: New Code-Base using SYCL<a class="headerlink" href="#build-new-code-base-using-sycl" title="Permalink to this headline">¶</a></h2>
+<p>Open stopeight-clibs/analyzer/stopeight-clibs-analyzer/stopeight-clibs-analyzer.vcxproj</p>
+<p>In Project/Properties:</p>
+<p>Change Platform to LLVM-vs2014</p>
+<p>C/C++/Language Enable Runtime Type Information (-frtti)</p>
+<p>Adjust library paths if necessary</p>
 <p>Open stopeight-clibs/analyzer-wrappers/analyzer-wrappers.pro</p>
 <p>Right-click analyzer-wrappers project and modify two entries:</p>
 <p>Change Target Extension from .dll to .pyd</p>
 <p>Change Linker Output File extension from .dll to .pyd</p>
-<p>Do the same for stopeight-clibs/legacy-wrappers/legacy-wrappers.pro</p>
-<p>This should have converted the qmake project files to VS projects. Build the Debug version of the C++ projects.</p>
 </div>
 <div class="section" id="create-visual-studio-2015-python-project-from-existing-python-code">
 <h2>Create: Visual Studio 2015, Python project From Existing Python Code<a class="headerlink" href="#create-visual-studio-2015-python-project-from-existing-python-code" title="Permalink to this headline">¶</a></h2>
@@ -93,7 +117,7 @@
 <p>Also don&#8217;t forget to add stopeight top-level directory &#8221;.&#8221; to the Search path</p>
 <p>Under projects properties / Debug enable native code debugging</p>
 <p>In the same window add the following line to Environment Variables and save</p>
-<p>PATH=%PATH%;C:Python27libs;C:QtQt5.7.05.7msvc2015_64bin</p>
+<p>PATH=%PATH%;C:\Python27\libs;C:\Qt\Qt5.7.0\5.7\msvc2015_64\bin;</p>
 <p>Right click on stopeight/tests/analyzer_hello_world.py and start debugging</p>
 <p>Under Python environment pip install numpy</p>
 <p>Try the stopeight/tests/parser.py script to parse test files with .sp extension.</p>
@@ -116,14 +140,18 @@
 <li><a class="reference internal" href="#install-digia">Install: Digia</a></li>
 <li><a class="reference internal" href="#install-python-software-foundation">Install: Python Software Foundation</a></li>
 <li><a class="reference internal" href="#build-visual-studio-2015">Build: Visual Studio 2015</a></li>
+<li><a class="reference internal" href="#install-llvm-4-0">Install: LLVM &gt;= 4.0</a></li>
+<li><a class="reference internal" href="#extract-boost">Extract: Boost</a></li>
+<li><a class="reference internal" href="#clone-amd-trisycl">Clone: amd/triSYCL</a></li>
+<li><a class="reference internal" href="#build-new-code-base-using-sycl">Build: New Code-Base using SYCL</a></li>
 <li><a class="reference internal" href="#create-visual-studio-2015-python-project-from-existing-python-code">Create: Visual Studio 2015, Python project From Existing Python Code</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="scripts.html"
-                        title="previous chapter">stopeight Server</a></p>
+  <p class="topless"><a href="comparator.html"
+                        title="previous chapter">Comparator</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="dev_build.html"
                         title="next chapter">Build Issues</a></p>
@@ -162,7 +190,7 @@
           <a href="dev_build.html" title="Build Issues"
              >next</a> |</li>
         <li class="right" >
-          <a href="scripts.html" title="stopeight Server"
+          <a href="comparator.html" title="Comparator"
              >previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
     
@@ -171,7 +199,7 @@
       </ul>
     </div>
     <div class="footer">
-      Last updated on Jul 19, 2016.
+      Last updated on Aug 24, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

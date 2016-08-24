@@ -35,6 +35,45 @@ Open stopeight-clibs/analyzer/analyzer.pro
 
 Open stopeight-clibs/legacy/legacy.pro
 
+Open stopeight-clibs/legacy-wrappers/legacy-wrappers.pro
+
+Right-click legacy-wrappers project and modify two entries:
+
+Change Target Extension from .dll to .pyd
+
+Change Linker Output File extension from .dll to .pyd
+
+This should have converted the qmake project files to VS projects. Build the Debug version of the C++ projects.
+
+Install: `LLVM >= 4.0 <http://llvm.org/builds/>`_
+-------------------------------------------------
+
+`LLVM 4 x86_64 <http://llvm.org/pre-releases/win-snapshots/LLVM-4.0.0-r277442-win64.exe>`_
+
+Extract: `Boost <http://www.boost.org/users/history/version_1_61_0.html>`_
+--------------------------------------------------------------------------
+
+`Boost.MultiArray <https://sourceforge.net/projects/boost/files/boost/1.61.0/boost_1_61_0.zip>`_
+
+Clone: `amd/triSYCL <https://github.com/amd/triSYCL>`_
+------------------------------------------------------
+
+$ cd /path/to/where/the/sources
+$ git clone https://github.com/amd/triSYCL.git
+
+Build: New Code-Base using SYCL
+-------------------------------
+
+Open stopeight-clibs/analyzer/stopeight-clibs-analyzer/stopeight-clibs-analyzer.vcxproj
+
+In Project/Properties:
+
+Change Platform to LLVM-vs2014
+
+C/C++/Language Enable Runtime Type Information (-frtti)
+
+Adjust library paths if necessary
+
 Open stopeight-clibs/analyzer-wrappers/analyzer-wrappers.pro
 
 Right-click analyzer-wrappers project and modify two entries:
@@ -42,10 +81,6 @@ Right-click analyzer-wrappers project and modify two entries:
 Change Target Extension from .dll to .pyd
 
 Change Linker Output File extension from .dll to .pyd
-
-Do the same for stopeight-clibs/legacy-wrappers/legacy-wrappers.pro
-
-This should have converted the qmake project files to VS projects. Build the Debug version of the C++ projects.
 
 Create: Visual Studio 2015, Python project From Existing Python Code
 --------------------------------------------------------------------
@@ -60,7 +95,7 @@ Under projects properties / Debug enable native code debugging
 
 In the same window add the following line to Environment Variables and save
 
-PATH=%PATH%;C:\Python27\libs;C:\Qt\Qt5.7.0\5.7\msvc2015_64\bin
+PATH=%PATH%;C:\\Python27\\libs;C:\\Qt\\Qt5.7.0\\5.7\\msvc2015_64\\bin;
 
 Right click on stopeight/tests/analyzer_hello_world.py and start debugging
 

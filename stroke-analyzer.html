@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
     <link rel="next" title="Comparator" href="comparator.html" />
-    <link rel="prev" title="Data Acquisition" href="acquisition.html" /> 
+    <link rel="prev" title="stopeight-clibs analyzer" href="build_analyzer.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,7 +41,7 @@
           <a href="comparator.html" title="Comparator"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="acquisition.html" title="Data Acquisition"
+          <a href="build_analyzer.html" title="stopeight-clibs analyzer"
              accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
     
@@ -57,11 +57,15 @@
             
   <div class="section" id="stroke-analyzer">
 <h1>Stroke Analyzer<a class="headerlink" href="#stroke-analyzer" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="stopeight-clibs-qt5">
-<h2>stopeight-clibs qt5<a class="headerlink" href="#stopeight-clibs-qt5" title="Permalink to this headline">¶</a></h2>
-<p>As of 07/2016 only python version 2.7, qt5 and Ubuntu 14.04 have been tested.</p>
-<p>If you installed qt-creator version 5 you already have them:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install qt5-qmake qtbase5-dev qt5-default
+<div class="section" id="stopeight-clibs-legacy">
+<h2>stopeight-clibs legacy<a class="headerlink" href="#stopeight-clibs-legacy" title="Permalink to this headline">¶</a></h2>
+<p>As of 05/2016 python version 2.7, qt4 and Ubuntu 12.04 have been tested.</p>
+<p>If you installed qt-creator version 4 you already have them:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install qt4-qmake libqt4-dev
+</pre></div>
+</div>
+<p>In Ubuntu 14.04 these libraries are pre-installed:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install libqt4-core libqt4-gui
 </pre></div>
 </div>
 <p>And the GCC compiler and tools:</p>
@@ -74,20 +78,12 @@
 </div>
 <p>Run qmake to generate the Makefile, then compile, install and add to library path:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/legacy
-$ qmake -o ./Makefile legacy.pro
+$ qmake-qt4 -o ./Makefile legacy.pro
 $ make
 </pre></div>
 </div>
 <p>You may need to install them to your system&#8217;s library path:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo make install
-$ sudo ldconfig
-</pre></div>
-</div>
-<p>Do the same for analyzer:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/analyzer
-$ qmake -o ./Makefile analyzer.pro
-$ make
-$ sudo make install
 $ sudo ldconfig
 </pre></div>
 </div>
@@ -139,15 +135,15 @@ $ tar xvfz v0-1-0.tar.gz
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Stroke Analyzer</a><ul>
-<li><a class="reference internal" href="#stopeight-clibs-qt5">stopeight-clibs qt5</a></li>
+<li><a class="reference internal" href="#stopeight-clibs-legacy">stopeight-clibs legacy</a></li>
 <li><a class="reference internal" href="#analyzing-pen-strokes-from-a-2d-input-device">Analyzing pen-strokes from a 2D input device.</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="acquisition.html"
-                        title="previous chapter">Data Acquisition</a></p>
+  <p class="topless"><a href="build_analyzer.html"
+                        title="previous chapter">stopeight-clibs analyzer</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="comparator.html"
                         title="next chapter">Comparator</a></p>
@@ -186,7 +182,7 @@ $ tar xvfz v0-1-0.tar.gz
           <a href="comparator.html" title="Comparator"
              >next</a> |</li>
         <li class="right" >
-          <a href="acquisition.html" title="Data Acquisition"
+          <a href="build_analyzer.html" title="stopeight-clibs analyzer"
              >previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
     
@@ -195,7 +191,7 @@ $ tar xvfz v0-1-0.tar.gz
       </ul>
     </div>
     <div class="footer">
-      Last updated on Jul 19, 2016.
+      Last updated on Aug 24, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

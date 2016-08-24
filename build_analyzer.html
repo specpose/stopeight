@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>stopeight &mdash; stopeight 0.1.0 documentation</title>
+    <title>stopeight-clibs analyzer &mdash; stopeight 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
-    <link rel="next" title="stopeight Server" href="scripts.html" />
-    <link rel="prev" title="stopeight-clibs qt4" href="build_qt4.html" /> 
+    <link rel="next" title="Stroke Analyzer" href="stroke-analyzer.html" />
+    <link rel="prev" title="Data Acquisition" href="acquisition.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,10 +38,10 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="scripts.html" title="stopeight Server"
+          <a href="stroke-analyzer.html" title="Stroke Analyzer"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="build_qt4.html" title="stopeight-clibs qt4"
+          <a href="acquisition.html" title="Data Acquisition"
              accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
     
@@ -55,35 +55,65 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="stopeight">
-<h1>stopeight<a class="headerlink" href="#stopeight" title="Permalink to this headline">¶</a></h1>
-<p>As of 05/2016 only python version 2.7 and Ubuntu 14.04 have been tested.</p>
-<p>Get numpy on ubuntu:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-numpy
+  <div class="section" id="stopeight-clibs-analyzer">
+<h1>stopeight-clibs analyzer<a class="headerlink" href="#stopeight-clibs-analyzer" title="Permalink to this headline">¶</a></h1>
+<p>As of 08/2016 python version 3.5, qt5 and Ubuntu 16.04 have been tested.</p>
+<p>If you installed qt-creator version 5 you already have them:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install qt5-qmake qtbase5-dev qt5-default
 </pre></div>
 </div>
-<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">synchronize</span>
+<p>And the GCC compiler (&gt;=4.9) and tools:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install g++ make libboost-dev
 </pre></div>
 </div>
-<p>Clone into the repository:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git clone https://github.com/specpose/stopeight.git
+<p>AMD&#8217;s reference implementation for CPU-only SYCL:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git clone https://github.com/amd/triSYCL.git
 </pre></div>
 </div>
-<p>Due to the development status and likeliness to change API interfaces these modules are not yet available in the Python package repository:</p>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></tt></p>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.logging</span></tt></p>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt></p>
-<p>If you want to install to your system:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-setuptools
-$ cd /path/to/where/stopeight
+<p>stopeight-clibs. Get:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ git clone https://github.com/specpose/stopeight-clibs.git
+</pre></div>
+</div>
+<p>Run qmake to generate the Makefile, then compile, install and add to library path:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/legacy
+$ QT_SELECT=qt5 qmake -o ./Makefile legacy.pro
+$ make
+</pre></div>
+</div>
+<p>You may need to install them to your system&#8217;s library path:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo make install
+$ sudo ldconfig
+</pre></div>
+</div>
+<p>Do the same for analyzer:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/analyzer
+$ QT_SELECT=qt5 qmake -o ./Makefile analyzer.pro
+$ make
+$ sudo make install
+$ sudo ldconfig
+</pre></div>
+</div>
+<p>You will need python development headers:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python3.5-dev
+</pre></div>
+</div>
+<p>Build and install the python API for pen-strokes:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/legacy-wrappers
 $ python setup.py build
-$ sudo python setup.py install
 </pre></div>
 </div>
-<p>Non-API modules are not installed, they are available in the repository only:</p>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.server</span></tt></p>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.tests</span></tt></p>
+<p>You may need to install the wrappers to the system&#8217;s python path:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo python setup.py install
+</pre></div>
+</div>
+<p>Most of the development tools are accessible from the scripts in the stopeight repository:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight
+</pre></div>
+</div>
+<p>Try to apply algorithms to a series of points from within the Editor:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">exec</span><span class="p">(</span><span class="s">&#39;stopeight/analyzer/editor.py&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -96,14 +126,14 @@ $ sudo python setup.py install
               <img class="logo" src="_static/crab.png" alt="Logo"/>
             </a></p>
   <h4>Previous topic</h4>
-  <p class="topless"><a href="build_qt4.html"
-                        title="previous chapter">stopeight-clibs qt4</a></p>
+  <p class="topless"><a href="acquisition.html"
+                        title="previous chapter">Data Acquisition</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="scripts.html"
-                        title="next chapter">stopeight Server</a></p>
+  <p class="topless"><a href="stroke-analyzer.html"
+                        title="next chapter">Stroke Analyzer</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/build_stopeight.txt"
+    <li><a href="_sources/build_analyzer.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -133,10 +163,10 @@ $ sudo python setup.py install
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="scripts.html" title="stopeight Server"
+          <a href="stroke-analyzer.html" title="Stroke Analyzer"
              >next</a> |</li>
         <li class="right" >
-          <a href="build_qt4.html" title="stopeight-clibs qt4"
+          <a href="acquisition.html" title="Data Acquisition"
              >previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
     
@@ -145,7 +175,7 @@ $ sudo python setup.py install
       </ul>
     </div>
     <div class="footer">
-      Last updated on Jul 19, 2016.
+      Last updated on Aug 24, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

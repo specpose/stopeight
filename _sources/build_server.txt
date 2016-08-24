@@ -1,16 +1,18 @@
 stopeight Server
-================
+----------------
 
-It relies on SOAP for client/server communication, therefore you need. Note: This is a version that does not require PyXML anymore::
+It relies on SOAP for client/server communication, therefore you need Python version 2.7!::
 
     $ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
+
+Note: This is a version that does not require PyXML anymore
 
 Download and run in subdirectory zsi::
 
     $ sudo python setup.py install
 
-Storage Setups
---------------
+stopeight Server: Storage Setups
+................................
 
 For running against a file storage, you need ZODB::
 
@@ -46,8 +48,8 @@ to::
 
 And setting the database connection in stopeight.server.server_include according to your database installation. I have successfully tested MySQL. The elixir code follows the rails ActiveRecord convention.
 
-Deployment
-----------
+stopeight Server: Deployment
+............................
 
 To create a ZODB storage file::
 
@@ -64,8 +66,8 @@ To launch the server do the following from the same directory::
 .. automodule:: stopeight.server.server_soap
    :members:
 
-Testing it
-----------
+stopeight Server: Testing it
+............................
 
 I have provided example-scripts for all of the SOAP commands::
 

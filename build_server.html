@@ -23,9 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
-    <link rel="next" title="Visual Studio Integration" href="build_win.html" />
-    <link rel="prev" title="stopeight" href="build_stopeight.html" /> 
+    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,12 +35,6 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="build_win.html" title="Visual Studio Integration"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="build_stopeight.html" title="stopeight"
-             accesskey="P">previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
     
         <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
@@ -57,16 +49,17 @@
             
   <div class="section" id="stopeight-server">
 <h1>stopeight Server<a class="headerlink" href="#stopeight-server" title="Permalink to this headline">¶</a></h1>
-<p>It relies on SOAP for client/server communication, therefore you need. Note: This is a version that does not require PyXML anymore:</p>
+<p>It relies on SOAP for client/server communication, therefore you need Python version 2.7!:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
 </pre></div>
 </div>
+<p>Note: This is a version that does not require PyXML anymore</p>
 <p>Download and run in subdirectory zsi:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo python setup.py install
 </pre></div>
 </div>
-<div class="section" id="storage-setups">
-<h2>Storage Setups<a class="headerlink" href="#storage-setups" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="stopeight-server-storage-setups">
+<h2>stopeight Server: Storage Setups<a class="headerlink" href="#stopeight-server-storage-setups" title="Permalink to this headline">¶</a></h2>
 <p>For running against a file storage, you need ZODB:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-zodb
 </pre></div>
@@ -95,8 +88,8 @@
 </div>
 <p>And setting the database connection in stopeight.server.server_include according to your database installation. I have successfully tested MySQL. The elixir code follows the rails ActiveRecord convention.</p>
 </div>
-<div class="section" id="deployment">
-<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="stopeight-server-deployment">
+<h2>stopeight Server: Deployment<a class="headerlink" href="#stopeight-server-deployment" title="Permalink to this headline">¶</a></h2>
 <p>To create a ZODB storage file:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight/run
 &gt;&gt;&gt; import stopeight.server.zodbTools
@@ -117,8 +110,8 @@ The default port can be found in <tt class="xref py py-mod docutils literal"><sp
 </dd></dl>
 
 </div>
-<div class="section" id="testing-it">
-<h2>Testing it<a class="headerlink" href="#testing-it" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="stopeight-server-testing-it">
+<h2>stopeight Server: Testing it<a class="headerlink" href="#stopeight-server-testing-it" title="Permalink to this headline">¶</a></h2>
 <p>I have provided example-scripts for all of the SOAP commands:</p>
 <div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight/tests
 $ python
@@ -164,22 +157,16 @@ Keep this id to your records.</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">stopeight Server</a><ul>
-<li><a class="reference internal" href="#storage-setups">Storage Setups</a></li>
-<li><a class="reference internal" href="#deployment">Deployment</a></li>
-<li><a class="reference internal" href="#testing-it">Testing it</a></li>
+<li><a class="reference internal" href="#stopeight-server-storage-setups">stopeight Server: Storage Setups</a></li>
+<li><a class="reference internal" href="#stopeight-server-deployment">stopeight Server: Deployment</a></li>
+<li><a class="reference internal" href="#stopeight-server-testing-it">stopeight Server: Testing it</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="build_stopeight.html"
-                        title="previous chapter">stopeight</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="build_win.html"
-                        title="next chapter">Visual Studio Integration</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/scripts.txt"
+    <li><a href="_sources/build_server.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -208,12 +195,6 @@ Keep this id to your records.</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="right" >
-          <a href="build_win.html" title="Visual Studio Integration"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="build_stopeight.html" title="stopeight"
-             >previous</a> |</li>
     <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
     
         <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
@@ -221,7 +202,7 @@ Keep this id to your records.</p>
       </ul>
     </div>
     <div class="footer">
-      Last updated on Jul 19, 2016.
+      Last updated on Aug 24, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
