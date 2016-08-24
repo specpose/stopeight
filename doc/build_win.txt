@@ -15,10 +15,10 @@ Install: `Digia <http://qt.io/download-open-source/#section-2>`_
 
 msvc2015 64-bit
 
-Install: `Python Software Foundation <http://python.org/downloads/release/python-2712>`_
+Install: `Python Software Foundation <https://www.python.org/downloads/release/python-352/>`_
 ----------------------------------------------------------------------------------------
 
-`Python 2.7 x86_64 <https://www.python.org/ftp/python/2.7.12/python-2.7.12.amd64.msi>`_
+`Python 3.5.2 x86_64 <https://www.python.org/ftp/python/3.5.2/python-3.5.2-amd64-webinstall.exe>`_
 
 Install just for me
 
@@ -30,8 +30,6 @@ Extensions and Updates, click online and search for Qt5Package
 In Qt5 / Qt Options Add path to Qt/Qt5.7.0/5.7/msvc2015_54
 
 From Qt5 menu in Visual studio, open
-
-Open stopeight-clibs/analyzer/analyzer.pro
 
 Open stopeight-clibs/legacy/legacy.pro
 
@@ -97,8 +95,7 @@ In the same window add the following line to Environment Variables and save
 
 PATH=%PATH%;C:\\Python27\\libs;C:\\Qt\\Qt5.7.0\\5.7\\msvc2015_64\\bin;
 
-Right click on stopeight/tests/analyzer_hello_world.py and start debugging
+Under Python environment pip install numpy, pyqt5
 
-Under Python environment pip install numpy
-
-Try the stopeight/tests/parser.py script to parse test files with .sp extension.
+Try the stopeight/tests/parser.py script to parse test files with .sp extension (v0.1.0).
+Try the stopeight/analyzer/editor.py to test algorithms and files using the new file format (v0.1.1).
