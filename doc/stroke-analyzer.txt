@@ -1,7 +1,7 @@
 Stroke Analyzer
 ===============
 
-.. include:: build_stroke-analyzer.txt
+.. include:: build_legacy.txt
 
 Analyzing pen-strokes from a 2D input device.
 ---------------------------------------------

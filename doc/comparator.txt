@@ -1,7 +1,7 @@
 Comparator
 ==========
 
-.. include:: build_stopeight.txt
+.. include:: build_comparator.txt
 
 API Access
 ----------
@@ -31,3 +31,5 @@ It tests every line against the whole dataset and itself::
     >>> for i,line in enumerate(lines):
     >>>     matches = comparator.matchLine(line)
     >>>     print('Line '+str(i)+' matched '+str(len(matches))+' occurences '+str(matches))
+
+.. include:: build_server.txt

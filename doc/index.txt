@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Frontend: Analyzer
+Background
 ==============================
 
 .. toctree::
@@ -11,29 +11,17 @@ Frontend: Analyzer
 
    acquisition
 
-   stroke-analyzer
-
-Backend: Comparator
-===================
-
-.. toctree::
-    :maxdepth: 2
-
-    comparator
-
 Installation Instructions
 =========================
 
 .. toctree::
    :maxdepth: 2
 
-   build_stroke-analyzer
+   build_analyzer
 
-   build_qt4
+   stroke-analyzer
 
-   build_stopeight
-
-   scripts
+   comparator
 
 Developer Notes
 ===============
@@ -47,7 +35,7 @@ Developer Notes
 
    dev_analyzer
 
-   developer
+   dev_doc
 
 Indices and tables
 ==================

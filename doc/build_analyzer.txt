@@ -1,17 +1,21 @@
-stopeight-clibs qt5
--------------------
+stopeight-clibs analyzer
+------------------------
 
-As of 07/2016 only python version 2.7, qt5 and Ubuntu 16.04 have been tested.
+As of 08/2016 python version 3.5, qt5 and Ubuntu 16.04 have been tested.
 
 If you installed qt-creator version 5 you already have them::
 
     $ sudo apt-get install qt5-qmake qtbase5-dev qt5-default
 
-And the GCC compiler and tools::
+And the GCC compiler (>=4.9) and tools::
 
     $ sudo apt-get install g++ make libboost-dev
 
-stopeight-clibs-legacy. Get::
+AMD's reference implementation for CPU-only SYCL::
+
+    $ git clone https://github.com/amd/triSYCL.git
+
+stopeight-clibs. Get::
 
     $ git clone https://github.com/specpose/stopeight-clibs.git
 
@@ -36,7 +40,7 @@ Do the same for analyzer::
 
 You will need python development headers::
 
-    $ sudo apt-get install python2.7-dev
+    $ sudo apt-get install python3.5-dev
 
 Build and install the python API for pen-strokes::
     
@@ -46,3 +50,11 @@ Build and install the python API for pen-strokes::
 You may need to install the wrappers to the system's python path::
 
     $ sudo python setup.py install
+
+Most of the development tools are accessible from the scripts in the stopeight repository::
+
+    $ cd /path/to/where/stopeight
+
+Try to apply algorithms to a series of points from within the Editor::
+
+    >>> exec('stopeight/analyzer/editor.py')
