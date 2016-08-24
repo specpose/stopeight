@@ -16,7 +16,7 @@ Install: `Digia <http://qt.io/download-open-source/#section-2>`_
 msvc2015 64-bit
 
 Install: `Python Software Foundation <https://www.python.org/downloads/release/python-352/>`_
-----------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
 
 `Python 3.5.2 x86_64 <https://www.python.org/ftp/python/3.5.2/python-3.5.2-amd64-webinstall.exe>`_
 
