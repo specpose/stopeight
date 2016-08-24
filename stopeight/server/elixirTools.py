@@ -3,9 +3,11 @@
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 
 from stopeight.comparator import vectorTools
-from stopeight.server import zsiTools
++from stopeight.server.zsiTools import ABCPoint, ABCLine
 
 from stopeight.server import server_include
+
+from elixir import *
 
 metadata.bind = server_include.metadata_bind
 metadata.bind.echo = server_include.metadata_bind_echo
