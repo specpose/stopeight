@@ -101,7 +101,11 @@ class ScribbleArea(QWidget):
             self._input(event.posF().x(),event.posF().y())            
         elif (event.type() == QEvent.TabletRelease) and self.scribbling:
             self._release(event)
-            self._input(event.posF().x(),event.posF().y())            
+            self._input(event.posF().x(),event.posF().y())
+            #try:
+            print(event.device())
+            #except:
+            #    pass
 
 
     def mousePressEvent(self, event):

@@ -56,6 +56,18 @@ class Algorithm_Run(QPushButton):
         self.select = select
         self.clicked.connect(self.run)
 
+    def report(self):
+        try:
+            #importlib.import_module('dulwich.repo')
+            from dulwich.repo import Repo
+            print('Successfully imported dulwich')
+            clibs_repo = Repo('../stopeight-clibs/')
+            print('Initialized dulwich')
+            print(clibs_repo.head())
+        except:
+            print("Failed dulwich")
+            pass
+
     def run(self):
         if (len(_DATA['MyScribble'].OUTPUT)>0):
             _DATA['MyScribble'].INPUT = _DATA['MyScribble'].OUTPUT
@@ -65,6 +77,7 @@ class Algorithm_Run(QPushButton):
             _DATA['MyScribble'].OUTPUT = loader[self.select.module_name].__dict__[self.select.currentText()](_DATA['MyScribble'].INPUT)
         #except:
         except BaseException as e:
+            self.report()
             print(e)
             _DATA['MyScribble'].INPUT= []
             _DATA['MyScribble'].OUTPUT= []
