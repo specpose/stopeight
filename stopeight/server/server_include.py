@@ -7,5 +7,6 @@ server_url='http://localhost:'
 # if DBLine from zodbTools
 zodb_filename='Data.fs'
 # if DBLine from elixirTools
+#from elixir import *
 #metadata_bind = 'mysql://matchLine_user@localhost/matchLine'
 #metadata_bind_echo = False
