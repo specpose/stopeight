@@ -11,6 +11,7 @@ log = logSwitch.logPrint()
 
 import types
 
+_LOGDIR = '.stopeight'
 import importlib
 _DATA = {'Module_Name': ['stopeight_clibs_legacy',
                             'stopeight.comparator.matrixTools',
@@ -18,7 +19,6 @@ _DATA = {'Module_Name': ['stopeight_clibs_legacy',
                             'stopeight_clibs_analyzer'
                                                     ]}
 for module in _DATA['Module_Name']:
-#    __import__(module)
     try:
         importlib.import_module(module)
         log.info("Successfully imported module "+module)
@@ -48,10 +48,12 @@ class Algorithm_Select(QComboBox):
     def __init__(self, module_name, **kwargs):
         super(Algorithm_Select,self).__init__(**kwargs)
         self.module_name = module_name
-        for key in (loader[self.module_name].__dict__.keys()):
-            print(type(loader[self.module_name].__dict__[key]))
-            if isinstance(loader[self.module_name].__dict__[key],types.BuiltinFunctionType) or isinstance(loader[self.module_name].__dict__[key],types.FunctionType):
-                self.addItem(loader[self.module_name].__dict__[key].__name__)
+        for key in dir(loader[self.module_name]):
+            if not key.startswith('_'):
+                #print(key,type(loader[self.module_name].__dict__[key]))
+                if isinstance(loader[self.module_name].__dict__[key],types.BuiltinFunctionType) or \
+                isinstance(loader[self.module_name].__dict__[key],types.FunctionType):
+                    self.addItem(loader[self.module_name].__dict__[key].__name__)
 
 class Algorithm_Run(QPushButton):
     def __init__(self, select, **kwargs):
@@ -67,7 +69,7 @@ class Algorithm_Run(QPushButton):
             if (os.getcwd()).endswith('stopeight'):
                 if (self.select.module_name=='stopeight.analyzer.file'):
                     if hasattr(scribblearea,'tablet_id'):
-                        sub = scribblearea.tablet_id
+                        sub = str(scribblearea.tablet_id)
                         return (top,sub)
                     else:
                         return (top,'MouseData')
@@ -85,13 +87,19 @@ class Algorithm_Run(QPushButton):
         if (len(_DATA['MyScribble'].OUTPUT)>0):
             _DATA['MyScribble'].INPUT = _DATA['MyScribble'].OUTPUT
             _DATA['MyScribble'].OUTPUT= []
+        import time
+        time = time.time()
         try:
             log.debug("Invoking "+self.select.currentText()+" with "+str(len(_DATA['MyScribble'].INPUT))+" Points...")
             _DATA['MyScribble'].OUTPUT = loader[self.select.module_name].__dict__[self.select.currentText()](_DATA['MyScribble'].INPUT)
         #except:
         except BaseException as e:
-            print(e)
-            print(self._identify(_DATA['MyScribble']))
+            print("Error")
+
+            from stopeight.analyzer import file
+            from os.path import expanduser,join
+            file._write(_DATA['MyScribble'].INPUT,join(expanduser("~"),_LOGDIR),self._identify(_DATA['MyScribble']),time)
+
             _DATA['MyScribble'].INPUT= []
             _DATA['MyScribble'].OUTPUT= []
         _DATA['MyScribble'].clearImage()
