@@ -9,9 +9,12 @@ from PyQt5.QtCore import Qt
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 
+import types
+
 import importlib
 _DATA = {'Module_Name': ['stopeight_clibs_legacy',
                             'stopeight.comparator.matrixTools',
+                            'stopeight.analyzer.file',
                             'stopeight_clibs_analyzer'
                                                     ]}
 for module in _DATA['Module_Name']:
@@ -46,7 +49,8 @@ class Algorithm_Select(QComboBox):
         super(Algorithm_Select,self).__init__(**kwargs)
         self.module_name = module_name
         for key in (loader[self.module_name].__dict__.keys()):
-            if isinstance(loader[self.module_name].__dict__[key],callable.__class__):
+            print(type(loader[self.module_name].__dict__[key]))
+            if isinstance(loader[self.module_name].__dict__[key],types.BuiltinFunctionType) or isinstance(loader[self.module_name].__dict__[key],types.FunctionType):
                 self.addItem(loader[self.module_name].__dict__[key].__name__)
 
 class Algorithm_Run(QPushButton):
@@ -56,17 +60,26 @@ class Algorithm_Run(QPushButton):
         self.select = select
         self.clicked.connect(self.run)
 
-    def report(self):
+    def _identify(self,scribblearea):
+        top = self.select.module_name+"."+self.select.currentText()
         try:
-            #importlib.import_module('dulwich.repo')
-            from dulwich.repo import Repo
-            print('Successfully imported dulwich')
-            clibs_repo = Repo('../stopeight-clibs/')
-            print('Initialized dulwich')
-            print(clibs_repo.head())
+            import os
+            if (os.getcwd()).endswith('stopeight'):
+                if (self.select.module_name=='stopeight.analyzer.file'):
+                    if hasattr(scribblearea,'tablet_id'):
+                        sub = scribblearea.tablet_id
+                        return (top,sub)
+                    else:
+                        return (top,'MouseData')
+                else:
+                    from dulwich.repo import Repo
+                    clibs_repo = Repo('../stopeight/')
+                    if (self.select.module_name == ('stopeight_clibs_legacy')) or (self.select.module_name == ('stopeight_clibs_analyzer')):
+                        clibs_repo = Repo('../stopeight-clibs/')
+                    sub = (clibs_repo.head().decode('utf-8'))
+                    return (top,sub)
         except:
-            print("Failed dulwich")
-            pass
+            return (top)
 
     def run(self):
         if (len(_DATA['MyScribble'].OUTPUT)>0):
@@ -77,8 +90,8 @@ class Algorithm_Run(QPushButton):
             _DATA['MyScribble'].OUTPUT = loader[self.select.module_name].__dict__[self.select.currentText()](_DATA['MyScribble'].INPUT)
         #except:
         except BaseException as e:
-            self.report()
             print(e)
+            print(self._identify(_DATA['MyScribble']))
             _DATA['MyScribble'].INPUT= []
             _DATA['MyScribble'].OUTPUT= []
         _DATA['MyScribble'].clearImage()
