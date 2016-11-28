@@ -7,15 +7,17 @@ Background
 ==============================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
-   acquisition
+   theory
+
+   applications
 
 Installation Instructions
 =========================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    build_analyzer
 
@@ -27,7 +29,7 @@ Developer Notes
 ===============
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    build_win
 

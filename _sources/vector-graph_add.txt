@@ -1,0 +1,1 @@
+ The Analyzer can handle vector graphs based on differing averages. The Comparator compares shapes of equal time-scale. It can also be configured to use scaling, which can reveal self-similarity of impulses in completely different frequency bands.

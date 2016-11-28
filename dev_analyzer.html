@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Analyzer Algorithm &mdash; stopeight 0.1.0 documentation</title>
+    <title>Analyzer Algorithm &#8212; stopeight 0.1.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0',
+        VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,111 +23,93 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
     <link rel="next" title="GitHub &amp; Sphinx" href="dev_doc.html" />
-    <link rel="prev" title="Build Issues" href="dev_build.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="dev_doc.html" title="GitHub &amp; Sphinx"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="dev_build.html" title="Build Issues"
-             accesskey="P">previous</a> |</li>
-    <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
-    
-        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
- 
-      </ul>
-    </div>  
+    <link rel="prev" title="Build Issues" href="dev_build.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <div class="document">
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/crab.png" alt="Logo"/>
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="dev_build.html" title="previous chapter">Build Issues</a></li>
+      <li>Next: <a href="dev_doc.html" title="next chapter">GitHub &amp; Sphinx</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dev_analyzer.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="analyzer-algorithm">
 <h1>Analyzer Algorithm<a class="headerlink" href="#analyzer-algorithm" title="Permalink to this headline">¶</a></h1>
 <p>The Analyzer subdivides into half-circles, represented by only one tangent on-curve control point per half-circle.
-This is the equivalent of four hyperbolic / two parabolic subsegments. It is the ideal format for <a class="reference internal" href="comparator.html"><em>Comparator</em></a>.</p>
+This is the equivalent of four hyperbolic / two parabolic subsegments. It is the ideal format for <a class="reference internal" href="comparator.html"><span class="doc">Comparator</span></a>.</p>
 <img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle_and_quadratic_bezier.svg/256px-Circle_and_quadratic_bezier.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle_and_quadratic_bezier.svg/256px-Circle_and_quadratic_bezier.svg.png" />
 <p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Composite_B%C3%A9zier_curve">Composite Bezier Splines</a></p>
 <p>Corners are surrounded/terminated by turns (TCT). This is the final representation format after analysis, where turn can refer to a starting/ending point, a crest/spike or a cliff in the Vector Graph.</p>
-<img src="_images/sinus.svg" /><p>The difference between a sinusoid corner and a crest turn.</p>
-<img src="_images/crest_or_sinusoid.svg" /><p>Frontside/backside crests have to be detected going both forward and backward.</p>
-<img src="_images/crest.svg" /><p>Cliffs have to be centered from both sides if there is an even number of occurences.</p>
-<img src="_images/cliff.svg" /></div>
+<img alt="_images/sinus.svg" src="_images/sinus.svg" /><p>The difference between a sinusoid corner and a crest turn.</p>
+<img alt="_images/crest_or_sinusoid.svg" src="_images/crest_or_sinusoid.svg" /><p>Frontside/backside crests have to be detected going both forward and backward.</p>
+<img alt="_images/crest.svg" src="_images/crest.svg" /><p>Cliffs have to be centered from both sides if there is an even number of occurences.</p>
+<img alt="_images/cliff.svg" src="_images/cliff.svg" /></div>
 
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/crab.png" alt="Logo"/>
-            </a></p>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="dev_build.html"
-                        title="previous chapter">Build Issues</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="dev_doc.html"
-                        title="next chapter">GitHub &amp; Sphinx</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/dev_analyzer.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="dev_doc.html" title="GitHub &amp; Sphinx"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="dev_build.html" title="Build Issues"
-             >previous</a> |</li>
-    <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
-    
-        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
- 
-      </ul>
-    </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      Last updated on Aug 24, 2016.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/dev_analyzer.txt"
+          rel="nofollow">Page source</a>
     </div>
+
+    
+    <a href="https://github.com/specpose/stopeight" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
   </body>
 </html>

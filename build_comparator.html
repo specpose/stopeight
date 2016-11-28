@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>stopeight comparator &mdash; stopeight 0.1.0 documentation</title>
+    <title>stopeight comparator &#8212; stopeight 0.1.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0',
+        VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,110 +23,108 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-    <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
-    
-        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
- 
-      </ul>
-    </div>  
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <div class="document">
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/crab.png" alt="Logo"/>
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/build_comparator.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="stopeight-comparator">
 <h1>stopeight comparator<a class="headerlink" href="#stopeight-comparator" title="Permalink to this headline">¶</a></h1>
 <p>As of 08/2016 python version 3.5, 2.7 and Ubuntu 14.04 have been tested.</p>
 <p>Get numpy on ubuntu:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-numpy
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python-numpy
 </pre></div>
 </div>
-<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">synchronize</span>
+<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></code> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="k">import</span> <span class="n">synchronize</span>
 </pre></div>
 </div>
 <p>Clone into the repository:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git clone https://github.com/specpose/stopeight.git
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight.git
 </pre></div>
 </div>
 <p>Due to the development status and likeliness to change API interfaces these modules are not yet available in the Python package repository:</p>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></tt></p>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.logging</span></tt></p>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></tt></p>
+<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></code></p>
+<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.logging</span></code></p>
+<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></code></p>
 <p>If you want to install to your system:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python-setuptools
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python-setuptools
 $ cd /path/to/where/stopeight
 $ python setup.py build
 $ sudo python setup.py install
 </pre></div>
 </div>
 <p>Non-API modules are not installed and tested with python &gt;2.7, they are available in the repository only:</p>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.server</span></tt></p>
-<p><tt class="xref py py-mod docutils literal"><span class="pre">stopeight.tests</span></tt></p>
+<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.server</span></code></p>
+<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.tests</span></code></p>
 </div>
 
 
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/crab.png" alt="Logo"/>
-            </a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/build_comparator.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-    <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
-    
-        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
- 
-      </ul>
-    </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      Last updated on Aug 24, 2016.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/build_comparator.txt"
+          rel="nofollow">Page source</a>
     </div>
+
+    
+    <a href="https://github.com/specpose/stopeight" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
   </body>
 </html>

@@ -6,15 +6,15 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>stopeight-clibs legacy &mdash; stopeight 0.1.0 documentation</title>
+    <title>stopeight-clibs legacy &#8212; stopeight 0.1.1 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0',
+        VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,71 +23,94 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="stopeight 0.1.0 documentation" href="index.html" /> 
-  </head>
-  <body>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-    <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
-    
-        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
- 
-      </ul>
-    </div>  
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <div class="document">
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/crab.png" alt="Logo"/>
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/build_legacy.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="stopeight-clibs-legacy">
 <h1>stopeight-clibs legacy<a class="headerlink" href="#stopeight-clibs-legacy" title="Permalink to this headline">¶</a></h1>
 <p>As of 05/2016 python version 2.7, qt4 and Ubuntu 12.04 have been tested.</p>
 <p>If you installed qt-creator version 4 you already have them:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install qt4-qmake libqt4-dev
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install qt4-qmake libqt4-dev
 </pre></div>
 </div>
 <p>In Ubuntu 14.04 these libraries are pre-installed:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install libqt4-core libqt4-gui
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install libqt4-core libqt4-gui
 </pre></div>
 </div>
 <p>And the GCC compiler and tools:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install g++ make
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install g++ make
 </pre></div>
 </div>
 <p>stopeight-clibs-legacy. Get:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ git clone https://github.com/specpose/stopeight-clibs.git
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight-clibs.git
 </pre></div>
 </div>
 <p>Run qmake to generate the Makefile, then compile, install and add to library path:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/legacy
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight-clibs/legacy
 $ qmake-qt4 -o ./Makefile legacy.pro
 $ make
 </pre></div>
 </div>
 <p>You may need to install them to your system&#8217;s library path:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo make install
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo make install
 $ sudo ldconfig
 </pre></div>
 </div>
 <p>You will need python development headers:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo apt-get install python2.7-dev
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python2.7-dev
 </pre></div>
 </div>
 <p>Build and install the python API for pen-strokes:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ cd /path/to/where/stopeight-clibs/legacy-wrappers
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight-clibs/legacy-wrappers
 $ python setup.py build
 </pre></div>
 </div>
 <p>You may need to install the wrappers to the system&#8217;s python path:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ sudo python setup.py install
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo python setup.py install
 </pre></div>
 </div>
 </div>
@@ -96,51 +119,26 @@ $ python setup.py build
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/crab.png" alt="Logo"/>
-            </a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/build_legacy.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-    <li><a href="http://github.com/specpose/stopeight">http://github.com/specpose/stopeight</a> &raquo;</li>
-    
-        <li><a href="index.html">stopeight 0.1.0 documentation</a> &raquo;</li>
- 
-      </ul>
-    </div>
+    <div class="clearer"></div>
+  </div>
     <div class="footer">
-      Last updated on Aug 24, 2016.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/build_legacy.txt"
+          rel="nofollow">Page source</a>
     </div>
+
+    
+    <a href="https://github.com/specpose/stopeight" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
   </body>
 </html>

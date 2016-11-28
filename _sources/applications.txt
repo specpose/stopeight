@@ -1,28 +1,5 @@
-Data Acquisition
-================
-
-Theory
-------
-
-Preparing the data involves the following one or two steps:
-
-* :doc:`vector-graph`
-    Not yet implemented :)
-
-    Turning a Function Graph into a Vector Graph.
-
-* :doc:`analyzer`
-    Partially working.
-
-    Extracting feature points from a Vector Graph for matchline overlay comparison.
-
-* Comparator
-    Working.
-
-    (Documentation missing: See Installation instructions :doc:`comparator`)
-
 Applications
-------------
+============
 
 It can be applied to a lot of different applications:
 

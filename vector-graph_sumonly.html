@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Grapher &#8212; stopeight 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/crab.png" alt="Logo"/>
+            </a></p><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/vector-graph_sumonly.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="grapher">
+<h1>Grapher<a class="headerlink" href="#grapher" title="Permalink to this headline">¶</a></h1>
+<p>The time-variant function within the interval.</p>
+<div class="math">
+<p><img src="_images/math/4b5fc26ed3496020dbd1995fa91a70637296be9d.svg" alt="s: t\longmapsto s(t), t \in \left[ t_{0}, t_{m} \right], t \in \mathbb{D}_{s}, m \in \mathbb{N}"/></p>
+</div><p>The non-time-variant function within the interval.</p>
+<div class="math">
+<p><img src="_images/math/e2197c06519cf6cabd65f810c583e93584b0db71.svg" alt="r: t\longmapsto r(t), t \in \left[ t_{0}, t_{n} \right], t \in \mathbb{D}_{r}, n \in \mathbb{N}
+\quad
+\nexists \lim r(t)"/></p>
+</div><a class="reference internal image-reference" href="_images/function_graph.svg"><img alt="_images/function_graph.svg" height="350pt" src="_images/function_graph.svg" /></a>
+<p>Every element in the domain of r(t) exists in the domain of s(t).</p>
+<div class="math">
+<p><img src="_images/math/ba06059295a4faf40b8a2b9dcbd2ffea236a6b28.svg" alt="t_{n}=t_{m}, \mathbb{D}_{r} \subset \mathbb{D}_{s}"/></p>
+</div><p>The domain of s(t) has to provide a sufficient amount of data at the higher or equal resolution.</p>
+<div class="math">
+<p><img src="_images/math/6b1e98812bbbe458a00109f19633cba06c9b325c.svg" alt="\Delta t_{r} = a(t_{m}-t_{m-1}), a \in \mathbb{N}"/></p>
+</div><p>These two entities are being used to construct a planar graph of consecutive vectors (Banach space).</p>
+<div class="math">
+<p><img src="_images/math/3d3dceb6129cd0cd04b263f33871ae7fb2e14d51.svg" alt="t_{m}-t_{m-1}\text{: Distance between two elements in s(t)}"/></p>
+</div><div class="math">
+<p><img src="_images/math/e67cbe27b8d83a1a863c94c4e3e82fa292bff37f.svg" alt="\alpha (t):\text{Angle between two elements in s(t)}"/></p>
+</div><p>Building the vector graph starting at origin.</p>
+<div class="math">
+<p><img src="_images/math/3a905218ff4d991fbeaee5fee27a2b30d6777806.svg" alt="\mathbf{v_{0}} = \begin{pmatrix}
+0 \\
+0
+\end{pmatrix}
+\quad
+\mathbf{v_{m}} = \mathbf{v_{m-1}} + \mathbf{v}(t_{m})"/></p>
+</div><a class="reference internal image-reference" href="_images/vector_graph.svg"><img alt="_images/vector_graph.svg" height="350pt" src="_images/vector_graph.svg" /></a>
+<p>The vector for each element of s(t) built from the rotation of all preceding element-vectors, its own angle and distance.</p>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">\mathbf{v}(t) = \displaystyle\int_0^t_{m}\alpha(t) \approx M(\displaystyle\sum_{t_{1}}^{t_{m}}\alpha(t)) \cdot \begin{pmatrix}
+t_{m}-t_{m-1} \\
+0
+\end{pmatrix}, m \neq 0
+
+</tt>)</p>
+latex exited with error
+[stdout]
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2011/06/27&gt;
+Babel &lt;3.9h&gt; and hyphenation patterns for 2 languages loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/utf8x.def))
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/ucs.sty
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-global.def))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?&#8217; option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty) (./math.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+! Double subscript.
+&lt;argument&gt; ...bf {v}(t) = \displaystyle \int _0^t_
+                                                  {m}\alpha (t) \approx M(\d...
+l.17 \end{pmatrix}, m \neq 0\end{split}
+                                       
+! Double subscript.
+&lt;argument&gt; ...bf {v}(t) = \displaystyle \int _0^t_
+                                                  {m}\alpha (t) \approx M(\d...
+l.17 \end{pmatrix}, m \neq 0\end{split}
+                                       
+[1] (./math.aux) )
+(see the transcript file for additional information)
+Output written on math.dvi (1 page, 884 bytes).
+Transcript written on math.log.
+</div>
+<div class="math">
+<p><img src="_images/math/fc44704b2b7a8761c2eee5f61ceea67c53ad2f77.svg" alt="\alpha(t_{m}) = \tan \frac{s(t_{m})-s(t_{m-1})}{A(t_{m}-t_{m-1})}"/></p>
+</div><div class="math">
+<p><img src="_images/math/1e107fa64d659ecb6cf16526894f6812fa108442.svg" alt="M(\alpha):\text{2x2 rotation matrix of angle }\alpha"/></p>
+</div><div class="math">
+<p><img src="_images/math/f79cb0a7c74630f346428717377e37476c25e226.svg" alt="M(\alpha) = \begin{pmatrix}
+\cos \alpha &amp; -\sin \alpha \\
+\sin \alpha &amp; \cos \alpha
+\end{pmatrix}"/></p>
+</div><p>In this example s(t)=r(t). Otherwise step-length could vary.</p>
+<a class="reference internal image-reference" href="_images/vector_construction.svg"><img alt="_images/vector_construction.svg" height="400pt" src="_images/vector_construction.svg" /></a>
+<p>The arithmetic mean of changes in value of r(t).</p>
+<div class="math">
+<p><img src="_images/math/47875912ea576f19e73637d531011afedfb978fe.svg" alt="A(x_{n}) = \frac{\displaystyle\sum_{t_{1}}^{t_{n}}\left|r(t_{n})-r(t_{n-1})\right|}{\frac{t_{n}-t_{0}}{x_{n}}}, n \neq 0"/></p>
+</div><p>A different mean function can be chosen. The criteria for choosing a mean is whether the shortest impulse in the non time-variant function forms a distinguishable shape in the planar graph.</p>
+<p>This would be something similar to the above graph using a different average.</p>
+<a class="reference internal image-reference" href="_images/vector_graph2.svg"><img alt="_images/vector_graph2.svg" height="350pt" src="_images/vector_graph2.svg" /></a>
+<p>And something similar using an even smaller average.</p>
+<a class="reference internal image-reference" href="_images/vector_graph3.svg"><img alt="_images/vector_graph3.svg" height="300pt" src="_images/vector_graph3.svg" /></a>
+<p>Once the vector graph has been calculated, it can be used as input for the Analyzer.</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/vector-graph_sumonly.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/specpose/stopeight" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
