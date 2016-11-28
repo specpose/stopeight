@@ -1,36 +1,93 @@
 Grapher
 =======
 
-Function Graph
---------------
+The time-variant function within the interval.
 
-Any time-based data set with an accurate sampling rate can be used to build a function f(x).
+.. math::
+
+   s: t\longmapsto s(t), t \in \left[ t_{0}, t_{m} \right], t \in \mathbb{D}_{s}, m \in \mathbb{N}
+
+The non-time-variant function within the interval.
+
+.. math::
+   r: t\longmapsto r(t), t \in \left[ t_{0}, t_{n} \right], t \in \mathbb{D}_{r}, n \in \mathbb{N}
+   \quad
+   \nexists \lim r(t)
 
 .. image:: _static/function_graph.svg
+   :height: 350pt
 
-Vector Graph
-------------
+Every element in the domain of r(t) exists in the domain of s(t).
 
-This function graph can be converted into a sequence of vectors in a two-dimensional plane.
+.. math::   
+   t_{n}=t_{m}, \mathbb{D}_{r} \subset \mathbb{D}_{s}
+
+The domain of s(t) has to provide a sufficient amount of data at the higher or equal resolution.
+
+.. math::
+   \Delta t_{r} = a(t_{m}-t_{m-1}), a \in \mathbb{N}
+
+These two entities are being used to construct a planar graph of consecutive vectors (Banach space).
+
+.. math::
+   t_{m}-t_{m-1}\text{: Distance between two elements in s(t)}
+.. math::
+   \alpha (t):\text{Angle between two elements in s(t)}
+
+Building the vector graph starting at origin.
+
+.. math::
+   \mathbf{v_{0}} = \begin{pmatrix}
+   0 \\
+   0
+   \end{pmatrix}
+   \quad
+   \mathbf{v_{m}} = \mathbf{v_{m-1}} + \mathbf{v}(t_{m})
 
 .. image:: _static/vector_graph.svg
+   :height: 350pt
+   
+The vector for each element of s(t) built from the rotation of all preceding element-vectors, its own angle and distance.
 
-The construction of the graph can be seen here:
+.. math::
+   \mathbf{v}(t) = M(\int\limits_{t_{0}}^{t_{m}}\alpha(t))\mathrm{d}t \cdot \begin{pmatrix} 
+   \mathrm{d}t \\
+   0
+   \end{pmatrix}
+   \approx M(\displaystyle\sum_{t_{1}}^{t_{m}}\alpha(t)) \cdot \begin{pmatrix}
+   t_{m}-t_{m-1} \\
+   0
+   \end{pmatrix}, m \neq 0
+.. math::
+   \alpha(t) = \frac{\mathrm{d}s'(t)}{A} \approx \tan \frac{s(t_{m})-s(t_{m-1})}{A}, m \neq 0
+.. math::
+   M(\alpha):\text{2x2 rotation matrix of angle }\alpha
+.. math::
+   M(\alpha) = \begin{pmatrix}
+   \cos \alpha & -\sin \alpha \\
+   \sin \alpha & \cos \alpha
+   \end{pmatrix}
+
+In this example s(t)=r(t). Otherwise step-length could vary.
 
 .. image:: _static/vector_construction.svg
+   :height: 400pt
 
-Definition of the ratio between opposite and adjacent of the right triangle:
+The arithmetic mean of changes in value of r(t).
 
-Delta f(x) at point A / the average of all Delta f(x) of the Delta x's between x0 and x1.
+.. math::
+   A = \frac{\int\limits_{t_{0}}^{t_{n}}\left|r'(t)\right|\mathrm{d}t}{\mathrm{d}t} \approx \frac{\displaystyle\sum_{t_{1}}^{t_{n}}\left|r(t_{n})-r(t_{n-1})\right|}{\frac{t_{n}-t_{0}}{t_{n}-t_{n-1}}}, n \neq 0
 
-Condition: All Delta x are invariant.
+A different mean function can be chosen. The criteria for choosing a mean is whether the shortest impulse in the non time-variant function forms a distinguishable shape in the planar graph.
 
-By varying the step-size you can achieve:
+This would be something similar to the above graph using a different average.
 
 .. image:: _static/vector_graph2.svg
+   :height: 350pt
 
-And by making it even smaller you can get:
+And something similar using an even smaller average.
 
 .. image:: _static/vector_graph3.svg
+   :height: 300pt
 
-This last step reduces the impulse scaling to half the frequency found in the previous example. So for matchline overlay comparison the previous vector graph is preferred.
+Once the vector graph has been calculated, it can be used as input for the Analyzer.
