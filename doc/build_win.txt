@@ -55,9 +55,11 @@ Extract: `Boost <http://www.boost.org/users/history/version_1_61_0.html>`_
 
 Clone: `amd/triSYCL <https://github.com/amd/triSYCL>`_
 ------------------------------------------------------
+In Git Bash::
 
-$ cd /path/to/where/the/sources
-$ git clone https://github.com/amd/triSYCL.git
+    $ cd /path/to/where/the/sources
+
+    $ git clone https://github.com/amd/triSYCL.git
 
 Build: New Code-Base using SYCL
 -------------------------------
