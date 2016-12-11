@@ -67,7 +67,7 @@ Within the interval satisfying the condition,
 the scaling factor using the arithmetic mean of changes in value of r(t) is.
 
 .. math::
-   a = \frac{1}{\frac{\int\limits_{t_{x}}^{t_{y}}\left|r'(s)\right|\mathrm{d}s}{\mathrm{d}t}} \approx \frac{1}{\frac{\displaystyle\sum_{t_{x}}^{t_{y}}\left|r(t_{y})-r(t_{y-1})\right|}{\frac{t_{y}-t_{x}}{t_{y}-t_{y-1}}}}, n \neq 0
+   a = \frac{1}{\frac{\int\limits_{t_{x}}^{t_{y}}\left|r'(s)\right|\mathrm{d}s}{t}} \approx \frac{1}{\frac{\displaystyle\sum_{t_{x}}^{t_{y}}\left|r(t_{y})-r(t_{y-1})\right|}{\frac{t_{y}-t_{x}}{t_{n}-t_{n-1}}}}, n \neq 0
    \quad
    a \in \mathbb{R}
 

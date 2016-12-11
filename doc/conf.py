@@ -107,10 +107,11 @@ html_theme = 'alabaster'
 #}
 #alabaster
 html_theme_options = {
+'github_banner': 'true',
+'github_user': 'specpose',
+'github_repo': 'stopeight',
+'github_button': 'true',
 "logo_name": "true",
-"github_banner": "true",
-"github_user": "specpose",
-"github_repo": "stopeight",
 "fixed_sidebar": "true",
 "sidebar_includehidden": "true",
 }
