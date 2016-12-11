@@ -72,47 +72,36 @@
             
   <div class="section" id="grapher">
 <h1>Grapher<a class="headerlink" href="#grapher" title="Permalink to this headline">¶</a></h1>
-<p>The time-variant function within the interval.</p>
+<p>The continuous function within the interval.</p>
 <div class="math">
-<p><img src="_images/math/4b5fc26ed3496020dbd1995fa91a70637296be9d.svg" alt="s: t\longmapsto s(t), t \in \left[ t_{0}, t_{m} \right], t \in \mathbb{D}_{s}, m \in \mathbb{N}"/></p>
-</div><p>The non-time-variant function within the interval.</p>
-<div class="math">
-<p><img src="_images/math/e2197c06519cf6cabd65f810c583e93584b0db71.svg" alt="r: t\longmapsto r(t), t \in \left[ t_{0}, t_{n} \right], t \in \mathbb{D}_{r}, n \in \mathbb{N}
-\quad
-\nexists \lim r(t)"/></p>
+<p><img src="_images/math/ba13ba208a902f4b9c8ae3f9a68d13ca2ed4be1b.svg" alt="r: t\longmapsto r(t), t \in \left[ t_{0}, t_{n} \right], t \in \mathbb{D}, n \in \mathbb{N}"/></p>
 </div><a class="reference internal image-reference" href="_images/function_graph.svg"><img alt="_images/function_graph.svg" height="350pt" src="_images/function_graph.svg" /></a>
-<p>Every element in the domain of r(t) exists in the domain of s(t).</p>
+<p>These two entities are being used to construct a planar graph of consecutive vectors (Banach space).</p>
 <div class="math">
-<p><img src="_images/math/ba06059295a4faf40b8a2b9dcbd2ffea236a6b28.svg" alt="t_{n}=t_{m}, \mathbb{D}_{r} \subset \mathbb{D}_{s}"/></p>
-</div><p>The domain of s(t) has to provide a sufficient amount of data at the higher or equal resolution.</p>
-<div class="math">
-<p><img src="_images/math/6b1e98812bbbe458a00109f19633cba06c9b325c.svg" alt="\Delta t_{r} = a(t_{m}-t_{m-1}), a \in \mathbb{N}"/></p>
-</div><p>These two entities are being used to construct a planar graph of consecutive vectors (Banach space).</p>
-<div class="math">
-<p><img src="_images/math/3d3dceb6129cd0cd04b263f33871ae7fb2e14d51.svg" alt="t_{m}-t_{m-1}\text{: Distance between two elements in s(t)}"/></p>
+<p><img src="_images/math/8905335494c384a3c8f447b64f1c406ee449c81c.svg" alt="t_{n}-t_{n-1}\text{: Distance between two elements in r(t)}"/></p>
 </div><div class="math">
-<p><img src="_images/math/e67cbe27b8d83a1a863c94c4e3e82fa292bff37f.svg" alt="\alpha (t):\text{Angle between two elements in s(t)}"/></p>
+<p><img src="_images/math/22dbad49711df939e3ad75f815908b3f9adf2170.svg" alt="\alpha (t):\text{Angle between two elements in r(t)}"/></p>
 </div><p>Building the vector graph starting at origin.</p>
 <div class="math">
-<p><img src="_images/math/3a905218ff4d991fbeaee5fee27a2b30d6777806.svg" alt="\mathbf{v_{0}} = \begin{pmatrix}
+<p><img src="_images/math/832097d16484a1d896a7c1f49cdf74f1e547c55c.svg" alt="\mathbf{v_{0}} = \begin{pmatrix}
 0 \\
 0
 \end{pmatrix}
 \quad
-\mathbf{v_{m}} = \mathbf{v_{m-1}} + \mathbf{v}(t_{m})"/></p>
+\mathbf{v_{n}} = \mathbf{v_{n-1}} + \mathbf{v}(t_{n})"/></p>
 </div><a class="reference internal image-reference" href="_images/vector_graph.svg"><img alt="_images/vector_graph.svg" height="350pt" src="_images/vector_graph.svg" /></a>
-<p>The vector for each element of s(t) built from the rotation of all preceding element-vectors, its own angle and distance.</p>
+<p>The vector for each element of r(t) built from the rotation of all preceding element-vectors, its own angle and distance.</p>
 <div class="math">
-<p><img src="_images/math/e31a2f8c13ef6f78a8f5f3c1d7830b8ab985c815.svg" alt="\mathbf{v}(t) = M(\int\limits_{t_{0}}^{t_{m}}\alpha(t))\mathrm{d}t \cdot \begin{pmatrix}
+<p><img src="_images/math/d9cfdf43362416fc92e717bd708ba0d6a71c664f.svg" alt="\mathbf{v}(t) = M(\int\limits_{t_{0}}^{t_{n}}\alpha(t))\mathrm{d}t \cdot \begin{pmatrix}
 \mathrm{d}t \\
 0
 \end{pmatrix}
-\approx M(\displaystyle\sum_{t_{1}}^{t_{m}}\alpha(t)) \cdot \begin{pmatrix}
-t_{m}-t_{m-1} \\
+\approx M(\displaystyle\sum_{t_{1}}^{t_{n}}\alpha(t)) \cdot \begin{pmatrix}
+t_{n}-t_{n-1} \\
 0
-\end{pmatrix}, m \neq 0"/></p>
+\end{pmatrix}, n \neq 0"/></p>
 </div><div class="math">
-<p><img src="_images/math/c30c828a886254813e6aa7677ee9e83ac0b66f16.svg" alt="\alpha(t) = \frac{\mathrm{d}s'(t)}{A} \approx \tan \frac{s(t_{m})-s(t_{m-1})}{A}, m \neq 0"/></p>
+<p><img src="_images/math/6f68d0b8d6482d02ec701201e25803bc0dc2a9c1.svg" alt="\alpha(t) = \arcsin \frac{a * r'(t)}{t} \approx \arcsin \frac{a(r(t_{n})-r(t_{n-1}))}{t_{n}-t_{n-1}}, n \neq 0"/></p>
 </div><div class="math">
 <p><img src="_images/math/1e107fa64d659ecb6cf16526894f6812fa108442.svg" alt="M(\alpha):\text{2x2 rotation matrix of angle }\alpha"/></p>
 </div><div class="math">
@@ -120,15 +109,22 @@ t_{m}-t_{m-1} \\
 \cos \alpha &amp; -\sin \alpha \\
 \sin \alpha &amp; \cos \alpha
 \end{pmatrix}"/></p>
-</div><p>In this example s(t)=r(t). Otherwise step-length could vary.</p>
-<a class="reference internal image-reference" href="_images/vector_construction.svg"><img alt="_images/vector_construction.svg" height="400pt" src="_images/vector_construction.svg" /></a>
-<p>The arithmetic mean of changes in value of r(t).</p>
+</div><p>In the example given below, for simplicity r(t) is not time-variant. Otherwise step-length could vary.</p>
 <div class="math">
-<p><img src="_images/math/a07e47767f21b0c04aed2b95caa0696e0aaad4d2.svg" alt="A = \frac{\int\limits_{t_{0}}^{t_{n}}\left|r'(t)\right|\mathrm{d}t}{\mathrm{d}t} \approx \frac{\displaystyle\sum_{t_{1}}^{t_{n}}\left|r(t_{n})-r(t_{n-1})\right|}{\frac{t_{n}-t_{0}}{t_{n}-t_{n-1}}}, n \neq 0"/></p>
-</div><p>A different mean function can be chosen. The criteria for choosing a mean is whether the shortest impulse in the non time-variant function forms a distinguishable shape in the planar graph.</p>
-<p>This would be something similar to the above graph using a different average.</p>
+<p><img src="_images/math/b3b93d8a22b5a23199befb2865163b18d8d5cfcb.svg" alt="\Delta s=\Delta t"/></p>
+</div><a class="reference internal image-reference" href="_images/vector_construction.svg"><img alt="_images/vector_construction.svg" height="400pt" src="_images/vector_construction.svg" /></a>
+<p>Within the interval satisfying the condition,</p>
+<div class="math">
+<p><img src="_images/math/47cf2ac87323007ba566278be11a9a789d3e6473.svg" alt="s \in \left[ t_{x}, t_{y} \right], \Delta s=k(t_{n}-t_{n-1}), k \in \mathbb{N}"/></p>
+</div><p>the scaling factor using the arithmetic mean of changes in value of r(t) is.</p>
+<div class="math">
+<p><img src="_images/math/4733699e84d0a1f8ec688d50009f89b2a197b00b.svg" alt="a = \frac{1}{\frac{\int\limits_{t_{x}}^{t_{y}}\left|r'(s)\right|\mathrm{d}s}{t}} \approx \frac{1}{\frac{\displaystyle\sum_{t_{x}}^{t_{y}}\left|r(t_{y})-r(t_{y-1})\right|}{\frac{t_{y}-t_{x}}{t_{n}-t_{n-1}}}}, n \neq 0
+\quad
+a \in \mathbb{R}"/></p>
+</div><p>A different scaling factor can be chosen. The criteria for choosing a scaling factor is whether the shortest impulse in the non time-variant function r(s) forms a distinguishable shape in the planar graph.</p>
+<p>This would be something similar to the above vector graph using a different factor.</p>
 <a class="reference internal image-reference" href="_images/vector_graph2.svg"><img alt="_images/vector_graph2.svg" height="350pt" src="_images/vector_graph2.svg" /></a>
-<p>And something similar using an even smaller average.</p>
+<p>And something similar using an even bigger factor.</p>
 <a class="reference internal image-reference" href="_images/vector_graph3.svg"><img alt="_images/vector_graph3.svg" height="300pt" src="_images/vector_graph3.svg" /></a>
 <p>Once the vector graph has been calculated, it can be used as input for the Analyzer.</p>
 </div>
