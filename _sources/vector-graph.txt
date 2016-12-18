@@ -54,7 +54,7 @@ The vector for each element of r(t) built from the rotation of all preceding ele
 In the example given below, for simplicity r(t) is not time-variant. Otherwise step-length could vary.
 
 .. math::
-   \Delta s=\Delta t
+   \Delta q=\Delta t
 
 .. image:: _static/vector_construction.svg
    :height: 400pt
@@ -62,16 +62,16 @@ In the example given below, for simplicity r(t) is not time-variant. Otherwise s
 Within the interval satisfying the condition,
 
 .. math::
-   s \in \left[ t_{x}, t_{y} \right], \Delta s=k(t_{n}-t_{n-1}), k \in \mathbb{N}
+   q \in \left[ t_{x}, t_{y} \right], k * \Delta q=t_{n}-t_{n-1}, k \in \mathbb{N}, k \neq 0
 
 the scaling factor using the arithmetic mean of changes in value of r(t) is.
 
 .. math::
-   a = \frac{1}{\frac{\int\limits_{t_{x}}^{t_{y}}\left|r'(s)\right|\mathrm{d}s}{t}} \approx \frac{1}{\frac{\displaystyle\sum_{t_{x}}^{t_{y}}\left|r(t_{y})-r(t_{y-1})\right|}{\frac{t_{y}-t_{x}}{t_{n}-t_{n-1}}}}, n \neq 0
+   a = \frac{1}{\frac{\int\limits_{t_{x}}^{t_{y}}\left|r'(q)\right|\mathrm{d}q}{\frac{t_{y}-t_{x}}{t}}} \approx \frac{1}{\frac{\displaystyle\sum_{t_{x}}^{t_{y}}\left|r(t_{y})-r(t_{y-1})\right|}{\frac{t_{y}-t_{x}}{t_{n}-t_{n-1}}}}, n \neq 0
    \quad
    a \in \mathbb{R}
 
-A different scaling factor can be chosen. The criteria for choosing a scaling factor is whether the shortest impulse in the non time-variant function r(s) forms a distinguishable shape in the planar graph.
+A different scaling factor can be chosen. The criteria for choosing a scaling factor is whether the shortest impulse in the non time-variant function r(q) forms a distinguishable shape in the planar graph.
 
 This would be something similar to the above vector graph using a different factor.
 

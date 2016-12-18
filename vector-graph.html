@@ -111,17 +111,17 @@ t_{n}-t_{n-1} \\
 \end{pmatrix}"/></p>
 </div><p>In the example given below, for simplicity r(t) is not time-variant. Otherwise step-length could vary.</p>
 <div class="math">
-<p><img src="_images/math/b3b93d8a22b5a23199befb2865163b18d8d5cfcb.svg" alt="\Delta s=\Delta t"/></p>
+<p><img src="_images/math/5fdcf1321e95523b57695424a07589e8bf539d57.svg" alt="\Delta q=\Delta t"/></p>
 </div><a class="reference internal image-reference" href="_images/vector_construction.svg"><img alt="_images/vector_construction.svg" height="400pt" src="_images/vector_construction.svg" /></a>
 <p>Within the interval satisfying the condition,</p>
 <div class="math">
-<p><img src="_images/math/47cf2ac87323007ba566278be11a9a789d3e6473.svg" alt="s \in \left[ t_{x}, t_{y} \right], \Delta s=k(t_{n}-t_{n-1}), k \in \mathbb{N}"/></p>
+<p><img src="_images/math/944122a73be6010642fb440357882af132bb14fa.svg" alt="q \in \left[ t_{x}, t_{y} \right], k * \Delta q=t_{n}-t_{n-1}, k \in \mathbb{N}, k \neq 0"/></p>
 </div><p>the scaling factor using the arithmetic mean of changes in value of r(t) is.</p>
 <div class="math">
-<p><img src="_images/math/4733699e84d0a1f8ec688d50009f89b2a197b00b.svg" alt="a = \frac{1}{\frac{\int\limits_{t_{x}}^{t_{y}}\left|r'(s)\right|\mathrm{d}s}{t}} \approx \frac{1}{\frac{\displaystyle\sum_{t_{x}}^{t_{y}}\left|r(t_{y})-r(t_{y-1})\right|}{\frac{t_{y}-t_{x}}{t_{n}-t_{n-1}}}}, n \neq 0
+<p><img src="_images/math/a0c5a0a7a6e7f91412c05a366a297db7413ce4c7.svg" alt="a = \frac{1}{\frac{\int\limits_{t_{x}}^{t_{y}}\left|r'(q)\right|\mathrm{d}q}{\frac{t_{y}-t_{x}}{t}}} \approx \frac{1}{\frac{\displaystyle\sum_{t_{x}}^{t_{y}}\left|r(t_{y})-r(t_{y-1})\right|}{\frac{t_{y}-t_{x}}{t_{n}-t_{n-1}}}}, n \neq 0
 \quad
 a \in \mathbb{R}"/></p>
-</div><p>A different scaling factor can be chosen. The criteria for choosing a scaling factor is whether the shortest impulse in the non time-variant function r(s) forms a distinguishable shape in the planar graph.</p>
+</div><p>A different scaling factor can be chosen. The criteria for choosing a scaling factor is whether the shortest impulse in the non time-variant function r(q) forms a distinguishable shape in the planar graph.</p>
 <p>This would be something similar to the above vector graph using a different factor.</p>
 <a class="reference internal image-reference" href="_images/vector_graph2.svg"><img alt="_images/vector_graph2.svg" height="350pt" src="_images/vector_graph2.svg" /></a>
 <p>And something similar using an even bigger factor.</p>
