@@ -42,7 +42,7 @@ The vector for each element of r(t) built from the rotation of all preceding ele
    0
    \end{pmatrix}, n \neq 0
 .. math::
-   \alpha(t) = \arcsin \frac{a * r'(t)}{t} \approx \arcsin \frac{a(r(t_{n})-r(t_{n-1}))}{t_{n}-t_{n-1}}, n \neq 0
+   \alpha(t) = \arctan \frac{a * r'(t)}{t} \approx \arctan \frac{a(r(t_{n})-r(t_{n-1}))}{t_{n}-t_{n-1}}, n \neq 0
 .. math::
    M(\alpha):\text{2x2 rotation matrix of angle }\alpha
 .. math::
