@@ -2,7 +2,11 @@
 
 _packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing']
 
-from setuptools import setup
+__import__('cmake')
+from cmake import CMakeExtension, CMakeBuild
+
+import os
+from setuptools import setup, Extension
 
 setup( name='stopeight',
        version='0.1.0',
@@ -10,5 +14,8 @@ setup( name='stopeight',
        author='Fassio Blatter',
        license='GNU Lesser General Public License, version 2.1',
        url='http://www.stopeight.com',
-       packages=_packages
+       packages=_packages,
+       ext_modules=[CMakeExtension('grapher',os.path.join('stopeight-clibs','grapher-wrappers'))],
+       cmdclass=dict(build_ext=CMakeBuild),
+       zip_safe=False,
 )
