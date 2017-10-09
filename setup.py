@@ -18,7 +18,7 @@ setup( name='stopeight',
        url='http://www.stopeight.com',
        packages=_packages,
 
-#       ext_modules=[CMakeExtension('grapher',os.path.join('stopeight-clibs','grapher-wrappers'))],
+#       ext_modules=[CMakeExtension('stopeight.grapher')],#,os.path.join('stopeight-clibs','grapher-wrappers'))],
 #       cmdclass=dict(build_ext=CMakeBuild),
        ext_modules = [
            Extension(
