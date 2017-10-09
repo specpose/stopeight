@@ -2,8 +2,10 @@
 
 _packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing']
 
-__import__('cmake')
-from cmake import CMakeExtension, CMakeBuild
+#__import__('cmake')
+#from cmake import CMakeExtension, CMakeBuild
+__import__('python')
+from python import get_pybind_include, BuildExt
 
 import os
 from setuptools import setup, Extension
@@ -15,7 +17,23 @@ setup( name='stopeight',
        license='GNU Lesser General Public License, version 2.1',
        url='http://www.stopeight.com',
        packages=_packages,
-       ext_modules=[CMakeExtension('grapher',os.path.join('stopeight-clibs','grapher-wrappers'))],
-       cmdclass=dict(build_ext=CMakeBuild),
+
+#       ext_modules=[CMakeExtension('grapher',os.path.join('stopeight-clibs','grapher-wrappers'))],
+#       cmdclass=dict(build_ext=CMakeBuild),
+       ext_modules = [
+           Extension(
+               'stopeight.grapher',
+               [os.path.join('stopeight-clibs','grapher-wrappers','interfacepython.cpp')],
+               include_dirs=[
+                   # Path to pybind11 headers
+                   get_pybind_include(),
+                   get_pybind_include(user=True)
+               ],
+               language='c++'
+           ),
+       ],
+       install_requires=['pybind11>=2.2'],
+       cmdclass={'build_ext': BuildExt},
+
        zip_safe=False,
 )
