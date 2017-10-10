@@ -18,10 +18,12 @@ requirements:
     - python
     - setuptools
     - pybind11
+    - stopeight-clibs
 
   run:
     - python
     - vs2015_runtime  # [win]
+    - stopeight-clibs
 
 about:
   summary: Comparing sequences of points in 2 dimensions by visually overlapping them using matrix transformations (translation, scaling and rotation) and getting a boolean result.
