@@ -30,7 +30,7 @@ setup( name='stopeight',
                    # Path to pybind11 headers
                    get_pybind_include(),
                    get_pybind_include(user=True),
-                   os.path.join(my_path,'stopeight-clibs')
+                   os.path.join(my_path,'stopeight-clibs','include')
                ],
                language='c++'
            ),
