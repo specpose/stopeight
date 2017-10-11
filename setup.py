@@ -2,12 +2,14 @@
 
 _packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing']
 
+import os
 #__import__('cmake')
 #from cmake import CMakeExtension, CMakeBuild
 __import__('python')
 from python import get_pybind_include, BuildExt
+my_path = os.path.dirname(os.path.realpath(__file__))
+print(my_path)
 
-import os
 from setuptools import setup, Extension
 
 setup( name='stopeight',
@@ -23,11 +25,12 @@ setup( name='stopeight',
        ext_modules = [
            Extension(
                'stopeight.grapher',
-               [os.path.join('stopeight-clibs','grapher-wrappers','interfacepython.cpp')],
+               [os.path.join(my_path,'stopeight-clibs','grapher-wrappers','interfacepython.cpp')],
                include_dirs=[
                    # Path to pybind11 headers
                    get_pybind_include(),
-                   get_pybind_include(user=True)
+                   get_pybind_include(user=True),
+                   os.path.join(my_path,'stopeight-clibs')
                ],
                language='c++'
            ),
