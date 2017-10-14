@@ -13,3 +13,4 @@ set(stopeight-clibs_INCLUDE_DIRS ${PROJECT_SOURCE_DIR}/stopeight-clibs/include
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 add_subdirectory(stopeight-clibs/grapher-wrappers)
 add_subdirectory(stopeight-clibs/analyzer-wrappers)
+add_subdirectory(stopeight-clibs/legacy-wrappers)
