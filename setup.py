@@ -7,7 +7,7 @@ import os
 #__import__('cmake')
 #from cmake import CMakeExtension, CMakeBuild
 #or distutils
-__import__('monkey_patch_parallel')
+#__import__('monkey_patch_parallel')
 __import__('python')
 from python import get_pybind_include, BuildExt
 my_path = os.path.dirname(os.path.realpath(__file__))
