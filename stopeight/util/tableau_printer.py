@@ -31,7 +31,7 @@ class tPrinter(TCT_printer.TCTPrinter):
 if __name__=='__main__':
     import numpy
     printer = tPrinter('tableau_printer')
-    nline = numpy.array(((200,200),(200,300)))
+    nline = numpy.array(( (0,0),(0,256),(0,256),(256,256),(256,256),(256,0),(256,0),(0,0) ))
     printer.draw(nline)
     log.debug('testing offset function '+str(printer.offset(nline[0])))
     printer.draw(nline)

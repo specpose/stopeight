@@ -50,7 +50,7 @@ class Scene:
 #            import importlib
 #            if importlib.find_loader('SVGViewer') is not None:
             try:
-                from stopeight.analyzer import SVGViewer
+                from stopeight.util import SVGViewer
                 SVGViewer.show(self.svgname)
             except BaseException as e:
                 print(e)
