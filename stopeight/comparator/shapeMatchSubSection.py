@@ -38,6 +38,7 @@ class ShapeMatchSubSectionClass:
                 return True
 
 if __name__ == "__main__":
+    from stopeight.util import runnable
     from stopeight.comparator import vectorTools
     log = logSwitch.logPrint()
     log.info('Starting shapeMatch...')

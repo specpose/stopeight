@@ -158,6 +158,7 @@ class LineMatchClass:
             return False
 
 if __name__ == "__main__":
+    from stopeight.util import runnable
     log = logSwitch.logPrint()
     log.info('Starting lineMatch...')
     input = array([[20,20],[55,130],[80,60],[120,85],[200,10]]).view(vectorTools.NumpyLine)

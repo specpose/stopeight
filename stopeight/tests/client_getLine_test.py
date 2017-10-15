@@ -62,4 +62,5 @@ def run():
 	fp.close()
 
 if __name__ == "__main__":
+        from stopeight.util import runnable
 	run()

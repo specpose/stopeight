@@ -34,6 +34,7 @@ def transform(a, m):
 #    return transform(a,translate(array([0,0])))
 
 if __name__ == '__main__':
+    from stopeight.util import runnable
     a = array([30,30])
     #m = idmatrix()
     print ('rotate vector with matrix:')

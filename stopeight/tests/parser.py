@@ -2,8 +2,6 @@
 
 # Copyright (C) 2017 Fassio Blatter
 
-from stopeight.util import runnable
-
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 from stopeight.util import tableau_printer
@@ -59,6 +57,7 @@ def process_directory(dir_path,analyzer=legacy.stroke_parallel):
 from stopeight.multiprocessing import pooling
 
 if __name__ == '__main__':
+    from stopeight.util import runnable
     lines = process_directory('stopeight-clibs/legacy/tests/',legacy.stroke_sequential)
     comparator = pooling.MPLine(lines)
     for i,line in enumerate(lines):
