@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-_packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing']
+_packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing','stopeight.util']
 
 import os
 #cmake

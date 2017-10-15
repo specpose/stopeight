@@ -1,10 +1,10 @@
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
-from stopeight.analyzer import tableau_printer
+from stopeight.util import tableau_printer
 
 import os
 
-import stopeight_clibs_legacy
+from stopeight import legacy
 
 import numpy
 
@@ -21,7 +21,7 @@ def find_files(dir_path,suffix='.sp'):
         raise Exception('Path ' + dir_path + ' is not a directory under ' + os.getcwd())
     return paths
 
-def process_directory(dir_path,analyzer=stopeight_clibs_legacy.stroke_parallel):
+def process_directory(dir_path,analyzer=legacy.stroke_parallel):
     tprinter = tableau_printer.tPrinter('parser.out',6)
     lines = []
     files = find_files(dir_path)
@@ -29,7 +29,7 @@ def process_directory(dir_path,analyzer=stopeight_clibs_legacy.stroke_parallel):
     for final_path in files:
         log.info('Loading file ' + final_path + '... ')
         try:
-            graph = stopeight_clibs_legacy.parse_file(final_path)
+            graph = legacy.parse_file(final_path)
             count+=1
             tprinter.draw(graph)
             try:
@@ -53,7 +53,7 @@ def process_directory(dir_path,analyzer=stopeight_clibs_legacy.stroke_parallel):
 from stopeight.multiprocessing import pooling
 
 if __name__ == '__main__':
-    lines = process_directory('../stopeight-clibs/legacy/tests.local/',stopeight_clibs_legacy.stroke_sequential)
+    lines = process_directory('stopeight-clibs/legacy/tests/',legacy.stroke_sequential)
     comparator = pooling.MPLine(lines)
     for i,line in enumerate(lines):
         matches = comparator.matchLine(line)
