@@ -17,7 +17,7 @@ import types
 _LOGDIR = '.stopeight'
 import importlib
 _DATA = {'Module_Name': ['stopeight.legacy',
-                            'stopeight.comparator.matrixTools',
+#                            'stopeight.comparator.matrixTools',
                             'stopeight.util.file',
                             'stopeight.analyzer'
                                                     ]}
