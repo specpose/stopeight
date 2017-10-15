@@ -23,7 +23,7 @@ class Scene:
 
     def strarray(self):
         var = ["<?xml version=\"1.0\"?>\n",
-               "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 %d %d\" height=\"%d\" width=\"%d\">\n" % (self.height,self.width,self.height,self.width),
+               "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 %d %d\" height=\"%d\" width=\"%d\">\n" % (self.width,self.height,self.height,self.width),
                " <g style=\"fill-opacity:1.0; stroke:black;\n",
                "  stroke-width:1;\">\n"]
         for item in self.items: var += item.strarray()

@@ -30,12 +30,11 @@ class tPrinter(TCT_printer.TCTPrinter):
 
 if __name__=='__main__':
     import numpy
-    printer = tPrinter('tableau_printer')
+    printer = tPrinter('tableau_printer',3)
     nline = numpy.array(( (0,0),(0,256),(0,256),(256,256),(256,256),(256,0),(256,0),(0,0) ))
     printer.draw(nline)
     log.debug('testing offset function '+str(printer.offset(nline[0])))
     printer.draw(nline)
     log.debug('testing offset function '+str(printer.offset(nline[0])))
     printer.draw(nline)
-    #printer.scene.add(SVG.Line((200,200),(200,300)))
     printer.write()
