@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-_packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing','stopeight.util']
+_packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing']
 
 import os
 #cmake
@@ -53,7 +53,6 @@ setup( name='stopeight',
                include_dirs=[
                    os.path.join(my_path,'stopeight-clibs','legacy/include')
                ],
-#               libraries=['QtCore','QtGui','stopeight-clibs-legacy'],
                libraries=['stopeight-clibs-legacy'],
                language='c++'
            ),

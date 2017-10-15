@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+
+# Copyright (C) 2017 Fassio Blatter
+
+from stopeight.util import runnable
+
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 from stopeight.util import tableau_printer

@@ -1,22 +1,25 @@
 #!/usr/bin/env python
 
-# Copyright (C) 2009-2016 Specific Purpose Software GmbH
+# Copyright (C) 2017 Fassio Blatter
 
+from stopeight.util import runnable
+
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QComboBox,QApplication,QMainWindow,QToolBar,QPushButton,QGroupBox,QHBoxLayout
-from scribble2 import ScribbleArea
+from stopeight.util.scribble2 import ScribbleArea
 from PyQt5.QtCore import Qt
 
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 
 import types
-
+    
 _LOGDIR = '.stopeight'
 import importlib
-_DATA = {'Module_Name': ['stopeight_clibs_legacy',
+_DATA = {'Module_Name': ['stopeight.legacy',
                             'stopeight.comparator.matrixTools',
-                            'stopeight.analyzer.file',
-                            'stopeight_clibs_analyzer'
+                            'stopeight.util.file',
+                            'stopeight.analyzer'
                                                     ]}
 for module in _DATA['Module_Name']:
     try:
@@ -50,7 +53,6 @@ class Algorithm_Select(QComboBox):
         self.module_name = module_name
         for key in dir(loader[self.module_name]):
             if not key.startswith('_'):
-                #print(key,type(loader[self.module_name].__dict__[key]))
                 if isinstance(loader[self.module_name].__dict__[key],types.BuiltinFunctionType) or \
                 isinstance(loader[self.module_name].__dict__[key],types.FunctionType):
                     self.addItem(loader[self.module_name].__dict__[key].__name__)
@@ -65,9 +67,8 @@ class Algorithm_Run(QPushButton):
     def _identify(self,scribblearea):
         top = self.select.module_name+"."+self.select.currentText()
         try:
-            import os
             if (os.getcwd()).endswith('stopeight'):
-                if (self.select.module_name=='stopeight.analyzer.file'):
+                if (self.select.module_name=='stopeight.util.file'):
                     if hasattr(scribblearea,'tablet_id'):
                         sub = str(scribblearea.tablet_id)
                         return (top,sub)
@@ -76,7 +77,7 @@ class Algorithm_Run(QPushButton):
                 else:
                     from dulwich.repo import Repo
                     clibs_repo = Repo('../stopeight/')
-                    if (self.select.module_name == ('stopeight_clibs_legacy')) or (self.select.module_name == ('stopeight_clibs_analyzer')):
+                    if (self.select.module_name == ('stopeight.legacy')) or (self.select.module_name == ('stopeight.analyzer')):
                         clibs_repo = Repo('../stopeight-clibs/')
                     sub = (clibs_repo.head().decode('utf-8'))
                     return (top,sub)
@@ -96,7 +97,7 @@ class Algorithm_Run(QPushButton):
         except BaseException as e:
             print("Error")
 
-            from stopeight.analyzer import file
+            from stopeight.util import file
             from os.path import expanduser,join
             file._write(_DATA['MyScribble'].INPUT,join(expanduser("~"),_LOGDIR),self._identify(_DATA['MyScribble']),time)
 
