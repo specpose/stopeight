@@ -28,7 +28,8 @@ setup( name='stopeight',
        url='http://www.stopeight.com',
        packages=_packages,
 
-       ext_modules=[CMakeExtension('stopeight')],#,os.path.join('stopeight-clibs','grapher-wrappers'))],
+       #ext_modules=[CMakeExtension('stopeight')],#,os.path.join('stopeight-clibs','grapher-wrappers'))],
+       ext_modules=[CMakeExtension('stopeight.analyzer'),CMakeExtension('stopeight.grapher'),CMakeExtension('stopeight.legacy')],
        cmdclass=dict(build_ext=CMakeBuild),
 #       ext_modules = [
 #           Extension(
@@ -54,7 +55,7 @@ setup( name='stopeight',
 #               language='c++'
 #           ),
 #           Extension(
-#               'stopeight.legacy',
+#              'stopeight.legacy',
 #               [os.path.join(my_path,'stopeight-clibs','legacy-wrappers','interfacepython.cpp')],
 #               include_dirs=[
 #                   os.path.join(my_path,'stopeight-clibs','legacy/include')

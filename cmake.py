@@ -30,8 +30,12 @@ class CMakeBuild(build_ext):
             if cmake_version < '3.1.0':
                 raise RuntimeError("CMake >= 3.1.0 is required on Windows")
 
+        dirs = []
         for ext in self.extensions:
-            self.build_extension(ext)
+            _dir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
+            if (_dir not in dirs):
+                self.build_extension(ext)
+                dirs.append(_dir)
 
     def build_extension(self, ext):
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))

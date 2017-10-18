@@ -146,7 +146,7 @@ class ScribbleArea(QWidget):
         self.update(QRect(self.lastPoint, endPoint).normalized().adjusted(-rad, -rad, +rad, +rad))
         self.lastPoint = QPoint(endPoint)
 
-    def drawData(self, points=[], color=Qt.black):
+    def plot(self, points=[], color=Qt.black):
         painter = QPainter(self.image)
         painter.setPen(QPen(color, self.myPenWidth, Qt.SolidLine,
                 Qt.RoundCap, Qt.RoundJoin))

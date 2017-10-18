@@ -6,7 +6,7 @@ from stopeight.util import runnable
 
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QComboBox,QApplication,QMainWindow,QToolBar,QPushButton,QGroupBox,QHBoxLayout
-from stopeight.util.scribble2 import ScribbleArea
+from stopeight.util.scribble_area import ScribbleArea
 from PyQt5.QtCore import Qt
 
 from stopeight.logging import logSwitch
@@ -104,8 +104,8 @@ class Algorithm_Run(QPushButton):
             _DATA['MyScribble'].INPUT= []
             _DATA['MyScribble'].OUTPUT= []
         _DATA['MyScribble'].clearImage()
-        _DATA['MyScribble'].drawData(_DATA['MyScribble'].INPUT,Qt.blue)
-        _DATA['MyScribble'].drawData(_DATA['MyScribble'].OUTPUT,Qt.red)
+        _DATA['MyScribble'].plot(_DATA['MyScribble'].INPUT,Qt.blue)
+        _DATA['MyScribble'].plot(_DATA['MyScribble'].OUTPUT,Qt.red)
         log.info("Size after call: Input "+str(len(_DATA['MyScribble'].INPUT))+", Output "+str(len(_DATA['MyScribble'].OUTPUT)))
             
 
