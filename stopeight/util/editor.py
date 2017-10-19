@@ -16,17 +16,18 @@ import types
     
 _LOGDIR = '.stopeight'
 import importlib
-_DATA = {'Scribble_Module': ['stopeight.legacy',
-#                            'stopeight.comparator.matrixTools',
-                            'stopeight.util.file',
-                            'stopeight.analyzer'
+# false/true as in pkgutil.iter_modules
+_DATA = {'Scribble_Module': [('stopeight.legacy',False),
+#                            ('stopeight.comparator.matrixTools',true),
+                            ('stopeight.util.file',True),
+                            ('stopeight.analyzer',False)
                                                     ]}
 for module in _DATA['Scribble_Module']:
     try:
-        importlib.import_module(module)
-        log.info("Successfully imported module "+module)
+        importlib.import_module(module[0])
+        log.info("Successfully imported module "+module[0])
     except:
-        log.info("Removing module "+module+"!")
+        log.info("Removing module "+module[0]+"!")
         _DATA['Scribble_Module'].remove(module)
 from sys import modules as loader
 
@@ -36,11 +37,11 @@ class MyScribble(ScribbleArea):
         _DATA['MyScribble'] = self
 
 class Algorithm(QGroupBox):
-    def __init__(self, module_name, **kwargs):
+    def __init__(self, module, **kwargs):
         super(Algorithm,self).__init__(**kwargs)
         hbox = QHBoxLayout()
 
-        select = Algorithm_Select(module_name)
+        select = Algorithm_Select(module)
         hbox.addWidget(select)
         button = Algorithm_Run(select)
         hbox.addWidget(button)
@@ -50,7 +51,8 @@ class Algorithm(QGroupBox):
 class Algorithm_Select(QComboBox):
     def __init__(self, module_name, **kwargs):
         super(Algorithm_Select,self).__init__(**kwargs)
-        self.module_name = module_name
+        self.module_name = module[0]
+        self.package_type = module[1]
         for key in dir(loader[self.module_name]):
             if not key.startswith('_'):
                 if isinstance(loader[self.module_name].__dict__[key],types.BuiltinFunctionType) or \
@@ -64,25 +66,37 @@ class Algorithm_Run(QPushButton):
         self.select = select
         self.clicked.connect(self.run)
 
+    def _auto_out(module_name,package_type,function_name):
+        top = module_name+'.'+function_name
+        import os
+        from subprocess import check_output
+        sub = 'HEAD'
+        if (package_type==True):
+            #get head from current directory (os.getcwd()).endswith('stopeight')
+            try:
+                sub = check_output(['git','rev-parse','--short','HEAD']).decode('utf-8').rstrip()
+            except:
+                sub = check_output(['git','rev-parse','--short','HEAD']).rstrip()
+        else:
+            #get head from stopeight-clibs
+            try:
+                sub = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).decode('utf-8').rstrip()
+            except:
+                sub = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).rstrip()
+        top = os.path.join(top,sub)
+        return top
+    
     def _identify(self,scribblearea):
-        top = self.select.module_name+"."+self.select.currentText()
-        try:
-            if (os.getcwd()).endswith('stopeight'):
-                if (self.select.module_name=='stopeight.util.file'):
-                    if hasattr(scribblearea,'tablet_id'):
-                        sub = str(scribblearea.tablet_id)
-                        return (top,sub)
-                    else:
-                        return (top,'MouseData')
-                else:
-                    from dulwich.repo import Repo
-                    clibs_repo = Repo('../stopeight/')
-                    if (self.select.module_name == ('stopeight.legacy')) or (self.select.module_name == ('stopeight.analyzer')):
-                        clibs_repo = Repo('../stopeight-clibs/')
-                    sub = (clibs_repo.head().decode('utf-8'))
-                    return (top,sub)
-        except:
-            return (top)
+        import os
+            
+        #if (os.getcwd()).endswith('stopeight'):
+        #    if (self.select.module_name=='stopeight.util.file'):
+        if hasattr(scribblearea,'tablet_id'):
+            sub = str(scribblearea.tablet_id)
+        else:
+            sub = 'MouseData'
+        top = os.path.join(Algorithm_Run._auto_out(self.select.module_name,self.select.package_type,self.select.currentText()),sub)
+        return top
 
     def run(self):
         if (len(_DATA['MyScribble'].OUTPUT)>0):
@@ -95,11 +109,11 @@ class Algorithm_Run(QPushButton):
             _DATA['MyScribble'].OUTPUT = loader[self.select.module_name].__dict__[self.select.currentText()](_DATA['MyScribble'].INPUT)
         #except:
         except BaseException as e:
-            print("Error")
+            log.error("Error during method invokation: "+self.select.module_name+'.'+self.select.currentText())
 
             from stopeight.util import file
             from os.path import expanduser,join
-            file._write(_DATA['MyScribble'].INPUT,join(expanduser("~"),_LOGDIR),self._identify(_DATA['MyScribble']),time)
+            file._write(_DATA['MyScribble'].INPUT,time,outdir=join(expanduser("~"),_LOGDIR,self._identify(_DATA['MyScribble']))  )
 
             _DATA['MyScribble'].INPUT= []
             _DATA['MyScribble'].OUTPUT= []
