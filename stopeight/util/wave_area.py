@@ -56,28 +56,27 @@ class WaveArea(QtWidgets.QWidget):
         #If Stereo
         if spf.getnchannels() == 2:
             print("Just mono files")
-            sys.exit(0)
+        else:
+            # create an axis
+            ax = self.figure.add_subplot(111)
+            #ax.figure(1)
 
-        # create an axis
-        ax = self.figure.add_subplot(111)
-        #ax.figure(1)
+            # discards the old graph
+            #ax.clear()
 
-        # discards the old graph
-        #ax.clear()
+            #ax.title("Signal Wave...")
+            ax.plot(signal)
 
-        #ax.title("Signal Wave...")
-        ax.plot(signal)
+            #ax.set_ylabel([])
+            #ax.set_xlabel([])
 
-        #ax.set_ylabel([])
-        #ax.set_xlabel([])
+            # Turn off tick labels
+            #ax.set_yticklabels([])
+            #ax.set_xticklabels([])
 
-        # Turn off tick labels
-        #ax.set_yticklabels([])
-        #ax.set_xticklabels([])
-
-        #ax.show()
-        # refresh canvas
-        self.canvas.draw()
+            #ax.show()
+            # refresh canvas
+            self.canvas.draw()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

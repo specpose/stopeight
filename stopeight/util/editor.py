@@ -16,18 +16,18 @@ import types
     
 _LOGDIR = '.stopeight'
 import importlib
-_DATA = {'Module_Name': ['stopeight.legacy',
+_DATA = {'Scribble_Module': ['stopeight.legacy',
 #                            'stopeight.comparator.matrixTools',
                             'stopeight.util.file',
                             'stopeight.analyzer'
                                                     ]}
-for module in _DATA['Module_Name']:
+for module in _DATA['Scribble_Module']:
     try:
         importlib.import_module(module)
         log.info("Successfully imported module "+module)
     except:
         log.info("Removing module "+module+"!")
-        _DATA['Module_Name'].remove(module)
+        _DATA['Scribble_Module'].remove(module)
 from sys import modules as loader
 
 class MyScribble(ScribbleArea):
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     window.setWindowTitle("Editor")
     toolbox = QToolBar()
 
-    for module in _DATA['Module_Name']:
+    for module in _DATA['Scribble_Module']:
         algo_box = Algorithm(module)
         toolbox.addWidget(algo_box)
 
