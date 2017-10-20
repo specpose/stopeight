@@ -69,8 +69,6 @@ class Algorithm_Run(QPushButton):
         log.debug(self.__class__)
         self.setText("Run")
         self.module = select.module
-        self.select = select
-        self.clicked.connect(self.run)
 
     @staticmethod
     def _auto_out(module_name,package_type,function_name):
@@ -104,22 +102,21 @@ class Algorithm_Run(QPushButton):
             sub = 'MouseData'
         return sub
 
-    def run(self):
+    def run(self,currentText):
         #inspect.signature()[return]
         #if (len(self.select.module[2].OUTPUT)>0):
         #    self.select.module[2].INPUT = self.select.module[2].OUTPUT
         #    self.select.module[2].OUTPUT= []
-        currentText = self.select.currentText()
+        #currentText = self.select.currentText()
         import time
         time = time.time()
         backup = ScribbleData()
-        backup.append('11')
         print(backup)
+        data = ScribbleData()
         try:
             log.debug("Invoking "+currentText+" with "+str(len(ScribbleData()))+" Points...")
-            data = ScribbleData()
             data = loader[self.module[0]].__dict__[currentText](ScribbleData())
-            if backup == ScribbleData():
+            if backup == data:
                 raise("Backup not successful or function values unchanged")
         #except:
         except BaseException as e:
@@ -132,21 +129,26 @@ class Algorithm_Run(QPushButton):
                                                 #,self._identify(_DATA['MyScribble'])
                                                 ))
 
-            data = ScribbleData()
-            data = []
+            data.clear()
+            if (len(data)>0):
+                raise "Data clear failed!"
         #_DATA['MyScribble'].clearImage()
         #_DATA['MyScribble'].plot(backup,Qt.blue)
         #_DATA['MyScribble'].plot(ScribbleData(),Qt.red)
         log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(ScribbleData())))
-            
-##def _run(select,button,scribble):
-##    button.run(select.currentText())
-##    scribble.clearImage()
-##    #scribble.plot(backup,Qt.blue)
-##    scribble.plot(ScribbleData(),Qt.black)
-##
-##def _test():
-##    pass
+
+class Connector:
+    def __init__(self,select,button,scribble):
+        self.select = select
+        self.button = button
+        self.scribble = scribble
+
+    def run(self):
+        log.debug(self.select.currentText())
+        self.button.run(self.select.currentText())
+        self.scribble.clearImage()
+        #scribble.plot(backup,Qt.blue)
+        self.scribble.plot(ScribbleData(),Qt.black)
 
 if __name__ == '__main__':
     from stopeight.util.editor_data import ScribbleData
@@ -182,14 +184,13 @@ if __name__ == '__main__':
 ##        box.addWidget(button)
 ##        group.setLayout(box)
 ##        toolbox.addWidget(group)
+        
+        connector = Connector(algo_box.select,algo_box.button,scribble)
+        connections.append(connector)
+        algo_box.button.clicked.connect((connections[len(connections)-1]).run)
+        
         toolbox.addWidget(algo_box)
-##        connections.append((select,button,scribble))
-##        connections.append((algo_box.select,algo_box.button,scribble))
     window.addToolBar(toolbox)
-
-##    log.debug(connections)
-##    for connection in connections:
-##        connection[1].clicked.connect(lambda: _run(connection[0],connection[1],connection[2]))
     
     window.setCentralWidget(scribble)
     
