@@ -3,14 +3,14 @@
 
 import sys
 from PyQt5 import QtGui,QtWidgets
-
+from PyQt5.QtWidgets import QGroupBox
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
 import random
 
-class WaveArea(QtWidgets.QWidget):
+class WaveArea(QtWidgets.QDockWidget):
     def __init__(self, parent=None):
         super(WaveArea, self).__init__(parent)
 
@@ -23,18 +23,18 @@ class WaveArea(QtWidgets.QWidget):
 
         # this is the Navigation widget
         # it takes the Canvas widget and a parent
-        self.toolbar = NavigationToolbar(self.canvas, self)
+        #self.toolbar = NavigationToolbar(self.canvas, self)
 
         # Just some button connected to `plot` method
-        self.button = QtWidgets.QPushButton('Plot')
-        self.button.clicked.connect(self.plot)
+        #self.button = QtWidgets.QPushButton('Plot')
+        #self.button.clicked.connect(self.plot)
 
         # set the layout
-        layout = QtWidgets.QVBoxLayout()
-        layout.addWidget(self.toolbar)
-        layout.addWidget(self.canvas)
-        layout.addWidget(self.button)
-        self.setLayout(layout)
+        #layout = QtWidgets.QVBoxLayout()
+        #layout.addWidget(self.toolbar)
+        #layout.addWidget(self.canvas)
+        #layout.addWidget(self.button)
+        #self.setLayout(layout)
 
         self.INPUT = []
         self.OUTPUT = []

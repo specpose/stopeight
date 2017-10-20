@@ -18,7 +18,8 @@ import types
 _DATA = {'Modules': [('stopeight.legacy', False),
 #                            ('stopeight.comparator.matrixTools',True),
                             ('stopeight.util.file', True),
-                            ('stopeight.analyzer', False)
+                            ('stopeight.analyzer', False),
+                            ('stopeight.grapher', False)
                     ]
          }
 
@@ -154,6 +155,30 @@ if __name__ == '__main__':
     #list or dict?
     connections = []
 
+
+    from stopeight.util.wave_area import WaveArea
+    wave = WaveArea()
+
+    wbar = QToolBar()
+    wgroup = QGroupBox()
+    wbox = QtWidgets.QVBoxLayout()
+    # this is the Navigation widget
+    # it takes the Canvas widget and a parent
+    from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+    plotbar = NavigationToolbar(wave.canvas, window)
+    # Just some button connected to `plot` method
+    plotbutton = QtWidgets.QPushButton('Plot')
+    plotbutton.clicked.connect(wave.plot)
+    # set the layout
+    wbox.addWidget(plotbar)
+    wbox.addWidget(plotbutton)
+    wgroup.setLayout(wbox)
+    wbar.addWidget(wgroup)
+    window.addToolBar(wbar)
+
+    window.setCentralWidget(wave.canvas)
+    #window.addDockWidget(Qt.TopDockWidgetArea,wave)    
+
     scribbles = []
     import inspect
     from inspect import Signature
@@ -163,6 +188,7 @@ if __name__ == '__main__':
         scribbles.append(module)
 
     toolbox = QToolBar()
+    #toolbox = QtWidgets.QDockWidget
     scribble = MyScribble()
     for module in scribbles:
 ##        group = Algorithm(module)
@@ -180,9 +206,10 @@ if __name__ == '__main__':
         last.button.clicked.connect(last.run)
         
         toolbox.addWidget(group)
-    window.addToolBar(toolbox)
+    window.addToolBar(Qt.BottomToolBarArea,toolbox)
+    #window.addDockWidget(Qt.BottomDockWidgetArea,toolbox)
     
-    window.setCentralWidget(scribble)
+    window.addDockWidget(Qt.BottomDockWidgetArea,scribble)
     
     window.show()
     sys.exit(app.exec_())
