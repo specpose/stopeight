@@ -7,5 +7,8 @@ class ScribbleData(with_metaclass(Singleton,list)):
     #    super(ScribbleData,self).__init__(**kwargs)
     pass
 
+class ScribbleBackup(with_metaclass(Singleton,list)):
+    pass
+
 #class WaveData(with_metaclass(Singleton)):
 #    pass

@@ -36,19 +36,17 @@ class MyScribble(ScribbleArea):
     def __init__(self, parent = None):
         super(MyScribble, self).__init__(parent)
 
+##class Algorithm(QGroupBox):
+##    def __init__(self, module, **kwargs):
+##        super(Algorithm,self).__init__(**kwargs)
+##        box = QHBoxLayout()
+##        self.select = Algorithm_Select(module)
+##        box.addWidget(self.select)
+##        self.button = Algorithm_Run(module)
+##        box.addWidget(self.button)
+##        self.setLayout(box)
+
 from sys import modules as loader
-
-class Algorithm(QGroupBox):
-    def __init__(self, module, **kwargs):
-        super(Algorithm,self).__init__(**kwargs)
-        hbox = QHBoxLayout()
-
-        self.select = Algorithm_Select(module)
-        hbox.addWidget(self.select)
-        self.button = Algorithm_Run(self.select)
-        hbox.addWidget(self.button)
-
-        self.setLayout(hbox)
 
 class Algorithm_Select(QComboBox):
     def __init__(self, module, **kwargs):
@@ -64,11 +62,10 @@ class Algorithm_Select(QComboBox):
 #        self.addItem(module_name)
 
 class Algorithm_Run(QPushButton):
-    def __init__(self, select, **kwargs):
+    def __init__(self, module, **kwargs):
         super(Algorithm_Run,self).__init__(**kwargs)
-        log.debug(self.__class__)
         self.setText("Run")
-        self.module = select.module
+        self.module = module
 
     @staticmethod
     def _auto_out(module_name,package_type,function_name):
@@ -110,9 +107,9 @@ class Algorithm_Run(QPushButton):
         #currentText = self.select.currentText()
         import time
         time = time.time()
-        backup = ScribbleData()
-        print(backup)
         data = ScribbleData()
+        backup = ScribbleBackup()#get singleton
+        backup = data[:]#assign copy
         try:
             log.debug("Invoking "+currentText+" with "+str(len(ScribbleData()))+" Points...")
             data = loader[self.module[0]].__dict__[currentText](ScribbleData())
@@ -128,13 +125,9 @@ class Algorithm_Run(QPushButton):
                                                 ,self._auto_out(self.module[0],self.module[1],currentText)
                                                 #,self._identify(_DATA['MyScribble'])
                                                 ))
-
             del data[:]
             if (len(data)>0):
                 raise "Data clear failed!"
-        #_DATA['MyScribble'].clearImage()
-        #_DATA['MyScribble'].plot(backup,Qt.blue)
-        #_DATA['MyScribble'].plot(ScribbleData(),Qt.red)
         log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(ScribbleData())))
 
 class Connector:
@@ -147,11 +140,11 @@ class Connector:
         log.debug(self.select.currentText())
         self.button.run(self.select.currentText())
         self.scribble.clearImage()
-        #scribble.plot(backup,Qt.blue)
-        self.scribble.plot(ScribbleData(),Qt.black)
+        self.scribble.plot(ScribbleBackup(),Qt.blue)
+        self.scribble.plot(ScribbleData(),Qt.red)
 
 if __name__ == '__main__':
-    from stopeight.util.editor_data import ScribbleData
+    from stopeight.util.editor_data import ScribbleData, ScribbleBackup
 
     import sys
     app = QApplication(sys.argv)
@@ -171,25 +164,22 @@ if __name__ == '__main__':
 
     toolbox = QToolBar()
     scribble = MyScribble()
-    print(scribble.data)
     for module in scribbles:
-        algo_box = Algorithm(module)
-##        group = QGroupBox()
-##        box = QHBoxLayout()
-##        select = Algorithm_Select(module)
-##        box.addWidget(select)
-##        button = Algorithm_Run(module)
-##        log.debug("Connecting "+select.currentText())
-##        #button.clicked.connect(lambda: _run(select,button,scribble))
-##        box.addWidget(button)
-##        group.setLayout(box)
-##        toolbox.addWidget(group)
+##        group = Algorithm(module)
+        group = QGroupBox()
+        box = QHBoxLayout()
+        select = Algorithm_Select(module)
+        box.addWidget(select)
+        button = Algorithm_Run(module)
+        box.addWidget(button)
+        group.setLayout(box)
         
-        connector = Connector(algo_box.select,algo_box.button,scribble)
+        connector = Connector(select,button,scribble)
         connections.append(connector)
-        algo_box.button.clicked.connect((connections[len(connections)-1]).run)
+        last = (connections[len(connections)-1])
+        last.button.clicked.connect(last.run)
         
-        toolbox.addWidget(algo_box)
+        toolbox.addWidget(group)
     window.addToolBar(toolbox)
     
     window.setCentralWidget(scribble)
