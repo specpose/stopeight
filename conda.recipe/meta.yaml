@@ -25,6 +25,8 @@ requirements:
     - vs2015_runtime  # [win]
     - stopeight-clibs
     - pyqt >=5.6.0
+    - future
+#    - six
 
 about:
   summary: Comparing sequences of points in 2 dimensions by visually overlapping them using matrix transformations (translation, scaling and rotation) and getting a boolean result.

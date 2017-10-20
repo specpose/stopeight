@@ -52,6 +52,11 @@ from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
 from PyQt5.QtGui import QTabletEvent
 from PyQt5.QtCore import QEvent
 
+from stopeight.logging import logSwitch
+log = logSwitch.logPrint()
+
+from stopeight.util.editor_data import ScribbleData
+
 class ScribbleArea(QWidget):
     def __init__(self, parent=None):
         super(ScribbleArea, self).__init__(parent)
@@ -63,8 +68,7 @@ class ScribbleArea(QWidget):
         self.image = QImage()
         self.lastPoint = QPoint()
 
-        self.INPUT = []
-        self.OUTPUT = []
+        self.data = ScribbleData()
 
     def setPenColor(self, newColor):
         self.myPenColor = newColor
@@ -77,14 +81,17 @@ class ScribbleArea(QWidget):
         self.update()
 
     def _input(self, x, y):
-        self.INPUT.append((x,y))
+        self.data.append((x,y))
 
     def _press(self,event):
         self.scribbling = True
         self.lastPoint = event.pos()
         self.clearImage()
-        self.INPUT= []
-        self.OUTPUT= []
+        log.info("Erasing scribble data")
+        #don't assign new self.data = []
+        self.data.clear()
+        if (len(self.data)>0):
+            raise "Data clear failed!"
 
     def _move(self, event):
         self.drawLineTo(event.pos())

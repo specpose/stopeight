@@ -11,61 +11,68 @@ from PyQt5.QtCore import Qt
 
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
+_LOGDIR = '.stopeight' # this is not for logging messages; it is for data files
 
 import types
-    
-_LOGDIR = '.stopeight'
+# false if part of stopeight-clibs
+_DATA = {'Modules': [('stopeight.legacy', False),
+#                            ('stopeight.comparator.matrixTools',True),
+                            ('stopeight.util.file', True),
+                            ('stopeight.analyzer', False)
+                    ]
+         }
+
 import importlib
-# false/true as in pkgutil.iter_modules
-_DATA = {'Scribble_Module': [('stopeight.legacy',False),
-#                            ('stopeight.comparator.matrixTools',true),
-                            ('stopeight.util.file',True),
-                            ('stopeight.analyzer',False)
-                                                    ]}
-for module in _DATA['Scribble_Module']:
+for module in _DATA['Modules']:
     try:
         importlib.import_module(module[0])
+        #output class name
         log.info("Successfully imported module "+module[0])
     except:
         log.info("Removing module "+module[0]+"!")
-        _DATA['Scribble_Module'].remove(module)
-from sys import modules as loader
+        _DATA['Modules'].remove(module)
 
 class MyScribble(ScribbleArea):
     def __init__(self, parent = None):
-        super(MyScribble,self).__init__(parent)
-        _DATA['MyScribble'] = self
+        super(MyScribble, self).__init__(parent)
+
+from sys import modules as loader
 
 class Algorithm(QGroupBox):
     def __init__(self, module, **kwargs):
         super(Algorithm,self).__init__(**kwargs)
         hbox = QHBoxLayout()
 
-        select = Algorithm_Select(module)
-        hbox.addWidget(select)
-        button = Algorithm_Run(select)
-        hbox.addWidget(button)
+        self.select = Algorithm_Select(module)
+        hbox.addWidget(self.select)
+        self.button = Algorithm_Run(self.select)
+        hbox.addWidget(self.button)
 
         self.setLayout(hbox)
 
 class Algorithm_Select(QComboBox):
-    def __init__(self, module_name, **kwargs):
+    def __init__(self, module, **kwargs):
         super(Algorithm_Select,self).__init__(**kwargs)
-        self.module_name = module[0]
-        self.package_type = module[1]
-        for key in dir(loader[self.module_name]):
+        self.module = module
+        
+        module_name = module[0]
+        for key in dir(loader[module_name]):
             if not key.startswith('_'):
-                if isinstance(loader[self.module_name].__dict__[key],types.BuiltinFunctionType) or \
-                isinstance(loader[self.module_name].__dict__[key],types.FunctionType):
-                    self.addItem(loader[self.module_name].__dict__[key].__name__)
+                if isinstance(loader[module_name].__dict__[key],types.BuiltinFunctionType) or \
+                isinstance(loader[module_name].__dict__[key],types.FunctionType):
+                    self.addItem(loader[module_name].__dict__[key].__name__)
+#        self.addItem(module_name)
 
 class Algorithm_Run(QPushButton):
     def __init__(self, select, **kwargs):
         super(Algorithm_Run,self).__init__(**kwargs)
+        log.debug(self.__class__)
         self.setText("Run")
+        self.module = select.module
         self.select = select
         self.clicked.connect(self.run)
 
+    @staticmethod
     def _auto_out(module_name,package_type,function_name):
         top = module_name+'.'+function_name
         import os
@@ -95,46 +102,96 @@ class Algorithm_Run(QPushButton):
             sub = str(scribblearea.tablet_id)
         else:
             sub = 'MouseData'
-        top = os.path.join(Algorithm_Run._auto_out(self.select.module_name,self.select.package_type,self.select.currentText()),sub)
-        return top
+        return sub
 
     def run(self):
-        if (len(_DATA['MyScribble'].OUTPUT)>0):
-            _DATA['MyScribble'].INPUT = _DATA['MyScribble'].OUTPUT
-            _DATA['MyScribble'].OUTPUT= []
+        #inspect.signature()[return]
+        #if (len(self.select.module[2].OUTPUT)>0):
+        #    self.select.module[2].INPUT = self.select.module[2].OUTPUT
+        #    self.select.module[2].OUTPUT= []
+        currentText = self.select.currentText()
         import time
         time = time.time()
+        backup = ScribbleData()
+        backup.append('11')
+        print(backup)
         try:
-            log.debug("Invoking "+self.select.currentText()+" with "+str(len(_DATA['MyScribble'].INPUT))+" Points...")
-            _DATA['MyScribble'].OUTPUT = loader[self.select.module_name].__dict__[self.select.currentText()](_DATA['MyScribble'].INPUT)
+            log.debug("Invoking "+currentText+" with "+str(len(ScribbleData()))+" Points...")
+            data = ScribbleData()
+            data = loader[self.module[0]].__dict__[currentText](ScribbleData())
+            if backup == ScribbleData():
+                raise("Backup not successful or function values unchanged")
         #except:
         except BaseException as e:
-            log.error("Error during method invokation: "+self.select.module_name+'.'+self.select.currentText())
+            log.error("Error during method invokation: "+self.module[0]+'.'+currentText)
 
             from stopeight.util import file
             from os.path import expanduser,join
-            file._write(_DATA['MyScribble'].INPUT,time,outdir=join(expanduser("~"),_LOGDIR,self._identify(_DATA['MyScribble']))  )
+            file._write(backup,time,outdir=join(expanduser("~"),_LOGDIR
+                                                ,self._auto_out(self.module[0],self.module[1],currentText)
+                                                #,self._identify(_DATA['MyScribble'])
+                                                ))
 
-            _DATA['MyScribble'].INPUT= []
-            _DATA['MyScribble'].OUTPUT= []
-        _DATA['MyScribble'].clearImage()
-        _DATA['MyScribble'].plot(_DATA['MyScribble'].INPUT,Qt.blue)
-        _DATA['MyScribble'].plot(_DATA['MyScribble'].OUTPUT,Qt.red)
-        log.info("Size after call: Input "+str(len(_DATA['MyScribble'].INPUT))+", Output "+str(len(_DATA['MyScribble'].OUTPUT)))
+            data = ScribbleData()
+            data = []
+        #_DATA['MyScribble'].clearImage()
+        #_DATA['MyScribble'].plot(backup,Qt.blue)
+        #_DATA['MyScribble'].plot(ScribbleData(),Qt.red)
+        log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(ScribbleData())))
             
+##def _run(select,button,scribble):
+##    button.run(select.currentText())
+##    scribble.clearImage()
+##    #scribble.plot(backup,Qt.blue)
+##    scribble.plot(ScribbleData(),Qt.black)
+##
+##def _test():
+##    pass
 
 if __name__ == '__main__':
+    from stopeight.util.editor_data import ScribbleData
+
     import sys
     app = QApplication(sys.argv)
     window = QMainWindow()
     window.setWindowTitle("Editor")
+
+    #list or dict?
+    connections = []
+
+    scribbles = []
+    import inspect
+    from inspect import Signature
+    for module in _DATA['Modules']:
+        #if (inspect.signature(zoo).return_annotation!=Signature.empty):
+        #if (inspect.signature(zoo).return_annotation==ScribbleData):
+        scribbles.append(module)
+
     toolbox = QToolBar()
-
-    for module in _DATA['Scribble_Module']:
+    scribble = MyScribble()
+    print(scribble.data)
+    for module in scribbles:
         algo_box = Algorithm(module)
+##        group = QGroupBox()
+##        box = QHBoxLayout()
+##        select = Algorithm_Select(module)
+##        box.addWidget(select)
+##        button = Algorithm_Run(module)
+##        log.debug("Connecting "+select.currentText())
+##        #button.clicked.connect(lambda: _run(select,button,scribble))
+##        box.addWidget(button)
+##        group.setLayout(box)
+##        toolbox.addWidget(group)
         toolbox.addWidget(algo_box)
-
+##        connections.append((select,button,scribble))
+##        connections.append((algo_box.select,algo_box.button,scribble))
     window.addToolBar(toolbox)
-    window.setCentralWidget(MyScribble())
+
+##    log.debug(connections)
+##    for connection in connections:
+##        connection[1].clicked.connect(lambda: _run(connection[0],connection[1],connection[2]))
+    
+    window.setCentralWidget(scribble)
+    
     window.show()
     sys.exit(app.exec_())
