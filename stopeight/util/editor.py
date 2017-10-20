@@ -129,7 +129,7 @@ class Algorithm_Run(QPushButton):
                                                 #,self._identify(_DATA['MyScribble'])
                                                 ))
 
-            data.clear()
+            del data[:]
             if (len(data)>0):
                 raise "Data clear failed!"
         #_DATA['MyScribble'].clearImage()

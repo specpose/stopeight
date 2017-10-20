@@ -89,7 +89,7 @@ class ScribbleArea(QWidget):
         self.clearImage()
         log.info("Erasing scribble data")
         #don't assign new self.data = []
-        self.data.clear()
+        del self.data[:]
         if (len(self.data)>0):
             raise "Data clear failed!"
 
