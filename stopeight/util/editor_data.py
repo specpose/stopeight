@@ -11,6 +11,7 @@ class ScribbleBackup(with_metaclass(Singleton,list)):
 #class ScribbleBackup(Singleton):
     pass
 
-#import numpy
+from numpy import ndarray
+class WaveData(with_metaclass(Singleton,ndarray)):
 #class WaveData(Singleton):
-#    pass
+    pass
