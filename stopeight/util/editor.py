@@ -62,6 +62,7 @@ class Algorithm_Select(QComboBox):
                     self.addItem(loader[module_name].__dict__[key].__name__)
 #        self.addItem(module_name)
 
+from stopeight.util.editor_data import ScribbleData, ScribbleBackup
 class Algorithm_Run(QPushButton):
     def __init__(self, module, **kwargs):
         super(Algorithm_Run,self).__init__(**kwargs)
@@ -136,6 +137,7 @@ class Connector:
         self.select = select
         self.button = button
         self.scribble = scribble
+        self.button.clicked.connect(self.run)
 
     def run(self):
         log.debug(self.select.currentText())
@@ -145,7 +147,7 @@ class Connector:
         self.scribble.plot(ScribbleData(),Qt.red)
 
 if __name__ == '__main__':
-    from stopeight.util.editor_data import ScribbleData, ScribbleBackup
+    #from stopeight.util.editor_data import ScribbleData, ScribbleBackup
 
     import sys
     app = QApplication(sys.argv)
@@ -162,15 +164,11 @@ if __name__ == '__main__':
     wbar = QToolBar()
     wgroup = QGroupBox()
     wbox = QtWidgets.QVBoxLayout()
-    # this is the Navigation widget
-    # it takes the Canvas widget and a parent
-    from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-    plotbar = NavigationToolbar(wave.canvas, window)
     # Just some button connected to `plot` method
     plotbutton = QtWidgets.QPushButton('Plot')
     plotbutton.clicked.connect(wave.plot)
     # set the layout
-    wbox.addWidget(plotbar)
+    wbox.addWidget(wave.plotbar)
     wbox.addWidget(plotbutton)
     wgroup.setLayout(wbox)
     wbar.addWidget(wgroup)
@@ -179,6 +177,7 @@ if __name__ == '__main__':
     window.setCentralWidget(wave.canvas)
     #window.addDockWidget(Qt.TopDockWidgetArea,wave)    
 
+    # Find modules
     scribbles = []
     import inspect
     from inspect import Signature
@@ -187,29 +186,25 @@ if __name__ == '__main__':
         #if (inspect.signature(zoo).return_annotation==ScribbleData):
         scribbles.append(module)
 
+    # Create results area
+    scribble = MyScribble()
+    window.addDockWidget(Qt.BottomDockWidgetArea,scribble)
+
+    # Hook up modules
     toolbox = QToolBar()
     #toolbox = QtWidgets.QDockWidget
-    scribble = MyScribble()
     for module in scribbles:
+        connections.append(Connector(Algorithm_Select(module),Algorithm_Run(module),scribble))
+    for connection in connections:
 ##        group = Algorithm(module)
         group = QGroupBox()
         box = QHBoxLayout()
-        select = Algorithm_Select(module)
-        box.addWidget(select)
-        button = Algorithm_Run(module)
-        box.addWidget(button)
+        box.addWidget(connection.select)
+        box.addWidget(connection.button)
         group.setLayout(box)
-        
-        connector = Connector(select,button,scribble)
-        connections.append(connector)
-        last = (connections[len(connections)-1])
-        last.button.clicked.connect(last.run)
-        
         toolbox.addWidget(group)
     window.addToolBar(Qt.BottomToolBarArea,toolbox)
     #window.addDockWidget(Qt.BottomDockWidgetArea,toolbox)
-    
-    window.addDockWidget(Qt.BottomDockWidgetArea,scribble)
     
     window.show()
     sys.exit(app.exec_())

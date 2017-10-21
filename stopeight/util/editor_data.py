@@ -1,5 +1,5 @@
 from future.utils import with_metaclass
-from stopeight.util.runnable import Singleton
+from stopeight.util.runnable import *
 
 class ScribbleData(with_metaclass(Singleton,list)):
 #class ScribbleData(Singleton):
@@ -8,7 +8,9 @@ class ScribbleData(with_metaclass(Singleton,list)):
     pass
 
 class ScribbleBackup(with_metaclass(Singleton,list)):
+#class ScribbleBackup(Singleton):
     pass
 
-#class WaveData(with_metaclass(Singleton)):
+#import numpy
+#class WaveData(Singleton):
 #    pass

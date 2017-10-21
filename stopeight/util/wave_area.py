@@ -8,7 +8,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
-import random
+#from stopeight.util.editor_data import WaveData
 
 class WaveArea(QtWidgets.QDockWidget):
     def __init__(self, parent=None):
@@ -23,7 +23,7 @@ class WaveArea(QtWidgets.QDockWidget):
 
         # this is the Navigation widget
         # it takes the Canvas widget and a parent
-        #self.toolbar = NavigationToolbar(self.canvas, self)
+        self.plotbar = NavigationToolbar(self.canvas, self)
 
         # Just some button connected to `plot` method
         #self.button = QtWidgets.QPushButton('Plot')
@@ -36,8 +36,7 @@ class WaveArea(QtWidgets.QDockWidget):
         #layout.addWidget(self.button)
         #self.setLayout(layout)
 
-        self.INPUT = []
-        self.OUTPUT = []
+        #self.data = WaveData()
 
     def plot(self):
         ''' plot some random stuff '''
