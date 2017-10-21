@@ -179,8 +179,7 @@ if __name__ == '__main__':
 
     # Find modules
     scribbles = []
-    import inspect
-    from inspect import Signature
+    from funcsigs import Signature
     for module in _DATA['Modules']:
         #if (inspect.signature(zoo).return_annotation!=Signature.empty):
         #if (inspect.signature(zoo).return_annotation==ScribbleData):
