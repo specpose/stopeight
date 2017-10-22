@@ -1,3 +1,5 @@
+# Copyright (C) 2017 Fassio Blatter
+
 import os,sys
 exec_dir = os.path.abspath(os.path.join(os.getcwd(),os.pardir))
 file_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),os.pardir))

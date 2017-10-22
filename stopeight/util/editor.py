@@ -18,6 +18,7 @@ import types
 _DATA = {'Modules': [('stopeight.legacy', False),
 #                            ('stopeight.comparator.matrixTools',True),
                             ('stopeight.util.file', True),
+                             ('stopeight.util.file_wave',True),
                             ('stopeight.analyzer', False),
                             ('stopeight.grapher', False)
                     ]
@@ -36,16 +37,6 @@ for module in _DATA['Modules']:
 class MyScribble(ScribbleArea):
     def __init__(self, parent = None):
         super(MyScribble, self).__init__(parent)
-
-##class Algorithm(QGroupBox):
-##    def __init__(self, module, **kwargs):
-##        super(Algorithm,self).__init__(**kwargs)
-##        box = QHBoxLayout()
-##        self.select = Algorithm_Select(module)
-##        box.addWidget(self.select)
-##        self.button = Algorithm_Run(module)
-##        box.addWidget(self.button)
-##        self.setLayout(box)
 
 from sys import modules as loader
 
@@ -115,12 +106,12 @@ class Algorithm_Run(QPushButton):
         try:
             log.debug("Invoking "+currentText+" with "+str(len(ScribbleData()))+" Points...")
             data = loader[self.module[0]].__dict__[currentText](ScribbleData())
-            if backup == data:
-                raise("Backup not successful or function values unchanged")
+            #if backup == data:
+            #    raise Exception("Backup not successful or function values unchanged")
         #except:
         except BaseException as e:
             log.error("Error during method invokation: "+self.module[0]+'.'+currentText)
-
+            
             from stopeight.util import file
             from os.path import expanduser,join
             file._write(backup,time,outdir=join(expanduser("~"),_LOGDIR
@@ -129,22 +120,27 @@ class Algorithm_Run(QPushButton):
                                                 ))
             del data[:]
             if (len(data)>0):
-                raise "Data clear failed!"
+                raise Exception("Data clear failed!")
+            log.error(e)
         log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(ScribbleData())))
 
 class Connector:
-    def __init__(self,select,button,scribble):
+    def __init__(self,data,select,button,scribble):
+        self.data = data
         self.select = select
         self.button = button
         self.scribble = scribble
         self.button.clicked.connect(self.run)
+        self.colors = [Qt.blue, Qt.red]
 
     def run(self):
         log.debug(self.select.currentText())
         self.button.run(self.select.currentText())
         self.scribble.clearImage()
-        self.scribble.plot(ScribbleBackup(),Qt.blue)
-        self.scribble.plot(ScribbleData(),Qt.red)
+        #for d,c in self.data,self.colors:
+            #self.scribble.plot(d,c)
+        self.scribble.plot(ScribbleBackup(),self.colors[0])
+        self.scribble.plot(ScribbleData(),self.colors[1])
 
 if __name__ == '__main__':
     #from stopeight.util.editor_data import ScribbleData, ScribbleBackup
@@ -166,7 +162,9 @@ if __name__ == '__main__':
     wbox = QtWidgets.QVBoxLayout()
     # Just some button connected to `plot` method
     plotbutton = QtWidgets.QPushButton('Plot')
-    plotbutton.clicked.connect(wave.plot)
+    from stopeight.util import file_wave
+    #wave.data = file_wave._open()
+    #plotbutton.clicked.connect(wave.plot)
     # set the layout
     wbox.addWidget(wave.plotbar)
     wbox.addWidget(plotbutton)
@@ -179,10 +177,11 @@ if __name__ == '__main__':
 
     # Find modules
     scribbles = []
-    from funcsigs import Signature
+    from funcsigs import signature
     for module in _DATA['Modules']:
-        #if (inspect.signature(zoo).return_annotation!=Signature.empty):
-        #if (inspect.signature(zoo).return_annotation==ScribbleData):
+        #def zoo(a: str)->int:
+        #if (signature(zoo).return_annotation!=Signature.empty):
+        #if (signature(zoo).return_annotation==ScribbleData):
         scribbles.append(module)
 
     # Create results area
@@ -191,11 +190,10 @@ if __name__ == '__main__':
 
     # Hook up modules
     toolbox = QToolBar()
-    #toolbox = QtWidgets.QDockWidget
+    #toolbox = QtWidgets.QDockWidget()
     for module in scribbles:
-        connections.append(Connector(Algorithm_Select(module),Algorithm_Run(module),scribble))
+        connections.append(Connector([ScribbleBackup(),ScribbleData()],Algorithm_Select(module),Algorithm_Run(module),scribble))
     for connection in connections:
-##        group = Algorithm(module)
         group = QGroupBox()
         box = QHBoxLayout()
         box.addWidget(connection.select)

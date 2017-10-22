@@ -8,7 +8,8 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
-#from stopeight.util.editor_data import WaveData
+from stopeight.util.editor_data import WaveData
+import numpy
 
 class WaveArea(QtWidgets.QDockWidget):
     def __init__(self, parent=None):
@@ -36,46 +37,29 @@ class WaveArea(QtWidgets.QDockWidget):
         #layout.addWidget(self.button)
         #self.setLayout(layout)
 
-        #self.data = WaveData()
+    def clearImage():
+        # discards the old graph
+        self.ax.clear()
 
-    def plot(self):
+    def plot(self, samples, **kwargs):
         ''' plot some random stuff '''
-        import matplotlib.pyplot as ax
-        import numpy as np
-        import wave
-        import sys
+        # create an axis
+        self.ax = self.figure.add_subplot(111)
+        #self.ax.figure(1)
 
-        print("Opening "+sys.argv[1])
-        spf = wave.open(sys.argv[1],'r')
+        #ax.title("Signal Wave...")
+        self.ax.plot(samples)
 
-        #Extract Raw Audio from Wav File
-        signal = spf.readframes(-1)
-        signal = np.fromstring(signal, 'Int16')
+        #self.ax.set_ylabel([])
+        #self.ax.set_xlabel([])
 
-        #If Stereo
-        if spf.getnchannels() == 2:
-            print("Just mono files")
-        else:
-            # create an axis
-            ax = self.figure.add_subplot(111)
-            #ax.figure(1)
+        # Turn off tick labels
+        #self.ax.set_yticklabels([])
+        #self.ax.set_xticklabels([])
 
-            # discards the old graph
-            #ax.clear()
-
-            #ax.title("Signal Wave...")
-            ax.plot(signal)
-
-            #ax.set_ylabel([])
-            #ax.set_xlabel([])
-
-            # Turn off tick labels
-            #ax.set_yticklabels([])
-            #ax.set_xticklabels([])
-
-            #ax.show()
-            # refresh canvas
-            self.canvas.draw()
+        #self.ax.show()
+        # refresh canvas
+        self.canvas.draw()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
