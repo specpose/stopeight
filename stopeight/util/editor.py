@@ -6,7 +6,6 @@ from stopeight.util import runnable
 
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication,QMainWindow,QToolBar,QGroupBox,QHBoxLayout
-from PyQt5.QtCore import Qt
 
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
@@ -31,20 +30,8 @@ for module in _DATA['Modules']:
         log.info("Removing module "+module[0]+"!")
         _DATA['Modules'].remove(module)
         
-from stopeight.util.editor_command import Algorithm_Select,Algorithm_Run,Connector
-class ScribbleConnector(Connector):
-    def __init__(self,command,scribble):
-        super().__init__(command,[ScribbleBackup(),ScribbleData()],scribble)
-        self.colors = [Qt.blue, Qt.red]
-
-    def run(self):
-        super().run()
-        self._output.clearImage()
-        #for d,c in self.data,self.colors:
-            #self.scribble.plot(d,c)
-        self._output.plot(ScribbleBackup(),self.colors[0])
-        self._output.plot(ScribbleData(),self.colors[1])
-    
+from stopeight.util.editor_command import Algorithm_Select,Algorithm_Run,Connector,ScribbleConnector
+        
 if __name__ == '__main__':
 
     import sys
@@ -77,19 +64,20 @@ if __name__ == '__main__':
     window.setCentralWidget(wave.canvas)
     #window.addDockWidget(Qt.TopDockWidgetArea,wave)    
 
-    # Find modules
-    scribbles = []
-    from funcsigs import signature
-    for module in _DATA['Modules']:
-        #def zoo(a: str)->int:
-        #if (signature(zoo).return_annotation!=Signature.empty):
-        #if (signature(zoo).return_annotation==ScribbleData):
-        scribbles.append(module)
-
     # Create results area
     from stopeight.util.scribble_area import ScribbleArea
     scribble = ScribbleArea()
+    from PyQt5.QtCore import Qt
     window.addDockWidget(Qt.BottomDockWidgetArea,scribble)
+
+    # Find modules
+    scribbles = []
+    from funcsigs import signature
+    #from sys import modules as loader
+    for module in _DATA['Modules']:
+        #def zoo(a: str)->int:
+        #if (signature(zoo).return_annotation!=Signature.empty):
+        scribbles.append(module)
 
     # Hook up modules
     toolbox = QToolBar()

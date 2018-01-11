@@ -21,7 +21,6 @@ class Algorithm_Select(QComboBox):
                 if isinstance(loader[module_name].__dict__[key],types.BuiltinFunctionType) or \
                 isinstance(loader[module_name].__dict__[key],types.FunctionType):
                     self.addItem(loader[module_name].__dict__[key].__name__)
-#        self.addItem(module_name)
 
 from stopeight.util.editor_data import ScribbleData, ScribbleBackup
 class Algorithm_Run(QPushButton):
@@ -62,6 +61,16 @@ class Algorithm_Run(QPushButton):
             sub = 'MouseData'
         return sub
 
+    def _initData(self):
+        self.data = ScribbleData()
+        self.backup = ScribbleBackup()#get singleton
+
+    def _releaseData(self):
+        del self.data[:]
+        del self.backup[:]
+        if (len(self.data)>0 or len(self.backup)>0):
+            raise Exception("Data clear failed!")
+
     def run(self,currentText):
         #inspect.signature()[return]
         #if (len(self.select.module[2].OUTPUT)>0):
@@ -70,34 +79,30 @@ class Algorithm_Run(QPushButton):
         #currentText = self.select.currentText()
         import time
         time = time.time()
-        data = ScribbleData()
-        backup = ScribbleBackup()#get singleton
-        backup = data[:]#assign copy
+        self._initData()
+        self.backup = self.data[:]#assign copy
         try:
-            log.debug("Invoking "+currentText+" with "+str(len(ScribbleData()))+" Points...")
-            data = loader[self.module[0]].__dict__[currentText](ScribbleData())
-            #if backup == data:
+            log.debug("Invoking "+currentText+" with "+str(len(self.data))+" data sets...")
+            data = loader[self.module[0]].__dict__[currentText](self.data)
+            #if self.backup == self.data:
             #    raise Exception("Backup not successful or function values unchanged")
+            log.info("Size after call: Input "+str(len(self.backup))+", Output "+str(len(self.data)))
         #except:
         except BaseException as e:
             log.error("Error during method invokation: "+self.module[0]+'.'+currentText)
             
             from stopeight.util import file
             from os.path import expanduser,join
-            file._write(backup,time,outdir=join(expanduser("~"),_LOGDIR
+            file._write(self.backup,time,outdir=join(expanduser("~"),_LOGDIR
                                                 ,self._auto_out(self.module[0],self.module[1],currentText)
                                                 #,self._identify(_DATA['MyScribble'])
                                                 ))
-            del data[:]
-            if (len(data)>0):
-                raise Exception("Data clear failed!")
+            self._releaseData()
             log.error(e)
-        log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(ScribbleData())))
-
+        
 class Connector:
-    def __init__(self,command,inputData,outputData):
-        self._data = inputData
-        self._output = outputData
+    def __init__(self,command,outputObject):
+        self._output = outputObject
         self.select = Algorithm_Select(command)
         self.button = Algorithm_Run(command)
         self.button.clicked.connect(self.run)
@@ -105,3 +110,24 @@ class Connector:
     def run(self):
         log.debug(self.select.currentText())
         self.button.run(self.select.currentText())
+
+from PyQt5.QtCore import Qt        
+class ScribbleConnector(Connector):
+    def __init__(self,command,scribble):
+        super().__init__(command,scribble)
+        self.colors = [Qt.blue, Qt.red]
+
+    def run(self):
+        super().run()
+        self._output.clearImage()
+        #for d,c in self.data,self.colors:
+            #self.scribble.plot(d,c)
+        self._output.plot(ScribbleBackup(),self.colors[0])
+        self._output.plot(ScribbleData(),self.colors[1])
+
+#class WaveConnector(Connector):
+#    def __init__(self,command,scribble):
+#        super().__init__(command,[WaveData()],scribble)
+
+#    def run(self):
+#        super().run()
