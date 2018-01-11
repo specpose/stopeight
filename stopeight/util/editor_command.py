@@ -60,17 +60,7 @@ class Algorithm_Run(QPushButton):
         else:
             sub = 'MouseData'
         return sub
-
-    def _initData(self):
-        self.data = ScribbleData()
-        self.backup = ScribbleBackup()#get singleton
-
-    def _releaseData(self):
-        del self.data[:]
-        del self.backup[:]
-        if (len(self.data)>0 or len(self.backup)>0):
-            raise Exception("Data clear failed!")
-
+        
     def run(self,currentText):
         #inspect.signature()[return]
         #if (len(self.select.module[2].OUTPUT)>0):
@@ -79,25 +69,28 @@ class Algorithm_Run(QPushButton):
         #currentText = self.select.currentText()
         import time
         time = time.time()
-        self._initData()
-        self.backup = self.data[:]#assign copy
+        data = ScribbleData()
+        backup = ScribbleBackup()#get singleton
+        backup = data[:]#assign copy
         try:
-            log.debug("Invoking "+currentText+" with "+str(len(self.data))+" data sets...")
-            data = loader[self.module[0]].__dict__[currentText](self.data)
-            #if self.backup == self.data:
+            log.debug("Invoking "+currentText+" with "+str(len(data))+" data sets...")
+            data = loader[self.module[0]].__dict__[currentText](data)
+            #if backup == data:
             #    raise Exception("Backup not successful or function values unchanged")
-            log.info("Size after call: Input "+str(len(self.backup))+", Output "+str(len(self.data)))
+            log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(data)))
         #except:
         except BaseException as e:
             log.error("Error during method invokation: "+self.module[0]+'.'+currentText)
             
             from stopeight.util import file
             from os.path import expanduser,join
-            file._write(self.backup,time,outdir=join(expanduser("~"),_LOGDIR
+            file._write(backup,time,outdir=join(expanduser("~"),_LOGDIR
                                                 ,self._auto_out(self.module[0],self.module[1],currentText)
                                                 #,self._identify(_DATA['MyScribble'])
                                                 ))
-            self._releaseData()
+            del data[:]
+            if (len(data)>0):
+                raise Exception("Data clear failed!")
             log.error(e)
         
 class Connector:
