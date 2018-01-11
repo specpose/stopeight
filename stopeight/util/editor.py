@@ -71,19 +71,19 @@ if __name__ == '__main__':
     window.addDockWidget(Qt.BottomDockWidgetArea,scribble)
 
     # Find modules
-    scribbles = []
+    callables = []
     from funcsigs import signature
     #from sys import modules as loader
     for module in _DATA['Modules']:
         #def zoo(a: str)->int:
         #if (signature(zoo).return_annotation!=Signature.empty):
-        scribbles.append(module)
+        callables.append(module)
 
     # Hook up modules
     toolbox = QToolBar()
     #toolbox = QtWidgets.QDockWidget()
     from stopeight.util.editor_data import ScribbleData, ScribbleBackup
-    for module in scribbles:
+    for module in callables:
         connections.append(ScribbleConnector(module,scribble))
     for connection in connections:
         group = QGroupBox()

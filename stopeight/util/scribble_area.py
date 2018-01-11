@@ -89,7 +89,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.lastPoint = event.pos()
         self.clearImage()
         log.info("Erasing scribble data")
-        #don't assign new self.data = []
+        #don't assign new self.data = [], maybe self.data[:] = []
         del self.data[:]
         if (len(self.data)>0):
             raise "Data clear failed!"

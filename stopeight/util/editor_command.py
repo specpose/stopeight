@@ -71,10 +71,10 @@ class Algorithm_Run(QPushButton):
         time = time.time()
         data = ScribbleData()
         backup = ScribbleBackup()#get singleton
-        backup = data[:]#assign copy
+        backup[:] = data#assign copy
         try:
-            log.debug("Invoking "+currentText+" with "+str(len(data))+" data sets...")
-            data = loader[self.module[0]].__dict__[currentText](data)
+            log.info("Invoking "+currentText+" with "+str(len(data))+" data sets...")
+            data[:] = loader[self.module[0]].__dict__[currentText](data)
             #if backup == data:
             #    raise Exception("Backup not successful or function values unchanged")
             log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(data)))
@@ -103,6 +103,7 @@ class Connector:
     def run(self):
         log.debug(self.select.currentText())
         self.button.run(self.select.currentText())
+        log.debug(str(len(ScribbleData())))
 
 from PyQt5.QtCore import Qt        
 class ScribbleConnector(Connector):
@@ -115,8 +116,8 @@ class ScribbleConnector(Connector):
         self._output.clearImage()
         #for d,c in self.data,self.colors:
             #self.scribble.plot(d,c)
-        self._output.plot(ScribbleBackup(),self.colors[0])
-        self._output.plot(ScribbleData(),self.colors[1])
+        self._output.plot(ScribbleBackup(),self.colors[1])
+        self._output.plot(ScribbleData(),self.colors[0])
 
 #class WaveConnector(Connector):
 #    def __init__(self,command,scribble):
