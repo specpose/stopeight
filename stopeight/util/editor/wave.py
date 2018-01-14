@@ -38,6 +38,8 @@ class WaveArea(QtWidgets.QDockWidget):
         #layout.addWidget(self.button)
         #self.setLayout(layout)
 
+        self.ax=None
+
     def __call__(self,data:WaveData,clear=True):
         if clear:
             self.clearImage()
@@ -46,7 +48,8 @@ class WaveArea(QtWidgets.QDockWidget):
 
     def clearImage(self):
         # discards the old graph
-        self.ax.clear()
+        if self.ax != None:
+            self.ax.clear()
 
     def plot(self, samples, **kwargs):
         ''' plot some random stuff '''

@@ -3,6 +3,9 @@
 from PyQt5.QtWidgets import QFileDialog
 from stopeight.util.editor.data import WaveData
 
+from stopeight.logging import logSwitch
+log = logSwitch.logPrint()
+
 def open_GUI()->WaveData:
     import matplotlib.pyplot as ax
     import numpy as np
@@ -10,8 +13,8 @@ def open_GUI()->WaveData:
     import sys
 
     filename = QFileDialog.getOpenFileName()
-    print("Opening "+filename)
-    spf = wave.open(filename,'r')
+    log.info("Opening "+str(filename[0]))
+    spf = wave.open(filename[0],'r')
 
     #Extract Raw Audio from Wav File
     signal = spf.readframes(-1)

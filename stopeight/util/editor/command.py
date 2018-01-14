@@ -83,7 +83,10 @@ class Algorithm_Run:
                 #    raise Exception("Backup not successful or function values unchanged")
                 log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(data)))
             else:
+                backup = None
                 log.info("Invoking "+currentText+" without data.")
+                data = loader[module[0]].__dict__[currentText]()
+                log.info("Size after call: Output "+str(len(data)))
 
         #except:
         except BaseException as e:
