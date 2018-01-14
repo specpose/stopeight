@@ -29,11 +29,16 @@ class Algorithm_Select(dict):
                         log.debug("Function "+name+" is Python")
                     try:
                         return_type=signature(loader[module_name].__dict__[key]).return_annotation
+                        try:
+                            data_type=signature(loader[module_name].__dict__[key]).parameters['data'].annotation
+                        except:
+                            data_type = None
                     except ValueError as v:
                         return_type = None
-                    self[name]=(return_type,)
+                        data_type = None
+                    self[name]=(return_type,data_type)
 
-from stopeight.util.editor_data import ScribbleData, ScribbleBackup
+from stopeight.util.editor.data import ScribbleData, ScribbleBackup
 class Algorithm_Run:
 
     @staticmethod
@@ -57,22 +62,8 @@ class Algorithm_Run:
         top = os.path.join(top,sub)
         return top
 
-class Scribble_Run:
-
     @staticmethod
-    def _identify(scribblearea):
-        import os
-            
-        #if (os.getcwd()).endswith('stopeight'):
-        #    if (self.select.module_name=='stopeight.util.file'):
-        if hasattr(scribblearea,'tablet_id'):
-            sub = str(scribblearea.tablet_id)
-        else:
-            sub = 'MouseData'
-        return sub
-
-    @staticmethod
-    def run(module,currentText):
+    def run(module,currentText,data=None):
         #inspect.signature()[return]
         #if (len(self.select.module[2].OUTPUT)>0):
         #    self.select.module[2].INPUT = self.select.module[2].OUTPUT
@@ -80,20 +71,25 @@ class Scribble_Run:
         #currentText = self.select.currentText()
         import time
         time = time.time()
-        data = ScribbleData()
-        backup = ScribbleBackup()#get singleton
-        backup[:] = data#assign copy
+        #data = ScribbleData()
+        #backup = ScribbleBackup()#get singleton
+        #backup[:] = data#assign copy
         try:
-            log.info("Invoking "+currentText+" with "+str(len(data))+" data sets...")
-            data[:] = loader[module[0]].__dict__[currentText](data)
-            #if backup == data:
-            #    raise Exception("Backup not successful or function values unchanged")
-            log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(data)))
+            if data!=None:
+                backup = data[:]
+                log.info("Invoking "+currentText+" with "+str(len(data))+" data sets...")
+                data[:] = loader[module[0]].__dict__[currentText](data)
+                #if backup == data:
+                #    raise Exception("Backup not successful or function values unchanged")
+                log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(data)))
+            else:
+                log.info("Invoking "+currentText+" without data.")
+
         #except:
         except BaseException as e:
             log.error("Error during method invokation: "+module[0]+'.'+currentText)
             
-            from stopeight.util import file
+            from stopeight.util.editor.modules import file
             from os.path import expanduser,join
             file._write(backup,time,outdir=join(expanduser("~"),_LOGDIR
                                                 ,Algorithm_Run._auto_out(module[0],module[1],currentText)
@@ -103,8 +99,23 @@ class Scribble_Run:
             if (len(data)>0):
                 raise Exception("Data clear failed!")
             log.error(e)
+            
+class Scribble_Run:
 
-from PyQt5.QtCore import Qt        
+    @staticmethod
+    def _identify(scribblearea):
+        import os
+            
+        #if (os.getcwd()).endswith('stopeight'):
+        #    if (self.select.module_name=='stopeight.util.editor.modules.file'):
+        if hasattr(scribblearea,'tablet_id'):
+            sub = str(scribblearea.tablet_id)
+        else:
+            sub = 'MouseData'
+        return sub
+    
+from PyQt5.QtCore import Qt
+import inspect
 #def zoo(a: str)->int:
     #if (signature(zoo).return_annotation!=Signature.empty):
 class Connector:
@@ -122,12 +133,43 @@ class Connector:
     def run(self):
         functionName = self.select.currentText()
         if functionName in self.methods:
+            #check return type of unique functionname
             if (self.methods[functionName])[0]==None:
-                log.info("Function "+self.select.currentText()+" does not support signature")
-                Scribble_Run.run(self._module,self.select.currentText())
-                self._outputs[1]._scribble()
+                log.info("Function "+functionName+" does not support signature")
             else:
-                log.debug(signature(loader[self._module[0]].__dict__[self.select.currentText()]).return_annotation)    
+                #check all outputs for receiving __call__
+                for output in self._outputs:
+                #try:
+                    outputentry = signature(output.__call__).parameters['data'].annotation
+                    functionreturn = (self.methods[functionName])[0]
+                    if functionreturn == outputentry:
+                        executed = False
+                        #check all data singletons
+                        functionentry = (self.methods[functionName])[1]
+                        log.debug("Method "+str(self.methods[functionName]))
+                        if functionentry!=None:#data parameter found
+                            for name,obj in inspect.getmembers(loader['stopeight.util.editor.data']):
+                                if inspect.isclass(obj):# and obj!=None:
+                                    if obj.__module__=='stopeight.util.editor.data':
+                                        log.debug("Object "+str(obj))
+                                        #workaround editor.data classes are Singleton?!
+                                        #if (obj.__module__+"."+name)==functionentry.__module__+"."+functionentry.__name__:#type correct
+                                        if obj==functionentry:
+                                            log.info("Executing "+functionName+" with "+name)
+                                            Algorithm_Run.run(self._module,functionName,data=obj.__call__())
+                                            output(obj.__call__())
+                                            executed = True
+                                        else:
+                                            #on incorrect type of data object, we dont do anything
+                                            pass
+                        if not executed:
+                            log.info("Data not found. Trying to execute "+functionName+" without data. ")
+                            Algorithm_Run.run(self._module,functionName)
+                            output()
+                #except AttributeError as ae:
+                #    pass
+        else:
+            raise NameError("Function not found")
 
 #class WaveConnector(Connector):
 #    def __init__(self,command,scribble):

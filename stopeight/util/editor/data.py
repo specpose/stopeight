@@ -11,6 +11,10 @@ class ScribbleBackup(with_metaclass(Singleton,list)):
 #class ScribbleBackup(Singleton):
     pass
 
+#from stopeight.util.editor.scribble import ScribbleArea
+#class ScribbleDisplay(with_metaclass(Singleton,ScribbleArea)):
+#    pass
+
 from numpy import ndarray
 class WaveData(with_metaclass(Singleton,ndarray)):
 #class WaveData(Singleton):

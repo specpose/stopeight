@@ -56,7 +56,7 @@ from PyQt5.QtCore import QEvent
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 
-from stopeight.util.editor_data import ScribbleData,ScribbleBackup
+from stopeight.util.editor.data import ScribbleData,ScribbleBackup
 
 class ScribbleArea(QtWidgets.QDockWidget):
     def __init__(self, parent=None):
@@ -154,21 +154,18 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.update(QRect(self.lastPoint, endPoint).normalized().adjusted(-rad, -rad, +rad, +rad))
         self.lastPoint = QPoint(endPoint)
 
-    def __call__(self, points=[], color=Qt.black):
+    def __call__(self, data:ScribbleData, color=Qt.blue, clear=True):
+        if clear:
+            self.clearImage()
+        #for d,c in self.data,self.colors:
+        #self.scribble.plot(d,c)
         painter = QPainter(self.image)
         painter.setPen(QPen(color, self.myPenWidth, Qt.SolidLine,
                 Qt.RoundCap, Qt.RoundJoin))
 
-        for n in range(len(points)-1):
-            painter.drawLine(points[n][0],points[n][1],points[n+1][0],points[n+1][1])            
+        for n in range(len(data)-1):
+            painter.drawLine(data[n][0],data[n][1],data[n+1][0],data[n+1][1])            
         self.update()    
-
-    def _scribble(self):
-        self.clearImage()
-        #for d,c in self.data,self.colors:
-            #self.scribble.plot(d,c)
-        self(ScribbleBackup(),Qt.red)
-        self(ScribbleData(),Qt.blue)
 
     def resizeImage(self, image, newSize):
         if image.size() == newSize:

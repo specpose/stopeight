@@ -11,24 +11,24 @@ from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 
 # false if part of stopeight-clibs
-_DATA = {'Modules': [('stopeight.legacy', False),
+_DATA = {'Modules': [('stopeight.util.editor.modules.legacy', True),
 #                            ('stopeight.comparator.matrixTools',True),
-                            ('stopeight.util.file', True),
-                             ('stopeight.util.file_wave',True),
-                            ('stopeight.analyzer', False),
-                            ('stopeight.grapher', False)
+                            ('stopeight.util.editor.modules.file', True),
+                             ('stopeight.util.editor.modules.file_wave',True),
+                            ('stopeight.util.editor.modules.analyzer', True),
+                            ('stopeight.util.editor.modules.grapher', True)
                     ]
          }
 
 import importlib
 for module in _DATA['Modules']:
-    try:
+    #try:
         importlib.import_module(module[0])
         #output class name
         log.info("Successfully imported module "+module[0])
-    except:
-        log.info("Removing module "+module[0]+"!")
-        _DATA['Modules'].remove(module)
+    #except:
+    #    log.info("Removing module "+module[0]+"!")
+    #    _DATA['Modules'].remove(module)
                 
 if __name__ == '__main__':
 
@@ -41,7 +41,7 @@ if __name__ == '__main__':
     connections = []
 
     outputs = []
-    from stopeight.util.wave_area import WaveArea
+    from stopeight.util.editor.wave import WaveArea
     wave = WaveArea()
     outputs.append(wave)
     
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     wbox = QtWidgets.QVBoxLayout()
     # Just some button connected to `plot` method
     plotbutton = QtWidgets.QPushButton('Plot')
-    from stopeight.util import file_wave
+    #from stopeight.util.editor.modules import file_wave
     #wave.data = file_wave._open()
     #plotbutton.clicked.connect(wave.plot)
     # set the layout
@@ -64,7 +64,7 @@ if __name__ == '__main__':
     #window.addDockWidget(Qt.TopDockWidgetArea,wave)    
 
     # Create results area
-    from stopeight.util.scribble_area import ScribbleArea
+    from stopeight.util.editor.scribble import ScribbleArea
     scribble = ScribbleArea()
     outputs.append(scribble)
     from PyQt5.QtCore import Qt
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     # Hook up modules
     toolbox = QToolBar()
     #toolbox = QtWidgets.QDockWidget()
-    from stopeight.util.editor_command import Connector
+    from stopeight.util.editor.command import Connector
     for module in callables:
         connections.append(Connector(module,outputs))
     for connection in connections:

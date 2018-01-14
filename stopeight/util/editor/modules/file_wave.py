@@ -1,7 +1,7 @@
 # Copyright (C) 2017 Fassio Blatter
 
 from PyQt5.QtWidgets import QFileDialog
-from stopeight.util.editor_data import WaveData
+from stopeight.util.editor.data import WaveData
 
 def open_GUI()->WaveData:
     import matplotlib.pyplot as ax
@@ -19,6 +19,3 @@ def open_GUI()->WaveData:
     if spf.getnchannels() == 2:
         raise Exception("Just mono files")
     return np.fromstring(signal, 'Int16')
-
-def writeThrough(mylist):
-    return mylist

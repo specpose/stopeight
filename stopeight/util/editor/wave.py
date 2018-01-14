@@ -2,14 +2,15 @@
 # https://stackoverflow.com/questions/18625085/how-to-plot-a-wav-file
 
 import sys
+import numpy
+
 from PyQt5 import QtGui,QtWidgets
 from PyQt5.QtWidgets import QGroupBox
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
-from stopeight.util.editor_data import WaveData
-import numpy
+from stopeight.util.editor.data import WaveData
 
 class WaveArea(QtWidgets.QDockWidget):
     def __init__(self, parent=None):
@@ -37,7 +38,14 @@ class WaveArea(QtWidgets.QDockWidget):
         #layout.addWidget(self.button)
         #self.setLayout(layout)
 
-    def clearImage():
+    def __call__(self,data:WaveData):
+        pass
+
+    def draw():
+        pass
+
+
+    def clearImage(self):
         # discards the old graph
         self.ax.clear()
 

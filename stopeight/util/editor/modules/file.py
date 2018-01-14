@@ -4,14 +4,16 @@
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 
+from stopeight.util.editor.data import ScribbleData
+
 def save(nothing):
     # this is not a real error but saves us from writing more code
     raise ValueError
 
-def save_GUI(points):
+def save_GUI(data:ScribbleData)->str:
     pass
 
-def open_GUI(nothing):
+def open_GUI(data:str)->ScribbleData:
     pass
 
 from os.path import expanduser,join
