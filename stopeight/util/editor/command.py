@@ -38,7 +38,7 @@ class Algorithm_Select(dict):
                         data_type = None
                     self[name]=(return_type,data_type)
 
-from stopeight.util.editor.data import ScribbleData, ScribbleBackup
+#from stopeight.util.editor.data import ScribbleData, ScribbleBackup
 class Algorithm_Run:
 
     @staticmethod
@@ -99,6 +99,7 @@ class Algorithm_Run:
             if (len(data)>0):
                 raise Exception("Data clear failed!")
             log.error(e)
+        return data
             
 class Scribble_Run:
 
@@ -143,37 +144,20 @@ class Connector:
                     outputentry = signature(output.__call__).parameters['data'].annotation
                     functionreturn = (self.methods[functionName])[0]
                     if functionreturn == outputentry:
-                        executed = False
-                        #check all data singletons
                         functionentry = (self.methods[functionName])[1]
                         log.debug("Method "+str(self.methods[functionName]))
+                        executed = False
                         if functionentry!=None:#data parameter found
-                            for name,obj in inspect.getmembers(loader['stopeight.util.editor.data']):
-                                if inspect.isclass(obj):# and obj!=None:
-                                    if obj.__module__=='stopeight.util.editor.data':
-                                        log.debug("Object "+str(obj))
-                                        #workaround editor.data classes are Singleton?!
-                                        #if (obj.__module__+"."+name)==functionentry.__module__+"."+functionentry.__name__:#type correct
-                                        if obj==functionentry:
-                                            log.info("Executing "+functionName+" with "+name)
-                                            Algorithm_Run.run(self._module,functionName,data=obj.__call__(obj))
-                                            executed = True
-                                        else:
-                                            #on incorrect type of data object, we dont do anything
-                                            pass
-                        if not executed:
-                            log.info("Data not found. Trying to execute "+functionName+" without data. ")
-                            Algorithm_Run.run(self._module,functionName)
-                        rendered = False
-                        for name,obj in inspect.getmembers(loader['stopeight.util.editor.data']):
-                            if inspect.isclass(obj):# and obj!=None:
-                                if obj.__module__=='stopeight.util.editor.data':
-                                    if obj==outputentry:
-                                        output(obj.__call__(obj))
-                                        rendered = True
-                        if not rendered:
-                            log.info("Fallback. Trying to render "+output.__name__+" without data")
-                            output()
+                            if type(output.data)==functionentry:
+                                log.info("Executing "+functionName+" with "+str(type(output.data)))
+                                output(Algorithm_Run.run(self._module,functionName,data=output.data))
+                                executed = True
+                            else:
+                                #on incorrect type of data object, we dont do anything
+                                pass
+                        else:
+                            log.info("Fallback. Trying to call "+functionName+" without data")
+                            output(Algorithm_Run.run(self._module,functionName))
                                             
                 #except AttributeError as ae:
                 #    pass
