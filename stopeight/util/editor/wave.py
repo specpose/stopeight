@@ -38,11 +38,10 @@ class WaveArea(QtWidgets.QDockWidget):
         #layout.addWidget(self.button)
         #self.setLayout(layout)
 
-    def __call__(self,data:WaveData):
-        pass
-
-    def draw():
-        pass
+    def __call__(self,data:WaveData,clear=True):
+        if clear:
+            self.clearImage()
+        self.plot(data)
 
 
     def clearImage(self):

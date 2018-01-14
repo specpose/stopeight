@@ -156,8 +156,7 @@ class Connector:
                                         #if (obj.__module__+"."+name)==functionentry.__module__+"."+functionentry.__name__:#type correct
                                         if obj==functionentry:
                                             log.info("Executing "+functionName+" with "+name)
-                                            Algorithm_Run.run(self._module,functionName,data=obj.__call__())
-                                            output(obj.__call__())
+                                            Algorithm_Run.run(self._module,functionName,data=obj.__call__(obj))
                                             executed = True
                                         else:
                                             #on incorrect type of data object, we dont do anything
@@ -165,7 +164,17 @@ class Connector:
                         if not executed:
                             log.info("Data not found. Trying to execute "+functionName+" without data. ")
                             Algorithm_Run.run(self._module,functionName)
+                        rendered = False
+                        for name,obj in inspect.getmembers(loader['stopeight.util.editor.data']):
+                            if inspect.isclass(obj):# and obj!=None:
+                                if obj.__module__=='stopeight.util.editor.data':
+                                    if obj==outputentry:
+                                        output(obj.__call__(obj))
+                                        rendered = True
+                        if not rendered:
+                            log.info("Fallback. Trying to render "+output.__name__+" without data")
                             output()
+                                            
                 #except AttributeError as ae:
                 #    pass
         else:
