@@ -154,7 +154,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.update(QRect(self.lastPoint, endPoint).normalized().adjusted(-rad, -rad, +rad, +rad))
         self.lastPoint = QPoint(endPoint)
 
-    def __call__(self, data:ScribbleData, color=Qt.blue, clear=True):
+    def __call__(self, data, color=Qt.blue, clear=True):
         if clear:
             self.clearImage()
         self.data=data
@@ -166,7 +166,8 @@ class ScribbleArea(QtWidgets.QDockWidget):
 
         for n in range(len(data)-1):
             painter.drawLine(data[n][0],data[n][1],data[n+1][0],data[n+1][1])            
-        self.update()    
+        self.update()
+    __call__.__annotations__ = {'data': ScribbleData}
 
     def resizeImage(self, image, newSize):
         if image.size() == newSize:

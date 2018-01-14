@@ -40,10 +40,13 @@ class WaveArea(QtWidgets.QDockWidget):
 
         self.ax=None
 
-    def __call__(self,data:WaveData,clear=True):
+        self.data=WaveData(shape=(1,),dtype=numpy.int16)
+
+    def __call__(self,data,clear=True):
         if clear:
             self.clearImage()
         self.plot(data)
+    __call__.__annotations__ = {'data': WaveData}
 
 
     def clearImage(self):

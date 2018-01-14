@@ -3,5 +3,7 @@
 from stopeight.util.editor.data import ScribbleData
 
 import stopeight.analyzer
-def hello(data:str)->ScribbleData:
+def hello(data):
     return stopeight.analyzer.hello(data)
+hello.__annotations__ = {'data': str, 'return': str}
+

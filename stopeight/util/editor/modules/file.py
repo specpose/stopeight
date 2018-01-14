@@ -10,11 +10,13 @@ def save(nothing):
     # this is not a real error but saves us from writing more code
     raise ValueError
 
-def save_GUI(data:ScribbleData)->str:
+def save_GUI(data):
     pass
+save_GUI.__annotations__ = {'data': ScribbleData, 'return': str}
 
-def open_GUI(data:str)->ScribbleData:
+def open_GUI(data):
     pass
+open_GUI.__annotations__ = {'data': str, 'return': ScribbleData}
 
 from os.path import expanduser,join
 def _write(data,timestamp,outdir=join(expanduser("~"))):

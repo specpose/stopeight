@@ -6,7 +6,7 @@ from stopeight.util.editor.data import WaveData
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 
-def open_GUI()->WaveData:
+def open_GUI():
     import matplotlib.pyplot as ax
     import numpy as np
     import wave
@@ -22,3 +22,4 @@ def open_GUI()->WaveData:
     if spf.getnchannels() == 2:
         raise Exception("Just mono files")
     return np.fromstring(signal, 'Int16')
+open_GUI.__annotations__ = {'return': WaveData}
