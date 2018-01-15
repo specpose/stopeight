@@ -59,7 +59,6 @@ from stopeight.multiprocessing import pooling
 if __name__ == '__main__':
     nopath = False
     import sys
-    print(len(sys.argv))
     if len(sys.argv)>1:
         if sys.argv[1]==None:
             nopath = True
