@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-_packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing']
+_packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing','stopeight.util']
 
 from subprocess import check_output
 try:
@@ -71,14 +71,15 @@ setup( name='stopeight',
 ##       ],
 ##       cmdclass={'build_ext': BuildExt},
 ###distutils end
-
+#pip start
        install_requires=[
           'numpy',
           'future',
           'funcsigs',
           'matplotlib',
-          'pybind11>=2.2',
+#          'pybind11>=2.2',#distutils
           'PyQt5>=5.6.0',
           ],
+#pip end
        zip_safe=False,
 )
