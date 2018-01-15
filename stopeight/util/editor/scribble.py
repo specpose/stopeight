@@ -54,7 +54,7 @@ from PyQt5.QtGui import QTabletEvent
 from PyQt5.QtCore import QEvent
 
 from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
+log = logSwitch.logNone()
 
 from stopeight.util.editor.data import ScribbleData,ScribbleBackup
 

@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QFileDialog
 from stopeight.util.editor.data import WaveData
 
 from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
+log = logSwitch.logNone()
 
 def open_GUI():
     import matplotlib.pyplot as ax

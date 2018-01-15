@@ -2,7 +2,7 @@
 
 # Copyright (C) 2009-2016 Specific Purpose Software GmbH
 from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
+log = logSwitch.logNone()
 
 from stopeight.util.editor.data import ScribbleData
 

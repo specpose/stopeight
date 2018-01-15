@@ -8,7 +8,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication,QMainWindow,QToolBar,QGroupBox,QHBoxLayout
 
 from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
+log = logSwitch.logNone()
 
 # false if part of stopeight-clibs
 _DATA = {'Modules': [('stopeight.util.editor.modules.legacy', True),
