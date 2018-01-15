@@ -1,0 +1,53 @@
+#sdist package descriptor
+#distutils
+include python.py
+#shared
+include stopeight-clibs/include/stopeight-clibs/algo.h
+include stopeight-clibs/include/stopeight-clibs/shared_types.h
+include stopeight-clibs/include/stopeight-clibs/angle_functions.h
+#grapher
+include stopeight-clibs/grapher-wrappers/interfacepython.cpp
+include stopeight-clibs/grapher/dummy.h
+#analyzer
+include stopeight-clibs/analyzer-wrappers/interfacepython.cpp
+include stopeight-clibs/analyzer-wrappers/interfacepython.h
+include stopeight-clibs/analyzer/include/test.h
+include stopeight-clibs/analyzer/include/error.h
+include stopeight-clibs/analyzer/include/analyzer_global.h
+#legacy
+include stopeight-clibs/legacy/include/error.h
+include stopeight-clibs/legacy-wrappers/interfacepython.cpp
+include stopeight-clibs/legacy-wrappers/interfacepython.h
+include stopeight-clibs/legacy/include/render.h
+include stopeight-clibs/legacy/include/dpoint.h
+include stopeight-clibs/legacy/include/legacy_global.h
+include stopeight-clibs/legacy/include/editorspirals.h
+include stopeight-clibs/legacy/include/editorcliffs.h
+include stopeight-clibs/legacy/include/editorbase.h
+include stopeight-clibs/legacy/include/editorinterface.h
+include stopeight-clibs/legacy/include/listbase.h
+include stopeight-clibs/legacy/include/myreal.h
+include stopeight-clibs/legacy/include/listcopyable.h
+include stopeight-clibs/legacy/include/listswitchable.h
+include stopeight-clibs/legacy/include/listrotator.h
+include stopeight-clibs/legacy/include/cliffs.h
+include stopeight-clibs/legacy/include/analyzer.h
+include stopeight-clibs/legacy/include/calculator.h
+include stopeight-clibs/legacy/include/cornernormalizer.h
+include stopeight-clibs/legacy/include/cornercalculator.h
+include stopeight-clibs/legacy/include/straightscalculator.h
+include stopeight-clibs/legacy/include/cliffsanalyzer.h
+include stopeight-clibs/legacy/include/cliffsnormalizer.h
+include stopeight-clibs/legacy/include/areacalculator.h
+include stopeight-clibs/legacy/include/turnnormalizer.h
+include stopeight-clibs/legacy/include/turncalculator.h
+include stopeight-clibs/legacy/include/spiralsanalyzer.h
+include stopeight-clibs/legacy/include/spiralscalculator.h
+include stopeight-clibs/legacy/include/areaanalyzer.h
+include stopeight-clibs/legacy/include/areanormalizer.h
+include stopeight-clibs/legacy/include/turns.h
+include stopeight-clibs/legacy/include/turnanalyzer.h
+include stopeight-clibs/legacy/include/straightsanalyzer.h
+include stopeight-clibs/legacy/include/corneranalyzer.h
+include stopeight-clibs/legacy/include/cliffscalculator.h
+include stopeight-clibs/legacy/include/spirals.h
