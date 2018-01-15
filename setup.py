@@ -9,14 +9,16 @@ except:
    _version = check_output(['git', 'describe','--abbrev=0']).rstrip()
 
 import os
-#cmake
+#cmake start
 __import__('cmake')
 from cmake import CMakeExtension, CMakeBuild
-#or distutils
+#cmake end
+#distutils start
 #__import__('monkey_patch_parallel')
 #__import__('python')
 #from python import get_pybind_include, BuildExt
 #my_path = os.path.dirname(os.path.realpath(__file__))
+#distutils end
 
 from setuptools import setup, Extension
 
@@ -28,9 +30,12 @@ setup( name='stopeight',
        url='http://www.stopeight.com',
        packages=_packages,
 
+#cmake start
        #ext_modules=[CMakeExtension('stopeight')],#,os.path.join('stopeight-clibs','grapher-wrappers'))],
        ext_modules=[CMakeExtension('stopeight.analyzer'),CMakeExtension('stopeight.grapher'),CMakeExtension('stopeight.legacy')],
        cmdclass=dict(build_ext=CMakeBuild),
+#cmake end
+#distutils start
 #       ext_modules = [
 #           Extension(
 #               'stopeight.grapher',
@@ -66,6 +71,7 @@ setup( name='stopeight',
 #       ],
 #       install_requires=['pybind11>=2.2'],
 #       cmdclass={'build_ext': BuildExt},
+#distutils end
 
        zip_safe=False,
 )
