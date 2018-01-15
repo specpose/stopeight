@@ -1,5 +1,6 @@
-# matchline: Comparing sequences of points in 2 dimensions.
-# Copyright (C) 2009-2012 Specific Purpose Software GmbH
+# stopeight: Comparing sequences of points in 2 dimensions.
+# Copyright (C) 2009-2016 Specific Purpose Software GmbH
+# Copyright (C) 2017-2018 Fassio Blatter
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
