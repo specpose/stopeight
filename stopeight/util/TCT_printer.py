@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from stopeight.logging import logSwitch
 log = logSwitch.logNone
 from stopeight.util import SVG
@@ -32,13 +30,3 @@ class TCTPrinter:
         self.scene.set_height(self.height)
         self.scene.write_svg()
         self.scene.display()
-
-if __name__=='__main__':
-    import numpy
-    printer = TCTPrinter('TCT_printer')
-    nline = numpy.array(((200,200),(200,300)))
-    printer.draw(nline)
-    printer.draw(nline)
-    printer.draw(nline)
-    #printer.scene.add(SVG.Line((200,200),(200,300)))
-    printer.write()
