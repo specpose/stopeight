@@ -4,13 +4,13 @@ _packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.
 
 from subprocess import check_output
 import sys
-##if sys.argv[1]=='sdist' or sys.argv[1]=='build' or sys.argv[1]=='install':
-#try:
-#	_version = check_output(['git', 'describe','--abbrev=0']).decode('utf-8').rstrip()
-#except:
-#	try:
-#		_version = check_output(['git', 'describe','--abbrev=0']).rstrip()
-_version = '0.1.4'
+#if sys.argv[1]=='sdist' or sys.argv[1]=='build' or sys.argv[1]=='install':
+try:
+	_version = check_output(['git', 'describe','--abbrev=0']).decode('utf-8').rstrip()
+except:
+	try:
+		_version = check_output(['git', 'describe','--abbrev=0']).rstrip()
+#_version = '0.1.4'
 
 import os
 ###cmake start
@@ -74,16 +74,16 @@ setup( name='stopeight',
            ),
        ],
        cmdclass={'build_ext': BuildExt},
-#pip start
-       install_requires=[
-          'numpy',
-          'future',
-          'funcsigs',
-          'matplotlib',
-          'pybind11>=2.2',#distutils
-          'PyQt5>=5.6.0',
-          ],
-#pip end
+###pip start
+##       install_requires=[
+##          'numpy',
+##          'future',
+##          'funcsigs',
+##          'matplotlib',
+##          'pybind11>=2.2',#distutils
+##          'PyQt5>=5.6.0',
+##          ],
+###pip end
 #distutils end
 
        zip_safe=False,
