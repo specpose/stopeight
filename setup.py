@@ -6,11 +6,12 @@ from subprocess import check_output
 import sys
 #if sys.argv[1]=='sdist' or sys.argv[1]=='build' or sys.argv[1]=='install':
 try:
-	_version = check_output(['git', 'describe','--abbrev=0']).decode('utf-8').rstrip()
+    _version = check_output(['git', 'describe','--abbrev=0']).decode('utf-8').rstrip()
 except:
-	try:
-		_version = check_output(['git', 'describe','--abbrev=0']).rstrip()
-#_version = '0.1.4'
+    try:
+        _version = check_output(['git', 'describe','--abbrev=0']).rstrip()
+    except:
+        _version = '0.1.4'
 
 import os
 #cmake start
