@@ -74,16 +74,16 @@ setup( name='stopeight',
 ##           ),
 ##       ],
 ##       cmdclass={'build_ext': BuildExt},
-###pip start
-##       install_requires=[
-##          'numpy',
-##          'future',
-##          'funcsigs',
-##          'matplotlib',
-##          'pybind11>=2.2',#distutils
-##          'PyQt5>=5.6.0',
-##          ],
-###pip end
+#pip start
+       install_requires=[
+#          'numpy',
+#          'future',
+#          'funcsigs',
+#          'matplotlib',
+          'pybind11>=2.2',#not for cmake
+#          'PyQt5>=5.6.0',
+          ],
+#pip end
 ###distutils end
 
        zip_safe=False,
