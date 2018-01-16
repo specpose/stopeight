@@ -17,8 +17,10 @@ requirements:
   build:
     - python
     - setuptools
-#    - pybind11
+    - pybind11 # distutils
+#    - cmake # cmake
     - stopeight-clibs
+    - pyqt >=5.6.0
 
   run:
     - python
@@ -28,7 +30,9 @@ requirements:
     - future
 #    - six
     - funcsigs # [python2]
+    - matplotlib
+    - numpy
 
 about:
   summary: Comparing sequences of points in 2 dimensions by visually overlapping them using matrix transformations (translation, scaling and rotation) and getting a boolean result.
-  license_file: LICENSE
+  license_file: LICENSE.txt

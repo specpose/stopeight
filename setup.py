@@ -26,7 +26,7 @@ setup( name='stopeight',
        version=_version,
        description='stopeight: Comparing sequences of points in 2 dimensions by visually overlapping them using matrix transformations (translation, scaling and rotation) and getting a boolean result.',
        author='Fassio Blatter',
-       license='GNU Lesser General Public License, version 2.1',
+       license='GNU General Public License, version 2',
        url='http://www.stopeight.com',
        packages=_packages,
 
@@ -70,16 +70,16 @@ setup( name='stopeight',
            ),
        ],
        cmdclass={'build_ext': BuildExt},
-#pip start
-       install_requires=[
-          'numpy',
-          'future',
-          'funcsigs',
-          'matplotlib',
-#          'pybind11>=2.2',#distutils
-          'PyQt5>=5.6.0',
-          ],
-#pip end
+###pip start
+##       install_requires=[
+##          'numpy',
+##          'future',
+##          'funcsigs',
+##          'matplotlib',
+##          'pybind11>=2.2',#distutils
+##          'PyQt5>=5.6.0',
+##          ],
+###pip end
 #distutils end
 
        zip_safe=False,
