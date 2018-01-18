@@ -49,11 +49,27 @@ from setuptools import setup, Extension
 
 setup( name='stopeight',
        version=_version,
-       description='stopeight: Comparing sequences of points in 2 dimensions by visually overlapping them using matrix transformations (translation, scaling and rotation) and getting a boolean result.',
+       description='stopeight: Comparing sequences of points in 2 dimensions',
+       long_description='stopeight: Comparing sequences of points in 2 dimensions by visually overlapping them using matrix transformations (translation, scaling and rotation) and getting a boolean result.',
        author='Fassio Blatter',
+       author_email='info@specpose.com',
        license='GNU General Public License, version 2',
        url='http://www.stopeight.com',
+       python_requires='>=2.7',
+       classifiers=[
+           "Development Status :: 3 - Alpha",
+           "Intended Audience :: Developers",
+           "Topic :: Software Development :: Signal Analysis",
+           "Topic :: Software Development :: Pen Stroke",
+           "License :: OSI Approved :: GPL License",
+           "Programming Language :: Python :: 2.7",
+           "Programming Language :: Python :: 3",
+           ],
+       keywords="signal-analysis pen-stroke",
        packages=_packages,
+       entry_points={
+           'setuptools.installation':['eggsecutable = stopeight.util.editor.dispatch:main_func',]
+           },
 
 ###cmake start
 ##       #ext_modules=[CMakeExtension('stopeight')],#,os.path.join('stopeight-clibs','grapher-wrappers'))],

@@ -1,5 +1,6 @@
 #sdist package descriptor
 include version.py
+include README.md
 #distutils
 include python.py
 #shared
