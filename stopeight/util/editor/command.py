@@ -16,6 +16,8 @@ class Algorithm_Select(dict):
         self._module = module
         
         module_name = self._module[0]
+        import importlib
+        importlib.import_module(module_name)
         import types
         for key in dir(loader[module_name]):
             if not key.startswith('_'):

@@ -33,15 +33,15 @@ class logNone:
 
     @staticmethod
     def warning(message):
-        pass
+        print("WARN: ",message)
 
     @staticmethod
     def error(message):
-        pass
+        print("ERROR: ",message)
 
     @staticmethod
     def critical(message):
-        pass
+        print("CRITICAL: ",message)
 
 # just print to stdout (fast?)
 class logPrint:

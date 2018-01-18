@@ -22,13 +22,17 @@ _DATA = {'Modules': [('stopeight.util.editor.modules.legacy', False),
 
 import importlib
 for module in _DATA['Modules']:
-    #try:
+    try:
         importlib.import_module(module[0])
         #output class name
-        log.info("Successfully imported module "+module[0])
-    #except:
-    #    log.info("Removing module "+module[0]+"!")
-    #    _DATA['Modules'].remove(module)
+        log.warning("Successfully imported module "+module[0])
+    except ImportError as ie:
+        log.warning(ie)
+        log.warning("Install stopeight-clibs to use module "+module[0])
+        _DATA['Modules'].remove(module)
+    except:
+        log.warning("Module "+module[0]+" not loaded!")
+        _DATA['Modules'].remove(module)
                 
 if __name__ == '__main__':
 

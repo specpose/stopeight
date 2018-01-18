@@ -5,33 +5,36 @@ _packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.
 #print(version.__dict__['_version'])
 from subprocess import check_output
 import sys
-#if sys.argv[1]=='sdist' or sys.argv[1]=='build' or sys.argv[1]=='install':
-try:
-    _version = check_output(['git', 'describe','--abbrev=0']).decode('utf-8').rstrip()
-except:
+if sys.argv[1]=='sdist' or sys.argv[1]=='bdist' or sys.argv[1]=='bdist_dumb' or sys.argv[1]=='bdist_rpm' or sys.argv[1]=='bdist_wininst' or sys.argv[1]=='bdist_wheel' or sys.argv[1]=='bdist_egg' or sys.argv[1]=='develop':
     try:
-        _version = check_output(['git', 'describe','--abbrev=0']).rstrip()
+        _version = check_output(['git', 'describe','--abbrev=0']).decode('utf-8').rstrip()
     except:
-        _version = '0.0.0'
-import os
-_mod_version = 'HEAD'
-try:
-    _mod_version = check_output(['git','rev-parse','--short','HEAD']).decode('utf-8').rstrip()
-except:
-    _mod_version = check_output(['git','rev-parse','--short','HEAD']).rstrip()
-_lib_version = 'HEAD'
-try:
-    _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).decode('utf-8').rstrip()
-except:
-    _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).rstrip()
-file = open('version.py','w')
-file.write('\"\"\"\n')
-file.write("This file is auto-generated in setup.py\n")
-file.write('\"\"\"\n')
-file.write('_version = \''+str(_version)+'\'\n')
-file.write('_mod_version = \''+str(_mod_version)+'\'\n')
-file.write('_lib_version = \''+str(_lib_version)+'\'\n')
-file.close()
+        try:
+            _version = check_output(['git', 'describe','--abbrev=0']).rstrip()
+        except:
+            _version = '0.0.0'
+    import os
+    _mod_version = 'HEAD'
+    try:
+        _mod_version = check_output(['git','rev-parse','--short','HEAD']).decode('utf-8').rstrip()
+    except:
+        _mod_version = check_output(['git','rev-parse','--short','HEAD']).rstrip()
+    _lib_version = 'HEAD'
+    try:
+        _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).decode('utf-8').rstrip()
+    except:
+        _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).rstrip()
+    file = open('version.py','w')
+    file.write('\"\"\"\n')
+    file.write("This file is auto-generated in setup.py\n")
+    file.write('\"\"\"\n')
+    file.write('_version = \''+str(_version)+'\'\n')
+    file.write('_mod_version = \''+str(_mod_version)+'\'\n')
+    file.write('_lib_version = \''+str(_lib_version)+'\'\n')
+    file.close()
+else:
+    import version
+    version.__dict__['_version']
 
 import os
 ###cmake start
@@ -59,9 +62,8 @@ setup( name='stopeight',
        classifiers=[
            "Development Status :: 3 - Alpha",
            "Intended Audience :: Developers",
-           "Topic :: Software Development :: Signal Analysis",
-           "Topic :: Software Development :: Pen Stroke",
-           "License :: OSI Approved :: GPL License",
+           "Topic :: Multimedia :: Sound/Audio :: Analysis",
+           "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
            "Programming Language :: Python :: 2.7",
            "Programming Language :: Python :: 3",
            ],
