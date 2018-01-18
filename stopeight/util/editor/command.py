@@ -45,20 +45,14 @@ class Algorithm_Run:
     def _auto_out(module_name,package_type,function_name):
         top = module_name+'.'+function_name
         import os
-        from subprocess import check_output
         sub = 'HEAD'
+        import version
         if (package_type==True):
             #get head from current directory (os.getcwd()).endswith('stopeight')
-            try:
-                sub = check_output(['git','rev-parse','--short','HEAD']).decode('utf-8').rstrip()
-            except:
-                sub = check_output(['git','rev-parse','--short','HEAD']).rstrip()
+            sub=version.__dict__['_mod_version']
         else:
             #get head from stopeight-clibs
-            try:
-                sub = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).decode('utf-8').rstrip()
-            except:
-                sub = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).rstrip()
+            sub=version.__dict__['_lib_version']
         top = os.path.join(top,sub)
         return top
 
@@ -98,9 +92,10 @@ class Algorithm_Run:
                                                 ,Algorithm_Run._auto_out(module[0],module[1],currentText)
                                                 #,_identify(_DATA['MyScribble'])
                                                 ))
-            del data[:]
-            if (len(data)>0):
-                raise Exception("Data clear failed!")
+            if data!=None:
+                del data[:]
+                if (len(data)>0):
+                    raise Exception("Data clear failed!")
             log.error(e)
         return data
             

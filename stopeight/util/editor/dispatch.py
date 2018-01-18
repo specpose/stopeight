@@ -11,12 +11,12 @@ from stopeight.logging import logSwitch
 log = logSwitch.logNone()
 
 # false if part of stopeight-clibs
-_DATA = {'Modules': [('stopeight.util.editor.modules.legacy', True),
+_DATA = {'Modules': [('stopeight.util.editor.modules.legacy', False),
 #                            ('stopeight.comparator.matrixTools',True),
                             ('stopeight.util.editor.modules.file', True),
                              ('stopeight.util.editor.modules.file_wave',True),
-                            ('stopeight.util.editor.modules.analyzer', True),
-                            ('stopeight.util.editor.modules.grapher', True)
+                            ('stopeight.util.editor.modules.analyzer', False),
+                            ('stopeight.util.editor.modules.grapher', False)
                     ]
          }
 
