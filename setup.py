@@ -5,36 +5,36 @@ _packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.
 #print(version.__dict__['_version'])
 from subprocess import check_output
 import sys
-if sys.argv[1]=='sdist' or sys.argv[1]=='bdist' or sys.argv[1]=='bdist_dumb' or sys.argv[1]=='bdist_rpm' or sys.argv[1]=='bdist_wininst' or sys.argv[1]=='bdist_wheel' or sys.argv[1]=='bdist_egg' or sys.argv[1]=='develop':
-    try:
-        _version = check_output(['git', 'describe','--abbrev=0']).decode('utf-8').rstrip()
-    except:
+if len(sys.argv)>1:
+    if sys.argv[1]=='sdist' or sys.argv[1]=='develop':
         try:
-            _version = check_output(['git', 'describe','--abbrev=0']).rstrip()
+            _version = check_output(['git', 'describe','--abbrev=0']).decode('utf-8').rstrip()
         except:
-            _version = '0.0.0'
-    import os
-    _mod_version = 'HEAD'
-    try:
-        _mod_version = check_output(['git','rev-parse','--short','HEAD']).decode('utf-8').rstrip()
-    except:
-        _mod_version = check_output(['git','rev-parse','--short','HEAD']).rstrip()
-    _lib_version = 'HEAD'
-    try:
-        _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).decode('utf-8').rstrip()
-    except:
-        _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).rstrip()
-    file = open('version.py','w')
-    file.write('\"\"\"\n')
-    file.write("This file is auto-generated in setup.py\n")
-    file.write('\"\"\"\n')
-    file.write('_version = \''+str(_version)+'\'\n')
-    file.write('_mod_version = \''+str(_mod_version)+'\'\n')
-    file.write('_lib_version = \''+str(_lib_version)+'\'\n')
-    file.close()
-else:
-    import version
-    version.__dict__['_version']
+            try:
+                _version = check_output(['git', 'describe','--abbrev=0']).rstrip()
+            except:
+                _version = '0.0.0'
+        import os
+        _mod_version = 'HEAD'
+        try:
+            _mod_version = check_output(['git','rev-parse','--short','HEAD']).decode('utf-8').rstrip()
+        except:
+            _mod_version = check_output(['git','rev-parse','--short','HEAD']).rstrip()
+        _lib_version = 'HEAD'
+        try:
+            _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).decode('utf-8').rstrip()
+        except:
+            _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).rstrip()
+        file = open('stopeight/version.py','w')
+        file.write('\"\"\"\n')
+        file.write("This file is auto-generated in setup.py\n")
+        file.write('\"\"\"\n')
+        file.write('_version = \''+str(_version)+'\'\n')
+        file.write('_mod_version = \''+str(_mod_version)+'\'\n')
+        file.write('_lib_version = \''+str(_lib_version)+'\'\n')
+        file.close()
+from stopeight import version
+_version = version.__dict__['_version']
 
 import os
 ###cmake start
@@ -91,7 +91,8 @@ setup( name='stopeight',
                    os.path.join(my_path,'stopeight-clibs','grapher')
                ],
                libraries=['stopeight-clibs-grapher'],
-               language='c++'
+               language='c++',
+               optional=True
            ),
            Extension(
                'stopeight.analyzer',
@@ -100,7 +101,8 @@ setup( name='stopeight',
                    os.path.join(my_path,'stopeight-clibs','analyzer/include')
                ],
                libraries=['stopeight-clibs-analyzer'],
-               language='c++'
+               language='c++',
+               optional=True
            ),
            Extension(
               'stopeight.legacy',
@@ -109,8 +111,9 @@ setup( name='stopeight',
                    os.path.join(my_path,'stopeight-clibs','legacy/include')
                ],
                libraries=['stopeight-clibs-legacy'],
-               language='c++'
-           ),
+               language='c++',
+               optional=True
+              ),
        ],
        cmdclass={'build_ext': BuildExt},
 #pip start

@@ -28,7 +28,7 @@ for module in _DATA['Modules']:
         log.warning("Successfully imported module "+module[0])
     except ImportError as ie:
         log.warning(ie)
-        log.warning("Install stopeight-clibs to use module "+module[0])
+        log.warning("Install stopeight-clibs and reinstall stopeight afterwards to use module "+module[0])
         _DATA['Modules'].remove(module)
     except:
         log.warning("Module "+module[0]+" not loaded!")

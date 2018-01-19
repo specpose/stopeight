@@ -48,7 +48,7 @@ class Algorithm_Run:
         top = module_name+'.'+function_name
         import os
         sub = 'HEAD'
-        import version
+        from stopeight import version
         if (package_type==True):
             #get head from current directory (os.getcwd()).endswith('stopeight')
             sub=version.__dict__['_mod_version']
