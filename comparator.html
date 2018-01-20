@@ -26,8 +26,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
-    <link rel="next" title="Visual Studio Integration" href="build_win.html" />
-    <link rel="prev" title="Stroke Analyzer" href="stroke-analyzer.html" />
+    <link rel="next" title="Analyzer Algorithm" href="dev_analyzer.html" />
+    <link rel="prev" title="Build" href="dev_build.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -46,7 +46,6 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Comparator</a><ul>
-<li><a class="reference internal" href="#stopeight-comparator">stopeight comparator</a></li>
 <li><a class="reference internal" href="#api-access">API Access</a></li>
 <li><a class="reference internal" href="#stopeight-server">stopeight Server</a><ul>
 <li><a class="reference internal" href="#stopeight-server-storage-setups">stopeight Server: Storage Setups</a></li>
@@ -61,8 +60,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="stroke-analyzer.html" title="previous chapter">Stroke Analyzer</a></li>
-      <li>Next: <a href="build_win.html" title="next chapter">Visual Studio Integration</a></li>
+      <li>Previous: <a href="dev_build.html" title="previous chapter">Build</a></li>
+      <li>Next: <a href="dev_analyzer.html" title="next chapter">Analyzer Algorithm</a></li>
   </ul></li>
 </ul>
 </div>
@@ -91,36 +90,6 @@
             
   <div class="section" id="comparator">
 <h1>Comparator<a class="headerlink" href="#comparator" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="stopeight-comparator">
-<h2>stopeight comparator<a class="headerlink" href="#stopeight-comparator" title="Permalink to this headline">¶</a></h2>
-<p>As of 08/2016 python version 3.5, 2.7 and Ubuntu 14.04 have been tested.</p>
-<p>Get numpy on ubuntu:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python-numpy
-</pre></div>
-</div>
-<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></code> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="k">import</span> <span class="n">synchronize</span>
-</pre></div>
-</div>
-<p>Clone into the repository:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight.git
-</pre></div>
-</div>
-<p>Due to the development status and likeliness to change API interfaces these modules are not yet available in the Python package repository:</p>
-<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></code></p>
-<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.logging</span></code></p>
-<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></code></p>
-<p>If you want to install to your system:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python-setuptools
-$ cd /path/to/where/stopeight
-$ python setup.py build
-$ sudo python setup.py install
-</pre></div>
-</div>
-<p>Non-API modules are not installed and tested with python &gt;2.7, they are available in the repository only:</p>
-<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.server</span></code></p>
-<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.tests</span></code></p>
-</div>
 <div class="section" id="api-access">
 <h2>API Access<a class="headerlink" href="#api-access" title="Permalink to this headline">¶</a></h2>
 <p>This example uses the <code class="xref py py-mod docutils literal"><span class="pre">stopeight-clibs-legacy</span></code> as a frontend and sample data. Please refer to <a class="reference internal" href="stroke-analyzer.html"><span class="doc">Stroke Analyzer</span></a> on how to install and use them.</p>
@@ -130,7 +99,7 @@ $ sudo python setup.py install
 &gt;&gt;&gt; lines = parser.parse_directory(&#39;/path/to/where/extracted/sample/data&#39;,&#39;stopeight_clibs_legacy.stroke_parallel&#39;)
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="#module-stopeight.multiprocessing.pooling" title="stopeight.multiprocessing.pooling"><code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing.pooling</span></code></a> makes parallel calls to <code class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></code>.
+<p>The <code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing.pooling</span></code> makes parallel calls to <code class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></code>.
 Note: The IDLE shell does not support spawning. Run from a Python shell instead:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight.multiprocessing</span> <span class="k">import</span> <span class="n">pooling</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">comparator</span> <span class="o">=</span> <span class="n">pooling</span><span class="o">.</span><span class="n">MPLine</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
@@ -139,14 +108,7 @@ Note: The IDLE shell does not support spawning. Run from a Python shell instead:
 <dl class="class">
 <dt id="stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass">
 <em class="property">class </em><code class="descclassname">stopeight.comparator.shapeMatchSubSection.</code><code class="descname">ShapeMatchSubSectionClass</code><span class="sig-paren">(</span><em>compvec</em>, <em>toleranceDivider=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stopeight/comparator/shapeMatchSubSection.html#ShapeMatchSubSectionClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="stopeight.multiprocessing.pooling.ShapeMatchSubSectionClass.match">
-<code class="descname">match</code><span class="sig-paren">(</span><em>invec</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stopeight/comparator/shapeMatchSubSection.html#ShapeMatchSubSectionClass.match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stopeight.multiprocessing.pooling.ShapeMatchSubSectionClass.match" title="Permalink to this definition">¶</a></dt>
-<dd><p>This gives a boolean result for every line that is contained within another line.
-unequal length</p>
-</dd></dl>
-
-<p>Note: This includes a check for occurences in reverse order.</p>
+<dd><p>Note: This includes a check for occurences in reverse order.</p>
 </dd></dl>
 
 <p>It tests every line against the whole dataset and itself:</p>
@@ -158,35 +120,33 @@ unequal length</p>
 </div>
 <div class="section" id="stopeight-server">
 <h2>stopeight Server<a class="headerlink" href="#stopeight-server" title="Permalink to this headline">¶</a></h2>
-<p>It relies on SOAP for client/server communication, therefore you need Python version 2.7!:</p>
+<p>Install ZSI:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
 </pre></div>
 </div>
-<p>Note: This is a version that does not require PyXML anymore</p>
+<p>Note: It relies on SOAP for client/server communication, therefore you need Python version 2.7! 2.1a2 is a version that does not require PyXML anymore</p>
 <p>Download and run in subdirectory zsi:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo python setup.py install
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python setup.py install
 </pre></div>
 </div>
 <div class="section" id="stopeight-server-storage-setups">
 <h3>stopeight Server: Storage Setups<a class="headerlink" href="#stopeight-server-storage-setups" title="Permalink to this headline">¶</a></h3>
 <p>For running against a file storage, you need ZODB:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python-zodb
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install ZODB3
 </pre></div>
 </div>
 <p>Tested working with version:</p>
 <p>ZODB3-3.10.5.tar.gz</p>
-<p>AND RUN stopeight.server.zodbTools TO MAKE DATA.FS FILE</p>
-<p>For running against a rails2.3 style db, you need elixir, SQLAlchemy, MySQL-python:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python-mysqldb
+<p>AND run stopeight.server.zodbTools TO MAKE DATA.FS FILE</p>
+<blockquote>
+<div>$ python -m stopeight.server.zodbTools</div></blockquote>
+<p>For running against a rails2.3 style db, you need elixir, SQLAlchemy, mysqlclient:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install mysqlclient Elixir SQLAlchemy==0.7.8
 </pre></div>
 </div>
 <p>Tested working with versions:</p>
 <p>Elixir-0.7.1.tar.gz</p>
 <p>SQLAlchemy-0.7.8.tar.gz</p>
-<p>Run in each directory and check sys.path:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo python setup.py install
-</pre></div>
-</div>
 <p>You can switch to a SQL storage backend by modifying 3 lines of code. Change occurences of:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;from zodbTools import DBLine&quot;</span>
 </pre></div>
@@ -200,7 +160,7 @@ unequal length</p>
 <div class="section" id="stopeight-server-deployment">
 <h3>stopeight Server: Deployment<a class="headerlink" href="#stopeight-server-deployment" title="Permalink to this headline">¶</a></h3>
 <p>To create a ZODB storage file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight/run
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight
 &gt;&gt;&gt; import stopeight.server.zodbTools
 &gt;&gt;&gt; from stopeight.server import server_include
 &gt;&gt;&gt; stopeight.server.zodbTools.create_database(server_include.zodb_filename)
@@ -222,31 +182,30 @@ The default port can be found in <code class="xref py py-mod docutils literal"><
 <div class="section" id="stopeight-server-testing-it">
 <h3>stopeight Server: Testing it<a class="headerlink" href="#stopeight-server-testing-it" title="Permalink to this headline">¶</a></h3>
 <p>I have provided example-scripts for all of the SOAP commands:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight/tests
-$ python
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight
 </pre></div>
 </div>
 <p>To save your first line on the server, run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">client_saveLine_test</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight.server</span> <span class="k">import</span> <span class="n">client_saveLine_test</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client_saveLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This should produce output containing the id of your newly created line.
-Keep this id to your records.</p>
+Store this id.</p>
 <p>To check whether an input line matches any of the reference lines, do the following:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">client_matchLine_test</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight.server</span> <span class="k">import</span> <span class="n">client_matchLine_test</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client_matchLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This will return both the data and the id&#8217;s that have matched your input.</p>
 <p>If you want to just retrieve the data of a reference line, you can do so by submitting the id:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">client_getLine_test</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight.server</span> <span class="k">import</span> <span class="n">client_getLine_test</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client_getLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>This will return the data associated to the reference line on record.</p>
 <p>And finally, if you want to delete a reference line in the database, send the id:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">client_deleteLine_test</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight.server</span> <span class="k">import</span> <span class="n">client_deleteLine_test</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client_deleteLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>

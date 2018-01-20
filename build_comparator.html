@@ -26,6 +26,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
+    <link rel="next" title="Build" href="dev_build.html" />
+    <link rel="prev" title="Editor" href="editor.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -44,6 +46,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="editor.html" title="previous chapter">Editor</a></li>
+      <li>Next: <a href="dev_build.html" title="next chapter">Build</a></li>
   </ul></li>
 </ul>
 </div>
@@ -72,31 +76,33 @@
             
   <div class="section" id="stopeight-comparator">
 <h1>stopeight comparator<a class="headerlink" href="#stopeight-comparator" title="Permalink to this headline">¶</a></h1>
-<p>As of 08/2016 python version 3.5, 2.7 and Ubuntu 14.04 have been tested.</p>
-<p>Get numpy on ubuntu:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python-numpy
+<p>The API is installed with stopeigth.</p>
+<p>To run the tests using the legacy frontend pooling is needed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">automodule</span><span class="p">::</span> <span class="n">stopeight</span><span class="o">.</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">pooling</span>
 </pre></div>
 </div>
-<span class="target" id="module-stopeight.multiprocessing.pooling"></span><p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></code> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">members:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></code> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="k">import</span> <span class="n">synchronize</span>
 </pre></div>
 </div>
-<p>Clone into the repository:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight.git
-</pre></div>
-</div>
-<p>Due to the development status and likeliness to change API interfaces these modules are not yet available in the Python package repository:</p>
-<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></code></p>
-<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.logging</span></code></p>
-<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></code></p>
-<p>If you want to install to your system:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python-setuptools
-$ cd /path/to/where/stopeight
-$ python setup.py build
-$ sudo python setup.py install
-</pre></div>
-</div>
-<p>Non-API modules are not installed and tested with python &gt;2.7, they are available in the repository only:</p>
+<p>Unpack the legacy test files:</p>
+<blockquote>
+<div>$ cd /path/to/where/stopeight-clibs/legacy/tests
+$ tar xvfz v0-1-0.tar.gz</div></blockquote>
+<p>Run the tests:</p>
+<blockquote>
+<div>$ cd /path/to/where/stopeight
+$ /path/to/where/miniconda/bin/python -m stopeight.tests.parser stopeight-clibs/legacy/tests/</div></blockquote>
 <p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.server</span></code></p>
 <p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.tests</span></code></p>
 </div>

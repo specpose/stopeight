@@ -1,11 +1,9 @@
 stopeight comparator
 --------------------
 
-As of 08/2016 python version 3.5, 2.7 and Ubuntu 14.04 have been tested.
+The API is installed with stopeigth.
 
-Get numpy on ubuntu::
-
-    $ sudo apt-get install python-numpy
+To run the tests using the legacy frontend pooling is needed::
 
 .. automodule:: stopeight.multiprocessing.pooling
    :members:
@@ -14,26 +12,15 @@ Get numpy on ubuntu::
 
     >>> from multiprocessing import synchronize
 
-Clone into the repository::
+Unpack the legacy test files:
 
-    $ git clone https://github.com/specpose/stopeight.git
+    $ cd /path/to/where/stopeight-clibs/legacy/tests
+    $ tar xvfz v0-1-0.tar.gz
 
-Due to the development status and likeliness to change API interfaces these modules are not yet available in the Python package repository:
+Run the tests:
 
-:mod:`stopeight.comparator`
-
-:mod:`stopeight.logging`
-
-:mod:`stopeight.multiprocessing`
-
-If you want to install to your system::
-
-    $ sudo apt-get install python-setuptools
     $ cd /path/to/where/stopeight
-    $ python setup.py build
-    $ sudo python setup.py install
-
-Non-API modules are not installed and tested with python >2.7, they are available in the repository only:
+    $ /path/to/where/miniconda/bin/python -m stopeight.tests.parser stopeight-clibs/legacy/tests/
 
 :mod:`stopeight.server`
 

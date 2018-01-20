@@ -4,12 +4,13 @@ Theory
 Preparing the data involves the following one or two steps:
 
 * :doc:`vector-graph`
-    Not yet implemented :)
+    Working.
 
     Turning a Function Graph into a Vector Graph.
 
 * :doc:`analyzer`
-    Partially working.
+    legacy pen-stroke version: Partially working.
+    analyzer resolution independent version: Not yet implemented.
 
     Extracting feature points from a Vector Graph for matchline overlay comparison.
 

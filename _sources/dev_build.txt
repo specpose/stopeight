@@ -1,5 +1,12 @@
-Build Issues
-------------
+Build
+-----
+
+Build and install stopeight-clibs::
+
+    $ cd /path/to/where/stopeight-clibs
+    $ mkdir build && cd build
+    $ cmake ../
+    $ make && make install
 
 Note: You may need to manually reinstall after a rebuild::
 
@@ -7,3 +14,8 @@ Note: You may need to manually reinstall after a rebuild::
     $ sudo ldconfig
 
 Or: Add them to your path
+
+Build and install stopeight::
+
+    $ cd ../
+    $ /path/to/python setup.py install

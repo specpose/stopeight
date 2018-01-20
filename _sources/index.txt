@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Background
-==============================
+==========
 
 .. toctree::
    :maxdepth: 3
@@ -13,27 +13,35 @@ Background
 
    applications
 
-Installation Instructions
-=========================
+Installation
+============
 
 .. toctree::
    :maxdepth: 1
 
-   build_analyzer
+   build
 
    stroke-analyzer
 
-   comparator
-
-Developer Notes
-===============
+Usage
+=====
 
 .. toctree::
    :maxdepth: 1
 
-   build_win
+   editor
+
+   build_comparator
+
+Developer
+=========
+
+.. toctree::
+   :maxdepth: 1
 
    dev_build
+
+   comparator
 
    dev_analyzer
 

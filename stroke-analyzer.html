@@ -26,8 +26,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
-    <link rel="next" title="Comparator" href="comparator.html" />
-    <link rel="prev" title="stopeight-clibs analyzer" href="build_analyzer.html" />
+    <link rel="next" title="Editor" href="editor.html" />
+    <link rel="prev" title="Installation" href="build.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -46,7 +46,6 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Stroke Analyzer</a><ul>
-<li><a class="reference internal" href="#stopeight-clibs-legacy">stopeight-clibs legacy</a></li>
 <li><a class="reference internal" href="#analyzing-pen-strokes-from-a-2d-input-device">Analyzing pen-strokes from a 2D input device.</a></li>
 </ul>
 </li>
@@ -55,8 +54,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="build_analyzer.html" title="previous chapter">stopeight-clibs analyzer</a></li>
-      <li>Next: <a href="comparator.html" title="next chapter">Comparator</a></li>
+      <li>Previous: <a href="build.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="editor.html" title="next chapter">Editor</a></li>
   </ul></li>
 </ul>
 </div>
@@ -85,53 +84,9 @@
             
   <div class="section" id="stroke-analyzer">
 <h1>Stroke Analyzer<a class="headerlink" href="#stroke-analyzer" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="stopeight-clibs-legacy">
-<h2>stopeight-clibs legacy<a class="headerlink" href="#stopeight-clibs-legacy" title="Permalink to this headline">¶</a></h2>
-<p>As of 05/2016 python version 2.7, qt4 and Ubuntu 12.04 have been tested.</p>
-<p>If you installed qt-creator version 4 you already have them:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install qt4-qmake libqt4-dev
-</pre></div>
-</div>
-<p>In Ubuntu 14.04 these libraries are pre-installed:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install libqt4-core libqt4-gui
-</pre></div>
-</div>
-<p>And the GCC compiler and tools:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install g++ make
-</pre></div>
-</div>
-<p>stopeight-clibs-legacy. Get:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight-clibs.git
-</pre></div>
-</div>
-<p>Run qmake to generate the Makefile, then compile, install and add to library path:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight-clibs/legacy
-$ qmake-qt4 -o ./Makefile legacy.pro
-$ make
-</pre></div>
-</div>
-<p>You may need to install them to your system&#8217;s library path:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo make install
-$ sudo ldconfig
-</pre></div>
-</div>
-<p>You will need python development headers:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python2.7-dev
-</pre></div>
-</div>
-<p>Build and install the python API for pen-strokes:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight-clibs/legacy-wrappers
-$ python setup.py build
-</pre></div>
-</div>
-<p>You may need to install the wrappers to the system&#8217;s python path:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo python setup.py install
-</pre></div>
-</div>
-</div>
 <div class="section" id="analyzing-pen-strokes-from-a-2d-input-device">
 <h2>Analyzing pen-strokes from a 2D input device.<a class="headerlink" href="#analyzing-pen-strokes-from-a-2d-input-device" title="Permalink to this headline">¶</a></h2>
-<p>Pen stroke test data can be found in the repository stopeight-clibs. As you can see you have now loaded the raw data of a pen-stroke. Any arc-wise connected series of 2D points can be loaded but you have to provide your own GUI at the time being. The sample data has been hand-drawn on a Wacom Cintiq 21UX and plain mouse using the editor binary.</p>
+<p>Pen stroke test data can be found in the repository stopeight-clibs. Any arc-wise connected series of 2D points can be loaded but you have to provide your own GUI at the time being. The sample data has been hand-drawn on a Wacom Cintiq 21UX and plain mouse using the editor binary.</p>
 <p>It has to be extracted from here:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight-clibs/tests
 $ tar xvfz v0-1-0.tar.gz

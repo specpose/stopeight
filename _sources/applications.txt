@@ -4,19 +4,18 @@ Applications
 It can be applied to a lot of different applications:
 
 * :doc:`stroke-analyzer`
-   Partially working.
-
    Generic frontend for pen-strokes.
+   stopeight-clibs-legacy: Partially working.
 
    Example: Recognising Asian characters. (See http://www.symboloh.com)
 * Analyzing a time-based series of Function Graph data.
-   Not yet implemented :)
-   
-   Turns a Function Graph into a Vector Graph. Extracts feature points.
+   Turns a Function Graph into a Vector Graph.
+   stopeight-clibs-grapher: Working.
+
+   Extracts feature points. Resolution independent version of legacy.
+   stopeight-clibs-analyzer: Not yet implemented.
 
    Example: Frontend for non-realtime signal analysis.
-
-   Example: Frontend for stock market quotes.
 
 In different fields:
 
