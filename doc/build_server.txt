@@ -1,42 +1,40 @@
 stopeight Server
 ----------------
 
-It relies on SOAP for client/server communication, therefore you need Python version 2.7!::
+Install ZSI::
 
     $ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
 
-Note: This is a version that does not require PyXML anymore
+Note: It relies on SOAP for client/server communication, therefore you need Python version 2.7! 2.1a2 is a version that does not require PyXML anymore
 
 Download and run in subdirectory zsi::
 
-    $ sudo python setup.py install
+    $ python setup.py install
 
 stopeight Server: Storage Setups
 ................................
 
 For running against a file storage, you need ZODB::
 
-    $ sudo apt-get install python-zodb
+    $ pip install ZODB3
 
 Tested working with version:
 
 ZODB3-3.10.5.tar.gz
 
-AND RUN stopeight.server.zodbTools TO MAKE DATA.FS FILE
+AND run stopeight.server.zodbTools TO MAKE DATA.FS FILE
 
-For running against a rails2.3 style db, you need elixir, SQLAlchemy, MySQL-python::
+    $ python -m stopeight.server.zodbTools
 
-    $ sudo apt-get install python-mysqldb
+For running against a rails2.3 style db, you need elixir, SQLAlchemy, mysqlclient::
+
+    $ pip install mysqlclient Elixir SQLAlchemy==0.7.8
 
 Tested working with versions:
 
 Elixir-0.7.1.tar.gz
 
 SQLAlchemy-0.7.8.tar.gz
-
-Run in each directory and check sys.path::
-
-    $ sudo python setup.py install
 
 You can switch to a SQL storage backend by modifying 3 lines of code. Change occurences of::
 
@@ -53,7 +51,7 @@ stopeight Server: Deployment
 
 To create a ZODB storage file::
 
-    $ cd /path/to/where/stopeight/run
+    $ cd /path/to/where/stopeight
     >>> import stopeight.server.zodbTools
     >>> from stopeight.server import server_include
     >>> stopeight.server.zodbTools.create_database(server_include.zodb_filename)
@@ -71,34 +69,33 @@ stopeight Server: Testing it
 
 I have provided example-scripts for all of the SOAP commands::
 
-    $ cd /path/to/where/stopeight/tests
-    $ python
+    $ cd /path/to/where/stopeight
 
 To save your first line on the server, run::
 
-    >>> import client_saveLine_test
+    >>> from stopeight.server import client_saveLine_test
     >>> client_saveLine_test.run()
 
 This should produce output containing the id of your newly created line.
-Keep this id to your records.
+Store this id.
 
 To check whether an input line matches any of the reference lines, do the following::
 
-    >>> import client_matchLine_test
+    >>> from stopeight.server import client_matchLine_test
     >>> client_matchLine_test.run()
 
 This will return both the data and the id's that have matched your input.
 
 If you want to just retrieve the data of a reference line, you can do so by submitting the id::
 
-    >>> import client_getLine_test
+    >>> from stopeight.server import client_getLine_test
     >>> client_getLine_test.run()
 
 This will return the data associated to the reference line on record.
 
 And finally, if you want to delete a reference line in the database, send the id::
 
-    >>> import client_deleteLine_test
+    >>> from stopeight.server import client_deleteLine_test
     >>> client_deleteLine_test.run()
 
 Please refer to the code-samples for further information on how to use this from within your code.

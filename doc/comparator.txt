@@ -1,8 +1,6 @@
 Comparator
 ==========
 
-.. include:: build_comparator.txt
-
 API Access
 ----------
 

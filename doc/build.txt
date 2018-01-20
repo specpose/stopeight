@@ -1,0 +1,28 @@
+Installation
+============
+
+stopeight-clibs
+---------------
+
+`Download and install anaconda <https://conda.io/docs/user-guide/install/index.html>`_
+
+You have to add cmake and qt dependencies manually and install stopeight-clibs.
+
+    $ ~/miniconda3/bin/conda install -c specpose cmake qt stopeight-clibs
+
+stopeight
+---------
+
+Note: You need to install stopeight-clibs before installing stopeight or the python extensions are not compiled.
+
+Install stopeight.
+
+   $ ~/miniconda3/bin/pip install stopeight
+
+Or stopeight without stopeight-clibs.
+
+   $ pip install stopeight
+
+Eventually you will need the server module, test scripts and test data
+
+    $ git clone https://github.com/specpose/stopeight.git
