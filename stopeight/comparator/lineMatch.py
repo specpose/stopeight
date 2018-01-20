@@ -151,10 +151,10 @@ class LineMatchClass:
         forward = LineMatchClass.align(0,1,self.reference,inAtZero)
 
         if LineMatchClass.compare(self.tolerance,self.reference,forward):
-            log.warning('We have a match!')
+            log.info('We have a match!')
             return True
         else:
-            log.warning('No match.')
+            log.info('No match.')
             return False
 
 if __name__ == "__main__":
