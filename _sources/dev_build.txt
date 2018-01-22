@@ -6,16 +6,14 @@ Build and install stopeight-clibs::
     $ cd /path/to/where/stopeight-clibs
     $ mkdir build && cd build
     $ cmake ../
-    $ make && make install
+    $ make && sudo make install
 
 Note: You may need to manually reinstall after a rebuild::
 
-    $ cp libstopeight-clibs-* /path/to/where/your/syslibs
+    $ sudo cp libstopeight-clibs-* /path/to/where/your/syslibs
     $ sudo ldconfig
-
-Or: Add them to your path
 
 Build and install stopeight::
 
     $ cd ../
-    $ /path/to/python setup.py install
+    $ python setup.py install

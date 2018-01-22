@@ -100,4 +100,4 @@ PATH=%PATH%;C:\\Python27\\libs;C:\\Qt\\Qt5.7.0\\5.7\\msvc2015_64\\bin;
 Under Python environment pip install numpy, pyqt5
 
 Try the stopeight/tests/parser.py script to parse test files with .sp extension (v0.1.0).
-Try the stopeight/analyzer/editor.py to test algorithms and files using the new file format (v0.1.1).
+Try the stopeight/util/editor/dispatch.py to test algorithms and files using the new file format (v0.1.1).

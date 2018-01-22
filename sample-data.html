@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &#8212; stopeight 0.1.1 documentation</title>
+    <title>Sample-Data &#8212; stopeight 0.1.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,6 +26,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
+    <link rel="next" title="Editor" href="run_editor.html" />
+    <link rel="prev" title="Installation" href="stopeight.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -44,6 +46,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="stopeight.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="run_editor.html" title="next chapter">Editor</a></li>
   </ul></li>
 </ul>
 </div>
@@ -70,11 +74,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p>Pen stroke test data can be found in the repository stopeight-clibs. Any arc-wise connected series of 2D points can be loaded but you have to provide your own GUI at the time being. The sample data has been hand-drawn on a Wacom Cintiq 21UX and plain mouse using the editor binary.</p>
+  <div class="section" id="sample-data">
+<h1>Sample-Data<a class="headerlink" href="#sample-data" title="Permalink to this headline">¶</a></h1>
+<p>Legacy pen stroke test data can be found in the repository stopeight-clibs. Any arc-wise connected series of 2D points can be loaded. The sample data has been hand-drawn on a Wacom Cintiq 21UX and plain mouse using Symboloh. It is currently the only test-set available.</p>
 <p>It has to be extracted from here:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight-clibs/tests
 $ tar xvfz v0-1-0.tar.gz
 </pre></div>
+</div>
+<p>Pen-Stroke and Vector Graph data in the new format is automatically generated in the ~/.stopeight directory if a editor algorithm fails. It can also be saved from the editor menu.</p>
 </div>
 
 

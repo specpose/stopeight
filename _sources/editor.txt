@@ -1,6 +1,0 @@
-Editor
-======
-
-The editor is the main entry point to the code. Currently it allows for drawing, importing pen-stroke and WAV files. In the editor you can apply algorithms to the imported data.
-
-    $ /path/to/where/conda/python -m stopeight.util.editor.dispatch

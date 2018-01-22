@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Comparator &#8212; stopeight 0.1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
+    <link rel="next" title="Analyzer Algorithm" href="dev_analyzer.html" />
+    <link rel="prev" title="Stroke Analyzer" href="dev_stroke-analyzer.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/crab.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Comparator</a><ul>
+<li><a class="reference internal" href="#api-access">API Access</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="dev_stroke-analyzer.html" title="previous chapter">Stroke Analyzer</a></li>
+      <li>Next: <a href="dev_analyzer.html" title="next chapter">Analyzer Algorithm</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dev_comparator.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="comparator">
+<h1>Comparator<a class="headerlink" href="#comparator" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="api-access">
+<h2>API Access<a class="headerlink" href="#api-access" title="Permalink to this headline">¶</a></h2>
+<p>This example uses the <a class="reference internal" href="dev_stroke-analyzer.html#module-stopeight.legacy" title="stopeight.legacy"><code class="xref py py-mod docutils literal"><span class="pre">stopeight.legacy</span></code></a>, <code class="xref py py-mod docutils literal"><span class="pre">stopeight.tests</span></code> module and sample data. Please refer to <a class="reference internal" href="stopeight.html"><span class="doc">Installation</span></a> and <a class="reference internal" href="sample-data.html"><span class="doc">Sample-Data</span></a> on how to install them.</p>
+<p>This attempts to load all the files with &#8221;.sp&#8221; extension into parallel implementation of stroke analyzer:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight
+&gt;&gt;&gt; from stopeight.tests import parser
+&gt;&gt;&gt; lines = parser.parse_directory(&#39;/path/to/where/extracted/sample/data&#39;,&#39;stopeight_clibs_legacy.stroke_parallel&#39;)
+</pre></div>
+</div>
+<p>The <code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing.pooling</span></code> makes parallel calls to <code class="xref py py-mod docutils literal"><span class="pre">stopeight.comparator</span></code>.
+Note: The IDLE shell does not support spawning.
+Run from a Python shell instead:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight.multiprocessing</span> <span class="k">import</span> <span class="n">pooling</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">comparator</span> <span class="o">=</span> <span class="n">pooling</span><span class="o">.</span><span class="n">MPLine</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass">
+<em class="property">class </em><code class="descclassname">stopeight.comparator.shapeMatchSubSection.</code><code class="descname">ShapeMatchSubSectionClass</code><span class="sig-paren">(</span><em>compvec</em>, <em>toleranceDivider=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stopeight/comparator/shapeMatchSubSection.html#ShapeMatchSubSectionClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass.match">
+<code class="descname">match</code><span class="sig-paren">(</span><em>invec</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stopeight/comparator/shapeMatchSubSection.html#ShapeMatchSubSectionClass.match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>This gives a boolean result for every line that is contained within another line.
+unequal length</p>
+</dd></dl>
+
+<p>Note: This includes a check for occurences in reverse order.</p>
+</dd></dl>
+
+<p>It tests every line against the whole dataset and itself:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">matches</span> <span class="o">=</span> <span class="n">comparator</span><span class="o">.</span><span class="n">matchLine</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Line &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; matched &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">matches</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39; occurences &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">matches</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      
+      
+      
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      
+      |
+      <a href="_sources/dev_comparator.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/specpose/stopeight" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

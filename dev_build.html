@@ -26,8 +26,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
-    <link rel="next" title="Comparator" href="comparator.html" />
-    <link rel="prev" title="stopeight comparator" href="build_comparator.html" />
+    <link rel="next" title="Stroke Analyzer" href="dev_stroke-analyzer.html" />
+    <link rel="prev" title="stopeight comparator" href="run_tests.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -46,8 +46,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="build_comparator.html" title="previous chapter">stopeight comparator</a></li>
-      <li>Next: <a href="comparator.html" title="next chapter">Comparator</a></li>
+      <li>Previous: <a href="run_tests.html" title="previous chapter">stopeight comparator</a></li>
+      <li>Next: <a href="dev_stroke-analyzer.html" title="next chapter">Stroke Analyzer</a></li>
   </ul></li>
 </ul>
 </div>
@@ -80,18 +80,17 @@
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight-clibs
 $ mkdir build &amp;&amp; cd build
 $ cmake ../
-$ make &amp;&amp; make install
+$ make &amp;&amp; sudo make install
 </pre></div>
 </div>
 <p>Note: You may need to manually reinstall after a rebuild:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cp libstopeight-clibs-* /path/to/where/your/syslibs
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo cp libstopeight-clibs-* /path/to/where/your/syslibs
 $ sudo ldconfig
 </pre></div>
 </div>
-<p>Or: Add them to your path</p>
 <p>Build and install stopeight:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ cd ../
-$ /path/to/python setup.py install
+$ python setup.py install
 </pre></div>
 </div>
 </div>

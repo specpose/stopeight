@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Editor &#8212; stopeight 0.1.1 documentation</title>
+    <title>Installation &#8212; stopeight 0.1.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,8 +26,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
-    <link rel="next" title="stopeight comparator" href="build_comparator.html" />
-    <link rel="prev" title="Stroke Analyzer" href="stroke-analyzer.html" />
+    <link rel="next" title="Sample-Data" href="sample-data.html" />
+    <link rel="prev" title="Applications" href="applications.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -42,19 +42,28 @@
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/crab.png" alt="Logo"/>
-            </a></p><div class="relations">
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#stopeight-clibs">stopeight-clibs</a></li>
+<li><a class="reference internal" href="#stopeight">stopeight</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="stroke-analyzer.html" title="previous chapter">Stroke Analyzer</a></li>
-      <li>Next: <a href="build_comparator.html" title="next chapter">stopeight comparator</a></li>
+      <li>Previous: <a href="applications.html" title="previous chapter">Applications</a></li>
+      <li>Next: <a href="sample-data.html" title="next chapter">Sample-Data</a></li>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/editor.txt"
+      <li><a href="_sources/stopeight.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -74,11 +83,35 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="editor">
-<h1>Editor<a class="headerlink" href="#editor" title="Permalink to this headline">¶</a></h1>
-<p>The editor is the main entry point to the code. Currently it allows for drawing, importing pen-stroke and WAV files. In the editor you can apply algorithms to the imported data.</p>
-<blockquote>
-<div>$ /path/to/where/conda/python -m stopeight.util.editor.dispatch</div></blockquote>
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="stopeight-clibs">
+<h2>stopeight-clibs<a class="headerlink" href="#stopeight-clibs" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://conda.io/docs/user-guide/install/index.html">Download and install anaconda</a></p>
+<p>You have to add cmake and qt dependencies manually and install stopeight-clibs:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ conda install -c specpose cmake qt stopeight-clibs
+</pre></div>
+</div>
+<p>For installation from source refer to <a class="reference internal" href="dev_build.html"><span class="doc">Build</span></a>.</p>
+</div>
+<div class="section" id="stopeight">
+<h2>stopeight<a class="headerlink" href="#stopeight" title="Permalink to this headline">¶</a></h2>
+<p>Note: You need to install stopeight-clibs before installing stopeight or the python extensions are not compiled.</p>
+<p>Python 2: PyQt5 has been removed for Python 2. You have to install it manually from <a class="reference external" href="https://www.riverbankcomputing.com/software/pyqt/download5">Riverbank</a> or your distro. Also you need a recent gcc:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python-pyqt5 gcc-6
+$ pip install numpy future funcsigs matplotlib pybind11&gt;=2.2
+$ pip install --user --no-deps stopeight
+</pre></div>
+</div>
+<p>Python 3:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install --user stopeight
+</pre></div>
+</div>
+<p>Eventually you will need the server module, test scripts and test data:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight.git
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -95,7 +128,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="_sources/editor.txt"
+      <a href="_sources/stopeight.txt"
           rel="nofollow">Page source</a>
     </div>
 

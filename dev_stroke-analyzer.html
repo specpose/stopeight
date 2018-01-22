@@ -26,8 +26,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
-    <link rel="next" title="Editor" href="editor.html" />
-    <link rel="prev" title="Installation" href="build.html" />
+    <link rel="next" title="Comparator" href="dev_comparator.html" />
+    <link rel="prev" title="Build" href="dev_build.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -54,15 +54,15 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="build.html" title="previous chapter">Installation</a></li>
-      <li>Next: <a href="editor.html" title="next chapter">Editor</a></li>
+      <li>Previous: <a href="dev_build.html" title="previous chapter">Build</a></li>
+      <li>Next: <a href="dev_comparator.html" title="next chapter">Comparator</a></li>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/stroke-analyzer.txt"
+      <li><a href="_sources/dev_stroke-analyzer.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -86,23 +86,41 @@
 <h1>Stroke Analyzer<a class="headerlink" href="#stroke-analyzer" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="analyzing-pen-strokes-from-a-2d-input-device">
 <h2>Analyzing pen-strokes from a 2D input device.<a class="headerlink" href="#analyzing-pen-strokes-from-a-2d-input-device" title="Permalink to this headline">¶</a></h2>
-<p>Pen stroke test data can be found in the repository stopeight-clibs. Any arc-wise connected series of 2D points can be loaded but you have to provide your own GUI at the time being. The sample data has been hand-drawn on a Wacom Cintiq 21UX and plain mouse using the editor binary.</p>
-<p>It has to be extracted from here:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight-clibs/tests
-$ tar xvfz v0-1-0.tar.gz
-</pre></div>
-</div>
 <p>Load a file with pen-stroke test data:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">stopeight_clibs_legacy</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">line</span> <span class="o">=</span> <span class="n">stopeight_clibs_legacy</span><span class="o">.</span><span class="n">parse_file</span><span class="p">(</span><span class="s1">&#39;/path/to/where/FILENAME.sp&#39;</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">stopeight.legacy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">line</span> <span class="o">=</span> <span class="n">stopeight</span><span class="o">.</span><span class="n">legacy</span><span class="o">.</span><span class="n">parse_file</span><span class="p">(</span><span class="s1">&#39;/path/to/where/FILENAME.sp&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">line</span>
 </pre></div>
 </div>
 <p>To extract the feature points from the pen-stroke:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">points</span> <span class="o">=</span> <span class="n">stopeight_clibs_legacy</span><span class="o">.</span><span class="n">stroke_parallel</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">points</span> <span class="o">=</span> <span class="n">stopeight</span><span class="o">.</span><span class="n">legacy</span><span class="o">.</span><span class="n">stroke_parallel</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">points</span>
 </pre></div>
 </div>
+<span class="target" id="module-stopeight.legacy"></span><dl class="function">
+<dt id="stopeight.legacy.TCT_to_bezier">
+<code class="descclassname">stopeight.legacy.</code><code class="descname">TCT_to_bezier</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stopeight.legacy.TCT_to_bezier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert stopeight TCT path to quadratic bezier segments suitable for rendering in most graphics APIs</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stopeight.legacy.parse_file">
+<code class="descclassname">stopeight.legacy.</code><code class="descname">parse_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stopeight.legacy.parse_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>parse proprietary legacy qt file format for input points of recorded pen-stroke.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stopeight.legacy.stroke_parallel">
+<code class="descclassname">stopeight.legacy.</code><code class="descname">stroke_parallel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stopeight.legacy.stroke_parallel" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the parallel version of the stroke analyzer. It can look ahead, detect and center multiple immediately repeating features, when the number of features is prime. It will theoretically run out of memory if the number of immediately repeating features is too high.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stopeight.legacy.stroke_sequential">
+<code class="descclassname">stopeight.legacy.</code><code class="descname">stroke_sequential</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stopeight.legacy.stroke_sequential" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the sequential version of the stroke analyzer. It will subdivide pairs (cliffs) and triplets (turns) of immediately repeating features without further lookahead and center them.</p>
+</dd></dl>
+
 </div>
 </div>
 
@@ -120,7 +138,7 @@ $ tar xvfz v0-1-0.tar.gz
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="_sources/stroke-analyzer.txt"
+      <a href="_sources/dev_stroke-analyzer.txt"
           rel="nofollow">Page source</a>
     </div>
 

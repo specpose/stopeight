@@ -4,18 +4,16 @@ Stroke Analyzer
 Analyzing pen-strokes from a 2D input device.
 ---------------------------------------------
 
-.. include:: sample-data.txt
-
 Load a file with pen-stroke test data::
 
-    >>> import stopeight_clibs_legacy
-    >>> line = stopeight_clibs_legacy.parse_file('/path/to/where/FILENAME.sp')
+    >>> import stopeight.legacy
+    >>> line = stopeight.legacy.parse_file('/path/to/where/FILENAME.sp')
     >>> print line
 
 To extract the feature points from the pen-stroke::
 
-    >>> points = stopeight_clibs_legacy.stroke_parallel(line)
+    >>> points = stopeight.legacy.stroke_parallel(line)
     >>> print points
 
-.. automodule:: stopeight-clibs-legacy
+.. automodule:: stopeight.legacy
    :members:

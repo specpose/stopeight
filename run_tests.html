@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Installation &#8212; stopeight 0.1.1 documentation</title>
+    <title>stopeight comparator &#8212; stopeight 0.1.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,8 +26,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
-    <link rel="next" title="Stroke Analyzer" href="stroke-analyzer.html" />
-    <link rel="prev" title="Applications" href="applications.html" />
+    <link rel="next" title="Build" href="dev_build.html" />
+    <link rel="prev" title="Stopeight Server" href="run_server.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -42,28 +42,19 @@
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/crab.png" alt="Logo"/>
-            </a></p>
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Installation</a><ul>
-<li><a class="reference internal" href="#stopeight-clibs">stopeight-clibs</a></li>
-<li><a class="reference internal" href="#stopeight">stopeight</a></li>
-</ul>
-</li>
-</ul>
-<div class="relations">
+            </a></p><div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="applications.html" title="previous chapter">Applications</a></li>
-      <li>Next: <a href="stroke-analyzer.html" title="next chapter">Stroke Analyzer</a></li>
+      <li>Previous: <a href="run_server.html" title="previous chapter">Stopeight Server</a></li>
+      <li>Next: <a href="dev_build.html" title="next chapter">Build</a></li>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/build.txt"
+      <li><a href="_sources/run_tests.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -83,27 +74,23 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="stopeight-clibs">
-<h2>stopeight-clibs<a class="headerlink" href="#stopeight-clibs" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://conda.io/docs/user-guide/install/index.html">Download and install anaconda</a></p>
-<p>You have to add cmake and qt dependencies manually and install stopeight-clibs.</p>
-<blockquote>
-<div>$ ~/miniconda3/bin/conda install -c specpose cmake qt stopeight-clibs</div></blockquote>
+  <div class="section" id="stopeight-comparator">
+<h1>stopeight comparator<a class="headerlink" href="#stopeight-comparator" title="Permalink to this headline">¶</a></h1>
+<p>The API is installed with stopeight.</p>
+<p>To run the tests using the legacy frontend pooling is needed.</p>
+<p><code class="xref py py-mod docutils literal"><span class="pre">stopeight.multiprocessing</span></code> is using the Python multiprocessing module. You can test if your Python installation and the underlying OS support this by running from within a Python shell:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="k">import</span> <span class="n">synchronize</span>
+</pre></div>
 </div>
-<div class="section" id="stopeight">
-<h2>stopeight<a class="headerlink" href="#stopeight" title="Permalink to this headline">¶</a></h2>
-<p>Note: You need to install stopeight-clibs before installing stopeight or the python extensions are not compiled.</p>
-<p>Install stopeight.</p>
-<blockquote>
-<div>$ ~/miniconda3/bin/pip install stopeight</div></blockquote>
-<p>Or stopeight without stopeight-clibs.</p>
-<blockquote>
-<div>$ pip install stopeight</div></blockquote>
-<p>Eventually you will need the server module, test scripts and test data</p>
-<blockquote>
-<div>$ git clone <a class="reference external" href="https://github.com/specpose/stopeight.git">https://github.com/specpose/stopeight.git</a></div></blockquote>
+<p>Unpack the legacy test files:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight-clibs/legacy/tests
+$ tar xvfz v0-1-0.tar.gz
+</pre></div>
+</div>
+<p>Run the tests:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight
+$ python -m stopeight.tests.parser stopeight-clibs/legacy/tests/
+</pre></div>
 </div>
 </div>
 
@@ -121,7 +108,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="_sources/build.txt"
+      <a href="_sources/run_tests.txt"
           rel="nofollow">Page source</a>
     </div>
 
