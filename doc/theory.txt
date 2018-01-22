@@ -10,7 +10,8 @@ Preparing the data involves the following one or two steps:
 
 * :doc:`analyzer`
     legacy pen-stroke version: Partially working.
-    analyzer resolution independent version: Not yet implemented.
+
+    analyzer time-series and resolution independent version: Not yet implemented.
 
     Extracting feature points from a Vector Graph for matchline overlay comparison.
 
@@ -19,4 +20,4 @@ The comparator can do searches in the prepared data:
 * Comparator
     Working.
 
-    (Documentation missing: See Installation instructions :doc:`comparator`)
+    (Documentation missing: See developer instructions :doc:`dev_comparator`)

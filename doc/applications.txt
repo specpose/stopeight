@@ -3,17 +3,14 @@ Applications
 
 It can be applied to a lot of different applications:
 
-* :doc:`stroke-analyzer`
-   Generic frontend for pen-strokes.
-   stopeight-clibs-legacy: Partially working.
+* Pen-Stroke Comparison
+   :mod:`stopeight-clibs-legacy`: Extracts feature points. Reduces the amount of data points in a format suitable for overlay comparison using affine transformations. Status Partially working.
 
    Example: Recognising Asian characters. (See http://www.symboloh.com)
-* Analyzing a time-based series of Function Graph data.
-   Turns a Function Graph into a Vector Graph.
-   stopeight-clibs-grapher: Working.
+* Analyzing a time-based Series of Function Graph data
+   :mod:`stopeight-clibs-grapher`: Turns a Function Graph into a Vector Graph. The Vector Graph can then be processed like a pen-stroke. Status Working.
 
-   Extracts feature points. Resolution independent version of legacy.
-   stopeight-clibs-analyzer: Not yet implemented.
+   :mod:`stopeight-clibs-analyzer`: Makes a quadratic approximation of the Vector Graph similar to the legacy method above. Resolution independent version. Status Not yet implemented.
 
    Example: Frontend for non-realtime signal analysis.
 
@@ -22,4 +19,3 @@ In different fields:
 * Pen-Stroke UI
 * Signal Analysis
 * Data Visualisation
-

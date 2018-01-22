@@ -57,4 +57,4 @@ Most of the development tools are accessible from the scripts in the stopeight r
 
 Try to apply algorithms to a series of points from within the Editor::
 
-    >>> exec('stopeight/analyzer/editor.py')
+    >>> exec('stopeight/util/editor/dispatch.py')

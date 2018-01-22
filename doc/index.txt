@@ -19,9 +19,9 @@ Installation
 .. toctree::
    :maxdepth: 1
 
-   build
+   stopeight
 
-   stroke-analyzer
+   sample-data
 
 Usage
 =====
@@ -29,9 +29,11 @@ Usage
 .. toctree::
    :maxdepth: 1
 
-   editor
+   run_editor
 
-   build_comparator
+   run_server
+
+   run_tests
 
 Developer
 =========
@@ -41,7 +43,9 @@ Developer
 
    dev_build
 
-   comparator
+   dev_stroke-analyzer
+
+   dev_comparator
 
    dev_analyzer
 

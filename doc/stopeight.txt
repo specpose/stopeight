@@ -6,7 +6,7 @@ stopeight-clibs
 
 `Download and install anaconda <https://conda.io/docs/user-guide/install/index.html>`_
 
-You have to add cmake and qt dependencies manually and install stopeight-clibs.
+You have to add cmake and qt dependencies manually and install stopeight-clibs::
 
     $ ~/miniconda3/bin/conda install -c specpose cmake qt stopeight-clibs
 
@@ -15,14 +15,20 @@ stopeight
 
 Note: You need to install stopeight-clibs before installing stopeight or the python extensions are not compiled.
 
-Install stopeight.
+Python 2: PyQt5 has been removed for Python 2. Version 5.5.1 appears to be broken. You have to install it manually from `Riverbank <https://www.riverbankcomputing.com/software/pyqt/download5>`_ or your distro. Also you need a recent gcc::
 
-   $ ~/miniconda3/bin/pip install stopeight
+    $ sudo apt-get install python-pyqt5 gcc-6
+    $ ~/miniconda3/bin/pip install numpy future funcsigs matplotlib pybind11>=2.2
+    $ ~/miniconda3/bin/pip install --user --no-deps stopeight
 
-Or stopeight without stopeight-clibs.
+Python 3: Install stopeight::
 
-   $ pip install stopeight
+    $ ~/miniconda3/bin/pip install --user stopeight
 
-Eventually you will need the server module, test scripts and test data
+Or stopeight without stopeight-clibs::
+
+    $ pip install stopeight
+
+Eventually you will need the server module, test scripts and test data::
 
     $ git clone https://github.com/specpose/stopeight.git
