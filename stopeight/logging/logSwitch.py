@@ -72,11 +72,11 @@ class logPrint:
 #or
 class logServer(logNone):
     def __new__(cls):
-        return logging.getLogger('server')
+        return logging.getLogger('stopeight.server')
 
 # python logging module (slow)
 #class logMath(logging.getLoggerClass()):
 #or
 class logMath(logNone):
     def __new__(cls):
-        return logging.getLogger('math')
+        return logging.getLogger('stopeight.comparator')

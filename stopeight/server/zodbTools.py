@@ -6,7 +6,7 @@ from ZODB.FileStorage import FileStorage
 from ZODB.DB import DB
 
 from stopeight.logging import logSwitch
-log = logSwitch.logNone()
+log = logSwitch.logPrint()
 
 from stopeight.server import server_include
 
