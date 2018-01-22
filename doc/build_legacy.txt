@@ -15,7 +15,7 @@ And the GCC compiler and tools::
 
     $ sudo apt-get install g++ make
 
-stopeight-clibs-legacy. Get::
+:mod:`stopeight.legacy`. Get::
 
     $ git clone https://github.com/specpose/stopeight-clibs.git
 
