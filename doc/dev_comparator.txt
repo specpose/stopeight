@@ -21,7 +21,7 @@ Run from a Python shell instead::
 
 .. autoclass:: stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass
 
-   .. automethod:: ShapeMatchSubSectionClass.match
+   .. automethod:: stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass.match
 
    Note: This includes a check for occurences in reverse order.
 
