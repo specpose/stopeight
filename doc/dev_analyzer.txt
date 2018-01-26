@@ -35,4 +35,4 @@ There has to be an even number of Cliffs which are centered from both sides. The
 
 An explanation with a slightly outdated terminology. Straights refer to Dunes:
 
-`Linearization<https://archive.org/details/Linearization>`_
+`Linearization <https://archive.org/details/Linearization>`_
