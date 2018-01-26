@@ -1,7 +1,7 @@
 Theory
 ======
 
-Preparing the data involves the following one or two steps:
+Preparing the data involves the following two or three steps:
 
 * :doc:`vector-graph`
     Working.
@@ -9,13 +9,13 @@ Preparing the data involves the following one or two steps:
     Turning a Function Graph into a Vector Graph.
 
 * :doc:`analyzer`
-    legacy pen-stroke version: Partially working.
+    Legacy pen-stroke version: Partially working.
 
-    analyzer time-series and resolution independent version: Not yet implemented.
+    Analyzer time-series and resolution independent version: Not yet implemented.
 
     Extracting feature points from a Vector Graph for matchline overlay comparison.
 
-The comparator can do searches in the prepared data:
+The Comparator can do searches in the prepared data:
 
 * Comparator
     Working.

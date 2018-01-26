@@ -1,4 +1,4 @@
-stopeight comparator
+Stopeight Comparator
 --------------------
 
 The API is installed with stopeight.

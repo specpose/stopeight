@@ -27,7 +27,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
     <link rel="next" title="Stroke Analyzer" href="dev_stroke-analyzer.html" />
-    <link rel="prev" title="stopeight comparator" href="run_tests.html" />
+    <link rel="prev" title="Stopeight Comparator" href="run_tests.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -46,7 +46,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="run_tests.html" title="previous chapter">stopeight comparator</a></li>
+      <li>Previous: <a href="run_tests.html" title="previous chapter">Stopeight Comparator</a></li>
       <li>Next: <a href="dev_stroke-analyzer.html" title="next chapter">Stroke Analyzer</a></li>
   </ul></li>
 </ul>
@@ -76,8 +76,18 @@
             
   <div class="section" id="build">
 <h1>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
+<p>The stopeight repository contains stopeight-clibs:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight.git
+$ cd /path/to/where/stopeight
+</pre></div>
+</div>
+<p>If you prefer the latest development version of stopeight-clibs:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ rm -R stopeight-clibs
+$ git clone https://github.com/specpose/stopeight-clibs.git
+</pre></div>
+</div>
 <p>Build and install stopeight-clibs:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight-clibs
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd stopeight-clibs
 $ mkdir build &amp;&amp; cd build
 $ cmake ../
 $ make &amp;&amp; sudo make install
@@ -89,7 +99,7 @@ $ sudo ldconfig
 </pre></div>
 </div>
 <p>Build and install stopeight:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd ../
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd ../../
 $ python setup.py install
 </pre></div>
 </div>

@@ -78,35 +78,21 @@
 <h1>Analyzer Algorithm<a class="headerlink" href="#analyzer-algorithm" title="Permalink to this headline">¶</a></h1>
 <p>The Analyzer subdivides into half-circles, represented by only one tangent on-curve control point per half-circle.</p>
 <p>This is the equivalent of four hyperbolic / two parabolic subsegments.</p>
-<p>The following quadratic bezier spline encoding has the advantage of reducing data and finding meaningful points for further computational comparison while preserving most of the visual representation.</p>
 <img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle_and_quadratic_bezier.svg/256px-Circle_and_quadratic_bezier.svg.png" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle_and_quadratic_bezier.svg/256px-Circle_and_quadratic_bezier.svg.png" />
 <p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Composite_B%C3%A9zier_curve">Composite Bezier Splines</a></p>
+<p>The following quadratic bezier spline encoding has the advantage of reducing data and finding meaningful points for further computational comparison while preserving most of the visual representation.</p>
 <p>There are six types of feature TURNS. Two symmetric types stacked on top of each other, facing opposite directions become a non-symetric type:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="mi">2</span> <span class="n">Swing</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">Crest</span>
-<span class="o">*</span> <span class="mi">2</span> <span class="n">Dune</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">Spike</span>
-<span class="o">*</span> <span class="mi">2</span> <span class="n">Cliff</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">Spiral</span>
-</pre></div>
-</div>
+<ul class="simple">
+<li>2 Swing = 1 Crest</li>
+<li>2 Dune = 1 Spike</li>
+<li>2 Cliff = 1 Spiral</li>
+</ul>
 <p>CORNERS are maxima surrounded/terminated by Turns (TCT). Turns also include Start/End points. This is the final representation format after analysis. It is used for overlay comparison in the Comparator:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">_static</span><span class="o">/</span><span class="n">sinus</span><span class="o">.</span><span class="n">svg</span>
-</pre></div>
-</div>
-<p>The difference between a sinusoid Swing&#8217;s Corner and a Crest&#8217;s Turn:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">_static</span><span class="o">/</span><span class="n">crest_or_sinusoid</span><span class="o">.</span><span class="n">svg</span>
-</pre></div>
-</div>
-<p>The frontside Crest in the first result is preferred over the backside Swing in the second result. Therefore detection has to be performed in both directions:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">_static</span><span class="o">/</span><span class="n">crest</span><span class="o">.</span><span class="n">svg</span>
-</pre></div>
-</div>
-<p>There has to be an even number of Cliffs which are centered from both sides. Results below are invalid:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">image</span><span class="p">::</span> <span class="n">_static</span><span class="o">/</span><span class="n">cliff</span><span class="o">.</span><span class="n">svg</span>
-</pre></div>
-</div>
-<p>An explanation with a slightly outdated terminology. Straights refer to Dunes:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>`&lt;https://archive.org/details/Linearization&gt;`_
-</pre></div>
-</div>
+<img alt="_images/sinus.svg" src="_images/sinus.svg" /><p>The difference between a sinusoid Swing&#8217;s Corner and a Crest&#8217;s Turn:</p>
+<img alt="_images/crest_or_sinusoid.svg" src="_images/crest_or_sinusoid.svg" /><p>The frontside Crest in the first result is preferred over the backside Swing in the second result. Detection has to be performed in both directions:</p>
+<img alt="_images/crest.svg" src="_images/crest.svg" /><p>There has to be an even number of Cliffs which are centered from both sides. These Results are invalid:</p>
+<img alt="_images/cliff.svg" src="_images/cliff.svg" /><p>An explanation with a slightly outdated terminology. Straights refer to Dunes:</p>
+<p><a class="reference external" href="https://archive.org/details/Linearization">Linearization</a></p>
 </div>
 
 

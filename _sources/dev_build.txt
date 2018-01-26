@@ -1,9 +1,19 @@
 Build
 -----
 
+The stopeight repository contains stopeight-clibs::
+
+    $ git clone https://github.com/specpose/stopeight.git
+    $ cd /path/to/where/stopeight
+
+If you prefer the latest development version of stopeight-clibs::
+
+    $ rm -R stopeight-clibs
+    $ git clone https://github.com/specpose/stopeight-clibs.git
+
 Build and install stopeight-clibs::
 
-    $ cd /path/to/where/stopeight-clibs
+    $ cd stopeight-clibs
     $ mkdir build && cd build
     $ cmake ../
     $ make && sudo make install
@@ -15,5 +25,5 @@ Note: You may need to manually reinstall after a rebuild::
 
 Build and install stopeight::
 
-    $ cd ../
+    $ cd ../../
     $ python setup.py install
