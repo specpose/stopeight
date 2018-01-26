@@ -6,7 +6,7 @@ from sys import modules as loader
 from PyQt5.QtWidgets import QComboBox,QPushButton
 
 from stopeight.logging import logSwitch
-log = logSwitch.logNone()
+log = logSwitch.logPrint()
 _LOGDIR = '.stopeight' # this is not for logging messages; it is for data files
 
 from funcsigs import signature
@@ -59,30 +59,26 @@ class Algorithm_Run:
         return top
 
     @staticmethod
-    def run(module,currentText,data=None):
-        #inspect.signature()[return]
-        #if (len(self.select.module[2].OUTPUT)>0):
-        #    self.select.module[2].INPUT = self.select.module[2].OUTPUT
-        #    self.select.module[2].OUTPUT= []
-        #currentText = self.select.currentText()
+    def run(module,currentText,inputdata=None):
         import time
         time = time.time()
         #data = ScribbleData()
         #backup = ScribbleBackup()#get singleton
         #backup[:] = data#assign copy
+        outputdata=None
         try:
-            if data!=None:
-                backup = data[:]
-                log.info("Invoking "+currentText+" with "+str(len(data))+" data sets...")
-                data[:] = loader[module[0]].__dict__[currentText](data)
-                #if backup == data:
+            if inputdata!=None:
+                backup = inputdata[:]
+                log.info("Invoking "+currentText+" with "+str(len(inputdata))+" inputdata sets...")
+                outputdata = loader[module[0]].__dict__[currentText](inputdata)
+                #if backup == outputdata:
                 #    raise Exception("Backup not successful or function values unchanged")
-                log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(data)))
+                log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(outputdata)))
             else:
                 backup = None
-                log.info("Invoking "+currentText+" without data.")
-                data = loader[module[0]].__dict__[currentText]()
-                log.info("Size after call: Output "+str(len(data)))
+                log.info("Invoking "+currentText+" without inputdata.")
+                outputdata = loader[module[0]].__dict__[currentText]()
+                log.info("Size after call: Output "+str(len(outputdata)))
 
         #except:
         except BaseException as e:
@@ -94,12 +90,12 @@ class Algorithm_Run:
                                                 ,Algorithm_Run._auto_out(module[0],module[1],currentText)
                                                 #,_identify(_DATA['MyScribble'])
                                                 ))
-            if data!=None:
-                del data[:]
-                if (len(data)>0):
-                    raise Exception("Data clear failed!")
+            if outputdata!=None:
+                del outputdata[:]
+                if (len(outputdata)>0):
+                    raise Exception("outputdata clear failed!")
             log.error(e)
-        return data
+        return outputdata
             
 class Scribble_Run:
 
@@ -148,14 +144,20 @@ class Connector:
                         log.debug("Method "+str(self.methods[functionName]))
                         executed = False
                         if functionentry!=None:#data parameter found
-                            if type(output.data)==functionentry:
-                                log.info("Executing "+functionName+" with "+str(type(output.data)))
-                                output(Algorithm_Run.run(self._module,functionName,data=output.data))
-                                executed = True
+                            if type(output.data)==functionreturn:
+                                for _input in self._outputs:
+                                    if type(_input.data)==functionentry:
+                                        if executed:
+                                            raise Exception("There are multiple objects handling "+type(_input.data)+". The \
+current version does not support handling multiple Input objects of the same type. Please remove "+str(self._module)+" from module list.")
+                                        log.info("Executing "+functionName+" with "+str(type(_input.data)))
+                                        output(Algorithm_Run.run(self._module,functionName,inputdata=_input.data))
+                                        executed = True
+                                    else:
+                                        log.debug("Skipping input "+str(type(input)))
                             else:
-                                #on incorrect type of data object, we dont do anything
-                                pass
-                        else:
+                                log.debug("Skipping output "+str(type(output)))
+                        if executed==False:
                             log.info("Fallback. Trying to call "+functionName+" without data")
                             output(Algorithm_Run.run(self._module,functionName))
                                             
