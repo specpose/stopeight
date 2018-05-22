@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\renewcommand{\baselinestretch}{1.5}
+
+\begin{document}
+\title{Stopeight Analyzer}
+\author{Fassio Blatter}
+\maketitle
+
+\section{Introduction}
+
+The algorithm in this text has been developed during the years 2009 to 2016 by Specific Purpose Software GmbH. It is now open sourced, but mostly exists in the form of code fragments.\\
+This file is in the Stopeight repository on Github. Please edit here:\\
+\href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight_Analyzer.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Analyzer.tex}
+A brief overview can be found here:\\
+\href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
+This algorithm performs an approximation in a set $X \subset \mathbb{R}^2$ of a set $A \subset \mathbb{R}^2$ of Arcs:
+\begin{equation}
+f: X^n \rightarrow A^\infty; n>1
+\end{equation}
+via the intermediate functions $g,k$ where $Y \subset X^3$ and $Y \subset a_{m} \in A \subset \mathbb{R}^2;m<\infty$:
+\begin{equation}
+f = g \circ k; g: X^n \rightarrow Y; k: Y \rightarrow A^\infty
+\end{equation}
+Within $g$ we are assigning a sequence of three points to closed, bounded invervals in $X^n$:
+\begin{equation}
+\{x_{n}\}_{n \in \mathbb{N}} \mapsto \{s,c,e\}
+\end{equation}
+Each element $y \in Y$ is composed of a start of Turn $s \in X$, a Corner $c \in X$ and an end of Turn $e \in X$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
+
+\section{Representation}
+
+The affine transformations $q \in Q$ are functions that map to control points $C \subset \mathbb{R}^2; C \not\subset X,Y$:
+\begin{equation}
+q: Y \rightarrow C
+\end{equation}
+which define $Controls_{1}, ... , Controls_{4}$ using $Y \subset a, X$:
+\begin{equation}
+\begin{cases}
+\{s,q_{1}(s,c),q_{2}(s,c)\}\\
+\{q_{2}(s,c),q_{3}(s,c),c\}\\
+\{c,q_{4}(c,e),q_{5}(c,e)\}\\
+\{q_{5}(c,e),q_{6}(c,e),e\}
+\end{cases}
+\end{equation}
+with $p \in Controls$ to form the coordinates $a=\{x_{1},x_{2}\} \in A$:
+\begin{equation}
+b: Controls \rightarrow A, \{p_{1},p_{2},p_{3}\} \mapsto \{a_{m}\}_{m \in \mathbb{N}}
+\end{equation}
+Arcs $A$ forms a metric $d$:\\\\\\\\
+which makes $(X,d)$ a topology\\\\\\\\
+
+\section{Computation}
+
+\iffalse
+\begin{equation} 
+\forall u,v \in V :
+d(u,v) = 
+\begin{cases}
+0,  u=v \\
+1,  u \neq v 
+\end{cases}
+\end{equation}
+\fi
+
+\end{document}
