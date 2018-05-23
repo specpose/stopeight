@@ -2,7 +2,14 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{hyperref}
+\usepackage{biblatex}
 \renewcommand{\baselinestretch}{1.5}
+
+\addbibresource{Stopeight_Analyzer.bib}
+\iffalse
+\bibliography{Stopeight_Analyzer}{}
+\bibliographystyle{plain}
+\fi
 
 \begin{document}
 \title{Stopeight Analyzer}
@@ -18,11 +25,11 @@ A brief overview can be found here:\\
 \href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
 This algorithm performs an approximation in a set $X \subset \mathbb{R}^2$ of a set $A \subset \mathbb{R}^2$ of Arcs:
 \begin{equation}
-f: X^n \rightarrow A^\infty; n>1
+f: X^n \rightarrow A; n>1
 \end{equation}
 via the intermediate functions $g,k$ where $Y \subset X^3$ and $Y \subset a_{m} \in A \subset \mathbb{R}^2;m<\infty$:
 \begin{equation}
-f = g \circ k; g: X^n \rightarrow Y; k: Y \rightarrow A^\infty
+f = g \circ k; g: X^n \rightarrow Y; k: Y^m \rightarrow A
 \end{equation}
 Within $g$ we are assigning a sequence of three points to closed, bounded invervals in $X^n$:
 \begin{equation}
@@ -49,6 +56,7 @@ with $p \in Controls$ to form the coordinates $a=\{x_{1},x_{2}\} \in A$:
 \begin{equation}
 b: Controls \rightarrow A, \{p_{1},p_{2},p_{3}\} \mapsto \{a_{m}\}_{m \in \mathbb{N}}
 \end{equation}
+Note: The continuous function $b$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $a_{m}$ to $a_{m+1}$. ~\cite{Mortad}~\cite{path}\\
 Arcs $A$ forms a metric $d$:\\\\\\\\
 which makes $(X,d)$ a topology\\\\\\\\
 
@@ -64,5 +72,7 @@ d(u,v) =
 \end{cases}
 \end{equation}
 \fi
+
+\printbibliography
 
 \end{document}
