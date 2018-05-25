@@ -23,7 +23,7 @@ This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight_Analyzer.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Analyzer.tex}
 A brief overview can be found here:\\
 \href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
-This algorithm performs an approximation in a set $X \subset \mathbb{R}^2$ of a set $A \subset \mathbb{R}^2$ of Arcs:
+The Arcs $A \subset \mathbb{R}^2$ are an approximation of a set $X \subset \mathbb{R}^2$:
 \begin{align}
 f: X^n \rightarrow A
 \end{align}
@@ -36,11 +36,11 @@ f = g \circ k; g: X^n \rightarrow Y; k: Y \rightarrow A
 \end{equation}
 \begin{equation*}
 \end{equation*}
-Within $g$ we are assigning a sequence of three points to closed(?) bounded(?) invervals:
+Within $g$ we are assigning a sequence of three points to (compact = closed and bounded?) (Hausdorf?) invervals:
 \begin{equation}
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{s,c,e\}
 \end{equation}\\
-Each element $y \in Y$ is composed of a start of Turn $s \in X$, a Corner $c \in X$ and an end of Turn $e \in X$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
+Each element $y \in Y$ is composed of a start of Turn $s \in X$, a Corner $c \in X$ (insertion: $c \notin X$) and an end of Turn $e \in X$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
 
 \section{Representation}
 
