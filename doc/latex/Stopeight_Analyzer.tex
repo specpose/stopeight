@@ -23,24 +23,26 @@ This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight_Analyzer.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Analyzer.tex}
 A brief overview can be found here:\\
 \href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
-The Arcs $A \subset \mathbb{R}^2$ are an approximation of a set $X \subset \mathbb{R}^2$:
+The Arcs $A \subset \mathbb{R}^2$ are an approximation of a set$\footnote{Midpoints have to be formally included for insertion only}$ $X \subset \mathbb{R}^2$:
 \begin{align}
 f: X^n \rightarrow A
 \end{align}
 \begin{equation*}
 1 < n < \infty
 \end{equation*}
-via the intermediate functions $g,k$ where $Y \subset X^3$ and $Y \subset a \in A$:
+via the intermediate functions $g,k$ where (transition map?) $Y \subset X^3$ and $Y$ is in Arc $U_{m}$:
 \begin{equation}
-f = g \circ k; g: X^n \rightarrow Y; k: Y \rightarrow A
+f = g \circ k; g: X^n \rightarrow Y; k: Y \rightarrow U_{m}
 \end{equation}
-\begin{equation*}
-\end{equation*}
-Within $g$ we are assigning a sequence of three points to (compact = closed and bounded?) (Hausdorf?) invervals:
+Note: The set of Arcs A is a manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ($X_{m}$ is a 0-manifold, homeomorphism?)~\cite[\nopp 3.1.1.]{Fomenko}
+\begin{equation}
+A = \cup_{m}U_{m}
+\end{equation}
+Within $g$ we are assigning a sequence of three points to compact (= closed and bounded) Hausdorf invervals:
 \begin{equation}
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{s,c,e\}
 \end{equation}\\
-Each element $y \in Y$ is composed of a start of Turn $s \in X$, a Corner $c \in X$ (insertion: $c \notin X$) and an end of Turn $e \in X$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
+Each element $y \in Y$ is composed of a start of Turn $s \in X$, a Corner$\footnote{insertion: $c \notin X$}$ $c \in X$ and an end of Turn $e \in X$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
 
 \section{Representation}
 
@@ -49,7 +51,7 @@ The affine transformations $q$ are functions that map to control points $Q \subs
 q: Y \rightarrow Q\\
 Q \cap X = 0; Q \cap Y = 0
 \end{align}
-which define subsegments $\{c_{1}, ... , c_{4}\} \in S \subset a \in A$ in combination with $Y \subset C, X,a$:
+which define subsegments $\{c_{1}, ... , c_{4}\} \in S \subset U_{m} \in A$ in combination with $Y \subset C, X, U_{m}$:
 \begin{align*}
 Q,Y \subset C
 \end{align*}
@@ -59,11 +61,11 @@ c_{2}=\{q_{2}(s,c),q_{3}(s,c),c\}\\
 c_{3}=\{c,q_{4}(c,e),q_{5}(c,e)\}\\
 c_{4}=\{q_{5}(c,e),q_{6}(c,e),e\}
 \end{align*}
-The Arc segment defining function $qbs$ is composed of four quadratic bezier splines and forms the coordinates of Arc $a=\{x',y'\}$:
+The Arc segment defining function $qbs$ is composed of four quadratic bezier splines and forms the coordinates $a=\{x',y'\}$ of Arc $U_{m}$:
 \begin{equation}
 qbs: S \rightarrow A, \{c_{1},c_{2},c_{3},c_{4}\} \mapsto \{a_{m}\}_{m \in \mathbb{N}}
 \end{equation}
-Note: The continuous function $qbs$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $a_{m}$ to $a_{m+1}$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
+Note: The continuous function $qbs$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $a_{m}$ to $a_{m+1}$ and intersects at least once $dim (U_{m} \cup U_{m+1}) \geq 1$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
 (Arcs $A$ has a euclidean metric $d$:?)\\\\\\\\
 (which makes $(A,d)$ a topology?)\\\\\\\\
 
