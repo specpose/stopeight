@@ -34,10 +34,10 @@ via the intermediate functions $f,g$ where the intermediate transversality $Y = 
 \begin{align}
 f: X \rightarrow Y; g: Y \rightarrow A
 \end{align}
-Note: The set of Arcs A is a manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[\nopp 3.1.1.]{Fomenko} ~\cite[\nopp 4.5]{Wall} ($X$ is formally a discrete / 0-manifold)
+Note: The set of Arcs A is a dim 1-manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[\nopp 3.1.1.]{Fomenko} ~\cite[\nopp 4.5]{Wall} ($X$ is formally a discrete / dim 0-manifold)
 \begin{align}
-A = \cup_{m}U_{m}; X = \cup_{n}T_{n}\\
-dim(X)<codim(Y)
+A = \cup_{m}U_{m}; (X = \cup_{n}T_{n}) ; (Y: manifold?)\\
+dim(X)<codim(Y)(?)
 \end{align}
 \iffalse
 Within $f$ we are assigning a sequence of three points to compact (= closed and bounded) Hausdorf invervals:
@@ -45,7 +45,7 @@ Within $f$ we are assigning a sequence of three points to compact (= closed and 
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{s,c,e\}
 \end{equation}\\
 \fi
-Each element $T_{m} \in Y$ can be a start of Turn $s \in X$, a Corner$\footnote{insertion: $c \notin X$}$ $c \in X$ and an end of Turn $e \in X$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
+The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $s = \inf_{U_{m}}$, a Corner$\footnote{insertion: $c \notin X$}$ $c \in U_{m}$ and an end of Turn $e = \sup_{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines. ($U_{m}$ closed?)
 
 \section{Representation}
 
