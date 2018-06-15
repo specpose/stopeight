@@ -25,20 +25,23 @@ A brief overview can be found here:\\
 \href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
 The Arcs $A \subset \mathbb{R}^2$ are an approximation of a set$\footnote{Midpoints have to be formally included for insertion only}$ $X \subset \mathbb{R}^2$:
 \begin{align}
-f: X^n \rightarrow A
+f \circ g: X \rightarrow A
 \end{align}
 \begin{equation*}
 1 < n < \infty
 \end{equation*}
-via the intermediate functions $g,k$ where (transition map?) $Y \subset X^3$ and $Y$ is in Arc $U_{m}$:
-\begin{equation}
-f = g \circ k; g: X^n \rightarrow Y; k: Y \rightarrow U_{m}
-\end{equation}
+via the intermediate functions $f,g$ where intermediate control set $Y$ defines Arcs $U_{m}$. ($f \circ g$ is neither injective nor surjective) ~\cite[\nopp 2.1]{LauresSzymik}:
+\begin{align}
+\iffalse
+Y = \{g^{-1}U \mid U \text{ open in } A\}\\
+\fi
+f: X \rightarrow Y; g: Y \rightarrow A
+\end{align}
 Note: The set of Arcs A is a manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ($X_{m}$ is a 0-manifold, homeomorphism?)~\cite[\nopp 3.1.1.]{Fomenko}
 \begin{equation}
 A = \cup_{m}U_{m}
 \end{equation}
-Within $g$ we are assigning a sequence of three points to compact (= closed and bounded) Hausdorf invervals:
+Within $f$ we are assigning a sequence of three points to compact (= closed and bounded) Hausdorf invervals:
 \begin{equation}
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{s,c,e\}
 \end{equation}\\
