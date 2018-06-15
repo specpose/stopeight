@@ -28,24 +28,24 @@ The Arcs $A \subset \mathbb{R}^2$ are an approximation of a set$\footnote{Midpoi
 f \circ g: X \rightarrow A
 \end{align}
 \begin{equation*}
-1 < n < \infty
+1 < card(X) < \infty
 \end{equation*}
-via the intermediate functions $f,g$ where intermediate control set $Y$ defines Arcs $U_{m}$. ($f \circ g$ is neither injective nor surjective) ~\cite[\nopp 2.1]{LauresSzymik}:
+via the intermediate functions $f,g$ where the intermediate transversality $Y = X \cap A$ defines Arcs $U_{m}$. ~\cite[\nopp 9.9]{Loring} ($f \circ g$ is neither injective nor surjective) ~\cite[\nopp 2.1]{LauresSzymik}:
 \begin{align}
-\iffalse
-Y = \{g^{-1}U \mid U \text{ open in } A\}\\
-\fi
 f: X \rightarrow Y; g: Y \rightarrow A
 \end{align}
-Note: The set of Arcs A is a manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ($X_{m}$ is a 0-manifold, homeomorphism?)~\cite[\nopp 3.1.1.]{Fomenko}
-\begin{equation}
-A = \cup_{m}U_{m}
-\end{equation}
+Note: The set of Arcs A is a manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[\nopp 3.1.1.]{Fomenko} ~\cite[\nopp 4.5]{Wall} ($X$ is formally a discrete / 0-manifold)
+\begin{align}
+A = \cup_{m}U_{m}; X = \cup_{n}T_{n}\\
+dim(X)<codim(Y)
+\end{align}
+\iffalse
 Within $f$ we are assigning a sequence of three points to compact (= closed and bounded) Hausdorf invervals:
 \begin{equation}
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{s,c,e\}
 \end{equation}\\
-Each element $y \in Y$ is composed of a start of Turn $s \in X$, a Corner$\footnote{insertion: $c \notin X$}$ $c \in X$ and an end of Turn $e \in X$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
+\fi
+Each element $T_{m} \in Y$ can be a start of Turn $s \in X$, a Corner$\footnote{insertion: $c \notin X$}$ $c \in X$ and an end of Turn $e \in X$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
 
 \section{Representation}
 
