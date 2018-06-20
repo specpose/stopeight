@@ -36,41 +36,54 @@ f: X \rightarrow Y; g: Y \rightarrow A
 \end{align}
 Note: The set of Arcs A is a dim 1-manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[\nopp 3.1.1.]{Fomenko} ~\cite[\nopp 4.5]{Wall} ($X$ is formally a discrete / dim 0-manifold)
 \begin{align}
-A = \cup_{m}U_{m}; (X = \cup_{n}T_{n}) ; (Y: manifold?)\\
-dim(X)<codim(Y)(?)
+A = \cup_{m}U_{m}; (X = \cup_{n}T_{n}; Y: \text{0-submanifold})\\
+dim(X)=0<codim(Y)=1
 \end{align}
 \iffalse
-Within $f$ we are assigning a sequence of three points to compact (= closed and bounded) Hausdorf invervals:
+Within $f$ we are assigning a sequence of three points to compact Hausdorf invervals ~\cite[\nopp 6.1.3.]{Mortad}:
 \begin{equation}
-\{x_{n}\}_{n \in \mathbb{N}} \mapsto \{s,c,e\}
+\{x_{n}\}_{n \in \mathbb{N}} \mapsto \{S,C,E\}
 \end{equation}\\
 \fi
-The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $s = \inf_{U_{m}}$, a Corner$\footnote{insertion: $c \notin X$}$ $c \in U_{m}$ and an end of Turn $e = \sup_{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines. ($U_{m}$ closed?)
+The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $S = \inf_{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $E = \sup_{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines. ($U_{m}$ closed?)
 
 \section{Representation}
 
-The affine transformations $q$ are functions that map to control points $Q \subset C \subset \mathbb{R}^2$ which do not lie in the original set $X$ (1):
+The affine transformations $q$ are functions that map to control points $Q \subset \mathbb{R}^2$:
 \begin{align}
-q: Y \rightarrow Q\\
+q: S \times C \times E \rightarrow Q\\
 Q \cap X = 0; Q \cap Y = 0
 \end{align}
-which define subsegments $\{c_{1}, ... , c_{4}\} \in S \subset U_{m} \in A$ in combination with $Y \subset C, X, U_{m}$:
+The combination $M = Y \cup Q$ has parts from the original $X$'s, and constructed $Q$'s that are not in $A$ $\footnote{insertion: $C \notin X$, otherwise: $C \in X \cap A$}$:
 \begin{align*}
-Q,Y \subset C
+S,C,E \in X; Q \setminus A=\{q_{1}(S,C,E),q_{3}(S,C,E),q_{4}(S,C,E),q_{6}(S,C,E)\}
 \end{align*}
+and is composed of four quadratic bezier splines $\{c_{1},...,c_{4}\}$ per chart of M:
 \begin{align*}
-c_{1}=\{s,q_{1}(s,c),q_{2}(s,c)\}\\
-c_{2}=\{q_{2}(s,c),q_{3}(s,c),c\}\\
-c_{3}=\{c,q_{4}(c,e),q_{5}(c,e)\}\\
-c_{4}=\{q_{5}(c,e),q_{6}(c,e),e\}
+c_{1}=\{S,q_{1}(S,C,E),q_{2}(S,C,E)\}\\
+c_{2}=\{q_{2}(S,C,E),q_{3}(S,C,E),C\}\\
+c_{3}=\{C,q_{4}(S,C,E),q_{5}(S,C,E)\}\\
+c_{4}=\{q_{5}(S,C,E),q_{6}(S,C,E),E\}
 \end{align*}
-The Arc segment defining function $qbs$ is composed of four quadratic bezier splines and forms the coordinates $a=\{x',y'\}$ of Arc $U_{m}$:
+The Arc segment defining function $arc$ forms the coordinates $a=\{x,y\}$ of Arc $U_{m}$:
+\begin{align}
+arc: M \times M \times M \times M \rightarrow A\\
+(c_{1},c_{2},c_{3},c_{4}) \mapsto qbs(c_{1}) \cup qbs(c_{2}) \cup qbs(c_{3}) \cup qbs(c_{4})
+\end{align}
+\begin{align}
+qbs(c): \mathbb{R} \rightarrow A; (t) \mapsto (x,y); t \in [0,1]
+\end{align}
+Note: The continuous function $qbs$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the joint $S \cap E$. ($dim (U_{m} \cup U_{m+1}) \geq 1?)$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
+In order to compare the length $L$ from $[a,b] \subseteq A$
 \begin{equation}
-qbs: S \rightarrow A, \{c_{1},c_{2},c_{3},c_{4}\} \mapsto \{a_{m}\}_{m \in \mathbb{N}}
+L(qbs) = \int_{a}^{b}\lvert \frac{\mathrm{d}qbs}{\mathrm{d}t}\rvert \mathrm{d}t
 \end{equation}
-Note: The continuous function $qbs$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $a_{m}$ to $a_{m+1}$ and intersects at least once $dim (U_{m} \cup U_{m+1}) \geq 1$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
-(Arcs $A$ has a euclidean metric $d$:?)\\\\\\\\
-(which makes $(A,d)$ a topology?)\\\\\\\\
+with $[a.b] \subseteq X \text{discrete}$, we have to connect all $p \in X$ with linear bezier splines:
+\begin{align*}
+c_{1}=\{A,\frac{A+B}{2},B\}\\
+qbs(c_{1}): \text{Straight line} 
+\end{align*}
+Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}
 
 \section{Computation}
 
