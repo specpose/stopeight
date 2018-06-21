@@ -93,17 +93,29 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 
 \subsection{Auxiliary Functions}
 
-Auxiliary functions are functions that can be applied to any interval $[a,b] \subseteq B,A$ with a constraint.
+Auxiliary functions are functions that can be applied to any interval $[a,b] \subseteq B,A$ with certain preliminary constraints.
 
-\subsubsection{Straightness}
+\subsubsection{Straighness}
 A straight line segment is determined by a straightness measure.\\
 \begin{equation}
 straightness: [a,b] \rightarrow \mathbb{R}
 \end{equation}
-A threshold can be chosen, which makes the segment straight or curved.\\
-It is closely related to the cliff measure
+A threshold can be chosen, which makes the segment straight or bent in A.\\
+It is closely related to the curvature measure
 
-\subsubsection{Cliff Divider}
+\subsubsection{Area}
+Affine transformation of $arc$ function, so that y' = 0 at a,b
+
+\subsubsection{Curvature}
+A maximal curvature is determined, so that under any linear transformation, curvature is no more than $(x')^2 + (y')^2 =1$
+
+\subsection{Cliff}
+A cliff is delimited by a ratio of Area to Diameter.
+
+\subsection{Spiral}
+An even number of cliffs is found under the curvature criteria.
+The cliffs are then centered.
+
 
 \iffalse
 \begin{equation} 
