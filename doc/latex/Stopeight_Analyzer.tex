@@ -58,33 +58,33 @@ The combination $M = Y \cup Q$ has parts from the original $X$'s, and constructe
 \begin{align*}
 S,C,E \in X; Q \setminus A=\{q_{1}(S,C,E),q_{3}(S,C,E),q_{4}(S,C,E),q_{6}(S,C,E)\}
 \end{align*}
-and is composed of four quadratic bezier splines $\{c_{1},...,c_{4}\}$ per chart of M:
+and is composed of four quadratic bezier splines $\gamma_{c}(t)$ with control points $\{c_{1},...,c_{4}\}$ per chart of M:
 \begin{align*}
 c_{1}=\{S,q_{1}(S,C,E),q_{2}(S,C,E)\}\\
 c_{2}=\{q_{2}(S,C,E),q_{3}(S,C,E),C\}\\
 c_{3}=\{C,q_{4}(S,C,E),q_{5}(S,C,E)\}\\
 c_{4}=\{q_{5}(S,C,E),q_{6}(S,C,E),E\}
 \end{align*}
-The Arc segment defining function $arc$ forms the coordinates $a=\{x,y\}$ of Arc $U_{m}$:
+The Arc segment defining function $arc$ forms the planar coordinates $(x,y)$ of Arc $U_{m}$:
 \begin{align}
-arc: M \times M \times M \times M \rightarrow A\\
-(c_{1},c_{2},c_{3},c_{4}) \mapsto qbs(c_{1}) \cup qbs(c_{2}) \cup qbs(c_{3}) \cup qbs(c_{4})
+arc: M_{1} \times ... \times M_{4} \rightarrow A\\
+(c_{1},...,c_{4}) \mapsto \gamma_{c_{1}} \cup \gamma_{c_{2}} \cup \gamma_{c_{3}} \cup \gamma_{c_{4}}
 \end{align}
 \begin{align}
-qbs(c): \mathbb{R} \rightarrow A; (t) \mapsto (x,y); t \in [0,1]
+\gamma_{c}: \mathbb{R} \rightarrow \mathbb{R}^2; t \mapsto (x,y)
 \end{align}
-Note: The continuous function $arc$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the joint/unilateral limit $S \cap E$. ($dim (U_{m} \cup U_{m+1}) \geq 1?)$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
-In order to compare the length $L$ from $[a,b] \subseteq A$
-\begin{equation}
-L(qbs) = \int_{a}^{b}\lvert \frac{\mathrm{d}qbs}{\mathrm{d}t}\rvert \mathrm{d}t
-\end{equation}
-with $[a.b] \subseteq X \text{discrete}$, we have to connect all $P_{n}, P_{n+1} \in X$ with linear bezier splines:
+Note: The continuous function $arc$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ($dim (U_{m} \cup U_{m+1}) \geq 1?)$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
+In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$, we have to connect all $P_{n}, P_{n+1} \in X$ with linear bezier splines, because $X$ is discrete:
 \begin{align}
 lines: X \times X \rightarrow B\\
-c_{1}=\{P_{n},\frac{P_{n}+P_{n+1}}{2},P_{n+1}\} \mapsto qbs(c_{1}): \text{Straight line}\\
+c_{1}=\{P_{n},\frac{P_{n}+P_{n+1}}{2},P_{n+1}\} \mapsto \gamma_{c_{1}}: \text{Straight line}\\
 dim(B)=1<codim(Y)=1 \Rightarrow B \text{ joint } A
 \end{align}
 Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}\\\\
+The arc-length metric $d(a,b)$ turns both manifolds $A$ and $B$ into metric spaces $(A,d)$ and $(B,d)$.
+\begin{equation}
+d(a,b) = \int_{a}^{b}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma\rvert \mathrm{d}t
+\end{equation}
 We can now establish an injective $link$ between elements of $B$ and $A$. ($X \rightarrow A$ is injective, $but$ $A \rightarrow X$ is not accurate):
 \begin{equation}
 link: B \rightarrow A; link^{-1}: A \rightarrow B
