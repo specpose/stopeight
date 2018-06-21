@@ -36,7 +36,7 @@ f: X \rightarrow Y; g: Y \rightarrow A
 \end{align}
 Note: The set of Arcs A is a dim 1-manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[\nopp 3.1.1.]{Fomenko} ~\cite[\nopp 4.5]{Wall} ($X$ is formally a discrete / dim 0-manifold)
 \begin{align}
-A = \cup_{m}U_{m}; (X = \cup_{n}T_{n})\\
+A = \cup_{m}U_{m}; (X = \cup_{n}V_{n})\\
 Y: \text{0-submanifold} \Rightarrow dim(X)=0<codim(Y)=1 \Rightarrow X \text{ disjoint } A
 \end{align}
 \iffalse
@@ -45,7 +45,7 @@ Within $f$ we are assigning a sequence of three points to compact Hausdorf inver
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{S,C,E\}
 \end{equation}\\
 \fi
-The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $S = \inf_{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $E = \sup_{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines. ($U_{m}$ closed?)
+The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \inf_{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \sup_{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines. ($U_{m}$ closed?)
 
 \section{Representation}
 
@@ -58,26 +58,26 @@ The combination $M = Y \cup Q$ has parts from the original $X$'s, and constructe
 \begin{align*}
 S,C,E \in X; Q \setminus A=\{q_{1}(S,C,E),q_{3}(S,C,E),q_{4}(S,C,E),q_{6}(S,C,E)\}
 \end{align*}
-and is composed of four quadratic bezier splines $\gamma_{c}(t)$ with control points $\{c_{1},...,c_{4}\}$ per chart of M:
+and is composed of four quadratic bezier splines $\gamma_{c}(t)$ with control points $\{H_{1},...,H_{4}\}$ per chart of M:
 \begin{align*}
-c_{1}=\{S,q_{1}(S,C,E),q_{2}(S,C,E)\}\\
-c_{2}=\{q_{2}(S,C,E),q_{3}(S,C,E),C\}\\
-c_{3}=\{C,q_{4}(S,C,E),q_{5}(S,C,E)\}\\
-c_{4}=\{q_{5}(S,C,E),q_{6}(S,C,E),E\}
+H_{1}=\{S,q_{1}(S,C,E),q_{2}(S,C,E)\}\\
+H_{2}=\{q_{2}(S,C,E),q_{3}(S,C,E),C\}\\
+H_{3}=\{C,q_{4}(S,C,E),q_{5}(S,C,E)\}\\
+H_{4}=\{q_{5}(S,C,E),q_{6}(S,C,E),E\}
 \end{align*}
 The Arc segment defining function $arc$ forms the planar coordinates $(x',y')$ of Arc $U_{m}$:
 \begin{align}
 arc: M_{1} \times ... \times M_{4} \rightarrow A\\
-(c_{1},...,c_{4}) \mapsto \gamma_{c_{1}} \cup \gamma_{c_{2}} \cup \gamma_{c_{3}} \cup \gamma_{c_{4}}
+(H_{1},...,H_{4}) \mapsto \gamma_{H_{1}} \cup \gamma_{H_{2}} \cup \gamma_{H_{3}} \cup \gamma_{H_{4}}
 \end{align}
 \begin{align}
-\gamma_{c}: \mathbb{R} \rightarrow \mathbb{R}^2; t \mapsto (x,y)
+\gamma_{H}: \mathbb{R} \rightarrow \mathbb{R}^2; t \mapsto (x,y)
 \end{align}
 Note: The continuous function $arc$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ($dim (U_{m} \cup U_{m+1}) \geq 1?)$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
 In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$, we have to connect all $P_{n}, P_{n+1} \in X$ with one linear bezier spline each, because $X$ is discrete:
 \begin{align}
 line: X_{1} \times X_{2} \rightarrow B\\
-c_{1}=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}\} \mapsto \gamma_{c_{1}}: \text{Straight line}\\
+H_{1}=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}\} \mapsto \gamma_{H_{1}}: \text{Straight line}\\
 dim(B)=1<codim(Y)=1 \Rightarrow B \text{ joint } A
 \end{align}
 Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}\\\\
