@@ -36,8 +36,8 @@ f: X \rightarrow Y; g: Y \rightarrow A
 \end{align}
 Note: The set of Arcs A is a dim 1-manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[\nopp 3.1.1.]{Fomenko} ~\cite[\nopp 4.5]{Wall} ($X$ is formally a discrete / dim 0-manifold)
 \begin{align}
-A = \cup_{m}U_{m}; (X = \cup_{n}T_{n}; Y: \text{0-submanifold})\\
-dim(X)=0<codim(Y)=1
+A = \cup_{m}U_{m}; (X = \cup_{n}T_{n})\\
+Y: \text{0-submanifold} \Rightarrow dim(X)=0<codim(Y)=1 \Rightarrow X \text{ disjoint } A
 \end{align}
 \iffalse
 Within $f$ we are assigning a sequence of three points to compact Hausdorf invervals ~\cite[\nopp 6.1.3.]{Mortad}:
@@ -81,7 +81,8 @@ L(qbs) = \int_{a}^{b}\lvert \frac{\mathrm{d}qbs}{\mathrm{d}t}\rvert \mathrm{d}t
 with $[a.b] \subseteq X \text{discrete}$, we have to connect all $P_{n}, P_{n+1} \in X$ with linear bezier splines:
 \begin{align}
 lines: X \times X \rightarrow B\\
-c_{1}=\{P_{n},\frac{P_{n}+P_{n+1}}{2},P_{n+1}\} \mapsto qbs(c_{1}): \text{Straight line} 
+c_{1}=\{P_{n},\frac{P_{n}+P_{n+1}}{2},P_{n+1}\} \mapsto qbs(c_{1}): \text{Straight line}\\
+dim(B)=1<codim(Y)=1 \Rightarrow B \text{ joint } A
 \end{align}
 Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}\\\\
 We can now establish an injective $link$ between elements of $B$ and $A$. ($X \rightarrow A$ is injective, $but$ $A \rightarrow X$ is not accurate):
