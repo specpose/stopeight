@@ -65,7 +65,7 @@ c_{2}=\{q_{2}(S,C,E),q_{3}(S,C,E),C\}\\
 c_{3}=\{C,q_{4}(S,C,E),q_{5}(S,C,E)\}\\
 c_{4}=\{q_{5}(S,C,E),q_{6}(S,C,E),E\}
 \end{align*}
-The Arc segment defining function $arc$ forms the planar coordinates $(x,y)$ of Arc $U_{m}$:
+The Arc segment defining function $arc$ forms the planar coordinates $(x',y')$ of Arc $U_{m}$:
 \begin{align}
 arc: M_{1} \times ... \times M_{4} \rightarrow A\\
 (c_{1},...,c_{4}) \mapsto \gamma_{c_{1}} \cup \gamma_{c_{2}} \cup \gamma_{c_{3}} \cup \gamma_{c_{4}}
@@ -87,9 +87,23 @@ d(a,b) = \int_{a}^{b}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma\rvert \mathrm{d
 \end{equation}
 We can now establish an injective $link$ between elements of $B$ and $A$. ($X \rightarrow A$ is injective, $but$ $A \rightarrow X$ is not accurate):
 \begin{equation}
-link: B \rightarrow A; link^{-1}: A \rightarrow B
+link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y') \mapsto (x,y)
 \end{equation}
 \section{Computation}
+
+\subsection{Auxiliary Functions}
+
+Auxiliary functions are functions that can be applied to any interval $[a,b] \subseteq B,A$ with a constraint.
+
+\subsubsection{Straightness}
+A straight line segment is determined by a straightness measure.\\
+\begin{equation}
+straightness: [a,b] \rightarrow \mathbb{R}
+\end{equation}
+A threshold can be chosen, which makes the segment straight or curved.\\
+It is closely related to the cliff measure
+
+\subsubsection{Cliff Divider}
 
 \iffalse
 \begin{equation} 
