@@ -83,7 +83,7 @@ dim(B)=1<codim(Y)=1 \Rightarrow B \text{ joint } A
 Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}\\\\
 The arc-length metric $d(a,b)$ turns both manifolds $A$ and $B$ into metric spaces $(A,d)$ and $(B,d)$.
 \begin{equation}
-d(a,b) = \int_{a}^{b}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma\rvert \mathrm{d}t
+d(a,b) = \int \limits _{a}^{b}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma\rvert \mathrm{d}t
 \end{equation}
 We can now establish an injective $link$ between elements of $B$ and $A$. ($X \rightarrow A$ is injective, $but$ $A \rightarrow X$ is not accurate):
 \begin{equation}
@@ -93,13 +93,14 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 
 \subsection{Auxiliary Functions}
 
-Auxiliary functions are functions that can be applied to any interval $[a,b] \subseteq B,A$ with certain preliminary constraints.
+Auxiliary functions are functions that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ with certain preliminary constraints.
 
 \subsubsection{Straighness}
 A straight line segment is determined by a straightness measure.\\
-\begin{equation}
-straightness: [a,b] \rightarrow \mathbb{R}
-\end{equation}
+\begin{align}
+straightness: [a,b] \rightarrow \mathbb{R}\\
+straightness([a,b])=\frac{\int \limits _{[a,b] \subseteq A}\lvert\gamma(t)\rvert\mathrm{d}t}{\int \limits _{[a,b] \subseteq B}\lvert\gamma(t)\rvert\mathrm{d}t}
+\end{align}
 A threshold can be chosen, which makes the segment straight or bent in A.\\
 It is closely related to the curvature measure
 
@@ -107,7 +108,7 @@ It is closely related to the curvature measure
 Affine transformation of $arc$ function, so that y' = 0 at a,b
 
 \subsubsection{Curvature}
-A maximal curvature is determined, so that under any linear transformation, curvature is no more than $(x')^2 + (y')^2 =1$
+A maximal curvature is determined, so that under any linear transformation of any segment, curvature is no more than $(x')^2 + (y')^2 <=1$
 
 \subsection{Cliff}
 A cliff is delimited by a ratio of Area to Diameter.
