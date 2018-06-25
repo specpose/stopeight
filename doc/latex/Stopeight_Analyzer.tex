@@ -65,18 +65,18 @@ H_{2}=\{q_{2}(S,C,E),q_{3}(S,C,E),C\}\\
 H_{3}=\{C,q_{4}(S,C,E),q_{5}(S,C,E)\}\\
 H_{4}=\{q_{5}(S,C,E),q_{6}(S,C,E),E\}
 \end{align*}
-The Arc segment defining function $arc$ forms the planar coordinates $(x',y')$ of Arc $U_{m}$:
+The Arc segment defining function $\kappa$ forms the planar coordinates $(x',y')$ of Arc $U_{m}$:
 \begin{align}
-arc: M_{1} \times ... \times M_{4} \rightarrow A\\
+\kappa: M_{1} \times ... \times M_{4} \rightarrow A\\
 (H_{1},...,H_{4}) \mapsto \gamma_{H_{1}} \cup \gamma_{H_{2}} \cup \gamma_{H_{3}} \cup \gamma_{H_{4}}
 \end{align}
 \begin{align}
 \gamma_{H}: \mathbb{R} \rightarrow \mathbb{R}^2; t \mapsto (x,y)
 \end{align}
-Note: The continuous function $arc$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ($dim (U_{m} \cup U_{m+1}) \geq 1?)$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
+Note: The continuous function $\kappa$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ($dim (U_{m} \cup U_{m+1}) \geq 1?)$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
 In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$, we have to connect all $P_{n}, P_{n+1} \in X$ with one linear bezier spline each, because $X$ is discrete:
 \begin{align}
-line: X_{1} \times X_{2} \rightarrow B\\
+\iota: X_{1} \times X_{2} \rightarrow B\\
 H_{1}=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}\} \mapsto \gamma_{H_{1}}: \text{Straight line}\\
 dim(B)=1<codim(Y)=1 \Rightarrow B \text{ joint } A
 \end{align}
@@ -104,8 +104,34 @@ straightness([a,b])=\frac{\int \limits _{[a,b] \subseteq A}\lvert\gamma(t)\rvert
 A threshold can be chosen, which makes the segment straight or bent in A.\\
 It is closely related to the curvature measure
 
+\subsection{Affine Transformation}
+An affine transformation $A$ of a parametrised curve with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
+\begin{equation}
+transform(\gamma):
+\begin{bmatrix}
+1 & t & t^2
+\end{bmatrix}
+\underbrace{\begin{bmatrix}
+1 & 0 & 0\\
+-2 & 2 & 0\\
+1 & -2 &1
+\end{bmatrix}}_{Coefficients}
+\begin{bmatrix}
+Ah_{1} & Ah_{2} & Ah_{3}
+\end{bmatrix}
+=
+\begin{bmatrix}
+h_{1}' & h_{2}' & h_{3}'
+\end{bmatrix}
+\end{equation}
+The composite $transform(\kappa)$ is based on parameter $t$ and $h_{1} \in S \subset U_{m};h_{2} \in C \subset U_{m}; h_{3} \in E \subset U_{m}$, but has different coefficients.
+
 \subsubsection{Area}
-Affine transformation of $arc$ function, so that y' = 0 at a,b
+The integral of a transformed curve function $transform(\kappa)$, so that:
+\begin{align}
+y(transform(\kappa(a)), y(transform(\kappa(b)) = 0\\
+\int \limits _{x(transform(\kappa(a)))}^{x(transform((\kappa(b)))} y(transform(\kappa(t)))\mathrm{d}x(transform(\kappa(t)))
+\end{align}
 
 \subsubsection{Curvature}
 A maximal curvature is determined, so that under any linear transformation of any segment, curvature is no more than $(x')^2 + (y')^2 <=1$
