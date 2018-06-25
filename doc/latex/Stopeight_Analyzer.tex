@@ -58,28 +58,28 @@ The combination $M = Y \cup Q$ has parts from the original $X$'s, and constructe
 \begin{align*}
 S,C,E \in X; Q \setminus A=\{q_{1}(S,C,E),q_{3}(S,C,E),q_{4}(S,C,E),q_{6}(S,C,E)\}
 \end{align*}
-and is composed of four quadratic bezier splines $\gamma_{H}(t)$ with control points $\{H_{1},...,H_{4}\}$ per chart of M:
-\begin{equation}
-\begin{cases}
-H_{1}=\{S,q_{1}(S,C,E),q_{2}(S,C,E)\}\\
-H_{2}=\{q_{2}(S,C,E),q_{3}(S,C,E),C\}\\
-H_{3}=\{C,q_{4}(S,C,E),q_{5}(S,C,E)\}\\
-H_{4}=\{q_{5}(S,C,E),q_{6}(S,C,E),E\}
-\end{cases}
-\end{equation}
-The Arc segment defining function $\kappa$ forms the planar coordinates $(x',y')$ of Arc $U_{m}$:
-\begin{align}
-\kappa: M_{1} \times ... \times M_{4} \rightarrow A\\
-(H_{1},...,H_{4}) \mapsto \gamma_{H_{1}} \cup \gamma_{H_{2}} \cup \gamma_{H_{3}} \cup \gamma_{H_{4}}
-\end{align}
+and is composed of four quadratic bezier splines $\gamma_{H}(t)$:
 \begin{align}
 \gamma_{H}: \mathbb{R} \rightarrow \mathbb{R}^2; t \mapsto (x,y)
 \end{align}
+with control point sets $\{H_{1},...,H_{4}\}$ per chart of M. The Arc segment defining function $\kappa$ forms the planar coordinates $(x',y')$ of Arc $U_{m}$:
+\begin{equation}
+\kappa: \mathbb{R} \rightarrow A; t \mapsto (x,y)
+\end{equation}
+\begin{align*}
+\kappa(t) =
+\begin{cases}
+\gamma_{H_{1}}(t); H_{1}=\{S,q_{1}(S,C,E),q_{2}(S,C,E)\} & t \in [0,\frac{1}{4}]\\
+\gamma_{H_{2}}(t); H_{2}=\{q_{2}(S,C,E),q_{3}(S,C,E),C\} & t \in [\frac{1}{4},\frac{1}{2}]\\
+\gamma_{H_{3}}(t); H_{3}=\{C,q_{4}(S,C,E),q_{5}(S,C,E)\} & t \in [\frac{1}{2},\frac{3}{4}]\\
+\gamma_{H_{3}}(t); H_{4}=\{q_{5}(S,C,E),q_{6}(S,C,E),E\} & t \in [\frac{3}{4},1]
+\end{cases}
+\end{align*}
 Note: The continuous function $\kappa$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ($dim (U_{m} \cup U_{m+1}) \geq 1?)$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
 In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$, we have to connect all $P_{n}, P_{n+1} \in X$ with one linear bezier spline each, because $X$ is discrete:
 \begin{align}
-\iota: X_{1} \times X_{2} \rightarrow B\\
-H_{1}=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}\} \mapsto \gamma_{H_{1}}: \text{Straight line}\\
+\iota: \mathbb{R} \rightarrow B; t \mapsto (x,y)\\
+\iota(t) = \{ \gamma_{H}(t)\lvert H=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}\}\}\\
 dim(B)=1<codim(Y)=1 \Rightarrow B \text{ joint } A
 \end{align}
 Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}\\\\
@@ -95,19 +95,31 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 
 \subsection{Auxiliary Functions}
 
-Auxiliary functions are functions that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ with certain preliminary constraints.
+Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ with certain preliminary constraints.
 
 \subsubsection{Straighness}
 A straight line segment is determined by a straightness measure.\\
 \begin{align}
-straightness: [a,b] \rightarrow \mathbb{R}\\
 straightness([a,b])=\frac{\int \limits _{[a,b] \subseteq A}\lvert\gamma(t)\rvert\mathrm{d}t}{\int \limits _{[a,b] \subseteq B}\lvert\gamma(t)\rvert\mathrm{d}t}
 \end{align}
 A threshold can be chosen, which makes the segment straight or bent in A.\\
-It is closely related to the curvature measure
+It is closely related to the curvature measure.
+
+\subsubsection{Area}
+The integral of the area under the transformed arc curve function $transform(\kappa) = \kappa'$, so that:
+\begin{align}
+y(\kappa'(a)), y(\kappa'(b)) = 0\\
+area([a,b])= \int \limits _{x(\kappa'(a))}^{x(\kappa'(b))} y(\kappa'(t))\partial_{x} \kappa'(t)
+\end{align}
+
+\subsubsection{Curvature}
+Curvature is determined by a ratio of Area to Diameter.
+\begin{equation}
+curvature([a,b]) = \frac{area([a,b])}{\sqrt{x(\kappa(b) - \kappa(a))^2+y(\kappa(b) - \kappa(a))^2}}
+\end{equation}
 
 \subsection{Affine Transformation}
-An affine transformation $A$ of a parametrised curve with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
+An affine transformation $A$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
 \begin{equation}
 transform(\gamma):
 \begin{bmatrix}
@@ -126,20 +138,11 @@ Ah_{1} & Ah_{2} & Ah_{3}
 h_{1}' & h_{2}' & h_{3}'
 \end{bmatrix}
 \end{equation}
-The composite $transform(\kappa)$ is based on parameter $t$ and $h_{1} \in S \subset U_{m};h_{2} \in C \subset U_{m}; h_{3} \in E \subset U_{m}$, but has different coefficients.
-
-\subsubsection{Area}
-The integral of the area under the transformed arc curve function $transform(\kappa) = \kappa'$, so that:
-\begin{align}
-y(\kappa'(a)), y(\kappa'(b)) = 0\\
-area= \int \limits _{x(\kappa'(a))}^{x(\kappa'(b))} y(\kappa'(t))\partial_{x} \kappa'(t)
-\end{align}
-
-\subsubsection{Curvature}
-A maximal curvature is determined, so that under any linear transformation of any segment, curvature is no more than $(x')^2 + (y')^2 <=1$
+The composite $transform(\kappa)$ is based on parameter $t$ and $h_{1} \in S \subset U_{m};h_{2} \in C \subset U_{m}; h_{3} \in E \subset U_{m}$ and.
 
 \subsection{Cliff}
-A cliff is delimited by a ratio of Area to Diameter.
+A maximal curvature is determined, so that under any linear transformation of any segment, curvature is no more than $(x')^2 + (y')^2 <=1$
+A single cliff can have no more than the maximum curvature.
 
 \subsection{Spiral}
 An even number of cliffs is found under the curvature criteria.
