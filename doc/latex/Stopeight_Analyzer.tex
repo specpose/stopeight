@@ -97,7 +97,7 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 
 Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ with certain preliminary constraints.
 
-\subsubsection{Straighness}
+\subsubsection{Straightness}
 A straight line segment is determined by a straightness measure. (vector space?)\\
 \begin{align}
 straightness([a,b])=\frac{\int \limits _{[a,b] \subseteq A}\lvert\gamma(t)\rvert\mathrm{d}t}{\int \limits _{[a,b] \subseteq B}\lvert\gamma(t)\rvert\mathrm{d}t}
@@ -106,16 +106,16 @@ A threshold can be chosen, which makes the segment straight or bent in A.\\
 It is closely related to the curvature measure.
 
 \subsubsection{Area}
-The integral of the area under the transformed arc curve function $transform(\kappa) = \kappa'$, so that: (partial derivative?)
+The integral of the area under the transformed arc curve function $transform(\kappa) = \kappa'$, so that:
 \begin{align}
-y(\kappa'(a)), y(\kappa'(b)) = 0\\
-area([a,b])= \int \limits _{x(\kappa'(a))}^{x(\kappa'(b))} y(\kappa'(t))\partial_{x} \kappa'(t)
+\kappa'_{y}(a), \kappa'_{y}(b) = 0\\
+area([a,b])= \int \limits _{\kappa'_{x}(a)}^{\kappa'_{x}(b)} \kappa'_{y}(t)\mathrm{d}t
 \end{align}
 
 \subsubsection{Curvature}
-Curvature is determined by a ratio of Area to Diameter.
+Curvature is determined by the ratio of Area to Diameter.
 \begin{equation}
-curvature([a,b]) = \frac{area([a,b])}{\sqrt{x(\kappa(b) - \kappa(a))^2+y(\kappa(b) - \kappa(a))^2}}
+curvature([a,b]) = \frac{area([a,b])}{\sqrt{(\kappa_{x}(b) - \kappa_{x}(a))^2+(\kappa_{y}(b) - \kappa_{y}(a))^2}}
 \end{equation}
 
 \subsection{Affine Transformation}
@@ -138,7 +138,7 @@ Ah_{1} & Ah_{2} & Ah_{3}
 h_{1}' & h_{2}' & h_{3}'
 \end{bmatrix}
 \end{equation}
-The composite $transform(\kappa)$ is based on parameter $t$ and $h_{1} \in S \subset U_{m};h_{2} \in C \subset U_{m}; h_{3} \in E \subset U_{m}$ and.
+The composite $transform(\kappa)$ is based on parameter $t$ and $h_{1} \in S \subset U_{m};h_{2} \in C \subset U_{m}; h_{3} \in E \subset U_{m}$.
 
 \subsection{Cliff}
 A maximal curvature is determined, so that under any linear transformation of any segment, curvature is no more than $(x')^2 + (y')^2 <=1$
