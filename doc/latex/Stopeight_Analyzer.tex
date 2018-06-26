@@ -102,7 +102,7 @@ A straight line segment is determined by a straightness measure. (vector space?)
 \begin{align}
 straightness([a,b])=\frac{\int \limits _{[a,b] \subseteq A}\lvert\gamma(t)\rvert\mathrm{d}t}{\int \limits _{[a,b] \subseteq B}\lvert\gamma(t)\rvert\mathrm{d}t}
 \end{align}
-A threshold can be chosen, which makes the segment straight or bent in A.\\
+A threshold can be chosen, which makes the segment straight or bent in A. (Visibility)\\
 It is closely related to the curvature measure.
 
 \subsubsection{Area}
@@ -141,24 +141,26 @@ h_{1}' & h_{2}' & h_{3}'
 The composite $transform(\kappa)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$.
 
 \subsection{Cliff}
-A maximal curvature is determined, so that under any linear transformation of any segment, curvature is no more than $(x')^2 + (y')^2 <=1$
+A maximal curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a perfect half circle. So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.
 A single cliff can have no more than the maximum curvature.
 
 \subsection{Spiral}
 An even number of cliffs is found under the curvature criteria.
-The cliffs are then centered.
+The cliffs are then centered so that all cliffs in a spiral have the same curvature.
 
+\section{Morphisms}
+There are two main criteria among which the wave segments $U_{m}$ can vary. It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters. In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...\\
+We introduce a mechanism for the annihilation and creation of pulses, which in most signal analysis is overlooked. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled.
 
-\iffalse
-\begin{equation} 
-\forall u,v \in V :
-d(u,v) = 
-\begin{cases}
-0,  u=v \\
-1,  u \neq v 
-\end{cases}
-\end{equation}
-\fi
+\subsection{Imaginary Visibility}
+When curvature is decreased in a Spiral, Dunes and Spikes start appearing.
+
+\subsection{Real Isolation}
+When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$.
+
+\subsection{Wave Trains}
+A wave train (dirac delta?) appears in a wave packet that splits up. A wave packet that splits, decreases its isolation and transfers a part of its visibility to the sub-wave packets. Depending on the wavelength of a Reef, the original wave packet may never appear again.\\
+On the other hand, the sub-wave packets of an open ocean wave pick up wind. The enclosing wave packet can form a new wave train, together with neighbouring wave packets and so slowly, the little left-over, chaotic visibility of the sub-wave packets gets transferred not only to the enclosing wave packet, but to the whole wave train. The swell gets groomed and the short wavelengths disappear.
 
 \printbibliography
 
