@@ -99,9 +99,16 @@ Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ tha
 
 \subsubsection{Straightness}
 A straight line segment is determined by a straightness measure. (vector space?)\\
+\iffalse
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+The element of Banach spaces $x \in (B,\norm{\cdot}),(A,\norm{\cdot})$ respectively with the zero-start bounded variation metric:\\
+\begin{equation}
+d(x,x) = \norm{x}_{bv_{0}} = \sum_{i=1}^{\infty}\lvert x_{i+1} - x_{i} \rvert
+\end{equation}
 \begin{align}
 straightness([a,b])=\frac{\int \limits _{[a,b] \subseteq A}\lvert\gamma(t)\rvert\mathrm{d}t}{\int \limits _{[a,b] \subseteq B}\lvert\gamma(t)\rvert\mathrm{d}t}
 \end{align}
+\fi
 A threshold can be chosen, which makes the segment straight or bent in A. (Visibility)\\
 It is closely related to the curvature measure.
 
