@@ -125,9 +125,8 @@ A threshold can be chosen, which makes the segment straight or bent in A. (Visib
 It is closely related to the curvature measure.
 
 \subsubsection{Area}
-The integral of the area under the transformed arc curve function $transform(\kappa) = \kappa'$, so that:
+The integral of the area in the legal segment, so that:
 \begin{align}
-\kappa'_{y}(a), \kappa'_{y}(b) = 0\\
 area([a,b])= \int \limits _{\kappa'_{x}(a)}^{\kappa'_{x}(b)} \kappa'_{y}(t)\mathrm{d}t
 \end{align}
 
@@ -136,6 +135,12 @@ Curvature is determined by the ratio of Area to Diameter.
 \begin{equation}
 curvature([a,b]) = \frac{area([a,b])}{\sqrt{(\kappa_{x}(b) - \kappa_{x}(a))^2+(\kappa_{y}(b) - \kappa_{y}(a))^2}}
 \end{equation}
+
+\subsubsection{Legal Segment}
+A legal segment is an affine transformtion of the arc curve function $transform(\kappa) = \kappa'$, so that all $\kappa'_{y}(t)$ for $\kappa'_{x}(t)$ are continuous when:
+\begin{align}
+\kappa'_{y}(a), \kappa'_{y}(b) = 0
+\end{align}
 
 \subsection{Affine Transformation}
 An affine transformation $A$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
@@ -161,11 +166,14 @@ The composite $transform(\kappa)$ is based on parameter $t$ and $\{H_{1}, ... ,H
 
 \subsection{Cliff}
 A maximal curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a perfect half circle. So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.
-A single cliff can have no more than the maximum curvature.
+A single Cliff can have no more than the maximum curvature.
 
 \subsection{Spiral}
-An even number of cliffs is found under the curvature criteria.
-The cliffs are then centered so that all cliffs in a spiral have the same curvature.
+An even number of Cliffs is found under the curvature criteria.
+The Cliffs are then centered outside in so that all cliffs in a spiral have the same curvature.
+
+\subsection{Swing}
+A Swing is the segment $a,b \in Y$, where a legal segment is followed by a sign change under affine transformation $\kappa'$, where $0= \kappa'(S \in U_{m}),0= \kappa'(E \in U_{m+1})$
 
 \section{Morphisms}
 There are two main criteria among which the wave segments $U_{m}$ can vary. It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters. In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...\\
