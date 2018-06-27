@@ -173,7 +173,11 @@ An even number of Cliffs is found under the curvature criteria.
 The Cliffs are then centered outside in so that all cliffs in a spiral have the same curvature.
 
 \subsection{Swing}
-A Swing is the segment $a,b \in Y$, where a legal segment is followed by a sign change under affine transformation $\kappa'$, where $0= \kappa'(S \in U_{m}),0= \kappa'(E \in U_{m+1})$
+A Swing is the segment $a,b \in Y$, where a legal segment is followed by a sign change $[c,d]; c<d$ under affine transformation $\kappa'$.
+\begin{align}
+\mu(\{t \in U_{m} \vert \kappa'(a)=0;\kappa'(b)=0;(\kappa'(c)\geq 0 \land \kappa'(d)<0) \lor (\kappa'(c)\leq 0 \land \kappa'(d)>0) \}) \mathrm{d}t
+\end{align}
+Note: $\mu$ is a Lebesgue.
 
 \section{Morphisms}
 There are two main criteria among which the wave segments $U_{m}$ can vary. It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters. In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...\\
