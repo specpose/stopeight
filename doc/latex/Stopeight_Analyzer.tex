@@ -99,6 +99,14 @@ Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ tha
 
 \subsubsection{Straightness}
 A straight line segment is determined by a straightness measure.\\
+(vector space?)\\
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+The metric (12) allows us to take the ratio of the arc-length to straight lines with $P_{n},P_{n+1} \in X$:
+\begin{equation}
+straightness([a.b])=\int \limits _{a}^{b}\lvert \frac{\kappa(t)}{\iota(t)}\rvert \mathrm{d}t
+\end{equation}
+\iffalse
+\subsubsection{Algorithm Version}
 It is using Heron's formula for the area of a triangle:
 \begin{align*}
 A=\lvert t_{m+1}-t_{m} \rvert\\
@@ -110,25 +118,22 @@ to calculate the ratio of the areas in $A$ and lines in $B$:
 \begin{align}
 straightness([a,b])=\sum_{t=a}^{b-2}\frac{\sqrt{\kappa(S)(\kappa(S)-\kappa(A))(\kappa(S)-\kappa(B))(\kappa(S)-\kappa(C))}}{\iota(A)+\iota(B)}
 \end{align}
-(vector space?)\\
-\iffalse
-\newcommand\norm[1]{\left\lVert#1\right\rVert}
-The element of Banach spaces $x \in (B,\norm{\cdot}),(A,\norm{\cdot})$ respectively with the zero-start bounded variation metric:\\
-\begin{equation}
-d(x,x) = \norm{x}_{bv_{0}} = \sum_{i=1}^{\infty}\lvert x_{i+1} - x_{i} \rvert
-\end{equation}
-\begin{align}
-straightness([a,b])=\frac{\int \limits _{[a,b] \subseteq A}\lvert\gamma(t)\rvert\mathrm{d}t}{\int \limits _{[a,b] \subseteq B}\lvert\gamma(t)\rvert\mathrm{d}t}
-\end{align}
 \fi
 A threshold can be chosen, which makes the segment straight or bent in A. (Visibility)\\
 It is closely related to the curvature measure.
 
 \subsubsection{Area}
+The metric (12) enables us to integrate over the turns connected in $P_{n},P_{n+1} \in T$:
+\begin{equation}
+curvature([a.b])=\int \limits _{a}^{b}\lvert \kappa(t)-\iota(t)\rvert \mathrm{d}t
+\end{equation}
+\iffalse
+\subsubsection{Algorithm Version}
 The integral of the area in the legal segment, so that:
 \begin{align}
 area([a,b])= \int \limits _{\kappa'_{x}(a)}^{\kappa'_{x}(b)} \kappa'_{y}(t)\mathrm{d}t
 \end{align}
+\fi
 
 \subsubsection{Curvature}
 Curvature is determined by the ratio of Area to Diameter.
