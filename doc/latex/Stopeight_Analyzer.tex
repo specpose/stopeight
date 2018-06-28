@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{hyperref}
 \usepackage{biblatex}
 \renewcommand{\baselinestretch}{1.25}
@@ -151,17 +152,27 @@ Curvature is determined by the ratio of Area to Diameter.
 curvature([a,b]) = \frac{area([a,b])}{diameter([a,b])}
 \end{equation}
 
+\subsubsection{Corner}
+A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a segment $[a,b] = U_{m} is:$
+\begin{equation}
+C = \sup_{t \in U_{m}}\lvert \kappa'(t) \rvert
+\end{equation}
+
+\subsubsection{Turn}
+A turn is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq X$ an infinite amount of non-straight sections can be found.
+\begin{equation}
+T = \inf_{t \in U_{m}} \lvert \kappa'(t) \rvert
+\end{equation}
+The criteria, whether a segment is within a chart is:
+\begin{equation}
+[a,b] \subseteq U_{m} \Rightarrow \exists \inf_{t \in U_{m}} \kappa'(t)\geq0 \land \nexists \inf_{t \in U_{m}} \kappa'(t)<0
+\end{equation}
+
 \subsubsection{Legal Segment}
 A legal segment is an affine transformtion of the arc curve function $transform(\kappa) = \kappa'$, so that all $\kappa'_{y}(t)$ for $\kappa'_{x}(t)$ are continuous when:
 \begin{align}
 \kappa'_{y}(a), \kappa'_{y}(b) = 0
 \end{align}
-
-\subsubsection{Corner}
-The Corner $C$ of an infinite amount of local maxima in a segment $[a,b] = U_{m}$
-\begin{equation}
-C = \sup_{t \in U_{m}}\lvert \kappa'(t) \rvert
-\end{equation}
 
 \subsection{Affine Transformation}
 An affine transformation $A$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
