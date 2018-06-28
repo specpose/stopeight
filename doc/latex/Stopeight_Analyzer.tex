@@ -99,11 +99,9 @@ Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ tha
 
 \subsubsection{Straightness}
 A straight line segment is determined by a straightness measure.\\
-(vector space?)\\
-\newcommand\norm[1]{\left\lVert#1\right\rVert}
 The metric (12) allows us to take the ratio of the arc-length to straight lines with $P_{n},P_{n+1} \in X$:
 \begin{equation}
-straightness([a.b])=\int \limits _{a}^{b}\lvert \frac{\kappa(t)}{\iota(t)}\rvert \mathrm{d}t
+straightness([a.b])=\int \limits _{a}^{b}\lvert \frac{\kappa(t)}{\iota_{X}(t)}\rvert \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -123,9 +121,9 @@ A threshold can be chosen, which makes the segment straight or bent in A. (Visib
 It is closely related to the curvature measure.
 
 \subsubsection{Area}
-The metric (12) enables us to integrate over the turns connected in $P_{n},P_{n+1} \in T$:
+The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ connected by straight line segments $\iota_{T}$:
 \begin{equation}
-curvature([a.b])=\int \limits _{a}^{b}\lvert \kappa(t)-\iota(t)\rvert \mathrm{d}t
+area([a.b])=\int \limits _{a}^{b}\lvert \kappa(t)-\iota_{T}(t)\rvert \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -136,9 +134,21 @@ area([a,b])= \int \limits _{\kappa'_{x}(a)}^{\kappa'_{x}(b)} \kappa'_{y}(t)\math
 \fi
 
 \subsubsection{Curvature}
+\iffalse
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+Because the diameter has to be calculated piece-wise, we have to set up a vector space with the turns $P_{n},P_{n+1} \in T$.
+\begin{equation}
+v \in (B,\norm{\cdot})
+\end{equation}
+Note: It is a Banach space.\\
+\fi
+The diameter is also based on the metric (12) of $\iota_{T}$:
+\begin{equation}
+diameter([a,b])=b-a; a,b \in B
+\end{equation}
 Curvature is determined by the ratio of Area to Diameter.
 \begin{equation}
-curvature([a,b]) = \frac{area([a,b])}{\sqrt{(\kappa_{x}(b) - \kappa_{x}(a))^2+(\kappa_{y}(b) - \kappa_{y}(a))^2}}
+curvature([a,b]) = \frac{area([a,b])}{diameter([a,b])}
 \end{equation}
 
 \subsubsection{Legal Segment}
