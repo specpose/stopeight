@@ -79,7 +79,7 @@ Note: The continuous function $\kappa$ makes the topological space $A$ path-conn
 In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$, we have to connect all $P_{n}, P_{n+1} \in X$ with one linear bezier spline each, because $X$ is discrete:
 \begin{align}
 \iota: \mathbb{R} \rightarrow B; t \mapsto (x,y)\\
-\iota(t) = \{ \gamma_{H}(t)\lvert H=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}\}\}\\
+\iota_{X}(t) = \{ \gamma_{H}(t)\lvert H=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}; P_{n}, P_{n+1} \in X\}\}\\
 dim(B)=1<codim(Y)=1 \Rightarrow B \text{ joint } A
 \end{align}
 Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}\\\\
@@ -156,6 +156,12 @@ A legal segment is an affine transformtion of the arc curve function $transform(
 \begin{align}
 \kappa'_{y}(a), \kappa'_{y}(b) = 0
 \end{align}
+
+\subsubsection{Corner}
+The Corner $C$ of an infinite amount of local maxima in a segment $[a,b] = U_{m}$
+\begin{equation}
+C = \sup_{t \in U_{m}}\lvert \kappa'(t) \rvert
+\end{equation}
 
 \subsection{Affine Transformation}
 An affine transformation $A$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
