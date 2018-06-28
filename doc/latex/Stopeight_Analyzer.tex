@@ -155,17 +155,17 @@ curvature([a,b]) = \frac{area([a,b])}{diameter([a,b])}
 \subsubsection{Corner}
 A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a segment $[a,b] \subseteq B$ is:
 \begin{equation}
-C = \sup_{t \in U_{m}}\lvert \kappa'(t) \rvert
+C = \sup_{t \in U_{m}}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t) \rvert
 \end{equation}
 
 \subsubsection{Turn}
 A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
 \begin{equation}
-T = \inf_{t \in U_{m}} \lvert \kappa'(t) \rvert
+E = \inf_{t \in U_{m}\setminus S} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t) \rvert
 \end{equation}
 The criteria, whether a segment is within a chart is:
 \begin{equation}
-[a,b] \subseteq U_{m} \Rightarrow \exists \inf_{t \in U_{m}} \kappa'(t)\geq0 \land \nexists \inf_{t \in U_{m}} \kappa'(t)<0
+[a,b] \subseteq U_{m} \Rightarrow \exists \inf_{t \in U_{m}} \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t)\geq0 \land \nexists \inf_{t \in U_{m}} \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t)<0
 \end{equation}
 
 \subsubsection{Legal Segment}
