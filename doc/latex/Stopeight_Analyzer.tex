@@ -46,7 +46,7 @@ Within $f$ we are assigning a sequence of three points to compact Hausdorf inver
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{S,C,E\}
 \end{equation}\\
 \fi
-The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \inf_{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \sup_{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines. ($U_{m}$ closed?)
+The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines. ($U_{m}$ closed?)
 
 \section{Representation}
 
@@ -124,7 +124,7 @@ It is closely related to the curvature measure.
 \subsubsection{Area}
 The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ connected by straight line segments $\iota_{T}$:
 \begin{equation}
-area([a.b])=\int \limits _{a}^{b}\lvert \kappa(t)-\iota_{T}(t)\rvert \mathrm{d}t
+area([a.b])=\int \limits _{a}^{b} \kappa(t)-\iota_{T}(t) \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -155,17 +155,17 @@ curvature([a,b]) = \frac{area([a,b])}{diameter([a,b])}
 \subsubsection{Corner}
 A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a segment $[a,b] \subseteq B$ is:
 \begin{equation}
-C = \sup_{t \in U}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t) \rvert
+C = \sup_{U}\lvert curvature([a,b]) \rvert
 \end{equation}
 
 \subsubsection{Turn}
 A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
 \begin{equation}
-E = \inf_{t \in U\setminus S} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t) \rvert
+T = \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t) \rvert
 \end{equation}
 The criteria, whether a segment is within a chart is:
 \begin{equation}
-[a,b] \subseteq U_{m} \Rightarrow \exists \inf_{t \in U_{m}} \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t)\geq0 \land \nexists \inf_{t \in U_{m}} \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t)<0
+[a,b] \subseteq U_{m} \Rightarrow \exists  \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t)>0 \land \nexists \frac{\mathrm{d}}{\mathrm{d}t}\kappa(t)\leq0
 \end{equation}
 
 \subsubsection{Legal Segment}
