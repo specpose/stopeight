@@ -220,9 +220,11 @@ When curvature is increased in a Spiral, isolation starts to shift to subsegment
 isolation([a,b])=\frac{(b-a)}{\lvert b-a \rvert}straightness([a,b])
 \end{equation}\\
 A mapping from
-\begin{equation}
+\begin{align}
+A \times A, B\times B \rightarrow \mathbb{C}\\
+[a,b] \mapsto z\\
 z = isolation([a,b]) + i * visibility([a,b])
-\end{equation}
+\end{align}
 A complex norm $\norm{\cdot}$ is defined on the transversality (2).\\
 \begin{align}
 \norm{\cdot} : A,B \rightarrow \mathbb{R} \norm{straightness([a,b])+i*curvature([a,b])}
