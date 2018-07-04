@@ -145,7 +145,7 @@ Note: It is a Banach space.\\
 \fi
 The diameter is also based on the metric (12) of $\iota_{T}$:
 \begin{equation}
-diameter([a,b])=b-a; a,b \in B
+diameter([a,b])=\lvert b-a \rvert; a < b; a,b \in B
 \end{equation}
 Curvature is determined by the ratio of Area to Diameter.
 \begin{equation}
@@ -197,11 +197,15 @@ h_{1}' & h_{2}' & h_{3}'
 The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$.
 
 \subsection{Oriented Sections}
+
 \subsubsection{Imaginary Visibility}
 When curvature is decreased in a Spiral, Dunes and Spikes start appearing.\\
-$\mu_{+}$ is the interval $[a,b]$, which has positive curvature
+$\mu_{+}$ is the interval $[a,b]$, which has positive curvature / clockwise rotation.
 \begin{align}
-\mu_{+}(\{t\in A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
+\mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
+\end{align}
+\begin{align}
+visibility([a,b])=curvature[a,b]
 \end{align}
 
 \subsubsection{Real Isolation}
@@ -209,13 +213,12 @@ Isolation depends on the sense of extraction.
 If the sections are being extracted from left to right $[a,b];a<b$, isolation is the positive straightness. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
 Opposite wave direction: Negative Isolation.
 \begin{align}
-\eta_{+}
+\eta_{+}=(\{[a,b] \subseteq A,B \vert a<b\})
 \end{align}
 When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$.
 \begin{equation}
 isolation([a,b])=\frac{(b-a)}{\lvert b-a \rvert}straightness([a,b])
-\end{equation}
-
+\end{equation}\\
 A mapping from
 \begin{equation}
 z = isolation([a,b]) + i * visibility([a,b])
