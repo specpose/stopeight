@@ -227,7 +227,8 @@ z = isolation([a,b]) + i * visibility([a,b])
 \end{align}
 A complex norm $\norm{\cdot}$ is defined on the transversality (2).\\
 \begin{align}
-\norm{\cdot} : A,B \rightarrow \mathbb{R} \norm{straightness([a,b])+i*curvature([a,b])}
+\norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
+\norm{z} = \sqrt{isolation([a,b])^2+visibility([a,b])^2}
 \end{align}
 Stopeight functions are functions of the form $[a,b] \rightarrow [a',b']$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest Straight with an absolute straightness of $1$ be chosen for the first center.\\\\
