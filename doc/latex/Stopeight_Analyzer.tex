@@ -95,10 +95,11 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 \end{equation}
 \section{Computation}
 
-\subsection{Derivative}
+\subsection{Total Derivative}
 \begin{align}
 \frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \gamma(t) \begin{bmatrix} \frac{\partial}{\partial t} \mathrm{d} t & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
 \end{align}
+(Which terms can be ignored?)
 
 \subsection{Non-Oriented Segments}
 
@@ -174,11 +175,11 @@ C = \sup_{U}\lvert curvature([a,b]) \rvert
 \subsubsection{Turn}
 A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
 \begin{equation}
-T = \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\xi(t) \rvert
+T = \inf_{t \in U} \lvert \xi(t) \rvert
 \end{equation}
 The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}:
 \begin{equation}
-[a,b] \subseteq U_{m} \Rightarrow \exists  \frac{\mathrm{d}}{\mathrm{d}t}\xi(t)>0 \land \nexists \frac{\mathrm{d}}{\mathrm{d}t}\xi(t)\leq0
+[a,b] \subseteq U_{m} \Rightarrow \exists  \xi(t) - \iota_{T}(t) >0 \land \nexists \xi(t) - \iota_{T}(t) \leq0
 \end{equation}
 
 \subsubsection{Legal Segment}
@@ -273,7 +274,7 @@ Note: $\mu$ is a Lebesgue.
 \section{Comparator}
 \subsection{Impulses}
 Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.\\\\
-There are two main criteria among which the waves can vary. It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions. In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...\\\\
+There are two main criteria among which the waves can vary. It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions. In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
 
 \subsection{Wave Trains}
 The mathematically most intriguing oriented submanifolds are Crests and Spikes. We introduce a mechanism for the annihilation and creation of pulses, which in most signal analysis is overlooked. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled. A Crest would appear in the outgoing phase when a signal of enthropy brakes in the corresponding medium of the carrier. A Spike is a beat that appears in joint states of crystal grids when the incoming phase accumulates in a $different$ medium.
