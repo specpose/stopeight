@@ -104,7 +104,7 @@ A straight line segment is determined by a straightness measure.\\
 The metric (12) allows us to take the ratio of the arc-length to straight lines with $P_{n},P_{n+1} \in X$:\\
 (Negative case here does not make any sense. It would be a fault in the algorithm)
 \begin{equation}
-straightness([a.b])=\int \limits _{a}^{b}\lvert \frac{\xi(t)}{\iota_{X}(t)}\rvert \mathrm{d}t
+straightness([a.b])=\int \limits _{a}^{b}\lvert \frac{\iota_{X}(t)}{\iota_{T}(t)}\rvert \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -150,7 +150,7 @@ The diameter is also based on the metric (12) of $\iota_{T}$:\\
 vertical corner to corner measurement or\\
 )
 \begin{equation}
-diameter([a,b])=\int \limits _{a}^{b} \lvert \iota_{T}(b)-\iota_{T}(a) \rvert \mathrm{d}t
+diameter([a,b])=\int \limits _{a}^{b} \lvert \iota_{T}(t) \rvert \mathrm{d}t
 \end{equation}
 Curvature is determined by the ratio of Area to Diameter.
 \begin{equation}
@@ -217,7 +217,7 @@ Opposite wave direction: Negative Visibility.
 \mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
 \end{align}
 \begin{align}
-visibility([a,b])=\frac{(b-a)}{\lvert b-a \rvert}curvature[a,b]
+visibility([a,b])=curvature[a,b]
 \end{align}
 
 \subsubsection{Real Isolation}
@@ -228,18 +228,19 @@ $sign product of set of signs of turns$\\
 When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$.
 \begin{equation}
 isolation([a,b])=straightness([a,b])
-\end{equation}\\
+\end{equation}
 A mapping from\\
 (multiplication? addition?)
 \begin{align}
 A,B \times A,B \rightarrow \mathbb{C}\\
 (a,b) \mapsto z\\
-z = isolation([a,b]) + i * visibility([a,b])
+o = \frac{(b-a)}{\lvert b-a \rvert}\\
+z =  (\xi(t)-\iota_{X}(t))*(\cos{(o*curvature([a,b]))} +\mathrm{i} \sin{(o*straightness([a,b]))})
 \end{align}
-A complex norm $\norm{\cdot}$ is defined on the transversality (2).\\
+A complex norm $\norm{\cdot}$ is defined on the transversality (2).
 \begin{align}
 \norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
-\norm{z} = \sqrt{isolation([a,b])^2+visibility([a,b])^2}
+\norm{z} = \sqrt{Re(z)^2+Im(z)^2}
 \end{align}
 Stopeight functions are functions of the form $[a,b] \rightarrow [a',b']$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest Straight with an absolute straightness of $1$ be chosen for the first center.\\\\
