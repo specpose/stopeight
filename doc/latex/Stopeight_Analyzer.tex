@@ -101,7 +101,8 @@ Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ tha
 
 \subsubsection{Straightness}
 A straight line segment is determined by a straightness measure.\\
-The metric (12) allows us to take the ratio of the arc-length to straight lines with $P_{n},P_{n+1} \in X$:
+The metric (12) allows us to take the ratio of the arc-length to straight lines with $P_{n},P_{n+1} \in X$:\\
+(Negative case here does not make any sense. It would be a fault in the algorithm)
 \begin{equation}
 straightness([a.b])=\int \limits _{a}^{b}\lvert \frac{\xi(t)}{\iota_{X}(t)}\rvert \mathrm{d}t
 \end{equation}
@@ -123,9 +124,10 @@ A threshold can be chosen, which makes the segment straight or bent in A. (Visib
 It is closely related to the curvature measure.
 
 \subsubsection{Area}
-The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ connected by straight line segments $\iota_{T}$:
+The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ connected by straight line segments $\iota_{T}$:\\
+(Is not affected by negative isolation; needs to be between turns; we do need the length of it; it has to be the area over pos, neg)
 \begin{equation}
-area([a.b])=\int \limits _{a}^{b} \xi(t)-\iota_{T}(t) \mathrm{d}t
+area([a.b])=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -137,15 +139,18 @@ area([a,b])= \int \limits _{\xi'_{x}(a)}^{\xi'_{x}(b)} \xi'_{y}(t)\mathrm{d}t
 
 \subsubsection{Curvature}
 \iffalse
-Because the diameter has to be calculated piece-wise, we have to set up a vector space with the turns $P_{n},P_{n+1} \in T$.
+Because the diameter has to be calculated piece-wise, we have to set up a vector space with the turns $P_{n},P_{n+1} \in T$.\\
 \begin{equation}
 v \in (B,\norm{\cdot})
 \end{equation}
-Note: It is a Banach space.\\
 \fi
-The diameter is also based on the metric (12) of $\iota_{T}$:
+Note: It is a Banach space.\\
+The diameter is also based on the metric (12) of $\iota_{T}$:\\
+(Equivalent to Straightness, sign changes in the sense of analysis or\\
+vertical corner to corner measurement or\\
+)
 \begin{equation}
-diameter([a,b])=\lvert b-a \rvert; a < b; a,b \in B
+diameter([a,b])=\int \limits _{a}^{b} \lvert \iota_{T}(b)-\iota_{T}(a) \rvert \mathrm{d}t
 \end{equation}
 Curvature is determined by the ratio of Area to Diameter.
 \begin{equation}
@@ -199,27 +204,33 @@ The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4
 \subsection{Oriented Sections}
 
 \subsubsection{Imaginary Visibility}
+sign sense of analysis\\
+The complex conjugate is the other side of the wave vs\\
+The imaginary part is the other side of the wave\\
+The imaginary part is the phase shift (fft)\\
+The other side of the wave is imaginary.\\
 When curvature is decreased in a Spiral, Dunes and Spikes start appearing.\\
-$\mu_{+}$ is the interval $[a,b]$, which has positive curvature / clockwise rotation.
+If the sections are being extracted from left to right $[a,b];a<b$, visibility is the positive curvature. If the direction of analysis is reversed $[b,a]$, visibility is negative.\\
+Opposite wave direction: Negative Visibility.
+(Important Note: When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction is part of visibility, not isolation)
 \begin{align}
 \mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
 \end{align}
 \begin{align}
-visibility([a,b])=curvature[a,b]
+visibility([a,b])=\frac{(b-a)}{\lvert b-a \rvert}curvature[a,b]
 \end{align}
 
 \subsubsection{Real Isolation}
-Isolation depends on the sense of extraction.
-If the sections are being extracted from left to right $[a,b];a<b$, isolation is the positive straightness. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
-Opposite wave direction: Negative Isolation.
+$sign product of set of signs of turns$\\
 \begin{align}
 \eta_{+}=(\{[a,b] \subseteq A,B \vert a<b\})
 \end{align}
 When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$.
 \begin{equation}
-isolation([a,b])=\frac{(b-a)}{\lvert b-a \rvert}straightness([a,b])
+isolation([a,b])=straightness([a,b])
 \end{equation}\\
-A mapping from
+A mapping from\\
+(multiplication? addition?)
 \begin{align}
 A,B \times A,B \rightarrow \mathbb{C}\\
 (a,b) \mapsto z\\
