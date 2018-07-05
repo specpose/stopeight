@@ -95,6 +95,11 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 \end{equation}
 \section{Computation}
 
+\subsection{Derivative}
+\begin{align}
+\mathrm{d} \gamma (t) = \gamma(t) \begin{bmatrix} \frac{\partial}{\partial t} \mathrm{d} t & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
+\end{align}
+
 \subsection{Non-Oriented Segments}
 
 Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.
@@ -103,8 +108,9 @@ Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ tha
 A straight line segment is determined by a straightness measure.\\
 The metric (12) allows us to take the ratio of the arc-length to straight lines with $P_{n},P_{n+1} \in X$:\\
 (Negative case here does not make any sense. It would be a fault in the algorithm)
+(HickHack/Bogen)
 \begin{equation}
-straightness([a.b])=\int \limits _{a}^{b}\lvert \frac{\iota_{X}(t)}{\iota_{T}(t)}\rvert \mathrm{d}t
+straightness([a.b])=\int \limits _{a}^{b} \frac{\mathrm{i} (\iota_{X}(t) - \iota_{T}(t))}{\xi(t) - \iota_{T}(t)} \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -125,9 +131,10 @@ It is closely related to the curvature measure.
 
 \subsubsection{Area}
 The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ connected by straight line segments $\iota_{T}$:\\
-(Is not affected by negative isolation; needs to be between turns; we do need the length of it; it has to be the area over pos, neg)
+(Is not affected by negative isolation; needs to be between turns; we do need the length of it; it has to be the area over pos, neg)\\
+(orientation flips sign of value)
 \begin{equation}
-area([a.b])=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t
+area([a.b])=\int \limits _{a}^{b} \xi(t)-\iota_{T}(t) \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -139,7 +146,7 @@ area([a,b])= \int \limits _{\xi'_{x}(a)}^{\xi'_{x}(b)} \xi'_{y}(t)\mathrm{d}t
 
 \subsubsection{Curvature}
 \iffalse
-Because the diameter has to be calculated piece-wise, we have to set up a vector space with the turns $P_{n},P_{n+1} \in T$.\\
+Because the diameter has to be calculated piece-wise, we have to set up a vector space with the turns $P_{n},P_{n+1} \in T$.
 \begin{equation}
 v \in (B,\norm{\cdot})
 \end{equation}
@@ -148,9 +155,10 @@ Note: It is a Banach space.\\
 The diameter is also based on the metric (12) of $\iota_{T}$:\\
 (Equivalent to Straightness, sign changes in the sense of analysis or\\
 vertical corner to corner measurement or\\
-)
+)\\
+(orientation inverts domain)
 \begin{equation}
-diameter([a,b])=\int \limits _{a}^{b} \lvert \iota_{T}(t) \rvert \mathrm{d}t
+diameter([a,b])=\int \limits _{a}^{b} \iota_{T}(t) \mathrm{d}t
 \end{equation}
 Curvature is determined by the ratio of Area to Diameter.
 \begin{equation}
@@ -229,7 +237,7 @@ When curvature is increased in a Spiral, isolation starts to shift to subsegment
 \begin{equation}
 isolation([a,b])=straightness([a,b])
 \end{equation}
-A mapping from\\
+The orientation $o$ of a (sub-)manifold. The directed waves going forward/backward synchronously. (Not the changing signs of times)
 (multiplication? addition?)
 \begin{align}
 A,B \times A,B \rightarrow \mathbb{C}\\
