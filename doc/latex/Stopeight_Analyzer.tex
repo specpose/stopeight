@@ -216,13 +216,18 @@ Stopeight functions are functions of the form $[a,b] \rightarrow [a',b']$ that c
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest Straight with an absolute straightness of $1$ be chosen for the first center.\\\\
 For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Differentiating between Dunes and Spikes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
 Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.
+The orientation $o$ of a (sub-)manifold.
+\begin{align}
+o = \frac{(b-a)}{\lvert b-a \rvert}
+\end{align}
 
 \subsubsection{Cliff}
 A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=1$. So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.
 A single Cliff can have no more than the maximum curvature.
 
 \subsubsection{Swing}
-A Swing is the segment $a,b \in Y$, where a legal segment is followed by a sign change $[c,d]; c<d$ under affine transformation $\xi'$.
+A Swing is the segment $a,b \in Y$, where a legal segment is followed by a sign change $[c,d]; c<d$ under affine transformation $\xi'$.\\
+(The changing signs of times)
 \begin{align}
 \end{align}
 Note: $\mu$ is a Lebesgue.
@@ -244,7 +249,6 @@ A complex norm $\norm{\cdot}$ is defined on the transversality (2).
 \norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
 \norm{z} = \sqrt{Re(z)^2+Im(z)^2}
 \end{align}
-There are two main criteria among which the waves can vary. The absolute measure for source separation is visibility and isolation. They occur periodically and imply a reduction of the measure space.
 
 \subsubsection{Imaginary Visibility}
 sign sense of analysis\\
@@ -268,20 +272,17 @@ $sign product of set of signs of turns$\\
 \begin{align}
 \eta_{+}=(\{[a,b] \subseteq A,B \vert a<b\})
 \end{align}
-When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$.
 \begin{equation}
 isolation([a,b])=straightness([a,b])
 \end{equation}
-The orientation $o$ of a (sub-)manifold. The directed waves of straightness and curvature going forward/backward synchronously are periodic. (Not the changing signs of times)
 (multiplication? addition?)
 \begin{align}
 A,B \times A,B \rightarrow \mathbb{C}\\
 (a,b) \mapsto z\\
-o = \frac{(b-a)}{\lvert b-a \rvert}\\
-z =  (\xi(t)-\iota_{X}(t))*(\cos{(curvature([a,b]))} +\mathrm{i} \sin{(\mathrm{i} straightness([a,b]))})
 \end{align}
 or
 \begin{align}
+z =  (\xi(t)-\iota_{X}(t))*(\cos{(curvature([a,b]))} +\mathrm{i} \sin{(\mathrm{i} straightness([a,b]))})
 visibility =  (\xi(t)-\iota_{X}(t))*(\cos{(curvature([a,b]))} +\mathrm{i} \sin{(curvature([a,b]))})\\
 isolation = \mathrm{i} straightness([a,b]) + straightness([a,b])
 \end{align}
@@ -296,12 +297,15 @@ Because in any accurate measurement of matter, only a limited number of reef cha
 It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions.
 
 \subsection{Source Separation}
-Periodic in Swell\\
+There are two main criteria among which the waves can vary. The absolute measure for source separation is visibility and isolation.\\
+They occur periodically in a Swell and imply a reduction of the measure space.\\
 In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
+The directed waves of straightness and curvature going forward/backward synchronously are periodic.
 \subsection{Wave Generation}
 Supraliquid, Sail Effect / Surface Tension
 \subsection{Phase Transitions}
-Spiral
+Spiral\\
+When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$.
 \subsection{Lightning}
 Superconductor
 \subsection{Stateless}
