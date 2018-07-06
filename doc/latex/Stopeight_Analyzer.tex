@@ -214,7 +214,8 @@ The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4
 \subsection{Oriented Sections}
 Stopeight functions are functions of the form $[a,b] \rightarrow [a',b']$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest Straight with an absolute straightness of $1$ be chosen for the first center.\\\\
-For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Differentiating between Dunes and Spikes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\ Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.
+For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Differentiating between Dunes and Spikes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
+Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.
 
 \subsubsection{Cliff}
 A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=1$. So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.
@@ -238,10 +239,12 @@ The Cliffs are then centered outside in so that all cliffs in a spiral have the 
 \section{Comparator}
 \subsection{Impulses}
 Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.\\\\
-There are two main criteria among which the waves can vary. It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions. In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
-
-\subsection{Source Separation}
-The absolute measure for source separation is visibility and isolation. They occur periodically and imply a reduction of the measure space.
+A complex norm $\norm{\cdot}$ is defined on the transversality (2).
+\begin{align}
+\norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
+\norm{z} = \sqrt{Re(z)^2+Im(z)^2}
+\end{align}
+There are two main criteria among which the waves can vary. The absolute measure for source separation is visibility and isolation. They occur periodically and imply a reduction of the measure space.
 
 \subsubsection{Imaginary Visibility}
 sign sense of analysis\\
@@ -282,21 +285,27 @@ or
 visibility =  (\xi(t)-\iota_{X}(t))*(\cos{(curvature([a,b]))} +\mathrm{i} \sin{(curvature([a,b]))})\\
 isolation = \mathrm{i} straightness([a,b]) + straightness([a,b])
 \end{align}
-A complex norm $\norm{\cdot}$ is defined on the transversality (2).
-\begin{align}
-\norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
-\norm{z} = \sqrt{Re(z)^2+Im(z)^2}
-\end{align}
 
-
-\subsubsection{Wave Trains}
+\section{Morphisms}
+\subsection{Wave Trains}
 The mathematically most intriguing oriented submanifolds are Crests and Spikes. We introduce a mechanism for the annihilation and creation of pulses, which in most signal analysis is overlooked. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled. A Crest would appear in the outgoing phase when a signal of enthropy brakes in the corresponding medium of the carrier. A Spike is a beat that appears in joint states of crystal grids when the incoming phase accumulates in a $different$ medium.
-
-\subsubsection{Morphisms}
 Traveling wave trains are moving over stationary reef chains. Upon creation, enthropic wave trains are impulses, at the least even a part of a half-pulse (Example Spiral). Enthalpic reef chains change state when they are converted to a plasma state for an infinitesimal short period of time.\\\\
 A wave train (dirac delta?) appears in a wave packet that splits up. A wave packet that splits, decreases its isolation and transfers a part of its visibility to the sub-wave packets. Depending on the wavelength of a Reef, the original wave packet may never appear again.\\\\
 On the other hand, the sub-wave packets of an open ocean wave pick up wind. The enclosing wave packet can form a new wave train, together with neighbouring wave packets and so slowly, the little left-over, chaotic visibility of the sub-wave packets gets transferred not only to the enclosing wave packet, but to the whole wave train. The swell gets groomed and the short wavelengths disappear.\\\\
 Because in any accurate measurement of matter, only a limited number of reef chains can be considered; For the multitude of periodic energy passing over a reef chain, all products of the chain are compared, up to the length of the frame of the train.
+It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions.
+
+\subsection{Source Separation}
+Periodic in Swell\\
+In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
+\subsection{Wave Generation}
+Supraliquid, Sail Effect / Surface Tension
+\subsection{Phase Transitions}
+Spiral
+\subsection{Lightning}
+Superconductor
+\subsection{Stateless}
+Supercritical gas (liquid/gas) carbondioxide
 
 \printbibliography
 
