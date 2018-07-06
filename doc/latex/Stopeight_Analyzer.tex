@@ -280,12 +280,6 @@ isolation([a,b])=straightness([a,b])
 A,B \times A,B \rightarrow \mathbb{C}\\
 (a,b) \mapsto z\\
 \end{align}
-or
-\begin{align}
-z =  (\xi(t)-\iota_{X}(t))*(\cos{(curvature([a,b]))} +\mathrm{i} \sin{(\mathrm{i} straightness([a,b]))})
-visibility =  (\xi(t)-\iota_{X}(t))*(\cos{(curvature([a,b]))} +\mathrm{i} \sin{(curvature([a,b]))})\\
-isolation = \mathrm{i} straightness([a,b]) + straightness([a,b])
-\end{align}
 
 \section{Morphisms}
 \subsection{Wave Trains}
@@ -301,13 +295,25 @@ There are two main criteria among which the waves can vary. The absolute measure
 They occur periodically in a Swell and imply a reduction of the measure space.\\
 In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
 The directed waves of straightness and curvature going forward/backward synchronously are periodic.
+For Crests / Swell.
+\begin{align}
+z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility([a,b]))} +\mathrm{i} \sin{(\mathrm{i} isolation([a,b]))})\\
+\end{align}
 \subsection{Wave Generation}
 Supraliquid, Sail Effect / Surface Tension
 \subsection{Phase Transitions}
 Spiral\\
 When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$.
+For Dune/Spiral.
+\begin{align}
+visibility =  (\xi(t)-\iota_{X}(t))*(\cos{(curvature([a,b]))} +\mathrm{i} \sin{(curvature([a,b]))})\\
+\end{align}
 \subsection{Lightning}
 Superconductor
+For Spike/ZigZag.
+\begin{align}
+isolation =  straightness([a,b]) + \mathrm{i} straightness([a,b])
+\end{align}
 \subsection{Stateless}
 Supercritical gas (liquid/gas) carbondioxide
 
