@@ -173,7 +173,8 @@ C = \sup_{U}\lvert curvature([a,b]) \rvert
 \end{equation}
 
 \subsubsection{Turn}
-A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
+A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.\\
+(Does it exist?)
 \begin{equation}
 T = \inf_{t \in U} \lvert \xi(t) \rvert
 \end{equation}
@@ -219,10 +220,6 @@ For the time being, the approach in this paper is a compromise ($A$ is closed). 
 A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=1$. So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.
 A single Cliff can have no more than the maximum curvature.
 
-\subsubsection{Spiral}
-An even number of Cliffs is found under the curvature criteria.
-The Cliffs are then centered outside in so that all cliffs in a spiral have the same curvature.
-
 \subsubsection{Swing}
 A Swing is the segment $a,b \in Y$, where a legal segment is followed by a sign change $[c,d]; c<d$ under affine transformation $\xi'$.
 \begin{align}
@@ -231,10 +228,20 @@ Note: $\mu$ is a Lebesgue.
 
 \subsubsection{Straight}
 
+\subsection{Compact Covers}
+\subsubsection{Spiral}
+An even number of Cliffs is found under the curvature criteria.
+The Cliffs are then centered outside in so that all cliffs in a spiral have the same curvature.
+\subsubsection{ZigZag}
+\subsubsection{Swell}
+
 \section{Comparator}
 \subsection{Impulses}
 Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.\\\\
 There are two main criteria among which the waves can vary. It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions. In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
+
+\subsection{Source Separation}
+The absolute measure for source separation is visibility and isolation. They occur periodically and imply a reduction of the measure space.
 
 \subsubsection{Imaginary Visibility}
 sign sense of analysis\\
@@ -262,13 +269,13 @@ When curvature is increased in a Spiral, isolation starts to shift to subsegment
 \begin{equation}
 isolation([a,b])=straightness([a,b])
 \end{equation}
-The orientation $o$ of a (sub-)manifold. The directed waves going forward/backward synchronously. (Not the changing signs of times)
+The orientation $o$ of a (sub-)manifold. The directed waves of straightness and curvature going forward/backward synchronously are periodic. (Not the changing signs of times)
 (multiplication? addition?)
 \begin{align}
 A,B \times A,B \rightarrow \mathbb{C}\\
 (a,b) \mapsto z\\
 o = \frac{(b-a)}{\lvert b-a \rvert}\\
-z =  (\xi(t)-\iota_{X}(t))*(\cos{(o*curvature([a,b]))} +\mathrm{i} \sin{(o*straightness([a,b]))})
+z =  (\xi(t)-\iota_{X}(t))*(\cos{(curvature([a,b]))} +\mathrm{i} \sin{(straightness([a,b]))})
 \end{align}
 A complex norm $\norm{\cdot}$ is defined on the transversality (2).
 \begin{align}
