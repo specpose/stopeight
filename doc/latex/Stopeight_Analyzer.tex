@@ -109,7 +109,7 @@ The metric (12) allows us to take the ratio of the arc-length to straight lines 
 (Negative case here does not make any sense. It would be a fault in the algorithm)
 (HickHack/Bogen)
 \begin{equation}
-straightness([a.b])=\int \limits _{a}^{b} \frac{\mathrm{i} (\iota_{X}(t) - \iota_{T}(t))}{\xi(t) - \iota_{T}(t)} \mathrm{d}t
+straightness([a.b])=\int \limits _{a}^{b} \frac{\iota_{X}(t) - \iota_{T}(t)}{\xi(t) - \iota_{T}(t)} \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -250,10 +250,6 @@ A complex norm $\norm{\cdot}$ is defined on the transversality (2).
 
 \subsection{Imaginary Visibility}
 sign sense of analysis\\
-The complex conjugate is the other side of the wave vs\\
-The imaginary part is the other side of the wave\\
-The imaginary part is the phase shift (fft)\\
-The other side of the wave is imaginary.\\
 When curvature is decreased in a Spiral, Dunes and Spikes start appearing.\\
 If the sections are being extracted from left to right $[a,b];a<b$, visibility is the positive curvature. If the direction of analysis is reversed $[b,a]$, visibility is negative.\\
 Opposite wave direction: Negative Visibility.
@@ -273,13 +269,19 @@ $sign product of set of signs of turns$\\
 \begin{equation}
 isolation([a,b])=straightness([a,b])
 \end{equation}
+
+\chapter{Morphisms}
+
+The complex conjugate is the other side of the wave vs\\
+The imaginary part is the other side of the wave\\
+The imaginary part is the phase shift (fft)\\
+The other side of the wave is imaginary.\\
 (multiplication? addition?)
 \begin{align}
 A,B \times A,B \rightarrow \mathbb{C}\\
 (a,b) \mapsto z\\
 \end{align}
 
-\chapter{Morphisms}
 \section{Wave Trains}
 The mathematically most intriguing oriented submanifolds are Crests and Spikes. We introduce a mechanism for the annihilation and creation of pulses, which in most signal analysis is overlooked. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled. A Crest would appear in the outgoing phase when a signal of enthropy brakes in the corresponding medium of the carrier. A Spike is a beat that appears in joint states of crystal grids when the incoming phase accumulates in a $different$ medium.
 Traveling wave trains are moving over stationary reef chains. Upon creation, enthropic wave trains are impulses, at the least even a part of a half-pulse (Example Spiral). Enthalpic reef chains change state when they are converted to a plasma state for an infinitesimal short period of time.\\\\
@@ -295,7 +297,7 @@ In signal analysis, there is the notion of source separated and spectral separat
 The directed waves of straightness and curvature going forward/backward synchronously are periodic.
 For Crests / Swell.
 \begin{align}
-z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility([a,b]))} +\mathrm{i} \sin{(\mathrm{i} isolation([a,b]))})\\
+z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility([a,b]))} +\mathrm{i} \sin{(isolation([a,b]))})\\
 \end{align}
 
 \subsection{Wave Generation}
