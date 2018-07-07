@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{report}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -18,7 +18,7 @@
 \author{Fassio Blatter}
 \maketitle
 
-\section{Introduction}
+\chapter{Introduction}
 
 The algorithm in this text has been developed during the years 2009 to 2016 by Specific Purpose Software GmbH. It is now open sourced, but mostly exists in the form of code fragments.\\
 This file is in the Stopeight repository on Github. Please edit here:\\
@@ -49,7 +49,7 @@ Within $f$ we are assigning a sequence of three points to compact Hausdorf inver
 \fi
 The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines. ($U_{m}$ closed?)
 
-\section{Representation}
+\chapter{Representation}
 
 The affine transformations $q$ are functions that map to control points $Q \subset \mathbb{R}^2$:
 \begin{align}
@@ -93,19 +93,17 @@ We can now establish an injective $link$ between elements of $B$ and $A$. ($X \r
 \begin{equation}
 link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y') \mapsto (x,y)
 \end{equation}
-\section{Computation}
 
-\subsection{Total Derivative}
+\chapter{Computation}
+
+\section{Non-Oriented Segments}
+The total derivative is:
 \begin{align}
 \frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \gamma(t) \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of metric (12)}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
 \end{align}
-(Which terms can be ignored?)
-
-\subsection{Non-Oriented Segments}
-
 Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.
 
-\subsubsection{Straightness}
+\subsection{Straightness}
 A straight line segment is determined by a straightness measure.\\
 The metric (12) allows us to take the ratio of the arc-length to straight lines with $P_{n},P_{n+1} \in X$:\\
 (Negative case here does not make any sense. It would be a fault in the algorithm)
@@ -130,7 +128,7 @@ straightness([a,b])=\sum_{t=a}^{b-2}\frac{\sqrt{\xi(S)(\xi(S)-\xi(A))(\xi(S)-\xi
 A threshold can be chosen, which makes the segment straight or bent in A. (Visibility)\\
 It is closely related to the curvature measure.
 
-\subsubsection{Area}
+\subsection{Area}
 The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ connected by straight line segments $\iota_{T}$:\\
 (Is not affected by negative isolation; needs to be between turns; we do need the length of it; it has to be the area over pos, neg)\\
 (orientation flips sign of value)
@@ -145,7 +143,7 @@ area([a,b])= \int \limits _{\xi'_{x}(a)}^{\xi'_{x}(b)} \xi'_{y}(t)\mathrm{d}t
 \end{align}
 \fi
 
-\subsubsection{Curvature}
+\subsection{Curvature}
 \iffalse
 Because the diameter has to be calculated piece-wise, we have to set up a vector space with the turns $P_{n},P_{n+1} \in T$.
 \begin{equation}
@@ -166,13 +164,13 @@ Curvature is determined by the ratio of Area to Diameter.
 curvature([a,b]) = \frac{area([a,b])}{diameter([a,b])}
 \end{equation}
 
-\subsubsection{Corner}
+\subsection{Corner}
 A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a segment $[a,b] \subseteq B$ is:
 \begin{equation}
 C = \sup_{U}\lvert curvature([a,b]) \rvert
 \end{equation}
 
-\subsubsection{Turn}
+\subsection{Turn}
 A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.\\
 (Does it exist?)
 \begin{equation}
@@ -183,13 +181,13 @@ The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}:
 [a,b] \subseteq U_{m} \Rightarrow \exists  \xi(t) - \iota_{T}(t) >0 \land \nexists \xi(t) - \iota_{T}(t) \leq0
 \end{equation}
 
-\subsubsection{Legal Segment}
+\subsection{Legal Segment}
 A legal segment is an affine transformtion of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous (when):
 \begin{align}
 \xi'_{y}(a), \xi'_{y}(b) = 0; \text{(Optional?)}
 \end{align}
 
-\subsubsection{Affine Transformation}
+\subsection{Affine Transformation}
 An affine transformation $A$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
 \begin{equation}
 transform(\gamma):
@@ -211,7 +209,7 @@ h_{1}' & h_{2}' & h_{3}'
 \end{equation}
 The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$.
 
-\subsection{Oriented Sections}
+\section{Oriented Sections}
 Stopeight functions are functions of the form $[a,b] \rightarrow [a',b']$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest Straight with an absolute straightness of $1$ be chosen for the first center.\\\\
 For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Differentiating between Dunes and Spikes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
@@ -221,27 +219,27 @@ The orientation $o$ of a (sub-)manifold.
 o = \frac{(b-a)}{\lvert b-a \rvert}
 \end{align}
 
-\subsubsection{Cliff}
+\subsection{Cliff}
 A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=1$. So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.
 A single Cliff can have no more than the maximum curvature.
 
-\subsubsection{Swing}
+\subsection{Swing}
 A Swing is the segment $a,b \in Y$, where a legal segment is followed by a sign change $[c,d]; c<d$ under affine transformation $\xi'$.\\
 (The changing signs of times)
 \begin{align}
 \end{align}
 Note: $\mu$ is a Lebesgue.
 
-\subsubsection{Straight}
+\subsection{Straight}
 
-\subsection{Compact Covers}
-\subsubsection{Spiral}
+\section{Compact Covers}
+\subsection{Spiral}
 An even number of Cliffs is found under the curvature criteria.
 The Cliffs are then centered outside in so that all cliffs in a spiral have the same curvature.
-\subsubsection{ZigZag}
-\subsubsection{Swell}
+\subsection{ZigZag}
+\subsection{Swell}
 
-\section{Comparator}
+\chapter{Comparator}
 \subsection{Impulses}
 Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.\\\\
 A complex norm $\norm{\cdot}$ is defined on the transversality (2).
@@ -250,7 +248,7 @@ A complex norm $\norm{\cdot}$ is defined on the transversality (2).
 \norm{z} = \sqrt{Re(z)^2+Im(z)^2}
 \end{align}
 
-\subsubsection{Imaginary Visibility}
+\subsection{Imaginary Visibility}
 sign sense of analysis\\
 The complex conjugate is the other side of the wave vs\\
 The imaginary part is the other side of the wave\\
@@ -267,7 +265,7 @@ Opposite wave direction: Negative Visibility.
 visibility([a,b])=curvature[a,b]
 \end{align}
 
-\subsubsection{Real Isolation}
+\subsection{Real Isolation}
 $sign product of set of signs of turns$\\
 \begin{align}
 \eta_{+}=(\{[a,b] \subseteq A,B \vert a<b\})
@@ -281,8 +279,8 @@ A,B \times A,B \rightarrow \mathbb{C}\\
 (a,b) \mapsto z\\
 \end{align}
 
-\section{Morphisms}
-\subsection{Wave Trains}
+\chapter{Morphisms}
+\section{Wave Trains}
 The mathematically most intriguing oriented submanifolds are Crests and Spikes. We introduce a mechanism for the annihilation and creation of pulses, which in most signal analysis is overlooked. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled. A Crest would appear in the outgoing phase when a signal of enthropy brakes in the corresponding medium of the carrier. A Spike is a beat that appears in joint states of crystal grids when the incoming phase accumulates in a $different$ medium.
 Traveling wave trains are moving over stationary reef chains. Upon creation, enthropic wave trains are impulses, at the least even a part of a half-pulse (Example Spiral). Enthalpic reef chains change state when they are converted to a plasma state for an infinitesimal short period of time.\\\\
 A wave train (dirac delta?) appears in a wave packet that splits up. A wave packet that splits, decreases its isolation and transfers a part of its visibility to the sub-wave packets. Depending on the wavelength of a Reef, the original wave packet may never appear again.\\\\
@@ -290,7 +288,7 @@ On the other hand, the sub-wave packets of an open ocean wave pick up wind. The 
 Because in any accurate measurement of matter, only a limited number of reef chains can be considered; For the multitude of periodic energy passing over a reef chain, all products of the chain are compared, up to the length of the frame of the train.
 It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions.
 
-\subsection{Source Separation}
+\subsection{Spectral Separation}
 There are two main criteria among which the waves can vary. The absolute measure for source separation is visibility and isolation.\\
 They occur periodically in a Swell and imply a reduction of the measure space.\\
 In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
@@ -299,6 +297,7 @@ For Crests / Swell.
 \begin{align}
 z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility([a,b]))} +\mathrm{i} \sin{(\mathrm{i} isolation([a,b]))})\\
 \end{align}
+
 \subsection{Wave Generation}
 Supraliquid, Sail Effect / Surface Tension
 \subsection{Phase Transitions}
@@ -306,14 +305,16 @@ Spiral\\
 When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$.
 For Dune/Spiral.
 \begin{align}
-z =  \sup_{U}\lvert curvature([a,b]) \rvert*(\cos{(curvature([a,b]))} +\mathrm{i} \sin{(curvature([a,b]))})
+z =  \sup_{U}\lvert curvature([a,b]) \rvert*(\cos{(isolation([a,b]))} +\mathrm{i} \sin{(visibility([a,b]))})
 \end{align}
+
 \subsection{Lightning}
 Superconductor\\
 For Spike/ZigZag.
 \begin{align}
-z =  straightness([a,b]) + \mathrm{i} straightness([a,b])
+z =  straightness([a,b]) + \mathrm{i} curvature([a,b])
 \end{align}
+
 \subsection{Stateless}
 Supercritical gas (liquid/gas) carbondioxide
 
