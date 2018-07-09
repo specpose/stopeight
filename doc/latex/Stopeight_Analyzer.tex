@@ -102,15 +102,15 @@ The derivative of the inverse of the curve is the total derivative.
 \gamma^{-1}: (t,x(t),y(t)) \mapsto t\\
 \frac{\mathrm{d}}{\mathrm{d} t} \gamma (t)^{-1} = \gamma(t)^{-1} \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of metric (12)}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
 \end{align}
-Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.
+Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.
 
 \subsection{Straightness}
 A straight line segment is determined by a straightness measure.\\
 The metric (12) allows us to take the ratio of the arc-length to straight lines with $P_{n},P_{n+1} \in X$:\\
-(Negative case here does not make any sense. It would be a fault in the algorithm)
+(Negative case here does not make any sense. It would be a fault in the algorithm)\\
 (HickHack/Bogen)
 \begin{equation}
-straightness([a.b])=\int \limits _{a}^{b} \frac{\iota_{X}(t) - \iota_{T}(t)}{\xi(t) - \iota_{T}(t)} \mathrm{d}t
+straightness(a.b)=\int \limits _{a}^{b} \frac{\iota_{X}(t) - \iota_{T}(t)}{\xi(t) - \iota_{T}(t)} \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -134,7 +134,7 @@ The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ con
 (Is not affected by negative isolation; needs to be between turns; we do need the length of it; it has to be the area over pos, neg)\\
 (orientation flips sign of value)
 \begin{equation}
-area([a.b])=\int \limits _{a}^{b} \xi(t)-\iota_{T}(t) \mathrm{d}t
+area(a,b)=\int \limits _{a}^{b} \xi(t)-\iota_{T}(t) \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -150,25 +150,24 @@ Because the diameter has to be calculated piece-wise, we have to set up a vector
 \begin{equation}
 v \in (B,\norm{\cdot})
 \end{equation}
-\fi
 Note: It is a Banach space.\\
+\fi
 The diameter is also based on the metric (12) of $\iota_{T}$:\\
 (Equivalent to Straightness, sign changes in the sense of analysis or\\
-vertical corner to corner measurement or\\
-)\\
+vertical corner to corner measurement)\\
 (orientation inverts domain)
 \begin{equation}
-diameter([a,b])=\int \limits _{a}^{b} \iota_{T}(t) \mathrm{d}t
+diameter(a,b)=\int \limits _{a}^{b} \iota_{T}(t) \mathrm{d}t
 \end{equation}
 Curvature is determined by the ratio of Area to Diameter.
 \begin{equation}
-curvature([a,b]) = \frac{area([a,b])}{diameter([a,b])}
+curvature(a,b) = \frac{area(a,b)}{diameter(a,b)}
 \end{equation}
 
 \subsection{Corner}
 A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a segment $[a,b] \subseteq B$ is:
 \begin{equation}
-C = \sup_{U}\lvert curvature([a,b]) \rvert
+C = \sup_{U}\lvert curvature(a,b) \rvert
 \end{equation}
 
 \subsection{Turn}
@@ -220,7 +219,7 @@ Or Trinomial.
 \begin{align}
 \frac{\mathrm{d}^2}{\mathrm{d}t}\gamma(t)^{-1}=\partial^2 \gamma (t)^{-1} \begin{bmatrix}\frac{\mathrm{d}^2 x}{\partial^2 x} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}x}{\partial x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}y}{\partial y} & \frac{\mathrm{d}^2 y}{\partial^2 y}\end{bmatrix}\frac{(\partial x + \partial y)^2}{\mathrm{d}^2 t}
 \end{align}
-Stopeight functions are functions of the form $[a,b] \rightarrow [a',b']$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
+Stopeight functions are functions of the form $(a,b) \mapsto (a',b')$ that can be applied to certain sections $[a,b],[a',b'] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest Straight with an absolute straightness of $1$ be chosen for the first center.\\\\
 For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Differentiating between Dunes and Spikes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
 Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.
