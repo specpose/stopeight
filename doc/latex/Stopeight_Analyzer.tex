@@ -210,6 +210,15 @@ h_{1}' & h_{2}' & h_{3}'
 The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$.
 
 \section{Oriented Sections}
+The second order total derivative.\\
+Binomial.
+\begin{align}
+\frac{\mathrm{d}^2}{\mathrm{d}t}\gamma(t)=\frac{\partial^2}{\mathrm{d}t} \gamma(t) \begin{bmatrix} \frac{\mathrm{d}x^2}{\partial x^2} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & \frac{\mathrm{d}y^2}{\partial y^2}\end{bmatrix}
+\end{align}
+Or Trinomial.
+\begin{align}
+\frac{\mathrm{d}^2}{\mathrm{d}t}\gamma(t)=\partial^2 \gamma (t) \begin{bmatrix}\frac{\mathrm{d}^2 x}{\partial^2 x} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}x}{\partial x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}y}{\partial y} & \frac{\mathrm{d}^2 y}{\partial^2 y}\end{bmatrix}\frac{(\partial x + \partial y)^2}{\mathrm{d}^2 t}
+\end{align}
 Stopeight functions are functions of the form $[a,b] \rightarrow [a',b']$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest Straight with an absolute straightness of $1$ be chosen for the first center.\\\\
 For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Differentiating between Dunes and Spikes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
