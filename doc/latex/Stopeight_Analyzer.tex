@@ -97,8 +97,9 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 \chapter{Computation}
 
 \section{Non-Oriented Segments}
-The total derivative of the inverse.
+The derivative of the inverse of the curve is the total derivative.
 \begin{align}
+\gamma^{-1}: (t,x(t),y(t)) \mapsto t\\
 \frac{\mathrm{d}}{\mathrm{d} t} \gamma (t)^{-1} = \gamma(t)^{-1} \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of metric (12)}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
 \end{align}
 Auxiliary functions are functions of the form $[a,b] \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.
