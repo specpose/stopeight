@@ -85,7 +85,7 @@ In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$
 dim(B)=1<codim(Y)=1 \Rightarrow B \text{ joint } A
 \end{align}
 Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}\\\\
-The arc-length metric $d(a,b)$ turns both manifolds $A$ and $B$ into metric spaces $(A,d)$ and $(B,d)$. ($\frac{d}{dt}$: total derivative?)
+The arc-length metric $d(a,b)$ turns both manifolds $A$ and $B$ into metric spaces $(A,d)$ and $(B,d)$. ($\frac{d}{dt}$.
 \begin{equation}
 d(a,b) = \int \limits _{a}^{b}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t)\rvert \mathrm{d}t
 \end{equation}
@@ -97,10 +97,9 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 \chapter{Computation}
 
 \section{Non-Oriented Segments}
-The derivative of the inverse of the curve is the total derivative.
+The curve of gamma can be interprated as a function $\gamma(t,x(t),y(t)$. The derivative is the total derivative.
 \begin{align}
-\gamma^{-1}: (t,x(t),y(t)) \mapsto t\\
-\frac{\mathrm{d}}{\mathrm{d} t} \gamma (t)^{-1} = \gamma(t)^{-1} \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of metric (12)}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
+\frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \gamma(t) \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of metric (12)}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
 \end{align}
 Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.
 
@@ -110,8 +109,9 @@ The metric (12) allows us to take the ratio of the arc-length to straight lines 
 (Negative case here does not make any sense. It would be a fault in the algorithm)\\
 (HickHack/Bogen)
 \begin{equation}
-straightness(a.b)=\int \limits _{a}^{b} \frac{\iota_{X}(t) - \iota_{T}(t)}{\xi(t) - \iota_{T}(t)} \mathrm{d}t
+straightness(a.b)=\int \limits _{a}^{b}o \lvert \frac{\iota_{X}(t) - \iota_{T}(t)}{\xi(t) - \iota_{T}(t)}\rvert \mathrm{d}t
 \end{equation}
+Please take note of the sign here. The numerator and denominator have the same sign.
 \iffalse
 \subsubsection{Algorithm Version}
 It is using Heron's formula for the area of a triangle:
@@ -123,7 +123,7 @@ S=\frac{A+B+C}{2}
 \end{align*}
 to calculate the ratio of the areas in $A$ and lines in $B$:
 \begin{align}
-straightness([a,b])=\sum_{t=a}^{b-2}\frac{\sqrt{\xi(S)(\xi(S)-\xi(A))(\xi(S)-\xi(B))(\xi(S)-\xi(C))}}{\iota(A)+\iota(B)}
+straightness([a,b])=\sum_{t=a}^{b-2}o\frac{\sqrt{\xi(S)(\xi(S)-\xi(A))(\xi(S)-\xi(B))(\xi(S)-\xi(C))}}{\iota(A)+\iota(B)}
 \end{align}
 \fi
 A threshold can be chosen, which makes the segment straight or bent in A. (Visibility)\\
@@ -134,7 +134,7 @@ The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ con
 (Is not affected by negative isolation; needs to be between turns; we do need the length of it; it has to be the area over pos, neg)\\
 (orientation flips sign of value)
 \begin{equation}
-area(a,b)=\int \limits _{a}^{b} \xi(t)-\iota_{T}(t) \mathrm{d}t
+area(a,b)=\int \limits _{a}^{b} \xi'(t)-\iota'_{T}(t) \mathrm{d}t
 \end{equation}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -157,7 +157,7 @@ The diameter is also based on the metric (12) of $\iota_{T}$:\\
 vertical corner to corner measurement)\\
 (orientation inverts domain)
 \begin{equation}
-diameter(a,b)=\int \limits _{a}^{b} \iota_{T}(t) \mathrm{d}t
+diameter(a,b)= \iota_{T}(b) - \iota_{T}(a)
 \end{equation}
 Curvature is determined by the ratio of Area to Diameter.
 \begin{equation}
@@ -184,11 +184,11 @@ The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}:
 \subsection{Legal Segment}
 A legal segment is an affine transformtion of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous (when):
 \begin{align}
-\xi'_{y}(a), \xi'_{y}(b) = 0; \text{(Optional?)}
+\xi'_{x}(a),\xi'_{y}(a), \xi'_{y}(b) = 0;
 \end{align}
 
 \subsection{Affine Transformation}
-An affine transformation $A$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
+An affine transformation $M$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
 \begin{equation}
 transform(\gamma):
 \begin{bmatrix}
@@ -200,7 +200,7 @@ transform(\gamma):
 1 & -2 &1
 \end{bmatrix}}_{Coefficients}
 \begin{bmatrix}
-Ah_{1} & Ah_{2} & Ah_{3}
+Mh_{1} & Mh_{2} & Mh_{3}
 \end{bmatrix}
 =
 \begin{bmatrix}
@@ -210,14 +210,14 @@ h_{1}' & h_{2}' & h_{3}'
 The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$.
 
 \section{Oriented Sections}
-The second order total derivative of the inverse.\\
+The second order total derivative.\\
 Binomial.
 \begin{align}
-\frac{\mathrm{d}^2}{\mathrm{d}t}\gamma(t)^{-1}=\frac{\partial^2}{\mathrm{d}t} \gamma(t)^{-1} \begin{bmatrix} \frac{\mathrm{d}x^2}{\partial x^2} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & \frac{\mathrm{d}y^2}{\partial y^2}\end{bmatrix}
+\frac{\mathrm{d}^2}{\mathrm{d}t}\gamma(t)=\partial^2 \gamma(t) \begin{bmatrix} \frac{\mathrm{d}x^2}{\partial x^2} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & \frac{\mathrm{d}y^2}{\partial y^2}\end{bmatrix}\frac{1}{\mathrm{d}t}
 \end{align}
 Or Trinomial.
 \begin{align}
-\frac{\mathrm{d}^2}{\mathrm{d}t}\gamma(t)^{-1}=\partial^2 \gamma (t)^{-1} \begin{bmatrix}\frac{\mathrm{d}^2 x}{\partial^2 x} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}x}{\partial x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}y}{\partial y} & \frac{\mathrm{d}^2 y}{\partial^2 y}\end{bmatrix}\frac{(\partial x + \partial y)^2}{\mathrm{d}^2 t}
+\frac{\mathrm{d}^2}{\mathrm{d}t}\gamma(t)=\partial^2 \gamma (t) \begin{bmatrix}\frac{\mathrm{d}^2 x}{\partial^2 x} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}x}{\partial x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}y}{\partial y} & \frac{\mathrm{d}^2 y}{\partial^2 y}\end{bmatrix}\frac{(\partial x + \partial y)^2}{\mathrm{d}^2 t}
 \end{align}
 Stopeight functions are functions of the form $(a,b) \mapsto (a',b')$ that can be applied to certain sections $[a,b],[a',b'] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.\\\\
@@ -243,6 +243,7 @@ A Swing is the segment $a,b \in Y$, where a legal segment is followed by a sign 
 
 \subsection{Dune}
 (half Dune is Cliff)
+They only occur in last priority.
 
 \subsection{Spike}
 (Two Dunes are two straights if they overlap)
@@ -270,10 +271,9 @@ A complex norm $\norm{\cdot}$ is defined on the transversality (2).
 \end{align}
 
 \subsection{Imaginary Visibility}
-sign sense of analysis\\
+The changing signs of times.
+sign sense of analysis flipping\\
 When curvature is decreased in a Spiral, Dunes and Spikes start appearing.\\
-If the sections are being extracted from left to right $[a,b];a<b$, visibility is the positive curvature. If the direction of analysis is reversed $[b,a]$, visibility is negative.\\
-Opposite wave direction: Negative Visibility.
 (Important Note: When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction is part of visibility, not isolation)
 \begin{align}
 \mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
@@ -285,6 +285,9 @@ visibility([a,b])=curvature[a,b]
 
 \subsection{Real Isolation}
 $sign product of set of signs of turns$\\
+If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
+Opposite wave direction: Negative Visibility.
+
 \begin{align}
 \eta_{+}=(\{[a,b] \subseteq A,B \vert a<b\})
 \end{align}
@@ -335,7 +338,8 @@ z =  \sup_{U}\lvert curvature([a,b]) \rvert*(\cos{(isolation([a,b]))} +\mathrm{i
 
 \subsection{Lightning}
 Superconductor\\
-For Spike/ZigZag.
+For Spike/ZigZag.\\
+If we're setting $\sqrt{1-y^2}$ to be the linear part of complex plane, $\phi$ in $z=\sqrt{1-y^2}e^{i\phi}$ is the rotational part.
 \begin{align}
 z =  straightness([a,b]) + \mathrm{i} curvature([a,b])
 \end{align}
