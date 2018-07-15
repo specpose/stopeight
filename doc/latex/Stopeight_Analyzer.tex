@@ -205,11 +205,11 @@ The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4
 The second order total derivative.\\
 Binomial.
 \begin{align}
-\frac{\mathrm{d}^2}{\mathrm{d}t}\gamma(t)=\partial^2 \gamma(t) \begin{bmatrix} \frac{\mathrm{d}x^2}{\partial x^2} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & \frac{\mathrm{d}y^2}{\partial y^2}\end{bmatrix}\frac{1}{\mathrm{d}t}
+\frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t)=\partial^2 \gamma(t) \begin{bmatrix} \frac{\mathrm{d}^2x}{\partial^2 x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & \frac{\mathrm{d}^2y}{\partial^2 y}\end{bmatrix}\frac{1}{\mathrm{d}^2t}
 \end{align}
 Or Trinomial.
 \begin{align}
-\frac{\mathrm{d}^2}{\mathrm{d}t}\gamma(t)=\partial^2 \gamma (t) \begin{bmatrix}\frac{\mathrm{d}^2 x}{\partial^2 x} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}x}{\partial x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}y}{\partial y} & \frac{\mathrm{d}^2 y}{\partial^2 y}\end{bmatrix}\frac{(\partial x + \partial y)^2}{\mathrm{d}^2 t}
+\frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t)=\partial^2 \gamma (t) \begin{bmatrix}\frac{\mathrm{d}^2 x}{\partial^2 x} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}x}{\partial x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}y}{\partial y} & \frac{\mathrm{d}^2 y}{\partial^2 y}\end{bmatrix}\frac{(\partial x + \partial y)^2}{\mathrm{d}^2 t}
 \end{align}
 Stopeight functions are functions of the form $(a,b) \mapsto (a',b')$ that can be applied to certain sections $[a,b],[a',b'] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.\\\\
