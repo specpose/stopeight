@@ -97,21 +97,22 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 \chapter{Computation}
 
 \section{Non-Oriented Segments}
-The curve of gamma can be interprated as a function $\gamma(t,x(t),y(t)$. The derivative is the total derivative.
+The curve functions can be interprated as $\gamma(t,x(t),y(t))$. The derivative is the total derivative.
 \begin{align}
 \frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \gamma(t) \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of metric (12)}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
 \end{align}
-Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.
+Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints. Nervertheless the direction of analysis $o$ is preserved in the sign for both straightness and curvature.
+\begin{align}
+o = \frac{(b-a)}{\lvert b-a \rvert}
+\end{align}
 
 \subsection{Straightness}
 A straight line segment is determined by a straightness measure.\\
-The metric (12) allows us to take the ratio of the arc-length to straight lines with $P_{n},P_{n+1} \in X$:\\
-(Negative case here does not make any sense. It would be a fault in the algorithm)\\
-(HickHack/Bogen)
+The metric (12) allows us to take the ratio of the difference of the jitter to the straight and the difference of the arc to the straight with $P_{n},P_{n+1} \in X$. \\
 \begin{equation}
-straightness(a.b)=\int \limits _{a}^{b}o \lvert \frac{\iota_{X}(t) - \iota_{T}(t)}{\xi(t) - \iota_{T}(t)}\rvert \mathrm{d}t
+straightness(a.b)=\int \limits _{a}^{b}o \frac{\lvert \iota_{X}(t) - \iota_{T}(t) \rvert}{\lvert \xi(t) - \iota_{T}(t) \rvert} \mathrm{d}t
 \end{equation}
-Please take note of the sign here. The numerator and denominator have the same sign.
+(Please take note of the sign here. The difference of sign in the numerator and the denominator indicate changing signs of times.)\\
 \iffalse
 \subsubsection{Algorithm Version}
 It is using Heron's formula for the area of a triangle:
@@ -126,16 +127,16 @@ to calculate the ratio of the areas in $A$ and lines in $B$:
 straightness([a,b])=\sum_{t=a}^{b-2}o\frac{\sqrt{\xi(S)(\xi(S)-\xi(A))(\xi(S)-\xi(B))(\xi(S)-\xi(C))}}{\iota(A)+\iota(B)}
 \end{align}
 \fi
-A threshold can be chosen, which makes the segment straight or bent in A. (Visibility)\\
+A threshold can be chosen, which makes the segment straight or bent in A.\\
 It is closely related to the curvature measure.
 
 \subsection{Area}
 The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ connected by straight line segments $\iota_{T}$:\\
-(Is not affected by negative isolation; needs to be between turns; we do need the length of it; it has to be the area over pos, neg)\\
 (orientation flips sign of value)
-\begin{equation}
-area(a,b)=\int \limits _{a}^{b} \xi'(t)-\iota'_{T}(t) \mathrm{d}t
-\end{equation}
+\begin{align}
+area_{v}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t\\
+area_{h}(a,b)=\int \limits _{0}^{(b-a)/2} \lvert \xi(b-t)-\xi(a-t) \rvert \mathrm{d}t
+\end{align}
 \iffalse
 \subsubsection{Algorithm Version}
 The integral of the area in the legal segment, so that:
@@ -152,12 +153,9 @@ v \in (B,\norm{\cdot})
 \end{equation}
 Note: It is a Banach space.\\
 \fi
-The diameter is also based on the metric (12) of $\iota_{T}$:\\
-(Equivalent to Straightness, sign changes in the sense of analysis or\\
-vertical corner to corner measurement)\\
-(orientation inverts domain)
+The diameter is also based on the metric (12) of $\iota_{T}$. Equivalent to Straightness, sign changes in the direction of analysis.
 \begin{equation}
-diameter(a,b)= \iota_{T}(b) - \iota_{T}(a)
+diameter(a,b)= o \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
 Curvature is determined by the ratio of Area to Diameter.
 \begin{equation}
@@ -224,10 +222,6 @@ In computer science there is the concept of the stream operator. This means that
 For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Differentiating between Dunes and Spikes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
 Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.\\\\
 It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented. (Causal Structure)\\\\
-The orientation $o$ of a (sub-)manifold.
-\begin{align}
-o = \frac{(b-a)}{\lvert b-a \rvert}
-\end{align}
 
 \subsection{Cliff}
 A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=1$. So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.
