@@ -118,7 +118,8 @@ The metric (12) allows us to take the ratio of the difference of the jitter to t
 straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota_{X}'(t) \rvert \mathrm{d}t}{diameter_{h}(a,b)}
 \end{align}
 (Please take note of the sign here. The difference of sign in the numerator and the denominator indicate changing signs of times.)\\
-\iffalse
+A threshold can be chosen, which makes the segment straight or bent in A.\\
+It is closely related to the curvature measure.
 \subsubsection{Algorithm Version}
 It is using Heron's formula for the area of a triangle:
 \begin{align*}
@@ -129,20 +130,8 @@ S=\frac{A+B+C}{2}
 \end{align*}
 to calculate the ratio of the areas in $A$ and lines in $B$:
 \begin{align}
-straightness([a,b])=\sum_{t=a}^{b-2}o\frac{\sqrt{\xi(S)(\xi(S)-\xi(A))(\xi(S)-\xi(B))(\xi(S)-\xi(C))}}{\iota(A)+\iota(B)}
+straightness(a,b)=o \sum_{t=a}^{b-2}\frac{\sqrt{\xi(S)(\xi(S)-\xi(A))(\xi(S)-\xi(B))(\xi(S)-\xi(C))}}{\iota(A)+\iota(B)}
 \end{align}
-\fi
-A threshold can be chosen, which makes the segment straight or bent in A.\\
-It is closely related to the curvature measure.
-
-\iffalse
-\subsection{Area}
-\subsubsection{Algorithm Version}
-The integral of the area in the legal segment, so that:
-\begin{align}
-area([a,b])= \int \limits _{\xi'_{x}(a)}^{\xi'_{x}(b)} \xi'_{y}(t)\mathrm{d}t
-\end{align}
-\fi
 
 \subsection{Curvature}
 \iffalse
@@ -155,6 +144,11 @@ Note: It is a Banach space.\\
 Curvature is determined by the ratio of Area to Diameter.
 \begin{align}
 curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm{d}t}{diameter_{h}(a,b)}
+\end{align}
+\subsubsection{Algorithm Version}
+The integral of the area in the legal segment, so that:
+\begin{align}
+curvature(a,b)= \frac{\sum \limits _{i=0}^{m-1}\xi'(t_{i})*(t_{i+1}-t_{i})}{t_{m}-t_{0}}
 \end{align}
 
 \subsection{Corner}
