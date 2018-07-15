@@ -114,8 +114,7 @@ diameter(a,b)= o \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 A straight line segment is determined by a straightness measure.\\
 The metric (12) allows us to take the ratio of the difference of the jitter to the straight and the difference of the arc to the straight with $P_{n},P_{n+1} \in X$. \\
 \begin{align}
-straightness_{Abs}(a.b)=\int \limits _{a}^{b}o \frac{\lvert \iota_{X}(t) - \iota_{T}(t) \rvert}{\lvert \xi(t) - \iota_{T}(t) \rvert} \mathrm{d}t\\
-straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota'_{X}(t) \rvert \mathrm{d}t}{diameter(a,b)}\\
+straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota'_{X}(t) \rvert \mathrm{d}t}{diameter(a,b)}
 \end{align}
 (Please take note of the sign here. The difference of sign in the numerator and the denominator indicate changing signs of times.)\\
 \iffalse
@@ -135,15 +134,8 @@ straightness([a,b])=\sum_{t=a}^{b-2}o\frac{\sqrt{\xi(S)(\xi(S)-\xi(A))(\xi(S)-\x
 A threshold can be chosen, which makes the segment straight or bent in A.\\
 It is closely related to the curvature measure.
 
-\subsection{Area}
-The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ connected by straight line segments $\iota_{T}$:\\
-(orientation flips sign of value)
-\begin{align}
-area_{v}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t\\
-area_{h}(a,b)=\int \limits _{0}^{} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
-\end{align}
-(If Corners are parametrised!! $P_{n},P_{n+1} \in C$)
 \iffalse
+\subsection{Area}
 \subsubsection{Algorithm Version}
 The integral of the area in the legal segment, so that:
 \begin{align}
@@ -161,7 +153,6 @@ Note: It is a Banach space.\\
 \fi
 Curvature is determined by the ratio of Area to Diameter.
 \begin{align}
-curvature_{Abs}(a,b) = \frac{area_{h}(a,b)}{\lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert}\\
 curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm{d}t}{diameter(a,b)}
 \end{align}
 
@@ -249,6 +240,22 @@ They only occur in last priority.
 (half Dune is Straight)
 
 \section{Compact Covers}
+(orientation flips sign of value)
+\begin{align}
+jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
+area_{v}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t
+\end{align}
+\begin{align}
+straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter(a,b)}
+\end{align}
+\begin{align}
+curvature_{Abs}(a,b) = \frac{area_{v}(a,b)}{diameter(a,b)}
+\end{align}
+(Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$?)
+\begin{align}
+area_{h}(a,b)=\int \limits _{0}^{} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t\\
+curvature_{Abs}(a,b) = \frac{area_{h}(a,b)}{\lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert}
+\end{align}
 \subsection{Spiral}
 Spiral $\supset$ Cliff\\
 An even number of Cliffs is found under the curvature criteria.
