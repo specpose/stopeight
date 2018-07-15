@@ -98,15 +98,15 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 
 \section{Non-Oriented Segments}
 Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.\\\\
-Nervertheless the direction of analysis $o$ is preserved in the sign for both straightness and curvature.
-\begin{align}
-o = \frac{(b-a)}{\lvert b-a \rvert}
-\end{align}
 The curve functions can be interprated as $\gamma(t,x(t),y(t))$. The derivative is the total derivative.
 \begin{align}
 \frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \gamma(t) \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of metric (12)}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
+\end{align}\\
+The direction of analysis $o$ is preserved in the sign for both straightness and curvature.
+\begin{align}
+o = \frac{(b-a)}{\lvert b-a \rvert}
 \end{align}
-The diameter is also based on the metric (12) of $\iota_{T}$. Sign changes in the direction of analysis.
+The diameter is based on the metric (12) of $\iota_{T}$.
 \begin{equation}
 diameter_{h}(a,b)= o \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
@@ -269,11 +269,14 @@ ZigZag $\supset$ Spike
 Swell $\supset$ Crest, Swell $\supset$ Swing
 
 \chapter{Comparator}
-The signs of times
+The sign of times.
 \begin{equation}
-s = \sum_{\mu_{+}}^{}o -  \sum_{\mu_{-}}^{}o
+s_{const} = \sum_{\mu_{+}}^{}o -  \sum_{\mu_{-}}^{}o
 \end{equation}
 The changing signs of times?
+\begin{equation}
+s_{var} = \prod o
+\end{equation}
 
 \subsection{Impulses}
 Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.\\\\
@@ -284,9 +287,8 @@ A complex norm $\norm{\cdot}$ is defined on the transversality (2).
 \end{align}
 
 \subsection{Imaginary Visibility}
-sign sense of analysis flipping\\
 When curvature is decreased in a Spiral, Dunes and Spikes start appearing.\\
-(Important Note: When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction is part of visibility, not isolation)
+When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction is part of visibility, not isolation
 \begin{align}
 \mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
 \end{align}
