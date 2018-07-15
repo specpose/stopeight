@@ -105,13 +105,18 @@ Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathb
 \begin{align}
 o = \frac{(b-a)}{\lvert b-a \rvert}
 \end{align}
+The diameter is also based on the metric (12) of $\iota_{T}$. Equivalent to Straightness, sign changes in the direction of analysis.
+\begin{equation}
+diameter(a,b)= o \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
+\end{equation}
 
 \subsection{Straightness}
 A straight line segment is determined by a straightness measure.\\
 The metric (12) allows us to take the ratio of the difference of the jitter to the straight and the difference of the arc to the straight with $P_{n},P_{n+1} \in X$. \\
-\begin{equation}
-straightness(a.b)=\int \limits _{a}^{b}o \frac{\lvert \iota_{X}(t) - \iota_{T}(t) \rvert}{\lvert \xi(t) - \iota_{T}(t) \rvert} \mathrm{d}t
-\end{equation}
+\begin{align}
+straightness_{Abs}(a.b)=\int \limits _{a}^{b}o \frac{\lvert \iota_{X}(t) - \iota_{T}(t) \rvert}{\lvert \xi(t) - \iota_{T}(t) \rvert} \mathrm{d}t\\
+straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota'_{X}(t) \rvert \mathrm{d}t}{diameter(a,b)}\\
+\end{align}
 (Please take note of the sign here. The difference of sign in the numerator and the denominator indicate changing signs of times.)\\
 \iffalse
 \subsubsection{Algorithm Version}
@@ -135,7 +140,7 @@ The metric (12) enables us to integrate over the turns $P_{n},P_{n+1} \in T$ con
 (orientation flips sign of value)
 \begin{align}
 area_{v}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t\\
-area_{h}(a,b)=\int \limits _{0}^{(b-a)/2} \lvert \xi(b-t)-\xi(a-t) \rvert \mathrm{d}t
+area_{h}(a,b)=\int \limits _{0}^{(b-a)/2} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
 \end{align}
 \iffalse
 \subsubsection{Algorithm Version}
@@ -153,14 +158,11 @@ v \in (B,\norm{\cdot})
 \end{equation}
 Note: It is a Banach space.\\
 \fi
-The diameter is also based on the metric (12) of $\iota_{T}$. Equivalent to Straightness, sign changes in the direction of analysis.
-\begin{equation}
-diameter(a,b)= o \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
-\end{equation}
 Curvature is determined by the ratio of Area to Diameter.
-\begin{equation}
-curvature(a,b) = \frac{area(a,b)}{diameter(a,b)}
-\end{equation}
+\begin{align}
+curvature_{Abs}(a,b) = \frac{area_{h}(a,b)}{\lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert}\\
+curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm{d}t}{diameter(a,b)}
+\end{align}
 
 \subsection{Corner}
 A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a segment $[a,b] \subseteq B$ is:
@@ -182,7 +184,7 @@ The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}:
 \subsection{Legal Segment}
 A legal segment is an affine transformtion of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous (when):
 \begin{align}
-\xi'_{x}(a),\xi'_{y}(a), \xi'_{y}(b) = 0;
+\xi'_{x}(a),\xi'_{y}(a), \xi'_{y}(b) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), \iota'_{y}(b) = 0
 \end{align}
 
 \subsection{Affine Transformation}
