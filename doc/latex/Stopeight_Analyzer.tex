@@ -97,15 +97,16 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 \chapter{Computation}
 
 \section{Non-Oriented Segments}
+Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.\\\\
+Nervertheless the direction of analysis $o$ is preserved in the sign for both straightness and curvature.
+\begin{align}
+o = \frac{(b-a)}{\lvert b-a \rvert}
+\end{align}
 The curve functions can be interprated as $\gamma(t,x(t),y(t))$. The derivative is the total derivative.
 \begin{align}
 \frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \gamma(t) \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of metric (12)}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
 \end{align}
-Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints. Nervertheless the direction of analysis $o$ is preserved in the sign for both straightness and curvature.
-\begin{align}
-o = \frac{(b-a)}{\lvert b-a \rvert}
-\end{align}
-The diameter is also based on the metric (12) of $\iota_{T}$. Equivalent to Straightness, sign changes in the direction of analysis.
+The diameter is also based on the metric (12) of $\iota_{T}$. Sign changes in the direction of analysis.
 \begin{equation}
 diameter_{h}(a,b)= o \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
@@ -202,6 +203,7 @@ h_{1}' & h_{2}' & h_{3}'
 The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$.
 
 \section{Oriented Sections}
+Stopeight functions are functions of the form $(a,b) \mapsto (a',b')$ that can be applied to certain sections $[a,b],[a',b'] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
 The second order total derivative.\\
 Binomial.
 \begin{align}
@@ -211,11 +213,23 @@ Or Trinomial.
 \begin{align}
 \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t)=\partial^2 \gamma (t) \begin{bmatrix}\frac{\mathrm{d}^2 x}{\partial^2 x} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}x}{\partial x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}y}{\partial y} & \frac{\mathrm{d}^2 y}{\partial^2 y}\end{bmatrix}\frac{(\partial x + \partial y)^2}{\mathrm{d}^2 t}
 \end{align}
-Stopeight functions are functions of the form $(a,b) \mapsto (a',b')$ that can be applied to certain sections $[a,b],[a',b'] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
-In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.\\\\
-For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Differentiating between Dunes and Spikes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
-Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.\\\\
-It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented. (Causal Structure)\\\\
+(Orientation flips sign of value)
+\begin{align}
+jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
+area_{v}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t
+\end{align}
+\begin{align}
+straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{h}(a,b)}
+\end{align}
+\begin{align}
+curvature_{Abs}(a,b) = \frac{area_{v}(a,b)}{diameter_{h}(a,b)}
+\end{align}
+(Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$?)
+\begin{align}
+area_{h}(a,b)=\int \limits _{0}^{} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t\\
+diameter_{v}(a,b)=\int \limits _{0}^{} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t\\
+curvature_{Abs}(a,b) = \frac{area_{h}(a,b)}{diameter_{v}(a,b)}
+\end{align}
 
 \subsection{Cliff}
 A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=1$. So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.
@@ -240,23 +254,11 @@ They only occur in last priority.
 (half Dune is Straight)
 
 \section{Compact Covers}
-(orientation flips sign of value)
-\begin{align}
-jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
-area_{v}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t
-\end{align}
-\begin{align}
-straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{h}(a,b)}
-\end{align}
-\begin{align}
-curvature_{Abs}(a,b) = \frac{area_{v}(a,b)}{diameter_{h}(a,b)}
-\end{align}
-(Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$?)
-\begin{align}
-area_{h}(a,b)=\int \limits _{0}^{} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t\\
-diameter_{v}(a,b)=\int \limits _{0}^{} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t\\
-curvature_{Abs}(a,b) = \frac{area_{h}(a,b)}{diameter_{v}(a,b)}
-\end{align}
+In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.\\\\
+For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Differentiating between Dunes and Spikes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
+Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.\\\\
+It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented. (Causal Structure)
+
 \subsection{Spiral}
 Spiral $\supset$ Cliff\\
 An even number of Cliffs is found under the curvature criteria.
