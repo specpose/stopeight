@@ -197,11 +197,17 @@ Stopeight functions are functions of the form $(a,b) \mapsto (a',b')$ that can b
 Non-oriented ones are symmetrical, but they do induce a shift inside the Compact Cover if they're not centered.
 
 \subsection{Cliff}
-A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=1$. So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.
+A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=1$. (Measure Space: So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.)
 A single Cliff can have no more than the maximum curvature.
+\begin{equation}
+Max_{Curve}=
+\end{equation}
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle. It is not a proper section type, but merely an expression of being part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection.
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle(?). It is not a proper section type, but merely an expression of being part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection.
+\begin{equation}
+Max_{Straight}=
+\end{equation}
 
 \subsection{Swing}
 A Swing is the segment $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$.\\
@@ -224,13 +230,13 @@ straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{h,T}(a,b)}
 \begin{align}
 curvature_{Abs}(a,b) = \frac{area_{v}(a,b)}{diameter_{h,T}(a,b)}
 \end{align}
-(Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$?)
+(Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$ or $P_{n},P_{n+1} \in (C \cup T)$?)
 \begin{align}
 area_{h}(a,b)=\int \limits _{0}^{} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t\\
 diameter_{h,X}(a,b)=\int \limits _{0}^{} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t\\
 curvature_{Abs}(a,b) = \frac{area_{h}(a,b)}{diameter_{h,X}(a,b)}\\
-diameter_{v}\\
-diameter_{max}
+diameter_{v}=\\
+diameter_{max}=
 \end{align}
 
 \section{Oriented Sections}
@@ -255,12 +261,21 @@ t(C)<a'
 \end{equation}
 
 \subsection{Dune}
-(half Dune is Cliff)
-They only occur in lowest priority (i.e. as a section of a whole Turn, where a=S and b=E) or as forward/backward parts of a Spike.
+A backside Dune $[a,b,c]$ is a curved segment $[a,b]$, which is followed by a maximal Straight section $[b,c]$.
+\begin{equation}
+straightness(a,b)>Max_{Straight};straightness(b,c)<=Max_{Straight}
+\end{equation}
+A minimal length threshold for the straight is related to the margin of the spike.
+\begin{equation}
+Dist_{Straight}=
+\end{equation}
+It is only used as a section, if no other entities have been found. It occurs in the lowest priority of analysis (i.e. as a section of a whole Turn, where a=S and b=E) or as forward/backward parts of a Spike.
 
 \subsection{Spike}
-A forward Dune produces two Straights if the edge at the summit $T_{2}$ overlaps with a backward Dune by a certain margin. If the direction of analysis $o$ is inverted, it would be a coincidence if the Spikes overlap.\\
-(Can Spikes be centered?)
+A forward Dune $[a,b,c]$ produces two Straights $[a,b]$ and $[b,c]$ if the dune edge at the summit $T_{2}$ overlaps with a backward Dune $[c,b',a]$ by a certain margin $(b'-b)<=Dist_{Cap}$.
+\begin{equation}
+Dist_{Cap}=
+\end{equation}
 
 \section{Compact Covers}
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.\\\\
@@ -273,7 +288,9 @@ Spiral $\supset$ Cliff\\
 An even number of Cliffs is found under the curvature criteria.
 The Cliffs are then centered outside in so that all cliffs in a spiral have the same curvature.
 \subsection{ZigZag}
-ZigZag $\supset$ Spike
+ZigZag $\supset$ Spike\\
+If the direction of analysis $o$ is inverted, it would be a coincidence if the Spikes overlap.\\
+(Can Spikes be centered?)
 \subsection{Swell}
 Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 
