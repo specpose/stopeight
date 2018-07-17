@@ -200,6 +200,9 @@ Non-oriented ones are symmetrical, but they do induce a shift inside the Compact
 A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=1$. So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.
 A single Cliff can have no more than the maximum curvature.
 
+\subsection{Straight}
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle. It is not a proper section type, but merely an expression of being part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection.
+
 \subsection{Swing}
 A Swing is the segment $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$.\\
 \begin{equation}
@@ -230,7 +233,6 @@ diameter_{v}\\
 diameter_{max}
 \end{align}
 
-
 \section{Oriented Sections}
 The second order total derivative induce non-symetry.\\
 Binomial.
@@ -247,6 +249,10 @@ T_{2} = \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert
 \end{equation}
 
 \subsection{Crest}
+A backside Crest $[a,a']$ is a forward $[a,b']$ Swing, where the reverse direction of analysis $[b',a]$ reveals a backward $[b',a']$ Swing  and:
+\begin{equation}
+t(C)<a'
+\end{equation}
 
 \subsection{Dune}
 (half Dune is Cliff)
@@ -255,9 +261,6 @@ They only occur in lowest priority (i.e. as a section of a whole Turn, where a=S
 \subsection{Spike}
 A forward Dune produces two Straights if the edge at the summit $T_{2}$ overlaps with a backward Dune by a certain margin. If the direction of analysis $o$ is inverted, it would be a coincidence if the Spikes overlap.\\
 (Can Spikes be centered?)
-
-\subsection{Straight}
-Is merely an expression of transfering the Straight half of a Dune to an adjacent ZigZag.
 
 \section{Compact Covers}
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.\\\\
