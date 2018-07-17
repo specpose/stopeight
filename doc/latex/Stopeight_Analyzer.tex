@@ -134,6 +134,11 @@ h_{1}' & h_{2}' & h_{3}'
 \end{equation}
 The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$.
 
+\subsection{Legal Segment}
+A legal segment is an affine transformtion of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous (when):
+\begin{align}
+\xi'_{x}(a),\xi'_{y}(a), (\xi'_{y}(b)optional?) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), \iota'_{y}(b) = 0
+\end{align}
 
 \subsection{Straightness}
 A straight line segment is determined by a straightness measure.\\
@@ -141,7 +146,6 @@ The metric (12) allows us to take the ratio of the difference of the jitter to t
 \begin{align}
 straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota_{X}'(t) \rvert \mathrm{d}t}{diameter_{h,T}(a,b)}
 \end{align}
-(Please take note of the sign here. The difference of sign in the numerator and the denominator indicate changing signs of times.)\\
 A threshold can be chosen, which makes the segment straight or bent in A.\\
 It is closely related to the curvature measure.
 \subsubsection{Algorithm Version}
@@ -185,14 +189,8 @@ C = \sup_{U}\lvert curvature(a,b) \rvert
 A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.\\
 (Does it exist?)
 \begin{equation}
-T = \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0
+T_{1} = \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0
 \end{equation}
-
-\subsection{Legal Segment}
-A legal segment is an affine transformtion of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous (when):
-\begin{align}
-\xi'_{x}(a),\xi'_{y}(a), \xi'_{y}(b) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), \iota'_{y}(b) = 0
-\end{align}
 
 \section{Non-oriented Sections}
 Stopeight functions are functions of the form $(a,b) \mapsto (a',b')$ that can be applied to certain sections $[a,b],[a',b'] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
@@ -203,10 +201,15 @@ A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half
 A single Cliff can have no more than the maximum curvature.
 
 \subsection{Swing}
-A Swing is the segment $a,b \in Y$, where a legal segment is followed by a sign change $[c,d]; c<d$ under affine transformation $\xi'$. The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}:
+A Swing is the segment $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$.\\
+\begin{equation}
+\xi'(c)>0;\xi'(b')=0;\xi'(d)<0
+\end{equation}
+The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 \begin{equation}
 [a,b] \subseteq U_{m} \Rightarrow \exists  \xi(t) - \iota_{T}(t) >0 \land \nexists \xi(t) - \iota_{T}(t) \leq0
-\end{equation}\\\\
+\end{equation}
+(both vice-versa)\\\\
 Once these entities have been found, we can start to use absolute measures.
 \begin{align}
 jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
@@ -240,17 +243,17 @@ Or Trinomial.
 \end{align}
 The following non-symetric subsections reveal hidden second derivatives.
 \begin{equation}
-T = \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert \approx 0
+T_{2} = \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert \approx 0
 \end{equation}
 
 \subsection{Crest}
 
 \subsection{Dune}
 (half Dune is Cliff)
-They only occur in last priority or as forward/backward parts of a Spike.
+They only occur in lowest priority (i.e. as a section of a whole Turn, where a=S and b=E) or as forward/backward parts of a Spike.
 
 \subsection{Spike}
-A forward Dune produces two Straights if it overlaps with a backward Dune by a certain margin.\\
+A forward Dune produces two Straights if the edge at the summit $T_{2}$ overlaps with a backward Dune by a certain margin. If the direction of analysis $o$ is inverted, it would be a coincidence if the Spikes overlap.\\
 (Can Spikes be centered?)
 
 \subsection{Straight}
@@ -269,25 +272,21 @@ The Cliffs are then centered outside in so that all cliffs in a spiral have the 
 \subsection{ZigZag}
 ZigZag $\supset$ Spike
 \subsection{Swell}
-Swell $\supset$ Crest, Swell $\supset$ Swing
+Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 
 \chapter{Comparator}
+Please take note of the sign here. The difference of sign in the numerator and the denominator of area(?) indicate sign changes.\\
 The sign of times.
-\begin{equation}
-s_{const} = \sum_{\mu_{+}}^{}o -  \sum_{\mu_{-}}^{}o
-\end{equation}
+\begin{align}
+s = \sum_{\mu_{+}}^{}o -  \sum_{\mu_{-}}^{}o
+\end{align}
 The changing signs of times?
 \begin{equation}
-s_{var} = \prod o
+s_{times} = \prod o
 \end{equation}
 
 \subsection{Impulses}
-Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.\\\\
-A complex norm $\norm{\cdot}$ is defined on the transversality (2).
-\begin{align}
-\norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
-\norm{z} = \sqrt{Re(z)^2+Im(z)^2}
-\end{align}
+Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
 
 \subsection{Imaginary Visibility}
 When curvature is decreased in a Spiral, Dunes and Spikes start appearing.\\
@@ -297,11 +296,11 @@ When the direction of analysis is reversed, the curve areas lie on the other sid
 \end{align}
 Note: $\mu$ is a Lebesgue.
 \begin{align}
-visibility(a,b)=o \sum_{}^{} curvature_{Abs}(a,b)
+visibility(a,b)=o \sum_{}^{} curvature_{Abs}(a,b)\\
+visibility(a,b)= \int \limits _{}^{}\xi_{C}(t)\mathrm{d}t(?)
 \end{align}
 
 \subsection{Real Isolation}
-$sign product of set of signs of turns$\\
 If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
 Opposite wave direction: Negative Visibility.
 
@@ -310,7 +309,7 @@ Opposite wave direction: Negative Visibility.
 \end{align}
 Note: $\eta$ is a Lebesgue.
 \begin{equation}
-isolation(a,b)=s \prod straightness_{Abs}(a,b)
+isolation(a,b)=\frac{s}{\lvert s \rvert} \prod straightness_{Abs}(a,b)
 \end{equation}
 
 \chapter{Morphisms}
@@ -324,6 +323,11 @@ The other side of the wave is imaginary.\\
 A,B \times A,B \rightarrow \mathbb{C}\\
 (a,b) \mapsto z\\
 \end{align}
+A complex norm $\norm{\cdot}$ is defined on the transversality (2).
+\begin{align}
+\norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
+\norm{z} = \sqrt{Re(z)^2+Im(z)^2}
+\end{align}
 
 \section{Wave Trains}
 The mathematically most intriguing oriented submanifolds are Crests and Spikes. We introduce a mechanism for the annihilation and creation of pulses, which in most signal analysis is overlooked. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled. A Crest would appear in the outgoing phase when a signal of enthropy brakes in the corresponding medium of the carrier. A Spike is a beat that appears in joint states of crystal grids when the incoming phase accumulates in a $different$ medium.
@@ -331,38 +335,42 @@ Traveling wave trains are moving over stationary reef chains. Upon creation, ent
 A wave train (dirac delta?) appears in a wave packet that splits up. A wave packet that splits, decreases its isolation and transfers a part of its visibility to the sub-wave packets. Depending on the wavelength of a Reef, the original wave packet may never appear again.\\\\
 On the other hand, the sub-wave packets of an open ocean wave pick up wind. The enclosing wave packet can form a new wave train, together with neighbouring wave packets and so slowly, the little left-over, chaotic visibility of the sub-wave packets gets transferred not only to the enclosing wave packet, but to the whole wave train. The swell gets groomed and the short wavelengths disappear.\\\\
 Because in any accurate measurement of matter, only a limited number of reef chains can be considered; For the multitude of periodic energy passing over a reef chain, all products of the chain are compared, up to the length of the frame of the train.
-It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions.
+It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate (multiplication or addition? orthogonality?) would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions.
 
 \subsection{Spectral Separation}
+For Swell/Crest.\\
 There are two main criteria among which the waves can vary. The absolute measure for separation is visibility and isolation.\\
 They occur periodically in a Swell and imply a reduction of the measure space.\\
 In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
 The directed waves of straightness and curvature going forward/backward synchronously are periodic.
-For Crests / Swell.
 \begin{align}
-z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility([a,b]))} +\mathrm{i} \sin{(isolation([a,b]))})\\
+z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility([a,b]))} +\mathrm{i} \sin{(isolation([a,b]))})(?)\\
+\int \limits _{}^{} (\xi_{T}(t)-\iota_{T})*(\xi_{C}-\iota_{T})\mathrm{d}t=1(?)
 \end{align}
 
 \subsection{Wave Generation}
-Supraliquid, Sail Effect / Surface Tension
+For Dune/Crest or Swing (stationary wave).\\
+Supraliquid\\
+Sail Effect / Surface Tension
+
 \subsection{Phase Transitions}
-Spiral\\
-When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$.
-For Dune/Spiral.
+For Dune/Spiral.\\
+When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
 \begin{align}
 z =  \sup_{U}\lvert curvature([a,b]) \rvert*(\cos{(isolation([a,b]))} +\mathrm{i} \sin{(visibility([a,b]))})
 \end{align}
 
 \subsection{Lightning}
-Superconductor\\
 For Spike/ZigZag.\\
+Superconductor\\
 If we're setting $\sqrt{1-y^2}$ to be the linear part of complex plane, $\phi$ in $z=\sqrt{1-y^2}e^{i\phi}$ is the rotational part.
 \begin{align}
 z =  straightness([a,b]) + \mathrm{i} curvature([a,b])
 \end{align}
 
 \subsection{Stateless}
-Supercritical gas (liquid/gas) carbondioxide
+Supercritical\\
+gaseous/liquid carbondioxide
 
 \printbibliography
 
