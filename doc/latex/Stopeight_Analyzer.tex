@@ -316,38 +316,41 @@ Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 
 \chapter{Comparator}
 Please take note of the sign here. The difference of sign in the numerator and the denominator of area(?) indicate sign changes.\\
-The sign of times.
+The alternating signs of times.
 \begin{align}
-s = \sum_{\mu_{+}}^{}o -  \sum_{\mu_{-}}^{}o
+s_{alt} = \sum_{\mu_{+}}^{}o -  \sum_{\mu_{-}}^{}o
 \end{align}
-The changing signs of times?
+The fliping signs of times across measure spaces?
 \begin{equation}
-s_{times} = \prod o
+s_{times} = \prod_{measures} o
 \end{equation}
 
 \subsection{Impulses}
 Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
 
 \subsection{Imaginary Visibility}
-When curvature is decreased in a Spiral, Dunes and Spikes start appearing.\\
-When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction is part of visibility, not isolation.\\Opposite wave direction $\Leftrightarrow$ Negative Visibility.
+When visibility is increased in a Spiral, it creates more subsegments. Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.\\
+When curvature is decreased in a Spiral, it becomes a ZigZag.\\
+When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction inverts visibility.
 \begin{align}
 \mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
 \end{align}
 Note: $\mu$ is a Lebesgue.
 \begin{align}
-visibility(a,b)=o \sum_{}^{} curvature_{Abs}(a,b)\\
+visibility(a,b)=\frac{s_{alt}}{\lvert s_{alt} \rvert} \sum_{}^{} curvature_{Abs}(a,b)\\
 visibility(a,b)= \int \limits _{}^{}\xi_{C}(t)\mathrm{d}t(?)
 \end{align}
 
 \subsection{Real Isolation}
-If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.
+A lack of isolation is directly linked to the creation of more measure spaces.\\
+If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
+Opposite wave direction $\Leftrightarrow$ Negative Isolation.
 \begin{align}
 \eta_{+}=(\{[a,b] \subseteq A,B \vert a<b\}) \Leftrightarrow o=+1
 \end{align}
 Note: $\eta$ is a Lebesgue.
 \begin{equation}
-isolation(a,b)=\frac{s}{\lvert s \rvert} \prod straightness_{Abs}(a,b)
+isolation(a,b)=o \prod straightness_{Abs}(a,b)
 \end{equation}
 
 \chapter{Separation}
@@ -355,8 +358,8 @@ isolation(a,b)=\frac{s}{\lvert s \rvert} \prod straightness_{Abs}(a,b)
 \subsection{Plancherel Theorem}
 The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding orthogonal subspaces in frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of pulse-wise integration and periodic integration.\\\\
 The method in this paper may provide a means of either finding exact frames in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters.\\\\
-Also other Vector Graph manipulations such as scaling, resampling, finding/counting intersections, oriented section occurence conditions could yield interesting results.\\\\
-A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $x^2 + y^2 =1$. Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is of Grade 4. The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
+Also Vector Graph manipulations such as scaling, resampling, finding/counting intersections, oriented section occurence requirements could yield interesting results.\\\\
+A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $x^2 + y^2 =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is of Grade 4. The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
 
 \subsection{Spectral Separation}
 For Swell/Crest.\\
@@ -401,8 +404,7 @@ Supraliquid\\
 Sail Effect / Surface Tension
 
 \subsection{Phase Transitions}
-For Dune/Spiral.\\
-When curvature is increased in a Spiral, isolation starts to shift to subsegments. Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
+For Dune/Spiral.
 \begin{align}
 z =  \sup_{U}\lvert curvature([a,b]) \rvert*(\cos{(isolation([a,b]))} +\mathrm{i} \sin{(visibility([a,b]))})
 \end{align}
