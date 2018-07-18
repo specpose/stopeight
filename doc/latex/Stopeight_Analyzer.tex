@@ -29,7 +29,7 @@ This file is in the Stopeight repository on Github. Please edit here:\\
 The DOI can be found here ~\cite{Stopeight}.\\
 A brief overview can be found here:\\
 \href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
-The Arcs $A \subset \mathbb{R}^2$ are an approximation of a set$\footnote{Midpoints have to be formally included for insertion only}$ $X \subset \mathbb{R}^2$:
+The Arcs $A \subset \mathbb{R}^2$ are an approximation of a set $X \subset \mathbb{R}^2$:
 \begin{align}
 f \circ g: X \rightarrow A
 \end{align}
@@ -157,16 +157,16 @@ straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota_{X}'(t) \rvert 
 A threshold can be chosen, which makes the segment straight or bent in A.\\
 It is closely related to the curvature measure.
 \subsubsection{Algorithm Version}
-It is using Heron's formula for the area of a triangle:
+It is using Heron's formula for the area of a triangle in $P_{n}, P_{n+1},P_{n+2} \in [a,b] \subseteq X$.
 \begin{align*}
-A=\lvert t_{m+1}-t_{m} \rvert\\
-B=\lvert t_{m+2} - t_{m+1} \rvert\\
-C=\lvert t_{m+2} - t_{m} \rvert\\
-S=\frac{A+B+C}{2}
+A=\lvert P_{i+1}-P_{i} \rvert\\
+B=\lvert P_{i+2} - P_{i+1} \rvert\\
+C=\lvert P_{i+2} - P_{i} \rvert\\
+L=\frac{A+B+C}{2}
 \end{align*}
-to calculate the ratio of the areas in $A$ and lines in $B$:
+to calculate the ratio of the areas in $A$ and lines in $B$.
 \begin{align}
-straightness(a,b)=o \sum_{t=a}^{b-2}\frac{\sqrt{\xi(S)(\xi(S)-\xi(A))(\xi(S)-\xi(B))(\xi(S)-\xi(C))}}{\iota(A)+\iota(B)}
+straightness(a,b)=o \sum_{i=0}^{n+2}\frac{\sqrt{L(L-A)(L-B)(L-C)}}{A+B}
 \end{align}
 
 \subsection{Curvature}
@@ -182,9 +182,9 @@ Curvature is determined by the ratio of Area to Diameter.
 curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm{d}t}{diameter_{horiz,T}(a,b)}
 \end{align}
 \subsubsection{Algorithm Version}
-The sum of the pieces in the legal segment.
+The sum of the pieces in the legal segment [a,b] with $P_{n}, P_{n+1} \in [a,b] \subseteq X$.
 \begin{align}
-curvature(a,b)= \frac{\sum \limits _{i=0}^{m-1}\xi'(t_{i})*(t_{i+1}-t_{i})}{t_{m}-t_{0}}
+curvature(a,b)= o \frac{\sum \limits _{i=0}^{n+1}y(P_{i})*(x(P_{i+1})-x(P_{i}))}{x(P_{n+1})-x(P_{0})}
 \end{align}
 
 \subsection{Corner}
@@ -214,10 +214,11 @@ Max_{Curve}=
 (Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment. (See Separation))
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or curvature of exp?). It is not a proper section type, but merely an expression of being part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection.
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or curvature of exp?). It is not a proper section type, but merely an expression of being part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. It implies a reduction of measures which are smaller than the threshold. A Corner is $inserted$ at $\frac{b-a}{2}$.
 \begin{equation}
 Max_{Straight}=
 \end{equation}
+A special case is when $card(U_{m})=2$, a Corner is inserted as well.
 
 \subsection{Swing}
 A Swing is the segment $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$.\\
@@ -279,7 +280,7 @@ A minimal length threshold for the Straight $[b,c]$ is related to the margin of 
 \begin{equation}
 Dist_{Straight}=
 \end{equation}
-It is only used as a section, if no other entities have been found. It occurs in the lowest priority of analysis (i.e. as a section of a whole Turn, where a=S and b=E) or as forward/backward parts of a Spike.\\
+It is only used as an $insertion$ section, and if no more entities are being found. It occurs in the lowest priority of analysis (i.e. as a section of a whole Turn, where a=S and b=E) or as forward/backward parts of a Spike.\\
 (Independence of measure?)
 \begin{equation}
 \frac{b-a}{c-b}
