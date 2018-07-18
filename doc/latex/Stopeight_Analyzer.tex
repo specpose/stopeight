@@ -200,17 +200,18 @@ T_{1} = \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \ap
 \end{equation}
 
 \section*{Sections}
-Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority. They create further sections of Turns $T$ in the transversality $Y$.\\\\
+Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority. They create further sections of Turns $T$ in the transversality $Y$.
 
 \section{Non-oriented Sections}
 Non-oriented ones are symmetrical, but they do induce a shift inside the Compact Cover if they're not centered.
 
 \subsection{Cliff}
-A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=diameter_{horiz,T}$. (Measure Space: So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.)
+A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=diameter_{horiz,T}$.
 A single Cliff can have no more than the maximum curvature.
 \begin{equation}
 Max_{Curve}=
 \end{equation}
+(Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment. (See Separation))
 
 \subsection{Straight}
 A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or curvature of exp?). It is not a proper section type, but merely an expression of being part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection.
@@ -272,7 +273,7 @@ t(C)(+Dist_{Cap}?)\leq a'
 \subsection{Dune}
 A backside Dune $[a,b,c]$ is a curved segment $[a,b]$, which is followed by a maximal Straight section $[b,c]$.
 \begin{equation}
-straightness(a,b)>Max_{Straight};straightness(b,c)<=Max_{Straight}
+straightness(a,b)>Max_{Straight};straightness(b,c)\leq Max_{Straight}
 \end{equation}
 A minimal length threshold for the Straight $[b,c]$ is related to the margin of the spike.
 \begin{equation}
@@ -307,8 +308,8 @@ The Cliffs are then centered outside in so that all cliffs in a spiral have the 
 \subsection{ZigZag}
 ZigZag $\supset$ Spike\\
 If the direction of analysis $o$ is inverted, it would be a coincidence if the Spikes overlap.\\
-(Can Spikes be centered?)
-(Angle greater than 90 deg.?)
+(Can Spikes be centered?)\\
+(Angle greater than 90 deg. $\Rightarrow$ third derivative = 0?)
 \subsection{Swell}
 Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 
@@ -328,7 +329,7 @@ Impulses are consecutive pulses of variable wavelengths which originate from the
 
 \subsection{Imaginary Visibility}
 When curvature is decreased in a Spiral, Dunes and Spikes start appearing.\\
-When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction is part of visibility, not isolation
+When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction is part of visibility, not isolation.\\Opposite wave direction $\Leftrightarrow$ Negative Visibility.
 \begin{align}
 \mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
 \end{align}
@@ -339,9 +340,7 @@ visibility(a,b)= \int \limits _{}^{}\xi_{C}(t)\mathrm{d}t(?)
 \end{align}
 
 \subsection{Real Isolation}
-If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
-Opposite wave direction: Negative Visibility.
-
+If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.
 \begin{align}
 \eta_{+}=(\{[a,b] \subseteq A,B \vert a<b\}) \Leftrightarrow o=+1
 \end{align}
@@ -351,13 +350,12 @@ isolation(a,b)=\frac{s}{\lvert s \rvert} \prod straightness_{Abs}(a,b)
 \end{equation}
 
 \chapter{Separation}
-The main problem 
 
 \subsection{Plancherel Theorem}
-The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window have to be adjusted. There are methods for finding orthogonal subspaces in exact frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of pulse-wise integration and periodic integration.\\\\
+The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding orthogonal subspaces in frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of pulse-wise integration and periodic integration.\\\\
 The method in this paper may provide a means of either finding exact frames in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters.\\\\
 Also other Vector Graph manipulations such as scaling, resampling, finding/counting intersections, oriented section occurence conditions could yield interesting results.\\\\
-Furthermore: The TCT sections in this paper are composed of 4 quadratic bezier spline functions (=1 Polynomial of Grade4 or 4 separate equations of Grade2?). Sine/Cosine functions are Taylor Series expansions. Could there be other functions for the non-oriented (or oriented sections?), that would produce different polar to cartesian transforms?
+A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $x^2 + y^2 =1$. Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is of Grade 4. The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
 
 \subsection{Spectral Separation}
 For Swell/Crest.\\
@@ -366,17 +364,16 @@ They occur periodically in a Swell and imply a reduction of the measure space.\\
 In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
 The directed waves of straightness and curvature going forward/backward synchronously are periodic.
 \begin{align}
-z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility([a,b]))} +\mathrm{i} \sin{(isolation([a,b]))})(?)\\
+z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility(a,b))} +\mathrm{i} \sin{(isolation(a,b))})(?)\\
 \int \limits _{}^{} (\xi_{T}(t)-\iota_{T})*(\xi_{C}-\iota_{T})\mathrm{d}t=1(?)
 \end{align}
 \subsubsection{Resampling}
 
-\chapter{Morphisms}
+\chapter{Modeling}
 
-The complex conjugate is the other side of the wave vs\\
-The imaginary part is the other side of the wave\\
-The imaginary part is the phase shift (fft)\\
-The other side of the wave is imaginary.\\
+The complex conjugate is a manifestation of periodicity of two exact frames which are defined by something like a complex number:\\\\
+The imaginary part is the other side of the wave vs\\
+The imaginary part is the phase shift (fft)\\\\
 (multiplication? addition?)
 \begin{align}
 A,B \times A,B \rightarrow \mathbb{C}\\
@@ -390,12 +387,12 @@ A complex norm $\norm{\cdot}$ is defined on the transversality (2).
 Differential Equations?
 
 \section{Wave Trains}
-The mathematically most intriguing oriented submanifolds are Crests and Spikes. We introduce a mechanism for the annihilation and creation of pulses, which in most signal analysis is overlooked. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled. A Crest would appear in the outgoing phase when a signal of enthropy brakes in the corresponding medium of the carrier. A Spike is a beat that appears in joint states of crystal grids when the incoming phase accumulates in a $different$ medium.
+The mathematically most intriguing oriented submanifolds are Crests and Spikes. We introduce a mechanism for the annihilation and creation of pulses. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled. A Crest would appear in the outgoing phase when a signal of enthropy brakes in the corresponding medium of the carrier. A Spike is a beat that appears in joint states of crystal grids when the incoming phase accumulates in a $different$ medium.
 Traveling wave trains are moving over stationary reef chains. Upon creation, enthropic wave trains are impulses, at the least even a part of a half-pulse (Example Spiral). Enthalpic reef chains change state when they are converted to a plasma state for an infinitesimal short period of time.\\\\
-A wave train (dirac delta?) appears in a wave packet that splits up. A wave packet that splits, decreases its isolation and transfers a part of its visibility to the sub-wave packets. Depending on the wavelength of a Reef, the original wave packet may never appear again.\\\\
+A wave train appears in a wave packet that splits up. A wave packet that splits, decreases its isolation and transfers a part of its visibility to the sub-wave packets. Depending on the wavelength of a Reef, the original wave packet may never appear again.\\\\
 On the other hand, the sub-wave packets of an open ocean wave pick up wind. The enclosing wave packet can form a new wave train, together with neighbouring wave packets and so slowly, the little left-over, chaotic visibility of the sub-wave packets gets transferred not only to the enclosing wave packet, but to the whole wave train. The swell gets groomed and the short wavelengths disappear.\\\\
 Because in any accurate measurement of matter, only a limited number of reef chains can be considered; For the multitude of periodic energy passing over a reef chain, all products of the chain are compared, up to the length of the frame of the train.
-It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate (multiplication or addition? orthogonality?) would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions.
+It could make sense to map such phenomena in a complex plane. Could we explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions.
 
 \subsection{Wave Generation}
 For Dune/Crest or Swing (stationary wave).\\
