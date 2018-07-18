@@ -19,8 +19,11 @@
 \maketitle
 
 \chapter{Introduction}
-
-The algorithm in this text has been developed during the years 2009 to 2016 by Specific Purpose Software GmbH. It is now open sourced, but mostly exists in the form of code fragments.\\
+Preliminary: Grapher can turn a time-variant (or time-invariant) series/signal $s(x)$ into a Vector Graph $\mathbb{R}^2$. The scaling can be adjusted. An average can be used. More complex scenarios may be considered, where Spirals are removed, the number of 8's are limited or the signal is resampled.
+\begin{equation}
+vectorgraph: \mathbb{R} \rightarrow \mathbb{R}^2
+\end{equation}
+The Analyzer algorithm in this text has been developed during the years 2009 to 2016 by Specific Purpose Software GmbH. It is now open sourced, but mostly exists in the form of code fragments.\\
 This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight_Analyzer.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Analyzer.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\
@@ -35,12 +38,16 @@ f \circ g: X \rightarrow A
 \end{equation*}
 via the intermediate functions $f,g$ where the intermediate transversality $Y = X \cap A$ defines Arcs $U_{m}$. ~\cite[\nopp 9.9]{Loring} ($f \circ g$ is neither injective nor surjective) ~\cite[\nopp 2.1]{LauresSzymik}:
 \begin{align}
-f: X \rightarrow Y; g: Y \rightarrow A
+f: X \approx B \rightarrow Y; g: Y \rightarrow A
 \end{align}
 Note: The set of Arcs A is a dim 1-manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[\nopp 3.1.1.]{Fomenko} ~\cite[\nopp 4.5]{Wall} ($X$ is formally a discrete / dim 0-manifold)
 \begin{align}
 A = \cup_{m}U_{m}; (X = \cup_{n}V_{n})\\
-Y: \text{0-submanifold} \Rightarrow dim(X)=0<codim(Y)=1 \Rightarrow X \text{ disjoint } A
+Y: \text{0-submanifold} \Rightarrow (dim(X)=0)<(codim(Y)=1) \Rightarrow X \text{ disjoint } A
+\end{align}
+but
+\begin{align}
+Y: \text{0-submanifold} \Rightarrow (dim(B)=1)=(codim(Y)=1) \Rightarrow B \text{ joint } A
 \end{align}
 \iffalse
 Within $f$ we are assigning a sequence of three points to compact Hausdorf invervals ~\cite[\nopp 6.1.3.]{Mortad}:
@@ -48,7 +55,7 @@ Within $f$ we are assigning a sequence of three points to compact Hausdorf inver
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{S,C,E\}
 \end{equation}\\
 \fi
-The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines. ($U_{m}$ closed?)
+The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
 
 \chapter{Representation}
 
@@ -101,15 +108,15 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.\\\\
 The curve functions can be interprated as $\gamma(t,x(t),y(t))$. The derivative is the total derivative.
 \begin{align}
-\frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \gamma(t) \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of metric (12)}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
+\frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \gamma(t) \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of the metric}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
 \end{align}\\
 The direction of analysis $o$ is preserved in the sign for both straightness and curvature.
 \begin{align}
 o = \frac{(b-a)}{\lvert b-a \rvert}
 \end{align}
-The horizontal diameter is based on the metric (12) of $\iota_{T}$.
+The horizontal diameter is based on the metric of $\iota_{T}$.
 \begin{equation}
-diameter_{h,T}(a,b)= o \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
+diameter_{horiz,T}(a,b)= o \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
 
 \subsection{Affine Transformation}
@@ -139,12 +146,13 @@ A legal segment is an affine transformtion of the arc curve function $transform(
 \begin{align}
 \xi'_{x}(a),\xi'_{y}(a), (\xi'_{y}(b)optional?) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), \iota'_{y}(b) = 0
 \end{align}
+(Widon Introduction: Riemann integrable?)
 
 \subsection{Straightness}
 A straight line segment is determined by a straightness measure.\\
-The metric (12) allows us to take the ratio of the difference of the jitter to the straight and the difference of the arc to the straight with $P_{n},P_{n+1} \in X$. \\
+The metric allows us to take the ratio of the difference of the jitter to the straight and the difference of the arc to the straight with $P_{n},P_{n+1} \in X$. \\
 \begin{align}
-straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota_{X}'(t) \rvert \mathrm{d}t}{diameter_{h,T}(a,b)}
+straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota_{X}'(t) \rvert \mathrm{d}t}{diameter_{horiz,T}(a,b)}
 \end{align}
 A threshold can be chosen, which makes the segment straight or bent in A.\\
 It is closely related to the curvature measure.
@@ -171,7 +179,7 @@ Note: It is a Banach space.\\
 \fi
 Curvature is determined by the ratio of Area to Diameter.
 \begin{align}
-curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm{d}t}{diameter_{h,T}(a,b)}
+curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm{d}t}{diameter_{horiz,T}(a,b)}
 \end{align}
 \subsubsection{Algorithm Version}
 The sum of the pieces in the legal segment.
@@ -186,25 +194,26 @@ C = \sup_{U}\lvert curvature(a,b) \rvert
 \end{equation}
 
 \subsection{Turn}
-A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.\\
-(Does it exist?)
+A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
 \begin{equation}
 T_{1} = \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0
 \end{equation}
 
+\section*{Sections}
+Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority. They create further sections of Turns $T$ in the transversality $Y$.\\\\
+
 \section{Non-oriented Sections}
-Stopeight functions are functions of the form $(a,b) \mapsto (a',b')$ that can be applied to certain sections $[a,b],[a',b'] \subseteq (B,d),(A,d)$ with constraints of analytic priority.\\\\
 Non-oriented ones are symmetrical, but they do induce a shift inside the Compact Cover if they're not centered.
 
 \subsection{Cliff}
-A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=1$. (Measure Space: So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.)
+A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=diameter_{horiz,T}$. (Measure Space: So curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment.)
 A single Cliff can have no more than the maximum curvature.
 \begin{equation}
 Max_{Curve}=
 \end{equation}
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle(?). It is not a proper section type, but merely an expression of being part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection.
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or curvature of exp?). It is not a proper section type, but merely an expression of being part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection.
 \begin{equation}
 Max_{Straight}=
 \end{equation}
@@ -222,25 +231,25 @@ The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 Once these entities have been found, we can start to use absolute measures.
 \begin{align}
 jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
-area_{v}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t
+area_{vert}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t
 \end{align}
 \begin{align}
-straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{h,T}(a,b)}
+straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{horiz,T}(a,b)}
 \end{align}
 \begin{align}
-curvature_{Abs}(a,b) = \frac{area_{v}(a,b)}{diameter_{h,T}(a,b)}
+curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz,T}(a,b)}
 \end{align}
 (Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$ or $P_{n},P_{n+1} \in (C \cup T)$?)
 \begin{align}
 area_{h}(a,b)=\int \limits _{0}^{} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t\\
-diameter_{h,X}(a,b)=\int \limits _{0}^{} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t\\
-curvature_{Abs}(a,b) = \frac{area_{h}(a,b)}{diameter_{h,X}(a,b)}\\
-diameter_{v}=\\
+diameter_{horiz,X}(a,b)=\int \limits _{0}^{} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t\\
+curvature_{Abs}(a,b) = \frac{area_{h}(a,b)}{diameter_{horiz,X}(a,b)}\\
+diameter_{vert}=\\
 diameter_{max}=
 \end{align}
 
 \section{Oriented Sections}
-The second order total derivative induce non-symetry.\\
+The second order total derivative induces non-symetry.\\
 Binomial.
 \begin{align}
 \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t)=\partial^2 \gamma(t) \begin{bmatrix} \frac{\mathrm{d}^2x}{\partial^2 x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & \frac{\mathrm{d}^2y}{\partial^2 y}\end{bmatrix}\frac{1}{\mathrm{d}^2t}
@@ -257,7 +266,7 @@ T_{2} = \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert
 \subsection{Crest}
 A backside Crest $[a,a']$ is a forward $[a,b']$ Swing, where the reverse direction of analysis $[b',a]$ reveals a backward $[b',a']$ Swing  and:
 \begin{equation}
-t(C)<a'
+t(C)(+Dist_{Cap}?)\leq a'
 \end{equation}
 
 \subsection{Dune}
@@ -265,16 +274,24 @@ A backside Dune $[a,b,c]$ is a curved segment $[a,b]$, which is followed by a ma
 \begin{equation}
 straightness(a,b)>Max_{Straight};straightness(b,c)<=Max_{Straight}
 \end{equation}
-A minimal length threshold for the straight is related to the margin of the spike.
+A minimal length threshold for the Straight $[b,c]$ is related to the margin of the spike.
 \begin{equation}
 Dist_{Straight}=
 \end{equation}
-It is only used as a section, if no other entities have been found. It occurs in the lowest priority of analysis (i.e. as a section of a whole Turn, where a=S and b=E) or as forward/backward parts of a Spike.
+It is only used as a section, if no other entities have been found. It occurs in the lowest priority of analysis (i.e. as a section of a whole Turn, where a=S and b=E) or as forward/backward parts of a Spike.\\
+(Independence of measure?)
+\begin{equation}
+\frac{b-a}{c-b}
+\end{equation}
 
 \subsection{Spike}
-A forward Dune $[a,b,c]$ produces two Straights $[a,b]$ and $[b,c]$ if the dune edge at the summit $T_{2}$ overlaps with a backward Dune $[c,b',a]$ by a certain margin $(b'-b)<=Dist_{Cap}$.
+A forward Dune $[a,b,c]$ produces two Straights $[a,b]$ and $[b,c]$ if the Dune edge at the summit $T_{2}$ overlaps with a backward Dune $[c,b',a]$ by a certain margin $(b'-b)<=Dist_{Cap}$.
 \begin{equation}
 Dist_{Cap}=
+\end{equation}
+(Independence of measure?)
+\begin{equation}
+\frac{curvature(a,b)}{straightness(a,b)}
 \end{equation}
 
 \section{Compact Covers}
@@ -291,6 +308,7 @@ The Cliffs are then centered outside in so that all cliffs in a spiral have the 
 ZigZag $\supset$ Spike\\
 If the direction of analysis $o$ is inverted, it would be a coincidence if the Spikes overlap.\\
 (Can Spikes be centered?)
+(Angle greater than 90 deg.?)
 \subsection{Swell}
 Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 
@@ -332,6 +350,27 @@ Note: $\eta$ is a Lebesgue.
 isolation(a,b)=\frac{s}{\lvert s \rvert} \prod straightness_{Abs}(a,b)
 \end{equation}
 
+\chapter{Separation}
+The main problem 
+
+\subsection{Plancherel Theorem}
+The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window have to be adjusted. There are methods for finding orthogonal subspaces in exact frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of pulse-wise integration and periodic integration.\\\\
+The method in this paper may provide a means of either finding exact frames in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters.\\\\
+Also other Vector Graph manipulations such as scaling, resampling, finding/counting intersections, oriented section occurence conditions could yield interesting results.\\\\
+Furthermore: The TCT sections in this paper are composed of 4 quadratic bezier spline functions (=1 Polynomial of Grade4 or 4 separate equations of Grade2?). Sine/Cosine functions are Taylor Series expansions. Could there be other functions for the non-oriented (or oriented sections?), that would produce different polar to cartesian transforms?
+
+\subsection{Spectral Separation}
+For Swell/Crest.\\
+There are two main criteria among which the waves can vary. The absolute measure for separation is visibility and isolation.\\
+They occur periodically in a Swell and imply a reduction of the measure space.\\
+In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
+The directed waves of straightness and curvature going forward/backward synchronously are periodic.
+\begin{align}
+z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility([a,b]))} +\mathrm{i} \sin{(isolation([a,b]))})(?)\\
+\int \limits _{}^{} (\xi_{T}(t)-\iota_{T})*(\xi_{C}-\iota_{T})\mathrm{d}t=1(?)
+\end{align}
+\subsubsection{Resampling}
+
 \chapter{Morphisms}
 
 The complex conjugate is the other side of the wave vs\\
@@ -348,6 +387,7 @@ A complex norm $\norm{\cdot}$ is defined on the transversality (2).
 \norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
 \norm{z} = \sqrt{Re(z)^2+Im(z)^2}
 \end{align}
+Differential Equations?
 
 \section{Wave Trains}
 The mathematically most intriguing oriented submanifolds are Crests and Spikes. We introduce a mechanism for the annihilation and creation of pulses, which in most signal analysis is overlooked. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled. A Crest would appear in the outgoing phase when a signal of enthropy brakes in the corresponding medium of the carrier. A Spike is a beat that appears in joint states of crystal grids when the incoming phase accumulates in a $different$ medium.
@@ -356,17 +396,6 @@ A wave train (dirac delta?) appears in a wave packet that splits up. A wave pack
 On the other hand, the sub-wave packets of an open ocean wave pick up wind. The enclosing wave packet can form a new wave train, together with neighbouring wave packets and so slowly, the little left-over, chaotic visibility of the sub-wave packets gets transferred not only to the enclosing wave packet, but to the whole wave train. The swell gets groomed and the short wavelengths disappear.\\\\
 Because in any accurate measurement of matter, only a limited number of reef chains can be considered; For the multitude of periodic energy passing over a reef chain, all products of the chain are compared, up to the length of the frame of the train.
 It would make sense to map them in a complex plane, mostly because the definition of a complex conjugate (multiplication or addition? orthogonality?) would explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions.
-
-\subsection{Spectral Separation}
-For Swell/Crest.\\
-There are two main criteria among which the waves can vary. The absolute measure for separation is visibility and isolation.\\
-They occur periodically in a Swell and imply a reduction of the measure space.\\
-In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
-The directed waves of straightness and curvature going forward/backward synchronously are periodic.
-\begin{align}
-z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility([a,b]))} +\mathrm{i} \sin{(isolation([a,b]))})(?)\\
-\int \limits _{}^{} (\xi_{T}(t)-\iota_{T})*(\xi_{C}-\iota_{T})\mathrm{d}t=1(?)
-\end{align}
 
 \subsection{Wave Generation}
 For Dune/Crest or Swing (stationary wave).\\
