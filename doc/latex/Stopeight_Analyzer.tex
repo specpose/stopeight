@@ -275,17 +275,18 @@ A backside Crest $[a,a']$ or $[a,b']$ is an iteration of:
 The breaking condition is that no more entities are being found by either of the two steps.
 
 \subsection{Dune}
-A backside Dune $[a,b]$ is a curved segment $[a,b']$, which is followed by a maximal Straight section $[b',b]$.
+A backside Dune $[a,b',c]$ is a curved segment $[a,b']$, which is followed by a maximal Straight section $[b',c]$.
 \begin{equation}
-straightness(a,b')>Max_{Straight};straightness(b',b)\leq Max_{Straight}
+straightness(a,b')>Max_{Straight};straightness(b',c)\leq Max_{Straight}
 \end{equation}
 It is only used as an $insertion$ section, or if no other entities are being found. It occurs in the lowest priority of analysis (i.e. as a section of a whole Turn, where a=S and b=E) or as forward/backward parts of a Spike.\\
 
 \subsection{Spike}
 A backside Spike $[a,b']$ is an iteration of:
 \begin{enumerate}
-\item A backside Dune $[a,a']$
-\item A backside Dune $[b,b']$, where $a' \leq b'$ 
+\item A backside Dune $[a,b,c]$
+\item A backside Dune $[c',b',a]$ 
+\item A backside Dune $[a',b'',c']$...
 \end{enumerate}
 The breaking condition is that no more entities are being found after the second step.
 
