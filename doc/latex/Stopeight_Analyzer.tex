@@ -149,13 +149,13 @@ A legal segment is an affine transformtion of the arc curve function $transform(
 (Widon Introduction: Riemann integrable?)
 
 \subsection{Straightness}
-A straight line segment is determined by a straightness measure.\\
+A straight line segment is determined by means of straightness.\\
 The metric allows us to take the ratio of the difference of the jitter to the straight and the difference of the arc to the straight with $P_{n},P_{n+1} \in X$. \\
 \begin{align}
 straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota_{X}'(t) \rvert \mathrm{d}t}{diameter_{horiz,T}(a,b)}
 \end{align}
 A threshold can be chosen, which makes the segment straight or bent in A.\\
-It is closely related to the curvature measure.
+It is closely related to the curvature.
 \subsubsection{Algorithm Version}
 It is using Heron's formula for the area of a triangle in $P_{n}, P_{n+1},P_{n+2} \in [a,b] \subseteq X$.
 \begin{align*}
@@ -230,7 +230,7 @@ The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 [a,b] \subseteq U_{m} \Rightarrow \exists  \xi(t) - \iota_{T}(t) >0 \land \nexists \xi(t) - \iota_{T}(t) \leq0
 \end{equation}
 (both vice-versa)\\\\
-Once these entities have been found, we can start to use absolute measures.
+Once these entities have been found, we can start to use absolute differences.
 \begin{align}
 jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
 area_{vert}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t
@@ -329,9 +329,10 @@ s_{times} = \prod_{measures} o
 Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
 
 \subsection{Imaginary Visibility}
+Visibility is an increase of the polynomial degree of a curve segment.
 When visibility is increased in a Spiral, it creates more subsegments. Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.\\
 When curvature is decreased in a Spiral, it becomes a ZigZag.\\
-When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction inverts visibility.
+When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction inverts the orientation of the curve segments. Their sign flips.
 \begin{align}
 \mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
 \end{align}
@@ -363,8 +364,8 @@ A Polar to Cartesian Transform is a convolution with a sum of two fundamental nu
 
 \subsection{Spectral Separation}
 For Swell/Crest.\\
-There are two main criteria among which the waves can vary. The absolute measure for separation is visibility and isolation.\\
-They occur periodically in a Swell and imply a reduction of the measure space.\\
+There are two main criteria among which the waves can vary. The absolute indication for separation is visibility and isolation.\\
+They occur periodically in a Swell.\\
 In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
 The directed waves of straightness and curvature going forward/backward synchronously are periodic.
 \begin{align}
