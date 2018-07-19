@@ -203,25 +203,25 @@ T_{1} = \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \ap
 Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority. They create further sections of Turns $T$ in the transversality $Y$.
 
 \section{Non-oriented Sections}
-Non-oriented ones are symmetrical, but they do induce a shift inside the Compact Cover if they're not centered.
+Non-oriented sections are not proper section types, but merely an expression of intermediate calculation/medium priority (See discussion of oriented submanifolds in Compact Covers). They are symmetrical, but they do induce a shift inside the Compact Cover if they're not centered.
 
 \subsection{Cliff}
 A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=diameter_{horiz,T}$.
-A single Cliff can have no more than the maximum curvature.
+A single Cliff can have no more than the maximum curvature. Is a part of a Spiral.
 \begin{equation}
 Max_{Curve}=
 \end{equation}
-(Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment. (See Separation))
+Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment. (See Separation)
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or curvature of exp?). It is not a proper section type, but merely an expression of being part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. It implies a reduction of measures which are smaller than the threshold. A Corner is $inserted$ at $\frac{b-a}{2}$.
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or curvature of exp?). It is a part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. It implies a reduction of measures which are smaller than the threshold. A Corner is $inserted$ at $\frac{b-a}{2}$.
 \begin{equation}
 Max_{Straight}=
 \end{equation}
 A special case is when $card(U_{m})=2$, a Corner is inserted as well.
 
 \subsection{Swing}
-A Swing is the segment $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$.\\
+A Swing is the segment $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
 \begin{equation}
 \xi'(c)>0;\xi'(b')=0;\xi'(d)<0
 \end{equation}
@@ -251,6 +251,7 @@ diameter_{max}=
 \end{align}
 
 \section{Oriented Sections}
+Derivatives are opening up measure spaces.\\\\
 The second order total derivative induces non-symetry.\\
 Binomial.
 \begin{align}
@@ -266,35 +267,27 @@ T_{2} = \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert
 \end{equation}
 
 \subsection{Crest}
-A backside Crest $[a,a']$ is a forward $[a,b']$ Swing, where the reverse direction of analysis $[b',a]$ reveals a backward $[b',a']$ Swing  and:
-\begin{equation}
-t(C)(+Dist_{Cap}?)\leq a'
-\end{equation}
+A backside Crest $[a,a']$ or $[a,b']$ is an iteration of:
+\begin{enumerate}
+\item The Forward direction of analysis of a $[a,b']$ Swing, followed by 
+\item The Reverse direction of analysis $[b',a]$ reveals a Backward $[b',a']$ Swing
+\end{enumerate}
+The breaking condition is that no more entities are being found by either of the two steps.
 
 \subsection{Dune}
-A backside Dune $[a,b,c]$ is a curved segment $[a,b]$, which is followed by a maximal Straight section $[b,c]$.
+A backside Dune $[a,b]$ is a curved segment $[a,b']$, which is followed by a maximal Straight section $[b',b]$.
 \begin{equation}
-straightness(a,b)>Max_{Straight};straightness(b,c)\leq Max_{Straight}
+straightness(a,b')>Max_{Straight};straightness(b',b)\leq Max_{Straight}
 \end{equation}
-A minimal length threshold for the Straight $[b,c]$ is related to the margin of the spike.
-\begin{equation}
-Dist_{Straight}=
-\end{equation}
-It is only used as an $insertion$ section, and if no more entities are being found. It occurs in the lowest priority of analysis (i.e. as a section of a whole Turn, where a=S and b=E) or as forward/backward parts of a Spike.\\
-(Independence of measure?)
-\begin{equation}
-\frac{b-a}{c-b}
-\end{equation}
+It is only used as an $insertion$ section, or if no other entities are being found. It occurs in the lowest priority of analysis (i.e. as a section of a whole Turn, where a=S and b=E) or as forward/backward parts of a Spike.\\
 
 \subsection{Spike}
-A forward Dune $[a,b,c]$ produces two Straights $[a,b]$ and $[b,c]$ if the Dune edge at the summit $T_{2}$ overlaps with a backward Dune $[c,b',a]$ by a certain margin $(b'-b)<=Dist_{Cap}$.
-\begin{equation}
-Dist_{Cap}=
-\end{equation}
-(Independence of measure?)
-\begin{equation}
-\frac{curvature(a,b)}{straightness(a,b)}
-\end{equation}
+A backside Spike $[a,b']$ is an iteration of:
+\begin{enumerate}
+\item A backside Dune $[a,a']$
+\item A backside Dune $[b,b']$, where $a' \leq b'$ 
+\end{enumerate}
+The breaking condition is that no more entities are being found after the second step.
 
 \section{Compact Covers}
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.\\\\
@@ -329,7 +322,7 @@ s_{times} = \prod_{measures} o
 Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
 
 \subsection{Imaginary Visibility}
-Visibility is an increase of the polynomial degree of a curve segment.
+Visibility is an increase of the polynomial (degree or coefficients?) of a curve segment.
 When visibility is increased in a Spiral, it creates more subsegments. Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.\\
 When curvature is decreased in a Spiral, it becomes a ZigZag.\\
 When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction inverts the orientation of the curve segments. Their sign flips.
@@ -353,12 +346,14 @@ Note: $\eta$ is a Lebesgue.
 \begin{equation}
 isolation(a,b)=o \prod straightness_{Abs}(a,b)
 \end{equation}
+(Measure Space?)
 
 \chapter{Separation}
+The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.
 
 \subsection{Plancherel Theorem}
-The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding orthogonal subspaces in frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of pulse-wise integration and periodic integration.\\\\
-The method in this paper may provide a means of either finding exact frames in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters.\\\\
+The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding orthogonal subspaces in frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of frame-wise integration and periodic integration.\\\\
+The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters.\\\\
 Also Vector Graph manipulations such as scaling, resampling, finding/counting intersections, oriented section occurence requirements could yield interesting results.\\\\
 A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $x^2 + y^2 =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is of Grade 4. The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
 
