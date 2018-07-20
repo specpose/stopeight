@@ -159,14 +159,15 @@ It is closely related to the curvature.
 \subsubsection{Algorithm Version}
 It is using Heron's formula for the area of a triangle in $P_{n}, P_{n+1},P_{n+2} \in [a,b] \subseteq X$.
 \begin{align*}
-A=\lvert P_{i+1}-P_{i} \rvert\\
-B=\lvert P_{i+2} - P_{i+1} \rvert\\
-C=\lvert P_{i+2} - P_{i} \rvert\\
-L=\frac{A+B+C}{2}
+\mathcal{A}=\lvert P_{i+1}-P_{i} \rvert\\
+\mathcal{B}=\lvert P_{i+2} - P_{i+1} \rvert\\
+\mathcal{C}=\lvert P_{i+2} - P_{i} \rvert\\
+\mathcal{L}=\frac{\mathcal{A}+\mathcal{B}+\mathcal{C}}{2}\\
+\mathcal{T}=\sqrt{\mathcal{L}(\mathcal{L}-\mathcal{A})(\mathcal{L}-\mathcal{B})(\mathcal{L}-\mathcal{C})}
 \end{align*}
 to calculate the ratio of the areas in $A$ and lines in $B$.
 \begin{align}
-straightness(a,b)=o \sum_{i=0}^{n+2}\frac{\sqrt{L(L-A)(L-B)(L-C)}}{A+B}
+straightness(a,b)=o \sum_{i=0}^{n+2}\frac{\mathcal{T}}{\mathcal{A}+\mathcal{B}}
 \end{align}
 
 \subsection{Curvature}
