@@ -190,13 +190,13 @@ curvature(a,b)= o \frac{\sum \limits _{i=0}^{n+1}y(P_{i})*(x(P_{i+1})-x(P_{i}))}
 \subsection{Corner}
 A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a segment $[a,b] \subseteq B$ is:
 \begin{equation}
-C = \sup_{U}\lvert curvature(a,b) \rvert
+C_{1} \ni \sup_{U}\lvert curvature(a,b) \rvert
 \end{equation}
 
 \subsection{Turn}
 A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
 \begin{equation}
-T_{1} = \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0
+T_{1} \ni \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0
 \end{equation}
 
 \section*{Sections}
@@ -206,15 +206,14 @@ Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ t
 Non-oriented sections are not proper section types, but merely an expression of intermediate calculation/medium priority (See discussion of oriented submanifolds in Compact Covers). They are symmetrical, but they do induce a shift inside the Compact Cover if they're not centered.
 
 \subsection{Cliff}
-A maximal absolute curvature $\frac{(\pi r^2) /2}{2r}$ is defined by a unit half circle $r=diameter_{horiz,T}$.
-A single Cliff can have no more than the maximum curvature. Is a part of a Spiral.
+A Cliff is a segment $[a,b']$ defined by a maximal curvature depending on the radius $r=diameter_{horiz,T}$. A single Cliff can have no more than the maximum curvature of a circle. It is a part of a Spiral.
 \begin{equation}
-Max_{Curve}=
+Max_{Curve}=\frac{(\pi r^2) /2}{2r}
 \end{equation}
 Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment. (See Separation)
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or curvature of exp?). It is a part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. It implies a reduction of measures which are smaller than the threshold. A Corner is $inserted$ at $\frac{b-a}{2}$.
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or straightness of exp?). It is a part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. It implies a reduction of measures which are smaller than the threshold. A Corner is $inserted$ at $\frac{b-a}{2}$.
 \begin{equation}
 Max_{Straight}=
 \end{equation}
@@ -229,7 +228,9 @@ The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 \begin{equation}
 [a,b] \subseteq U_{m} \Rightarrow \exists  \xi(t) - \iota_{T}(t) >0 \land \nexists \xi(t) - \iota_{T}(t) \leq0
 \end{equation}
-(both vice-versa)\\\\
+(both vice-versa)
+
+\subsection*{Absolute Differences}
 Once these entities have been found, we can start to use absolute differences.
 \begin{align}
 jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
@@ -251,10 +252,17 @@ diameter_{max}=
 \end{align}
 
 \subsection{Dune}
-A Dune $[a,b',c]$ is a curved segment $[a,b']$, which is followed by a maximal Straight section $[b',c]$. It is part of the Edge detection.
+A Dune $[a,b',c]$ is a non-Straight $[a,b']$, which is followed by a Straight $[b',c]; $. It is part of the Edge detection.
 \begin{equation}
 straightness(a,b')>Max_{Straight};straightness(b',c)\leq Max_{Straight}
 \end{equation}
+
+\subsection{Spike}
+A Spike is a section $[a,b',c], where$
+\begin{align}
+straightness(a,b)\approx 1; curvature(a,b)>0
+\end{align}
+It is part of ZigZag detection.
 
 \section{Oriented Sections}
 Derivatives are opening up measure spaces.\\\\
@@ -269,7 +277,7 @@ Or Trinomial.
 \end{align}
 The following non-symetric subsections reveal hidden second derivatives.
 \begin{equation}
-T_{2} = \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert \approx 0
+T_{2} \ni \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert \approx 0
 \end{equation}
 
 \subsection{Crest}
@@ -290,19 +298,36 @@ A backside Edge $[a,b']$ is an iteration of:
 The breaking condition is that no more entities are being found after the second step.
 
 \section{Compact Covers}
-In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.\\\\
-For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Finding the Edges of Dunes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
-Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.\\\\
+\begin{align}
+A \text{ is open} \Leftrightarrow \inf_{A},\sup_{A}\in T_{0},C_{0}
+\end{align}
+In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail. Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.
+\begin{align}
+A \text{ is closed} \Leftrightarrow \min_{A},\max_{A}\in T_{0},C_{0}
+\end{align}
+For the time being, the approach in this paper is a compromise. Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Finding the Edges of Dunes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
+Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.
 It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented. (Causal Structure)
 
 \subsection{Spiral}
 Spiral $\supset$ Cliff\\
+A Spiral section $[a,b']$ is a Cliff, where
+\begin{align}
+Max_{Spiral}=\frac{curvature(a,b)}{\{m\in \mathbb{N} \vert U_{m} \subseteq Spiral\}}\\
+b' \in C_{2}
+\end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature.
 \subsection{ZigZag}
 ZigZag $\supset$ Spike\\
-The Spikes are Corners which become Turns one by one in each subsegment under the condition $straightness(a,b) \approx 1$ and $curvature(a,b)>Max_{Curve}$.
-If the direction of analysis $o$ is inverted, it would be a coincidence if the Spikes overlap.\\
-(Can Spikes be centered?)\\
+A ZigZag [a,b'] is an iteration of:
+\begin{enumerate}
+\item A Spike $[a,b,c]$
+\item A Spike $[a,b',c']$ and a Spike $[c',b'',c]$
+\end{enumerate}
+\begin{align}
+b' \in T_{3}
+\end{align}
+The breaking condition is when no more entities are being found.\\
 (Angle greater than 90 deg. $\Rightarrow$ third derivative = 0?)
 \subsection{Swell}
 Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
@@ -334,6 +359,8 @@ Note: $\mu$ is a Lebesgue.
 visibility(a,b)=\frac{s_{alt}}{\lvert s_{alt} \rvert} \sum_{}^{} curvature_{Abs}(a,b)\\
 visibility(a,b)= \int \limits _{}^{}\xi_{C}(t)\mathrm{d}t(?)
 \end{align}
+\subsection*{Scale Space}
+$arclength$ constant, $area$ grows, but $diameter$ constant.
 
 \subsection{Real Isolation}
 A lack of isolation is directly linked to the creation of more measure spaces.\\
@@ -346,7 +373,8 @@ Note: $\eta$ is a Lebesgue.
 \begin{equation}
 isolation(a,b)=o \prod straightness_{Abs}(a,b)
 \end{equation}
-(Measure Space?)
+\subsection*{Interval Space}
+$jitter$ grows, but $diameter$ constant.
 
 \chapter{Separation}
 The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.
