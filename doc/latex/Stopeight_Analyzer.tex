@@ -250,6 +250,12 @@ diameter_{vert}=\\
 diameter_{max}=
 \end{align}
 
+\subsection{Dune}
+A Dune $[a,b',c]$ is a curved segment $[a,b']$, which is followed by a maximal Straight section $[b',c]$. It is part of the Edge detection.
+\begin{equation}
+straightness(a,b')>Max_{Straight};straightness(b',c)\leq Max_{Straight}
+\end{equation}
+
 \section{Oriented Sections}
 Derivatives are opening up measure spaces.\\\\
 The second order total derivative induces non-symetry.\\
@@ -274,12 +280,8 @@ A backside Crest $[a,a']$ or $[a,b']$ is an iteration of:
 \end{enumerate}
 The breaking condition is that no more entities are being found by either of the two steps.
 
-\subsection{Dune}
-A Dune $[a,b',c]$ is a curved segment $[a,b']$, which is followed by a maximal Straight section $[b',c]$.
-\begin{equation}
-straightness(a,b')>Max_{Straight};straightness(b',c)\leq Max_{Straight}
-\end{equation}
-A backside Dune $[a,b']$ is an iteration of:
+\subsection{Edge}
+A backside Edge $[a,b']$ is an iteration of:
 \begin{enumerate}
 \item A backside Dune $[a,b,c]$
 \item A backside Dune $[c',b',a]$ 
@@ -287,20 +289,18 @@ A backside Dune $[a,b']$ is an iteration of:
 \end{enumerate}
 The breaking condition is that no more entities are being found after the second step.
 
-\subsection{Spike}
-
 \section{Compact Covers}
 In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail ($A$ is open). Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.\\\\
-For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Differentiating between Dunes and Spikes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
+For the time being, the approach in this paper is a compromise ($A$ is closed). Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Finding the Edges of Dunes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
 Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.\\\\
 It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented. (Causal Structure)
 
 \subsection{Spiral}
 Spiral $\supset$ Cliff\\
-An even number of Cliffs is found under the curvature criteria.
-The Cliffs are then centered outside in so that all cliffs in a spiral have the same curvature.
+The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature.
 \subsection{ZigZag}
 ZigZag $\supset$ Spike\\
+The Spikes are Corners which become Turns one by one in each subsegment under the condition $straightness(a,b) \approx 1$ and $curvature(a,b)>Max_{Curve}$.
 If the direction of analysis $o$ is inverted, it would be a coincidence if the Spikes overlap.\\
 (Can Spikes be centered?)\\
 (Angle greater than 90 deg. $\Rightarrow$ third derivative = 0?)
