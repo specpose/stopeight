@@ -167,7 +167,7 @@ It is using Heron's formula for the area of a triangle in $P_{n}, P_{n+1},P_{n+2
 \end{align*}
 to calculate the ratio of the areas in $A$ and lines in $B$.
 \begin{align}
-straightness(a,b)=o \sum_{i=0}^{n+2}\frac{\mathcal{T}}{\mathcal{A}+\mathcal{B}}
+straightness_{Algo}(a,b)=o \sum_{i=0}^{n+2}\frac{\mathcal{T}}{\mathcal{A}+\mathcal{B}}
 \end{align}
 
 \subsection{Curvature}
@@ -185,11 +185,11 @@ curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm
 \subsubsection{Algorithm Version}
 The sum of the pieces in the legal segment [a,b] with $P_{n}, P_{n+1} \in [a,b] \subseteq X$.
 \begin{align}
-curvature(a,b)= o \frac{\sum \limits _{i=0}^{n+1}y(P_{i})*(x(P_{i+1})-x(P_{i}))}{x(P_{n+1})-x(P_{0})}
+curvature_{Algo}(a,b)= o \frac{\sum \limits _{i=0}^{n+1}y(P_{i})*(x(P_{i+1})-x(P_{i}))}{x(P_{n+1})-x(P_{0})}
 \end{align}
 
 \subsection{Corner}
-A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a segment $[a,b] \subseteq B$ is:
+A curvature is composed of an infinite amount of local maxima. Therefore the Corner in a section $[a,b] \subseteq B$ is:
 \begin{equation}
 C_{1} \ni \sup_{U}\lvert curvature(a,b) \rvert
 \end{equation}
@@ -200,31 +200,34 @@ A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b
 T_{1} \ni \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0
 \end{equation}
 
-\section*{Sections}
+\section*{Oriented Sections}
 Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority. They create further sections of Turns $T$ in the transversality $Y$.
 
-\section{Non-oriented Sections}
-Non-oriented sections are not proper section types, but merely an expression of intermediate calculation/medium priority (See discussion of oriented submanifolds in Compact Covers). They are symmetrical, but they do induce a shift inside the Compact Cover if they're not centered.
+\section{Non-recursive Sections}
+Non-recursive sections are not proper section types, but merely an expression of intermediate calculation/medium priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.
 
 \subsection{Cliff}
-A Cliff is a segment $[a,b']$ defined by a maximal curvature depending on the radius $r=diameter_{horiz,T}$. A single Cliff can have no more than the maximum curvature of a circle. It is a part of a Spiral.
-\begin{equation}
-Max_{Curve}=\frac{(\pi r^2) /2}{2r}
-\end{equation}
+A Cliff is a section $[a,b']$ defined by a maximal curvature depending on the radius $r=diameter_{horiz,T}$. A single Cliff can have no more than the maximum curvature of a circle. It is a part of a Spiral.
+\begin{align}
+Max_{Curve}=\frac{(\pi r^2) /2}{2r}\\
+T_{1} \ni b'
+\end{align}
 Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment. (See Separation)
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or straightness of exp?). It is a part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. It implies a reduction of measures which are smaller than the threshold. A Corner is $inserted$ at $\frac{b-a}{2}$.
-\begin{equation}
-Max_{Straight}=
-\end{equation}
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or straightness of exp?). It is a part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. It implies a reduction of measures which are smaller than the threshold. A Corner is $inserted$ .
+\begin{align}
+Max_{Straight}=\\
+C_{1} \ni \frac{b-a}{2}
+\end{align}
 A special case is when $card(U_{m})=2$, a Corner is inserted as well.
 
 \subsection{Swing}
-A Swing is the segment $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
-\begin{equation}
-\xi'(c)>0;\xi'(b')=0;\xi'(d)<0
-\end{equation}
+A Swing is the section $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
+\begin{align}
+\xi'(c)>0;\xi'(b')=0;\xi'(d)<0\\
+T_{1} \ni b'
+\end{align}
 The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 \begin{equation}
 [a,b] \subseteq U_{m} \Rightarrow \exists  \xi(t) - \iota_{T}(t) >0 \land \nexists \xi(t) - \iota_{T}(t) \leq0
@@ -234,45 +237,51 @@ The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 \subsection*{Absolute Differences}
 Once these entities have been found, we can start to use absolute differences.
 \begin{align}
-jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
-area_{vert}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota_{T}(t) \rvert \mathrm{d}t
+jitter_{T}(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
+area_{vert,T}(a,b)=\int \limits _{a}^{b} \lvert \xi_{T}(t)-\iota_{T}(t) \rvert \mathrm{d}t
 \end{align}
 \begin{align}
-straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{horiz,T}(a,b)}
+straightness_{Abs,T}(a.b)=\frac{jitter_{T}(a,b)}{diameter_{horiz,T}(a,b)}
 \end{align}
 \begin{align}
-curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz,T}(a,b)}
+curvature_{Abs,T}(a,b) = \frac{area_{vert,T}(a,b)}{diameter_{horiz,T}(a,b)}
 \end{align}
-(Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$ or $P_{n},P_{n+1} \in (C \cup T)$?)
+(Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$ or $P_{n},P_{n+1} \in (C \cup T)$?)\\
+(horizontals?)
 \begin{align}
-area_{h}(a,b)=\int \limits _{0}^{} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t\\
-diameter_{horiz,X}(a,b)=\int \limits _{0}^{} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t\\
-curvature_{Abs}(a,b) = \frac{area_{h}(a,b)}{diameter_{horiz,X}(a,b)}\\
-diameter_{vert}=\\
-diameter_{max}=
+area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
 \end{align}
-
-\subsection{Dune}
-A Dune $[a,b',c]$ is a non-Straight $[a,b']$, which is followed by a Straight $[b',c]; $. It is part of the Edge detection.
-\begin{equation}
-straightness(a,b')>Max_{Straight};straightness(b',c)\leq Max_{Straight}
-\end{equation}
+(shaking?)
+\begin{align}
+diameter_{horiz,X}(a,b)=\int \limits _{0}^{?} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t
+\end{align}
+(different diameters?)
+\begin{align}
+diameter_{vert}=\text{Maximum}\\
+diameter_{max}=\text{Star}
+\end{align}
 
 \subsection{Spike}
 A Spike is a section $[a,b',c], where$
 \begin{align}
-straightness(a,b)\approx 1; curvature(a,b)>0
+straightness(a,b)\approx 1\\ curvature(a,b)>0
 \end{align}
 It is part of ZigZag detection.
 
-\section{Oriented Sections}
+\subsection{Dune}
+A backside Dune $[a,b',c]$ is a section, where a non-Straight segment $[a,b']$ is followed by a Straight segment $[b',c]; $. It is part of the Edge detection.
+\begin{align}
+straightness(a,b')>Max_{Straight}\\ straightness(b',c)\leq Max_{Straight}
+\end{align}
+
+\section{Recursive Sections}
 Derivatives are opening up measure spaces.\\\\
 The second order total derivative induces non-symetry.\\
-Binomial.
+(Binomial?)
 \begin{align}
 \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t)=\partial^2 \gamma(t) \begin{bmatrix} \frac{\mathrm{d}^2x}{\partial^2 x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & \frac{\mathrm{d}^2y}{\partial^2 y}\end{bmatrix}\frac{1}{\mathrm{d}^2t}
 \end{align}
-Or Trinomial.
+(Or Trinomial?)
 \begin{align}
 \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t)=\partial^2 \gamma (t) \begin{bmatrix}\frac{\mathrm{d}^2 x}{\partial^2 x} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}x}{\partial x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}y}{\partial y} & \frac{\mathrm{d}^2 y}{\partial^2 y}\end{bmatrix}\frac{(\partial x + \partial y)^2}{\mathrm{d}^2 t}
 \end{align}
@@ -299,14 +308,16 @@ A backside Edge $[a,b']$ is an iteration of:
 The breaking condition is that no more entities are being found after the second step.
 
 \section{Compact Covers}
+\subsubsection*{Open}
 \begin{align}
 A \text{ is open} \Leftrightarrow \inf_{A},\sup_{A}\in T_{0},C_{0}
 \end{align}
-In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail. Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen.
+In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail. Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen. One could also decide to interleave frontside and backside entities of the same type.
+\subsubsection*{Closed}
 \begin{align}
 A \text{ is closed} \Leftrightarrow \min_{A},\max_{A}\in T_{0},C_{0}
 \end{align}
-For the time being, the approach in this paper is a compromise. Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Dunes exhibit a frontside/backside phenomenon, which significantly shifts the consecutive oriented functions. Finding the Edges of Dunes also requires a reversal of the direction of analysis. This reversal imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
+For the time being, the approach in this paper is a compromise. Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Edges exhibit a non-symetry, which significantly offset the consecutive oriented functions. Even finding Swings and Dunes shifts the adjacent entities. The reversal and priority of segments and sections imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
 Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.
 It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented. (Causal Structure)
 
@@ -314,7 +325,7 @@ It all comes down to whether oriented submanifolds are allowed and whether the e
 Spiral $\supset$ Cliff\\
 A Spiral section $[a,b']$ is a Cliff, where
 \begin{align}
-Max_{Spiral}=\frac{curvature(a,b)}{\{m\in \mathbb{N} \vert U_{m} \subseteq Spiral\}}\\
+Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \subseteq Spiral\}}\\
 b' \in C_{2}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature.
