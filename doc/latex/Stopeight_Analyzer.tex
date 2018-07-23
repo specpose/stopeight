@@ -111,13 +111,13 @@ The curve functions can be interprated as $\gamma(t,x(t),y(t))$. The derivative 
 \begin{align}
 \frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \gamma(t) \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of the metric}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
 \end{align}\\
-The direction of analysis $o$ is preserved in the sign for both straightness and curvature.
+The direction of analysis $dir$ is preserved in the sign for both straightness and curvature.
 \begin{align}
-o = \frac{(b-a)}{\lvert b-a \rvert}
+dir = \frac{(b-a)}{\lvert b-a \rvert}
 \end{align}
 The horizontal diameter is based on the metric of $\iota_{T}$.
 \begin{equation}
-diameter_{horiz,T}(a,b)= o \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
+diameter_{horiz,T}(a,b)= dir \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
 
 \subsection{Affine Transformation}
@@ -168,7 +168,7 @@ It is using Heron's formula for the area of a triangle in $P_{n}, P_{n+1},P_{n+2
 \end{align*}
 to calculate the ratio of the areas in $A$ and lines in $B$.
 \begin{align}
-straightness_{Algo}(a,b)=o \sum_{i=0}^{n+2}\frac{\mathcal{Q}}{\mathcal{A}+\mathcal{B}}
+straightness_{Algo}(a,b)=dir \sum_{i=0}^{n+2}\frac{\mathcal{Q}}{\mathcal{A}+\mathcal{B}}
 \end{align}
 
 \subsection{Curvature}
@@ -186,7 +186,7 @@ curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm
 \subsubsection{Algorithm Version}
 The sum of the pieces in the legal segment [a,b] with $P_{n}, P_{n+1} \in [a,b] \subseteq X$.
 \begin{align}
-curvature_{Algo}(a,b)= o \frac{\sum \limits _{i=0}^{n+1}y(P_{i})*(x(P_{i+1})-x(P_{i}))}{x(P_{n+1})-x(P_{0})}
+curvature_{Algo}(a,b)= dir \frac{\sum \limits _{i=0}^{n+1}y(P_{i})*(x(P_{i+1})-x(P_{i}))}{x(P_{n+1})-x(P_{0})}
 \end{align}
 
 \subsection{Corner}
@@ -204,7 +204,7 @@ Note: Except for insertion (See Straight), $C_{3},C_{0} \in Y$, but all the othe
 (To be disclosed: Algorithms for finding lower Corner indexes from higher Corner indexes $q_{2},q_{5}$ and Control points inbetween $q_{1},q_{3},q_{4},q_{6}$)
 
 \subsection{Turn}
-A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
+A turn $T$ is a change of sign in the orientation of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
 \begin{equation}
 T_{1} \ni \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0
 \end{equation}
@@ -312,17 +312,17 @@ T_{2} \ni \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rve
 \subsection{Crest}
 A backside Crest $[a,a']$ or $[a,b']$ is an iteration of:
 \begin{enumerate}
-\item The Forward direction of analysis of a $[a,b']$ Swing, followed by 
-\item The Reverse direction of analysis $[b',a]$ reveals a Backward $[b',a']$ Swing
+\item The Forward direction of analysis $dir=1$ of a $[a,b']$ Swing, followed by 
+\item The Reverse direction of analysis $dir=-1;[b',a]$ reveals a Backward $[b',a']$ Swing
 \end{enumerate}
 The breaking condition is that no more entities are being found by either of the two steps.
 
 \subsection{Edge}
 A backside Edge $[a,b']$ is an iteration of:
 \begin{enumerate}
-\item A backside Dune $[a,b,c]$
-\item A backside Dune $[c',b',a]$ 
-\item A backside Dune $[a',b'',c']$...
+\item The Forward direction of analysis $dir=1$ of a backside Dune $[a,b,c]$
+\item The Reverse direction of analysis $dir=-1;[b',a]$ of a backside Dune $[c',b',a]$ 
+\item The Forward direction of analysis $dir=1$ of a backside Dune $[a',b'',c']$...
 \end{enumerate}
 The breaking condition is that no more entities are being found after the second step.
 
@@ -376,11 +376,11 @@ Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 Please take note of the sign here. The difference of sign in the numerator and the denominator of area(?) indicate sign changes.\\
 The alternating signs of times.
 \begin{align}
-s_{alt} = \sum_{\mu_{+}}^{}o -  \sum_{\mu_{-}}^{}o
+s_{alt} = \sum_{\mu_{+}}^{}dir -  \sum_{\mu_{-}}^{}dir
 \end{align}
 The fliping signs of times across measure spaces?
 \begin{equation}
-s_{times} = \prod_{measures} o
+s_{times} = \prod_{measures} dir
 \end{equation}
 
 \subsection{Impulses}
@@ -408,11 +408,11 @@ A lack of isolation is directly linked to the creation of more measure spaces.\\
 If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
 Opposite wave direction $\Leftrightarrow$ Negative Isolation.
 \begin{align}
-\eta_{+}=(\{[a,b] \subseteq A,B \vert a<b\}) \Leftrightarrow o=+1
+\eta_{+}=(\{[a,b] \subseteq A,B \vert a<b\}) \Leftrightarrow dir=+1
 \end{align}
 Note: $\eta$ is a Lebesgue.
 \begin{equation}
-isolation(a,b)=o \prod_{\lvert \mu \rvert \approx (b-a)}^{} straightness_{Abs}(a,b)
+isolation(a,b)=dir \prod_{\lvert \mu \rvert \approx (b-a)}^{} straightness_{Abs}(a,b)
 \end{equation}
 \subsection*{Interval Space}
 $jitter$ grows, but $diameter$ constant.
