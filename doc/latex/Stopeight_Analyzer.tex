@@ -119,6 +119,11 @@ The horizontal diameter is based on the metric of $\iota_{T}$.
 \begin{equation}
 diameter_{horiz,T}(a,b)= dir \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
+When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction inverts the sign of the curve segments. Their sign flips.
+\begin{align}
+\mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
+\end{align}
+Note: $\mu$ is a Lebesgue.
 
 \subsection{Affine Transformation}
 An affine transformation $M$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
@@ -373,47 +378,45 @@ Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 
 \chapter{Comparator}
 (Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
-Please take note of the sign here. The difference of sign in the numerator and the denominator of area(?) indicate sign changes.\\
-The alternating signs of times.
-\begin{align}
-s_{alt} = \sum_{\mu_{+}}^{}dir -  \sum_{\mu_{-}}^{}dir
-\end{align}
-The fliping signs of times across measure spaces?
+Please take note of the orientation here. (product? alternating?)
 \begin{equation}
-s_{times} = \prod_{measures} dir
+ori = \frac{dsi(a,b)}{\lvert dsi(a,b) \rvert}(?)
 \end{equation}
+The sum of a function over a measure space.\\
+\begin{equation}
+signs(\mu_{+},function)= \sum \limits _{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function(a,b)
+\end{equation}
+The product of a function over a measure space.
+\begin{equation}
+times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function(a,b)
+\end{equation}
+The difference of the signs over an interval.
+\begin{align}
+dsi(a,b) = card(\mu_{+}\subseteq [a,b])-card(\mu_{-} \subseteq [a,b])
+\end{align}
 
 \subsection{Impulses}
 Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
 
 \subsection{Imaginary Visibility}
 Visibility is an increase of the polynomial (degree or coefficients?) of a curve segment.
-When visibility is increased in a Spiral, it creates more subsegments. Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.\\
-When curvature is decreased in a Spiral, it becomes a ZigZag.\\
-When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction inverts the orientation of the curve segments. Their sign flips.
+When visibility is increased in a Spiral, it creates more subsegments. Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
 \begin{align}
-\mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
+visibility(a,b)=dsi * signs(\mu,area(a,b)-\mathcal{Q}(a,b))(?)\\
+visibility(a,b)=times(\mu,curvature(a,b)-\mathcal{Q}(a,b))(?)\\
 \end{align}
-Note: $\mu$ is a Lebesgue.
-\begin{align}
-visibility(a,b)=\prod_{\lvert \mu \rvert \approx (b-a)}^{}\frac{(\pi r^2) /2}{2r}-\mathcal{Q}\\
-visibility(a,b)=\frac{s_{alt}}{\lvert s_{alt} \rvert} \sum_{}^{} curvature_{Abs}(a,b)\\
-visibility(a,b)= \int \limits _{}^{}\xi_{C}(t)\mathrm{d}t(?)
-\end{align}
+\subsection*{Cases}
+When curvature is decreased in a Spiral, it becomes a ZigZag.
 \subsection*{Scale Space}
 $arclength$ constant, $area$ grows, but $diameter$ constant.
 
 \subsection{Real Isolation}
-A lack of isolation is directly linked to the creation of more measure spaces.\\
+A lack of isolation is directly linked to the creation of more measure spaces.
 If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
 Opposite wave direction $\Leftrightarrow$ Negative Isolation.
 \begin{align}
-\eta_{+}=(\{[a,b] \subseteq A,B \vert a<b\}) \Leftrightarrow dir=+1
+isolation(a,b)=dir * times(\mu,straightness)(?)
 \end{align}
-Note: $\eta$ is a Lebesgue.
-\begin{equation}
-isolation(a,b)=dir \prod_{\lvert \mu \rvert \approx (b-a)}^{} straightness_{Abs}(a,b)
-\end{equation}
 \subsection*{Interval Space}
 $jitter$ grows, but $diameter$ constant.
 
