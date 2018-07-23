@@ -200,7 +200,8 @@ C_{1} : \text{Quadratic Bezier Spline}\\
 C_{2} \subset C_{1} : \text{Cubic Bezier Spline}\\
 C_{3} \subset C_{2} \subset C_{1} : \text{Quartic Bezier Spline}
 \end{align}
-Note: Except for insertion (See Straight), $C_{3},C_{0} \in Y$, but all the others $C_{1},C_{2},C_{4},... \not\in X$, because they are only found in the approximation $C_{1},C_{2},C_{4},... \in A$. 
+Note: Except for insertion (See Straight), $C_{3},C_{0} \in Y$, but all the others $C_{1},C_{2},C_{4},... \not\in X$, because they are only found in the approximation $C_{1},C_{2},C_{4},... \in A$.\\
+(To be disclosed: Algorithms for finding lower Corner indexes from higher Corner indexes $q_{2},q_{5}$ and Control points inbetween $q_{1},q_{3},q_{4},q_{6}$)
 
 \subsection{Turn}
 A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
@@ -253,14 +254,14 @@ The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 \subsection*{Absolute Differences}
 Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\iota$ to $T_{1},C_{4}$ and the domain of $\xi$ to $C_{3},C_{4}$ (and $C_{4}$?) unless noted otherwise.
 \begin{align}
-jitter_{T}(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
-area_{vert,T}(a,b)=\int \limits _{a}^{b} \lvert \xi_{T}(t)-\iota_{T}(t) \rvert \mathrm{d}t
+jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota(t) \rvert \mathrm{d}t\\
+area_{vert}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota(t) \rvert \mathrm{d}t
 \end{align}
 \begin{align}
-straightness_{Abs,T}(a.b)=\frac{jitter_{T}(a,b)}{diameter_{horiz,T}(a,b)}
+straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{horiz,T}(a,b)}
 \end{align}
 \begin{align}
-curvature_{Abs,T}(a,b) = \frac{area_{vert,T}(a,b)}{diameter_{horiz,T}(a,b)}
+curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz,T}(a,b)}
 \end{align}
 (Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$ or $P_{n},P_{n+1} \in (C \cup T)$?)\\
 (horizontals?)
