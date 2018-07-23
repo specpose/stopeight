@@ -25,7 +25,7 @@ This file is in the Stopeight repository on Github. Please edit here:\\
 The DOI can be found here ~\cite{Stopeight}.\\
 A brief overview can be found here:\\
 \href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
-The purpose of the Analyzer is to find intervals in a Vector Graph. The input Vector Graph may be obtained from the Grapher, or it may be present in another mathematical context. Certain properties, such as the maximal angle or the number of measure spaces involved, are inherited from this context.\\\\
+The purpose of the Analyzer is to find intervals in a Vector Graph and produce an approximation. The input Vector Graph may be obtained from the Grapher, or it may be present in another mathematical context. Certain properties, such as the maximum derivative or the quantity or quality of measure spaces involved, are inherited from this context.\\\\
 Preliminary: Grapher can turn a time-variant (or time-invariant) series/signal $s(x)$ into a Vector Graph $\mathbb{R}^2$. The scaling can be adjusted. An average can be used. More complex scenarios may be considered, where Spirals are removed, the number of 8's are limited or the signal is resampled.
 \begin{equation}
 vectorgraph: \mathbb{R} \rightarrow \mathbb{R}^2
@@ -213,7 +213,8 @@ T_{1} \ni \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \
 Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority. They create further sections of Turns $T$ in the transversality $Y$.
 
 \section{Non-recursive Sections}
-Non-recursive sections are not proper section types, but merely an expression of intermediate calculation and are therefore of medium analytic priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.
+Non-recursive sections are not proper section types, but merely an expression of intermediate calculation and are therefore of medium analytic priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.\\\\
+The $Max$ thresholds are reductions of different measure spaces. The $derivatives$ are affected by the thresholds.
 
 \subsection{Cliff}
 A Cliff is a section $[a,b']$ defined by a maximal curvature depending on the radius $r=diameter_{horiz,T}$. A single Cliff can have no more than the maximum curvature of a circle. It is a part of a Spiral.
@@ -221,7 +222,7 @@ A Cliff is a section $[a,b']$ defined by a maximal curvature depending on the ra
 Max_{Curve}=\frac{(\pi r^2) /2}{2r}\\
 C_{4} \ni b'
 \end{align}
-Note: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment. (See Separation / Measure Space)
+Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment and implies a reduction of the measure-spaces depending on scale.
 \iffalse
 \subsection*{Half Cliff}
 Even though Half Cliffs are not being used, it is worth mentioning, that they produce Corners just to make the notation complete.
@@ -232,12 +233,13 @@ C_{3} \ni b'
 \fi
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or straightness of exp?). It is a part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. It implies a reduction of measures which are smaller than the threshold (!). A Corner is $inserted$ .
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or straightness of exp?). It is a part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. A Corner is $inserted$ .
 \begin{align}
 Max_{Straight}=\\
 C_{3} \ni \frac{b-a}{2}
 \end{align}
-A special case is when $card(U_{m})=2$, a Corner is inserted as well.
+A special case is when $card(U_{m})=2$, a Corner is inserted as well.\\\\
+Measure Space: Straightness implies a reduction of the measure spaces depending on interval. $\mu$ which are smaller than the threshold.
 
 \subsection{Swing}
 A Swing is the section $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
@@ -292,7 +294,7 @@ straightness(a,b')>Max_{Straight}\\ straightness(b',c)\leq Max_{Straight}
 \end{align}
 
 \section{Recursive Sections}
-Derivatives are opening up measure spaces.\\\\
+Derivatives are opening up interval-measure spaces. The maximum order of $derivatives$ is set by the scale-space. The scale-space depends on the maximal order of the polynomials considered. In the method discussed in this paper, they are quadratic (or quartic?).\\\\
 The second order total derivative induces non-symetry.\\
 (Binomial?)
 \begin{align}
@@ -335,8 +337,8 @@ In computer science there is the concept of the stream operator. This means that
 A \text{ is closed} \Leftrightarrow \min_{A},\max_{A}\in T_{0},C_{0}
 \end{align}
 For the time being, the approach in this paper is a compromise. Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Edges exhibit a non-symetry, which significantly offset the consecutive oriented functions. Even finding Swings and Dunes shifts the adjacent entities. The reversal and priority of segments and sections imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
-Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy.
-It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented. (Causal Structure)
+Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy ($Comparator$).
+It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented (Causal Structure).
 
 \subsection{Spiral}
 Spiral $\supset$ Cliff\\
@@ -370,6 +372,7 @@ b' \in T_{3} \Rightarrow \text{third derivative }= 0\text{?}
 Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 
 \chapter{Comparator}
+(Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
 Please take note of the sign here. The difference of sign in the numerator and the denominator of area(?) indicate sign changes.\\
 The alternating signs of times.
 \begin{align}
@@ -436,7 +439,7 @@ z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility(a,b))} +\mathrm{i} \sin{(isolation(
 \subsubsection{Resampling}
 
 \chapter{Modeling}
-
+(An attempt to extend the algebra to generic problems in physics.)\\\\
 The complex conjugate is a manifestation of periodicity of two exact frames which are defined by something like a complex number:\\\\
 The imaginary part is the other side of the wave vs\\
 The imaginary part is the phase shift (fft)\\\\
