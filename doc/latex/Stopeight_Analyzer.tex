@@ -19,17 +19,18 @@
 \maketitle
 
 \chapter{Introduction}
-Preliminary: Grapher can turn a time-variant (or time-invariant) series/signal $s(x)$ into a Vector Graph $\mathbb{R}^2$. The scaling can be adjusted. An average can be used. More complex scenarios may be considered, where Spirals are removed, the number of 8's are limited or the signal is resampled.
-\begin{equation}
-vectorgraph: \mathbb{R} \rightarrow \mathbb{R}^2
-\end{equation}
-The Analyzer algorithm in this text has been developed during the years 2009 to 2016 by Specific Purpose Software GmbH. It is now open sourced, but mostly exists in the form of code fragments.\\
+The main algorithm in this text is the Analyzer. It has been developed during the years 2009 to 2016 by Specific Purpose Software GmbH. It is now open sourced, but mostly exists in the form of code fragments.\\
 This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight_Analyzer.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Analyzer.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\
 A brief overview can be found here:\\
 \href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
-The Arcs $A \subset \mathbb{R}^2$ are an approximation of a set $X \subset \mathbb{R}^2$:
+The purpose of the Analyzer is to find intervals in a Vector Graph. The input Vector Graph may be obtained from the Grapher, or it may be present in another mathematical context. Certain properties, such as the maximal angle or the number of measure spaces involved, are inherited from this context.\\\\
+Preliminary: Grapher can turn a time-variant (or time-invariant) series/signal $s(x)$ into a Vector Graph $\mathbb{R}^2$. The scaling can be adjusted. An average can be used. More complex scenarios may be considered, where Spirals are removed, the number of 8's are limited or the signal is resampled.
+\begin{equation}
+vectorgraph: \mathbb{R} \rightarrow \mathbb{R}^2
+\end{equation}
+The Arcs $A \subset \mathbb{R}^2$ are an approximation of a Vector Graph $X \subset \mathbb{R}^2$:
 \begin{align}
 f \circ g: X \rightarrow A
 \end{align}
@@ -55,7 +56,7 @@ Within $f$ we are assigning a sequence of three points to compact Hausdorf inver
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{S,C,E\}
 \end{equation}\\
 \fi
-The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Computation$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
+The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
 
 \chapter{Representation}
 
@@ -144,13 +145,13 @@ The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4
 \subsection{Legal Segment}
 A legal segment is an affine transformtion of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous (when):
 \begin{align}
-\xi'_{x}(a),\xi'_{y}(a), (\xi'_{y}(b)optional?) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), \iota'_{y}(b) = 0
+\xi'_{x}(a),\xi'_{y}(a), (\xi'_{y}(b)\text{ optional?}) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), (\iota'_{y}(b)\text{ optional?}) = 0
 \end{align}
-(Widon Introduction: Riemann integrable?)
+(~\cite[\nopp Riemann Integrable?]{Widon})
 
 \subsection{Straightness}
 A straight line segment is determined by means of straightness.\\
-The metric allows us to take the ratio of the difference of the jitter to the straight and the difference of the arc to the straight with $P_{n},P_{n+1} \in X$. \\
+The metric allows us to take the ratio of the difference of the jitter to the straight with $P_{n},P_{n+1} \in X$. \\
 \begin{align}
 straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota_{X}'(t) \rvert \mathrm{d}t}{diameter_{horiz,T}(a,b)}
 \end{align}
@@ -163,11 +164,11 @@ It is using Heron's formula for the area of a triangle in $P_{n}, P_{n+1},P_{n+2
 \mathcal{B}=\lvert P_{i+2} - P_{i+1} \rvert\\
 \mathcal{C}=\lvert P_{i+2} - P_{i} \rvert\\
 \mathcal{L}=\frac{\mathcal{A}+\mathcal{B}+\mathcal{C}}{2}\\
-\mathcal{T}=\sqrt{\mathcal{L}(\mathcal{L}-\mathcal{A})(\mathcal{L}-\mathcal{B})(\mathcal{L}-\mathcal{C})}
+\mathcal{Q}=\sqrt{\mathcal{L}(\mathcal{L}-\mathcal{A})(\mathcal{L}-\mathcal{B})(\mathcal{L}-\mathcal{C})}
 \end{align*}
 to calculate the ratio of the areas in $A$ and lines in $B$.
 \begin{align}
-straightness_{Algo}(a,b)=o \sum_{i=0}^{n+2}\frac{\mathcal{T}}{\mathcal{A}+\mathcal{B}}
+straightness_{Algo}(a,b)=o \sum_{i=0}^{n+2}\frac{\mathcal{Q}}{\mathcal{A}+\mathcal{B}}
 \end{align}
 
 \subsection{Curvature}
@@ -198,7 +199,8 @@ The indexing corresponds to the minimal grade of the polynomial that is necessar
 C_{1} : \text{Quadratic Bezier Spline}\\
 C_{2} \subset C_{1} : \text{Cubic Bezier Spline}\\
 C_{3} \subset C_{2} \subset C_{1} : \text{Quartic Bezier Spline}
-\end{align} 
+\end{align}
+Note: Except for insertion (See Straight), $C_{3},C_{0} \in Y$, but all the others $C_{1},C_{2},C_{4},... \not\in X$, because they are only found in the approximation $C_{1},C_{2},C_{4},... \in A$. 
 
 \subsection{Turn}
 A turn $T$ is a change of sign in the direction of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
@@ -210,7 +212,7 @@ T_{1} \ni \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \
 Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority. They create further sections of Turns $T$ in the transversality $Y$.
 
 \section{Non-recursive Sections}
-Non-recursive sections are not proper section types, but merely an expression of intermediate calculation/medium priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.
+Non-recursive sections are not proper section types, but merely an expression of intermediate calculation and are therefore of medium analytic priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.
 
 \subsection{Cliff}
 A Cliff is a section $[a,b']$ defined by a maximal curvature depending on the radius $r=diameter_{horiz,T}$. A single Cliff can have no more than the maximum curvature of a circle. It is a part of a Spiral.
@@ -218,7 +220,7 @@ A Cliff is a section $[a,b']$ defined by a maximal curvature depending on the ra
 Max_{Curve}=\frac{(\pi r^2) /2}{2r}\\
 C_{4} \ni b'
 \end{align}
-Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment. (See Separation)
+Note: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment. (See Separation / Measure Space)
 \iffalse
 \subsection*{Half Cliff}
 Even though Half Cliffs are not being used, it is worth mentioning, that they produce Corners just to make the notation complete.
@@ -229,7 +231,7 @@ C_{3} \ni b'
 \fi
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or straightness of exp?). It is a part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. It implies a reduction of measures which are smaller than the threshold. A Corner is $inserted$ .
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or straightness of exp?). It is a part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. It implies a reduction of measures which are smaller than the threshold (!). A Corner is $inserted$ .
 \begin{align}
 Max_{Straight}=\\
 C_{3} \ni \frac{b-a}{2}
@@ -249,7 +251,7 @@ The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 (both vice-versa)
 
 \subsection*{Absolute Differences}
-Once these entities have been found, we can start to use absolute differences.
+Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\iota$ to $T_{1},C_{4}$ and the domain of $\xi$ to $C_{3},C_{4}$ (and $C_{4}$?) unless noted otherwise.
 \begin{align}
 jitter_{T}(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota_{T}(t) \rvert \mathrm{d}t\\
 area_{vert,T}(a,b)=\int \limits _{a}^{b} \lvert \xi_{T}(t)-\iota_{T}(t) \rvert \mathrm{d}t
@@ -390,7 +392,7 @@ When the direction of analysis is reversed, the curve areas lie on the other sid
 \end{align}
 Note: $\mu$ is a Lebesgue.
 \begin{align}
-visibility(a,b)=\prod_{\lvert \mu \rvert \approx (b-a)}^{}\frac{(\pi r^2) /2}{2r}-\mathcal{T}\\
+visibility(a,b)=\prod_{\lvert \mu \rvert \approx (b-a)}^{}\frac{(\pi r^2) /2}{2r}-\mathcal{Q}\\
 visibility(a,b)=\frac{s_{alt}}{\lvert s_{alt} \rvert} \sum_{}^{} curvature_{Abs}(a,b)\\
 visibility(a,b)= \int \limits _{}^{}\xi_{C}(t)\mathrm{d}t(?)
 \end{align}
