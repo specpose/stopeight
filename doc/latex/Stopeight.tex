@@ -123,6 +123,7 @@ When the direction of analysis is reversed, the curve areas lie on the other sid
 \begin{align}
 \mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
 \end{align}
+(Overlaping?)\\
 Note: $\mu$ is a Lebesgue.
 
 \subsection{Affine Transformation}
@@ -222,12 +223,12 @@ Non-recursive sections are not proper section types, but merely an expression of
 The $Max$ thresholds are reductions of different measure spaces. The $derivatives$ are affected by the thresholds.
 
 \subsection{Cliff}
-A Cliff is a section $[a,b']$ defined by a maximal curvature depending on the radius $r=diameter_{horiz,T}$. A single Cliff can have no more than the maximum curvature of a circle. It is a part of a Spiral.
+A Cliff is a section $[a,b']$. A single Cliff can have no more than the maximum $curvature(a,b)$. The maximum curvature is defined by the area of a half unit circle divided by the diameter $2r=1$. It is a part of a Spiral.
 \begin{align}
 Max_{Curve}=\frac{(\pi r^2) /2}{2r}\\
 C_{4} \ni b'
 \end{align}
-Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment and implies a reduction of the measure-spaces depending on scale.
+Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment and implies a creation of measure-spaces depending on scale.
 \iffalse
 \subsection*{Half Cliff}
 Even though Half Cliffs are not being used, it is worth mentioning, that they produce Corners just to make the notation complete.
@@ -238,13 +239,13 @@ C_{3} \ni b'
 \fi
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller than the straightness of the unit circle (or straightness of exp?). It is a part of a Spike, or transfering the Straight half of a Dune to an adjacent ZigZag, or being used as part of Dune detection. A Corner is $inserted$ .
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of the arc length of a hyperbola $1/x$ to the arc length of its direct connecting line $-\frac{x}{\mathrm{e}}+\frac{1+\mathrm{e}}{\mathrm{e}}$ from $1$ to $\mathrm{e}$. It is a part of a Spike, or transfering the Straight half of an Edge to an adjacent ZigZag, or being used as part of Dune detection. A Corner is $inserted$ .
 \begin{align}
-Max_{Straight}=\\
+Max_{Straight}=\int \limits _{1}^{\mathrm{e}}\frac{\lvert\frac{\mathrm{d}}{\mathrm{d}t}\frac{1}{x}\rvert}{\lvert\frac{\mathrm{d}}{\mathrm{d}t}(-\frac{x}{\mathrm{e}}+\frac{1+\mathrm{e}}{\mathrm{e}})\rvert}\mathrm{d}t\\
 C_{3} \ni \frac{b-a}{2}
 \end{align}
 A special case is when $card(U_{m})=2$, a Corner is inserted as well.\\\\
-Measure Space: Straightness implies a reduction of the measure spaces depending on interval. $\mu$ which are smaller than the threshold.
+Measure Space: Straightness is no more than what is required for a hyperbola not to be considered straight under any linear transformation of any segment and implies a creation of measure spaces depending on intervals of changing signs.
 
 \subsection{Swing}
 A Swing is the section $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
@@ -427,7 +428,7 @@ The goal of separation is to find impulses or notes as they may be referred to i
 The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding orthogonal subspaces in frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of frame-wise integration and periodic integration.\\\\
 The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters.\\\\
 Also Vector Graph manipulations such as scaling, resampling, finding/counting intersections, oriented section occurence requirements could yield interesting results.\\\\
-A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $x^2 + y^2 =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is of Grade 4. The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
+A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is quartic (?). The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
 
 \subsection{Spectral Separation}
 For Swell/Crest.\\
