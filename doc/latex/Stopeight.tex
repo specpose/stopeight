@@ -286,13 +286,6 @@ diameter_{vert}=\text{Maximum}\\
 diameter_{max}=\text{Star}
 \end{align}
 
-\subsection{Spike}
-A Spike is a section $[a,b',c], where$
-\begin{align}
-straightness(a,b)\approx 1\\ curvature(a,b)>0
-\end{align}
-It is part of ZigZag detection.
-
 \subsection{Dune}
 A backside Dune $[a,b',c]$ is a section, where a non-Straight segment $[a,b']$ is followed by a Straight segment $[b',c]; $. It is part of the Edge detection.
 \begin{align}
@@ -332,6 +325,23 @@ A backside Edge $[a,b']$ is an iteration of:
 \end{enumerate}
 The breaking condition is that no more entities are being found after the second step.
 
+\subsection{Spike}
+A frontside Spike is a section $[a,b',c]$, where
+\begin{enumerate}
+\item The Forward direction of analysis $dir=1$ reveals a backside Edge $[a,b']$, and
+\item The Backward direction of analysis $dir=-1$ reveals a backside Edge $[c,b'']$ 
+\end{enumerate}
+and the margin $b'<b'';b''-b'$ does not exceed.\\
+(triangle of intersection with tip angle $<90$ or iteration or both?)\\
+(Also?)
+\begin{align}
+straightness(a,b)\approx 1\\ curvature(a,b)>0
+\end{align}
+It is part of ZigZag detection.
+
+\subsection{Moustache}
+(An equivalent for Crests does not exist, because it would result in a change of sign?)
+
 \section{Compact Covers}
 \subsubsection*{Open}
 \begin{align}
@@ -357,12 +367,7 @@ The Cliffs are centered outside in so that all cliffs in a spiral have the same 
 $C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole also has Corners, which are indexed supremum norm of the curvature(?).
 \subsection{ZigZag}
 ZigZag $\supset$ Spike\\
-A ZigZag [a,b'] is an iteration of:
-\begin{enumerate}
-\item A Spike $[a,b,c]$
-\item A Spike $[a,b',c']$ and a Spike $[c',b'',c]$
-\end{enumerate}
-The breaking condition is when no more entities are being found.\\\\
+(Setting Max on straightness or angle?)\\
 Whether angles greater than 90 degree are allowed to be in the dataset is subject of definition.\\\\
 Below 90 degree, it is not losing its orientation. Therefore it is a Corner indexed by the supremum norm of the curvature(?).\\
 A single Spike section is in this case.
@@ -401,23 +406,26 @@ Impulses are consecutive pulses of variable wavelengths which originate from the
 
 \subsection{Imaginary Visibility}
 Visibility is an increase of the polynomial (degree or coefficients?) of a curve segment.
-When visibility is increased in a Spiral, it creates more subsegments. Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
+(No: When visibility is increased in a Spiral, it creates more subsegments/scale spaces). Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
 \begin{align}
 visibility(a,b)=dsi * signs(\mu,area(a,b)-\mathcal{Q}(a,b))(?)\\
 visibility(a,b)=times(\mu,curvature(a,b)-\mathcal{Q}(a,b))(?)\\
+dom(\iota,\xi)=C_{1}\cup T_{2}
 \end{align}
+(Lebesgue on curvature? $Max_{Curve}$ based or sign based?)
 \subsection*{Cases}
 When curvature is decreased in a Spiral, it becomes a ZigZag.
 \subsection*{Scale Space}
 $arclength$ constant, $area$ grows, but $diameter$ constant.
 
 \subsection{Real Isolation}
-A lack of isolation is directly linked to the creation of more measure spaces.
+(No: A lack of isolation is directly linked to the creation of more interval spaces.)
 If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
 Opposite wave direction $\Leftrightarrow$ Negative Isolation.
 \begin{align}
 isolation(a,b)=dir * times(\mu,straightness)(?)
 \end{align}
+(Frame bundle orthonormal?)
 \subsection*{Interval Space}
 $jitter$ grows, but $diameter$ constant.
 
@@ -442,7 +450,7 @@ z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility(a,b))} +\mathrm{i} \sin{(isolation(
 \end{align}
 \subsubsection{Resampling}
 
-\chapter{Modeling}
+\chapter{Simulation}
 (An attempt to extend the algebra to generic problems in physics.)\\\\
 The complex conjugate is a manifestation of periodicity of two exact frames which are defined by something like a complex number:\\\\
 The imaginary part is the other side of the wave vs\\
