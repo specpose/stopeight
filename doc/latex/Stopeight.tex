@@ -121,9 +121,8 @@ diameter_{horiz,T}(a,b)= dir \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
 When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction inverts the sign of the curve segments. Their sign flips.
 \begin{align}
-\mu_{+}(\{[a,b] \subseteq A,B \vert \xi(t) -\iota_{T}(t)\geq0\})
+\mu_{+}(\xi(t) -\iota_{T}(t))=\{[a,b] \subseteq A,B; \gamma(t)=\xi(t) -\iota_{T}(t) \vert \gamma(t)>0\}
 \end{align}
-(Overlaping?)\\
 Note: $\mu$ is a Lebesgue.
 
 \subsection{Affine Transformation}
@@ -340,7 +339,8 @@ straightness(a,b)\approx 1\\ curvature(a,b)>0
 It is part of ZigZag detection.
 
 \subsection{Moustache}
-(An equivalent for Crests does not exist, because it would result in a change of sign?)
+Would only indicate a break or change of direction in the Compact Cover at the most. A Spike on the other hand leads to the creation of a new type of Compact Cover.\\\\
+(Is correctly handled by backside Crest?)
 
 \section{Compact Covers}
 \subsubsection*{Open}
@@ -384,10 +384,23 @@ Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 
 \chapter{Comparator}
 (Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
-Please take note of the orientation here. (product? alternating?)
-\begin{equation}
-ori = \frac{dsi(a,b)}{\lvert dsi(a,b) \rvert}(?)
-\end{equation}
+\subsection{Impulses}
+Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.\\\\
+The difference of the signs over an interval.
+\begin{align}
+dsi(a,b) = card(\mu_{+}\subseteq [a,b])-card(\mu_{-} \subseteq [a,b])\\
+ori(a,b) = \frac{dsi(a,b)}{\lvert dsi(a,b) \rvert}
+\end{align}
+A sequence of sections between $[a,b]$ is alternating $\mu_{-}\cup \mu_{zero}\cup\mu_{+}=\mu$.
+\begin{enumerate}
+\item $dsi(a,b)= 0; \exists(\mu_{n}\subseteq \mu_{+}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \exists(\mu_{n+2}\subseteq \mu_{-}) \Leftrightarrow alt(a,b)=n$
+\item $dsi(a,b)= 0; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \exists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-n$
+\item $dsi(a,b)= 1; \exists(\mu_{n}\subseteq \mu_{+}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{-}) \Leftrightarrow alt(a,b)=\frac{1}{n}$
+\item $dsi(a,b)= -1; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-\frac{1}{n}$
+\item $dsi(a,b)> \pm 1\Leftrightarrow alt(a,b)=0$;
+\end{enumerate}
+When the difference of the signs $dsi(a,b)$ is larger than one, orientation $ori$ serves as a weak expression of the imbalance.\\\\
+($alt(a,b)$ products across interval spaces?)\\\\
 The sum of a function over a measure space.\\
 \begin{equation}
 signs(\mu_{+},function)= \sum \limits _{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function(a,b)
@@ -396,18 +409,12 @@ The product of a function over a measure space.
 \begin{equation}
 times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function(a,b)
 \end{equation}
-The difference of the signs over an interval.
-\begin{align}
-dsi(a,b) = card(\mu_{+}\subseteq [a,b])-card(\mu_{-} \subseteq [a,b])
-\end{align}
-
-\subsection{Impulses}
-Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
 
 \subsection{Imaginary Visibility}
 Visibility is an increase of the polynomial (degree or coefficients?) of a curve segment.
 (No: When visibility is increased in a Spiral, it creates more subsegments/scale spaces). Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
 \begin{align}
+visibility(a,b)= alt(a,b) * signs(\mu,curvature(a,b)-Q(a,b))\\
 visibility(a,b)=dsi * signs(\mu,area(a,b)-\mathcal{Q}(a,b))(?)\\
 visibility(a,b)=times(\mu,curvature(a,b)-\mathcal{Q}(a,b))(?)\\
 dom(\iota,\xi)=C_{1}\cup T_{2}
@@ -423,6 +430,7 @@ $arclength$ constant, $area$ grows, but $diameter$ constant.
 If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
 Opposite wave direction $\Leftrightarrow$ Negative Isolation.
 \begin{align}
+isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b)\\
 isolation(a,b)=dir * times(\mu,straightness)(?)
 \end{align}
 (Frame bundle orthonormal?)
