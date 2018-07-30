@@ -263,16 +263,16 @@ A special case is where the whole chart is flat and Straight.
 \end{equation}
 
 \subsection*{Absolute Differences}
-Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\iota$ to $T_{1},C_{4}$ and the domain of $\xi$ to $C_{3},C_{4}$ (and $C_{4}$?) unless noted otherwise.
+Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\xi$ and $\iota$ to $T_{1},C_{4}$ unless noted otherwise.
 \begin{align}
 jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota(t) \rvert \mathrm{d}t\\
 area_{vert}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota(t) \rvert \mathrm{d}t
 \end{align}
 \begin{align}
-straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{horiz,T}(a,b)}
+straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{horiz}(a,b)}
 \end{align}
 \begin{align}
-curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz,T}(a,b)}
+curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz}(a,b)}
 \end{align}
 (a sort of area of jitter?)
 \begin{align}
@@ -333,21 +333,14 @@ straightness(a,b)\approx 1\\ curvature(a,b)>0
 It is part of ZigZag detection.
 
 \subsection{Moustache}
-Would only indicate a break or change of direction in the Compact Cover at the most. A Spike on the other hand leads to the creation of a new type of Compact Cover.\\\\
-(Is correctly handled by backside Crest?)
+Indicates a break or change of direction in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
+\begin{equation}
+b' \in T_{3}
+\end{equation}
+Moustache is correctly handled by the backside Crest, but it would only be a $T_{2}$ if not caught by Compact Covers.
 
-\subsection*{Parametrised Corner Differences}
-(Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$ or $P_{n},P_{n+1} \in (C \cup T)$?)\\
-(different diameters?)
-\begin{align}
-diameter_{vert}=\text{Maximum}\\
-diameter_{max}=\text{Star}
-\end{align}
-(horizontals?)
-\begin{align}
-area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
-\end{align}
-
+\subsection*{Adjusted Differences}
+By now, we can improve the differences by setting $dom(\xi,\iota)=T_{2}\cup C_{4}$.
 
 \section{Compact Covers}
 \subsubsection*{Open}
@@ -393,6 +386,19 @@ Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 If the sections are being extracted from left to right $[a,b];a<b$, the Compact Cover is positive. If the direction of analysis is reversed $[b,a]$, it is negative.\\\\
 (Moustache?)\\
 ($T_{3}$?)
+
+\subsection*{Parametrised Corner Differences}
+If we have $T_{3}$ and all the Compact Covers worked out, $diameter$ and $area$ could be redefined $dom(\xi,\iota)=T_{3}\cup C_{n}$. Where $n$ supremums are considered over the whole section of the Compact Cover.\\
+(How to find n?)
+\begin{align}
+area_{sup}(a,b)=\int \limits _{a}^{b} \lvert \xi_{C_{n}}(t)-\iota_{C_{n+1}}(t) \rvert \mathrm{d}t\\
+diameter_{sup}(a,b)=\sup \limits _{c,d \in [a,b]} \lvert \xi_{C_{n}}(d) - \xi_{C_{n}}(c) \rvert
+\end{align}
+(Midpoint?)\\
+(horizontals?)
+\begin{align}
+area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
+\end{align}
 
 \chapter{Comparator}
 (Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
@@ -449,7 +455,7 @@ The goal of separation is to find impulses or notes as they may be referred to i
 
 \subsection{Plancherel Theorem}
 The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding orthogonal subspaces in frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of frame-wise integration and periodic integration.\\\\
-The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters. It also defines negative time to be the analytic direction $dir=-1$.\\\\
+The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters. It also defines the negative time in the Fourier Transform of the signal $s(x);x<0$  to be the analytic direction $dir=-1$.\\\\
 Also Vector Graph manipulations such as scaling, resampling, finding/counting intersections, oriented section occurence requirements could yield interesting results.\\\\
 A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is quartic (?). The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
 
