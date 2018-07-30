@@ -254,9 +254,13 @@ T_{1} \ni b'
 \end{align}
 The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 \begin{equation}
-[a,b] \subseteq U_{m} \Rightarrow \exists  \xi(t) - \iota_{T}(t) >0 \land \nexists \xi(t) - \iota_{T}(t) \leq0
+[a,b] \subseteq U_{m} \Rightarrow \exists  \xi(t) - \iota_{T}(t) >0 \land \nexists \xi(t) - \iota_{T}(t) \leq 0
 \end{equation}
-(both vice-versa)
+(both vice-versa)\\\\
+A special case is where the whole chart is flat and Straight.
+\begin{equation}
+[a,b] \subseteq U_{m} \Rightarrow \nexists \xi(t) - \iota_{T}(t) <0 \land \nexists \xi(t) - \iota_{T}(t) >0
+\end{equation}
 
 \subsection*{Absolute Differences}
 Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\iota$ to $T_{1},C_{4}$ and the domain of $\xi$ to $C_{3},C_{4}$ (and $C_{4}$?) unless noted otherwise.
@@ -270,19 +274,9 @@ straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{horiz,T}(a,b)}
 \begin{align}
 curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz,T}(a,b)}
 \end{align}
-(Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$ or $P_{n},P_{n+1} \in (C \cup T)$?)\\
-(horizontals?)
+(a sort of area of jitter?)
 \begin{align}
-area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
-\end{align}
-(shaking?)
-\begin{align}
-diameter_{horiz,X}(a,b)=\int \limits _{0}^{?} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t
-\end{align}
-(different diameters?)
-\begin{align}
-diameter_{vert}=\text{Maximum}\\
-diameter_{max}=\text{Star}
+area_{jitter}(a,b)=\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t
 \end{align}
 
 \subsection{Dune}
@@ -342,6 +336,19 @@ It is part of ZigZag detection.
 Would only indicate a break or change of direction in the Compact Cover at the most. A Spike on the other hand leads to the creation of a new type of Compact Cover.\\\\
 (Is correctly handled by backside Crest?)
 
+\subsection*{Parametrised Corner Differences}
+(Or if Corners are parametrised!! $P_{n},P_{n+1} \in C$ or $P_{n},P_{n+1} \in (C \cup T)$?)\\
+(different diameters?)
+\begin{align}
+diameter_{vert}=\text{Maximum}\\
+diameter_{max}=\text{Star}
+\end{align}
+(horizontals?)
+\begin{align}
+area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
+\end{align}
+
+
 \section{Compact Covers}
 \subsubsection*{Open}
 \begin{align}
@@ -364,7 +371,8 @@ Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \su
 b' \in C_{4}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature.\\\\
-$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole also has Corners, which are indexed supremum norm of the curvature(?).
+$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole also has Corners, which are indexed supremum norm of the curvature(?).\\
+(Parametrised Corners?)
 \subsection{ZigZag}
 ZigZag $\supset$ Spike\\
 (Setting Max on straightness or angle?)\\
@@ -381,6 +389,10 @@ b' \in T_{3} \Rightarrow \text{third derivative }= 0\text{?}
 \end{align}
 \subsection{Swell}
 Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
+\subsection*{Direction}
+If the sections are being extracted from left to right $[a,b];a<b$, the Compact Cover is positive. If the direction of analysis is reversed $[b,a]$, it is negative.\\\\
+(Moustache?)\\
+($T_{3}$?)
 
 \chapter{Comparator}
 (Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
@@ -415,9 +427,7 @@ times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{
 Visibility is an increase of the polynomial (degree or coefficients?) of a curve segment.
 (No: When visibility is increased in a Spiral, it creates more subsegments/scale spaces). Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
 \begin{align}
-visibility(a,b)= alt(a,b) * signs(\mu,curvature(a,b)-Q(a,b))\\
-visibility(a,b)=dsi * signs(\mu,area(a,b)-\mathcal{Q}(a,b))(?)\\
-visibility(a,b)=times(\mu,curvature(a,b)-\mathcal{Q}(a,b))(?)
+visibility(a,b)= alt(a,b) * signs(\mu,curvature(a,b)-Q(a,b))
 \end{align}
 (Lebesgue on curvature? $Max_{Curve}$ based or sign based?)
 \subsection*{Cases}
@@ -427,11 +437,8 @@ $arclength$ constant, $area$ grows, but $diameter$ constant.
 
 \subsection{Real Isolation}
 (No: A lack of isolation is directly linked to the creation of more interval spaces.)
-If the sections are being extracted from left to right $[a,b];a<b$, isolation is positive. If the direction of analysis is reversed $[b,a]$, isolation is negative.\\
-Opposite wave direction $\Leftrightarrow$ Negative Isolation.
 \begin{align}
-isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b)\\
-isolation(a,b)=dir * times(\mu,straightness)(?)
+isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b))
 \end{align}
 (Frame bundle orthonormal?)
 \subsection*{Interval Space}
@@ -442,7 +449,7 @@ The goal of separation is to find impulses or notes as they may be referred to i
 
 \subsection{Plancherel Theorem}
 The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding orthogonal subspaces in frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of frame-wise integration and periodic integration.\\\\
-The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters.\\\\
+The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters. It also defines negative time to be the analytic direction $dir=-1$.\\\\
 Also Vector Graph manipulations such as scaling, resampling, finding/counting intersections, oriented section occurence requirements could yield interesting results.\\\\
 A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is quartic (?). The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
 
