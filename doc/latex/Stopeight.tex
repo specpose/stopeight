@@ -352,6 +352,7 @@ Moustache is correctly handled by the backside Crest, but it would only be a $T_
 By now, we can improve the differences by setting $dom(\xi,\iota)=T_{2}\cup C_{4}$.
 
 \section{Compact Covers}
+We introduce another set of charts $\{V_{n}\}$ which span one or more of the charts $\{U_{n}\}$.
 \subsubsection*{Open}
 \begin{align}
 A \text{ is open} \Leftrightarrow \inf_{A},\sup_{A}\in T_{0},C_{0}
@@ -361,7 +362,7 @@ In computer science there is the concept of the stream operator. This means that
 \begin{align}
 A \text{ is closed} \Leftrightarrow \min_{A},\max_{A}\in T_{0},C_{0}
 \end{align}
-For the time being, the approach in this paper is a compromise. Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Edges exhibit a transcendence of measure spaces, which significantly offset the consecutive oriented functions. Even finding Swings and Dunes shifts the adjacent entities. The reversal and priority of segments and sections imposes a certain rigor in programming techniques. A compatible software architecture is a requirement.\\
+For the time being, the approach in this paper is a compromise. Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Edges exhibit a transcendence of measure spaces, which significantly offset the consecutive oriented functions. Even finding Swings and Dunes shifts the adjacent entities. The reversal and priority of segments and sections imposes a certain rigor in programming technique. A compatible software architecture is a requirement.\\
 Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy ($Comparator$).
 It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented (Causal Structure).
 
@@ -373,8 +374,7 @@ Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \su
 b' \in C_{4}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature.\\\\
-$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole also has Corners, which are indexed supremum norm of the curvature(?).\\
-(Parametrised Corners?)
+$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole has an infinite amount of Corners, which are indexed differently (See Parametrised Corner Differences).
 \subsection{ZigZag}
 ZigZag $\supset$ Spike\\
 (Setting Max on straightness or angle?)\\
@@ -397,17 +397,21 @@ If the sections are being extracted from left to right $[a,b];a<b$, the Compact 
 ($T_{3}$?)
 
 \subsection*{Parametrised Corner Differences}
-If we have $T_{3}$ and all the Compact Covers worked out, $diameter$ and $area$ could be redefined $dom(\xi,\iota)=T_{3}\cup C_{n}$. Where $n$ supremums are considered over the whole section of the Compact Cover.\\
-(How to find n?)
+If we have $T_{3}$ and all the Compact Covers worked out, Corners can be redefined (Swell?). $n$ supremums are considered over the whole section of the Compact Cover $V_{n}$.
+\begin{equation}
+K_{p+1} = \sup \limits _{V_{n} \setminus K_{p}} \lvert curvature(a,b) \rvert
+\end{equation}
+(How to set n?)\\
+As a consequence $diameter$ and $area$ could be parametrised on the new Corners $dom(\xi,\iota)=T_{3}\cup K_{p}$.\\
 \begin{align}
-area_{sup}(a,b)=\int \limits _{a}^{b} \lvert \xi_{C_{n}}(t)-\iota_{C_{n+1}}(t) \rvert \mathrm{d}t\\
-diameter_{sup}(a,b)=\sup \limits _{c,d \in [a,b]} \lvert \xi_{C_{n}}(d) - \xi_{C_{n}}(c) \rvert
+area_{sup}(a,b)=\int \limits _{a}^{b} \lvert \xi_{K_{p}}(t)-\iota_{K_{p+1}}(t) \rvert \mathrm{d}t\\
+diameter_{sup}(a,b)=\sup \limits _{c,d \in [a,b]} \lvert \xi_{K_{p}}(d) - \xi_{K_{p}}(c) \rvert
 \end{align}
-(Midpoint?)\\
 (horizontals?)
 \begin{align}
 area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
 \end{align}
+(Circle Centers / Midpoints?)\\
 
 \chapter{Comparator}
 (Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
@@ -428,7 +432,7 @@ A sequence of sections between $[a,b]$ is alternating $\mu_{-}\cup \mu_{zero}\cu
 \end{enumerate}
 When the difference of the signs $dsi(a,b)$ is larger than one, orientation $ori$ serves as a weak expression of the imbalance.\\\\
 ($alt(a,b)$ products across interval spaces?)\\\\
-Typically, we do $signs$ over scale-spaces by setting the domain to $dom(\iota,\xi)=C_{n}$.
+Typically, we do $signs$ over scale-spaces by setting the domain to $dom(\iota,\xi)=K_{p}$.
 Which is reflected in the $\mu(\gamma_{dom})$ of sum of a function over a scale space.\\
 \begin{equation}
 signs(\mu_{+},function )= \sum \limits _{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function (a,b)
