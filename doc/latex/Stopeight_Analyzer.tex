@@ -14,14 +14,14 @@
 \fi
 
 \begin{document}
-\title{Stopeight}
+\title{Stopeight Analyzer}
 \author{Fassio Blatter}
 \maketitle
 
 \chapter{Introduction}
 The main algorithm in this text is the Analyzer. It has been developed during the years 2009 to 2016 by Specific Purpose Software GmbH. It is now open sourced, but mostly exists in the form of code fragments.\\
 This file is in the Stopeight repository on Github. Please edit here:\\
-\href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight.tex}\\
+\href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Analyzer.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Analyzer.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\
 A brief overview can be found here:\\
 \href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
@@ -391,153 +391,6 @@ Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
 If the sections are being extracted from left to right $[a,b];a<b$, the Compact Cover is positive. If the direction of analysis is reversed $[b,a]$, it is negative.\\\\
 (Moustache?)\\
 ($T_{3}$?)
-
-\chapter{Comparator}
-(Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
-
-\subsection{Solid Angle}
-If we have $T_{3}$ and all the Compact Covers worked out, Corners can be redefined (Swell?) and new differences parametrised. $p$ supremums are considered over the whole section of the Compact Cover $V_{n}$.
-\begin{equation}
-K_{p+1} = \sup \limits _{V_{n} \setminus K_{p}} \lvert curvature(a,b) \rvert
-\end{equation}
-(How to set n?)\\
-(solid angle)\\
-As a consequence $diameter$ and $area$ could be parametrised on the new Corners $dom(\xi,\iota)=T_{3}\cup K_{p}$.\\
-\begin{align}
-area_{sup}(a,b)=\int \limits _{a}^{b} \lvert \xi_{K_{p}}(t)-\iota_{K_{p+1}}(t) \rvert \mathrm{d}t\\
-diameter_{sup}(a,b)=\sup \limits _{c,d \in [a,b]} \lvert \xi_{K_{p}}(d) - \xi_{K_{p}}(c) \rvert
-\end{align}
-(horizontals?)
-\begin{align}
-area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
-\end{align}
-(Circle Centers / Midpoints?)\\
-
-\subsection{Area of Jitter}
-Divided by wavelength
-\begin{align}
-area_{jitter}(a,b)=\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t
-\end{align}
-
-\subsection{Pulse}
-A symmetric pulse has a wavelength and a radius.
-
-\subsection{Impulses}
-Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.\\\\
-The difference of the signs over an interval.
-\begin{align}
-dsi(a,b) = card(\mu_{+}\subseteq [a,b])-card(\mu_{-} \subseteq [a,b])\\
-ori(a,b) = \frac{dsi(a,b)}{\lvert dsi(a,b) \rvert}
-\end{align}
-A sequence of sections between $[a,b]$ is alternating $\mu_{-}\cup \mu_{zero}\cup\mu_{+}=\mu$.
-\begin{enumerate}
-\item $dsi(a,b)= 0; \exists(\mu_{n}\subseteq \mu_{+}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \exists(\mu_{n+2}\subseteq \mu_{-}) \Leftrightarrow alt(a,b)=n$
-\item $dsi(a,b)= 0; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \exists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-n$
-\item $dsi(a,b)= 1; \exists(\mu_{n}\subseteq \mu_{+}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{-}) \Leftrightarrow alt(a,b)=\frac{1}{n}$
-\item $dsi(a,b)= -1; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-\frac{1}{n}$
-\item $dsi(a,b)> \pm 1\Leftrightarrow alt(a,b)=0$;
-\end{enumerate}
-When the difference of the signs $dsi(a,b)$ is larger than one, orientation $ori$ serves as a weak expression of the imbalance.\\\\
-($alt(a,b)$ products across interval spaces?)\\\\
-Typically, we do $signs$ over scale-spaces by setting the domain to $dom(\iota,\xi)=K_{p}$.
-Which is reflected in the $\mu(\gamma_{dom})$ of sum of a function over a scale space.\\
-\begin{equation}
-signs(\mu_{+},function )= \sum \limits _{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function (a,b)
-\end{equation}
-$times$ is the product of a function over a interval space $dom(\iota,\xi)=T_{n}$.
-\begin{equation}
-times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function(a,b)
-\end{equation}
-
-\subsection{Imaginary Visibility}
-Visibility is an increase of the polynomial (degree or coefficients?) of a curve segment.
-(No: When visibility is increased in a Spiral, it creates more subsegments/scale spaces). Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
-\begin{align}
-visibility(a,b)= alt(a,b) * signs(\mu,curvature(a,b)-Q(a,b))
-\end{align}
-(Lebesgue on curvature? $Max_{Curve}$ based or sign based?)
-\subsection*{Cases}
-When curvature is decreased in a Spiral, it becomes a ZigZag.
-\subsection*{Scale Space}
-$arclength$ constant, $area$ grows, but $diameter$ constant.
-
-\subsection{Real Isolation}
-(No: A lack of isolation is directly linked to the creation of more interval spaces.)
-\begin{align}
-isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b))
-\end{align}
-(Frame bundle orthonormal?)
-\subsection*{Interval Space}
-$jitter$ grows, but $diameter$ constant.
-
-\chapter{Separation}
-The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.
-
-\subsection{Plancherel Theorem}
-The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding orthogonal subspaces in frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of frame-wise integration and periodic integration.\\\\
-The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters. It also defines the negative time in the Fourier Transform of the signal $s(x);x<0$  to be the analytic direction $dir=-1$.\\\\
-Also Vector Graph manipulations such as scaling, resampling, finding/counting intersections, oriented section occurence requirements could yield interesting results.\\\\
-A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is quartic (?). The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
-
-\subsection{Spectral Separation}
-For Swell/Crest.\\
-There are two main criteria among which the waves can vary. The absolute indication for separation is visibility and isolation.\\
-They occur periodically in a Swell.\\
-In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
-The directed waves of straightness and curvature going forward/backward synchronously are periodic.
-\begin{align}
-z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility(a,b))} +\mathrm{i} \sin{(isolation(a,b))})(?)\\
-\int \limits _{}^{} (\xi_{T}(t)-\iota_{T})*(\xi_{C}-\iota_{T})\mathrm{d}t=1(?)
-\end{align}
-\subsubsection{Resampling}
-
-\chapter{Simulation}
-(An attempt to extend the algebra to generic problems in physics.)\\\\
-The complex conjugate is a manifestation of periodicity of two exact frames which are defined by something like a complex number:\\\\
-The imaginary part is the other side of the wave vs\\
-The imaginary part is the phase shift (fft)\\\\
-(multiplication? addition?)
-\begin{align}
-A,B \times A,B \rightarrow \mathbb{C}\\
-(a,b) \mapsto z\\
-\end{align}
-A complex norm $\norm{\cdot}$ is defined on the transversality (2).
-\begin{align}
-\norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
-\norm{z} = \sqrt{Re(z)^2+Im(z)^2}
-\end{align}
-Differential Equations?
-
-\section{Wave Trains}
-The mathematically most intriguing oriented submanifolds are Crests and Spikes. We introduce a mechanism for the annihilation and creation of pulses. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled. A Crest would appear in the outgoing phase when a signal of enthropy brakes in the corresponding medium of the carrier. A Spike is a beat that appears in joint states of crystal grids when the incoming phase accumulates in a $different$ medium.
-Traveling wave trains are moving over stationary reef chains. Upon creation, enthropic wave trains are impulses, at the least even a part of a half-pulse (Example Spiral). Enthalpic reef chains change state when they are converted to a plasma state for an infinitesimal short period of time.\\\\
-A wave train appears in a wave packet that splits up. A wave packet that splits, decreases its isolation and transfers a part of its visibility to the sub-wave packets. Depending on the wavelength of a Reef, the original wave packet may never appear again.\\\\
-On the other hand, the sub-wave packets of an open ocean wave pick up wind. The enclosing wave packet can form a new wave train, together with neighbouring wave packets and so slowly, the little left-over, chaotic visibility of the sub-wave packets gets transferred not only to the enclosing wave packet, but to the whole wave train. The swell gets groomed and the short wavelengths disappear.\\\\
-Because in any accurate measurement of matter, only a limited number of reef chains can be considered; For the multitude of periodic energy passing over a reef chain, all products of the chain are compared, up to the length of the frame of the train.
-It could make sense to map such phenomena in a complex plane. Could we explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions.
-
-\subsection{Wave Generation}
-For Dune/Crest or Swing (stationary wave).\\
-Supraliquid\\
-Sail Effect / Surface Tension
-
-\subsection{Phase Transitions}
-For Dune/Spiral.
-\begin{align}
-z =  \sup_{U}\lvert curvature([a,b]) \rvert*(\cos{(isolation([a,b]))} +\mathrm{i} \sin{(visibility([a,b]))})
-\end{align}
-
-\subsection{Lightning}
-For Spike/ZigZag.\\
-Superconductor\\
-If we're setting $\sqrt{1-y^2}$ to be the linear part of complex plane, $\phi$ in $z=\sqrt{1-y^2}e^{i\phi}$ is the rotational part.
-\begin{align}
-z =  straightness([a,b]) + \mathrm{i} curvature([a,b])
-\end{align}
-
-\subsection{Stateless}
-Supercritical\\
-gaseous/liquid carbondioxide
 
 \printbibliography
 
