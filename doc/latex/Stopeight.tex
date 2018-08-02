@@ -289,10 +289,6 @@ straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{horiz}(a,b)}
 \begin{align}
 curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz}(a,b)}
 \end{align}
-(a sort of area of jitter?)
-\begin{align}
-area_{jitter}(a,b)=\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t
-\end{align}
 
 \section{Recursive Sections}
 Derivatives are opening up interval-measure spaces. The maximum order of $derivatives$ is set by the scale-space. The scale-space depends on the maximal order of the polynomials considered. In the method discussed in this paper, they are quadratic (or quartic?).\\\\
@@ -374,7 +370,7 @@ Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \su
 b' \in C_{4}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature.\\\\
-$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole has an infinite amount of Corners, which are indexed differently (See Parametrised Corner Differences).
+$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole has an infinite amount of Corners, which are indexed differently (See Solid Angle).
 \subsection{ZigZag}
 ZigZag $\supset$ Spike\\
 (Setting Max on straightness or angle?)\\
@@ -396,12 +392,16 @@ If the sections are being extracted from left to right $[a,b];a<b$, the Compact 
 (Moustache?)\\
 ($T_{3}$?)
 
-\subsection*{Parametrised Corner Differences}
-If we have $T_{3}$ and all the Compact Covers worked out, Corners can be redefined (Swell?). $n$ supremums are considered over the whole section of the Compact Cover $V_{n}$.
+\chapter{Comparator}
+(Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
+
+\subsection{Solid Angle}
+If we have $T_{3}$ and all the Compact Covers worked out, Corners can be redefined (Swell?) and new differences parametrised. $p$ supremums are considered over the whole section of the Compact Cover $V_{n}$.
 \begin{equation}
 K_{p+1} = \sup \limits _{V_{n} \setminus K_{p}} \lvert curvature(a,b) \rvert
 \end{equation}
 (How to set n?)\\
+(solid angle)\\
 As a consequence $diameter$ and $area$ could be parametrised on the new Corners $dom(\xi,\iota)=T_{3}\cup K_{p}$.\\
 \begin{align}
 area_{sup}(a,b)=\int \limits _{a}^{b} \lvert \xi_{K_{p}}(t)-\iota_{K_{p+1}}(t) \rvert \mathrm{d}t\\
@@ -413,8 +413,15 @@ area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{
 \end{align}
 (Circle Centers / Midpoints?)\\
 
-\chapter{Comparator}
-(Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
+\subsection{Area of Jitter}
+Divided by wavelength
+\begin{align}
+area_{jitter}(a,b)=\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t
+\end{align}
+
+\subsection{Pulse}
+A symmetric pulse has a wavelength and a radius.
+
 \subsection{Impulses}
 Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.\\\\
 The difference of the signs over an interval.
