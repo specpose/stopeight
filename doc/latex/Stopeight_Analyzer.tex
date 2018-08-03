@@ -326,7 +326,7 @@ A frontside Spike is a section $[a,b',c]$, where
 \item The Forward direction of analysis $dir=1$ reveals a backside Edge $[a,b']$, and
 \item The Backward direction of analysis $dir=-1$ reveals a backside Edge $[c,b'']$ 
 \end{enumerate}
-and the solid angle defined by the margin $b'<b'';b''-b'$ is larger than.\\
+and the $solidangle$ defined by the margin $b'<b'';b''-b'$ is larger than.\\
 \begin{align}
 Max_{solidangle}=\\
 b' \in T_{2}
@@ -340,12 +340,12 @@ curvature(a,b)>0
 It is part of ZigZag detection.
 
 \subsection{Relative Areas}
-The solid angle is defined by the Spike Margin $[a,b',b'',c]$.
+The $solidangle(a,c)$ is defined by the Spike Margin $[a,b',b'',c]$.
 \begin{align}
 solidangle_{Rel}(a,c) = \frac{area(b',b'')}{(diameter(a,c)/2)^2}
 \end{align}
-Keep in mind that the solid angle for a very large radius can be negative. This coincides with the condition that no Non-Straight Segment can be found in the Dune $[a,(b',b'')/2,c]$ and therefore it can not be a Spike.\\
-If on the other hand the solid angle is positive and large, the angle of the Spike is likely to be very small.
+Keep in mind that the $solidangle$ for a very large radius can be negative. This coincides with the condition that no Non-Straight Segment can be found in the Dune $[a,(b',b'')/2,c]$ and therefore it can not be a Spike.\\
+If on the other hand the $solidangle$ is positive and large, the angle of the Spike is likely to be very small.
 
 \subsection{Moustache}
 Indicates a break or change of direction in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
@@ -380,7 +380,7 @@ Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \su
 b' \in C_{4}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature.\\\\
-$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole has an infinite amount of Corners, which are indexed differently (See Solid Angle).
+$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole has an infinite amount of Corners, which are indexed differently (See Parametrised Corners).
 \subsection{ZigZag}
 ZigZag $\supset$ Spike\\
 (Setting Max on straightness or angle?)\\
