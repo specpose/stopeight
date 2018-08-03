@@ -259,7 +259,7 @@ Measure Space: Straightness is no more than what is required for a hyperbola not
 A Swing is the section $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
 \begin{align}
 \xi'(c)>0;\xi'(b')=0;\xi'(d)<0\\
-T_{1} \ni b'
+T_{2} \ni b'
 \end{align}
 The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 \begin{equation}
@@ -278,7 +278,7 @@ straightness(a,b')>Max_{Straight}\\ straightness(b',c)\leq Max_{Straight}
 \end{align}
 
 \subsection*{Absolute Differences}
-Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\xi$ and $\iota$ to $T_{2},C_{4}$ unless noted otherwise.
+Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\xi$ and $\iota$ to $Swing,C_{3},C_{4}$ unless noted otherwise.
 \begin{align}
 jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota(t) \rvert \mathrm{d}t\\
 area_{vert}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota(t) \rvert \mathrm{d}t
@@ -355,7 +355,7 @@ b' \in T_{3}
 Moustache is correctly handled by the backside Crest, but it would only be a $T_{2}$ if not caught by Compact Covers.
 
 \subsection*{Adjusted Differences}
-By now, we can improve the differences by setting $dom(\xi,\iota)=T_{2}\cup C_{4}$.
+By now, we can improve the differences by setting $dom(\xi,\iota)=Crest \cup Spike \cup C_{4}$.
 
 \section{Compact Covers}
 We introduce another set of charts $\{V_{n}\}$ which span one or more of the charts $\{U_{n}\}$.
