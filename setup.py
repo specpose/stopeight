@@ -108,7 +108,8 @@ setup( name='stopeight',
               'stopeight.legacy',
                [os.path.join(my_path,'stopeight-clibs','legacy-wrappers','interfacepython.cpp')],
                include_dirs=[
-                   os.path.join(my_path,'stopeight-clibs','legacy/include')
+                   os.path.join(my_path,'stopeight-clibs','legacy/include'),
+                   '/usr/include/x86_64-linux-gnu/qt5/'#ubuntu only
                ],
                libraries=['stopeight-clibs-legacy'],
                language='c++',
@@ -123,7 +124,7 @@ setup( name='stopeight',
           'funcsigs',
           'matplotlib',
           'pybind11>=2.2',#not for cmake
-          'PyQt5>=5.6.0',#pip2 doesn't support it!
+          'PyQt5<5.11.0',#can not find private sip #also >=5.6.0 pip2 doesn't support it!
           ],
 #pip end
 #distutils end

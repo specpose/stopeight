@@ -1,6 +1,9 @@
 Build
 -----
 
+Requirements (can also be satisfied via conda :doc:`stopeight`)::
+    $ sudo apt-get install cmake build-essential qt5-default python3-pip python3-pyqt5 python3-pybind11 python3-future
+
 The stopeight repository contains stopeight-clibs::
 
     $ git clone https://github.com/specpose/stopeight.git
@@ -24,6 +27,11 @@ Note: You may need to manually reinstall after a rebuild::
     $ sudo ldconfig
 
 Build and install stopeight::
-
     $ cd ../../
+
+Needed to create packaging version required for install::
+    $ python setup.py sdist
+
+Finally install::
+
     $ python setup.py install
