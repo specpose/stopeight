@@ -1,0 +1,21 @@
+LaTeX
+=====
+
+There are mathematical definitions for the Analyzer and the Comparator.
+
+Install the following packages::
+
+    $ sudo apt-get install biber texlive-latex-extra
+
+Then run biber on the tex file::
+
+    $ path/to/where/stopeight/doc/latex
+    $ biber Stopeight_Analyzer
+    $ biber Stopeight_Comparator
+
+Create the PDF::
+
+    $ pdflatex Stopeight_Analyzer.tex
+    $ pdflatex Stopeight_Comparator.tex
+
+Eventually repeat the biber and pdflatex steps if run for the first time.

@@ -24,28 +24,30 @@ This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\
 
-\subsection{Solid Angle}
-If we have $T_{3}$ and all the Compact Covers worked out, Corners can be redefined (Swell?) and new differences parametrised. $p$ supremums are considered over the whole section of the Compact Cover $V_{n}$.
+\subsection{Parametrised Corners}
+If we have $T_{3}$ and all the Compact Covers worked out, Corners can be redefined (Swell?) and new differences and areas parametrised. $p$ supremums are considered over the whole section of the Compact Cover $V_{n}$.
 \begin{equation}
 K_{p+1} = \sup \limits _{V_{n} \setminus K_{p}} \lvert curvature(a,b) \rvert
 \end{equation}
 (How to set n?)\\
-(solid angle)\\
 As a consequence $diameter$ and $area$ could be parametrised on the new Corners $dom(\xi,\iota)=T_{3}\cup K_{p}$.\\
 \begin{align}
 area_{sup}(a,b)=\int \limits _{a}^{b} \lvert \xi_{K_{p}}(t)-\iota_{K_{p+1}}(t) \rvert \mathrm{d}t\\
 diameter_{sup}(a,b)=\sup \limits _{c,d \in [a,b]} \lvert \xi_{K_{p}}(d) - \xi_{K_{p}}(c) \rvert
 \end{align}
-(horizontals?)
+The solid angle now depends on the bisection and $area_{sup}$.
+\begin{equation}
+solidangle_{Abs}(a,b)=\frac{area_{sup}(c,d)}{(\xi(t(K_{p}))-\iota(t(K_{p})))^2}
+\end{equation}
+(horizontals on bisections?)
 \begin{align}
 area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
 \end{align}
-(Circle Centers / Midpoints?)\\
 
 \subsection{Area of Jitter}
-Divided by wavelength
+The integral of the parametrisation on a non-Straight segment is larger than the integral of the parametrisation of a straight segment. (Additional benefits?)
 \begin{align}
-area_{jitter}(a,b)=\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t
+area_{jitter}(a,b)=\frac{\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t}{diameter_{abs}(a,b)}\\
 \end{align}
 
 \subsection{Pulse}
@@ -82,22 +84,30 @@ times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{
 Visibility is an increase of the polynomial (degree or coefficients?) of a curve segment.
 (No: When visibility is increased in a Spiral, it creates more subsegments/scale spaces). Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
 \begin{align}
-visibility(a,b)= alt(a,b) * signs(\mu,curvature(a,b)-Q(a,b))
+visibility(a,b)= alt(a,b) * signs(\mu,area_{sup}(a,b))\\
+visibility(a,b)= alt(a,b) * signs(\mu,curvature(a,b)-Q(a,b))(?)
 \end{align}
 (Lebesgue on curvature? $Max_{Curve}$ based or sign based?)
 \subsection*{Cases}
 When curvature is decreased in a Spiral, it becomes a ZigZag.
 \subsection*{Scale Space}
-$arclength$ constant, $area$ grows, but $diameter$ constant.
+$area$ grows, but $diameter$ constant.
 
 \subsection{Real Isolation}
 (No: A lack of isolation is directly linked to the creation of more interval spaces.)
 \begin{align}
-isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b))
+isolation(a,b) = ori(a,b)*times(\mu,area_{jitter}(a,b))\\
+isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b))(?)
 \end{align}
 (Frame bundle orthonormal?)
 \subsection*{Interval Space}
 $jitter$ grows, but $diameter$ constant.
+
+\subsection{Jaggedness}
+Is aliasing of discretisation/rasterisation, but not to be confused with signal aliasing. Can be defined on Korners and Turns.
+
+\subsection{Moving Tangential Slate Differences}
+Depend on focal points. Adjusted $area$
 
 \chapter{Separation}
 The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.

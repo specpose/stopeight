@@ -259,7 +259,7 @@ Measure Space: Straightness is no more than what is required for a hyperbola not
 A Swing is the section $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
 \begin{align}
 \xi'(c)>0;\xi'(b')=0;\xi'(d)<0\\
-T_{1} \ni b'
+T_{2} \ni b'
 \end{align}
 The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 \begin{equation}
@@ -278,7 +278,7 @@ straightness(a,b')>Max_{Straight}\\ straightness(b',c)\leq Max_{Straight}
 \end{align}
 
 \subsection*{Absolute Differences}
-Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\xi$ and $\iota$ to $T_{2},C_{4}$ unless noted otherwise.
+Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\xi$ and $\iota$ to $Swing,C_{3},C_{4}$ unless noted otherwise.
 \begin{align}
 jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota(t) \rvert \mathrm{d}t\\
 area_{vert}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota(t) \rvert \mathrm{d}t
@@ -326,16 +326,26 @@ A frontside Spike is a section $[a,b',c]$, where
 \item The Forward direction of analysis $dir=1$ reveals a backside Edge $[a,b']$, and
 \item The Backward direction of analysis $dir=-1$ reveals a backside Edge $[c,b'']$ 
 \end{enumerate}
-and the margin $b'<b'';b''-b'$ does not exceed.\\
-(triangle of intersection with tip angle $<90$ or iteration or both?)\\
-\begin{equation}
+and the $solidangle$ defined by the margin $b'<b'';b''-b'$ is larger than.\\
+\begin{align}
+Max_{solidangle}=\\
 b' \in T_{2}
-\end{equation}
+\end{align}
 (Also?)
 \begin{align}
-straightness(a,b)\approx 1\\ curvature(a,b)>0
+angle(a,b',c)\geq\\
+straightness(a,b)\approx 1\\
+curvature(a,b)>0
 \end{align}
 It is part of ZigZag detection.
+
+\subsection{Relative Areas}
+The $solidangle(a,c)$ is defined by the Spike Margin $[a,b',b'',c]$.
+\begin{align}
+solidangle_{Rel}(a,c) = \frac{area(b',b'')}{(diameter(a,c)/2)^2}
+\end{align}
+Keep in mind that the $solidangle$ for a very large radius can be negative. This coincides with the condition that no Non-Straight Segment can be found in the Dune $[a,(b',b'')/2,c]$ and therefore it can not be a Spike.\\
+If on the other hand the $solidangle$ is positive and large, the angle of the Spike is likely to be very small.
 
 \subsection{Moustache}
 Indicates a break or change of direction in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
@@ -345,7 +355,7 @@ b' \in T_{3}
 Moustache is correctly handled by the backside Crest, but it would only be a $T_{2}$ if not caught by Compact Covers.
 
 \subsection*{Adjusted Differences}
-By now, we can improve the differences by setting $dom(\xi,\iota)=T_{2}\cup C_{4}$.
+By now, we can improve the differences by setting $dom(\xi,\iota)=Crest \cup Spike \cup C_{4}$.
 
 \section{Compact Covers}
 We introduce another set of charts $\{V_{n}\}$ which span one or more of the charts $\{U_{n}\}$.
@@ -370,7 +380,7 @@ Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \su
 b' \in C_{4}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature.\\\\
-$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole has an infinite amount of Corners, which are indexed differently (See Solid Angle).
+$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole has an infinite amount of Corners, which are indexed differently (See Parametrised Corners).
 \subsection{ZigZag}
 ZigZag $\supset$ Spike\\
 (Setting Max on straightness or angle?)\\
