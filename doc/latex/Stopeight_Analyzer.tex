@@ -41,12 +41,15 @@ via the intermediate functions $f,g$ where the intermediate transversality $Y = 
 \begin{align}
 f: X \approx B \rightarrow Y; g: Y \rightarrow A
 \end{align}
-Note: The set of Arcs A is a dim 1-manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[\nopp 3.1.1.]{Fomenko} ~\cite[\nopp 4.5]{Wall} ($X$ is formally a discrete / dim 0-manifold)
+Note: The set of Arcs A is a dim 1-manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[\nopp 3.1.1.]{Fomenko} ~\cite[\nopp 4.5]{Wall}
 \begin{align}
-A = \cup_{m}U_{m}; (X = \cup_{n}V_{n})\\
+A = \cup_{m}U_{m}
+\end{align}
+$X$ is formally a discrete / dim 0-manifold
+\begin{align}
 Y: \text{0-submanifold} \Rightarrow (dim(X)=0)<(codim(Y)=1) \Rightarrow X \text{ disjoint } A
 \end{align}
-but
+but $B$ is not. See (numbering ref?).
 \begin{align}
 Y: \text{0-submanifold} \Rightarrow (dim(B)=1)=(codim(Y)=1) \Rightarrow B \text{ joint } A
 \end{align}
@@ -65,7 +68,7 @@ The affine transformations $q$ are functions that map to control points $Q \subs
 q: S \times C \times E \rightarrow Q\\
 Q \cap X = 0; Q \cap Y = 0
 \end{align}
-The combination $M = Y \cup Q$ has parts from the original $X$'s, and constructed $Q$'s that are not in $A$ $\footnote{insertion: $C \notin X$, otherwise: $C \in X \cap A$}$:
+The combination $Y \cup Q$ has parts from the original $X$'s, and constructed $Q$'s that are not in $A$ $\footnote{insertion: $C \notin X$, otherwise: $C \in X \cap A$}$:
 \begin{align*}
 S,C,E \in X; Q \setminus A=\{q_{1}(S,C,E),q_{3}(S,C,E),q_{4}(S,C,E),q_{6}(S,C,E)\}
 \end{align*}
@@ -73,7 +76,7 @@ and is composed of four quadratic bezier splines $\gamma_{H}(t)$:
 \begin{align}
 \gamma_{H}: \mathbb{R} \rightarrow \mathbb{R}^2; t \mapsto (x,y)
 \end{align}
-with control point sets $\{H_{1},...,H_{4}\}$ per chart of M. The Arc segment defining function $\xi$ forms the planar coordinates $(x',y')$ of Arc $U_{m}$:
+with control point sets $\{H_{1},...,H_{4}\}$ per chart of $Y \cup Q$. The Arc segment defining function $\xi$ forms the planar coordinates $(x',y')$ of Arc $U_{m}$:
 \begin{equation}
 \xi: \mathbb{R} \rightarrow A; t \mapsto (x,y)
 \end{equation}
@@ -86,19 +89,18 @@ with control point sets $\{H_{1},...,H_{4}\}$ per chart of M. The Arc segment de
 \gamma_{H_{3}}(t); H_{4}=\{q_{5}(S,C_{2},E),q_{6}(S,C_{1},E),E\} & t \in [\frac{3}{4},1]
 \end{cases}
 \end{align*}
-Note: The continuous function $\xi$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ($dim (U_{m} \cup U_{m+1}) \geq 1?)$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
+Note: The continuous function $\xi$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
 In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$, we have to connect all $P_{n}, P_{n+1} \in X$ with one linear bezier spline each, because $X$ is discrete:
 \begin{align}
 \iota: \mathbb{R} \rightarrow B; t \mapsto (x,y)\\
-\iota_{X}(t) = \{ \gamma_{H}(t)\lvert H=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}; P_{n}, P_{n+1} \in X\}\}\\
-dim(B)=1<codim(Y)=1 \Rightarrow B \text{ joint } A
+\iota_{X}(t) = \{ \gamma_{H}(t)\lvert H=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}; P_{n}, P_{n+1} \in X\}\}
 \end{align}
 Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}\\\\
-The arc-length metric $d(a,b)$ turns both manifolds $A$ and $B$ into metric spaces $(A,d)$ and $(B,d)$. ($\frac{d}{dt}$. ~\cite[\nopp 1.1.3]{Klingenberg}
+The arc-length metric $d(a,b)$ turns both manifolds $A$ and $B$ into metric spaces $(A,d)$ and $(B,d)$. ~\cite[\nopp 1.1.3]{Klingenberg}
 \begin{equation}
 d(a,b) = \int \limits _{a}^{b}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t)\rvert \mathrm{d}t
 \end{equation}
-We can now establish an injective $link$ between elements of $B$ and $A$. ($X \rightarrow A$ is injective, $but$ $A \rightarrow X$ is not accurate):
+We can now establish an injective $link$ between elements of $B$ and $A$. ($X \rightarrow A$ would be injective, $but$ $A \rightarrow X$ is not accurate):
 \begin{equation}
 link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y') \mapsto (x,y)
 \end{equation}
@@ -128,7 +130,7 @@ The horizontal diameter is based on the metric of $\iota_{T}$.
 \begin{equation}
 diameter_{horiz,T}(a,b)= dir \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
-When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction inverts the sign of the curve segments. Their sign flips.
+When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction flips the sign of the curve segments.
 \begin{align}
 \mu_{+}(\xi(t) -\iota_{T}(t))=\{[a,b] \subseteq A,B; \gamma(t)=\xi(t) -\iota_{T}(t) \vert \gamma(t)>0\}
 \end{align}
@@ -200,13 +202,13 @@ curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm
 \subsubsection{Algorithm Version}
 The sum of the pieces in the legal segment [a,b] with $P_{n}, P_{n+1} \in [a,b] \subseteq X$.
 \begin{align}
-curvature_{Algo}(a,b)= dir \frac{\sum \limits _{i=0}^{n+1}y(P_{i})*(x(P_{i+1})-x(P_{i}))}{x(P_{n+1})-x(P_{0})}
+curvature_{Algo}(a,b)= dir \frac{\sum \limits _{i=0}^{n}y(P_{i})*(x(P_{i+1})-x(P_{i}))}{x(P_{n+1})-x(P_{0})}
 \end{align}
 
 \subsection{Corner}
-A curvature is composed of an infinite amount of local maxima. Therefore the Corner in a section $[a,b] \subseteq B$ is:
+A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a section $[a,b] \subseteq B$ is.
 \begin{equation}
-C = \sup_{U}\lvert curvature(a,b) \rvert \in T_{1} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0
+C_{3} = \{C_{3} \in T_{1} \mid \sup_{U}\lvert curvature(a,b) \rvert \cap (\inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0) \}
 \end{equation}
 The indexing corresponds to the minimal grade of the polynomial that is necessary.
 \begin{align}
@@ -228,7 +230,7 @@ Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ t
 
 \section{Non-recursive Sections}
 Non-recursive sections are not proper section types, but merely an expression of intermediate calculation and are therefore of medium analytic priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.\\\\
-The $Max$ thresholds are reductions of different measure spaces. The $derivatives$ are affected by the thresholds.
+The $Max$ thresholds are reductions of measure spaces. The $derivatives$ are affected by $Max_{Straight}$. The Grapher $scale$ interacts with $Max_{Curvre}.$
 
 \subsection{Cliff}
 A Cliff is a section $[a,b']$. A single Cliff can have no more than the maximum $curvature(a,b)$. The maximum curvature is defined by the area of a half unit circle divided by the diameter $2r=1$. It is a part of a Spiral.
@@ -263,12 +265,12 @@ T_{2} \ni b'
 \end{align}
 The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
 \begin{equation}
-[a,b] \subseteq U_{m} \Rightarrow \exists  \xi(t) - \iota_{T}(t) >0 \land \nexists \xi(t) - \iota_{T}(t) \leq 0
+[a,b] \subseteq U_{m} \Rightarrow \exists  \xi'(t) - \iota_{T}'(t) >0 \land \nexists \xi'(t) - \iota_{T}'(t) \leq 0
 \end{equation}
 (both vice-versa)\\\\
 A special case is where the whole chart is flat and Straight.
 \begin{equation}
-[a,b] \subseteq U_{m} \Rightarrow \nexists \xi(t) - \iota_{T}(t) <0 \land \nexists \xi(t) - \iota_{T}(t) >0
+[a,b] \subseteq U_{m} \Rightarrow \nexists \xi'(t) - \iota_{T}'(t) <0 \land \nexists \xi'(t) - \iota_{T}'(t) >0
 \end{equation}
 
 \subsection{Dune}
@@ -278,7 +280,7 @@ straightness(a,b')>Max_{Straight}\\ straightness(b',c)\leq Max_{Straight}
 \end{align}
 
 \subsection*{Absolute Differences}
-Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\xi$ and $\iota$ to $Swing,C_{3},C_{4}$ unless noted otherwise.
+Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\xi$ and $\iota$ to $Swing \cup C_{3} \cup C_{4}$ unless noted otherwise.
 \begin{align}
 jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \iota(t) \rvert \mathrm{d}t\\
 area_{vert}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota(t) \rvert \mathrm{d}t
@@ -291,19 +293,20 @@ curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz}(a,b)}
 \end{align}
 
 \section{Recursive Sections}
-Derivatives are opening up interval-measure spaces. The maximum order of $derivatives$ is set by the scale-space. The scale-space depends on the maximal order of the polynomials considered. In the method discussed in this paper, they are quadratic (or quartic?).\\\\
-The following recursive subsections reveal second derivatives in measure subspaces.
+Derivatives are opening up interval measure spaces. The maximum order of $derivatives$ is set by the order of recursion. The scale-space depends on the maximal order of the polynomials considered. In the method discussed in this paper, they are quadratic (or quartic?).\\\\
+The following recursive subsections reveal second derivatives in each interval measure space.
 \begin{equation}
 T_{2} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert \approx 0
 \end{equation}
 
 \subsection{Crest}
-A backside Crest $[a,a']$ or $[a,b']$ is an iteration of:
+A backside Crest $[a,a']$ is an iteration of:
 \begin{enumerate}
 \item The Forward direction of analysis $dir=1$ of a $[a,b']$ Swing, followed by 
 \item The Reverse direction of analysis $dir=-1;[b',a]$ reveals a Backward $[b',a']$ Swing
+\item Continue iteration $[a',b']...$
 \end{enumerate}
-The breaking condition is that no more entities are being found by either of the two steps.
+The breaking condition is that no more entities are being found after the second step.
 \begin{equation}
 b' \in T_{2}
 \end{equation}
@@ -311,9 +314,9 @@ b' \in T_{2}
 \subsection{Edge}
 A backside Edge $[a,b']$ is an iteration of:
 \begin{enumerate}
-\item The Forward direction of analysis $dir=1$ of a backside Dune $[a,b,c]$
-\item The Reverse direction of analysis $dir=-1;[b',a]$ of a backside Dune $[c',b',a]$ 
-\item The Forward direction of analysis $dir=1$ of a backside Dune $[a',b'',c']$...
+\item The Forward direction of analysis $dir=1$ of a backside Dune $[a,b',c]$
+\item The Reverse direction of analysis $dir=-1;[b',a]$ of a backside Dune $[b',b'',a]; b''<b<b'$ 
+\item Continue iteration $[a,b'',b']...$
 \end{enumerate}
 The breaking condition is that no more entities are being found after the second step.
 \begin{equation}
@@ -326,10 +329,10 @@ A frontside Spike is a section $[a,b',c]$, where
 \item The Forward direction of analysis $dir=1$ reveals a backside Edge $[a,b']$, and
 \item The Backward direction of analysis $dir=-1$ reveals a backside Edge $[c,b'']$ 
 \end{enumerate}
-and the $solidangle$ defined by the margin $b'<b'';b''-b'$ is larger than.\\
+and the $solidangle$ defined by the margin $b'<b''; \lvert b''-b' \rvert$ is larger than.\\
 \begin{align}
 Max_{solidangle}=\\
-b' \in T_{2}
+b' \in T_{2},C_{4}
 \end{align}
 (Also?)
 \begin{align}
@@ -344,8 +347,6 @@ The $solidangle(a,c)$ is defined by the Spike Margin $[a,b',b'',c]$.
 \begin{align}
 solidangle_{Rel}(a,c) = \frac{area(b',b'')}{(diameter(a,c)/2)^2}
 \end{align}
-Keep in mind that the $solidangle$ for a very large radius can be negative. This coincides with the condition that no Non-Straight Segment can be found in the Dune $[a,(b',b'')/2,c]$ and therefore it can not be a Spike.\\
-If on the other hand the $solidangle$ is positive and large, the angle of the Spike is likely to be very small.
 
 \subsection{Moustache}
 Indicates a break or change of direction in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
@@ -373,34 +374,32 @@ Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparato
 It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented (Causal Structure).
 
 \subsection{Spiral}
-Spiral $\supset$ Cliff\\
+Spiral $\supset$ Cliff $\not \supset$ Straight\\
 A Spiral section $[a,b']$ is a Cliff, where
 \begin{align}
 Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \subseteq Spiral\}}\\
 b' \in C_{4}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature.\\\\
-$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole has an infinite amount of Corners, which are indexed differently (See Parametrised Corners).
+$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole has an infinite amount of Corners, which are indexed differently (See Parametrised Korners).
 \subsection{ZigZag}
-ZigZag $\supset$ Spike\\
-(Setting Max on straightness or angle?)\\
-Whether angles greater than 90 degree are allowed to be in the dataset is subject of definition.\\\\
-Below 90 degree, it is not losing its orientation. Therefore it is a Corner indexed by the supremum norm of the curvature(?).\\
-A single Spike section is in this case.
+ZigZag $\supset$ Spike $\supset$ Edge\\
+(Setting Maxes on straightness, angles?)\\\\
+Whether it is a Turn or a Corner depends on orientation of the adjacent Straights relative to each other.\\\\
+Whether angles less than 90 degree are allowed to be in the dataset is subject of definition.
+From 90 degree to 180 degree, it is not losing its orientation. A single Spike section is in this case.
 \begin{align}
-b' \in C_{4}
+b' \in C_{4} \lor b' \in T_{2}
 \end{align}
-From 90 degree to $\infty$, it is a Turn and is indexed by the infimum norm of the angle(?).\\
-A single Spike section is in this case.
+Below 90 degree, a single Spike section is.
 \begin{align}
-b' \in T_{3} \Rightarrow \text{third derivative }= 0\text{?}
+b' \in C_{4} \Rightarrow (\text{cubic plane curve}?) \lor b' \in T_{3} \Rightarrow (\text{third derivative }= 0?)
 \end{align}
 \subsection{Swell}
-Swell $\supset$ Crest, Swell $\supset$ Swing, (Swell $\supset$ Dune?)
+Swell $\supset$ Crest $\supset$ Swing $\supset$ Dune(?)\\
+A swell is centered by triplets (See The Captain of Swing).
 \subsection*{Direction}
-If the sections are being extracted from left to right $[a,b];a<b$, the Compact Cover is positive. If the direction of analysis is reversed $[b,a]$, it is negative.\\\\
-(Moustache?)\\
-($T_{3}$?)
+If the sections are being extracted from left to right $[a,b];a<b$, the Compact Cover is positive. If the direction of analysis is reversed $[b,a]$, it is negative.
 
 \printbibliography
 

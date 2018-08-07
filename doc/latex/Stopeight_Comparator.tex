@@ -19,7 +19,8 @@
 \maketitle
 
 \chapter{Introduction}
-(Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
+(Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\
+(Todo: Introduce formal definition of measure spaces)\\\\
 This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\
@@ -106,10 +107,10 @@ $jitter$ grows, but $diameter$ constant.
 \subsection{Jaggedness}
 Is aliasing of discretisation/rasterisation, but not to be confused with signal aliasing. Can be defined on Korners and Turns.
 \begin{align}
-jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}-\xi_{K}\rvert \mathrm{d}t
+jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}(t)-\xi_{K}(t)\rvert \mathrm{d}t
 \end{align}
 
-\subsection{Moving Tangential Slate Differences}
+\subsection{Tangential Paraglide Differences}
 Depend on focal points. Adjusted $area$
 
 \chapter{Separation}
@@ -118,7 +119,7 @@ The goal of separation is to find impulses or notes as they may be referred to i
 \subsection{Plancherel Theorem}
 The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding orthogonal subspaces in frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of frame-wise integration and periodic integration.\\\\
 The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters. It also defines the negative time in the Fourier Transform of the signal $s(x);x<0$  to be the analytic direction $dir=-1$.\\\\
-Also Vector Graph manipulations such as scaling, resampling, finding/counting intersections, oriented section occurence requirements could yield interesting results.\\\\
+Also Vector Graph manipulations such as scaling, {vert,, finding/counting intersections, oriented section occurence requirements could yield interesting results.\\\\
 A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is quartic (?). The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
 
 \subsection{Spectral Separation}
@@ -132,6 +133,9 @@ z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility(a,b))} +\mathrm{i} \sin{(isolation(
 \int \limits _{}^{} (\xi_{T}(t)-\iota_{T})*(\xi_{C}-\iota_{T})\mathrm{d}t=1(?)
 \end{align}
 \subsubsection{Resampling}
+
+\subsection*{Asymetric Pulses}
+(See Sisyphos)
 
 \chapter{Simulation}
 (An attempt to extend the algebra to generic problems in physics.)\\\\
