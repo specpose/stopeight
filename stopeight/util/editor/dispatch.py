@@ -74,6 +74,11 @@ if __name__ == '__main__':
     from PyQt5.QtCore import Qt
     window.addDockWidget(Qt.BottomDockWidgetArea,scribble)
 
+    # Create logwindow
+    #from stopeight.util.editor.callwindow import outwindow
+    #logwindow = outwindow()
+    #outputs.append(logwindow)
+
     # Find modules
     callables = []
     for module in _DATA['Modules']:
