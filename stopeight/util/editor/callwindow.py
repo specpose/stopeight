@@ -4,6 +4,8 @@ from PyQt5.QtWidgets import QWidget,QTextEdit,QVBoxLayout
 from stopeight.logging import logSwitch
 log = logSwitch.logNone()
 
+from stopeight.util.editor.callredirector import stdout_redirector
+
 import sys
 import os
 import io
@@ -20,21 +22,13 @@ class outwindow(QWidget):
         self.setLayout(layout)
 
     def __call__(self,data):
-        #buffered = os.fdopen(sys.stdout.fileno(),'r',1)
-        buffered = io.StringIO()
-        backup = sys.stdout
-        redirect_stdout(buffered)
-        #sys.stdout = buffered
-        log.info(data)
-        log.info("stderr readable "+str(sys.stderr.readable()))
-        sys.stdout = backup
-        log.info(buffered)
-        #mytext=""
-        #for line in buffered.readLine():
-        #    mytext.append(line)
-        #mytext = str(buffered.read())
-        #buffered.close()
-        mytext = buffered.getvalue()
-        redirect_stdout(backup)
-        self.text.setText(mytext)
+        f = io.BytesIO()
+
+        with stdout_redirector(f):
+            print('foobar')
+            print(12)
+            #libc.puts(b'this comes from C')
+            os.system('echo and this is from echo')
+        print('Got stdout: "{0}"'.format(f.getvalue().decode('utf-8')))
+        self.text.setText(f.getvalue().decode('utf-8'))
         self.show()

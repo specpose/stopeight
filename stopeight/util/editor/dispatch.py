@@ -75,9 +75,9 @@ if __name__ == '__main__':
     window.addDockWidget(Qt.BottomDockWidgetArea,scribble)
 
     # Create logwindow
-    #from stopeight.util.editor.callwindow import outwindow
-    #logwindow = outwindow()
-    #outputs.append(logwindow)
+    from stopeight.util.editor.callwindow import outwindow
+    logwindow = outwindow()
+    outputs.append(logwindow)
 
     # Find modules
     callables = []
