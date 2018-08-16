@@ -34,7 +34,7 @@ class Algorithm_Select(dict):
                         try:
                             data_type=signature(loader[module_name].__dict__[key]).parameters['data'].annotation
                         except:
-                            data_type = None
+                            data_type = type(None)
                     except ValueError as v:
                         return_type = None
                         data_type = None
@@ -146,6 +146,7 @@ class Connector:
 
     def run(self):
         functionName = self.select.currentText()
+        log.debug(str(self.methods))
         if functionName in self.methods:
             #check return type of unique functionname
             if (self.methods[functionName])[0]==None:
@@ -172,8 +173,8 @@ class Connector:
 current version does not support handling multiple Input objects of the same type. Please remove "+str(self._module)+" from module list.")
                             if functionentry==type(_input.data):
                                 executed = Connector._execute(executed,output,self._module,functionName,self._callwindow,_input.data)
-                            elif functionentry==None and type(_input.data)==type(None):
-                                executed = Connector._execute(executed,output,self._module,functionName,self._callwindow)
+                            #elif functionentry==None and type(_input.data)==type(None):
+                            #    executed = Connector._execute(executed,output,self._module,functionName,self._callwindow)
                             
                 #except AttributeError as ae:
                 #    pass
