@@ -113,11 +113,16 @@ class Scribble_Run:
     
 from PyQt5.QtCore import Qt
 import inspect
+import funcsigs
 #def zoo(a: str)->int:
     #if (signature(zoo).return_annotation!=Signature.empty):
 class Connector:
     def __init__(self,command,outputObjects):
         self._outputs = outputObjects
+        self._callwindow = None
+        for output in self._outputs:
+            if signature(output.__call__).parameters['data'].annotation==funcsigs._empty:
+                self._callwindow = output
         self._module = command
         self.select = QComboBox()
         self.methods = Algorithm_Select(self._module)
@@ -127,6 +132,17 @@ class Connector:
         self.button.setText("Run")
         self.button.clicked.connect(self.run)
 
+    def _execute(executed,output,_module,functionName,_callwindow,_input=None):
+        if _callwindow != None:
+            _callwindow()
+        if _input != None:
+            log.info("Executing "+functionName+" with "+str(type(_input.data)))
+            output(Algorithm_Run.run(_module,functionName,inputdata=_input.data))
+        else:
+            log.info("Executing "+functionName+" with without data")
+            output(Algorithm_Run.run(_module,functionName))
+        return True
+
     def run(self):
         functionName = self.select.currentText()
         if functionName in self.methods:
@@ -135,32 +151,29 @@ class Connector:
                 log.info("Function "+functionName+" does not support signature")
             else:
                 #check all outputs for receiving __call__
+                executed = False
                 for output in self._outputs:
                 #try:
-                    outputentry = signature(output.__call__).parameters['data'].annotation
+                    callannotation = signature(output.__call__).parameters['data'].annotation
+                    log.debug("Output has callannotation "+str(callannotation))
                     functionreturn = (self.methods[functionName])[0]
-                    if functionreturn == outputentry:
+                    log.debug("Method "+str(functionName)+" has functionreturn "+str(functionreturn))
+                    if functionreturn == callannotation:
+                        # currently, only one input object is supported
                         functionentry = (self.methods[functionName])[1]
-                        log.debug("Method "+str(self.methods[functionName]))
-                        executed = False
-                        if functionentry!=None:#data parameter found
-                            if type(output.data)==functionreturn:
-                                for _input in self._outputs:
-                                    if type(_input.data)==functionentry:
-                                        if executed:
-                                            raise Exception("There are multiple objects handling "+type(_input.data)+". The \
+                        log.debug("Method "+str(functionName)+" has functionentry "+str(functionentry))
+                        # collecting data from all inputs
+                        for _input in self._outputs:
+                            log.debug("Type of input object data"+str(type(_input.data)))
+                            #if type(_input.data)==functionentry:
+                            if executed:
+                                raise Exception("There are multiple objects handling "+str(type(_input.data))+". The \
 current version does not support handling multiple Input objects of the same type. Please remove "+str(self._module)+" from module list.")
-                                        log.info("Executing "+functionName+" with "+str(type(_input.data)))
-                                        output(Algorithm_Run.run(self._module,functionName,inputdata=_input.data))
-                                        executed = True
-                                    else:
-                                        log.debug("Skipping input "+str(type(input)))
-                            else:
-                                log.debug("Skipping output "+str(type(output)))
-                        if executed==False:
-                            log.info("Fallback. Trying to call "+functionName+" without data")
-                            output(Algorithm_Run.run(self._module,functionName))
-                                            
+                            if functionentry==type(_input.data):
+                                executed = Connector._execute(executed,output,self._module,functionName,self._callwindow,_input)
+                            elif functionentry==None and type(_input.data)==type(None):
+                                executed = Connector._execute(executed,output,self._module,functionName,self._callwindow)
+                            
                 #except AttributeError as ae:
                 #    pass
         else:
