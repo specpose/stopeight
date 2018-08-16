@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget,QTextEdit,QVBoxLayout
 
 
 from stopeight.logging import logSwitch
-log = logSwitch.logNone()
+log = logSwitch.logPrint()
 
 #python3 only
 from contextlib import redirect_stdout

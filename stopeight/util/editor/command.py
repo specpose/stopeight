@@ -132,6 +132,7 @@ class Connector:
         self.button.setText("Run")
         self.button.clicked.connect(self.run)
 
+    @staticmethod
     def _execute(executed,output,_module,functionName,_callwindow,_input=None):
         if _callwindow != None:
             _callwindow()
