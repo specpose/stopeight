@@ -133,12 +133,12 @@ class Connector:
         self.button.clicked.connect(self.run)
 
     @staticmethod
-    def _execute(executed,output,_module,functionName,_callwindow,_input=None):
+    def _execute(executed,output,_module,functionName,_callwindow,_data=None):
         if _callwindow != None:
             _callwindow()
-        if _input != None:
-            log.info("Executing "+functionName+" with "+str(type(_input.data)))
-            output(Algorithm_Run.run(_module,functionName,inputdata=_input.data))
+        if _data != None:
+            log.info("Executing "+functionName+" with "+str(type(_data)))
+            output(Algorithm_Run.run(_module,functionName,inputdata=_data))
         else:
             log.info("Executing "+functionName+" with without data")
             output(Algorithm_Run.run(_module,functionName))
@@ -171,7 +171,7 @@ class Connector:
                                 raise Exception("There are multiple objects handling "+str(type(_input.data))+". The \
 current version does not support handling multiple Input objects of the same type. Please remove "+str(self._module)+" from module list.")
                             if functionentry==type(_input.data):
-                                executed = Connector._execute(executed,output,self._module,functionName,self._callwindow,_input)
+                                executed = Connector._execute(executed,output,self._module,functionName,self._callwindow,_input.data)
                             elif functionentry==None and type(_input.data)==type(None):
                                 executed = Connector._execute(executed,output,self._module,functionName,self._callwindow)
                             
