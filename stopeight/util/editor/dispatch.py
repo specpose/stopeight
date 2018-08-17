@@ -45,6 +45,11 @@ if __name__ == '__main__':
     connections = []
 
     outputs = []
+    from stopeight.util.editor.callwindow import outwindow
+    logwindow = outwindow()
+    logwindow.show()
+
+    
     from stopeight.util.editor.wave import WaveArea
     wave = WaveArea()
     outputs.append(wave)
@@ -74,11 +79,6 @@ if __name__ == '__main__':
     from PyQt5.QtCore import Qt
     window.addDockWidget(Qt.BottomDockWidgetArea,scribble)
 
-    # Create logwindow
-    from stopeight.util.editor.callwindow import outwindow
-    logwindow = outwindow()
-    outputs.append(logwindow)
-
     # Find modules
     callables = []
     for module in _DATA['Modules']:
@@ -89,7 +89,7 @@ if __name__ == '__main__':
     #toolbox = QtWidgets.QDockWidget()
     from stopeight.util.editor.command import Connector
     for module in callables:
-        connections.append(Connector(module,outputs))
+        connections.append(Connector(module,outputs,logwindow))
     for connection in connections:
         group = QGroupBox()
         box = QHBoxLayout()

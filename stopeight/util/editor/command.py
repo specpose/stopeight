@@ -100,15 +100,16 @@ class Algorithm_Run:
 from PyQt5.QtCore import Qt
 import inspect
 import funcsigs
+#python3 only
+#from contextlib import redirect_stdout
+#both
+from stopeight.util.editor.callredirector import stdout_redirector
 #def zoo(a: str)->int:
     #if (signature(zoo).return_annotation!=Signature.empty):
 class Connector:
-    def __init__(self,command,outputObjects):
+    def __init__(self,command,outputObjects,logwindow):
+        self.logwindow = logwindow
         self._outputs = outputObjects
-        self._callwindow = None
-        for output in self._outputs:
-            if signature(output.__call__).parameters['data'].annotation==funcsigs._empty:
-                self._callwindow = output
         self._module = command
         self.select = QComboBox()
         self.methods = Algorithm_Select(self._module)
@@ -119,15 +120,19 @@ class Connector:
         self.button.clicked.connect(self.run)
 
     @staticmethod
-    def _execute(executed,output,_module,functionName,_callwindow,customsubpath,_data):
-        if _callwindow != None:
-            _callwindow()
-        if _data != None:
-            log.info("Executing "+functionName+" with "+str(type(_data)))
-            output(Algorithm_Run.run(_module,functionName,customsubpath,inputdata=_data))
-        else:
-            log.info("Executing "+functionName+" with without data")
-            output(Algorithm_Run.run(_module,functionName))
+    def _execute(executed,output,_module,functionName,customsubpath,logwindow,_data):
+        with stdout_redirector(logwindow.f):
+            if _data != None:
+                log.info("Executing "+functionName+" with "+str(type(_data)))
+                computed=Algorithm_Run.run(_module,functionName,customsubpath,inputdata=_data)
+            else:
+                log.info("Executing "+functionName+" with without data")
+                computed=Algorithm_Run.run(_module,functionName,"")
+        if type(computed)!=type(output.data):
+            raise Exception("function returned incompatible render type "+str(type(computed)),"expected type is "+str(type(output.data)))
+        output(computed)
+        log.debug("update logwindow")
+        logwindow.update()
         return True
 
     def run(self):
@@ -138,6 +143,8 @@ class Connector:
             if (self.methods[functionName])[0]==None:
                 log.info("Function "+functionName+" does not support signature")
             else:
+                functionentry = (self.methods[functionName])[1]
+                log.debug("Method "+str(functionName)+" has functionentry "+str(functionentry))
                 #check all outputs for receiving __call__
                 executed = False
                 for output in self._outputs:
@@ -148,24 +155,25 @@ class Connector:
                     log.debug("Method "+str(functionName)+" has functionreturn "+str(functionreturn))
                     if functionreturn == callannotation:
                         # currently, only one input object is supported
-                        functionentry = (self.methods[functionName])[1]
-                        log.debug("Method "+str(functionName)+" has functionentry "+str(functionentry))
                         # collecting data from all inputs
                         for _input in self._outputs:
                             log.debug("Type of input object data"+str(type(_input.data)))
                             #if type(_input.data)==functionentry:
                             if executed:
                                 raise Exception("There are multiple objects handling "+str(type(_input.data))+". The \
-current version does not support handling multiple Input objects of the same type. Please remove "+str(self._module)+" from module list.")
+current version does not support handling multiple Input objects of the same type. Please remove "+str(type(_input))+" from module list.")
                             if functionentry==type(_input.data):
-                                executed = Connector._execute(executed,output,self._module,functionName,self._callwindow,_input.identify(),_input.data)
+                                executed = Connector._execute(executed,output,self._module,functionName,_input.identify(),self.logwindow,_input.data)
                             #elif functionentry==None and type(_input.data)==type(None):
-                            #    executed = Connector._execute(executed,output,self._module,functionName,self._callwindow)
-                            
+                            #    executed = Connector._execute(executed,output,self._module,functionName)
+                        log.debug("Finally functionentry is "+str(functionentry))
+                        if not executed and functionentry==type(None):
+                            executed = Connector._execute(executed,output,self._module,functionName,"",self.logwindow,None) 
                 #except AttributeError as ae:
                 #    pass
         else:
             raise NameError("Function not found")
+        
 
 #class WaveConnector(Connector):
 #    def __init__(self,command,scribble):

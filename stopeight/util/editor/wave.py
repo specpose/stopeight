@@ -41,6 +41,7 @@ class WaveArea(QtWidgets.QDockWidget):
         self.ax=None
 
         self.data=WaveData(shape=(1,),dtype=numpy.int16)
+        self.sr = 44100
 
     def __call__(self,data,clear=True):
         if clear:
@@ -48,6 +49,9 @@ class WaveArea(QtWidgets.QDockWidget):
         self.plot(data)
     __call__.__annotations__ = {'data': WaveData}
 
+
+    def identify(self):
+        return str(self.sr)
 
     def clearImage(self):
         # discards the old graph
