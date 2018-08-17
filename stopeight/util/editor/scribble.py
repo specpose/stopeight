@@ -115,6 +115,16 @@ class ScribbleArea(QtWidgets.QDockWidget):
             except:
                 self.__dict__.__delattr__('tablet_id')
 
+    def identify(self):
+        import os
+            
+        #if (os.getcwd()).endswith('stopeight'):
+        #    if (self.select.module_name=='stopeight.util.editor.modules.file'):
+        if hasattr(self,'tablet_id'):
+            sub = str(self.tablet_id)
+        else:
+            sub = 'MouseData'
+        return sub
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:

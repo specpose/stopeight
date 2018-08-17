@@ -59,7 +59,7 @@ class Algorithm_Run:
         return top
 
     @staticmethod
-    def run(module,currentText,inputdata=None):
+    def run(module,currentText,customsubpath,inputdata=None):
         import time
         time = time.time()
         #data = ScribbleData()
@@ -88,7 +88,7 @@ class Algorithm_Run:
             from os.path import expanduser,join
             file._write(backup,time,outdir=join(expanduser("~"),_LOGDIR
                                                 ,Algorithm_Run._auto_out(module[0],module[1],currentText)
-                                                #,_identify(_DATA['MyScribble'])
+                                                ,customsubpath
                                                 ))
             if outputdata!=None:
                 del outputdata[:]
@@ -96,20 +96,6 @@ class Algorithm_Run:
                     raise Exception("outputdata clear failed!")
             log.error(e)
         return outputdata
-            
-class Scribble_Run:
-
-    @staticmethod
-    def _identify(scribblearea):
-        import os
-            
-        #if (os.getcwd()).endswith('stopeight'):
-        #    if (self.select.module_name=='stopeight.util.editor.modules.file'):
-        if hasattr(scribblearea,'tablet_id'):
-            sub = str(scribblearea.tablet_id)
-        else:
-            sub = 'MouseData'
-        return sub
     
 from PyQt5.QtCore import Qt
 import inspect
@@ -133,12 +119,12 @@ class Connector:
         self.button.clicked.connect(self.run)
 
     @staticmethod
-    def _execute(executed,output,_module,functionName,_callwindow,_data=None):
+    def _execute(executed,output,_module,functionName,_callwindow,customsubpath,_data):
         if _callwindow != None:
             _callwindow()
         if _data != None:
             log.info("Executing "+functionName+" with "+str(type(_data)))
-            output(Algorithm_Run.run(_module,functionName,inputdata=_data))
+            output(Algorithm_Run.run(_module,functionName,customsubpath,inputdata=_data))
         else:
             log.info("Executing "+functionName+" with without data")
             output(Algorithm_Run.run(_module,functionName))
@@ -172,7 +158,7 @@ class Connector:
                                 raise Exception("There are multiple objects handling "+str(type(_input.data))+". The \
 current version does not support handling multiple Input objects of the same type. Please remove "+str(self._module)+" from module list.")
                             if functionentry==type(_input.data):
-                                executed = Connector._execute(executed,output,self._module,functionName,self._callwindow,_input.data)
+                                executed = Connector._execute(executed,output,self._module,functionName,self._callwindow,_input.identify(),_input.data)
                             #elif functionentry==None and type(_input.data)==type(None):
                             #    executed = Connector._execute(executed,output,self._module,functionName,self._callwindow)
                             
