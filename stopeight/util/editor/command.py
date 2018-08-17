@@ -129,7 +129,7 @@ class Connector:
                 log.info("Executing "+functionName+" with without data")
                 computed=Algorithm_Run.run(_module,functionName,"")
         if type(computed)!=type(output.data):
-            raise Exception("function returned incompatible render type "+str(type(computed)),"expected type is "+str(type(output.data)))
+            log.debug("function returned incompatible render type "+str(type(computed))+"expected type is "+str(type(output.data)))
         output(computed)
         log.debug("update logwindow")
         logwindow.update()
