@@ -128,9 +128,10 @@ class Connector:
             else:
                 log.info("Executing "+functionName+" with without data")
                 computed=Algorithm_Run.run(_module,functionName,"")
-        if type(computed)!=type(output.data):
-            log.debug("function returned incompatible render type "+str(type(computed))+"expected type is "+str(type(output.data)))
-        output(computed)
+        if output!=None:
+            if type(computed)!=type(output.data):
+                log.warning("functionreturn "+str(type(computed))+" not equal callannotation "+str(type(output.data)))
+            output(computed)
         log.debug("update logwindow")
         logwindow.update()
         return True
@@ -159,14 +160,11 @@ class Connector:
                         for _input in self._outputs:
                             log.debug("Type of input object data"+str(type(_input.data)))
                             #if type(_input.data)==functionentry:
-                            if executed:
-                                raise Exception("There are multiple objects handling "+str(type(_input.data))+". The \
-current version does not support handling multiple Input objects of the same type. Please remove "+str(type(_input))+" from module list.")
                             if functionentry==type(_input.data):
+                                if executed:
+                                    raise Exception("There are multiple objects handling "+str(type(_input.data))+". The \
+current version does not support handling multiple Input objects of the same type. Please remove "+str(type(_input))+" from module list.")
                                 executed = Connector._execute(executed,output,self._module,functionName,_input.identify(),self.logwindow,_input.data)
-                            #elif functionentry==None and type(_input.data)==type(None):
-                            #    executed = Connector._execute(executed,output,self._module,functionName)
-                        log.debug("Finally functionentry is "+str(functionentry))
                         if not executed and functionentry==type(None):
                             executed = Connector._execute(executed,output,self._module,functionName,"",self.logwindow,None) 
                 #except AttributeError as ae:
