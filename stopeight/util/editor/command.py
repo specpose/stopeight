@@ -70,6 +70,7 @@ class Algorithm_Run:
             if inputdata!=None:
                 backup = inputdata[:]
                 log.info("Invoking "+currentText+" with "+str(len(inputdata))+" inputdata sets...")
+                log.debug(str(inputdata))
                 outputdata = loader[module[0]].__dict__[currentText](inputdata)
                 #if backup == outputdata:
                 #    raise Exception("Backup not successful or function values unchanged")
@@ -128,12 +129,12 @@ class Connector:
             else:
                 log.info("Executing "+functionName+" with without data")
                 computed=Algorithm_Run.run(_module,functionName,"")
+        log.debug("update logwindow")
+        logwindow.update()
         if output!=None:
             if type(computed)!=type(output.data):
                 log.warning("functionreturn "+str(type(computed))+" not equal callannotation "+str(type(output.data)))
             output(computed)
-        log.debug("update logwindow")
-        logwindow.update()
         return True
 
     def run(self):

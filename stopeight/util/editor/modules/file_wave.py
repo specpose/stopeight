@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QFileDialog
 from stopeight.util.editor.data import WaveData
 
 from stopeight.logging import logSwitch
-log = logSwitch.logNone()
+log = logSwitch.logPrint()
 
 def open_GUI():
     import matplotlib.pyplot as ax
@@ -21,5 +21,7 @@ def open_GUI():
     #If Stereo
     if spf.getnchannels() == 2:
         raise Exception("Just mono files")
-    return np.fromstring(signal, 'Int16')
+    result = np.fromstring(signal, 'Int16')
+    log.debug("Length of samples in mono file "+str(len(result)))
+    return result
 open_GUI.__annotations__ = {'return': WaveData}

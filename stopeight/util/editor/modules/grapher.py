@@ -8,11 +8,17 @@ log = logSwitch.logPrint()
 
 def samples_To_VG(data):
     log.debug("samples_To_VG datatype "+str(type(data)))
-    log.info("Loading with "+str(len(data)))
-    from stopeight.grapher import VectorInt16
-    algo = VectorInt16()
+    log.debug("Loading with "+str(len(data)))
+    log.debug(str(data))
+    #from stopeight.grapher import VectorInt16
+    #algo = VectorInt16(data)
+    #from stopeight.grapher import VectorTCInt16
+    #result = VectorTCInt16()
+    from stopeight.grapher import create_vector_graph
+    result = create_vector_graph(data)
     #from stopeight.grapher import Samples_To_VG
     #algo = stopeight.grapher.Samples_To_VG(1,1.0,[1.0,2.0,1.0])
-    log.debug("Instantiated object type "+str(type(algo)))
-    return [[1,1],[2,2]]
+    log.debug("Instantiated object type "+str(type(result)))
+    log.debug("Length "+str(len(result)))
+    return result
 samples_To_VG.__annotations__ = {'data':WaveData,'return':ScribbleData}

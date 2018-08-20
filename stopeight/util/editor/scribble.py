@@ -56,7 +56,7 @@ from PyQt5.QtCore import QEvent
 from stopeight.logging import logSwitch
 log = logSwitch.logNone()
 
-from stopeight.util.editor.data import ScribbleData,ScribbleBackup
+from stopeight.util.editor.data import ScribbleData,ScribbleBackup,ScribblePoint
 
 class ScribbleArea(QtWidgets.QDockWidget):
     def __init__(self, parent=None):
@@ -82,7 +82,9 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.update()
 
     def _input(self, x, y):
-        self.data.append((x,y))
+        if type(self.data)==type(None):
+            self.data = ScribbleData()#Fallback should not happen
+        self.data.append(ScribblePoint(x,y))
 
     def _press(self,event):
         self.scribbling = True
@@ -90,9 +92,11 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.clearImage()
         log.info("Erasing scribble data")
         #don't assign new self.data = [], maybe self.data[:] = []
-        del self.data[:]
-        if (len(self.data)>0):
-            raise "Data clear failed!"
+        if type(self.data)==type(None):
+            pass#Fallback should not happen
+        else:
+            del self.data[:]
+        self.data = ScribbleData()
 
     def _move(self, event):
         self.drawLineTo(event.pos())
@@ -174,8 +178,11 @@ class ScribbleArea(QtWidgets.QDockWidget):
         painter.setPen(QPen(color, self.myPenWidth, Qt.SolidLine,
                 Qt.RoundCap, Qt.RoundJoin))
 
-        for n in range(len(data)-1):
-            painter.drawLine(data[n][0],data[n][1],data[n+1][0],data[n+1][1])            
+        try:
+            for n in range(len(data)-1):
+                painter.drawLine(data[n].first,data[n].second,data[n+1].first,data[n+1].second)
+        except:
+            painter.end()
         self.update()
     __call__.__annotations__ = {'data': ScribbleData}
 
