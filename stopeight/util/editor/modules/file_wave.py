@@ -22,6 +22,7 @@ def open_GUI():
     if spf.getnchannels() == 2:
         raise Exception("Just mono files")
     result = np.fromstring(signal, 'Int16')
+    log.debug("wave ndarray is "+str(type(result)))
     log.debug("Length of samples in mono file "+str(len(result)))
-    return result
+    return result.view(WaveData)
 open_GUI.__annotations__ = {'return': WaveData}

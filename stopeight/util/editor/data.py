@@ -17,10 +17,9 @@ class ScribbleData(list):
 #class ScribbleData(Singleton):
     #def __init__(self, **kwargs):
     #    super(ScribbleData,self).__init__(**kwargs)
-    pass
 
 class ScribbleBackup(ScribbleData):
-#class ScribbleBackup(ScribbleData):#(with_metaclass(Singleton,list)):
+#class ScribbleBackup(list):#(with_metaclass(Singleton,list)):
 #class ScribbleBackup(Singleton):
     pass
 
@@ -29,6 +28,7 @@ class ScribbleBackup(ScribbleData):
 #    pass
 
 from numpy import ndarray
-class WaveData(ndarray):#(with_metaclass(Singleton,ndarray)):
-#class WaveData(Singleton):
+class WaveData(ndarray):
     pass
+#class WaveData(with_metaclass(Singleton,ndarray)):
+#class WaveData(Singleton):
