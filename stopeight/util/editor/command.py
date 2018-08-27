@@ -67,14 +67,16 @@ class Algorithm_Run:
         #backup[:] = data#assign copy
         outputdata=None
         try:
-            if inputdata!=None:
-                backup = inputdata[:]
-                log.info("Invoking "+currentText+" with "+str(len(inputdata))+" inputdata sets...")
+            if type(inputdata)!=type(None):
+                try:
+                    backup = inputdata[:]
+                    log.info("Invoking "+currentText+" with "+str(len(inputdata))+" inputdata sets...")
+                except TypeError:
+                    #hack, should be copy of whole object
+                    backup = inputdata.data[:]
+                    log.info("Invoking "+currentText+" with custom input data type"+str(type(inputdata))+".")
                 log.debug(str(inputdata))
                 outputdata = loader[module[0]].__dict__[currentText](inputdata)
-                #if backup == outputdata:
-                #    raise Exception("Backup not successful or function values unchanged")
-                log.info("Size after call: Input "+str(len(backup))+", Output "+str(len(outputdata)))
             else:
                 backup = None
                 log.info("Invoking "+currentText+" without inputdata.")
@@ -92,9 +94,12 @@ class Algorithm_Run:
                                                 ,customsubpath
                                                 ))
             if outputdata!=None:
-                del outputdata[:]
-                if (len(outputdata)>0):
-                    raise Exception("outputdata clear failed!")
+                try:
+                    del outputdata[:]
+                    if (len(outputdata)>0):
+                        raise Exception("outputdata clear failed!")
+                except TypeError:
+                    pass
             log.error(e)
         return outputdata
     
@@ -122,8 +127,11 @@ class Connector:
 
     @staticmethod
     def _execute(executed,output,_module,functionName,customsubpath,logwindow,_data):
+        if executed:
+            raise Exception("There are multiple objects handling "+str(type(_input.data))+". The \
+current version does not support handling multiple Input objects of the same type. Please remove "+str(type(_input))+" from module list.")
         with stdout_redirector(logwindow.f):
-            if _data != None:
+            if type(_data) != type(None):
                 log.info("Executing "+functionName+" with "+str(type(_data)))
                 computed=Algorithm_Run.run(_module,functionName,customsubpath,inputdata=_data)
             else:
@@ -135,22 +143,28 @@ class Connector:
             if type(computed)!=type(output.data):
                 log.warning("functionreturn "+str(type(computed))+" not equal callannotation "+str(type(output.data)))
             output(computed)
+            output.data=computed
         return True
 
     def run(self):
         functionName = self.select.currentText()
         log.debug(str(self.methods))
         if functionName in self.methods:
+            executed = False
+            functionentry = (self.methods[functionName])[1]
+            log.debug("Method "+str(functionName)+" has functionentry "+str(functionentry))
             #check return type of unique functionname
             if (self.methods[functionName])[0]==None:
-                log.info("Function "+functionName+" does not support signature")
-            else:
-                functionentry = (self.methods[functionName])[1]
-                log.debug("Method "+str(functionName)+" has functionentry "+str(functionentry))
-                #check all outputs for receiving __call__
-                executed = False
+                #custom types: check all outputs for matching type
                 for output in self._outputs:
-                #try:
+                    outputtype = type(output)
+                    log.debug("Output has custom type "+str(outputtype))
+                    if functionentry==outputtype:
+                        if not executed:
+                            executed = Connector._execute(executed,None,self._module,functionName,str(outputtype.__name__),self.logwindow,output)
+            else:
+                #generic types: check all outputs for receiving __call__
+                for output in self._outputs:
                     callannotation = signature(output.__call__).parameters['data'].annotation
                     log.debug("Output has callannotation "+str(callannotation))
                     functionreturn = (self.methods[functionName])[0]
@@ -159,17 +173,11 @@ class Connector:
                         # currently, only one input object is supported
                         # collecting data from all inputs
                         for _input in self._outputs:
-                            log.debug("Type of input object data"+str(type(_input.data)))
-                            #if type(_input.data)==functionentry:
+                            log.debug("Type of input object data "+str(type(_input.data)))
                             if functionentry==type(_input.data):
-                                if executed:
-                                    raise Exception("There are multiple objects handling "+str(type(_input.data))+". The \
-current version does not support handling multiple Input objects of the same type. Please remove "+str(type(_input))+" from module list.")
                                 executed = Connector._execute(executed,output,self._module,functionName,_input.identify(),self.logwindow,_input.data)
                         if not executed and functionentry==type(None):
-                            executed = Connector._execute(executed,output,self._module,functionName,"",self.logwindow,None) 
-                #except AttributeError as ae:
-                #    pass
+                            executed = Connector._execute(executed,output,self._module,functionName,"",self.logwindow,None)
         else:
             raise NameError("Function not found")
         

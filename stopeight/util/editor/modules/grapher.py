@@ -2,6 +2,7 @@
 
 import stopeight.grapher
 from stopeight.util.editor.data import ScribbleData, WaveData
+from stopeight.util.editor.scribble import ScribbleArea
 
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
@@ -22,3 +23,9 @@ def samples_To_VG(data):
     log.debug("Length "+str(len(result)))
     return result
 samples_To_VG.__annotations__ = {'data':WaveData,'return':ScribbleData}
+
+def home(data):
+    objecttype = type(data)
+    log.debug("Object type is "+str(objecttype))
+    return None
+home.__annotations__ = {'data':ScribbleArea,'return':None}

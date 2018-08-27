@@ -171,7 +171,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
     def __call__(self, data, color=Qt.blue, clear=True):
         if clear:
             self.clearImage()
-        self.data=data
+        #self.data=data
         #for d,c in self.data,self.colors:
         #self.scribble.plot(d,c)
         painter = QPainter(self.image)

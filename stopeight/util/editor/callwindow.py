@@ -30,7 +30,7 @@ class outwindow(QWidget):
     #__call__.__annotations__ = {'data': funcsigs._empty}
     
     def update(self):
-        print('Got stdout: "{0}"'.format(self.f.getvalue().decode('utf-8')))
+        print('From callwindow: "{0}"'.format(self.f.getvalue().decode('utf-8')))
         self.text.setText(self.f.getvalue().decode('utf-8'))
         self.show()
         self.f.close()
