@@ -54,13 +54,14 @@ from PyQt5.QtGui import QTabletEvent
 from PyQt5.QtCore import QEvent
 
 from stopeight.logging import logSwitch
-log = logSwitch.logNone()
+log = logSwitch.logPrint()
 
 from stopeight.util.editor.data import ScribbleData,ScribbleBackup,ScribblePoint
 
 class ScribbleArea(QtWidgets.QDockWidget):
     def __init__(self, parent=None):
         super(ScribbleArea, self).__init__(parent)
+        self.setMinimumSize(QSize(250, 300))
 
         self.setAttribute(Qt.WA_StaticContents)
         self.scribbling = False
@@ -177,7 +178,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
         painter = QPainter(self.image)
         painter.setPen(QPen(color, self.myPenWidth, Qt.SolidLine,
                 Qt.RoundCap, Qt.RoundJoin))
-
+        log.debug("Drawing "+str(len(data))+" lines")
         try:
             for n in range(len(data)-1):
                 painter.drawLine(data[n].first,data[n].second,data[n+1].first,data[n+1].second)
