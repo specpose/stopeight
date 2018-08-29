@@ -12,6 +12,13 @@ def _append(data):
             data[id]+=data[id-1]
     return data
 
+def _scalingfactors(data,obj):
+    d_x = max(data[:,0]) - min(data[:,0])
+    d_y = max(data[0,:]) - min(data[0,:])
+    o_x = obj.width()
+    o_y = obj.height()
+    return o_x/d_x,o_y/d_y
+
 def samples_To_VG(data):
     log.debug("Loading with "+str(len(data)))
     from stopeight.grapher import create_vector_graph
@@ -38,9 +45,22 @@ def home(data):
     log.debug("Rotating "+str(angle))
     stack.rotate(angle)
     vectors.apply(stack)
-    log.debug("First "+str(vectors.np()[1][0])+","+str(vectors.np()[1][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
-    stack = Stack()
+    stack=Stack()
     stack.identity()
+    sx,sy=_scalingfactors(vectors.np(),data)
+    log.warning("scaling data "+str(sx)+","+str(sy))
+    tx,ty= (data.width(),0) if sx>sy else (0,data.height())
+    sx,sy= (sy,sy) if sx>sy else (sx,sx)
+    log.debug("scaling "+str(sx)+","+str(sy))
+    stack.scale(sx,sy)
+    vectors.apply(stack)
+    stack=Stack()
+    stack.identity()
+    tx,ty=(vectors.np()[0][0]+(data.width()-vectors.np()[-1][0])/2,-vectors.np()[0][1]) if ty==0 else (-vectors.np()[0][0],vectors.np()[0][1]+(data.height()-vectors.np()[-1][1])/2)
+    log.debug("translating "+str(tx)+","+str(ty))
+    stack.translate(tx,ty)
+    vectors.apply(stack)
+    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
     #from stopeight.util.editor.data import ScribblePoint
     #testvec = []
     #test=ScribblePoint(0.0,data.height()/2)
