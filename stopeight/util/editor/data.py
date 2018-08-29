@@ -1,10 +1,10 @@
 from future.utils import with_metaclass
 from stopeight.util.runnable import *
 
-class ScribblePoint:
-    def __init__(self,x,y):
-        self.first = x
-        self.second = y
+class ScribblePoint(tuple):
+    def __init__(self,lis):
+        self.first = lis[0]
+        self.second = lis[1]
 
 class ScribbleData(list):
     def __init__(self):
@@ -13,6 +13,8 @@ class ScribbleData(list):
     def append(self,something):
         if type(something)!=ScribblePoint:
             raise Exception("Please only use ScribblePoint in ScribbleData.")
+        super(ScribbleData,self).append(something)
+        
 #class ScribbleData(list):#(with_metaclass(Singleton,list)):
 #class ScribbleData(Singleton):
     #def __init__(self, **kwargs):

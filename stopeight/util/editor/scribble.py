@@ -85,7 +85,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
     def _input(self, x, y):
         if type(self.data)==type(None):
             self.data = ScribbleData()#Fallback should not happen
-        self.data.append(ScribblePoint(x,y))
+        self.data.append(ScribblePoint((x,y)))
 
     def _press(self,event):
         self.scribbling = True
@@ -148,7 +148,10 @@ class ScribbleArea(QtWidgets.QDockWidget):
     def paintEvent(self, event):
         painter = QPainter(self)
         dirtyRect = event.rect()
-        painter.drawImage(dirtyRect, self.image, dirtyRect)
+        try:
+            painter.drawImage(dirtyRect, self.image, dirtyRect)
+        finally:
+            painter.end()
 
     def resizeEvent(self, event):
         if self.width() > self.image.width() or self.height() > self.image.height():
@@ -161,10 +164,11 @@ class ScribbleArea(QtWidgets.QDockWidget):
 
     def drawLineTo(self, endPoint):
         painter = QPainter(self.image)
-        painter.setPen(QPen(self.myPenColor, self.myPenWidth, Qt.SolidLine,
-                Qt.RoundCap, Qt.RoundJoin))
-
-        painter.drawLine(self.lastPoint, endPoint)
+        try:
+            painter.setPen(QPen(self.myPenColor, self.myPenWidth, Qt.SolidLine,Qt.RoundCap, Qt.RoundJoin))
+            painter.drawLine(self.lastPoint, endPoint)
+        finally:
+            painter.end()
         rad = self.myPenWidth / 2 + 2
         self.update(QRect(self.lastPoint, endPoint).normalized().adjusted(-rad, -rad, +rad, +rad))
         self.lastPoint = QPoint(endPoint)
@@ -175,14 +179,13 @@ class ScribbleArea(QtWidgets.QDockWidget):
         #self.data=data
         #for d,c in self.data,self.colors:
         #self.scribble.plot(d,c)
-        painter = QPainter(self.image)
-        painter.setPen(QPen(color, self.myPenWidth, Qt.SolidLine,
-                Qt.RoundCap, Qt.RoundJoin))
         log.debug("Drawing "+str(len(data))+" lines")
+        painter = QPainter(self.image)
         try:
+            painter.setPen(QPen(color, self.myPenWidth, Qt.SolidLine,Qt.RoundCap, Qt.RoundJoin))
             for n in range(len(data)-1):
                 painter.drawLine(data[n].first,data[n].second,data[n+1].first,data[n+1].second)
-        except:
+        finally:
             painter.end()
         self.update()
     __call__.__annotations__ = {'data': ScribbleData}
@@ -194,7 +197,10 @@ class ScribbleArea(QtWidgets.QDockWidget):
         newImage = QImage(newSize, QImage.Format_RGB32)
         newImage.fill(qRgb(255, 255, 255))
         painter = QPainter(newImage)
-        painter.drawImage(QPoint(0, 0), image)
+        try:
+            painter.drawImage(QPoint(0, 0), image)
+        finally:
+            painter.end()
         self.image = newImage
 
     def print_(self):
@@ -208,8 +214,10 @@ class ScribbleArea(QtWidgets.QDockWidget):
             size.scale(rect.size(), Qt.KeepAspectRatio)
             painter.setViewport(rect.x(), rect.y(), size.width(), size.height())
             painter.setWindow(self.image.rect())
-            painter.drawImage(0, 0, self.image)
-            painter.end()
+            try:
+                painter.drawImage(0, 0, self.image)
+            finally:
+                painter.end()
 
     def penColor(self):
         return self.myPenColor
