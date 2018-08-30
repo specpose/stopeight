@@ -19,7 +19,7 @@ def _scalingfactors(data,obj):
     o_y = obj.height()
     return o_x/d_x,o_y/d_y
 
-def samples_To_VG(data):
+def create_vector_graph(data):
     log.debug("Loading with "+str(len(data)))
     from stopeight.grapher import create_vector_graph
     #Hack copy 1
@@ -32,9 +32,9 @@ def samples_To_VG(data):
     for i,v in enumerate(result):
         array.append(ScribblePoint([v.first,v.second]))
     return array
-samples_To_VG.__annotations__ = {'data':WaveData,'return':ScribbleData}
+create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
 
-def home(data):
+def resize(data):
     #doesnt work: sip.wrappertype
     #log.warning("data "+str(type(data)))
     #log.warning("ScribbleArea "+str(ScribbleArea.__class__))
@@ -81,6 +81,10 @@ def home(data):
 ##    test=ScribblePoint([data.width()/2,data.height()/2])
 ##    testvec.append(test)
     log.debug("First "+str(testvec[0][0])+","+str(testvec[0][1])+" Last "+str(testvec[-1][0])+","+str(testvec[-1][1]))
-    data(testvec)    
+    #Hack copy
+    result = ScribbleData()
+    for el in testvec:
+        result.append(ScribblePoint((el[0],el[1])))
+    data(result)    
     return None
-home.__annotations__ = {'data':ScribbleArea,'return':None}
+resize.__annotations__ = {'data':ScribbleArea,'return':type(None)}

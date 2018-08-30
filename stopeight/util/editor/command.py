@@ -141,7 +141,7 @@ current version does not support handling multiple Input objects of the same typ
         logwindow.update()
         if output!=None:
             if type(computed)!=type(output.data):
-                log.warning("functionreturn "+str(type(computed))+" not equal callannotation "+str(type(output.data)))
+                raise TypeError("functionreturn "+str(type(computed))+" not equal callannotation "+str(type(output.data)))
             output(computed)
             output.data=computed
         return True
@@ -153,22 +153,23 @@ current version does not support handling multiple Input objects of the same typ
             executed = False
             functionentry = (self.methods[functionName])[1]
             log.debug("Method "+str(functionName)+" has functionentry "+str(functionentry))
+            functionreturn = (self.methods[functionName])[0]
+            log.debug("Method "+str(functionName)+" has functionreturn "+str(functionreturn))
             #check return type of unique functionname
-            if (self.methods[functionName])[0]==None:
+            if functionreturn==type(None):
                 #custom types: check all outputs for matching type
-                for output in self._outputs:
-                    outputtype = type(output)
-                    log.debug("Output has custom type "+str(outputtype))
-                    if functionentry==outputtype:
+                for _input in self._outputs:
+                    inputtype = type(_input)
+                    log.debug("Output has custom type "+str(inputtype))
+                    if functionentry==inputtype:
+                        log.debug("FunctionEntry "+str(functionentry)+" inputtype "+str(inputtype))
                         if not executed:
-                            executed = Connector._execute(executed,None,self._module,functionName,str(outputtype.__name__),self.logwindow,output)
+                            executed = Connector._execute(executed,None,self._module,functionName,str(inputtype.__name__),self.logwindow,_input)
             else:
                 #generic types: check all outputs for receiving __call__
                 for output in self._outputs:
                     callannotation = signature(output.__call__).parameters['data'].annotation
                     log.debug("Output has callannotation "+str(callannotation))
-                    functionreturn = (self.methods[functionName])[0]
-                    log.debug("Method "+str(functionName)+" has functionreturn "+str(functionreturn))
                     if functionreturn == callannotation:
                         # currently, only one input object is supported
                         # collecting data from all inputs
