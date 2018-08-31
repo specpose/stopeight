@@ -15,8 +15,8 @@ def _append(data):
 def _extrema(data):
     from operator import itemgetter
     left,right,bottom,top = min(data,key=itemgetter(0))[0],max(data,key=itemgetter(0))[0],min(data,key=itemgetter(1))[1],max(data,key=itemgetter(1))[1]
-    if bottom < 0:
-        bottom,top = top,bottom
+    #if scribble
+    bottom,top = top,bottom
     return left,right,bottom,top
 
 def _scalingfactors(left,right,bottom,top,obj):
