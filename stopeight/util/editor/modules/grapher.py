@@ -12,9 +12,16 @@ def _append(data):
             data[id]+=data[id-1]
     return data
 
-def _scalingfactors(data,obj):
-    d_x = max(data[:,0]) - min(data[:,0])
-    d_y = max(data[0,:]) - min(data[0,:])
+def _extrema(data):
+    from operator import itemgetter
+    left,right,bottom,top = min(data,key=itemgetter(0))[0],max(data,key=itemgetter(0))[0],min(data,key=itemgetter(1))[1],max(data,key=itemgetter(1))[1]
+    if bottom < 0:
+        bottom,top = top,bottom
+    return left,right,bottom,top
+
+def _scalingfactors(left,right,bottom,top,obj):
+    d_x = abs(right - left)
+    d_y = abs(top - bottom)
     o_x = obj.width()
     o_y = obj.height()
     return o_x/d_x,o_y/d_y
@@ -23,7 +30,7 @@ def create_vector_graph(data):
     log.debug("Loading with "+str(len(data)))
     from stopeight.grapher import create_vector_graph
     #Hack copy 1
-    result = create_vector_graph(data)
+    result = create_vector_graph(data,1,1.0,True)
     result = _append(result)
     log.debug("Return Length "+str(len(result)))
     import numpy
@@ -34,6 +41,7 @@ def create_vector_graph(data):
     return array
 create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
 
+#grapher data y inverted, scribble data y normal
 def resize(data):
     #doesnt work: sip.wrappertype
     #log.warning("data "+str(type(data)))
@@ -45,34 +53,53 @@ def resize(data):
     vectors = Vectors()
     for element in data.data:
         vectors.push_back(Vector(element.first,element.second))
+    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
+    stack=Stack()
+    stack.identity()
+    tx,ty=(-vectors.np()[0][0],-vectors.np()[0][1])
+    log.debug("translating "+str(tx)+","+str(ty))
+    stack.translate(tx,ty)
+    vectors.apply(stack)
+    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
     stack = Stack()
     stack.identity()
     from numpy.core.umath import arctan2
-    angle = arctan2(vectors.np()[-1][1],vectors.np()[-1][0])
+    from numpy import rad2deg
+    angle = -rad2deg(arctan2(vectors.np()[-1][1],vectors.np()[-1][0]))
     log.debug("Rotating "+str(angle))
     stack.rotate(angle)
     vectors.apply(stack)
+    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
     stack=Stack()
     stack.identity()
-    sx,sy=_scalingfactors(vectors.np(),data)
+    left,right,bottom,top=_extrema(vectors.np())
+    log.debug("Left "+str(left)+" Right "+str(right)+" Bottom "+str(bottom)+" Top "+str(top))
+    log.debug("Width "+str(abs(right-left))+" Height "+str(abs(top-bottom)))
+    sx,sy=_scalingfactors(left,right,bottom,top,data)
     log.warning("scaling data "+str(sx)+","+str(sy))
-    tx,ty= (data.width(),0) if sx>sy else (0,data.height())
+    landscape= True if sx<sy else False
+    log.debug("Mode landscape "+str(landscape))
     sx,sy= (sy,sy) if sx>sy else (sx,sx)
     log.debug("scaling "+str(sx)+","+str(sy))
     stack.scale(sx,sy)
     vectors.apply(stack)
+    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
+    left,right,bottom,top=_extrema(vectors.np())
+    log.debug("Left "+str(left)+" Right "+str(right)+" Bottom "+str(bottom)+" Top "+str(top))
     stack=Stack()
     stack.identity()
-    tx,ty=(-vectors.np()[0][0],-vectors.np()[0][1]) if ty==0 else (-vectors.np()[0][0],-vectors.np()[0][1])
+    tx,ty=(-left,-top)
     log.debug("translating "+str(tx)+","+str(ty))
     stack.translate(tx,ty)
     vectors.apply(stack)
+    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
     stack=Stack()
     stack.identity()
-    tx,ty=((data.width()-vectors.np()[-1][0])/2,0) if ty==0 else (0,(data.height()-vectors.np()[-1][1])/2)
+    tx,ty=((data.width()-abs(right-left))/2,0) if not landscape else (0,(data.height()-abs(top-bottom))/2)
     log.debug("translating "+str(tx)+","+str(ty))
     stack.translate(tx,ty)
     vectors.apply(stack)
+    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
     testvec = vectors.np()
 ##    from stopeight.util.editor.data import ScribblePoint
 ##    testvec = []
@@ -80,6 +107,7 @@ def resize(data):
 ##    testvec.append(test)
 ##    test=ScribblePoint([data.width()/2,data.height()/2])
 ##    testvec.append(test)
+    log.debug("Rendering...")
     log.debug("First "+str(testvec[0][0])+","+str(testvec[0][1])+" Last "+str(testvec[-1][0])+","+str(testvec[-1][1]))
     #Hack copy
     result = ScribbleData()
