@@ -5,6 +5,13 @@ Most of the mathematics are only available in LaTeX form at the moment. PDF file
 
 Preparing the data involves the following two or three steps:
 
+.. toctree::
+   :maxdepth: 2
+
+   vector-graph
+
+   analyzer
+
 * :doc:`vector-graph`
     Working.
 

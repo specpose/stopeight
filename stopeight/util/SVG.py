@@ -8,7 +8,7 @@
 
 import sys
 import os
-display_prog = 'display' # Command to execute to display images.
+display_prog = '/usr/lib/x86_64-linux-gnu/qt5/examples/svg/svgviewer/svgviewer' # Command to execute to display images.
 
 class Scene:
     def __init__(self,name="SVG.out",height=400,width=400):
