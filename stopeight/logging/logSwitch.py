@@ -25,13 +25,11 @@ class logNone:
 
     @staticmethod
     def debug(message):
-        print("DEBUG: ",message)
         pass
-    
+        
     @staticmethod
     def info(message):
-        print("DEBUG: ",message)
-        pass
+        print("INFO: ",message)
 
     @staticmethod
     def warning(message):

@@ -18,7 +18,7 @@ requirements:
     - python
     - setuptools
 #    - pybind11 # conda-forge
-#    - cmake # cmake
+    - cmake # cmake
     - stopeight-clibs
     - pyqt >=5.6.0
 

@@ -27,7 +27,7 @@ def _convert(spf):
     samples = np.fromstring(signal, datatype)
     return fconverter(np.asarray(samples, dtype=np.float64))
 
-def open_GUI():
+def open_WaveData():
     import matplotlib.pyplot as ax
     import wave
     import sys
@@ -40,4 +40,4 @@ def open_GUI():
     log.debug("wave ndarray is "+str(type(result)))
     log.debug("Length of samples in mono file "+str(len(result)))
     return result.view(WaveData)
-open_GUI.__annotations__ = {'return': WaveData}
+open_WaveData.__annotations__ = {'return': WaveData}
