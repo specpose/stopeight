@@ -23,10 +23,12 @@ def stdout_redirector(stream):
         # Make original_stdout_fd point to the same file as to_fd
         os.dup2(to_fd, original_stdout_fd)
         # Create a new sys.stdout that points to the redirected fd
+        if not sys.version_info[0]<3:
         #python3
-        #sys.stdout = io.TextIOWrapper(os.fdopen(original_stdout_fd, 'wb'))
+            sys.stdout = io.TextIOWrapper(os.fdopen(original_stdout_fd, 'wb'))
+        else:
         #python2
-        sys.stdout = io.open(original_stdout_fd, 'wb')
+            sys.stdout = io.open(original_stdout_fd, 'wb')
 
     # Save a copy of the original stdout fd in saved_stdout_fd
     saved_stdout_fd = os.dup(original_stdout_fd)
