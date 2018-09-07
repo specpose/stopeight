@@ -1,5 +1,8 @@
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 
+#python2
+from __future__ import print_function
+
 import traceback
 import logging
 
