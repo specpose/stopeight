@@ -31,13 +31,15 @@ def create_vector_graph(data):
     from stopeight.grapher import create_vector_graph
     #Hack copy 1
     result = create_vector_graph(data,1,1.0,True)
+    #from numpy import ndarray
+    #assert type(result) is ndarray, "Cast Error: %r" % type(result)
     result = _append(result)
     log.debug("Return Length "+str(len(result)))
     import numpy
     #Hack copy 2
     array = ScribbleData()
     for i,v in enumerate(result):
-        array.append(ScribblePoint([v.first,v.second]))
+        array.append(ScribblePoint([v.get_x(),v.get_y()]))
     return array
 create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
 
@@ -52,7 +54,7 @@ def resize(data):
     from stopeight.grapher import Vectors,Vector,Stack
     vectors = Vectors()
     for element in data.data:
-        vectors.push_back(Vector(element.first,element.second))
+        vectors.push_back(Vector(element.get_x(),element.get_y()))
     log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
     stack=Stack()
     stack.identity()

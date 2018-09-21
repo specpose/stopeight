@@ -184,7 +184,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
         try:
             painter.setPen(QPen(color, self.myPenWidth, Qt.SolidLine,Qt.RoundCap, Qt.RoundJoin))
             for n in range(len(data)-1):
-                painter.drawLine(data[n].first,data[n].second,data[n+1].first,data[n+1].second)
+                painter.drawLine(data[n].get_x(),data[n].get_y(),data[n+1].get_x(),data[n+1].get_y())
         finally:
             painter.end()
         self.update()
