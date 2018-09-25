@@ -51,7 +51,7 @@ def resize(data):
     #assert type(data) is type(ScribbleArea), "Wrong input data type: %r" % data
     assert type(data.data) is ScribbleData, "Wrong input data.data type: %r" % type(data.data)
     log.debug("Width "+str(data.width())+" Height "+str(data.height()))
-    from stopeight.grapher import Vectors,Vector,Stack
+    from stopeight.matrix import Vectors,Vector,Stack
     vectors = Vectors()
     for element in data.data:
         vectors.push_back(Vector(element.get_x(),element.get_y()))
