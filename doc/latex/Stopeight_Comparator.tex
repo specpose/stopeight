@@ -25,26 +25,6 @@ This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\
 
-\subsection{Parametrised Korners}
-If we have $T_{3}$ and all the Compact Covers worked out, Korners can be redefined (Swell?) and new differences and areas parametrised. $p$ supremums are considered over the whole section of the Compact Cover $V_{n}$. The interval over the bounds of a supremum is $[a(K_{p}),b(K_{p})]$.
-\begin{align}
-K_{p+1} = \{ C_{3} \in  [a,b]\vert \sup \limits _{V_{n} \setminus [a(K_{p}),b(K_{p})]} \lvert curvature(a,b) \rvert \}
-\end{align}
-(How to set n?)\\
-As a consequence $diameter$ and $area$ could be parametrised on the new Korners $dom(\iota)=T_{3}\cup K_{p}$. ($dom(\xi)$?).\\
-\begin{align}
-area_{sup}(K_{p})=\int \limits _{a(K_{p})}^{b(K_{p})} \lvert \iota_{K_{p}}(t)-\iota_{K_{p+1}}(t) \rvert \mathrm{d}t\\
-diameter_{sup}(a,b)=\sup \limits _{c,d \in [a,b]} \lvert \xi(d) - \xi(c) \rvert
-\end{align}
-The solid angle now depends on the bisection and $area_{sup}$. (sum or product?)
-\begin{equation}
-solidangle_{Abs}(a,b)=\sum \limits _{i=0}^{p} \frac{area_{sup}(K_{i})}{(\xi(t(K_{i}))-\iota(t(K_{i})))^2}
-\end{equation}
-(horizontals on bisections? change of variable?)
-\begin{align}
-area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
-\end{align}
-
 \subsection{Area of Jitter}
 The integral of the parametrisation on a non-Straight segment is larger than the integral of the parametrisation of a straight segment. (Additional benefits?)
 \begin{align}
@@ -82,7 +62,7 @@ times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{
 \end{equation}
 
 \subsection{Imaginary Visibility}
-Visibility is an increase of the polynomial (degree or coefficients?) of a curve segment.
+Visibility is an increase of the polynomial Coefficients(?) of a curve segment.
 (No: When visibility is increased in a Spiral, it creates more subsegments/scale spaces). Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
 \begin{align}
 visibility(a,b)= alt(a,b) * signs(\mu,solidangle_{Abs}(a,b))\\
@@ -105,13 +85,10 @@ isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b))(?)
 $jitter$ grows, but $diameter$ constant.
 
 \subsection{Jaggedness}
-Is aliasing of discretisation/rasterisation, but not to be confused with signal aliasing. Can be defined on Korners and Turns.
+Is aliasing of discretisation/rasterisation, but not to be confused with signal aliasing. Can be defined on Focals and Turns.
 \begin{align}
-jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}(t)-\xi_{K}(t)\rvert \mathrm{d}t
+jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}(t)-\xi_{F}(t)\rvert \mathrm{d}t
 \end{align}
-
-\subsection{Tangential Paraglide Differences}
-Depend on focal points. Adjusted $area$
 
 \chapter{Separation}
 The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.
