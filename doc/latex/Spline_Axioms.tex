@@ -1,0 +1,140 @@
+\documentclass{report}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{biblatex}
+\renewcommand{\baselinestretch}{1.25}
+
+\addbibresource{Stopeight.bib}
+
+\begin{document}
+\title{Spline Axioms}
+\author{Fassio Blatter}
+\maketitle
+
+\chapter{Linear Limitation}
+
+\subsection{Affine Transformations}
+If a matrix is a product of affine (sub-)space transformations, its upper triangular matrix is an expression of a limitation to the type and combination of the factors.\\\\
+The simple case of a straight line
+\begin{equation}
+line(t):
+\begin{pmatrix}
+1 & t
+\end{pmatrix}
+\underbrace{\begin{bmatrix}
+1 & 0\\
+-2 & 1
+\end{bmatrix}}_{Coefficients}
+\begin{pmatrix}
+Mh_{1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+h_{1}' & h_{2}'
+\end{pmatrix}
+\end{equation}
+The more complicate case of a quadratic bezier spline
+\begin{equation}
+quad(t):
+\begin{pmatrix}
+1 & t & t^2
+\end{pmatrix}
+\underbrace{\begin{bmatrix}
+1 & 0 & 0\\
+-2 & 2 & 0\\
+1 & -2 &1
+\end{bmatrix}}_{Coefficients}
+\begin{pmatrix}
+Mh_{1} & Mh_{2} & Mh_{3}
+\end{pmatrix}
+=
+\begin{pmatrix}
+h_{1}' & h_{2}' & h_{3}'
+\end{pmatrix}
+\end{equation}
+The coefficient Matrix $Coefficients$ is not garanteed to be invertible. It can be a product of non-commutative factors. Or there can be illegal shearing.
+
+\subsection{Number of Variables}
+If the coefficient Matrix of a polynomial can be orthogonalised, the polynomial can be defined by a single variable. The nonlinear equation
+\begin{equation}
+nonlinear(t):
+\begin{bmatrix}
+1 & t & t^2\\
+1 & u & u^2
+\end{bmatrix}
+\underbrace{\begin{bmatrix}
+2 & -2 & 1\\
+-2 & 4 & -2\\
+1 & -2 & 2
+\end{bmatrix}}_{Coefficients}
+\begin{pmatrix}
+Mh_{1} & Mh_{2} & Mh_{3}
+\end{pmatrix}
+=
+\begin{pmatrix}
+h_{1}' & h_{2}' & h_{3}'
+\end{pmatrix}
+\end{equation}
+has the same control points, but the coefficient matrix $Coefficients$ can be singular $det(Coefficients)=0$.
+
+\chapter{Limited Image}
+If an orthonormal base can be found for the $Image \in \mathbb{Z}^3$
+\begin{equation}
+orthonormal(t):
+\begin{pmatrix}
+1 & t & t^2
+\end{pmatrix}
+\underbrace{\begin{pmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{pmatrix}}_{Coefficients}
+\underbrace{\begin{bmatrix}
+Me_{1} & Me_{2} & Me_{3}
+\end{bmatrix}}_{Base}
+=
+\underbrace{
+\lambda
+\begin{bmatrix}
+Me_{1}' & Me_{2}' & Me_{3}'
+\end{bmatrix}}_{Image}
+\end{equation}
+there do not exist any polynomials other than the one expressed by the product of the coefficient matrix $Coefficients$ and the $Base$. It is a (diffeo?)morphism.\\\\
+For a Lie Group a characteristic polynomial can be found
+\begin{align}
+orthonormal_{Coefficients,Base}(\lambda): \text{GL(3,R)} \rightarrow Polynomial\\
+GL(3,R) = ONB(a,b); [a,b] \subseteq \text{Chart of }Domain
+\end{align}
+
+\chapter{Eliptic Limitation}
+\subsection{Combination of Bases}
+A quartic bezier spline has a total of five Control points which can be reduced to three if the subspline alignment is smooth. A circle has a total of two Focal Points, which can be reduced to one if smoothness applies. If we deviate from this smoothness, a Spiral forms.
+\subsection{Parametrised Focal Points}
+Beyond quadratic approximation, each Corner is a Focal point with a focal vector. On a Spiral there are multiple Corners, on a ZigZag, there is none. The Focal Points mostly make sense in the context of sub-pulse analysis, i.e. the comparison of rise and fall.\\\\
+If we have $T_{3}$ and all the Compact Covers worked out, Focal points can be defined (Swell?) and new differences and areas parametrised. $p$ supremums are considered over the whole section of the Compact Cover $V_{n}$. The interval over the bounds of a supremum is $[a(F_{p}),b(F_{p})]$.
+\begin{align}
+F_{p+1} = \{ C_{3} \in  [a,b]\vert \sup \limits _{V_{n} \setminus [a(F_{p}),b(F_{p})]} \lvert curvature(a,b) \rvert \}
+\end{align}
+There is one Focal point per arc $\{U_{m}\}$.\\
+As a consequence $diameter$ and $area$ could be parametrised on the new Focal points $dom(\iota)=T_{3}\cup F_{p}$. ($dom(\xi)$?).\\
+\begin{align}
+area_{sup}(K_{p})=\int \limits _{a(F_{p})}^{b(F_{p})} \lvert \iota_{F_{p}}(t)-\iota_{F_{p+1}}(t) \rvert \mathrm{d}t\\
+diameter_{sup}(a,b)=\sup \limits _{c,d \in [a,b]} \lvert \xi(d) - \xi(c) \rvert
+\end{align}
+The solid angle now depends on the bisection and $area_{sup}$. (sum or product?)
+\begin{equation}
+solidangle_{Abs}(a,b)=\sum \limits _{i=0}^{p} \frac{area_{sup}(F_{i})}{(\xi(t(F_{i}))-\iota(t(F_{i})))^2}
+\end{equation}
+The horizontals on the bisections are defined by the transversality of the eliptic approximation.
+\begin{align}
+area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
+\end{align}
+(change of variable?)
+\subsection{Tangential Paraglide Differences}
+Depend on focal points. Adjusted $area$
+
+\printbibliography
+
+\end{document}
