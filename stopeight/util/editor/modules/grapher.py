@@ -9,7 +9,7 @@ log = logSwitch.logPrint()
 def _append(data):
     for id,vector in enumerate(data):
         if id!=0:
-            data[id]+=data[id-1]
+            data[id]['coords']+=data[id-1]['coords']
     return data
 
 def _extrema(data):
@@ -29,17 +29,15 @@ def _scalingfactors(left,right,bottom,top,obj):
 def create_vector_graph(data):
     log.debug("Loading with "+str(len(data)))
     from stopeight.grapher import create_vector_graph
-    #Hack copy 1
+    import numpy as np
     result = create_vector_graph(data,1,1.0,True)
-    #from numpy import ndarray
-    #assert type(result) is ndarray, "Cast Error: %r" % type(result)
+    assert type(result) is np.ndarray, "Cast Error: %r" % type(result)
     result = _append(result)
     log.debug("Return Length "+str(len(result)))
-    import numpy
     #Hack copy 2
     array = ScribbleData()
     for i,v in enumerate(result):
-        array.append(ScribblePoint([v.get_x(),v.get_y()]))
+        array.append(ScribblePoint([v['coords'][0],v['coords'][1]]))
     return array
 create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
 
