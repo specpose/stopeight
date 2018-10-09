@@ -17,18 +17,17 @@ requirements:
   build:
     - python
     - setuptools
-#    - pybind11 # conda-forge
+    - pybind11 # conda-forge
     - cmake # cmake
     - stopeight-clibs
     - pyqt >=5.6.0
 
   run:
     - python
-    - vs2015_runtime  # [win]
+    - vs2017_win-64  # [win]
     - stopeight-clibs
     - pyqt >=5.6.0
     - future
-#    - six
     - funcsigs # [python2]
     - matplotlib
     - numpy
