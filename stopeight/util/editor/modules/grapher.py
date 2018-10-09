@@ -9,7 +9,7 @@ log = logSwitch.logPrint()
 def _append(data):
     for id,vector in enumerate(data):
         if id!=0:
-            data[id]+=data[id-1]
+            data[id]['coords']+=data[id-1]['coords']
     return data
 
 def _extrema(data):
@@ -29,17 +29,15 @@ def _scalingfactors(left,right,bottom,top,obj):
 def create_vector_graph(data):
     log.debug("Loading with "+str(len(data)))
     from stopeight.grapher import create_vector_graph
-    #Hack copy 1
+    import numpy as np
     result = create_vector_graph(data,1,1.0,True)
-    #from numpy import ndarray
-    #assert type(result) is ndarray, "Cast Error: %r" % type(result)
+    assert type(result) is np.ndarray, "Cast Error: %r" % type(result)
     result = _append(result)
     log.debug("Return Length "+str(len(result)))
-    import numpy
     #Hack copy 2
     array = ScribbleData()
     for i,v in enumerate(result):
-        array.append(ScribblePoint([v.get_x(),v.get_y()]))
+        array.append(ScribblePoint([v['coords'][0],v['coords'][1]]))
     return array
 create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
 
@@ -55,26 +53,26 @@ def resize(data):
     vectors = Vectors()
     for element in data.data:
         vectors.push_back(Vector(element.get_x(),element.get_y()))
-    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
+    log.debug("First "+str(vectors.__array__()[0][0])+","+str(vectors.__array__()[0][1])+" Last "+str(vectors.__array__()[-1][0])+","+str(vectors.__array__()[-1][1]))
     stack=Stack()
     stack.identity()
-    tx,ty=(-vectors.np()[0][0],-vectors.np()[0][1])
+    tx,ty=(-vectors.__array__()[0][0],-vectors.__array__()[0][1])
     log.debug("translating "+str(tx)+","+str(ty))
     stack.translate(tx,ty)
     vectors.apply(stack)
-    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
+    log.debug("First "+str(vectors.__array__()[0][0])+","+str(vectors.__array__()[0][1])+" Last "+str(vectors.__array__()[-1][0])+","+str(vectors.__array__()[-1][1]))
     stack = Stack()
     stack.identity()
     from numpy.core.umath import arctan2
     from numpy import rad2deg
-    angle = -rad2deg(arctan2(vectors.np()[-1][1],vectors.np()[-1][0]))
+    angle = -rad2deg(arctan2(vectors.__array__()[-1][1],vectors.__array__()[-1][0]))
     log.debug("Rotating "+str(angle))
     stack.rotate(angle)
     vectors.apply(stack)
-    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
+    log.debug("First "+str(vectors.__array__()[0][0])+","+str(vectors.__array__()[0][1])+" Last "+str(vectors.__array__()[-1][0])+","+str(vectors.__array__()[-1][1]))
     stack=Stack()
     stack.identity()
-    left,right,bottom,top=_extrema(vectors.np())
+    left,right,bottom,top=_extrema(vectors.__array__())
     log.debug("Left "+str(left)+" Right "+str(right)+" Bottom "+str(bottom)+" Top "+str(top))
     log.debug("Width "+str(abs(right-left))+" Height "+str(abs(top-bottom)))
     sx,sy=_scalingfactors(left,right,bottom,top,data)
@@ -85,8 +83,8 @@ def resize(data):
     log.debug("scaling "+str(sx)+","+str(sy))
     stack.scale(sx,sy)
     vectors.apply(stack)
-    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
-    left,right,bottom,top=_extrema(vectors.np())
+    log.debug("First "+str(vectors.__array__()[0][0])+","+str(vectors.__array__()[0][1])+" Last "+str(vectors.__array__()[-1][0])+","+str(vectors.__array__()[-1][1]))
+    left,right,bottom,top=_extrema(vectors.__array__())
     log.debug("Left "+str(left)+" Right "+str(right)+" Bottom "+str(bottom)+" Top "+str(top))
     stack=Stack()
     stack.identity()
@@ -94,15 +92,15 @@ def resize(data):
     log.debug("translating "+str(tx)+","+str(ty))
     stack.translate(tx,ty)
     vectors.apply(stack)
-    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
+    log.debug("First "+str(vectors.__array__()[0][0])+","+str(vectors.__array__()[0][1])+" Last "+str(vectors.__array__()[-1][0])+","+str(vectors.__array__()[-1][1]))
     stack=Stack()
     stack.identity()
     tx,ty=((data.width()-abs(right-left))/2,0) if not landscape else (0,(data.height()-abs(top-bottom))/2)
     log.debug("translating "+str(tx)+","+str(ty))
     stack.translate(tx,ty)
     vectors.apply(stack)
-    log.debug("First "+str(vectors.np()[0][0])+","+str(vectors.np()[0][1])+" Last "+str(vectors.np()[-1][0])+","+str(vectors.np()[-1][1]))
-    testvec = vectors.np()
+    log.debug("First "+str(vectors.__array__()[0][0])+","+str(vectors.__array__()[0][1])+" Last "+str(vectors.__array__()[-1][0])+","+str(vectors.__array__()[-1][1]))
+    testvec = vectors.__array__()
 ##    from stopeight.util.editor.data import ScribblePoint
 ##    testvec = []
 ##    test=ScribblePoint([0.0,data.height()/2])
