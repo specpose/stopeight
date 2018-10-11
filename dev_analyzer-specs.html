@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Analyzer &#8212; stopeight 0.1.1 documentation</title>
+    <title>Representation &#8212; stopeight 0.1.1 documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,9 +26,6 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
-    <link rel="up" title="Theory" href="theory.html" />
-    <link rel="next" title="Applications" href="applications.html" />
-    <link rel="prev" title="Grapher" href="vector-graph.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -43,29 +40,17 @@
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/crab.png" alt="Logo"/>
-            </a></p>
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Analyzer</a><ul>
-<li><a class="reference internal" href="#extraction-of-feature-points">Extraction of Feature Points</a></li>
-</ul>
-</li>
-</ul>
-<div class="relations">
+            </a></p><div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="theory.html">Theory</a><ul>
-      <li>Previous: <a href="vector-graph.html" title="previous chapter">Grapher</a></li>
-      <li>Next: <a href="applications.html" title="next chapter">Applications</a></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/analyzer.txt"
+      <li><a href="_sources/dev_analyzer-specs.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -85,14 +70,16 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="analyzer">
-<h1>Analyzer<a class="headerlink" href="#analyzer" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="extraction-of-feature-points">
-<h2>Extraction of Feature Points<a class="headerlink" href="#extraction-of-feature-points" title="Permalink to this headline">¶</a></h2>
-<p>The analyzer then converts the vector graph into a sequence of one Turn, one Corner and one Turn. The sequence - starting with a Turn - has one Corner terminated by a turn and is concatenated into Turn-Corner-Turn-Corner-Turn.</p>
-<img alt="_images/extraction_sequence.svg" src="_images/extraction_sequence.svg" /><p>For developer information on how this is done see <a class="reference internal" href="dev_analyzer.html"><span class="doc">Analyzer Algorithm</span></a></p>
-<p>This input can be used to make a matchline overlay comparison (See <a class="reference internal" href="dev_comparator.html"><span class="doc">Comparator</span></a>) to previously recorded vector graphs.</p>
-</div>
+  <div class="section" id="representation">
+<h1>Representation<a class="headerlink" href="#representation" title="Permalink to this headline">¶</a></h1>
+<p>Combining 4 quadratic bezier splines with control points</p>
+<div class="math">
+<p><img src="_images/math/f6b869109ed98055b27bf9b06c3cb5b7d4a44ff7.svg" alt="Controls = \{Turn1,Q1,Q2,Q3,Corner,Q4,Q5,Q6,Turn2\}"/></p>
+</div><p>Solving the linear equation</p>
+<div class="math">
+<p><img src="_images/math/b1eee4055960efed015bee32bb3353501988dadd.svg" alt=""/></p>
+</div><p>Where distance between Series point and equation point tangent distance</p>
+<p>is smaller than threshold</p>
 </div>
 
 
@@ -109,7 +96,7 @@
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
       
       |
-      <a href="_sources/analyzer.txt"
+      <a href="_sources/dev_analyzer-specs.txt"
           rel="nofollow">Page source</a>
     </div>
 

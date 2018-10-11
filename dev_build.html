@@ -76,6 +76,10 @@
             
   <div class="section" id="build">
 <h1>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
+<dl class="docutils">
+<dt>Requirements (can also be satisfied via conda <a class="reference internal" href="stopeight.html"><span class="doc">Stopeight</span></a>)::</dt>
+<dd>$ sudo apt-get install cmake build-essential qt5-default python3-pip python3-pyqt5 python3-pybind11 python3-future</dd>
+</dl>
 <p>The stopeight repository contains stopeight-clibs:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight.git
 $ cd /path/to/where/stopeight
@@ -98,9 +102,14 @@ $ make &amp;&amp; sudo make install
 $ sudo ldconfig
 </pre></div>
 </div>
-<p>Build and install stopeight:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd ../../
-$ python setup.py install
+<dl class="docutils">
+<dt>Build and install stopeight::</dt>
+<dd>$ cd ../../</dd>
+<dt>Needed to create packaging version required for install::</dt>
+<dd>$ python setup.py sdist</dd>
+</dl>
+<p>Finally install:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python setup.py install
 </pre></div>
 </div>
 </div>

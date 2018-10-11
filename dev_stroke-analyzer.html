@@ -97,30 +97,6 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">points</span>
 </pre></div>
 </div>
-<span class="target" id="module-stopeight.legacy"></span><dl class="function">
-<dt id="stopeight.legacy.TCT_to_bezier">
-<code class="descclassname">stopeight.legacy.</code><code class="descname">TCT_to_bezier</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stopeight.legacy.TCT_to_bezier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert stopeight TCT path to quadratic bezier segments suitable for rendering in most graphics APIs</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="stopeight.legacy.parse_file">
-<code class="descclassname">stopeight.legacy.</code><code class="descname">parse_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stopeight.legacy.parse_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>parse proprietary legacy qt file format for input points of recorded pen-stroke.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="stopeight.legacy.stroke_parallel">
-<code class="descclassname">stopeight.legacy.</code><code class="descname">stroke_parallel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stopeight.legacy.stroke_parallel" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is the parallel version of the stroke analyzer. It can look ahead, detect and center multiple immediately repeating features, when the number of features is prime. It will theoretically run out of memory if the number of immediately repeating features is too high.</p>
-</dd></dl>
-
-<dl class="function">
-<dt id="stopeight.legacy.stroke_sequential">
-<code class="descclassname">stopeight.legacy.</code><code class="descname">stroke_sequential</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#stopeight.legacy.stroke_sequential" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is the sequential version of the stroke analyzer. It will subdivide pairs (cliffs) and triplets (turns) of immediately repeating features without further lookahead and center them.</p>
-</dd></dl>
-
 </div>
 </div>
 
