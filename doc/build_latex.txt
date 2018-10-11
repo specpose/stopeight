@@ -1,21 +1,28 @@
 LaTeX
 =====
 
-There are mathematical definitions for the Analyzer and the Comparator.
+Most of the mathematics are only available in LaTeX form at the moment. PDF files have to be built from source.
+
+The directory for mathematical definitions (.tex) and bibliography (.bib) is::
+
+    $ cd /path/to/where/stopeight/doc/latex
+
+Install from universe::
+
+    $ sudo apt-get install biber texlive-latex-extra texlive-bibtex-extra
 
 Install the following packages::
 
-    $ sudo apt-get install biber texlive-latex-extra
+    $ sudo apt-get install texlive-latex-base texlive-latex-recommended
+
+First run pdflatex to create the bcf file::
+
+    $ pdflatex ./filename.tex
 
 Then run biber on the tex file::
 
-    $ path/to/where/stopeight/doc/latex
-    $ biber Stopeight_Analyzer
-    $ biber Stopeight_Comparator
+    $ biber ./filename.bcf
 
 Create the PDF::
 
-    $ pdflatex Stopeight_Analyzer.tex
-    $ pdflatex Stopeight_Comparator.tex
-
-Eventually repeat the biber and pdflatex steps if run for the first time.
+    $ pdflatex filename.tex

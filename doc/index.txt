@@ -49,8 +49,6 @@ Developer
 
    dev_analyzer
 
-   dev_analyzer-specs
-
    dev_doc
 
 Indices and tables

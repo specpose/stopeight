@@ -1,7 +1,7 @@
 Theory
 ======
 
-Most of the mathematics are only available in LaTeX form at the moment. PDF files have to be built from source :doc:`build_latex`.
+Comprehensive mathematical definitions can be found here :doc:`build_latex`.
 
 Preparing the data involves the following two or three steps:
 

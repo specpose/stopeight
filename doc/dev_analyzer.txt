@@ -1,6 +1,8 @@
 Analyzer Algorithm
 ==================
 
+Comprehensive mathematical definitions can be found here :doc:`build_latex`.
+
 The Analyzer subdivides into half-circles, represented by only one tangent on-curve control point per half-circle.
 
 This is the equivalent of four hyperbolic / two parabolic subsegments.
