@@ -57,6 +57,7 @@ from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 
 from stopeight.util.editor.data import ScribbleData,ScribbleBackup,ScribblePoint
+import numpy as np
 
 class ScribbleArea(QtWidgets.QDockWidget):
     def __init__(self, parent=None):
@@ -83,8 +84,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.update()
 
     def _input(self, x, y):
-        if type(self.data)==type(None):
-            self.data = ScribbleData()#Fallback should not happen
+        assert type(self.data) is list
         self.data.append(ScribblePoint((x,y)))
 
     def _press(self,event):
@@ -93,11 +93,9 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.clearImage()
         log.info("Erasing scribble data")
         #don't assign new self.data = [], maybe self.data[:] = []
-        if type(self.data)==type(None):
-            pass#Fallback should not happen
-        else:
-            del self.data[:]
-        self.data = ScribbleData()
+        if type(self.data) is not type(None):
+            del self.data
+        self.data = []
 
     def _move(self, event):
         self.drawLineTo(event.pos())
@@ -105,6 +103,14 @@ class ScribbleArea(QtWidgets.QDockWidget):
     def _release(self, event):
         self.drawLineTo(event.pos())
         self.scribbling = False
+        assert type(self.data) is list
+        result = ScribbleData(size=len(self.data))
+        for i,v in enumerate(self.data):
+            result[i]['coords'] = [v[0],v[1]]
+        del self.data
+        self.data = result
+
+
 
     def tabletEvent(self, event):
         if event.type() == QEvent.TabletPress:
@@ -174,6 +180,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.lastPoint = QPoint(endPoint)
 
     def __call__(self, data, color=Qt.blue, clear=True):
+        assert type(self.data) is ScribbleData
         if clear:
             self.clearImage()
         #self.data=data
@@ -184,7 +191,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
         try:
             painter.setPen(QPen(color, self.myPenWidth, Qt.SolidLine,Qt.RoundCap, Qt.RoundJoin))
             for n in range(len(data)-1):
-                painter.drawLine(data[n].get_x(),data[n].get_y(),data[n+1].get_x(),data[n+1].get_y())
+                painter.drawLine(data[n]['coords'][0],data[n]['coords'][1],data[n+1]['coords'][0],data[n+1]['coords'][1])
         finally:
             painter.end()
         self.update()

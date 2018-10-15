@@ -35,10 +35,11 @@ def create_vector_graph(data):
     result = _append(result)
     log.debug("Return Length "+str(len(result)))
     #Hack copy 2
-    array = ScribbleData()
-    for i,v in enumerate(result):
-        array.append(ScribblePoint([v['coords'][0],v['coords'][1]]))
-    return array
+    #array = ScribbleData()
+    #for i,v in enumerate(result):
+    #    array = np.append(array,[v['coords'][0],v['coords'][1]])
+    #return array
+    return result.view(ScribbleData)
 create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
 
 #grapher data y inverted, scribble data y normal
@@ -52,7 +53,7 @@ def resize(data):
     from stopeight.matrix import Vectors,Vector,Stack
     vectors = Vectors()
     for element in data.data:
-        vectors.push_back(Vector(element.get_x(),element.get_y()))
+        vectors.push_back(Vector(element['coords'][0],element['coords'][1]))
     log.debug("First "+str(vectors.__array__()[0][0])+","+str(vectors.__array__()[0][1])+" Last "+str(vectors.__array__()[-1][0])+","+str(vectors.__array__()[-1][1]))
     stack=Stack()
     stack.identity()
@@ -110,9 +111,9 @@ def resize(data):
     log.debug("Rendering...")
     log.debug("First "+str(testvec[0][0])+","+str(testvec[0][1])+" Last "+str(testvec[-1][0])+","+str(testvec[-1][1]))
     #Hack copy
-    result = ScribbleData()
-    for el in testvec:
-        result.append(ScribblePoint((el[0],el[1])))
-    data(result)    
+    result = ScribbleData(size=len(testvec))
+    for i,v in enumerate(testvec):
+        result[i]['coords'] = [v[0],v[1]]
+    data(result)
     return None
 resize.__annotations__ = {'data':ScribbleArea,'return':type(None)}

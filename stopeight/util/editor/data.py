@@ -16,14 +16,27 @@ class ScribblePoint(tuple):
     def set_y(self,y):
         self.y=y
 
-class ScribbleData(list):
-    def __init__(self):
-        super(list,self).__init__()
-
-    def append(self,something):
-        if type(something)!=ScribblePoint:
-            raise Exception("Please only use ScribblePoint in ScribbleData.")
-        super(ScribbleData,self).append(something)
+from numpy import ndarray
+import numpy as np
+class ScribbleData(ndarray):
+    def __new__(cls,*args,**kwargs):
+        try:
+            if kwargs['size']>1:
+                kwargs['shape']=(kwargs['size'])
+            else:
+                kwargs['shape']=(1)
+            del kwargs['size'] 
+        except KeyError:
+            kwargs['shape']=(1)
+        kwargs['dtype']= np.dtype({'names':['coords','type'], 'formats':[('<f8', (2,)),'<i4'], 'offsets':[0,16], 'itemsize':24})
+        return super(ScribbleData,cls).__new__(cls,*args,**kwargs)
+#    def __init__(self):
+#        super(list,self).__init__()
+#
+#    def append(self,something):
+#        if type(something)!=ScribblePoint:
+#            raise Exception("Please only use ScribblePoint in ScribbleData.")
+#        super(ScribbleData,self).append(something)
         
 #class ScribbleData(list):#(with_metaclass(Singleton,list)):
 #class ScribbleData(Singleton):
@@ -39,7 +52,6 @@ class ScribbleBackup(ScribbleData):
 #class ScribbleDisplay(with_metaclass(Singleton,ScribbleArea)):
 #    pass
 
-from numpy import ndarray
 class WaveData(ndarray):
     pass
 #class WaveData(with_metaclass(Singleton,ndarray)):
