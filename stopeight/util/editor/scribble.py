@@ -119,8 +119,8 @@ class ScribbleArea(QtWidgets.QDockWidget):
             self._move(event)
             self._input(event.posF().x(),event.posF().y())            
         elif (event.type() == QEvent.TabletRelease) and self.scribbling:
-            self._release(event)
             self._input(event.posF().x(),event.posF().y())
+            self._release(event)
             try:
                 self.tablet_id=event.uniqueId()
             except:
@@ -148,8 +148,8 @@ class ScribbleArea(QtWidgets.QDockWidget):
 
     def mouseReleaseEvent(self, event):
         if (event.button() == Qt.LeftButton) and self.scribbling:
+            self._input(event.pos().x(),event.pos().y())
             self._release(event)
-            self._input(event.pos().x(),event.pos().y())            
 
     def paintEvent(self, event):
         painter = QPainter(self)
