@@ -24,9 +24,22 @@ TCT_to_bezier.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
 import stopeight.finders
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
+from stopeight.grapher import *
 
 def findTurns(data):
     log.info("Invoking findTurns...")
     turns = stopeight.finders.findTurns(data)
-    return ScribbleData()
-findTurns.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
+    print(turns)
+    assert type(turns) == list
+    return turns
+findTurns.__annotations__ = {'data': ScribbleData, 'return': list}
+
+import stopeight.getters
+import numpy as np
+
+def getFirstTurnByTriplets(data):
+    log.info("Invoking getFirstTurnByTriplets...")
+    turn = stopeight.getters.getFirstTurnByTriplets(data)
+    assert type(turn) == np.ndarray
+    return turn.view(ScribbleData)
+getFirstTurnByTriplets.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
