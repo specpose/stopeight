@@ -39,7 +39,11 @@ import numpy as np
 
 def getFirstTurnByTriplets(data):
     log.info("Invoking getFirstTurnByTriplets...")
-    turn = stopeight.getters.getFirstTurnByTriplets(data)
-    assert type(turn) == np.ndarray
-    return turn.view(ScribbleData)
+    ql = stopeight.getters.QListDpoint(data)
+    ta = stopeight.getters.TurnAnalyzerWrapper(ql)
+    turn = array(ta.next())
+    log.debug(len(turn))
+    #assert type(turn) == np.ndarray
+    #return turn.view(ScribbleData)
+    return ScribbleData()
 getFirstTurnByTriplets.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
