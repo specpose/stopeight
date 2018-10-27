@@ -28,7 +28,8 @@ from stopeight.grapher import *
 
 def findTurns(data):
     log.info("Invoking findTurns...")
-    turns = stopeight.finders.findTurns(data)
+    ql = stopeight.getters.QListDpoint(data)
+    turns = stopeight.finders.Turns(ql)
     print(turns)
     assert type(turns) == list
     return turns
@@ -40,10 +41,8 @@ import numpy as np
 def getFirstTurnByTriplets(data):
     log.info("Invoking getFirstTurnByTriplets...")
     ql = stopeight.getters.QListDpoint(data)
-    ta = stopeight.getters.TurnAnalyzerWrapper(ql)
+    ta = stopeight.getters.Turn(ql)
     turn = array(ta.next())
-    log.debug(len(turn))
-    #assert type(turn) == np.ndarray
-    #return turn.view(ScribbleData)
-    return ScribbleData()
+    assert type(turn) == np.ndarray
+    return turn.view(ScribbleData)
 getFirstTurnByTriplets.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
