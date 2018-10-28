@@ -35,6 +35,25 @@ def findTurns(data):
     return turns
 findTurns.__annotations__ = {'data': ScribbleData, 'return': list}
 
+def sequencial(data):
+    log.info("Invoking findCliffs...")
+    ql = stopeight.getters.QListDpoint(data)
+    turns = stopeight.finders.Cliffs(ql)
+    print(turns)
+    assert type(turns) == list
+    return turns
+sequencial.__annotations__ = {'data': ScribbleData, 'return': list}
+
+def parallel(data):
+    log.info("Invoking findSpiralCliffs...")
+    ql = stopeight.getters.QListDpoint(data)
+    turns = stopeight.finders.Spirals(ql)
+    print(turns)
+    assert type(turns) == list
+    return turns
+parallel.__annotations__ = {'data': ScribbleData, 'return': list}
+
+
 import stopeight.getters
 import numpy as np
 
