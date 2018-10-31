@@ -46,12 +46,26 @@ quad(t):
 -2 & 2 & 0\\
 1 & -2 &1
 \end{bmatrix}}_{Coefficients}
+\end{equation}
+The quartic pline
+\begin{equation}
+quart(t):
 \begin{pmatrix}
-Mh_{1} & Mh_{2} & Mh_{3}
+1 & t & t^2 & t^3 & t^4
+\end{pmatrix}
+\underbrace{\begin{bmatrix}
+1 & 0 & 0 & 0 & 0\\
+-2 & 2 & 0 & 0 & 0\\
+1 & -2 &1 & 0 & 0\\
+1 & 1 & -2 & 2 & 0\\
+1 & 1 & 1 & -2 & 1
+\end{bmatrix}}_{Coefficients}
+\begin{pmatrix}
+Mh_{1} & Mh_{2} & Mh_{3} & Mh_{4} & Mh_{5}
 \end{pmatrix}
 =
 \begin{pmatrix}
-h_{1}' & h_{2}' & h_{3}'
+h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
 \end{pmatrix}
 \end{equation}
 The coefficient Matrix $Coefficients$ is not garanteed to be invertible. It can be a product of non-commutative factors. Or there can be illegal shearing.

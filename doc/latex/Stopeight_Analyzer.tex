@@ -217,7 +217,7 @@ The indexing corresponds to the minimal grade of the polynomial that is necessar
 \xi_{C_{3}} = \xi_{C_{2}} = \xi_{C_{1}} : \text{Quartic Bezier Spline}
 \end{align}
 Note: Except for insertion (See Straight), $C_{3},C_{0} \in Y$, but all the others $C_{1},C_{2},C_{4},... \not\in X$, because they are only found in the approximation $C_{1},C_{2},C_{4},... \in A$.\\
-(To be disclosed: Algorithms for finding lower Corner indexes from higher Corner indices $q_{2},q_{5}$ and Control points inbetween $q_{1},q_{3},q_{4},q_{6}$)
+(To be disclosed: Algorithms for finding lower Corner indexes from higher Corner indices $q_{2},q_{5}$, Control points inbetween $q_{1},q_{3},q_{4},q_{6}$ and the inverse.)
 
 \subsection{Turn}
 A turn $T$ is a change of sign in the orientation of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
@@ -293,7 +293,7 @@ curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz}(a,b)}
 \end{align}
 
 \section{Recursive Sections}
-Derivatives are opening up interval measure spaces. The maximum order of $derivatives$ is set by the order of recursion. The scale-space depends on the maximal order of the polynomials considered. In the method discussed in this paper, they are quadratic (or quartic?).\\\\
+Derivatives are opening up interval measure spaces. The maximum order of $derivatives$ is set by the order of recursion. The scale-space depends on the maximal order of the polynomials considered. In the method discussed in this paper, they are quartic with restrictions, i.e. the representation is quadratic. (The functions $q$ and the points $S,C,E$ pose a constraint on the quartic analytic form and its inverse.)\\\\
 The following recursive subsections reveal second derivatives in each interval measure space.
 \begin{equation}
 T_{2} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert \approx 0
