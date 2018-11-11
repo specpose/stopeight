@@ -26,7 +26,7 @@ The DOI can be found here ~\cite{Stopeight}.\\
 A brief overview can be found here:\\
 \href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
 The purpose of the Analyzer is to find intervals in a Vector Graph and produce an approximation. The input Vector Graph may be obtained from the Grapher, or it may be present in another mathematical context. Certain properties, such as the maximum derivative or the quantity or quality of measure spaces involved, are inherited from this context.\\\\
-Preliminary: Grapher can turn a time-variant (or time-invariant) series/signal $s(x)$ into a Vector Graph $\mathbb{R}^2$. The scaling can be adjusted. An average can be used. More complex scenarios may be considered, where Spirals are removed, the number of 8's are limited or the signal is resampled.
+Preliminary: Grapher can turn a time-variant (or time-invariant) series/signal $s(x)$ into a Vector Graph $\mathbb{R}^2$. The scaling can be adjusted. An average can be used. More complex scenarios may be considered, where Spirals are avoided, the number of 8's are limited or the signal is resampled.
 \begin{equation}
 vectorgraph: \mathbb{R} \rightarrow \mathbb{R}^2
 \end{equation}
@@ -49,7 +49,7 @@ $X$ is formally a discrete / dim 0-manifold
 \begin{align}
 Y: \text{0-submanifold} \Rightarrow (dim(X)=0)<(codim(Y)=1) \Rightarrow X \text{ disjoint } A
 \end{align}
-but $B$ is not. See (numbering ref?).
+but $B$ is not. See \eqref{eq:1}.
 \begin{align}
 Y: \text{0-submanifold} \Rightarrow (dim(B)=1)=(codim(Y)=1) \Rightarrow B \text{ joint } A
 \end{align}
@@ -98,7 +98,7 @@ In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$
 Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}\\\\
 The arc-length metric $d(a,b)$ turns both manifolds $A$ and $B$ into metric spaces $(A,d)$ and $(B,d)$. ~\cite[\nopp 1.1.3]{Klingenberg}
 \begin{equation}
-d(a,b) = \int \limits _{a}^{b}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t)\rvert \mathrm{d}t
+d(a,b) = \int \limits _{a}^{b}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t)\rvert \mathrm{d}t\label{eq:1}
 \end{equation}
 We can now establish an injective $link$ between elements of $B$ and $A$. ($X \rightarrow A$ would be injective, $but$ $A \rightarrow X$ is not accurate):
 \begin{equation}
@@ -226,10 +226,10 @@ T_{2} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t
 \end{equation}
 
 \section*{Oriented Sections}
-Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of analytic priority. They create further sections of Turns $T$ in the transversality $Y$.
+Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of computational priority. They create further sections of Turns $T$ in the transversality $Y$.
 
 \section{Non-recursive Sections}
-Non-recursive sections are not proper section types, but merely an expression of intermediate calculation and are therefore of medium analytic priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.\\\\
+Non-recursive sections are not proper section types, but merely an expression of intermediate calculation and are therefore of medium computational priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.\\\\
 The $Max$ thresholds are reductions of measure spaces. The $derivatives$ are affected by $Max_{Straight}$. The Grapher $scale$ interacts with $Max_{Curvre}.$
 
 \subsection{Cliff}
@@ -293,8 +293,8 @@ curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz}(a,b)}
 \end{align}
 
 \section{Recursive Sections}
-Derivatives are opening up interval measure spaces. The maximum order of $derivatives$ is set by the order of recursion. The scale-space depends on the maximal order of the polynomials considered. In the method discussed in this paper, they are quartic with restrictions, i.e. the representation is quadratic. (The functions $q$ and the points $S,C,E$ pose a constraint on the quartic analytic form and its inverse.)\\\\
-The following recursive subsections reveal second derivatives in each interval measure space.
+Derivatives are opening up interval measure spaces. The scale-space sets the maximal order of the polynomials considered. In the method discussed in this paper, it is quartic with restrictions, i.e. the representation is quadratic.  (The functions $q$ and the points $S,C,E$ pose a constraint on the quartic analytic form and its inverse.)\\\\
+The following recursive subsections reveal hidden derivatives.
 \begin{equation}
 T_{2} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert \approx 0
 \end{equation}
@@ -345,7 +345,7 @@ It is part of ZigZag detection.
 \subsection{Relative Areas}
 The $solidangle(a,c)$ is defined by the Spike Margin $[a,b',b'',c]$.
 \begin{align}
-solidangle_{Rel}(a,c) = \frac{area(b',b'')}{(diameter(a,c)/2)^2}
+solidangle_{Rel}(a,c) = \frac{area(b',b'')}{(diameter_{horiz}(a,c)/2)^2}
 \end{align}
 
 \subsection{Moustache}
