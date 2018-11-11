@@ -93,74 +93,44 @@ jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}(t)-\xi_{F}(t)\rvert \math
 \chapter{Separation}
 The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.
 
-\subsection{Fourier Transform}
-The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding exact frames in order to remove orthogonal subspaces. In signal analysis, there is the notion of source separated and spectral separated pulses. Fourier Transformation does fulfil the task of spectral separation, but arbitrary precision in the time and frequency domain can not be found.\\\\
-The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$ (See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in Stopeight Analyzer. It also defines the negative time in the Fourier Transform of the signal $s(x);x<0$  to be the analytic direction $dir=-1$.\\\\
+\subsection{Spectral Separation}
+The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding exact frames in order to remove orthogonal subspaces. In signal analysis, there is the notion of source separated vs. spectral separated pulses. Fourier Transformation does fulfil the task of spectral separation, but arbitrary precision in the time and frequency domain can not be found.\\\\
+Stopeight Analyzer may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$ (See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$. It also defines the negative time in the Fourier Transform of the signal $s(x);x<0$  to be the analytic direction $dir=-1$.\\\\
 Also Vector Graph manipulations such as finding/counting intersections and setting oriented section type occurence limitations (ex. Spiral $\Rightarrow$ scale) could yield interesting results.\\\\
 Consider: A polar to cartesian transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$.
 
 \subsection{Source Separation}
 In order for Stopeight overlay comparison to work, source separation has to be performed. A complex function measuring separation can be defined as.
 \begin{equation}
-separation(a,b) = isolation + \mathrm{i} visibility(a,b)
+separation(a,b) = isolation(a,b) + \mathrm{i} visibility(a,b)
 \end{equation}
-This can be calculated while resampling. (See Grapher)\\\\
+Important: This can be calculated while resampling. (See Grapher)\\\\
 Eventually, bounds of periodicity could be found. The directed waves of straightness and curvature going forward/backward synchronously are periodic.
 \begin{align}
-periodicity(a,b) =  (\xi(t)-\iota_{X}(t))*(visibility(a,b) +\mathrm{i} isolation(a,b))
+periodicity(a,b) =  (\int \limits _{a}^{b} \xi(t)-\iota_{X}(t) \mathrm{dt}) *(visibility(a,b) +\mathrm{i} isolation(a,b))
 \end{align}
-Note: $visibility$ and $isolation$ already include the trigonometric functions of the polar to cartesian transform.
-
-\subsection*{Asymetric Pulses}
-(See Sisyphos)
-
-\chapter{Simulation}
-(An attempt to extend the algebra to generic problems in physics.)\\\\
-The complex conjugate is a manifestation of periodicity of two exact frames which are defined by something like a complex number:\\\\
+Or directly on the signal?
+\begin{align}
+periodicity(a,b) =  (\int \limits _{a}^{b} s(t) \mathrm{dt}) *(visibility(a,b) +\mathrm{i} isolation(a,b))
+\end{align}
+Note: $visibility$ and $isolation$ already include the trigonometric functions of the polar to cartesian transform.\\
+Explanation:\\
 The imaginary part is the other side of the wave vs\\
 The imaginary part is the phase shift (fft)\\\\
 (multiplication? addition?)
 \begin{align}
-A,B \times A,B \rightarrow \mathbb{C}\\
-(a,b) \mapsto z\\
+(a,b) \mapsto z
 \end{align}
-A complex norm $\norm{\cdot}$ is defined on the transversality (2).
+
+\subsection*{Complex Norm}
+A complex norm $\norm{\cdot}$ is defined on the transversality.
 \begin{align}
 \norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
 \norm{z} = \sqrt{Re(z)^2+Im(z)^2}
 \end{align}
-Differential Equations?
 
-\section{Wave Trains}
-The mathematically most intriguing oriented submanifolds are Crests and Spikes. We introduce a mechanism for the annihilation and creation of pulses. Physical phenomena such as the creation of enthalpy and enthropy during phase transitions could be modeled. A Crest would appear in the outgoing phase when a signal of enthropy brakes in the corresponding medium of the carrier. A Spike is a beat that appears in joint states of crystal grids when the incoming phase accumulates in a $different$ medium.
-Traveling wave trains are moving over stationary reef chains. Upon creation, enthropic wave trains are impulses, at the least even a part of a half-pulse (Example Spiral). Enthalpic reef chains change state when they are converted to a plasma state for an infinitesimal short period of time.\\\\
-A wave train appears in a wave packet that splits up. A wave packet that splits, decreases its isolation and transfers a part of its visibility to the sub-wave packets. Depending on the wavelength of a Reef, the original wave packet may never appear again.\\\\
-On the other hand, the sub-wave packets of an open ocean wave pick up wind. The enclosing wave packet can form a new wave train, together with neighbouring wave packets and so slowly, the little left-over, chaotic visibility of the sub-wave packets gets transferred not only to the enclosing wave packet, but to the whole wave train. The swell gets groomed and the short wavelengths disappear.\\\\
-Because in any accurate measurement of matter, only a limited number of reef chains can be considered; For the multitude of periodic energy passing over a reef chain, all products of the chain are compared, up to the length of the frame of the train.
-It could make sense to map such phenomena in a complex plane. Could we explain why for example a Crest starts appearing on a Reef, and different, purely imaginary waveforms appear in open ocean waters where waves travel in arbitrary directions.
-
-\subsection{Wave Generation}
-For Dune/Crest or Swing (stationary wave).\\
-Supraliquid\\
-Sail Effect / Surface Tension
-
-\subsection{Phase Transitions}
-For Dune/Spiral.
-\begin{align}
-z =  \sup_{U}\lvert curvature([a,b]) \rvert*(\cos{(isolation([a,b]))} +\mathrm{i} \sin{(visibility([a,b]))})
-\end{align}
-
-\subsection{Lightning}
-For Spike/ZigZag.\\
-Superconductor\\
-If we're setting $\sqrt{1-y^2}$ to be the linear part of complex plane, $\phi$ in $z=\sqrt{1-y^2}e^{i\phi}$ is the rotational part.
-\begin{align}
-z =  straightness([a,b]) + \mathrm{i} curvature([a,b])
-\end{align}
-
-\subsection{Stateless}
-Supercritical\\
-gaseous/liquid carbondioxide
+\subsection*{After Separation}
+Asymetric, non-repetitive pulses, which can be compared by matchline overlay comparison (See Sisyphos)
 
 \printbibliography
 
