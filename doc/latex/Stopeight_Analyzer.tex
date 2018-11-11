@@ -188,13 +188,6 @@ straightness_{Algo}(a,b)=dir \sum_{i=0}^{n+2}\frac{\mathcal{Q}}{\mathcal{A}+\mat
 \end{align}
 
 \subsection{Curvature}
-\iffalse
-Because the diameter has to be calculated piece-wise, we have to set up a vector space with the turns $P_{n},P_{n+1} \in T$.
-\begin{equation}
-v \in (B,\norm{\cdot})
-\end{equation}
-Note: It is a Banach space.\\
-\fi
 Curvature is determined by the ratio of Area to Diameter.
 \begin{align}
 curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm{d}t}{diameter_{horiz,T}(a,b)}
@@ -348,7 +341,7 @@ The $solidangle(a,c)$ is defined by the Spike Margin $[a,b',b'',c]$.
 solidangle_{Rel}(a,c) = \frac{area(b',b'')}{(diameter_{horiz}(a,c)/2)^2}
 \end{align}
 
-\subsection{Moustache}
+\subsection{Moustache?}
 Indicates a break or change of direction in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
 \begin{equation}
 b' \in T_{3}
@@ -380,8 +373,8 @@ A Spiral section $[a,b']$ is a Cliff, where
 Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \subseteq Spiral\}}\\
 b' \in C_{4}
 \end{align}
-The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature.\\\\
-$C_{4}$ is the Corner of the Spiral section, but the Spiral as a whole has an infinite amount of Corners, which are indexed differently (See Parametrised Korners).
+The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature measured inward from $a,b$.\\\\
+Note: $b'$ is the Corner $C_{4}$ of the Eliptic Approximation if the Focal Points overlap (full circle). See Spline Axioms / Eliptic Approximation.
 \subsection{ZigZag}
 ZigZag $\supset$ Spike $\supset$ Edge\\
 (Setting Maxes on straightness, angles?)\\\\
@@ -393,8 +386,9 @@ b' \in C_{4} \lor b' \in T_{2}
 \end{align}
 Below 90 degree, a single Spike section is.
 \begin{align}
-b' \in C_{4} \Rightarrow (\text{cubic plane curve}?) \lor b' \in T_{3} \Rightarrow (\text{third derivative }= 0?)
+b' \in T_{3} \Rightarrow (\text{third derivative }= 0?)
 \end{align}
+Note: $b'$ is the Corner $C$ of the Eliptic Approximation where the Focal Point is perpendicular to the tangent in $C$, but infinitely far away. See Spline Axioms / Eliptic Approximation.
 \subsection{Swell}
 Swell $\supset$ Crest $\supset$ Swing $\supset$ Dune(?)\\
 A swell is centered by triplets (See The Captain of Swing).
