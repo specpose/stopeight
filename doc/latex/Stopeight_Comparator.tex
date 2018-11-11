@@ -25,12 +25,6 @@ This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\
 
-\subsection{Area of Jitter}
-The integral of the parametrisation on a non-Straight segment is larger than the integral of the parametrisation of a straight segment. (Additional benefits?)
-\begin{align}
-area_{jitter}(a,b)=\frac{\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t}{\int \limits _{0}^{(b-a)/2} diameter_{abs}(a+t,b-t)\mathrm{d}t}\\
-\end{align}
-
 \subsection{Pulse}
 A symmetric pulse has a wavelength and a radius.
 
@@ -61,11 +55,17 @@ $times$ is the product of a function over a interval space $dom(\iota,\xi)=T_{n}
 times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function(a,b)
 \end{equation}
 
+\subsection{Area of Jitter}
+The integral of the parametrisation on a non-Straight segment is larger than the integral of the parametrisation of a straight segment. (Additional benefits?)
+\begin{align}
+area_{jitter}(a,b)=\frac{\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t}{\int \limits _{0}^{(b-a)/2} diameter_{horiz,T}(a+t,b-t)\mathrm{d}t}\\
+\end{align}
+
 \subsection{Imaginary Visibility}
 Visibility is an increase of the polynomial Coefficients(?) of a curve segment.
 (No: When visibility is increased in a Spiral, it creates more subsegments/scale spaces). Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
 \begin{align}
-visibility(a,b)= alt(a,b) * signs(\mu,solidangle_{Abs}(a,b))\\
+visibility(a,b)= alt(a,b) * signs(\mu,solidangle_{Rel}(a,b))\\
 visibility(a,b)= alt(a,b) * signs(\mu,curvature(a,b)-Q(a,b))(?)
 \end{align}
 (Lebesgue on curvature? $Max_{Curve}$ based or sign based?)
@@ -93,23 +93,23 @@ jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}(t)-\xi_{F}(t)\rvert \math
 \chapter{Separation}
 The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.
 
-\subsection{Plancherel Theorem}
-The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding orthogonal subspaces in frames. Fourier Transformation does fulfil the task of spectral separation, but it is not pulse-wise. The Plancherel Theorem connects the fields of frame-wise integration and periodic integration.\\\\
-The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$(See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in previous chapters. It also defines the negative time in the Fourier Transform of the signal $s(x);x<0$  to be the analytic direction $dir=-1$.\\\\
-Also Vector Graph manipulations such as scaling, {vert,, finding/counting intersections, oriented section occurence requirements could yield interesting results.\\\\
-A Polar to Cartesian Transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$. The Polynomial encountered in the non-oriented (and oriented) Sections is quartic (?). The character of quadratic polynomials is reflected in the limitations of the Fourier Transform.
+\subsection{Fourier Transform}
+The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding exact frames in order to remove orthogonal subspaces. In signal analysis, there is the notion of source separated and spectral separated pulses. Fourier Transformation does fulfil the task of spectral separation, but arbitrary precision in the time and frequency domain can not be found.\\\\
+The method in this paper may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$ (See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$ discussed in Stopeight Analyzer. It also defines the negative time in the Fourier Transform of the signal $s(x);x<0$  to be the analytic direction $dir=-1$.\\\\
+Also Vector Graph manipulations such as finding/counting intersections and setting oriented section type occurence limitations (ex. Spiral $\Rightarrow$ scale) could yield interesting results.\\\\
+Consider: A polar to cartesian transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$.
 
-\subsection{Spectral Separation}
-For Swell/Crest.\\
-There are two main criteria among which the waves can vary. The absolute indication for separation is visibility and isolation.\\
-They occur periodically in a Swell.\\
-In signal analysis, there is the notion of source separated and spectral separated pulses. Separation algorithms would benefit from an isolation parameter, indicating whether the pulses ...
-The directed waves of straightness and curvature going forward/backward synchronously are periodic.
+\subsection{Source Separation}
+In order for Stopeight overlay comparison to work, source separation has to be performed. A complex function measuring separation can be defined as.
+\begin{equation}
+separation(a,b) = isolation + \mathrm{i} visibility(a,b)
+\end{equation}
+This can be calculated while resampling. (See Grapher)\\\\
+Eventually, bounds of periodicity could be found. The directed waves of straightness and curvature going forward/backward synchronously are periodic.
 \begin{align}
-z =  (\xi(t)-\iota_{X}(t))*(\cos{(visibility(a,b))} +\mathrm{i} \sin{(isolation(a,b))})(?)\\
-\int \limits _{}^{} (\xi_{T}(t)-\iota_{T})*(\xi_{C}-\iota_{T})\mathrm{d}t=1(?)
+periodicity(a,b) =  (\xi(t)-\iota_{X}(t))*(visibility(a,b) +\mathrm{i} isolation(a,b))
 \end{align}
-\subsubsection{Resampling}
+Note: $visibility$ and $isolation$ already include the trigonometric functions of the polar to cartesian transform.
 
 \subsection*{Asymetric Pulses}
 (See Sisyphos)
