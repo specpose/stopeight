@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\renewcommand{\baselinestretch}{2}
+
+
+\begin{document}
+\title{antis}
+\author{Fassio Blatter}
+
+\maketitle
+
+
+\renewcommand{\baselinestretch}{2}
+
+Every zero crossing $x_{m}$ of the 2nd derivative
+
+$\{x_{m}\}_{m \in \mathbb{Z} , f''(x_{m})=0}$
+
+The Lebesgue for all the Intervals $x_{m}-x_{m-1}=T$
+
+$\mu(\{x \vert f''(x_{m})=0, f''(x_{m-1})=0, x_{m}-x_{m-1}=T, x \le x_{m}, x \ge x_{m-1}\}) \mathrm{d} T$
+
+For all the positive and negative function values $f(x)$ respectively
+
+$\mu_{+}(\{{\mu \vert f(x) > 0}\}) \mathrm{d} T, \mu_{-}(\{{\mu \vert f(x) < 0}\})\mathrm{d} T$
+
+Parcival's theorem
+
+$\int\limits_{-\infty}^{\infty} \vert f(x) \vert ^2 \mathrm{d} x = 1/2\pi * \int\limits_{-\infty}^{\infty} \vert \hat{f}(1/T) \vert ^2  \mathrm{d} T$
+
+Can be interpreted for signed function values as
+
+$\int\limits_{-\infty}^{\infty} (\int\limits_{-\infty}^{\infty} \delta (t - T) \mathrm{d} t * (\int\int f(x) \mathrm{d} x \mathrm{d} \mu) )\mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} \hat{f}(1/T) \mathrm{d} T$
+
+The convolution of the two complex fourier transforms is equal the convolution of two semi-pulse functions, and the negative part $\mu_{-}$ is interpreted as the imaginary part of the complex conjugate
+
+$\int\limits_{-\infty}^{\infty}(\int\limits_{-\infty}^{\infty} \delta (t - T) \mathrm{d} t * (\int \int f(x) \mathrm{d} x \mathrm{d} \mu_{+} + \mathrm{i} \int \int f(x) \mathrm{d} x \mathrm{d} \mu_{-}))  \mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} ( \int\limits_{-\infty}^{\infty}  f(x) * (cos(x/T)+\mathrm{i} sin(x/T)) \mathrm{d} x ) \mathrm{d} T$
+
+Minor $t$ is a unique period, not a point in time.
+
+\renewcommand{\baselinestretch}{1}
+
+This condition holds for every signal with frequency components separated in the time domain and symmetric in $mod(n/2)=0$ equal length parts. If this is not the case, we have either:
+
+1. Longer wavelength pulses overlapping the frequency component, which results in a amplitude modulation of the combined signal.
+
+2. Shorter wavelength pulses intersecting the segments of the frequency component, which results in frequency modulation of the combined signal.
+
+3. Non-symmetric waveforms and/or different length half-pulses, which can not be removed with this procedure. See stopeight for further discussion of such signals.
+
+(A longer wavelength, undetected harmonic can be excluded in this scenario since source separated harmonics are symmetric pulses of integer multiples of the wavelength and we imply that the shortest $symmetric$ pulse is found beforehand in the removal procedure below, i.e. the higher harmonics are $not symmetric$ because of criteria 1)
+
+For efficient removal of individual pulses, the $amplitude$ of the pulse needs to be known. Longer wavelength pulses have the highest likelyhood to contain pulses which violate the above criteria, so their $amplitude$ can not be determined. We have to start removal with the shortest symmetric wavelength pulses.
+
+
+
+\end{document}
