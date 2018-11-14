@@ -46,8 +46,15 @@ quad(t):
 -2 & 2 & 0\\
 1 & -2 &1
 \end{bmatrix}}_{Coefficients}
+\begin{pmatrix}
+Mh_{1} & Mh_{2} & Mh_{3}
+\end{pmatrix}
+=
+\begin{pmatrix}
+h_{1}' & h_{2}' & h_{3}'
+\end{pmatrix}
 \end{equation}
-The quartic pline
+The quartic spline
 \begin{equation}
 quart(t):
 \begin{pmatrix}
@@ -68,10 +75,49 @@ Mh_{1} & Mh_{2} & Mh_{3} & Mh_{4} & Mh_{5}
 h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
 \end{pmatrix}
 \end{equation}
-The coefficient Matrix $Coefficients$ is not garanteed to be invertible. It can be a product of non-commutative factors. Or there can be illegal shearing.
+The coefficient Matrix $Coefficients$ is not garanteed to be invertible. It can be a product of non-commutative factors. Or there can be illegal shearing.\\
+Axiom: Because $M^{5x5}$ only includes translations and rotations, $CMH$ can be combined.
+\begin{equation}
+\underbrace{\begin{bmatrix}
+1 & 0 & 0 & 0 & 0\\
+-2 & 2 & 0 & 0 & 0\\
+1 & -2 &1 & 0 & 0\\
+1 & 1 & -2 & 2 & 0\\
+1 & 1 & 1 & -2 & 1
+\end{bmatrix}}_{Coefficients}
+\underbrace{\begin{bmatrix}
+t_{v} & r_{v} & h_{1v} & h_{1w} & h_{1x}\\
+t_{w} & r_{w} & h_{2v} & h_{2w} & h_{2x}\\
+t_{x} & r_{x} & h_{3v} & h_{3w} & h_{3x}\\
+t_{y} & r_{y} & h_{4v} & h_{4w} & h_{4x}\\
+t_{z} & r_{z} & h_{5v} & h_{5w} & h_{5x}
+\end{bmatrix}}_{MH}
+\end{equation}
+Axiom: Because of associativity, an inverse can be left multiplied.
+\begin{equation}
+quart(t):
+\begin{pmatrix}
+1 & t & t^2 & t^3 & t^4
+\end{pmatrix}
+\underbrace{\begin{bmatrix}
+1 & 0 & 0 & 0 & 0\\
+-2 & 2 & 0 & 0 & 0\\
+1 & -2 &1 & 0 & 0\\
+1 & 1 & -2 & 2 & 0\\
+1 & 1 & 1 & -2 & 1
+\end{bmatrix}}_{Coefficients}
+M
+=
+H^{-1}
+\begin{pmatrix}
+h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
+\end{pmatrix}
+\end{equation}
+Theorem: It now appears likely, that $CM$ can be decomposed when $H^{-1}$ is an orthogonal base to the planar coordinates $h'$ and a polynomial of degree 2. $t^3,t^4$ and $h'_{4},h'_{5}$ are irrelevant in this case.
 
 \subsection{Number of Variables}
-If the coefficient Matrix of a polynomial can be orthogonalised, the polynomial can be defined by a single variable. The nonlinear equation
+Theorem: If the coefficient, transformation and base Combination Matrix $CMH$ of a polynomial can be orthogonalised, the polynomial can be defined by a single variable.\\\\
+Axiom: The nonlinear equation
 \begin{equation}
 nonlinear(t):
 \begin{bmatrix}
@@ -82,17 +128,15 @@ nonlinear(t):
 2 & -2 & 1\\
 -2 & 4 & -2\\
 1 & -2 & 2
-\end{bmatrix}}_{Coefficients}
-\begin{pmatrix}
-Mh_{1} & Mh_{2} & Mh_{3}
-\end{pmatrix}
+\end{bmatrix}}_{CMH}
 =
 \begin{pmatrix}
 h_{1}' & h_{2}' & h_{3}'
 \end{pmatrix}
 \end{equation}
-has the same control points, but the coefficient matrix $Coefficients$ can be singular $det(Coefficients)=0$.
+has the same control points, but the coefficient matrix $Coefficients$ can be non-invertible $det(Coefficients)=0$ for rows $t,u$.
 
+\iffalse
 \chapter{Limited Image}
 If an orthonormal base can be found for the $Image \in \mathbb{Z}^3$
 \begin{equation}
@@ -121,6 +165,7 @@ For a Lie Group a characteristic polynomial can be found
 orthonormal_{Coefficients,Base}(\lambda): \text{GL(3,R)} \rightarrow Polynomial\\
 GL(3,R) = ONB(a,b); [a,b] \subseteq \text{Chart of }Domain
 \end{align}
+\fi
 
 \chapter{Eliptic Limitation}
 \subsection{Combination of Bases}

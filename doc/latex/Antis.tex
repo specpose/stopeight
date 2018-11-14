@@ -12,31 +12,31 @@
 
 \renewcommand{\baselinestretch}{2}
 
-Every zero crossing $x_{m}$ of the 2nd derivative
+Every zero crossing $t_{m}$ of the 2nd derivative
 
-$\{x_{m}\}_{m \in \mathbb{Z} , f''(x_{m})=0}$
+$\{t_{m}\}_{m \in \mathbb{Z} , f''(t_{m})=0}$
 
-The Lebesgue for all the Intervals $x_{m}-x_{m-1}=T$
+The Lebesgue for all the Intervals $t_{m}-t_{m-1}=T$
 
-$\mu(\{x \vert f''(x_{m})=0, f''(x_{m-1})=0, x_{m}-x_{m-1}=T, x \le x_{m}, x \ge x_{m-1}\}) \mathrm{d} T$
+$\eta(f(t))=\{t \vert f''(t_{m})=0, f''(t_{m-1})=0, t \le t_{m}, t \ge t_{m-1}, t_{m} - t_{m-1}=T \}$
 
-For all the positive and negative function values $f(x)$ respectively
+For all the positive and negative function values $f(t)$ respectively
 
-$\mu_{+}(\{{\mu \vert f(x) > 0}\}) \mathrm{d} T, \mu_{-}(\{{\mu \vert f(x) < 0}\})\mathrm{d} T$
+$\eta_{+}(f(t))=\{{\eta \vert f(t) \ge 0}\}; \eta_{-}(f(t))=\{{\eta \vert f(t) \le 0}\}$
 
-Parcival's theorem
+Parseval's theorem
 
-$\int\limits_{-\infty}^{\infty} \vert f(x) \vert ^2 \mathrm{d} x = 1/2\pi * \int\limits_{-\infty}^{\infty} \vert \hat{f}(1/T) \vert ^2  \mathrm{d} T$
+$\int\limits_{-\infty}^{\infty} \vert f(t) \vert ^2 \mathrm{d} t = 1/2\pi * \int\limits_{-\infty}^{\infty} \vert \hat{f}(1/T) \vert ^2  \mathrm{d} T$
 
 Can be interpreted for signed function values as
 
-$\int\limits_{-\infty}^{\infty} (\int\limits_{-\infty}^{\infty} \delta (t - T) \mathrm{d} t * (\int\int f(x) \mathrm{d} x \mathrm{d} \mu) )\mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} \hat{f}(1/T) \mathrm{d} T$
+$\int\limits_{-\infty}^{\infty} (\int\limits_{-\infty}^{\infty} \delta (a - T) \mathrm{d} a * (\int\int f(t) \mathrm{d} t \mathrm{d} \eta) )\mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} \hat{f}(1/T) \mathrm{d} T$
 
-The convolution of the two complex fourier transforms is equal the convolution of two semi-pulse functions, and the negative part $\mu_{-}$ is interpreted as the imaginary part of the complex conjugate
+Note: Minor $a$ is a unique period, not a point in time.
 
-$\int\limits_{-\infty}^{\infty}(\int\limits_{-\infty}^{\infty} \delta (t - T) \mathrm{d} t * (\int \int f(x) \mathrm{d} x \mathrm{d} \mu_{+} + \mathrm{i} \int \int f(x) \mathrm{d} x \mathrm{d} \mu_{-}))  \mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} ( \int\limits_{-\infty}^{\infty}  f(x) * (cos(x/T)+\mathrm{i} sin(x/T)) \mathrm{d} x ) \mathrm{d} T$
+The convolution of the two complex fourier transforms is equal the convolution of two semi-pulse functions, and the negative part $\eta_{-}$ is interpreted as the imaginary part of the complex conjugate
 
-Minor $t$ is a unique period, not a point in time.
+$\int\limits_{-\infty}^{\infty}(\int\limits_{-\infty}^{\infty} \delta (a - T) \mathrm{d} a * (\int \int f(t) \mathrm{d} t \mathrm{d} \eta_{+} + \mathrm{i} \int \int f(t) \mathrm{d} t \mathrm{d} \eta_{-}))  \mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} ( \int\limits_{-\infty}^{\infty}  f(t) * (cos(t/T)+\mathrm{i} sin(t/T)) \mathrm{d} t ) \mathrm{d} T$
 
 \renewcommand{\baselinestretch}{1}
 
