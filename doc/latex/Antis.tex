@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{amsfonts}
+\usepackage{amsmath}
 \renewcommand{\baselinestretch}{2}
 
 
@@ -16,9 +17,11 @@ Every zero crossing $t_{m}$ of the 2nd derivative
 
 $\{t_{m}\}_{m \in \mathbb{Z} , f''(t_{m})=0}$
 
-The Lebesgue for all the Intervals $t_{m}-t_{m-1}=T$
+For all the Intervals $t_{m}-t_{m-1}=T$
 
 $\eta(f(t))=\{t \vert f''(t_{m})=0, f''(t_{m-1})=0, t \le t_{m}, t \ge t_{m-1}, t_{m} - t_{m-1}=T \}$
+
+Note: $\eta$ is a Lebesgue.
 
 For all the positive and negative function values $f(t)$ respectively
 
@@ -30,17 +33,19 @@ $\int\limits_{-\infty}^{\infty} \vert f(t) \vert ^2 \mathrm{d} t = 1/2\pi * \int
 
 Can be interpreted for signed function values as
 
-$\int\limits_{-\infty}^{\infty} (\int\limits_{-\infty}^{\infty} \delta (a - T) \mathrm{d} a * (\int\int f(t) \mathrm{d} t \mathrm{d} \eta) )\mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} \hat{f}(1/T) \mathrm{d} T$
+$\int\limits_{-\infty}^{\infty} (\underbrace{\int\limits_{-\infty}^{\infty} \delta (U - T) \mathrm{d} U}_{1} * (\int\int f(t) \mathrm{d} t \underbrace{\mathrm{d} \eta}_{\text{depends on T}}) )\mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} \hat{f}(1/T) \mathrm{d} T$
 
-Note: Minor $a$ is a unique period, not a point in time.
+Note: Major $U$ is a unique period, not a point in time. $U$ is not continuous, $\delta$ is the discrete Dirac Delta.
 
-The convolution of the two complex fourier transforms is equal the convolution of two semi-pulse functions, and the negative part $\eta_{-}$ is interpreted as the imaginary part of the complex conjugate
+The convolution of the signal is equal the distributed energy of two semi-pulse functions. The negative part $\eta_{-}$ is interpreted as a purely imaginary complex number $z_{2}$.
 
-$\int\limits_{-\infty}^{\infty}(\int\limits_{-\infty}^{\infty} \delta (a - T) \mathrm{d} a * (\int \int f(t) \mathrm{d} t \mathrm{d} \eta_{+} + \mathrm{i} \int \int f(t) \mathrm{d} t \mathrm{d} \eta_{-}))  \mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} ( \int\limits_{-\infty}^{\infty}  f(t) * (cos(t/T)+\mathrm{i} sin(t/T)) \mathrm{d} t ) \mathrm{d} T$
+$\int\limits_{-\infty}^{\infty}(\int\limits_{-\infty}^{\infty} \delta (U - T) \mathrm{d} U * (\underbrace{\int \int f(t) \mathrm{d} t \mathrm{d} \eta_{+}}_{z_{1}} * \underbrace{\mathrm{i} \int \int f(t) \mathrm{d} t \mathrm{d} \eta_{-}}_{z_{2}}))  \mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} ( \int\limits_{-\infty}^{\infty}  f(t) * (cos(t/T)+\mathrm{i} sin(t/T)) \mathrm{d} t ) \mathrm{d} T$
+
+Note: If the angle $\phi$ between two complex numbers $z_{1},z_{2}$ is $\pm\frac{pi}{2}$, their complex multiple $z_{1}*z_{2}$ is equal the real $\lvert z_{1}\rvert*\lvert z_{2}\rvert$. If $x_{1}=y_{2}$, this simplifies to $\lvert x_{1} \rvert ^2$, which is what we have noted above (Parseval Theorem).
 
 \renewcommand{\baselinestretch}{1}
 
-This condition holds for every signal with frequency components separated in the time domain and symmetric in $mod(n/2)=0$ equal length parts. If this is not the case, we have either:
+This equation holds for every signal with frequency components separated in the time domain and symmetric in $mod(n/2)=0$ equal length parts. If this is not the case, we have either:
 
 1. Longer wavelength pulses overlapping the frequency component, which results in a amplitude modulation of the combined signal.
 
