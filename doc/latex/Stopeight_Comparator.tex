@@ -23,13 +23,25 @@
 (Todo: Introduce formal definition of measure spaces)\\\\
 This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}\\
-The DOI can be found here ~\cite{Stopeight}.\\
+The DOI can be found here ~\cite{Stopeight}.\\\\
+The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.
 
 \subsection{Pulse}
-A symmetric pulse has a wavelength and a radius.
+A symmetric pulse has two half pulses with the same wavelength/amplitude correlation.
 
 \subsection{Impulses}
-Impulses are consecutive pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.\\\\
+Impulses are consecutive half-pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
+
+\chapter{Spectral Separation}
+The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding exact frames in order to remove orthogonal subspaces. In signal analysis, there is the notion of source separated vs. spectral separated pulses. Fourier Transformation does fulfil the task of spectral separation, but arbitrary precision in the time and frequency domain can not be found.
+
+\chapter{Source Separation}
+Stopeight Analyzer may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$ (See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$. It also defines the negative time in the Fourier Transform of the signal $s(x);x<0$  to be the analytic direction $dir=-1$.\\\\
+Also Vector Graph manipulations such as finding/counting intersections and setting oriented section type occurence limitations (ex. Spiral $\Rightarrow$ scale) could yield interesting results.
+
+\section{Transversality}
+
+\subsection{Signs}
 The difference of the signs over an interval.
 \begin{align}
 dsi(a,b) = card(\mu_{+}\subseteq [a,b])-card(\mu_{-} \subseteq [a,b])\\
@@ -43,7 +55,9 @@ A sequence of sections between $[a,b]$ is alternating $\mu_{-}\cup \mu_{zero}\cu
 \item $dsi(a,b)= -1; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-\frac{1}{n}$
 \item $dsi(a,b)> \pm 1\Leftrightarrow alt(a,b)=0$;
 \end{enumerate}
-When the difference of the signs $dsi(a,b)$ is larger than one, orientation $ori$ serves as a weak expression of the imbalance.\\\\
+When the difference of the signs $dsi(a,b)$ is larger than one, orientation $ori$ serves as a weak expression of the imbalance.
+
+\subsection{Recursion}
 ($alt(a,b)$ products across interval spaces?)\\\\
 Typically, we do $signs$ over scale-spaces by setting the domain to $dom(\iota,\xi)=K_{p}$.
 Which is reflected in the $\mu(\gamma_{dom})$ of sum of a function over a scale space.\\
@@ -90,16 +104,8 @@ Is aliasing of discretisation/rasterisation, but not to be confused with signal 
 jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}(t)-\xi_{F}(t)\rvert \mathrm{d}t
 \end{align}
 
-\chapter{Separation}
-The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.
-
-\subsection{Spectral Separation}
-The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding exact frames in order to remove orthogonal subspaces. In signal analysis, there is the notion of source separated vs. spectral separated pulses. Fourier Transformation does fulfil the task of spectral separation, but arbitrary precision in the time and frequency domain can not be found.\\\\
-Stopeight Analyzer may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$ (See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$. It also defines the negative time in the Fourier Transform of the signal $s(x);x<0$  to be the analytic direction $dir=-1$.\\\\
-Also Vector Graph manipulations such as finding/counting intersections and setting oriented section type occurence limitations (ex. Spiral $\Rightarrow$ scale) could yield interesting results.\\\\
-Consider: A polar to cartesian transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$.
-
-\subsection{Source Separation}
+\section{Indicator}
+Consider: A polar to cartesian transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$.\\\\
 In order for Stopeight overlay comparison to work, source separation has to be performed. A complex function measuring separation can be defined as.
 \begin{equation}
 separation(a,b) = isolation(a,b) + \mathrm{i} visibility(a,b)
