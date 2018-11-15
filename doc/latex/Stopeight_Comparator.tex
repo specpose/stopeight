@@ -33,6 +33,41 @@ A symmetric pulse has two half pulses with the same wavelength/amplitude correla
 Impulses are consecutive half-pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
 
 \chapter{Spectral Separation}
+\section{Indicator}
+Every zero crossing $t_{m}$ of the 2nd derivative
+\begin{equation}
+\{t_{m}\}_{m \in \mathbb{Z} , f''(t_{m})=0}
+\end{equation}
+For all the Intervals $t_{m}-t_{m-1}=T$ of a signal $f: \mathbb{R} \rightarrow \mathbb{R}$
+\begin{equation}
+\eta(T)=\{t \in \mathbb{R}; t_{m} - t_{m-1}=T \vert f''(t_{m})=0, f''(t_{m-1})=0, t \le t_{m}, t \ge t_{m-1} \}
+\end{equation}
+Note: $\eta$ is a Lebesgue.\\\\
+For all the positive and negative function values $f(t)$ respectively
+\begin{align}
+\eta_{+}(T)=\{{\eta \vert f(t) \ge 0}\}\\
+\eta_{-}(T)=\{{\eta \vert f(t) \le 0}\}
+\end{align}
+Parseval's theorem
+\begin{equation}
+\int\limits_{-\infty}^{\infty} \vert f(t) \vert ^2 \mathrm{d} t = 1/2\pi * \int\limits_{-\infty}^{\infty} \vert \hat{f}(1/T) \vert ^2  \mathrm{d} T
+\end{equation}
+Can be interpreted for signed function values as
+\begin{equation}
+\int\limits_{-\infty}^{\infty} (\underbrace{\int\limits_{-\infty}^{\infty} \delta (U - T) \mathrm{d} U}_{1} * (\int\int f(t) \mathrm{d} t \underbrace{\mathrm{d} \eta}_{\text{depends on T}}) )\mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} \hat{f}(1/T) \mathrm{d} T
+\end{equation}
+Note: Major $U$ is a unique period, not a point in time. $U$ is not continuous, $\delta$ is the discrete Dirac Delta.\\\\
+The convolution of the signal with a periodicity T is equal the distributed energy of two semi-pulse functions of the same periodicity. The negative part $\eta_{-}$ is interpreted as a purely imaginary complex number $z_{2}$.
+\begin{equation}
+\int\limits_{-\infty}^{\infty}(\int\limits_{-\infty}^{\infty} \delta (U - T) \mathrm{d} U * (\underbrace{\int \int f(t) \mathrm{d} t \mathrm{d} \eta_{+}}_{z_{1}} * \underbrace{\mathrm{i} \int \int f(t) \mathrm{d} t \mathrm{d} \eta_{-}}_{z_{2}}))  \mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} ( \int\limits_{-\infty}^{\infty}  f(t) * (cos(t/T)+\mathrm{i} sin(t/T)) \mathrm{d} t ) \mathrm{d} T
+\end{equation}
+Note: If the angle $\phi$ between two complex numbers $z_{1},z_{2}$ is $\pm\frac{pi}{2}$, their complex multiple $z_{1}*z_{2}$ is equal the real $\lvert z_{1}\rvert*\lvert z_{2}\rvert$. If $x_{1}=y_{2}$, this simplifies to $\lvert x_{1} \rvert ^2$, which is what we have noted above (Parseval Theorem) for the real function $f(t)$ .\\\\
+This equation holds for every signal with frequency components separated in the time domain and symmetric in $mod(n/2)=0$ equal length parts. If this is not the case, we have either:\\
+1. Longer wavelength pulses overlapping the frequency component, which results in a amplitude modulation of the combined signal.\\
+2. Shorter wavelength pulses intersecting the segments of the frequency component, which results in frequency modulation of the combined signal.\\
+3. Non-symmetric waveforms and/or different length half-pulses, which can not be removed with this procedure. See Source Separation for further discussion of such signals.\\\\
+(A longer wavelength, undetected harmonic can be excluded in this scenario since source separated harmonics are symmetric pulses of integer multiples of the wavelength and we imply that the shortest $symmetric$ pulse is found beforehand in the removal procedure below, i.e. the higher harmonics are $not symmetric$ because of criteria 1)\\\\
+Conclusion: This method provides an indication for the spectral separation of the signal. For blind removal of individual pulses, the $waveform$ of the pulse needs to be known. Longer wavelength pulses have the highest likelyhood to contain pulses which violate the above criteria, so their $amplitude$ can not be determined. We have to start removal with the shortest isolated pulses which can be found in the sample.\\\\
 The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding exact frames in order to remove orthogonal subspaces. In signal analysis, there is the notion of source separated vs. spectral separated pulses. Fourier Transformation does fulfil the task of spectral separation, but arbitrary precision in the time and frequency domain can not be found.
 
 \chapter{Source Separation}
@@ -72,7 +107,7 @@ times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{
 \subsection{Area of Jitter}
 The integral of the parametrisation on a non-Straight segment is larger than the integral of the parametrisation of a straight segment. (Additional benefits?)
 \begin{align}
-area_{jitter}(a,b)=\frac{\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t}{\int \limits _{0}^{(b-a)/2} diameter_{horiz,T}(a+t,b-t)\mathrm{d}t}\\
+area_{jitter}(a,b)=\frac{\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t}{\int \limits _{0}^{(b-a)/2} diameter_{horiz,T}(a+t,b-t)\mathrm{d}t}
 \end{align}
 
 \subsection{Imaginary Visibility}
@@ -105,7 +140,6 @@ jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}(t)-\xi_{F}(t)\rvert \math
 \end{align}
 
 \section{Indicator}
-Consider: A polar to cartesian transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$.\\\\
 In order for Stopeight overlay comparison to work, source separation has to be performed. A complex function measuring separation can be defined as.
 \begin{equation}
 separation(a,b) = isolation(a,b) + \mathrm{i} visibility(a,b)
@@ -119,7 +153,8 @@ Or directly on the signal?
 \begin{align}
 periodicity(a,b) =  (\int \limits _{a}^{b} s(t) \mathrm{dt}) *(visibility(a,b) +\mathrm{i} isolation(a,b))
 \end{align}
-Note: $visibility$ and $isolation$ already include the trigonometric functions of the polar to cartesian transform.\\
+Note: $visibility$ and $isolation$ already include the trigonometric functions of the polar to cartesian transform.\\\\
+Consider: A polar to cartesian transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$.\\\\
 Explanation:\\
 The imaginary part is the other side of the wave vs\\
 The imaginary part is the phase shift (fft)\\\\
