@@ -3,15 +3,15 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
+
+\iffalse
 \usepackage{biblatex}
+\addbibresource{Stopeight.bib}
+\fi
+\usepackage{natbib}
+
 \renewcommand{\baselinestretch}{1.25}
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
-
-\addbibresource{Stopeight.bib}
-\iffalse
-\bibliography{Stopeight}{}
-\bibliographystyle{plain}
-\fi
 
 \begin{document}
 \title{Stopeight Analyzer}
@@ -37,11 +37,11 @@ f \circ g: X \rightarrow A
 \begin{equation*}
 1 < card(X) < \infty
 \end{equation*}
-via the intermediate functions $f,g$ where the intermediate transversality $Y = X \cap A$ defines Arcs $U_{m}$. ~\cite[\nopp 9.9]{Loring} ($f \circ g$ is neither injective nor surjective) ~\cite[\nopp 2.1]{LauresSzymik}:
+via the intermediate functions $f,g$ where the intermediate transversality $Y = X \cap A$ defines Arcs $U_{m}$. ~\cite[9.9]{Loring} ($f \circ g$ is neither injective nor surjective) ~\cite[2.1]{LauresSzymik}:
 \begin{align}
 f: X \approx B \rightarrow Y; g: Y \rightarrow A
 \end{align}
-Note: The sequence of Arcs A is a dim 1-manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[\nopp 3.1.1.]{Fomenko} ~\cite[\nopp 4.5]{Wall}
+Note: The sequence of Arcs A is a dim 1-manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[3.1.1.]{Fomenko} ~\cite[4.5]{Wall}
 \begin{align}
 A = \cup_{m}U_{m}
 \end{align}
@@ -54,7 +54,7 @@ but $B$ is not. See \eqref{eq:1}.
 Y: \text{0-submanifold} \Rightarrow (dim(B)=1)=(codim(Y)=1) \Rightarrow B \text{ joint } A
 \end{align}
 \iffalse
-Within $f$ we are assigning a sequence of three points to compact Hausdorf invervals ~\cite[\nopp 6.1.3.]{Mortad}:
+Within $f$ we are assigning a sequence of three points to compact Hausdorf invervals ~\cite[6.1.3.]{Mortad}:
 \begin{equation}
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{S,C,E\}
 \end{equation}\\
@@ -89,14 +89,14 @@ with control point sets $\{H_{1},...,H_{4}\}$ per chart of $Y \cup Q$. The Arc s
 \gamma_{H_{3}}(t); H_{4}=\{q_{5}(S,C_{2},E),q_{6}(S,C_{1},E),E\} & t \in [\frac{3}{4},1]
 \end{cases}
 \end{align*}
-Note: The continuous function $\xi$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ~\cite[\nopp 6.1.3.]{Mortad}\\\\
+Note: The continuous function $\xi$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ~\cite[6.1.3.]{Mortad}\\\\
 In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$, we have to connect all $P_{n}, P_{n+1} \in X$ with one linear bezier spline each, because $X$ is discrete:
 \begin{align}
 \iota: \mathbb{R} \rightarrow B; t \mapsto (x,y)\\
 \iota_{X}(t) = \{ \gamma_{H}(t)\lvert H=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}; P_{n}, P_{n+1} \in X\}\}
 \end{align}
-Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[\nopp 1.1]{Taimanov}\\\\
-The arc-length metric $d(a,b)$ turns both manifolds $A$ and $B$ into metric spaces $(A,d)$ and $(B,d)$. ~\cite[\nopp 1.1.3]{Klingenberg}
+Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[1.1]{Taimanov}\\\\
+The arc-length metric $d(a,b)$ turns both manifolds $A$ and $B$ into metric spaces $(A,d)$ and $(B,d)$. ~\cite[1.1.3]{Klingenberg}
 \begin{equation}
 d(a,b) = \int \limits _{a}^{b}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t)\rvert \mathrm{d}t\label{eq:1}
 \end{equation}
@@ -163,7 +163,7 @@ A legal segment is an affine transformtion of the arc curve function $transform(
 \begin{align}
 \xi'_{x}(a),\xi'_{y}(a), (\xi'_{y}(b)\text{ optional?}) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), (\iota'_{y}(b)\text{ optional?}) = 0
 \end{align}
-(~\cite[\nopp Riemann Integrable?]{Widon})
+(~\cite[Riemann Integrable?]{Widon})
 
 \subsection{Straightness}
 A straight line segment is determined by means of straightness.\\
@@ -256,7 +256,7 @@ A Swing is the section $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not g
 \xi'(c)>0;\xi'(b')=0;\xi'(d)<0\\
 T_{2} \ni b'
 \end{align}
-The criteria, whether a segment is within a chart is ~\cite[\nopp 20.7]{Loring}.
+The criteria, whether a segment is within a chart is ~\cite[20.7]{Loring}.
 \begin{equation}
 [a,b] \subseteq U_{m} \Rightarrow \exists  \xi'(t) - \iota_{T}'(t) >0 \land \nexists \xi'(t) - \iota_{T}'(t) \leq 0
 \end{equation}
@@ -395,6 +395,10 @@ A swell is centered by triplets (See The Captain of Swing).
 \subsection*{Direction}
 If the sections are being extracted from left to right $[a,b];a<b$, the Compact Cover is positive. If the direction of analysis is reversed $[b,a]$, it is negative.
 
+\iffalse
 \printbibliography
+\fi
+\bibliography{Stopeight}{}
+\bibliographystyle{plain}
 
 \end{document}

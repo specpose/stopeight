@@ -9,7 +9,7 @@ The directory for mathematical definitions (.tex) and bibliography (.bib) is::
 
 Install from universe::
 
-    $ sudo apt-get install biber texlive-latex-extra texlive-bibtex-extra
+    $ sudo apt-get install texlive-latex-extra texlive-bibtex-extra
 
 Install the following packages::
 
@@ -19,9 +19,9 @@ First run pdflatex to create the bcf file::
 
     $ pdflatex ./filename.tex
 
-Then run biber on the tex file::
+Then run bibtex on the tex file::
 
-    $ biber ./filename.bcf
+    $ bibtex ./filename.bcf
 
 Create the PDF::
 

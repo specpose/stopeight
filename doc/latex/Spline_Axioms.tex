@@ -3,11 +3,14 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
+
+\iffalse
 \usepackage{biblatex}
-\renewcommand{\baselinestretch}{1.25}
-
 \addbibresource{Stopeight.bib}
+\fi
+\usepackage{natbib}
 
+\renewcommand{\baselinestretch}{1.25}
 \begin{document}
 \title{Spline Axioms}
 \author{Fassio Blatter}
@@ -194,6 +197,10 @@ area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{
 \subsection{Tangential Paraglide Differences}
 Depend on focal points. Adjusted $area$
 
+\iffalse
 \printbibliography
+\fi
+\bibliography{Stopeight}{}
+\bibliographystyle{plain}
 
 \end{document}

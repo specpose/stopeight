@@ -3,15 +3,15 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
+
+\iffalse
 \usepackage{biblatex}
+\addbibresource{Stopeight.bib}
+\fi
+\usepackage{natbib}
+
 \renewcommand{\baselinestretch}{1.25}
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
-
-\addbibresource{Stopeight.bib}
-\iffalse
-\bibliography{Stopeight}{}
-\bibliographystyle{plain}
-\fi
 
 \begin{document}
 \title{Stopeight Comparator}
@@ -174,6 +174,10 @@ A complex norm $\norm{\cdot}$ is defined on the transversality.
 \subsection*{After Separation}
 Asymetric, non-repetitive pulses, which can be compared by matchline overlay comparison (See Sisyphos)
 
+\iffalse
 \printbibliography
+\fi
+\bibliography{Stopeight}{}
+\bibliographystyle{plain}
 
 \end{document}

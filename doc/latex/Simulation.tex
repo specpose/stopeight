@@ -3,16 +3,15 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
-\usepackage{biblatex}
-\renewcommand{\baselinestretch}{1.25}
-\newcommand\norm[1]{\left\lVert#1\right\rVert}
 
-\addbibresource{Stopeight.bib}
 \iffalse
-\bibliography{Stopeight}{}
-\bibliographystyle{plain}
+\usepackage{biblatex}
+\addbibresource{Stopeight.bib}
 \fi
+\usepackage{natbib}
 
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\renewcommand{\baselinestretch}{1.25}
 \begin{document}
 \title{Simulation}
 \author{Fassio Blatter}
@@ -53,6 +52,10 @@ z =  straightness([a,b]) + \mathrm{i} curvature([a,b])
 Supercritical\\
 gaseous/liquid carbondioxide
 
+\iffalse
 \printbibliography
+\fi
+\bibliography{Stopeight}{}
+\bibliographystyle{plain}
 
 \end{document}
