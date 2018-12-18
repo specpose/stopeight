@@ -28,10 +28,12 @@ line(t):
 \end{pmatrix}
 \underbrace{\begin{bmatrix}
 1 & 0\\
--2 & 1
+-1 & 1
 \end{bmatrix}}_{Coefficients}
+M
 \begin{pmatrix}
-Mh_{1}
+h_{1} \\
+h_{2}
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -46,11 +48,14 @@ quad(t):
 \end{pmatrix}
 \underbrace{\begin{bmatrix}
 1 & 0 & 0\\
--2 & 2 & 0\\
-1 & -2 &1
+-1 & 1 & 0\\
+0 & -1 &1
 \end{bmatrix}}_{Coefficients}
+M
 \begin{pmatrix}
-Mh_{1} & Mh_{2} & Mh_{3}
+h_{1} \\
+h_{2} \\
+h_{3}
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -65,13 +70,18 @@ quart(t):
 \end{pmatrix}
 \underbrace{\begin{bmatrix}
 1 & 0 & 0 & 0 & 0\\
--2 & 2 & 0 & 0 & 0\\
-1 & -2 &1 & 0 & 0\\
-1 & 1 & -2 & 2 & 0\\
-1 & 1 & 1 & -2 & 1
+-1 & 1 & 0 & 0 & 0\\
+0 & -1 &1 & 0 & 0\\
+0 & 0 & -1 & 1 & 0\\
+0 & 0 & 0 & -1 & 1
 \end{bmatrix}}_{Coefficients}
+M
 \begin{pmatrix}
-Mh_{1} & Mh_{2} & Mh_{3} & Mh_{4} & Mh_{5}
+h_{1} \\
+h_{2} \\
+h_{3} \\
+h_{4} \\
+h_{5}
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -83,10 +93,10 @@ Axiom: Because $M^{5x5}$ only includes translations and rotations, $CMH$ can be 
 \begin{equation}
 \underbrace{\begin{bmatrix}
 1 & 0 & 0 & 0 & 0\\
--2 & 2 & 0 & 0 & 0\\
-1 & -2 &1 & 0 & 0\\
-1 & 1 & -2 & 2 & 0\\
-1 & 1 & 1 & -2 & 1
+-1 & 1 & 0 & 0 & 0\\
+0 & -1 &1 & 0 & 0\\
+0 & 0 & -1 & 1 & 0\\
+0 & 0 & 0 & -1 & 1
 \end{bmatrix}}_{Coefficients}
 \underbrace{\begin{bmatrix}
 t_{v} & r_{v} & h_{1v} & h_{1w} & h_{1x}\\
@@ -104,10 +114,10 @@ quart(t):
 \end{pmatrix}
 \underbrace{\begin{bmatrix}
 1 & 0 & 0 & 0 & 0\\
--2 & 2 & 0 & 0 & 0\\
-1 & -2 &1 & 0 & 0\\
-1 & 1 & -2 & 2 & 0\\
-1 & 1 & 1 & -2 & 1
+-1 & 1 & 0 & 0 & 0\\
+0 & -1 &1 & 0 & 0\\
+0 & 0 & -1 & 1 & 0\\
+0 & 0 & 0 & -1 & 1
 \end{bmatrix}}_{Coefficients}
 M
 =
