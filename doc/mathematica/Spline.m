@@ -23,6 +23,7 @@
 (*arc4::usage="";*)
 (*BC::usage="";*)
 (*BS::usage="";*)
+(*BS2gen::usage="";*)
 
 
 (* ::Input:: *)
@@ -136,6 +137,17 @@
 (*]*)
 (*BC[n_,i_]:=Module[{},Factorial[n]/(Factorial[i])*Factorial[n-i]]*)
 (*BS[n_,i_,t_]:=Module[{},BC[n,i]*(t^i)*(1-t)^(n-i)]*)
+(*BS2gen[xin_,i_]:=Module[{*)
+(*},*)
+(*Clear[y];Clear[x];*)
+(*Coef2 = {{1,0,0},{-1,1,0},{0,-1,1}};*)
+(*H2={{0,0,0},{x,y,0},{1,0,0}};*)
+(*eq=Det[Coef2.H2-t*IdentityMatrix[3]]==BS[3,i,t];*)
+(*sol=Solve[eq,{y}][[1]][[1]][[2]];*)
+(*Table[{p=Flatten[x=xin;y=sol;{{1,t,t^2}}.Coef2.H2];*)
+(*p[[1]],*)
+(*p[[2]]*)
+(*},{t,0,1,1/4}]]*)
 
 
 (* ::Input:: *)
