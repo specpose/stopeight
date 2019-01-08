@@ -40,7 +40,7 @@ h_{2}
 h_{1}' & h_{2}'
 \end{pmatrix}
 \end{equation}
-The more complicate case of a quadratic bezier spline
+The more complicated case of a quadratic bezier spline
 \begin{equation}
 quad(t):
 \begin{pmatrix}
@@ -62,7 +62,7 @@ h_{3}
 h_{1}' & h_{2}' & h_{3}'
 \end{pmatrix}
 \end{equation}
-The Coefficients are composed of the sum of identity matrices in lower left (sub-spaces).
+The Coefficients are composed of the sum of identity matrices in lower left sub-spaces.
 The characteristic polynomials of the diagonal and bidiagonal is composed of binomial coefficients.
 \begin{equation}
 \chi_{\begin{pmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{pmatrix}} = \begin{pmatrix}3 \\ 0\end{pmatrix}*t^0 - \begin{pmatrix}3 \\ 1\end{pmatrix}*t^1 + \begin{pmatrix}3 \\ 2\end{pmatrix}*t^2 - \begin{pmatrix}3 \\ 3\end{pmatrix}*t^3;
@@ -119,7 +119,7 @@ h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
 \subsection{Number of Variables}
 Axiom: Within the bounds $[a,b]$ a combination of multiple $splines$ can occur. They are independent, $iff$ for all vectors there is a sum $g' +h'$\\\\
 \begin{equation}
-nonlinear(t):
+sum(t):
 \begin{bmatrix}
 1 & t & t^2\\
 1 & u & u^2
@@ -133,11 +133,11 @@ h_{1}' & h_{2}' & h_{3}'
 \end{equation}
 Theorem: They are harmonic, hence there is a non-sparse separation.
 
-\subsection{Base}
+\subsection{Spline Base}
 \subsubsection{Existence of Bounds}
-If an orthonormal base can be found for the $Image \in \mathbb{Z}^3$
+If a base vector can be found for the integer $Image \in \mathbb{Z}^3$ in dimensions $x,y$
 \begin{equation}
-orthonormal(t):
+arc(t):
 \begin{pmatrix}
 1 & t & t^2
 \end{pmatrix}
@@ -162,8 +162,8 @@ For a Lie Group a characteristic polynomial can be found
 orthonormal_{Coefficients,Base}(\lambda): \text{GL(3,R)} \rightarrow Polynomial\\
 GL(3,R) = ONB(a,b); [a,b] \subseteq \text{Chart of }Domain
 \end{align}
-\subsubsection{Orthogonal Bounds}
-\subsection{Frame}
+\subsection{Signal Base}
+\subsubsection{Bounds of Hilbert Spaces}
 
 \chapter{Polynomial Degree}
 \subsection{Combination of Spaces}
