@@ -16,10 +16,10 @@
 \author{Fassio Blatter}
 \maketitle
 
-\chapter{Linear Limitation}
+\chapter{Single Polynomial}
 
 \subsection{Affine Transformations}
-If a matrix is a product of affine (sub-)space transformations, its upper triangular matrix is an expression of a limitation to the type and combination of the factors.\\\\
+The matrix $M$ is a product of affine (sub-)space transformations. Any set of vectors $h'$ within bounds $[a,b]$ can be translated, rotated and scaled, so that $h'(a)=\begin{pmatrix}0 & 0\end{pmatrix}$ and $h'(b)=\begin{pmatrix}1 & 0\end{pmatrix}$. Any approximation with a parametrisation $t$ can be expressed with a single polynomial if the Coefficients can be brought into a triangular form.\\\\
 The simple case of a straight line
 \begin{equation}
 line(t):
@@ -62,6 +62,12 @@ h_{3}
 h_{1}' & h_{2}' & h_{3}'
 \end{pmatrix}
 \end{equation}
+The Coefficients are composed of the sum of identity matrices in lower left (sub-spaces).
+The characteristic polynomials of the diagonal and bidiagonal is composed of binomial coefficients.
+\begin{equation}
+\chi_{\begin{pmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{pmatrix}} = \begin{pmatrix}3 \\ 0\end{pmatrix}*t^0 - \begin{pmatrix}3 \\ 1\end{pmatrix}*t^1 + \begin{pmatrix}3 \\ 2\end{pmatrix}*t^2 - \begin{pmatrix}3 \\ 3\end{pmatrix}*t^3;
+\chi_{\begin{pmatrix}-1 & 0\\0 & -1\end{pmatrix}} = \begin{pmatrix}2 \\ 0\end{pmatrix}*t^0 + \begin{pmatrix}2 \\ 1\end{pmatrix}*t^1 + \begin{pmatrix}2 \\ 2\end{pmatrix}*t^2
+\end{equation}
 The quartic spline
 \begin{equation}
 quart(t):
@@ -88,25 +94,8 @@ h_{5}
 h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
 \end{pmatrix}
 \end{equation}
-The coefficient Matrix $Coefficients$ is not garanteed to be invertible. It can be a product of non-commutative factors. Or there can be illegal shearing.\\
-Axiom: Because $M^{5x5}$ only includes translations and rotations, $CMH$ can be combined.
-\begin{equation}
-\underbrace{\begin{bmatrix}
-1 & 0 & 0 & 0 & 0\\
--1 & 1 & 0 & 0 & 0\\
-0 & -1 &1 & 0 & 0\\
-0 & 0 & -1 & 1 & 0\\
-0 & 0 & 0 & -1 & 1
-\end{bmatrix}}_{Coefficients}
-\underbrace{\begin{bmatrix}
-t_{v} & r_{v} & h_{1v} & h_{1w} & h_{1x}\\
-t_{w} & r_{w} & h_{2v} & h_{2w} & h_{2x}\\
-t_{x} & r_{x} & h_{3v} & h_{3w} & h_{3x}\\
-t_{y} & r_{y} & h_{4v} & h_{4w} & h_{4x}\\
-t_{z} & r_{z} & h_{5v} & h_{5w} & h_{5x}
-\end{bmatrix}}_{MH}
-\end{equation}
-Axiom: Because of associativity, an inverse can be left multiplied.
+Note: Because we are only interested in a $2x2$ subspace, the tri- and quartdiagonals can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace. $h'_{3},h'_{4},h'_{5}$ are irrelevant in this case.\\\\
+Axiom: Because of associativity, an inverse of the control points can be left multiplied.
 \begin{equation}
 quart(t):
 \begin{pmatrix}
@@ -126,31 +115,26 @@ H^{-1}
 h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
 \end{pmatrix}
 \end{equation}
-Theorem: It now appears likely, that $CM$ can be decomposed when $H^{-1}$ is an orthogonal base to the planar coordinates $h'$ and a polynomial of degree 2. $t^3,t^4$ and $h'_{4},h'_{5}$ are irrelevant in this case.
 
 \subsection{Number of Variables}
-Theorem: If the coefficient, transformation and base Combination Matrix $CMH$ of a polynomial can be orthogonalised, the polynomial can be defined by a single variable.\\\\
-Axiom: The nonlinear equation
+Axiom: Within the bounds $[a,b]$ a combination of multiple $splines$ can occur. They are independent, $iff$ for all vectors there is a sum $g' +h'$\\\\
 \begin{equation}
 nonlinear(t):
 \begin{bmatrix}
 1 & t & t^2\\
 1 & u & u^2
 \end{bmatrix}
-\underbrace{\begin{bmatrix}
-2 & -2 & 1\\
--2 & 4 & -2\\
-1 & -2 & 2
-\end{bmatrix}}_{CMH}
+\underbrace{CMH}_{}
 =
 \begin{pmatrix}
+g_{1}' & g_{2}' & g_{3}'\\
 h_{1}' & h_{2}' & h_{3}'
 \end{pmatrix}
 \end{equation}
-has the same control points, but the coefficient matrix $Coefficients$ can be non-invertible $det(Coefficients)=0$ for rows $t,u$.
+Theorem: They are harmonic, hence there is a non-sparse separation.
 
-\iffalse
-\chapter{Limited Image}
+\subsection{Base}
+\subsubsection{Existence of Bounds}
 If an orthonormal base can be found for the $Image \in \mathbb{Z}^3$
 \begin{equation}
 orthonormal(t):
@@ -159,8 +143,8 @@ orthonormal(t):
 \end{pmatrix}
 \underbrace{\begin{pmatrix}
 1 & 0 & 0\\
-0 & 1 & 0\\
-0 & 0 & 1
+-1 & 1 & 0\\
+0 & -1 & 1
 \end{pmatrix}}_{Coefficients}
 \underbrace{\begin{bmatrix}
 Me_{1} & Me_{2} & Me_{3}
@@ -178,26 +162,27 @@ For a Lie Group a characteristic polynomial can be found
 orthonormal_{Coefficients,Base}(\lambda): \text{GL(3,R)} \rightarrow Polynomial\\
 GL(3,R) = ONB(a,b); [a,b] \subseteq \text{Chart of }Domain
 \end{align}
-\fi
+\subsubsection{Orthogonal Bounds}
+\subsection{Frame}
 
-\chapter{Eliptic Limitation}
-\subsection{Combination of Bases}
-A quartic bezier spline has a total of five Control points which can be reduced to three if the subspline alignment is smooth. A circle has a total of two Focal Points, which can be reduced to one if smoothness applies. If we deviate from this smoothness, a Spiral forms.
-\subsection{Parametrised Focal Points}
-Beyond quadratic approximation, each Corner is a Focal point with a focal vector. On a Spiral there are multiple Corners, on a ZigZag, there is none. The Focal Points mostly make sense in the context of sub-pulse analysis, i.e. the comparison of rise and fall.\\\\
-If we have $T_{3}$ and all the Compact Covers worked out, Focal points can be defined (Swell?) and new differences and areas parametrised. $p$ supremums are considered over the whole section of the Compact Cover $V_{n}$. The interval over the bounds of a supremum is $[a(F_{p}),b(F_{p})]$.
+\chapter{Polynomial Degree}
+\subsection{Combination of Spaces}
+A quartic bezier spline has a total of five Control points which can be reduced to three if the subspline alignment is smooth. A circle has a total of two focal points, which can be reduced to one if smoothness applies. If we deviate from this smoothness, a Spiral forms.
+\subsection{Parametrised Korners}
+Beyond quadratic approximation, each Corner is a Korner $K$ with a focal vector. On a Spiral there are multiple Korners, on a ZigZag, there is none. The Korners mostly make sense in the context of sub-pulse analysis, i.e. the comparison of rise and fall.\\\\
+If we have $T_{3}$ and all the Compact Covers worked out, Korners can be defined (Swell?) and new differences and areas parametrised. $p$ supremums are considered over the whole section of the Compact Cover $V_{n}$. The interval over the bounds of a supremum is $[a(K_{p}),b(K_{p})]$.
 \begin{align}
-F_{p+1} = \{ C_{3} \in  [a,b]\vert \sup \limits _{V_{n} \setminus [a(F_{p}),b(F_{p})]} \lvert curvature(a,b) \rvert \}
+K_{p+1} = \{ C_{3} \in  [a,b]\vert \sup \limits _{V_{n} \setminus [a(K_{p}),b(K_{p})]} \lvert curvature(a,b) \rvert \}
 \end{align}
-There is one Focal point per arc $\{U_{m}\}$.\\
-As a consequence $diameter$ and $area$ could be parametrised on the new Focal points $dom(\iota)=T_{3}\cup F_{p}$. ($dom(\xi)$?).\\
+There is one Korner per arc $\{U_{m}\}$.\\
+As a consequence $diameter$ and $area$ could be parametrised on the new Korners $dom(\iota)=T_{3}\cup K_{p}$. ($dom(\xi)$?).\\
 \begin{align}
-area_{sup}(K_{p})=\int \limits _{a(F_{p})}^{b(F_{p})} \lvert \iota_{F_{p}}(t)-\iota_{F_{p+1}}(t) \rvert \mathrm{d}t\\
+area_{sup}(K_{p})=\int \limits _{a(K_{p})}^{b(K_{p})} \lvert \iota_{K_{p}}(t)-\iota_{K_{p+1}}(t) \rvert \mathrm{d}t\\
 diameter_{sup}(a,b)=\sup \limits _{c,d \in [a,b]} \lvert \xi(d) - \xi(c) \rvert
 \end{align}
 The solid angle now depends on the bisection and $area_{sup}$. (sum or product?)
 \begin{equation}
-solidangle_{Abs}(a,b)=\sum \limits _{i=0}^{p} \frac{area_{sup}(F_{i})}{(\xi(t(F_{i}))-\iota(t(F_{i})))^2}
+solidangle_{Abs}(a,b)=\sum \limits _{i=0}^{p} \frac{area_{sup}(K_{i})}{(\xi(t(K_{i}))-\iota(t(K_{i})))^2}
 \end{equation}
 The horizontals on the bisections are defined by the transversality of the eliptic approximation.
 \begin{align}
@@ -205,7 +190,7 @@ area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{
 \end{align}
 (change of variable?)
 \subsection{Tangential Paraglide Differences}
-Depend on focal points. Adjusted $area$
+Focal points are intersections of normals on tangents. Distribution can be parametrised without breaking the bounds $iff$ there is only one Korner. Adjusted $area$
 
 \iffalse
 \printbibliography
