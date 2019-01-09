@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     42143,       1060]
-NotebookOptionsPosition[     40564,       1027]
-NotebookOutlinePosition[     40897,       1042]
-CellTagsIndexPosition[     40854,       1039]
+NotebookDataLength[     47757,       1162]
+NotebookOptionsPosition[     46177,       1129]
+NotebookOutlinePosition[     46510,       1144]
+CellTagsIndexPosition[     46467,       1141]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -24,12 +24,12 @@ Cell[BoxData[
    RowBox[{
     RowBox[{"Context", "[", "]"}], "<>", "\"\<*\>\""}], "]"}], "]"}]], "Input",\
 
- CellLabel->"In[22]:=",ExpressionUUID->"50fcc07e-b04b-4b06-be90-516d39e07f29"],
+ CellLabel->"In[34]:=",ExpressionUUID->"50fcc07e-b04b-4b06-be90-516d39e07f29"],
 
 Cell[BoxData[
  RowBox[{"Needs", "[", "\"\<Spline`\>\"", "]"}]], "Input",
  CellChangeTimes->{{3.753702624847374*^9, 3.753702651682048*^9}},
- CellLabel->"In[23]:=",ExpressionUUID->"dc37c5c1-800f-42da-88ac-3d4a585491bb"],
+ CellLabel->"In[35]:=",ExpressionUUID->"dc37c5c1-800f-42da-88ac-3d4a585491bb"],
 
 Cell[CellGroupData[{
 
@@ -83,25 +83,30 @@ Cell[BoxData[{
        RowBox[{"PlotRange", "\[Rule]", "2"}]}], "]"}], ",", 
      RowBox[{"Dynamic", "[", 
       RowBox[{
-       RowBox[{"poly", "=", " ", 
+       RowBox[{"poly1", "=", " ", 
         RowBox[{"CharacteristicPolynomial", "[", 
          RowBox[{
-          RowBox[{"Coef1", ".", "M1", ".", 
-           RowBox[{"H1", "[", 
-            RowBox[{"Coef1", ",", "M1", ",", "s", ",", "e"}], "]"}]}], ",", 
-          "t"}], "]"}]}], ";", 
+          RowBox[{"M1", ".", 
+           RowBox[{"H1n", "[", 
+            RowBox[{"M1", ",", "s", ",", "e"}], "]"}]}], ",", "t"}], "]"}]}], 
+       ";", 
        RowBox[{"Plot", "[", 
-        RowBox[{"poly", ",", 
+        RowBox[{"poly1", ",", 
          RowBox[{"{", 
           RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Dynamic", "[", 
+       RowBox[{"Expand", "[", "poly1", "]"}], "]"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"Dynamic", "[", "s", "]"}], ",", 
        RowBox[{"Dynamic", "[", "e", "]"}]}], "}"}]}], "}"}]}], 
   "]"}]}], "Input",
  CellChangeTimes->{{3.753647826762274*^9, 3.753647880150669*^9}, 
-   3.753647910990225*^9, 3.753647956047772*^9},
- CellLabel->"In[24]:=",ExpressionUUID->"af07487f-0f3b-4347-96f1-f47706dc5442"],
+   3.753647910990225*^9, 3.753647956047772*^9, {3.754051357194474*^9, 
+   3.754051375763378*^9}, {3.7544907583082743`*^9, 3.754490759418449*^9}, {
+   3.754493202534712*^9, 3.754493207290389*^9}, 3.754494334324523*^9},
+ CellLabel->"In[36]:=",ExpressionUUID->"af07487f-0f3b-4347-96f1-f47706dc5442"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`e$$ = {1, 0}}, 
@@ -116,13 +121,17 @@ $CellContext`e$$]], StandardForm, Graphics],
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
-    DynamicBox[ToBoxes[$CellContext`poly = CharacteristicPolynomial[
-         Dot[$CellContext`Coef1, $CellContext`M1, 
+    DynamicBox[ToBoxes[$CellContext`poly1 = CharacteristicPolynomial[
+         Dot[$CellContext`M1, 
           
-          Spline`H1[$CellContext`Coef1, $CellContext`M1, $CellContext`s$$, \
-$CellContext`e$$]], $CellContext`t]; 
-      Plot[$CellContext`poly, {$CellContext`t, 0, 1}], StandardForm],
+          Spline`H1n[$CellContext`M1, $CellContext`s$$, $CellContext`e$$]], \
+$CellContext`t]; Plot[$CellContext`poly1, {$CellContext`t, 0, 1}], 
+      StandardForm],
      ImageSizeCache->{180., {55., 60.}}], ",", 
+    RowBox[{"{", 
+     DynamicBox[ToBoxes[
+       Expand[$CellContext`poly1], StandardForm],
+      ImageSizeCache->{16., {0., 15.}}], "}"}], ",", 
     RowBox[{"{", 
      RowBox[{
       DynamicBox[ToBoxes[$CellContext`s$$, StandardForm],
@@ -135,8 +144,12 @@ $CellContext`e$$]], $CellContext`t];
    3.7536480588698683`*^9, 3.753648164285756*^9, 3.7536506614158916`*^9, 
    3.753650703490481*^9, 3.753651192986566*^9, 3.7536517557303047`*^9, {
    3.753702641710807*^9, 3.753702656534095*^9}, 3.7537026966354303`*^9, 
-   3.7537027278789377`*^9, 3.753702778008477*^9},
- CellLabel->"Out[26]=",ExpressionUUID->"fb062226-0ef6-4ff3-b51f-e3e9eeeb0d7e"]
+   3.7537027278789377`*^9, 3.753702778008477*^9, 3.754049641728168*^9, 
+   3.754050050324438*^9, 3.754050339675961*^9, 3.754051534404728*^9, 
+   3.75405186595748*^9, 3.754483916397828*^9, 3.754484116973093*^9, 
+   3.75448449135192*^9, 3.754490858022478*^9, 3.754491753600704*^9, 
+   3.754492473818857*^9, 3.754493282404735*^9, 3.754494358860622*^9},
+ CellLabel->"Out[38]=",ExpressionUUID->"a41eb752-e4fd-4181-a505-988371f77a55"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -222,17 +235,20 @@ Cell[BoxData[{
         RowBox[{"PlotRange", "\[Rule]", "2"}]}], "]"}], ",", 
       RowBox[{"Dynamic", "[", 
        RowBox[{
-        RowBox[{"poly", "=", " ", 
+        RowBox[{"poly2", "=", " ", 
          RowBox[{"CharacteristicPolynomial", "[", 
           RowBox[{
-           RowBox[{"Coef2", ".", "M2", ".", 
-            RowBox[{"H2", "[", 
-             RowBox[{"Coef2", ",", "M2", ",", "s", ",", "c1", ",", "e"}], 
-             "]"}]}], ",", "t"}], "]"}]}], ";", 
+           RowBox[{"M2", ".", 
+            RowBox[{"H2n", "[", 
+             RowBox[{"M2", ",", "s", ",", "c1", ",", "e"}], "]"}]}], ",", 
+           "t"}], "]"}]}], ";", 
         RowBox[{"Plot", "[", 
-         RowBox[{"poly", ",", 
+         RowBox[{"poly2", ",", 
           RowBox[{"{", 
            RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"Dynamic", "[", 
+        RowBox[{"Expand", "[", "poly2", "]"}], "]"}], "}"}], ",", 
       RowBox[{"{", 
        RowBox[{
         RowBox[{"Dynamic", "[", "s", "]"}], ",", 
@@ -274,17 +290,20 @@ Cell[BoxData[{
        RowBox[{"PlotRange", "\[Rule]", "2"}]}], "]"}], ",", 
      RowBox[{"Dynamic", "[", 
       RowBox[{
-       RowBox[{"poly", "=", " ", 
+       RowBox[{"poly3", "=", " ", 
         RowBox[{"CharacteristicPolynomial", "[", 
          RowBox[{
-          RowBox[{"Coef2", ".", "M2", ".", 
-           RowBox[{"H2", "[", 
-            RowBox[{"Coef2", ",", "M2", ",", "s", ",", "c1", ",", "e"}], 
-            "]"}]}], ",", "t"}], "]"}]}], ";", 
+          RowBox[{"M2", ".", 
+           RowBox[{"H2n", "[", 
+            RowBox[{"M2", ",", "s", ",", "c1", ",", "e"}], "]"}]}], ",", 
+          "t"}], "]"}]}], ";", 
        RowBox[{"Plot", "[", 
-        RowBox[{"poly", ",", 
+        RowBox[{"poly3", ",", 
          RowBox[{"{", 
           RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Dynamic", "[", 
+       RowBox[{"Expand", "[", "poly3", "]"}], "]"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"Dynamic", "[", "s", "]"}], ",", 
@@ -294,8 +313,12 @@ Cell[BoxData[{
  CellChangeTimes->{{3.7536466190737553`*^9, 3.7536466719614697`*^9}, 
    3.753646753662656*^9, {3.75364688998379*^9, 3.753646913827547*^9}, {
    3.753650523944252*^9, 3.75365054370264*^9}, {3.753650594547327*^9, 
-   3.753650642661845*^9}, {3.753650688598794*^9, 3.753650693699232*^9}},
- CellLabel->"In[27]:=",ExpressionUUID->"5d70f809-3415-4942-baca-6a1b97b567af"],
+   3.753650642661845*^9}, {3.753650688598794*^9, 3.753650693699232*^9}, {
+   3.754051329285913*^9, 3.7540513443693047`*^9}, {3.754051391925915*^9, 
+   3.754051415646282*^9}, {3.754490772337388*^9, 3.754490781866642*^9}, {
+   3.7544932122532578`*^9, 3.7544932249699297`*^9}, {3.754494334332129*^9, 
+   3.754494334334861*^9}},
+ CellLabel->"In[39]:=",ExpressionUUID->"5d70f809-3415-4942-baca-6a1b97b567af"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -313,13 +336,17 @@ $CellContext`c1$$, $CellContext`e$$]], StandardForm, Graphics],
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
-    DynamicBox[ToBoxes[$CellContext`poly = CharacteristicPolynomial[
-         Dot[$CellContext`Coef2, $CellContext`M2, 
+    DynamicBox[ToBoxes[$CellContext`poly2 = CharacteristicPolynomial[
+         Dot[$CellContext`M2, 
           
-          Spline`H2[$CellContext`Coef2, $CellContext`M2, $CellContext`s$$, \
-$CellContext`c1$$, $CellContext`e$$]], $CellContext`t]; 
-      Plot[$CellContext`poly, {$CellContext`t, 0, 1}], StandardForm],
-     ImageSizeCache->{180., {47., 52.}}], ",", 
+          Spline`H2n[$CellContext`M2, $CellContext`s$$, $CellContext`c1$$, \
+$CellContext`e$$]], $CellContext`t]; 
+      Plot[$CellContext`poly2, {$CellContext`t, 0, 1}], StandardForm],
+     ImageSizeCache->{180., {47., 54.}}], ",", 
+    RowBox[{"{", 
+     DynamicBox[ToBoxes[
+       Expand[$CellContext`poly2], StandardForm],
+      ImageSizeCache->{203.06875, {12.7, 16.64}}], "}"}], ",", 
     RowBox[{"{", 
      RowBox[{
       DynamicBox[ToBoxes[$CellContext`s$$, StandardForm],
@@ -335,8 +362,12 @@ $CellContext`c1$$, $CellContext`e$$]], $CellContext`t];
    3.753648058933385*^9, 3.753648164353113*^9, 3.753650661577503*^9, 
    3.753650704314015*^9, 3.7536511954817953`*^9, 3.7536517596433687`*^9, {
    3.753702642361375*^9, 3.753702657110214*^9}, 3.753702696914332*^9, 
-   3.753702729022799*^9, 3.753702780082932*^9},
- CellLabel->"Out[28]=",ExpressionUUID->"4eaf046c-6964-45c2-bd08-67f4344cc8bd"],
+   3.753702729022799*^9, 3.753702780082932*^9, 3.7540496423349113`*^9, 
+   3.7540500525514*^9, 3.754050341386805*^9, 3.7540515365047092`*^9, 
+   3.754051867655694*^9, 3.7544839171221323`*^9, 3.7544841182532454`*^9, 
+   3.7544844921096277`*^9, 3.754490861014385*^9, 3.754491754252001*^9, 
+   3.7544924750239677`*^9, 3.754493283455462*^9, 3.754494359620925*^9},
+ CellLabel->"Out[40]=",ExpressionUUID->"728c1a72-1aac-4b12-9025-432e9f6d7427"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -354,13 +385,17 @@ $CellContext`c1$$, $CellContext`e$$]], StandardForm, Graphics],
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
-    DynamicBox[ToBoxes[$CellContext`poly = CharacteristicPolynomial[
-         Dot[$CellContext`Coef2, $CellContext`M2, 
+    DynamicBox[ToBoxes[$CellContext`poly3 = CharacteristicPolynomial[
+         Dot[$CellContext`M2, 
           
-          Spline`H2[$CellContext`Coef2, $CellContext`M2, $CellContext`s$$, \
-$CellContext`c1$$, $CellContext`e$$]], $CellContext`t]; 
-      Plot[$CellContext`poly, {$CellContext`t, 0, 1}], StandardForm],
-     ImageSizeCache->{180., {54., 59.}}], ",", 
+          Spline`H2n[$CellContext`M2, $CellContext`s$$, $CellContext`c1$$, \
+$CellContext`e$$]], $CellContext`t]; 
+      Plot[$CellContext`poly3, {$CellContext`t, 0, 1}], StandardForm],
+     ImageSizeCache->{180., {46., 53.}}], ",", 
+    RowBox[{"{", 
+     DynamicBox[ToBoxes[
+       Expand[$CellContext`poly3], StandardForm],
+      ImageSizeCache->{51.034375, {12.7, 24.64}}], "}"}], ",", 
     RowBox[{"{", 
      RowBox[{
       DynamicBox[ToBoxes[$CellContext`s$$, StandardForm],
@@ -376,8 +411,12 @@ $CellContext`c1$$, $CellContext`e$$]], $CellContext`t];
    3.753648058933385*^9, 3.753648164353113*^9, 3.753650661577503*^9, 
    3.753650704314015*^9, 3.7536511954817953`*^9, 3.7536517596433687`*^9, {
    3.753702642361375*^9, 3.753702657110214*^9}, 3.753702696914332*^9, 
-   3.753702729022799*^9, 3.753702780164145*^9},
- CellLabel->"Out[29]=",ExpressionUUID->"69669c75-b5b2-4a63-a564-75da849832fd"]
+   3.753702729022799*^9, 3.753702780082932*^9, 3.7540496423349113`*^9, 
+   3.7540500525514*^9, 3.754050341386805*^9, 3.7540515365047092`*^9, 
+   3.754051867655694*^9, 3.7544839171221323`*^9, 3.7544841182532454`*^9, 
+   3.7544844921096277`*^9, 3.754490861014385*^9, 3.754491754252001*^9, 
+   3.7544924750239677`*^9, 3.754493283455462*^9, 3.7544943597077703`*^9},
+ CellLabel->"Out[41]=",ExpressionUUID->"0f32ed96-bdb7-4fd2-8961-259245c67138"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -491,18 +530,20 @@ Cell[BoxData[{
        RowBox[{"PlotRange", "\[Rule]", "2"}]}], "]"}], ",", 
      RowBox[{"Dynamic", "[", 
       RowBox[{
-       RowBox[{"poly", "=", " ", 
+       RowBox[{"poly4", "=", " ", 
         RowBox[{"CharacteristicPolynomial", "[", 
          RowBox[{
-          RowBox[{"Coef3", ".", "M3", ".", 
-           RowBox[{"H3", "[", 
-            RowBox[{
-            "Coef3", ",", "M3", ",", "s", ",", "c1", ",", "c2", ",", "e"}], 
-            "]"}]}], ",", "t"}], "]"}]}], ";", 
+          RowBox[{"M3", ".", 
+           RowBox[{"H3n", "[", 
+            RowBox[{"M3", ",", "s", ",", "c1", ",", "c2", ",", "e"}], "]"}]}],
+           ",", "t"}], "]"}]}], ";", 
        RowBox[{"Plot", "[", 
-        RowBox[{"poly", ",", 
+        RowBox[{"poly4", ",", 
          RowBox[{"{", 
           RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Dynamic", "[", 
+       RowBox[{"Expand", "[", "poly4", "]"}], "]"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"Dynamic", "[", "s", "]"}], ",", 
@@ -521,12 +562,12 @@ Cell[BoxData[{
       RowBox[{"{", 
        RowBox[{
         RowBox[{"1", "/", "3"}], ",", 
-        RowBox[{"1", "/", "6"}]}], "}"}]}], ",", 
+        RowBox[{"1", "/", "5"}]}], "}"}]}], ",", 
      RowBox[{"c2", "=", 
       RowBox[{"{", 
        RowBox[{
         RowBox[{"2", "/", "3"}], ",", 
-        RowBox[{"1", "/", "6"}]}], "}"}]}], ",", 
+        RowBox[{"1", "/", "5"}]}], "}"}]}], ",", 
      RowBox[{"e", "=", 
       RowBox[{"{", 
        RowBox[{"1", ",", "0"}], "}"}]}]}], "}"}], ",", 
@@ -553,18 +594,20 @@ Cell[BoxData[{
        RowBox[{"PlotRange", "\[Rule]", "2"}]}], "]"}], ",", 
      RowBox[{"Dynamic", "[", 
       RowBox[{
-       RowBox[{"poly", "=", " ", 
+       RowBox[{"poly5", "=", " ", 
         RowBox[{"CharacteristicPolynomial", "[", 
          RowBox[{
-          RowBox[{"Coef3", ".", "M3", ".", 
-           RowBox[{"H3", "[", 
-            RowBox[{
-            "Coef3", ",", "M3", ",", "s", ",", "c1", ",", "c2", ",", "e"}], 
-            "]"}]}], ",", "t"}], "]"}]}], ";", 
+          RowBox[{"M3", ".", 
+           RowBox[{"H3n", "[", 
+            RowBox[{"M3", ",", "s", ",", "c1", ",", "c2", ",", "e"}], "]"}]}],
+           ",", "t"}], "]"}]}], ";", 
        RowBox[{"Plot", "[", 
-        RowBox[{"poly", ",", 
+        RowBox[{"poly5", ",", 
          RowBox[{"{", 
           RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Dynamic", "[", 
+       RowBox[{"Expand", "[", "poly5", "]"}], "]"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"Dynamic", "[", "s", "]"}], ",", 
@@ -579,8 +622,13 @@ Cell[BoxData[{
    3.753646034113797*^9, 3.753646036152173*^9}, 3.753646085664897*^9, {
    3.7536461558568687`*^9, 3.7536461605726357`*^9}, {3.753646190627133*^9, 
    3.753646219710943*^9}, {3.7536510078891373`*^9, 3.753651115799756*^9}, {
-   3.7536511496238117`*^9, 3.753651165765967*^9}},
- CellLabel->"In[30]:=",ExpressionUUID->"276d508d-f653-4fc6-9da7-c2489ee10b6e"],
+   3.7536511496238117`*^9, 3.753651165765967*^9}, {3.754051297108377*^9, 
+   3.7540513111994553`*^9}, {3.754051433471871*^9, 3.754051457348982*^9}, {
+   3.754490793379541*^9, 3.7544908055600853`*^9}, {3.7544918592464657`*^9, 
+   3.754491865911813*^9}, {3.754491905000348*^9, 3.754491944695901*^9}, {
+   3.7544932326272297`*^9, 3.7544932475240993`*^9}, {3.754494334353712*^9, 
+   3.7544943343559427`*^9}},
+ CellLabel->"In[42]:=",ExpressionUUID->"276d508d-f653-4fc6-9da7-c2489ee10b6e"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -606,13 +654,17 @@ $CellContext`c1$$, $CellContext`c2$$, $CellContext`e$$]], StandardForm,
       LocatorBox[Dynamic[$CellContext`c2$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
-    DynamicBox[ToBoxes[$CellContext`poly = CharacteristicPolynomial[
-         Dot[$CellContext`Coef3, $CellContext`M3, 
+    DynamicBox[ToBoxes[$CellContext`poly4 = CharacteristicPolynomial[
+         Dot[$CellContext`M3, 
           
-          Spline`H3[$CellContext`Coef3, $CellContext`M3, $CellContext`s$$, \
-$CellContext`c1$$, $CellContext`c2$$, $CellContext`e$$]], $CellContext`t]; 
-      Plot[$CellContext`poly, {$CellContext`t, 0, 1}], StandardForm],
+          Spline`H3n[$CellContext`M3, $CellContext`s$$, $CellContext`c1$$, \
+$CellContext`c2$$, $CellContext`e$$]], $CellContext`t]; 
+      Plot[$CellContext`poly4, {$CellContext`t, 0, 1}], StandardForm],
      ImageSizeCache->{180., {43., 49.}}], ",", 
+    RowBox[{"{", 
+     DynamicBox[ToBoxes[
+       Expand[$CellContext`poly4], StandardForm],
+      ImageSizeCache->{139.06875, {12.7, 25.265}}], "}"}], ",", 
     RowBox[{"{", 
      RowBox[{
       DynamicBox[ToBoxes[$CellContext`s$$, StandardForm],
@@ -636,15 +688,20 @@ $CellContext`c1$$, $CellContext`c2$$, $CellContext`e$$]], $CellContext`t];
    3.753648164957657*^9, 3.753650661862856*^9, 3.7536507046248693`*^9, 
    3.75365119626262*^9, 3.753651762054998*^9, {3.753702642692883*^9, 
    3.753702657443885*^9}, 3.753702697996277*^9, 3.753702729673354*^9, 
-   3.7537027817819653`*^9},
- CellLabel->"Out[35]=",ExpressionUUID->"efe6c648-a1e4-4bbd-972b-463eb9dc592b"],
+   3.7537027817819653`*^9, 3.754049642660638*^9, 3.754050054947687*^9, 
+   3.754050343717188*^9, 3.7540515387538557`*^9, 3.754051868409156*^9, 
+   3.7544839174618273`*^9, 3.754484120319195*^9, 3.7544844926549473`*^9, 
+   3.754490862986189*^9, 3.754491754745071*^9, 3.754491868219825*^9, {
+   3.754491926728978*^9, 3.754491946403955*^9}, 3.754492475947712*^9, 
+   3.754493284496969*^9, 3.754494359929864*^9},
+ CellLabel->"Out[47]=",ExpressionUUID->"36399d3e-78e2-44b2-9aa0-41d1f9f9e2ad"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
    Rational[1, 3], 
-   Rational[1, 6]}, $CellContext`c2$$ = {
+   Rational[1, 5]}, $CellContext`c2$$ = {
    Rational[2, 3], 
-   Rational[1, 6]}, $CellContext`e$$ = {1, 0}}, 
+   Rational[1, 5]}, $CellContext`e$$ = {1, 0}}, 
   RowBox[{"{", 
    RowBox[{
     GraphicsBox[{
@@ -653,19 +710,23 @@ Cell[BoxData[
          Spline`arc3[$CellContext`Coef3, $CellContext`M3, $CellContext`s$$, \
 $CellContext`c1$$, $CellContext`c2$$, $CellContext`e$$]], StandardForm, 
         Graphics],
-       ImageSizeCache->{{88.5, 136.5}, {-12.9375, -1.5}}], 
+       ImageSizeCache->{{88.5, 136.5}, {-14.625, -1.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`c2$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
-    DynamicBox[ToBoxes[$CellContext`poly = CharacteristicPolynomial[
-         Dot[$CellContext`Coef3, $CellContext`M3, 
+    DynamicBox[ToBoxes[$CellContext`poly5 = CharacteristicPolynomial[
+         Dot[$CellContext`M3, 
           
-          Spline`H3[$CellContext`Coef3, $CellContext`M3, $CellContext`s$$, \
-$CellContext`c1$$, $CellContext`c2$$, $CellContext`e$$]], $CellContext`t]; 
-      Plot[$CellContext`poly, {$CellContext`t, 0, 1}], StandardForm],
-     ImageSizeCache->{180., {47., 54.}}], ",", 
+          Spline`H3n[$CellContext`M3, $CellContext`s$$, $CellContext`c1$$, \
+$CellContext`c2$$, $CellContext`e$$]], $CellContext`t]; 
+      Plot[$CellContext`poly5, {$CellContext`t, 0, 1}], StandardForm],
+     ImageSizeCache->{180., {44., 51.}}], ",", 
+    RowBox[{"{", 
+     DynamicBox[ToBoxes[
+       Expand[$CellContext`poly5], StandardForm],
+      ImageSizeCache->{72.034375, {12.7, 24.64}}], "}"}], ",", 
     RowBox[{"{", 
      RowBox[{
       DynamicBox[ToBoxes[$CellContext`s$$, StandardForm],
@@ -689,8 +750,13 @@ $CellContext`c1$$, $CellContext`c2$$, $CellContext`e$$]], $CellContext`t];
    3.753648164957657*^9, 3.753650661862856*^9, 3.7536507046248693`*^9, 
    3.75365119626262*^9, 3.753651762054998*^9, {3.753702642692883*^9, 
    3.753702657443885*^9}, 3.753702697996277*^9, 3.753702729673354*^9, 
-   3.753702781962205*^9},
- CellLabel->"Out[36]=",ExpressionUUID->"7e0b4155-1eec-4348-8e51-4e81fcef3c3a"]
+   3.7537027817819653`*^9, 3.754049642660638*^9, 3.754050054947687*^9, 
+   3.754050343717188*^9, 3.7540515387538557`*^9, 3.754051868409156*^9, 
+   3.7544839174618273`*^9, 3.754484120319195*^9, 3.7544844926549473`*^9, 
+   3.754490862986189*^9, 3.754491754745071*^9, 3.754491868219825*^9, {
+   3.754491926728978*^9, 3.754491946403955*^9}, 3.754492475947712*^9, 
+   3.754493284496969*^9, 3.754494360034452*^9},
+ CellLabel->"Out[48]=",ExpressionUUID->"bfc2c672-3468-4018-9351-a75aafc6bd25"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -803,18 +869,21 @@ Cell[BoxData[{
        RowBox[{"PlotRange", "\[Rule]", "2"}]}], "]"}], ",", 
      RowBox[{"Dynamic", "[", 
       RowBox[{
-       RowBox[{"poly", "=", " ", 
+       RowBox[{"poly6", "=", " ", 
         RowBox[{"CharacteristicPolynomial", "[", 
          RowBox[{
-          RowBox[{"Coef4", ".", "M4", ".", 
-           RowBox[{"H4", "[", 
+          RowBox[{"M4", ".", 
+           RowBox[{"H4n", "[", 
             RowBox[{
-            "Coef4", ",", "M4", ",", "s", ",", "c1", ",", "c2", ",", "c3", 
-             ",", "e"}], "]"}]}], ",", "t"}], "]"}]}], ";", 
+            "M4", ",", "s", ",", "c1", ",", "c2", ",", "c3", ",", "e"}], 
+            "]"}]}], ",", "t"}], "]"}]}], ";", 
        RowBox[{"Plot", "[", 
-        RowBox[{"poly", ",", 
+        RowBox[{"poly6", ",", 
          RowBox[{"{", 
           RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Dynamic", "[", 
+       RowBox[{"Expand", "[", "poly6", "]"}], "]"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"Dynamic", "[", "s", "]"}], ",", 
@@ -834,17 +903,17 @@ Cell[BoxData[{
       RowBox[{"{", 
        RowBox[{
         RowBox[{"1", "/", "4"}], ",", 
-        RowBox[{"1", "/", "4"}]}], "}"}]}], ",", 
+        RowBox[{"1", "/", "6"}]}], "}"}]}], ",", 
      RowBox[{"c2", "=", 
       RowBox[{"{", 
        RowBox[{
         RowBox[{"2", "/", "4"}], ",", 
-        RowBox[{"2", "/", "6"}]}], "}"}]}], ",", 
+        RowBox[{"1", "/", "5"}]}], "}"}]}], ",", 
      RowBox[{"c3", "=", 
       RowBox[{"{", 
        RowBox[{
         RowBox[{"3", "/", "4"}], ",", 
-        RowBox[{"1", "/", "4"}]}], "}"}]}], ",", 
+        RowBox[{"1", "/", "6"}]}], "}"}]}], ",", 
      RowBox[{"e", "=", 
       RowBox[{"{", 
        RowBox[{"1", ",", "0"}], "}"}]}]}], "}"}], ",", 
@@ -873,18 +942,21 @@ Cell[BoxData[{
        RowBox[{"PlotRange", "\[Rule]", "2"}]}], "]"}], ",", 
      RowBox[{"Dynamic", "[", 
       RowBox[{
-       RowBox[{"poly", "=", " ", 
+       RowBox[{"poly7", "=", " ", 
         RowBox[{"CharacteristicPolynomial", "[", 
          RowBox[{
-          RowBox[{"Coef4", ".", "M4", ".", 
-           RowBox[{"H4", "[", 
+          RowBox[{"M4", ".", 
+           RowBox[{"H4n", "[", 
             RowBox[{
-            "Coef4", ",", "M4", ",", "s", ",", "c1", ",", "c2", ",", "c3", 
-             ",", "e"}], "]"}]}], ",", "t"}], "]"}]}], ";", 
+            "M4", ",", "s", ",", "c1", ",", "c2", ",", "c3", ",", "e"}], 
+            "]"}]}], ",", "t"}], "]"}]}], ";", 
        RowBox[{"Plot", "[", 
-        RowBox[{"poly", ",", 
+        RowBox[{"poly7", ",", 
          RowBox[{"{", 
           RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"Dynamic", "[", 
+       RowBox[{"Expand", "[", "poly7", "]"}], "]"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{
        RowBox[{"Dynamic", "[", "s", "]"}], ",", 
@@ -894,13 +966,21 @@ Cell[BoxData[{
        RowBox[{"Dynamic", "[", "e", "]"}]}], "}"}]}], "}"}]}], 
   "]"}]}], "Input",
  CellChangeTimes->{{3.75352098829558*^9, 3.753520995510291*^9}, {
-  3.753521789440345*^9, 3.753521859756032*^9}, {3.753639519297163*^9, 
-  3.7536395197072678`*^9}, {3.753639628196072*^9, 3.753639638703433*^9}, {
-  3.753639936824381*^9, 3.7536399627449007`*^9}, {3.753644643257105*^9, 
-  3.753644651385893*^9}, {3.753645104637027*^9, 3.753645110320312*^9}, {
-  3.753645422506155*^9, 3.753645498716555*^9}, {3.753651548999468*^9, 
-  3.7536515499214*^9}, {3.753651595373822*^9, 3.75365171341573*^9}},
- CellLabel->"In[37]:=",ExpressionUUID->"5aa70448-c70b-4324-8969-c157f8a502cc"],
+   3.753521789440345*^9, 3.753521859756032*^9}, {3.753639519297163*^9, 
+   3.7536395197072678`*^9}, {3.753639628196072*^9, 3.753639638703433*^9}, {
+   3.753639936824381*^9, 3.7536399627449007`*^9}, {3.753644643257105*^9, 
+   3.753644651385893*^9}, {3.753645104637027*^9, 3.753645110320312*^9}, {
+   3.753645422506155*^9, 3.753645498716555*^9}, {3.753651548999468*^9, 
+   3.7536515499214*^9}, {3.753651595373822*^9, 3.75365171341573*^9}, {
+   3.754049968340948*^9, 3.754049984438085*^9}, {3.754050068903783*^9, 
+   3.754050080661563*^9}, {3.7540501111682034`*^9, 3.754050150117704*^9}, {
+   3.754050235374084*^9, 3.75405025338431*^9}, 3.754050387844503*^9, {
+   3.7540511509211273`*^9, 3.754051172655856*^9}, {3.754051478070005*^9, 
+   3.7540515186424637`*^9}, {3.7540515835513477`*^9, 3.754051593086375*^9}, {
+   3.7544908281530437`*^9, 3.7544908462607527`*^9}, {3.754492680121202*^9, 
+   3.754492762740232*^9}, {3.7544932570945787`*^9, 3.75449327337422*^9}, {
+   3.7544943343816957`*^9, 3.754494334383944*^9}},
+ CellLabel->"In[49]:=",ExpressionUUID->"5aa70448-c70b-4324-8969-c157f8a502cc"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -925,14 +1005,17 @@ $CellContext`c1$$, $CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]],
       LocatorBox[Dynamic[$CellContext`c3$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
-    DynamicBox[ToBoxes[$CellContext`poly = CharacteristicPolynomial[
-         Dot[$CellContext`Coef4, $CellContext`M4, 
+    DynamicBox[ToBoxes[$CellContext`poly6 = CharacteristicPolynomial[
+         Dot[$CellContext`M4, 
           
-          Spline`H4[$CellContext`Coef4, $CellContext`M4, $CellContext`s$$, \
-$CellContext`c1$$, $CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]], \
-$CellContext`t]; Plot[$CellContext`poly, {$CellContext`t, 0, 1}], 
-      StandardForm],
-     ImageSizeCache->{180., {54., 59.}}], ",", 
+          Spline`H4n[$CellContext`M4, $CellContext`s$$, $CellContext`c1$$, \
+$CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]], $CellContext`t]; 
+      Plot[$CellContext`poly6, {$CellContext`t, 0, 1}], StandardForm],
+     ImageSizeCache->{180., {54., 60.}}], ",", 
+    RowBox[{"{", 
+     DynamicBox[ToBoxes[
+       Expand[$CellContext`poly6], StandardForm],
+      ImageSizeCache->{152.034375, {12.7, 25.265}}], "}"}], ",", 
     RowBox[{"{", 
      RowBox[{
       DynamicBox[ToBoxes[$CellContext`s$$, StandardForm],
@@ -960,17 +1043,25 @@ $CellContext`t]; Plot[$CellContext`poly, {$CellContext`t, 0, 1}],
    3.7536479656139717`*^9}, 3.753648059960773*^9, 3.753648165389739*^9, 
    3.753650662249325*^9, 3.7536507053474903`*^9, 3.753651196848888*^9, 
    3.753651763641247*^9, {3.753702643509305*^9, 3.7537026582182817`*^9}, 
-   3.7537026992180443`*^9, 3.753702730145419*^9, 3.7537027824410267`*^9},
- CellLabel->"Out[39]=",ExpressionUUID->"b663e3f7-efc8-432e-b6b7-f82e30dea1b0"],
+   3.7537026992180443`*^9, 3.753702730145419*^9, 3.7537027824410267`*^9, 
+   3.754049643468505*^9, 3.754049986641244*^9, {3.754050056082672*^9, 
+   3.7540500859371367`*^9}, 3.754050160357607*^9, 3.7540502574867573`*^9, 
+   3.754050344849202*^9, 3.754050393007547*^9, 3.754051178464005*^9, 
+   3.754051540231432*^9, 3.75405159803508*^9, 3.754051868854401*^9, 
+   3.75448391828279*^9, 3.754484120981249*^9, 3.754484493452591*^9, 
+   3.754490863694869*^9, 3.754491755559185*^9, 3.754492476399428*^9, {
+   3.754492691685191*^9, 3.7544927192064667`*^9}, {3.754492750228512*^9, 
+   3.75449276520008*^9}, 3.754493285248043*^9, 3.754494360631809*^9},
+ CellLabel->"Out[51]=",ExpressionUUID->"f31ce351-0e9e-4697-9781-da64d8faf7ce"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
    Rational[1, 4], 
-   Rational[1, 4]}, $CellContext`c2$$ = {
+   Rational[1, 6]}, $CellContext`c2$$ = {
    Rational[1, 2], 
-   Rational[1, 3]}, $CellContext`c3$$ = {
+   Rational[1, 5]}, $CellContext`c3$$ = {
    Rational[3, 4], 
-   Rational[1, 4]}, $CellContext`e$$ = {1, 0}}, 
+   Rational[1, 6]}, $CellContext`e$$ = {1, 0}}, 
   RowBox[{"{", 
    RowBox[{
     GraphicsBox[{
@@ -979,21 +1070,24 @@ Cell[BoxData[
          Spline`arc4[$CellContext`Coef4, $CellContext`M4, $CellContext`s$$, \
 $CellContext`c1$$, $CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]], 
         StandardForm, Graphics],
-       ImageSizeCache->{{88.5, 136.5}, {-19.5, -1.5}}], 
+       ImageSizeCache->{{88.5, 136.5}, {-13.5, -1.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`c2$$]], 
       LocatorBox[Dynamic[$CellContext`c3$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
-    DynamicBox[ToBoxes[$CellContext`poly = CharacteristicPolynomial[
-         Dot[$CellContext`Coef4, $CellContext`M4, 
+    DynamicBox[ToBoxes[$CellContext`poly7 = CharacteristicPolynomial[
+         Dot[$CellContext`M4, 
           
-          Spline`H4[$CellContext`Coef4, $CellContext`M4, $CellContext`s$$, \
-$CellContext`c1$$, $CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]], \
-$CellContext`t]; Plot[$CellContext`poly, {$CellContext`t, 0, 1}], 
-      StandardForm],
-     ImageSizeCache->{180., {55., 61.}}], ",", 
+          Spline`H4n[$CellContext`M4, $CellContext`s$$, $CellContext`c1$$, \
+$CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]], $CellContext`t]; 
+      Plot[$CellContext`poly7, {$CellContext`t, 0, 1}], StandardForm],
+     ImageSizeCache->{180., {52., 58.}}], ",", 
+    RowBox[{"{", 
+     DynamicBox[ToBoxes[
+       Expand[$CellContext`poly7], StandardForm],
+      ImageSizeCache->{72.034375, {12.7, 24.64}}], "}"}], ",", 
     RowBox[{"{", 
      RowBox[{
       DynamicBox[ToBoxes[$CellContext`s$$, StandardForm],
@@ -1021,8 +1115,16 @@ $CellContext`t]; Plot[$CellContext`poly, {$CellContext`t, 0, 1}],
    3.7536479656139717`*^9}, 3.753648059960773*^9, 3.753648165389739*^9, 
    3.753650662249325*^9, 3.7536507053474903`*^9, 3.753651196848888*^9, 
    3.753651763641247*^9, {3.753702643509305*^9, 3.7537026582182817`*^9}, 
-   3.7537026992180443`*^9, 3.753702730145419*^9, 3.753702782553321*^9},
- CellLabel->"Out[40]=",ExpressionUUID->"55fb3daf-dc09-47fc-a358-73df36981662"]
+   3.7537026992180443`*^9, 3.753702730145419*^9, 3.7537027824410267`*^9, 
+   3.754049643468505*^9, 3.754049986641244*^9, {3.754050056082672*^9, 
+   3.7540500859371367`*^9}, 3.754050160357607*^9, 3.7540502574867573`*^9, 
+   3.754050344849202*^9, 3.754050393007547*^9, 3.754051178464005*^9, 
+   3.754051540231432*^9, 3.75405159803508*^9, 3.754051868854401*^9, 
+   3.75448391828279*^9, 3.754484120981249*^9, 3.754484493452591*^9, 
+   3.754490863694869*^9, 3.754491755559185*^9, 3.754492476399428*^9, {
+   3.754492691685191*^9, 3.7544927192064667`*^9}, {3.754492750228512*^9, 
+   3.75449276520008*^9}, 3.754493285248043*^9, 3.754494360753133*^9},
+ CellLabel->"Out[52]=",ExpressionUUID->"21b610e7-bbee-4d0d-bb0c-cb5cff609a82"]
 }, Open  ]]
 },
 WindowSize->{949, 957},
@@ -1044,23 +1146,23 @@ Notebook[{
 Cell[558, 20, 241, 6, 31, "Input",ExpressionUUID->"50fcc07e-b04b-4b06-be90-516d39e07f29"],
 Cell[802, 28, 217, 3, 31, "Input",ExpressionUUID->"dc37c5c1-800f-42da-88ac-3d4a585491bb"],
 Cell[CellGroupData[{
-Cell[1044, 35, 2266, 68, 147, "Input",ExpressionUUID->"af07487f-0f3b-4347-96f1-f47706dc5442"],
-Cell[3313, 105, 1583, 33, 199, "Output",ExpressionUUID->"fb062226-0ef6-4ff3-b51f-e3e9eeeb0d7e"]
+Cell[1044, 35, 2524, 73, 147, "Input",ExpressionUUID->"af07487f-0f3b-4347-96f1-f47706dc5442"],
+Cell[3571, 110, 1993, 41, 199, "Output",ExpressionUUID->"a41eb752-e4fd-4181-a505-988371f77a55"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4933, 143, 5389, 154, 354, "Input",ExpressionUUID->"5d70f809-3415-4942-baca-6a1b97b567af"],
-Cell[10325, 299, 2022, 39, 199, "Output",ExpressionUUID->"4eaf046c-6964-45c2-bd08-67f4344cc8bd"],
-Cell[12350, 340, 1958, 39, 199, "Output",ExpressionUUID->"69669c75-b5b2-4a63-a564-75da849832fd"]
+Cell[5601, 156, 5822, 164, 354, "Input",ExpressionUUID->"5d70f809-3415-4942-baca-6a1b97b567af"],
+Cell[11426, 322, 2454, 47, 254, "Output",ExpressionUUID->"728c1a72-1aac-4b12-9025-432e9f6d7427"],
+Cell[13883, 371, 2392, 47, 199, "Output",ExpressionUUID->"0f32ed96-bdb7-4fd2-8961-259245c67138"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[14345, 384, 6931, 198, 354, "Input",ExpressionUUID->"276d508d-f653-4fc6-9da7-c2489ee10b6e"],
-Cell[21279, 584, 2871, 55, 278, "Output",ExpressionUUID->"efe6c648-a1e4-4bbd-972b-463eb9dc592b"],
-Cell[24153, 641, 2590, 51, 199, "Output",ExpressionUUID->"7e0b4155-1eec-4348-8e51-4e81fcef3c3a"]
+Cell[16312, 423, 7437, 207, 400, "Input",ExpressionUUID->"276d508d-f653-4fc6-9da7-c2489ee10b6e"],
+Cell[23752, 632, 3372, 64, 278, "Output",ExpressionUUID->"36399d3e-78e2-44b2-9aa0-41d1f9f9e2ad"],
+Cell[27127, 698, 3091, 60, 199, "Output",ExpressionUUID->"bfc2c672-3468-4018-9351-a75aafc6bd25"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[26780, 697, 7434, 205, 354, "Input",ExpressionUUID->"5aa70448-c70b-4324-8969-c157f8a502cc"],
-Cell[34217, 904, 3235, 59, 259, "Output",ExpressionUUID->"b663e3f7-efc8-432e-b6b7-f82e30dea1b0"],
-Cell[37455, 965, 3093, 59, 232, "Output",ExpressionUUID->"55fb3daf-dc09-47fc-a358-73df36981662"]
+Cell[30255, 763, 8194, 219, 400, "Input",ExpressionUUID->"5aa70448-c70b-4324-8969-c157f8a502cc"],
+Cell[38452, 984, 3924, 70, 259, "Output",ExpressionUUID->"f31ce351-0e9e-4697-9781-da64d8faf7ce"],
+Cell[42379, 1056, 3782, 70, 232, "Output",ExpressionUUID->"21b610e7-bbee-4d0d-bb0c-cb5cff609a82"]
 }, Open  ]]
 }
 ]
