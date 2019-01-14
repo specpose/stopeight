@@ -16,10 +16,10 @@
 \author{Fassio Blatter}
 \maketitle
 
-\chapter{Single Polynomial}
+\chapter{Single Spline}
 
 \subsection{Affine Transformations}
-The matrix $M$ is a product of affine (sub-)space transformations. Any set of vectors $h'$ within bounds $[a,b]$ can be translated, rotated and scaled, so that $h'(a)=\begin{pmatrix}0 & 0\end{pmatrix}$ and $h'(b)=\begin{pmatrix}1 & 0\end{pmatrix}$. Any approximation with a parametrisation $t$ can be expressed with a single polynomial if the Coefficients can be brought into a triangular form.\\\\
+The matrix $M$ is a product of affine (sub-)space transformations. Any set of vectors $h'$ within bounds $[a,b]$ can be translated, rotated and scaled, so that $h'(a)=\begin{pmatrix}0 & 0\end{pmatrix}$ and $h'(b)=\begin{pmatrix}1 & 0\end{pmatrix}$. Any approximation with a parametrisation $t$ can be expressed with a single spline if the Coefficients can be brought into a triangular form.\\\\
 The simple case of a straight line
 \begin{equation}
 line(t):
@@ -94,7 +94,7 @@ h_{5}
 h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
 \end{pmatrix}
 \end{equation}
-Note: Because we are only interested in a $2x2$ subspace, the tri- and quartdiagonals can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace. $h'_{3},h'_{4},h'_{5}$ are irrelevant in this case.\\\\
+Note: Because we are only interested in a $2x2$ subspace, the tri- and quadridiagonals can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace. $h'_{3},h'_{4},h'_{5}$ are irrelevant in this case.\\\\
 Axiom: Because of associativity, an inverse of the control points can be left multiplied.
 \begin{equation}
 quart(t):
@@ -116,6 +116,7 @@ h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
 \end{pmatrix}
 \end{equation}
 
+\iffalse
 \subsection{Number of Variables}
 Axiom: Within the bounds $[a,b]$ a combination of multiple $splines$ can occur. They are independent, $iff$ for all vectors there is a sum $g' +h'$\\\\
 \begin{equation}
@@ -132,10 +133,11 @@ h_{1}' & h_{2}' & h_{3}'
 \end{pmatrix}
 \end{equation}
 Theorem: They are harmonic, hence there is a non-sparse separation.
+\fi
 
 \subsection{Spline Base}
 \subsubsection{Existence of Bounds}
-If a base vector can be found for the integer $Image \in \mathbb{Z}^3$ in dimensions $x,y$
+A base spline can be found for the integer $Image \in \mathbb{Z}^3$ in dimensions $x,y$
 \begin{equation}
 arc(t):
 \begin{pmatrix}
@@ -145,25 +147,20 @@ arc(t):
 1 & 0 & 0\\
 -1 & 1 & 0\\
 0 & -1 & 1
-\end{pmatrix}}_{Coefficients}
-\underbrace{\begin{bmatrix}
-Me_{1} & Me_{2} & Me_{3}
+\end{pmatrix}\begin{bmatrix}
+M\begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix} & Mc_{1} & M \begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}
 \end{bmatrix}}_{Base}
 =
 \underbrace{
-\lambda
-\begin{bmatrix}
-Me_{1}' & Me_{2}' & Me_{3}'
-\end{bmatrix}}_{Image}
+\begin{pmatrix}
+h_{1}' & h_{2}' & h_{3}'
+\end{pmatrix}}_{Image}
 \end{equation}
-there do not exist any polynomials other than the one expressed by the product of the coefficient matrix $Coefficients$ and the $Base$. It is a (diffeo?)morphism.\\\\
-For a Lie Group a characteristic polynomial can be found
+For a Lie Group
 \begin{align}
-orthonormal_{Coefficients,Base}(\lambda): \text{GL(3,R)} \rightarrow Polynomial\\
-GL(3,R) = ONB(a,b); [a,b] \subseteq \text{Chart of }Domain
+splinegroup: \text{GL(3,$\mathbb{Z}$)} \rightarrow base_{M,c_{1}}\\
+[a,b] \subseteq \text{Chart of }Domain
 \end{align}
-\subsection{Signal Base}
-\subsubsection{Bounds of Hilbert Spaces}
 
 \chapter{Polynomial Degree}
 \subsection{Combination of Spaces}
