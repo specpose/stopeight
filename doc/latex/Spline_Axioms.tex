@@ -139,7 +139,7 @@ Theorem: They are harmonic, hence there is a non-sparse separation.
 \subsubsection{Existence of Bounds}
 A base spline can be found for the integer $Image \in \mathbb{Z}^3$ in dimensions $x,y$
 \begin{equation}
-arc(t):
+base(t):
 \begin{pmatrix}
 1 & t & t^2
 \end{pmatrix}
@@ -158,9 +158,24 @@ h_{1}' & h_{2}' & h_{3}'
 \end{equation}
 For a Lie Group
 \begin{align}
-splinegroup: \text{GL(3,$\mathbb{Z}$)} \rightarrow base_{M,c_{1}}\\
-[a,b] \subseteq \text{Chart of }Domain
+\text{\{GL(3,$\mathbb{Z}$)} \subset M \vert \forall M \exists c_{1}\}
 \end{align}
+Axiom: For a spline base with $h_{1}=\begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix}$ and $h_{2}=\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}$, there exist only two Eigenvalues
+\begin{align}
+ev_{1}=Eigenvalue(
+\underbrace{\begin{pmatrix}
+a & 0 & 0\\
+b & c & 0\\
+0 & d & e
+\end{pmatrix}}_{Base})\\
+ev_{2}=Eigenvalue(
+\underbrace{\begin{pmatrix}
+0 & 0 & 0\\
+b & 0 & 0\\
+0 & d & 0
+\end{pmatrix}}_{Base})
+\end{align}
+Theorem: The approximation algorithm imposes a constraint on the Eigenvectors
 
 \chapter{Polynomial Degree}
 \subsection{Combination of Spaces}
