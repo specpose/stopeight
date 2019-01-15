@@ -141,26 +141,26 @@ Note: $\mu$ is a Lebesgue.
 An affine transformation $M$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
 \begin{equation}
 transform(\gamma):
-\begin{bmatrix}
+\begin{pmatrix}
 1 & t & t^2
-\end{bmatrix}
+\end{pmatrix}
 \underbrace{\begin{bmatrix}
 1 & 0 & 0\\
 -1 & 1 & 0\\
 0 & -1 &1
 \end{bmatrix}}_{Coefficients}
 M
-\begin{bmatrix}
+\begin{pmatrix}
 h_{1} \\
 h_{2} \\
 h_{3}
-\end{bmatrix}
+\end{pmatrix}
 =
-\begin{bmatrix}
+\begin{pmatrix}
 h_{1}' & h_{2}' & h_{3}'
-\end{bmatrix}
+\end{pmatrix}
 \end{equation}
-The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$.
+The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$. ~\cite[Spline\_Axioms.tex]{Stopeight}
 
 \subsection{Legal Segment}
 A legal segment is an affine transformtion of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous (when):
