@@ -135,21 +135,21 @@ h_{1}' & h_{2}' & h_{3}'
 Theorem: They are harmonic, hence there is a non-sparse separation.
 \fi
 
-\subsection{Spline Base}
+\subsection{Spline Group}
 \subsubsection{Existence of Bounds}
-A base spline can be found for the integer $Image \in \mathbb{Z}^3$ in dimensions $x,y$
+A group spline can be found for the integer $Image \in \mathbb{Z}^3$ in dimensions $x,y$
 \begin{equation}
-base(t):
+splinegroup(t):
 \begin{pmatrix}
 1 & t & t^2
 \end{pmatrix}
-\underbrace{\begin{pmatrix}
+\begin{pmatrix}
 1 & 0 & 0\\
 -1 & 1 & 0\\
 0 & -1 & 1
 \end{pmatrix}\begin{bmatrix}
-M\begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix} & Mc_{1} & M \begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}
-\end{bmatrix}}_{Base}
+\underbrace{Mh_{1}}_{S=\begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix}} & \underbrace{Mh_{2}}_{c_{1}} & \underbrace{Mh_{3}}_{E=\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}}
+\end{bmatrix}
 =
 \underbrace{
 \begin{pmatrix}
@@ -160,7 +160,7 @@ For a Lie Group
 \begin{align}
 \text{\{GL(3,$\mathbb{Z}$)} \subset M \vert \forall m \in M \exists c_{1}\}
 \end{align}
-Axiom: For a spline base with $h_{1}=\begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix}$ and $h_{2}=\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}$, there exist only two Eigenvalues ~\cite["Spline\_Eigensystems.nb"]{Stopeight}
+Axiom: For a spline base with $S=\begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix}$ and $E=\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}$, there exist only two Eigenvalues ~\cite["Spline\_Eigensystems.nb"]{Stopeight}
 \begin{align}
 ev_{1}=Eigenvalue(
 \underbrace{\begin{pmatrix}
