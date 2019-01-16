@@ -95,22 +95,21 @@ h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
 \end{pmatrix}
 \end{equation}
 Note: Because we are only interested in a $2x2$ subspace, the tri- and quadridiagonals can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace. $h'_{3},h'_{4},h'_{5}$ are irrelevant in this case.\\\\
-Axiom: Because of associativity, an inverse of the control points can be left multiplied.
+Axiom: Because of associativity, an inverse of the control points can be left multiplied. Because of associativity, an inverse of the transformation can be left multiplied. Because of associativity, an inverse of the Coefficients can be left multiplied.
 \begin{equation}
 quart(t):
 \begin{pmatrix}
 1 & t & t^2 & t^3 & t^4
 \end{pmatrix}
+=
 \underbrace{\begin{bmatrix}
 1 & 0 & 0 & 0 & 0\\
--1 & 1 & 0 & 0 & 0\\
-0 & -1 &1 & 0 & 0\\
-0 & 0 & -1 & 1 & 0\\
-0 & 0 & 0 & -1 & 1
-\end{bmatrix}}_{Coefficients}
-M
-=
-H^{-1}
+1 & 1 & 0 & 0 & 0\\
+1 & 1 &1 & 0 & 0\\
+1 & 1 & 1 & 1 & 0\\
+1 & 1 & 1 & 1 & 1
+\end{bmatrix}}_{Coefficients^{-1}}
+M^{-1}H^{-1}
 \begin{pmatrix}
 h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
 \end{pmatrix}
