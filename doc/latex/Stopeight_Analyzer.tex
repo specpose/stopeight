@@ -59,7 +59,11 @@ Within $f$ we are assigning a sequence of three points to compact Hausdorf inver
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{S,C,E\}
 \end{equation}\\
 \fi
-The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
+The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.\\\\
+Appendix: A pseudo inverse can reconstruct the signal from the approximation, effectively making it a suitable format for compression. The signal would be calculated from the second order total derivative and the sign of the chart. More about this later...
+\begin{equation}
+vectorgraph^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
+\end{equation}
 
 \chapter{Representation}
 
