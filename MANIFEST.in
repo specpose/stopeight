@@ -6,8 +6,10 @@ include python.py
 include stopeight-clibs/include/stopeight-clibs/algo.h
 include stopeight-clibs/include/stopeight-clibs/shared_types.h
 include stopeight-clibs/include/stopeight-clibs/angle_functions.h
+include stopeight-clibs/include/stopeight-clibs/Matrix.h
 #grapher
-include stopeight-clibs/grapher-wrappers/interfacepython.cpp
+include stopeight-clibs/grapher-wrappers/IFPyGrapher.cpp
+include stopeight-clibs/grapher-wrappers/IFPyMatrix.cpp
 include stopeight-clibs/grapher/dummy.h
 #analyzer
 include stopeight-clibs/analyzer-wrappers/interfacepython.cpp
@@ -47,7 +49,6 @@ include stopeight-clibs/legacy/include/spiralscalculator.h
 include stopeight-clibs/legacy/include/areaanalyzer.h
 include stopeight-clibs/legacy/include/areanormalizer.h
 include stopeight-clibs/legacy/include/turns.h
-include stopeight-clibs/legacy/include/turnanalyzer.h
 include stopeight-clibs/legacy/include/straightsanalyzer.h
 include stopeight-clibs/legacy/include/corneranalyzer.h
 include stopeight-clibs/legacy/include/cliffscalculator.h
