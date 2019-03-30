@@ -59,7 +59,11 @@ Within $f$ we are assigning a sequence of three points to compact Hausdorf inver
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{S,C,E\}
 \end{equation}\\
 \fi
-The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.
+The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.\\\\
+Appendix: A pseudo inverse can reconstruct a signal from the approximation, effectively making it a suitable format for compression. It can also make Vector Graphs, which have not been obtained from a signal, audible or suitable for 1-dimensional analysis. The signal would be calculated from the second order total derivative and the sign of the chart. More about this later...
+\begin{equation}
+vectorgraph^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
+\end{equation}
 
 \chapter{Representation}
 
@@ -110,18 +114,13 @@ link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y'
 
 \section{Non-Oriented Segments}
 Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.\\\\
-The curve functions can be interprated as $\gamma(t,x(t),y(t))$. The derivative is the total derivative.
+The curve functions can be interprated as $\gamma(x(t),y(t))$. The derivative in the following is meant to be the total derivative.
 \begin{align}
-\frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \gamma(t) \begin{bmatrix} \underbrace{\frac{\partial}{\partial t} \mathrm{d} t}_{\text{is the same for } \xi \text{ and } \iota \text{because of the metric}} & \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
+\frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \frac{\mathrm{d}}{\mathrm{d} t} \gamma (x(t),y(t)) = \gamma(t) \begin{bmatrix} \frac{\partial}{\partial x}  \mathrm{d} x & \frac{\partial}{\partial y} \mathrm{d} y \end{bmatrix} \frac{1}{\mathrm{d}t}
 \end{align}\\
 The second order total derivative induces directionality.\\
-(Binomial?)
 \begin{align}
-\frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t)=\partial^2 \gamma(t) \begin{bmatrix} \frac{\mathrm{d}^2x}{\partial^2 x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & \frac{\mathrm{d}^2y}{\partial^2 y}\end{bmatrix}\frac{1}{\mathrm{d}^2t}
-\end{align}
-(Or Trinomial?)
-\begin{align}
-\frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t)=\partial^2 \gamma (t) \begin{bmatrix}\frac{\mathrm{d}^2 x}{\partial^2 x} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}x}{\partial x} & 2 \frac{\mathrm{d}x\mathrm{d}y}{\partial x \partial y} & 2 \underbrace{\frac{\mathrm{d}t}{\partial t}}_{1} \frac{\mathrm{d}y}{\partial y} & \frac{\mathrm{d}^2 y}{\partial^2 y}\end{bmatrix}\frac{(\partial x + \partial y)^2}{\mathrm{d}^2 t}
+\frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t)=\partial^2 \gamma(t) \begin{bmatrix} \frac{\mathrm{d}^2x}{\partial^2 x} & \frac{\mathrm{d}^2y}{\partial^2 y}\end{bmatrix}\frac{1}{\mathrm{d}^2t}
 \end{align}
 The direction of analysis $dir$ is preserved in the sign for both straightness and curvature.
 \begin{align}
@@ -141,26 +140,26 @@ Note: $\mu$ is a Lebesgue.
 An affine transformation $M$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
 \begin{equation}
 transform(\gamma):
-\begin{bmatrix}
+\begin{pmatrix}
 1 & t & t^2
-\end{bmatrix}
+\end{pmatrix}
 \underbrace{\begin{bmatrix}
 1 & 0 & 0\\
 -1 & 1 & 0\\
 0 & -1 &1
 \end{bmatrix}}_{Coefficients}
 M
-\begin{bmatrix}
+\begin{pmatrix}
 h_{1} \\
 h_{2} \\
 h_{3}
-\end{bmatrix}
+\end{pmatrix}
 =
-\begin{bmatrix}
+\begin{pmatrix}
 h_{1}' & h_{2}' & h_{3}'
-\end{bmatrix}
+\end{pmatrix}
 \end{equation}
-The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$.
+The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$. ~\cite[Spline\_Axioms.tex]{Stopeight}
 
 \subsection{Legal Segment}
 A legal segment is an affine transformtion of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous (when):
@@ -290,7 +289,7 @@ curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz}(a,b)}
 \end{align}
 
 \section{Recursive Sections}
-Derivatives are opening up interval measure spaces. The scale-space sets the maximal order of the polynomials considered. In the method discussed in this paper, it is quartic with restrictions, i.e. the representation is quadratic.  (The functions $q$ and the points $S,C,E$ pose a constraint on the quartic analytic form and its inverse.)\\\\
+Derivatives are opening up interval measure spaces. The scale-space sets the maximal order of the polynomials considered. In the method discussed in this paper, it is quartic with restrictions, i.e. the representation is quadratic.  (The functions $q$ and the points $S,C,E$ pose a constraint on the quartic analytic form ~\cite[Spline\_CharacteristicPolynomials.nb]{Stopeight} and its inverse.)\\\\
 The following recursive subsections reveal hidden derivatives.
 \begin{equation}
 T_{2} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert \approx 0
