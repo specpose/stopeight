@@ -96,15 +96,16 @@ setup( name='stopeight',
            ),
            Extension(
                'stopeight.matrix',
-               [os.path.join(my_path,'stopeight-clibs','grapher-wrappers','IFPyMatrix.cpp')],
+               [os.path.join(my_path,'stopeight-clibs','grapher-wrappers','IFPyMatrix.cpp'),
+               os.path.join(my_path,'stopeight-clibs','matrix','Matrix.cpp')],
                include_dirs=[
                    # Path to pybind11 headers
                    get_pybind_include(),
                    get_pybind_include(user=True),
                    os.path.join(my_path,'stopeight-clibs','include'),
-                   os.path.join(my_path,'stopeight-clibs','grapher')
+                   os.path.join(my_path,'stopeight-clibs','matrix')
                ],
-               libraries=['stopeight-clibs-grapher'],
+#               libraries=['m'],
                language='c++',
                optional=True
            ),
