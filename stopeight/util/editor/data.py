@@ -16,6 +16,10 @@ class ScribblePoint(tuple):
     def set_y(self,y):
         self.y=y
 
+#todo make static call
+#from stopeight.matrix import Vectors
+#Vectors_dtype = Vectors().__array__().dtype
+
 from numpy import ndarray
 import numpy as np
 class ScribbleData(ndarray):
@@ -28,7 +32,11 @@ class ScribbleData(ndarray):
             del kwargs['size'] 
         except KeyError:
             kwargs['shape']=(1)
-        kwargs['dtype']= np.dtype({'names':['coords','type'], 'formats':[('<f8', (2,)),'<i4'], 'offsets':[0,16], 'itemsize':24})
+#todo enums
+#no module dependency here, so copy of print(array_instance.dtype)
+        kwargs['dtype']= np.dtype({'names':['coords','type','tct_type','cov_type'], 'formats':[('<f8', (3,)),'<i4','<i4','<i4'], 'offsets':[0,24,28,32], 'itemsize':40})
+#        kwargs['dtype']= np.dtype({'names':['coords','type'], 'formats':[('<f8', (2,)),'<i4'], 'offsets':[0,16], 'itemsize':24})
+#        kwargs['dtype']= np.dtype(Vectors_dtype)
         return super(ScribbleData,cls).__new__(cls,*args,**kwargs)
 #    def __init__(self):
 #        super(list,self).__init__()
