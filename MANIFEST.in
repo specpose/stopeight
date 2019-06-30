@@ -5,6 +5,7 @@ include python.py
 #shared
 include stopeight-clibs/include/stopeight-clibs/algo.h
 include stopeight-clibs/include/stopeight-clibs/shared_types.h
+include stopeight-clibs/include/stopeight-clibs/grapher.h
 include stopeight-clibs/include/stopeight-clibs/angle_functions.h
 include stopeight-clibs/include/stopeight-clibs/Matrix.h
 #matrix
