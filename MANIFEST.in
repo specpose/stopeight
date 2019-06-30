@@ -7,6 +7,8 @@ include stopeight-clibs/include/stopeight-clibs/algo.h
 include stopeight-clibs/include/stopeight-clibs/shared_types.h
 include stopeight-clibs/include/stopeight-clibs/angle_functions.h
 include stopeight-clibs/include/stopeight-clibs/Matrix.h
+#matrix
+include stopeight-clibs/matrix/Matrix.cpp
 #grapher
 include stopeight-clibs/grapher-wrappers/IFPyGrapher.cpp
 include stopeight-clibs/grapher-wrappers/IFPyMatrix.cpp
