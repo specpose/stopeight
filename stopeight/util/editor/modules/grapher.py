@@ -29,17 +29,12 @@ def _scalingfactors(left,right,bottom,top,obj):
 def create_vector_graph(data):
     assert type(data) is WaveData, "Input Error, wrong datatype: %r" % type(data)
     log.debug("Loading with "+str(len(data)))
-    from stopeight.grapher import create_vector_graph
+    from stopeight.grapher import VectorDouble,VectorTimeCodeDouble,create_vector_graph
     import numpy as np
-    result = create_vector_graph(data,1,1.0,True)
+    result = create_vector_graph(data,1,1.0,True).__array__()
     assert type(result) is np.ndarray, "Cast Error: %r" % type(result)
     result = _append(result)
     log.debug("Return Length "+str(len(result)))
-    #Hack copy 2
-    #array = ScribbleData()
-    #for i,v in enumerate(result):
-    #    array = np.append(array,[v['coords'][0],v['coords'][1]])
-    #return array
     return result.view(ScribbleData)
 create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
 
