@@ -138,7 +138,7 @@ setup( name='stopeight',
           'future',
           'funcsigs',
           'matplotlib',
-          'pybind11>=2.2',#not for cmake
+          'pybind11>=2.3',#not for cmake
           'PyQt5<5.11.0',#can not find private sip #also >=5.6.0 pip2 doesn't support it!
           ],
 #pip end
