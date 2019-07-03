@@ -31,7 +31,8 @@ def create_vector_graph(data):
     log.debug("Loading with "+str(len(data)))
     from stopeight.grapher import VectorDouble,VectorTimeCodeDouble,create_vector_graph
     import numpy as np
-    result = create_vector_graph(data,1,1.0,True).__array__()
+    invec = VectorDouble(data)
+    result = invec.create_vector_graph(1,1.0,True).__array__()
     assert type(result) is np.ndarray, "Cast Error: %r" % type(result)
     result = _append(result)
     log.debug("Return Length "+str(len(result)))
