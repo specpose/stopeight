@@ -9,18 +9,15 @@ include stopeight-clibs/include/stopeight-clibs/grapher.h
 include stopeight-clibs/include/stopeight-clibs/preloaderif.h
 include stopeight-clibs/include/stopeight-clibs/angle_functions.h
 include stopeight-clibs/include/stopeight-clibs/Matrix.h
+include stopeight-clibs/include/stopeight-clibs/analyzer.h
 #matrix
 include stopeight-clibs/matrix/Matrix.cpp
 #grapher
 include stopeight-clibs/grapher-wrappers/IFPyGrapher.cpp
 include stopeight-clibs/grapher-wrappers/IFPyMatrix.cpp
-include stopeight-clibs/grapher/dummy.h
 #analyzer
-include stopeight-clibs/analyzer-wrappers/interfacepython.cpp
-include stopeight-clibs/analyzer-wrappers/interfacepython.h
-include stopeight-clibs/analyzer/include/test.h
-include stopeight-clibs/analyzer/include/error.h
-include stopeight-clibs/analyzer/include/analyzer_global.h
+include stopeight-clibs/analyzer-wrappers/IFPyAnalyzer.cpp
+include stopeight-clibs/analyzer/turns.cpp
 #legacy
 include stopeight-clibs/legacy/include/error.h
 include stopeight-clibs/legacy-wrappers/interfacepython.cpp
