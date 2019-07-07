@@ -96,23 +96,28 @@ setup( name='stopeight',
            ),
            Extension(
                'stopeight.matrix',
-               [os.path.join(my_path,'stopeight-clibs','grapher-wrappers','IFPyMatrix.cpp')],
+               [os.path.join(my_path,'stopeight-clibs','grapher-wrappers','IFPyMatrix.cpp'),
+               os.path.join(my_path,'stopeight-clibs','matrix','Matrix.cpp')],
                include_dirs=[
                    # Path to pybind11 headers
                    get_pybind_include(),
                    get_pybind_include(user=True),
                    os.path.join(my_path,'stopeight-clibs','include'),
-                   os.path.join(my_path,'stopeight-clibs','grapher')
+                   os.path.join(my_path,'stopeight-clibs','matrix')
                ],
-               libraries=['stopeight-clibs-grapher'],
+#               libraries=['m'],
                language='c++',
                optional=True
            ),
            Extension(
                'stopeight.analyzer',
-               [os.path.join(my_path,'stopeight-clibs','analyzer-wrappers','interfacepython.cpp')],
+               [os.path.join(my_path,'stopeight-clibs','analyzer-wrappers','IFPyAnalyzer.cpp')],
                include_dirs=[
-                   os.path.join(my_path,'stopeight-clibs','analyzer/include')
+                   # Path to pybind11 headers
+                   get_pybind_include(),
+                   get_pybind_include(user=True),
+                   os.path.join(my_path,'stopeight-clibs','include'),
+                   os.path.join(my_path,'stopeight-clibs','analyzer')
                ],
                libraries=['stopeight-clibs-analyzer'],
                language='c++',
@@ -137,7 +142,7 @@ setup( name='stopeight',
           'future',
           'funcsigs',
           'matplotlib',
-          'pybind11>=2.2',#not for cmake
+          'pybind11>=2.3',#not for cmake
           'PyQt5<5.11.0',#can not find private sip #also >=5.6.0 pip2 doesn't support it!
           ],
 #pip end
