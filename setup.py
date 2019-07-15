@@ -75,7 +75,7 @@ setup( name='stopeight',
 
 ###cmake start
 ##       #ext_modules=[CMakeExtension('stopeight')],#,os.path.join('stopeight-clibs','grapher-wrappers'))],
-##       ext_modules=[CMakeExtension('stopeight.analyzer'),CMakeExtension('stopeight.grapher'),CMakeExtension('stopeight.legacy')],
+##       ext_modules=[CMakeExtension('stopeight.matrix'),CMakeExtension('stopeight.analyzer'),CMakeExtension('stopeight.grapher'),CMakeExtension('stopeight.legacy')],
 ##       cmdclass=dict(build_ext=CMakeBuild),
 ###cmake end
 #distutils start
@@ -96,8 +96,7 @@ setup( name='stopeight',
            ),
            Extension(
                'stopeight.matrix',
-               [os.path.join(my_path,'stopeight-clibs','grapher-wrappers','IFPyMatrix.cpp'),
-               os.path.join(my_path,'stopeight-clibs','matrix','Matrix.cpp')],
+               [os.path.join(my_path,'stopeight-clibs','matrix-wrappers','IFPyMatrix.cpp')],
                include_dirs=[
                    # Path to pybind11 headers
                    get_pybind_include(),
@@ -105,7 +104,7 @@ setup( name='stopeight',
                    os.path.join(my_path,'stopeight-clibs','include'),
                    os.path.join(my_path,'stopeight-clibs','matrix')
                ],
-#               libraries=['m'],
+               libraries=['stopeight-clibs-matrix'],
                language='c++',
                optional=True
            ),

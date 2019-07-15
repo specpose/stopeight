@@ -11,13 +11,11 @@ include stopeight-clibs/include/stopeight-clibs/angle_functions.h
 include stopeight-clibs/include/stopeight-clibs/Matrix.h
 include stopeight-clibs/include/stopeight-clibs/analyzer.h
 #matrix
-include stopeight-clibs/matrix/Matrix.cpp
+include stopeight-clibs/matrix-wrappers/IFPyMatrix.cpp
 #grapher
 include stopeight-clibs/grapher-wrappers/IFPyGrapher.cpp
-include stopeight-clibs/grapher-wrappers/IFPyMatrix.cpp
 #analyzer
 include stopeight-clibs/analyzer-wrappers/IFPyAnalyzer.cpp
-include stopeight-clibs/analyzer/turns.cpp
 #legacy
 include stopeight-clibs/legacy/include/error.h
 include stopeight-clibs/legacy-wrappers/interfacepython.cpp
