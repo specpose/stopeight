@@ -44,6 +44,20 @@ Measure Space: Straightness is no more than what is required for a hyperbola not
 Derivatives are opening up interval measure spaces. The scale-space sets the maximal order of the polynomials considered. In the method discussed in this paper, it is quartic with restrictions, i.e. the representation is quadratic.  (The functions $q$ and the points $S,C,E$ pose a constraint on the quartic analytic form ~\cite[Spline\_CharacteristicPolynomials.nb]{Stopeight} and its inverse.)\\\\
 The following recursive subsections reveal hidden derivatives.
 
+\subsection{Spike}
+(Also?)
+\begin{align}
+angle(a,b',c)\geq\\
+straightness(a,b)\approx 1\\
+curvature(a,b)>0
+\end{align}
+
+\subsection{Relative Areas}
+The $solidangle(a,c)$ is defined by the Spike Margin $[a,b',b'',c]$.
+\begin{align}
+solidangle_{Rel}(a,c) = \frac{area(b',b'')}{(diameter_{horiz}(a,c)/2)^2}
+\end{align}
+
 \iffalse
 \printbibliography
 \fi
