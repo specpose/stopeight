@@ -229,7 +229,7 @@ C_{4} \ni b'
 \end{align}
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of the arc length of a hyperbola $1/x$ to the arc length of its direct connecting line $-\frac{x}{\mathrm{e}}+\frac{1+\mathrm{e}}{\mathrm{e}}$ from $1$ to $\mathrm{e}$. It is a part of a Spike, or transfering the Straight half of an Edge to an adjacent ZigZag, or being used as part of Dune detection. A Corner is $inserted$ .
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of the arc length of a hyperbola $1/x$ to the arc length of its direct connecting line $-\frac{x}{\mathrm{e}}+\frac{1+\mathrm{e}}{\mathrm{e}}$ from $1$ to $\mathrm{e}$. It is a part of a Spike, or transfering the Straight half of an Edge to an adjacent ZigZag, or being used as part of Edge detection. A Corner is $inserted$ .
 \begin{align}
 Max_{Straight}=\int \limits _{1}^{\mathrm{e}}\frac{\lvert\frac{\mathrm{d}}{\mathrm{d}t}\frac{1}{x}\rvert}{\lvert\frac{\mathrm{d}}{\mathrm{d}t}(-\frac{x}{\mathrm{e}}+\frac{1+\mathrm{e}}{\mathrm{e}})\rvert}\mathrm{d}t\\
 C_{3} \ni \frac{b-a}{2}
@@ -254,7 +254,7 @@ A special case is where the whole chart is flat and Straight.
 \end{equation}
 
 \subsection{Dune}
-A backside Dune $[a,b',c]$ is a section, where a non-Straight segment $[a,b']$ is followed by a Straight segment $[b',c]; $. It is part of the Edge detection.
+A backside Dune $[a,b',c]$ is a segment [a,b], where a non-Straight segment $[a,b']$ is followed by a Straight segment $[b',c]; $. It is part of the Edge detection.
 \begin{align}
 straightness(a,b')>Max_{Straight}\\ straightness(b',c)\leq Max_{Straight}
 \end{align}
@@ -337,7 +337,7 @@ In computer science there is the concept of the stream operator. This means that
 \begin{align}
 A \text{ is closed} \Leftrightarrow \min_{A},\max_{A}\in T_{0},C_{0}
 \end{align}
-For the time being, the approach in this paper is a compromise. Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Edges exhibit a transcendence of fractal dimension, which significantly offset the consecutive oriented functions. Even finding Swings and Dunes shifts the adjacent entities. The reversal and priority of segments and sections imposes a certain rigor in programming technique. A compatible software architecture is a requirement.\\
+For the time being, the approach in this paper is a compromise. Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Edges exhibit a transcendence of fractal dimension, which significantly offset the consecutive oriented functions. Even finding Swings and Edg shifts the adjacent entities. The reversal and priority of segments and sections imposes a certain rigor in programming technique. A compatible software architecture is a requirement.\\
 Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy ($Comparator$).
 It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented (Causal Structure).
 
@@ -365,7 +365,7 @@ b' \in T_{3} \Rightarrow (\text{third derivative }= 0?)
 \end{align}
 Note: $b'$ is the Corner $C$ of the Eliptic Approximation where the Focal Point is perpendicular to the tangent in $C$, but infinitely far away. See Spline Axioms / Eliptic Approximation.
 \subsection{Swell}
-Swell $\supset$ Crest $\supset$ Swing $\supset$ Dune(?)\\
+Swell $\supset$ Crest $\supset$ Swing $\supset$ Edge(?)\\
 A swell is centered by triplets (See The Captain of Swing).\\\\
 The Captain of Swing\\
 Picking up where Sisyphos left in the previous article. At the top of the hill. Waves fall in formation. The captain is steering in high seas. He is swinging the wheel off the top as the next wave builds up. As if the water could feel the magnetic disruption, the surface tension breaks up. The second peak crumbles. The engine roars up in an attempt to dig the stern deeper into the dune. It stutters and almost...\\
