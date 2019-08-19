@@ -229,7 +229,7 @@ C_{4} \ni b'
 \end{align}
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of arc-length of one eight of a circle to its direct connecting line. This happens to coincide with the number of on curve control points for a quartic spline. It is a part of a Spike, or transfering the Straight half of a $\{S,C,E\}$ to an adjacent ZigZag, or being used as part of Edge detection. A Corner is $inserted$ .
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of arc-length of one eight of a circle to its direct connecting line. This happens to coincide with the number of on curve control points for a quartic spline. It is a part of a Spike, or being used at lowest priority of computation to replace the Straight half of an $\{S,C,E\}$, or to identify a Spike with an angle of less than 90 degrees. A Corner is $inserted$ .
 \begin{align}
 Max_{Straight}=\frac{\pi r / 4}{\sqrt{(\frac{r}{2})^2+(\frac{r}{2})^2}}\\
 C_{3} \ni \frac{b-a}{2}
@@ -352,7 +352,7 @@ b' \in C_{4}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature measured inward from $a,b$.
 \subsection{ZigZag}
-ZigZag $\supset$ Spike $\supset$ Edge\\\\
+ZigZag $\supset$ Spike $\supset$ Straight\\\\
 Whether it is a Turn or a Corner depends on orientation of the adjacent Straights relative to each other.\\\\
 Whether angles less than 90 degree are allowed to be in the dataset is subject of definition.
 From 90 degree to 180 degree, it is not losing its orientation. A single Edge section is in this case.
@@ -364,8 +364,8 @@ Below 90 degree, a single Spike section is.
 b' \in T_{3} \Rightarrow (\text{third derivative }= 0?)
 \end{align}
 \subsection{Swell}
-Swell $\supset$ Crest $\supset$ Swing $\supset$ Edge(?)\\
-A swell is centered by triplets (See The Captain of Swing).\\\\
+Swell $\supset$ Crest $\supset$ Swing $\supset$ Straight(?)\\
+A swell is centered by triplets.\\\\
 The Captain of Swing\\
 Picking up where Sisyphos left in the previous article. At the top of the hill. Waves fall in formation. The captain is steering in high seas. He is swinging the wheel off the top as the next wave builds up. As if the water could feel the magnetic disruption, the surface tension breaks up. The second peak crumbles. The engine roars up in an attempt to dig the stern deeper into the dune. It stutters and almost...\\
 The rigidity of the frame makes it tremble in a gigantic resonant groan to the impact of the third wave. To which it can not react. This is almost real-time. Hawaiians measure the wave from the back.\\
