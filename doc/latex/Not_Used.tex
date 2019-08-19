@@ -89,6 +89,12 @@ Note: $b'$ is the Corner $C_{4}$ of the Eliptic Approximation if the Focal Point
 \subsection{ZigZag}
 Note: $b'$ is the Corner $C$ of the Eliptic Approximation where the Focal Point is perpendicular to the tangent in $C$, but infinitely far away. See Spline Axioms / Eliptic Approximation.
 
+\subsection{Area of Jitter}
+The integral of the parametrisation on a non-Straight segment is larger than the integral of the parametrisation of a straight segment. (Additional benefits?)
+\begin{align}
+area_{jitter}(a,b)=\frac{\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t}{\int \limits _{0}^{(b-a)/2} diameter_{horiz,T}(a+t,b-t)\mathrm{d}t}
+\end{align}
+
 \chapter{Spectral Separation}
 \section{Indicator}
 Every zero crossing $t_{m}$ of the 2nd derivative
