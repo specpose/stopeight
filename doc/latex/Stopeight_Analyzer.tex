@@ -39,7 +39,7 @@ f \circ g: X \rightarrow A
 \end{equation*}
 via the intermediate functions $f,g$ where the intermediate transversality $Y = X \cap A$ defines Arcs $U_{m}$. ~\cite[9.9]{Loring} ($f \circ g$ is neither injective nor surjective) ~\cite[2.1]{LauresSzymik}:
 \begin{align}
-f: X \approx B \rightarrow Y; g: Y \rightarrow A
+f: X \approx W \rightarrow Y; g: Y \rightarrow A
 \end{align}
 Note: The sequence of Arcs A is a dim 1-manifold. In $A$ we can find a system of open sets. The set of charts $\{U_{m}\}$ covering the whole manifold $A$ is an atlas. ~\cite[3.1.1.]{Fomenko} ~\cite[4.5]{Wall}
 \begin{align}
@@ -49,9 +49,9 @@ $X$ is formally a discrete / dim 0-manifold
 \begin{align}
 Y: \text{0-submanifold} \Rightarrow (dim(X)=0)<(codim(Y)=1) \Rightarrow X \text{ disjoint } A
 \end{align}
-but $B$ is not. See \eqref{eq:1}.
+but $W$ is not. See \eqref{eq:1}.
 \begin{align}
-Y: \text{0-submanifold} \Rightarrow (dim(B)=1)=(codim(Y)=1) \Rightarrow B \text{ joint } A
+Y: \text{0-submanifold} \Rightarrow (dim(W)=1)=(codim(Y)=1) \Rightarrow W \text{ joint } A
 \end{align}
 The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.\\\\
 Appendix: A pseudo inverse can reconstruct a signal from the approximation, effectively making it a suitable format for compression. It can also make Vector Graphs, which have not been obtained from a signal, audible or suitable for 1-dimensional analysis. The signal would be calculated from the second order total derivative and the sign of the chart. More about this later...
@@ -91,17 +91,17 @@ with control point sets $\{H_{1},...,H_{4}\}$ per chart of $Y \cup Q$. The Arc s
 Note: The continuous function $\xi$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ~\cite[6.1.3.]{Mortad}\\\\
 In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$, we have to connect all $P_{n}, P_{n+1} \in X$ with one linear bezier spline each, because $X$ is discrete:
 \begin{align}
-\iota: \mathbb{R} \rightarrow B; t \mapsto (x,y)\\
+\iota: \mathbb{R} \rightarrow W; t \mapsto (x,y)\\
 \iota_{X}(t) = \{ \gamma_{H}(t)\lvert H=\{P_{n},P_{n}+\frac{(P_{n+1}-P_{n})}{2},P_{n+1}; P_{n}, P_{n+1} \in X\}\}
 \end{align}
-Note: For both $B$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[1.1]{Taimanov}\\\\
-The arc-length metric $d(a,b)$ turns both manifolds $A$ and $B$ into metric spaces $(A,d)$ and $(B,d)$. ~\cite[1.1.3]{Klingenberg}
+Note: For both $W$ and $A$, the length of the curve is now independent of the choice of parameter on the curve. ~\cite[1.1]{Taimanov}\\\\
+The arc-length metric $d(a,b)$ turns both manifolds $A$ and $W$ into metric spaces $(A,d)$ and $(W,d)$. ~\cite[1.1.3]{Klingenberg}
 \begin{equation}
 d(a,b) = \int \limits _{a}^{b}\lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t)\rvert \mathrm{d}t\label{eq:1}
 \end{equation}
-We can now establish an injective $link$ between elements of $B$ and $A$. ($X \rightarrow A$ would be injective, $but$ $A \rightarrow X$ is not accurate):
+We can now establish an injective $link$ between elements of $W$ and $A$. ($X \rightarrow A$ would be injective, $but$ $A \rightarrow X$ is not accurate):
 \begin{equation}
-link: B \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow B, (x',y') \mapsto (x,y)
+link: W \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow W, (x',y') \mapsto (x,y)
 \end{equation}
 
 \chapter{Computation}
@@ -178,7 +178,7 @@ It is using Heron's formula for the area of a triangle in $P_{n}, P_{n+1},P_{n+2
 \mathcal{L}=\frac{\mathcal{A}+\mathcal{B}+\mathcal{C}}{2}\\
 \mathcal{Q}=\sqrt{\mathcal{L}(\mathcal{L}-\mathcal{A})(\mathcal{L}-\mathcal{B})(\mathcal{L}-\mathcal{C})}
 \end{align*}
-to calculate the ratio of the areas in $A$ and lines in $B$.
+to calculate the ratio of the areas in $A$ and lines in $W$.
 \begin{align}
 straightness_{Algo}(a,b)=dir \sum_{i=0}^{n+2}\frac{\mathcal{Q}}{\mathcal{A}+\mathcal{B}}
 \end{align}
@@ -195,7 +195,7 @@ curvature_{Algo}(a,b)= dir \frac{\sum \limits _{i=0}^{n}y(P_{i})*(x(P_{i+1})-x(P
 \end{align}
 
 \subsection{Corner}
-A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a section $[a,b] \subseteq B$ is.
+A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a section $[a,b] \subseteq W$ is.
 \begin{equation}
 C_{3} = \{C_{3} \in T_{1} \mid \max_{U}\lvert curvature(a,b) \rvert \cap (\inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0) \}
 \end{equation}
@@ -209,7 +209,7 @@ Note: Except for insertion (See Straight), $C_{3},C_{0} \in Y$, but all the othe
 (To be disclosed: Algorithms for finding lower Corner indexes from higher Corner indices $q_{2},q_{5}$, Control points inbetween $q_{1},q_{3},q_{4},q_{6}$ and the inverse.)
 
 \subsection{Turn}
-A turn $T$ is a change of sign in the orientation of the curve. In a segment $[a,b] \subseteq B$ an infinite amount of non-straight sections can be found.
+A turn $T$ is a change of sign in the orientation of the curve. In a segment $[a,b] \subseteq W$ an infinite amount of non-straight sections can be found.
 \begin{equation}
 T_{2} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t) \rvert \approx 0
 \end{equation}
