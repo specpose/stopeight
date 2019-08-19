@@ -160,7 +160,6 @@ A legal segment is an affine transformtion of the arc curve function $transform(
 \begin{align}
 \xi'_{x}(a),\xi'_{y}(a), (\xi'_{y}(b)\text{ optional?}) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), (\iota'_{y}(b)\text{ optional?}) = 0
 \end{align}
-(~\cite[Riemann Integrable?]{Widon})
 
 \subsection{Straightness}
 A straight line segment is determined by means of straightness.\\
@@ -257,19 +256,6 @@ A special case is where the whole chart is flat and Straight.
 A frontside Dune $[a,b',c]$ is a segment [a,b], where a Straight segment $[a,b']$ is followed by a Non-Straight segment $[b',c]; $. It is part of the Edge detection.
 \begin{align}
 straightness(a,b')\leq Max_{Straight}\\ straightness(b',c)> Max_{Straight}
-\end{align}
-
-\subsection*{Absolute Differences}
-Once these entities have been found, we can start to use absolute differences by means of setting the domain of $\xi$ and $\iota$ to $Swing \cup C_{3} \cup C_{4}$ unless noted otherwise.
-\begin{align}
-jitter(a.b)=\int \limits _{a}^{b}\lvert \iota_{X}(t) - \xi(t) \rvert \mathrm{d}t\\
-area_{vert}(a,b)=\int \limits _{a}^{b} \lvert \xi(t)-\iota(t) \rvert \mathrm{d}t
-\end{align}
-\begin{align}
-straightness_{Abs}(a.b)=\frac{jitter(a,b)}{diameter_{horiz}(a,b)}
-\end{align}
-\begin{align}
-curvature_{Abs}(a,b) = \frac{area_{vert}(a,b)}{diameter_{horiz}(a,b)}
 \end{align}
 
 \section{Recursive Sections}
