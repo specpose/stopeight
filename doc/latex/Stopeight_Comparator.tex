@@ -24,34 +24,8 @@
 This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\\\
-Geometric overlay comparison works for unseparated signals, but it is only of limited use, because it is inaccurate. The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.\\\\
-In signal analysis, there is the notion of source separation vs. spectral separation of pulses. The method of separation referred to in this text is meant to work $blind$ in a scenario where no prior knowledge of the likelyhood of occurence of waveforms is made. If prior statistical data, event metadata or multiple channels (stereo, etc.) are available, some of the requirements mentioned may be relaxed.
 
-\subsection{Pulse}
-A symmetric pulse has two half pulses with the same wavelength/amplitude correlation.
-
-\subsection{Impulses}
-Impulses are consecutive half-pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
-
-\chapter{Source Separation}
-
-\section{Transversality}
-
-\subsection{Signs}
-The difference of the signs over an interval.
-\begin{align}
-dsi(a,b) = card(\mu_{+}\subseteq [a,b])-card(\mu_{-} \subseteq [a,b])\\
-ori(a,b) = \frac{dsi(a,b)}{\lvert dsi(a,b) \rvert}
-\end{align}
-A sequence of sections between $[a,b]$ is alternating $\mu_{-}\cup \mu_{zero}\cup\mu_{+}=\mu$.
-\begin{enumerate}
-\item $dsi(a,b)= 0; \exists(\mu_{n}\subseteq \mu_{+}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \exists(\mu_{n+2}\subseteq \mu_{-}) \Leftrightarrow alt(a,b)=n$
-\item $dsi(a,b)= 0; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \exists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-n$
-\item $dsi(a,b)= 1; \exists(\mu_{n}\subseteq \mu_{+}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{-}) \Leftrightarrow alt(a,b)=\frac{1}{n}$
-\item $dsi(a,b)= -1; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-\frac{1}{n}$
-\item $dsi(a,b)> \pm 1\Leftrightarrow alt(a,b)=0$;
-\end{enumerate}
-When the difference of the signs $dsi(a,b)$ is larger than one, orientation $ori$ serves as a weak expression of the imbalance.
+\chapter{Transversality}
 
 \subsection{Recursion}
 ($alt(a,b)$ products across interval spaces?)\\\\

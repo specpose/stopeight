@@ -14,9 +14,39 @@
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
 
 \begin{document}
-\title{Not Used Formula}
+\title{Antis}
 \author{Fassio Blatter}
 \maketitle
+
+\chapter{Introduction}
+Geometric overlay comparison works for unseparated signals, but it is only of limited use, because it is inaccurate. The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.\\\\
+In signal analysis, there is the notion of source separation vs. spectral separation of pulses. The method of separation referred to in this text is meant to work $blind$ in a scenario where no prior knowledge of the likelyhood of occurence of waveforms is made. If prior statistical data, event metadata or multiple channels (stereo, etc.) are available, some of the requirements mentioned may be relaxed.
+
+\subsection{Pulse}
+A symmetric pulse has two half pulses with the same wavelength/amplitude correlation.
+
+\subsection{Impulses}
+Impulses are consecutive half-pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
+
+\chapter{Source Separation}
+Stopeight Comparator may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$ (See Grapher), or in the signal as in parametric curve differences.\\\\
+Also Vector Graph manipulations such as finding/counting intersections and setting oriented section type occurence limitations (ex. Spiral $\Rightarrow$ scale) could yield interesting results.
+
+\subsection{Signs}
+The difference of the signs over an interval.
+\begin{align}
+dsi(a,b) = card(\mu_{+}\subseteq [a,b])-card(\mu_{-} \subseteq [a,b])\\
+ori(a,b) = \frac{dsi(a,b)}{\lvert dsi(a,b) \rvert}
+\end{align}
+A sequence of sections between $[a,b]$ is alternating $\mu_{-}\cup \mu_{zero}\cup\mu_{+}=\mu$.
+\begin{enumerate}
+\item $dsi(a,b)= 0; \exists(\mu_{n}\subseteq \mu_{+}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \exists(\mu_{n+2}\subseteq \mu_{-}) \Leftrightarrow alt(a,b)=n$
+\item $dsi(a,b)= 0; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \exists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-n$
+\item $dsi(a,b)= 1; \exists(\mu_{n}\subseteq \mu_{+}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{-}) \Leftrightarrow alt(a,b)=\frac{1}{n}$
+\item $dsi(a,b)= -1; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-\frac{1}{n}$
+\item $dsi(a,b)> \pm 1\Leftrightarrow alt(a,b)=0$;
+\end{enumerate}
+When the difference of the signs $dsi(a,b)$ is larger than one, orientation $ori$ serves as a weak expression of the imbalance.
 
 \chapter{Spectral Separation}
 \section{Indicator}
@@ -55,10 +85,6 @@ This equation holds for every signal with frequency components separated in the 
 (A longer wavelength, undetected harmonic can be excluded in this scenario since source separated harmonics are symmetric pulses of integer multiples of the wavelength and we imply that the shortest $symmetric$ pulse is found beforehand in the removal procedure below, i.e. the higher harmonics are $not symmetric$ because of criteria 1)\\\\
 Conclusion: This method provides an indication for the spectral separation of the signal. For blind removal of individual pulses, the $waveform$ of the pulse needs to be known. Longer wavelength pulses have the highest likelyhood to contain pulses which violate the above criteria, so their $amplitude$ can not be determined. We have to start removal with the shortest isolated pulses which can be found in the sample.\\\\
 The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding bases in order to remove functions from the combined signal. Fourier Transformation does fulfil the task of spectral separation, but arbitrary precision in the time and frequency domain can not be found.
-
-\chapter{Source Separation}
-Stopeight Analyzer may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$ (See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$.\\\\
-Also Vector Graph manipulations such as finding/counting intersections and setting oriented section type occurence limitations (ex. Spiral $\Rightarrow$ scale) could yield interesting results.
 
 \iffalse
 \printbibliography
