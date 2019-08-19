@@ -28,6 +28,13 @@ Within $f$ we are assigning a sequence of three points to compact Hausdorf inver
 
 The purpose of the Analyzer is to find intervals in a Vector Graph and produce an approximation. The input Vector Graph may be obtained from the Grapher, or it may be present in another mathematical context. Certain properties, such as the maximum derivative or the quantity or quality of measure spaces involved, are inherited from this context.\\\\
 
+\subsection{Straight}
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of the arc length of a hyperbola $1/x$ to the arc length of its direct connecting line $-\frac{x}{\mathrm{e}}+\frac{1+\mathrm{e}}{\mathrm{e}}$ from $1$ to $\mathrm{e}$. It is a part of a Spike, or transfering the Straight half of an Edge to an adjacent ZigZag, or being used as part of Edge detection. A Corner is $inserted$ .
+\begin{align}
+Max_{Straight}=\int \limits _{1}^{\mathrm{e}}\frac{\lvert\frac{\mathrm{d}}{\mathrm{d}t}\frac{1}{x}\rvert}{\lvert\frac{\mathrm{d}}{\mathrm{d}t}(-\frac{x}{\mathrm{e}}+\frac{1+\mathrm{e}}{\mathrm{e}})\rvert}\mathrm{d}t\\
+C_{3} \ni \frac{b-a}{2}
+\end{align}
+
 Non-recursive sections are not proper section types, but merely an expression of intermediate calculation and are therefore of medium computational priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.\\\\
 The $Max$ thresholds are reductions of measure spaces. The $derivatives$ are affected by $Max_{Straight}$. The Grapher $scale$ interacts with $Max_{Curvre}.$\\\\
 

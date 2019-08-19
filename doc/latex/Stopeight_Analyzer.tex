@@ -229,13 +229,13 @@ C_{4} \ni b'
 \end{align}
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of the arc length of a hyperbola $1/x$ to the arc length of its direct connecting line $-\frac{x}{\mathrm{e}}+\frac{1+\mathrm{e}}{\mathrm{e}}$ from $1$ to $\mathrm{e}$. It is a part of a Spike, or transfering the Straight half of an Edge to an adjacent ZigZag, or being used as part of Edge detection. A Corner is $inserted$ .
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of arc-length of one eight of a circle to its direct connecting line. This happens to coincide with the number of on curve control points for a quartic spline. It is a part of a Spike, or transfering the Straight half of a $\{S,C,E\}$ to an adjacent ZigZag, or being used as part of Edge detection. A Corner is $inserted$ .
 \begin{align}
-Max_{Straight}=\int \limits _{1}^{\mathrm{e}}\frac{\lvert\frac{\mathrm{d}}{\mathrm{d}t}\frac{1}{x}\rvert}{\lvert\frac{\mathrm{d}}{\mathrm{d}t}(-\frac{x}{\mathrm{e}}+\frac{1+\mathrm{e}}{\mathrm{e}})\rvert}\mathrm{d}t\\
+Max_{Straight}=\frac{\pi r / 4}{\sqrt{(\frac{r}{2})^2+(\frac{r}{2})^2}}\\
 C_{3} \ni \frac{b-a}{2}
 \end{align}
 A special case is when $card(U_{m})=2$, a Corner is inserted as well.\\\\
-Straightness is no more than what is required for a hyperbola not to be considered straight under any linear transformation of any segment.
+Straightness is no more than what is not to be considered straight under any linear transformation of any segment.
 
 \subsection{Swing}
 A Swing is the section $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
