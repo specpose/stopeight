@@ -280,7 +280,7 @@ T_{2} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t
 \end{equation}
 
 \subsection{Crest}
-A backside Crest $[a,a']$ is an iteration of:
+A backside Crest section $[a,a']$ is an iteration of:
 \begin{enumerate}
 \item The Forward direction of analysis $dir=1$ of a $[a,b']$ Swing, followed by 
 \item The Reverse direction of analysis $dir=-1;[b',a]$ reveals a Backward $[b',a']$ Swing
@@ -292,10 +292,10 @@ b' \in T_{2}
 \end{equation}
 
 \subsection{Edge}
-A backside Edge $[a,b']$ is an iteration of:
+A frontside Edge segment $[a,b']$ is an iteration of:
 \begin{enumerate}
-\item The Forward direction of analysis $dir=1$ of a backside Dune $[a,b',c]$
-\item The Reverse direction of analysis $dir=-1;[b',a]$ of a backside Dune $[b',b'',a]; b''<b<b'$ 
+\item The Forward direction of analysis $dir=1$ of a frontside Dune $[a,b',c]$
+\item The Reverse direction of analysis $dir=-1;[b',a]$ of a frontside Dune $[b',b'',a]; b''<b<b'$ 
 \item Continue iteration $[a,b'',b']...$
 \end{enumerate}
 The breaking condition is that no more entities are being found after the second step.
@@ -306,15 +306,17 @@ b' \in T_{2}
 \subsection{Spike}
 A frontside Spike is a section $[a,b',c]$, where
 \begin{enumerate}
-\item The Forward direction of analysis $dir=1$ reveals a backside Edge $[a,b']$, and
-\item The Backward direction of analysis $dir=-1$ reveals a backside Edge $[c,b'']$ 
+\item The Forward direction of analysis $dir=1$ reveals a frontside Edge $[a,b']$, and
+\item The Backward direction of analysis $dir=-1$ reveals a frontside Edge $[c,b'']$ 
 \end{enumerate}
-and the $angle$ in the intersection of the extensions of the two edges is less than $\pi / 2$.\\
+and the $angle$ in the intersection of the extensions of the two edges is between 90 and 135 degrees.\\
 \begin{align}
-Max_{angle}=\pi / 2\\
+Max_{angle}=\frac{3\pi}{4}\\
+Min_{angle}=\frac{pi}{2}\\
 b' \in T_{2},C_{4}
 \end{align}
-It is part of ZigZag detection.
+It is part of ZigZag detection.\\
+Note: Angles of less than 90 degrees are caught by Cliff detection.
 
 \subsection{Moustache?}
 Indicates a break or change of direction in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
