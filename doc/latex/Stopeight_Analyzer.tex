@@ -254,9 +254,9 @@ A special case is where the whole chart is flat and Straight.
 \end{equation}
 
 \subsection{Dune}
-A backside Dune $[a,b',c]$ is a segment [a,b], where a non-Straight segment $[a,b']$ is followed by a Straight segment $[b',c]; $. It is part of the Edge detection.
+A frontside Dune $[a,b',c]$ is a segment [a,b], where a Straight segment $[a,b']$ is followed by a Non-Straight segment $[b',c]; $. It is part of the Edge detection.
 \begin{align}
-straightness(a,b')>Max_{Straight}\\ straightness(b',c)\leq Max_{Straight}
+straightness(a,b')\leq Max_{Straight}\\ straightness(b',c)> Max_{Straight}
 \end{align}
 
 \subsection*{Absolute Differences}
