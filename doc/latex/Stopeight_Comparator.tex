@@ -24,7 +24,7 @@
 This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\\\
-Initially the aim of this paper was to make separated sources in a mixed signal comparable using either numeric or geometric overlay comparison (currently implemented), regardless of time and amplitude stretch, but preserving frequency modulation, waveform and amplitude ratios.\\
+Initially the aim of this paper was to make separated sources in a mixed signal comparable using either numeric or geometric overlay comparison (currently implemented), regardless of time and amplitude stretch, but preserving frequency modulation and amplitude ratios.\\
 In the course of specifying the Stopeight Analyzer transversality, which serves as a foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition of two complex numbers, isolation and visibility. Visibility may lead to a method of approximating polynomials of arbitrary degree. Isolation is an indication of the fractal dimension and cutoff of the approximation.
 
 \chapter{Isolation}
@@ -33,6 +33,17 @@ Isolation was meant to be the ratio of the arc-lengths of the approximation and 
 isolation(a,b)=\int \limits _{a}^{b} \sqrt{\xi'(t)*\iota'_{X}(t)} \mathrm{d}t
 \end{equation}
 Taking the square root of the product instead of the ratio has a few nice advantages. Lets assume we have computed the Stopeight Analyzer transversality by applying the affine transformations in a positive direction. We now measure this against the actual input in the same direction. This means the resulting number is entirely real. The square root of the product happens to be the geometric mean.
+
+\chapter{Visibility}
+Visibility is computed by creating an auxiliary transversality
+\begin{equation}
+h: W \times Y \rightarrow O
+\end{equation}
+This requires finding Centres of Cliffs by the arithmetic mean,\\
+Finding their Handrolls,\\
+Finding Eliptic Joints: Dividing the arc-length between handrolls by two,\\
+Intersecting the normal in the Handroll with the line connecting the Joints.\\
+Finally we can calculating the area:\\
 
 \subsection{Recursion}
 ($alt(a,b)$ products across interval spaces?)\\\\
