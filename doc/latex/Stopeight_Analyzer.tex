@@ -116,7 +116,7 @@ The second order total derivative. (product rule)
 \begin{align}
 \frac{\mathrm{d}^2}{\mathrm{d}t^2}\gamma(t)= \gamma(t)* (\frac{\partial^2}{\partial x^2}\frac{\mathrm{d}x}{\mathrm{d}t} + \frac{\partial}{\partial x}\frac{\mathrm{d}^2x}{\mathrm{d}t^2} + \frac{\partial^2}{\partial y^2}\frac{\mathrm{d}y}{\mathrm{d}t} + \frac{\partial}{\partial y}\frac{\mathrm{d}^2y}{\mathrm{d}t^2})
 \end{align}
-The direction of analysis $dir$ is preserved in the sign for both straightness and curvature.
+The direction of analysis $dir_{Y}$ is preserved in the sign for both straightness and curvature.
 \begin{align}
 dir = \frac{(b-a)}{\lvert b-a \rvert}
 \end{align}
@@ -124,7 +124,7 @@ The horizontal diameter is based on the metric of $\iota_{T}$.
 \begin{equation}
 diameter_{horiz,T}(a,b)= dir \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
-When the direction of analysis is reversed, the curve areas lie on the other side, therefore the direction flips the sign of the curve segments.
+When the direction of analysis $dir_{Y}$ is reversed, the curve areas lie on the other side, therefore the direction flips the sign of the curve segments.
 \begin{align}
 \mu_{+}(\xi(t) -\iota_{T}(t))=\{[a,b] \subseteq A,B; \gamma(t)=\xi(t) -\iota_{T}(t) \vert \gamma(t)>0\}
 \end{align}
@@ -228,7 +228,7 @@ C_{4} \ni b'
 \end{align}
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of arc-length of one eight of a circle to its direct connecting line. This happens to coincide with the number of on curve control points for a quartic spline. It is a part of a Spike, or being used at lowest priority of computation to replace the Straight half of an $\{S,C,E\}$, or to identify a Spike with an angle of less than 90 degrees. A Corner is $inserted$ .
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of arc-length of one eight of a circle to its direct connecting line. This happens to coincide with the number of on curve control points for a quartic spline. It is a part of a Spike, or being used at lowest priority of computation to replace the Straight half of an $\{S,C,E\} \subset T$, or to identify a Spike with an angle of less than 90 degrees. A Corner is $inserted$.
 \begin{align}
 Max_{Straight}=\frac{\pi r / 4}{\sqrt{(\frac{r}{2})^2+(\frac{r}{2})^2}}\\
 C_{3} \ni \frac{b-a}{2}
@@ -268,8 +268,8 @@ T_{2} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}^2t}\gamma(t
 \subsection{Crest}
 A backside Crest section $[a,a']$ is an iteration of:
 \begin{enumerate}
-\item The Forward direction of analysis $dir=1$ of a $[a,b']$ Swing, followed by 
-\item The Reverse direction of analysis $dir=-1;[b',a]$ reveals a Backward $[b',a']$ Swing
+\item The Forward direction of analysis $dir_{Y}=1$ of a $[a,b']$ Swing, followed by 
+\item The Reverse direction of analysis $dir_{Y}=-1;[b',a]$ reveals a Backward $[b',a']$ Swing
 \item Continue iteration $[a',b']...$
 \end{enumerate}
 The breaking condition is that no more entities are being found after the second step.
@@ -280,8 +280,8 @@ b' \in T_{2}
 \subsection{Edge}
 A frontside Edge segment $[a,b']$ is an iteration of:
 \begin{enumerate}
-\item The Forward direction of analysis $dir=1$ of a frontside Dune $[a,b',c]$
-\item The Reverse direction of analysis $dir=-1;[b',a]$ of a frontside Dune $[b',b'',a]; b''<b<b'$ 
+\item The Forward direction of analysis $dir_{Y}=1$ of a frontside Dune $[a,b',c]$
+\item The Reverse direction of analysis $dir_{Y}=-1;[b',a]$ of a frontside Dune $[b',b'',a]; b''<b<b'$ 
 \item Continue iteration $[a,b'',b']...$
 \end{enumerate}
 The breaking condition is that no more entities are being found after the second step.
@@ -292,8 +292,8 @@ b' \in T_{2}
 \subsection{Spike}
 A frontside Spike is a section $[a,b',c]$, where
 \begin{enumerate}
-\item The Forward direction of analysis $dir=1$ reveals a frontside Edge $[a,b']$, and
-\item The Backward direction of analysis $dir=-1$ reveals a frontside Edge $[c,b'']$ 
+\item The Forward direction of analysis $dir_{Y}=1$ reveals a frontside Edge $[a,b']$, and
+\item The Backward direction of analysis $dir_{Y}=-1$ reveals a frontside Edge $[c,b'']$ 
 \end{enumerate}
 and the $angle$ in the intersection of the extensions of the two edges is between 90 and 135 degrees.\\
 \begin{align}
@@ -305,7 +305,7 @@ It is part of ZigZag detection.\\
 Note: Angles of less than 90 degrees are caught by Cliff detection.
 
 \subsection{Moustache?}
-Indicates a break or change of direction in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
+Indicates a break or change of direction $dir_{Z}$ in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
 \begin{equation}
 b' \in T_{3}
 \end{equation}
@@ -315,7 +315,7 @@ Moustache is correctly handled by the backside Crest, but it would only be a $T_
 By now, we can improve the differences by setting $dom(\xi,\iota)=Crest \cup Spike \cup C_{4}$.
 
 \section{Compact Covers}
-We introduce another set of charts $\{V_{n}\}$ which span one or more of the charts $\{U_{n}\}$.
+We introduce another set of charts $\{V_{n}\} \subset Z$ which span one or more of the charts $\{U_{n}\} \subset A$.
 \subsubsection*{Open}
 \begin{align}
 A \text{ is open} \Leftrightarrow \inf_{A},\sup_{A}\in T_{0},C_{0}
@@ -363,7 +363,7 @@ The second swing.\\
 The triplet of swings is our most accurate index for stabilising the frequencies.
 
 \subsection*{Direction}
-If the affine transformations are applied left to right $[a,b];a<b$, the Compact Cover is positive. If the direction of analysis is reversed $[b,a]$, it is negative. The same applies to the diameter, but it is not the analytic direction but the direction of integration.
+If the affine transformations $dir_{Y}$ are applied left to right $[a,b];a<b$, the Compact Cover $dir_{Z}$ is positive. If the direction of analysis $dir_{Y}$ is reversed $[b,a]$, it is negative. The same applies to the diameter, but it is not the analytic direction but the direction of integration $dir_{A}$ or $dir_{X}$.
 
 \iffalse
 \printbibliography
