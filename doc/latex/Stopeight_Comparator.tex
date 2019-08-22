@@ -42,11 +42,15 @@ woodpecker(a,b)=isolation(a,b)
 Note: If we had chosen a product of geometric means instead of the convolution would make that isolation grows if the means are $(0,1]$, or even worse canceled out for zeros. A sum would not amplify the effect of large geometric means in short intervals.
 
 \chapter{Visibility}
-Visibility is computed by creating an auxiliary (not transversality)
+Visibility is computed by creating an auxiliary set of chart-wise elements
 \begin{equation}
-h: Y \rightarrow X \rightarrow O
+h: U_{m} \rightarrow X \rightarrow O
 \end{equation}
+Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{m}) \leq 3$.\\\\
 This requires finding Centres of Cliffs by the arithmetic mean,\\
+\begin{equation}
+O=\{(x',y') \in \mathbb{R}^2 \vert \min_{U_{m}} \sqrt{(x-x')^2 + (y-y')^2};(x,y) \in X \}
+\end{equation}
 Finding their Handrolls (transversality),\\
 Finding Eliptic Joints: Dividing the arc-length between handrolls by two,\\
 Intersecting the normal in the Handroll with the line connecting the Joints. (or half diameter?)\\
