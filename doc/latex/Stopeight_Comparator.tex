@@ -49,16 +49,23 @@ h: U_{m} \rightarrow X \rightarrow O
 Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{m}) \leq 3$.\\\\
 This requires finding Centres of Cliffs by the arithmetic mean,\\
 \begin{equation}
-O=\{(x',y') \in \mathbb{R}^2 \vert \min_{U_{m}} \sqrt{(x-x')^2 + (y-y')^2};(x,y) \in X \}
+O=\{(x',y') \in \mathbb{R}^2 \vert \min_{U_{m}} \sqrt{(x-x')^2 + (y-y')^2} \}
 \end{equation}
-Finding their Handrolls (transversality),\\
-Finding Eliptic Joints: Dividing the arc-length between handrolls by two,\\
-Intersecting the normal in the Handroll with the line connecting the Joints. (or half diameter?)\\
-Finally we can calculate the area:
 \begin{align}
-visibility(a,b)=\int \limits _{a}^{b} \vert \iota_{X}(t) - \iota_{O}(t) \vert * (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t\\
+visibility(a,b)=\int \limits _{a}^{b} \sqrt{(x-x')^2 + (y-y')^2} * (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t\\
 angle: t \mapsto \phi
 \end{align}
+Note: Integration \emph{after} convolution.\\\\
+Finding their Handrolls (chart on Spiral, tangential space),\\
+\begin{align}
+C_{O}=\inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}visibility(t) \rvert \approx 0\\
+\end{align}
+Finding Eliptic Joints,\\
+\begin{align}
+T_{O}=\inf_{t \in V} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}visibility(t) \rvert \approx 0\\
+\end{align}
+Intersecting the normal in the Handroll with the line connecting the Joints. (or half diameter?)\\
+Finally we can calculate the area:
 
 \subsection{Recursion}
 ($alt(a,b)$ products across interval spaces?)\\\\
