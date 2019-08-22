@@ -50,23 +50,23 @@ Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{m}) \geq 3$
 They are Centres of Cliffs by the arithmetic mean,\\
 \begin{align}
 O_{m}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U_{m} \}\\
-\norm{.}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
+\norm{\cdot}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
 \end{align}
 \begin{align}
 visibility(a,b)= \sum_{i=0}^{m} \frac{\int \limits _{a}^{b}\norm{\xi(t)-O_{m}}_{2}* (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t}{\int \limits _{a}^{b}\norm{\iota_{X}(t)-O_{m}}_{2}* (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t}\\
-angle: t \mapsto \phi
+angle(t)=\arctan\frac{x(\gamma(t)-O_{m})}{y(\gamma(t)-O_{m})}
 \end{align}
-Note: Integration \emph{after} convolution. Division of two complex numbers is partial/total derivative?\\\\
-This requires finding their Handrolls (chart on Spiral, tangential space),\\
+Note: Integration \emph{after} convolution. Division of two complex numbers is partial/total derivative?
+
+\chapter{Polynomials and Splines}
+Finding their Handrolls (chart on Spiral, tangential space).
 \begin{align}
-C_{O}=\sup_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}visibility(t) \rvert \approx 0\\
+C_{O}=\sup_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}visibility(t) \rvert \approx 0
 \end{align}
-Finding Eliptic Joints,\\
+Finding Eliptic Joints.\\
 \begin{align}
-T_{O}=\inf_{t \in V} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}visibility(t) \rvert \approx 0\\
+T_{O}=\inf_{t \in V} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}visibility(t) \rvert \approx 0
 \end{align}
-Intersecting the normal in the Handroll with the line connecting the Joints. (or half diameter?)\\
-Finally we can calculate the area:
 
 \subsection{Recursion}
 ($alt(a,b)$ products across interval spaces?)\\\\
@@ -134,10 +134,17 @@ The imaginary part is the phase shift (fft)\\\\
 \end{align}
 
 \subsection*{Complex Norm}
-A complex norm $\norm{\cdot}$ is defined on the transversality.
+A complex norm $\norm{\cdot}$.
 \begin{align}
 \norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
+\end{align}
+Banach Space
+\begin{align}
 \norm{z} = \sqrt{Re(z)^2+Im(z)^2}
+\end{align}
+Hilbert Space
+\begin{align}
+\norm{z} = z*ComplexConjugate(z)=1
 \end{align}
 
 \subsection*{After Separation}
