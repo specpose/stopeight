@@ -34,7 +34,7 @@ The square root of the product $\sqrt{\xi'(t)*\iota'_{X}(t)}$ happens to be the 
 isolation(a,b)=\int \limits _{a}^{b} \sqrt{\xi'(t)*\iota'_{X}(t)} \mathrm{d}t
 \end{equation}
 Note: Taking the mean instead of the ratio has a few implications. Lets assume we have computed the Stopeight Analyzer transversality by applying the affine transformations in a positive direction $dir_{Y}=1$. We now measure this against the actual input in the same direction $dir_{X}=1$. The resulting number is entirely real.\\\\
-It is smooth (~\cite[Riemann Integrable]{Widon}). Therefore a convolution can be applied \emph{after} integration.\\
+The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}). Therefore a convolution can be applied \emph{after} integration.\\
 It can have values between $[0,\inf]$, which is useful for this convolution:\\
 \begin{equation}
 woodpecker(a,b)=isolation(a,b)
@@ -44,21 +44,22 @@ Note: If we had chosen a product of geometric means instead of the convolution w
 \chapter{Visibility}
 Visibility is computed by creating an auxiliary set of chart-wise elements
 \begin{equation}
-h: U_{m} \rightarrow X \rightarrow O
+h: \{U_{m}\} \rightarrow X \rightarrow O
 \end{equation}
-Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{m}) \leq 3$.\\\\
+Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{m}) \geq 3$.\\\\
 This requires finding Centres of Cliffs by the arithmetic mean,\\
-\begin{equation}
-O=\{(x',y') \in \mathbb{R}^2 \vert \min_{U_{m}} \sqrt{(x-x')^2 + (y-y')^2} \}
-\end{equation}
 \begin{align}
-visibility(a,b)=\int \limits _{a}^{b} \sqrt{(x-x')^2 + (y-y')^2} * (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t\\
+O=\{(x',y') \in \mathbb{R}^2 \vert \min_{U_{m}} \norm{X-O}_{2} \}\\
+\norm{X-O}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
+\end{align}
+\begin{align}
+visibility(a,b)= \frac{\int \limits _{a}^{b}\norm{A-O}_{2}* (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t}{\int \limits _{a}^{b}\norm{X-O}_{2}* (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t}\\
 angle: t \mapsto \phi
 \end{align}
-Note: Integration \emph{after} convolution.\\\\
+Note: Integration \emph{after} convolution. Division of two complex numbers is partial/total derivative?\\\\
 Finding their Handrolls (chart on Spiral, tangential space),\\
 \begin{align}
-C_{O}=\inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}visibility(t) \rvert \approx 0\\
+C_{O}=\sup_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}visibility(t) \rvert \approx 0\\
 \end{align}
 Finding Eliptic Joints,\\
 \begin{align}
