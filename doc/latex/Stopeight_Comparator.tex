@@ -54,9 +54,9 @@ O_{m}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U
 \end{align}
 \begin{align}
 visibility(a,b)= \sum_{i=0}^{m} \frac{\int \limits _{a}^{b}\norm{\xi(t)-O_{m}}_{2}* (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t}{\int \limits _{a}^{b}\norm{\iota_{X}(t)-O_{m}}_{2}* (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t}\\
-angle(t)=\arctan\frac{x(\gamma(t)-O_{m})}{y(\gamma(t)-O_{m})}
+angle(t)=\arctan\frac{x(\gamma(t)-O_{m})}{y(\gamma(t)-O_{m})},t \in U_{m}
 \end{align}
-Note: Integration \emph{after} convolution. Division of two complex numbers is partial/total derivative?
+Note: Angle not smooth and flips sign!! Integration \emph{after} convolution. Division of two complex numbers is partial/total derivative?
 
 \chapter{Polynomials and Splines}
 Finding their Handrolls (chart on Spiral, tangential space).
@@ -127,11 +127,7 @@ Note: $visibility$ and $isolation$ already include the trigonometric functions o
 Consider: A polar to cartesian transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$.\\\\
 Explanation:\\
 The imaginary part is the other side of the wave vs\\
-The imaginary part is the phase shift (fft)\\\\
-(multiplication? addition?)
-\begin{align}
-(a,b) \mapsto znet
-\end{align}
+The imaginary part is the phase shift (fft)
 
 \subsection*{Complex Norm}
 A complex norm $\norm{\cdot}$.
@@ -148,7 +144,7 @@ Hilbert Space
 \end{align}
 
 \subsection*{After Separation}
-Asymetric, non-repetitive pulses, which can be compared by matchline overlay comparison (See Sisyphos)\\\\
+Asymetric, non-repetitive pulses, which can be compared by matchline overlay comparison.\\\\
 Sisyphus: A Foray into Fractals\\
 Let's take the example of Sisyphus rolling a rock up a parabolic hill. We measure the altitude of the rock as a function of time. Sisyphus will roll the rock up the hill much slower than it will roll down the hill. Therefore variance of the Vector Graph in one direction is much lower than going in the other direction, but the periodicity of the falling depends on the rising.\\
 If we compare this to the formation of mountain ridges and their erosion, we can still say they depend on each other, but the periodicity is much more disconnected. The formation of mountain ridges depends on the flow of magma and ultimately on the thermomagnetic energy within the planet. Erosion, however depends on a much shorter period, which depends on the availability of atmosphere and ocean and the electromagnetic energy directed at them by the sun.\\
