@@ -29,10 +29,15 @@ In the course of specifying the Stopeight Analyzer transversality, which serves 
 
 \chapter{Isolation}
 Isolation was meant to be the ratio of the arc-lengths of the approximation and the input $\xi'(t)/\iota'_{X}(t)$.\\\\
-The square root of the product $\sqrt{\xi'(t)*\iota'_{X}(t)}$ happens to be the geometric mean. Taking the mean instead of the ratio has a few implications. Lets assume we have computed the Stopeight Analyzer transversality by applying the affine transformations in a positive direction $dir_{Y}=1$. We now measure this against the actual input in the same direction $dir_{X}=1$. The resulting number is entirely real. \\\\
-Also it can have values between $[0,\inf]$, which is useful for this convolution:\\
+The square root of the product $\sqrt{\xi'(t)*\iota'_{X}(t)}$ happens to be the geometric mean.
 \begin{equation}
 isolation(a,b)=\int \limits _{a}^{b} \sqrt{\xi'(t)*\iota'_{X}(t)} \mathrm{d}t
+\end{equation}
+Note: Taking the mean instead of the ratio has a few implications. Lets assume we have computed the Stopeight Analyzer transversality by applying the affine transformations in a positive direction $dir_{Y}=1$. We now measure this against the actual input in the same direction $dir_{X}=1$. The resulting number is entirely real.\\\\
+It is smooth (~\cite[Riemann Integrable]{Widon}). Therefore a convolution can be applied \emph{after} integration.\\
+It can have values between $[0,\inf]$, which is useful for this convolution:\\
+\begin{equation}
+woodpecker(a,b)=isolation(a,b)
 \end{equation}
 Note: If we had chosen a product of geometric means instead of the convolution would make that isolation grows if the means are $(0,1]$, or even worse canceled out for zeros. A sum would not amplify the effect of large geometric means in short intervals.
 
