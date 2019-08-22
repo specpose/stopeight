@@ -42,22 +42,22 @@ woodpecker(a,b)=isolation(a,b)
 Note: If we had chosen a product of geometric means instead of the convolution would make that isolation grows if the means are $(0,1]$, or even worse canceled out for zeros. A sum would not amplify the effect of large geometric means in short intervals.
 
 \chapter{Visibility}
-Visibility is computed by creating an auxiliary set of chart-wise elements
+Visibility is computed by creating an auxiliary set of chart-wise points
 \begin{equation}
-h: \{U_{m}\} \rightarrow X \rightarrow O
+h: U_{m} \mapsto [a,b] \mapsto O_{m}
 \end{equation}
 Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{m}) \geq 3$.\\\\
-This requires finding Centres of Cliffs by the arithmetic mean,\\
+They are Centres of Cliffs by the arithmetic mean,\\
 \begin{align}
-O=\{(x',y') \in \mathbb{R}^2 \vert \min_{U_{m}} \norm{X-O}_{2} \}\\
-\norm{X-O}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
+O_{m}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U_{m} \}\\
+\norm{.}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
 \end{align}
 \begin{align}
-visibility(a,b)= \frac{\int \limits _{a}^{b}\norm{A-O}_{2}* (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t}{\int \limits _{a}^{b}\norm{X-O}_{2}* (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t}\\
+visibility(a,b)= \sum_{i=0}^{m} \frac{\int \limits _{a}^{b}\norm{\xi(t)-O_{m}}_{2}* (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t}{\int \limits _{a}^{b}\norm{\iota_{X}(t)-O_{m}}_{2}* (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t}\\
 angle: t \mapsto \phi
 \end{align}
 Note: Integration \emph{after} convolution. Division of two complex numbers is partial/total derivative?\\\\
-Finding their Handrolls (chart on Spiral, tangential space),\\
+This requires finding their Handrolls (chart on Spiral, tangential space),\\
 \begin{align}
 C_{O}=\sup_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}visibility(t) \rvert \approx 0\\
 \end{align}
