@@ -24,9 +24,10 @@ More complex scenarios may be considered, where Spirals are avoided, the number 
 Within $f$ we are assigning a sequence of three points to compact Hausdorf invervals ~\cite[6.1.3.]{Mortad}:
 \begin{equation}
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{S,C,E\}
-\end{equation}\\\\
+\end{equation}\\
 
-The purpose of the Analyzer is to find intervals in a Vector Graph and produce an approximation. The input Vector Graph may be obtained from the Grapher, or it may be present in another mathematical context. Certain properties, such as the maximum derivative or the quantity or quality of measure spaces involved, are inherited from this context.\\\\
+The purpose of the Analyzer is to find intervals in a Vector Graph and produce an approximation. The input Vector Graph may be obtained from the Grapher, or it may be present in another mathematical context. Certain properties, such as the maximum derivative or the quantity or quality of measure spaces involved, are inherited from this context.
+\section{Stopeight Analyzer}
 
 \subsection{Legal Segment}
 (~\cite[Riemann Integrable?]{Widon})
@@ -40,16 +41,13 @@ C_{3} \ni \frac{b-a}{2}
 
 Non-recursive sections are not proper section types, but merely an expression of intermediate calculation and are therefore of medium computational priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.\\\\
 The $Max$ thresholds are reductions of measure spaces. The $derivatives$ are affected by $Max_{Straight}$. The Grapher $scale$ interacts with $Max_{Curvre}.$\\\\
-
 Measure Space: Curvature is no more than $(x')^2 + (y')^2 =1$  under any linear transformation of any segment and implies a creation of measure-spaces depending on scale.
-
 \subsection*{Half Cliff}
 Even though Half Cliffs are not being used, it is worth mentioning, that they produce Corners just to make the notation complete.
 \begin{align}
 Max_{Quarter}=\frac{((\pi-2) r^2) /4}{r}\\
 C_{3} \ni b'
-\end{align}\\\\
-
+\end{align}\\
 Measure Space: Straightness is no more than what is required for a hyperbola not to be considered straight under any linear transformation of any segment and implies a creation of measure spaces depending on intervals of changing signs.\\\\
 
 \subsection*{Absolute Differences}
@@ -93,6 +91,83 @@ Note: $b'$ is the Corner $C$ of the Eliptic Approximation where the Focal Point 
 The integral of the parametrisation on a non-Straight segment is larger than the integral of the parametrisation of a straight segment. (Additional benefits?)
 \begin{align}
 area_{jitter}(a,b)=\frac{\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t}{\int \limits _{0}^{(b-a)/2} diameter_{horiz,T}(a+t,b-t)\mathrm{d}t}
+\end{align}
+
+\section{Stopeight Comparator}
+
+\subsection{Recursion}
+($alt(a,b)$ products across interval spaces?)\\\\
+Typically, we do $signs$ over scale-spaces by setting the domain to $dom(\iota,\xi)=K_{p}$.
+Which is reflected in the $\mu(\gamma_{dom})$ of sum of a function over a scale space.\\
+\begin{equation}
+signs(\mu_{+},function )= \sum \limits _{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function (a,b)
+\end{equation}
+$times$ is the product of a function over a interval space $dom(\iota,\xi)=T_{n}$.
+\begin{equation}
+times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function(a,b)
+\end{equation}
+
+\subsection{Imaginary Visibility}
+Visibility is an increase of the polynomial Coefficients(?) of a curve segment.
+(No: When visibility is increased in a Spiral, it creates more subsegments/scale spaces). Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
+\begin{align}
+visibility(a,b)= alt(a,b) * signs(\mu,solidangle_{Rel}(a,b))\\
+visibility(a,b)= alt(a,b) * signs(\mu,curvature(a,b)-Q(a,b))(?)
+\end{align}
+(Lebesgue on curvature? $Max_{Curve}$ based or sign based?)
+\subsection*{Cases}
+When curvature is decreased in a Spiral, it becomes a ZigZag.
+\subsection*{Scale Space}
+$area$ grows, but $diameter$ constant.
+
+\subsection{Real Isolation}
+(No: A lack of isolation is directly linked to the creation of more interval spaces.)
+\begin{align}
+isolation(a,b) = ori(a,b)*times(\mu,\frac{1}{area_{jitter}(a,b)})\\
+isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b))(?)
+\end{align}
+(Frame bundle orthonormal?)
+\subsection*{Interval Space}
+$jitter$ grows, but $diameter$ constant.
+
+\subsection{Jaggedness}
+Is aliasing of discretisation/rasterisation, but not to be confused with signal aliasing. Can be defined on Focals and Turns.
+\begin{align}
+jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}(t)-\xi_{F}(t)\rvert \mathrm{d}t
+\end{align}
+
+\section{Indicator}
+In order for Stopeight overlay comparison to work, source separation has to be performed. A complex function measuring separation can be defined as.
+\begin{equation}
+separation(a,b) = isolation(a,b) + \mathrm{i} visibility(a,b)
+\end{equation}
+Important: This can be calculated while resampling. (See Grapher)\\\\
+Eventually, bounds of periodicity could be found. The directed waves of straightness and curvature going forward/backward synchronously are periodic.
+\begin{align}
+periodicity(a,b) =  (\int \limits _{a}^{b} \xi(t)-\iota_{X}(t) \mathrm{dt}) *(visibility(a,b) +\mathrm{i} isolation(a,b))
+\end{align}
+Or directly on the signal?
+\begin{align}
+periodicity(a,b) =  (\int \limits _{a}^{b} s(t) \mathrm{dt}) *(visibility(a,b) +\mathrm{i} isolation(a,b))
+\end{align}
+Note: $visibility$ and $isolation$ already include the trigonometric functions of the polar to cartesian transform.\\\\
+Consider: A polar to cartesian transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$.\\\\
+Explanation:\\
+The imaginary part is the other side of the wave vs\\
+The imaginary part is the phase shift (fft)
+
+\subsection*{Complex Norm}
+A complex norm $\norm{\cdot}$.
+\begin{align}
+\norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
+\end{align}
+Banach Space
+\begin{align}
+\norm{z} = \sqrt{Re(z)^2+Im(z)^2}
+\end{align}
+Hilbert Space
+\begin{align}
+\norm{z} = z*ComplexConjugate(z)
 \end{align}
 
 \iffalse
