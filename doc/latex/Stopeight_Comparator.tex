@@ -53,7 +53,7 @@ O_{m}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U
 \norm{\cdot}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
 \end{align}
 \begin{align}
-visibility(a,b)= \int \limits _{a}^{b}\vert \xi(t)-\iota_{O}(t)\vert * (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t\\
+visibility(a,b)= \int \limits _{a}^{b}\vert \iota_{X}(t)-\iota_{O}(t)\vert * (\cos(angle(t)) + \mathrm{i}\sin(angle(t))) \mathrm{d}t\\
 angle(t)=\arctan\frac{x(\gamma(t)-O_{m})}{y(\gamma(t)-O_{m})},t \in U_{m}
 \end{align}
 Note: Angle not smooth and flips sign!! Integration \emph{after} convolution. Division of two complex numbers is partial/total derivative?
