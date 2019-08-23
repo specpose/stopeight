@@ -44,14 +44,14 @@ It is possible to reconstruct a signal from the approximation, effectively makin
 \chapter{Downsampling Wavelet}
 Because the Vector Graph is invertible, any base that can reconstruct the Vector Graph $\iota_{X}$ from derived parametrisations is also a base of the original signal $s(x)$.\\
 The method is a multiresolution approach. It is not a proper wavelet. Instead, a time base \cite{Mallat}[1.3.4] is applied inside the Grapher \cite{Stopeight}[1.1] \emph{before} the \emph{transversality} $Y$ is calculated.\\\\
-This can be achieved by summing the vectors in the Vector Graph up to the period $2^j$.
+This can be achieved by summing the vectors in the Vector Graph up to the period $T \in dom(s)$.
 \begin{align}
 (X,\norm{\cdot})\\
-Z = \{c,d \in X \vert d(c,d)=(d-c)/2^j;a=k*(d-c);k \in \mathbb{Z}\}
+Z = \{c,d \in X \vert T=(d-c)/2^j;c=k*(d-c);k \in \mathbb{Z}\}
 \end{align}
 Note: Downsampling the signal $s(x)$ before calculating the \emph{Vector Graph}, would obliterate points in $\iota_{X}$ which can not be recovered. This is because as a consequence of downsampling, the Vector Graph folds differently, rendering the points in the original full resolution invalid.\\\\
-If $j=0$, then $T=b-a$. The resulting limits for isolation and visibility are zero and one respectively.\\\\
-As a consequence, the domain of the dependent sets $Y,A,O$ in the dependent functions is set to $dom(\iota_{Y},\iota_{O},\xi)=Z$.
+As a consequence, the domain of the dependent sets $Y,A,O$ in the dependent functions is set to $dom(\iota_{Y},\iota_{O},\xi)=Z$.\\\\
+If $j=0$, then $T=d-c$. The resulting limits for isolation and visibility are zero and one respectively.
 
 \chapter{Isolation}
 Isolation was meant to be the ratio of the arc-lengths of the approximation and the input $\xi'(t)/\iota'_{X}(t)$.\\\\
