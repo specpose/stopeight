@@ -26,10 +26,11 @@ The DOI can be found here ~\cite{Stopeight}.\\
 A brief overview can be found here:\\
 \href{https://www.stopeight.com/dev_analyzer.html}{https://www.stopeight.com/dev\_analyzer.html}\\\\
 The purpose of the Analyzer is to find intervals in a Vector Graph and produce an approximation. The input Vector Graph may be obtained from the Grapher, or it may be present in another mathematical context.\\\\
-Preliminary: Grapher can turn a time-invariant series/signal $s(x)$ into a Vector Graph $\mathbb{R}^2$. The scaling of the angles between vectors can be adjusted. An absolute maximum $\sup_{}\vert s'(t) \vert$ can be used. An average $\frac{\int \limits _{a}^{b}\vert s'(t) \vert\mathrm{d}t}{\vert b-a \vert}$ can be used (current implementation). Also a maximum angle of 180 degrees can be used instead of 90.
+Preliminary: Grapher can turn a time-invariant series/signal $s(x)$ into a Vector Graph $\mathbb{R}^2$. The scaling of the angles between vectors can be adjusted. An average $\frac{\int \limits _{a}^{b}\vert s'(t) \vert\mathrm{d}t}{\vert b-a \vert}$ can be used (current implementation). Also a maximum angle of 180 degrees can be used instead of 90.
 \begin{equation}
 vectorgraph: \mathbb{R} \rightarrow \mathbb{R}^2
 \end{equation}
+Note: An absolute maximum $\sup_{}\vert s'(t) \vert$ can be used. Time-variant versions are excluded.\\\\
 The sequence of Arcs $A \subset \mathbb{R}^2$ are an approximation of a Vector Graph $X \subset \mathbb{R}^2$:
 \begin{align}
 f \circ g: X \rightarrow A
