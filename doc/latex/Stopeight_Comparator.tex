@@ -27,20 +27,29 @@ The DOI can be found here ~\cite{Stopeight}.\\\\
 Initially the aim of this paper was to make separated sources in a mixed signal comparable using either numeric or geometric overlay comparison (currently implemented), regardless of time and amplitude stretch, but preserving frequency modulation and amplitude ratios.\\
 In the course of specifying the Stopeight Analyzer transversality, which serves as a foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition of two complex numbers, isolation and visibility. Visibility may lead to a method of approximating polynomials of arbitrary degree. Isolation is an indication of the fractal dimension and cutoff of the approximation.
 
-\chapter{Vector Graph Inverse}
-A pseudo inverse can reconstruct a signal from the approximation, effectively making it a suitable format for compression. It can also make Vector Graphs, which have not been obtained from a signal, audible or suitable for 1-dimensional analysis. The signal would be calculated from the second order total derivative and the sign of the chart. More about this later...
+\chapter{Vector Graph Inverses}
+\section{Graph Inverse}
+Start of the signal $s(x);x=0$, scaling factor $\frac{\int \limits _{c}^{d}s(x)\mathrm{d}x}{d-c}$ and $\iota_{X}(t)$ are needed.
 \begin{equation}
 vectorgraph^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
 \end{equation}
+The signal can be lossless reconstructed.
+\section{Approximation Inverse}
+Start of the signal $s(x);x=0$, scaling factor $\frac{\int \limits _{c}^{d}s(x)\mathrm{d}x}{d-c}$ and $\xi(t)$ are needed. The domain $dom(\xi)=Y$ without Straights, Spikes.
+\begin{equation}
+vectorgraph^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
+\end{equation}
+It is possible to reconstruct a signal from the approximation, effectively making it a suitable format for compression. It can also make Vector Graphs, which have not been obtained from a signal, audible or suitable for 1-dimensional analysis.
 
 \chapter{Downsampling Wavelet}
+Because the Vector Graph is invertible, any base that can reconstruct the Vector Graph $\iota_{X}$ from derived parametrisations is also a base of the original signal $s(x)$.\\
 The method is a multiresolution approach. It is not a proper wavelet. Instead, a time base \cite{Mallat}[1.3.4] is applied inside the Grapher \cite{Stopeight}[1.1] \emph{before} the \emph{transversality} $Y$ is calculated.\\\\
-This can happen by summing the vectors in the Vector Graph up to the period $2^j$.
+This can be achieved by summing the vectors in the Vector Graph up to the period $2^j$.
 \begin{align}
 (X,\norm{\cdot})\\
-Z = \{a,b \in X \vert d(a,b)=(b-a)/2^j;a=c*(b-a);c \in \mathbb{Z}\}
+Z = \{c,d \in X \vert d(c,d)=(d-c)/2^j;a=k*(d-c);k \in \mathbb{Z}\}
 \end{align}
-Note: Downsampling the signal $s(t)$ before calculating the \emph{Vector Graph} instead, obliterates points in $\iota_{X}$ which can not be recovered. This is because as a consequence of downsampling, the Vector Graph folds differently, rendering the points in the original full resolution invalid.\\\\
+Note: Downsampling the signal $s(x)$ before calculating the \emph{Vector Graph}, would obliterate points in $\iota_{X}$ which can not be recovered. This is because as a consequence of downsampling, the Vector Graph folds differently, rendering the points in the original full resolution invalid.\\\\
 If $j=0$, then $T=b-a$. The resulting limits for isolation and visibility are zero and one respectively.\\\\
 As a consequence, the domain of the dependent sets $Y,A,O$ in the dependent functions is set to $dom(\iota_{Y},\iota_{O},\xi)=Z$.
 
