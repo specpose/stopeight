@@ -170,6 +170,17 @@ Hilbert Space
 \norm{z} = z*ComplexConjugate(z)
 \end{align}
 
+\subsection{Isolation}
+The square root of the product $\sqrt{\xi'(t)*\iota'_{X}(t)}$ happens to be the geometric mean.
+\begin{equation}
+isolation(a,b,T)=\int \limits _{a}^{b} \sqrt{\xi'(t)*\iota'_{X}(t)} \mathrm{d}t
+\end{equation}
+Note: Taking the mean instead of the ratio has a few implications. Lets assume we have computed the Stopeight Analyzer transversality by applying the affine transformations in a positive direction $dir_{Y}=1$. We now measure this against the actual input in the same direction $dir_{X}=1$. The resulting number is entirely real.\\\\
+Therefore a convolution can be applied \emph{after} integration.\\\\
+It can have values between $[0,\inf]$, which is useful for woodpecker convolution:\\\\
+Note: If we had chosen a product of geometric means instead of the convolution would make that isolation grows if the means are $(0,1]$, or even worse canceled out for zeros. A sum would not amplify the effect of large geometric means in short intervals.
+
+
 \subsection{Wavelet}
 \begin{align}
 angle(t)=\arctan\frac{x(\gamma(t)-O_{m})}{y(\gamma(t)-O_{m})},t \in U_{m}

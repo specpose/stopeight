@@ -56,18 +56,15 @@ In the following chapters the domain of the functions $f \circ g \circ h$ on whi
 If $j=\inf$, then $T=0$. The resulting limits for isolation and visibility are one and zero respectively.
 
 \chapter{Isolation}
-Isolation was meant to be the ratio of the arc-lengths of the approximation and the input $\xi'(t)/\iota'_{X}(t)$.\\\\
-The square root of the product $\sqrt{\xi'(t)*\iota'_{X}(t)}$ happens to be the geometric mean.
+Isolation is the product of the ratios of the arc-lengths of the approximation and the input.
 \begin{equation}
-isolation(a,b,T)=\int \limits _{a}^{b} \sqrt{\xi'(t)*\iota'_{X}(t)} \mathrm{d}t
+isolation(a,b)=\lim _{k\rightarrow\inf} \prod _{i=0}^{(b-a)/k} \int \limits _{i*\frac{b-a}{k}}^{(i+1)*\frac{b-a}{k}} \frac{\xi'(t)}{\iota'_{X}(t)} \mathrm{d}t
 \end{equation}
-Note: Taking the mean instead of the ratio has a few implications. Lets assume we have computed the Stopeight Analyzer transversality by applying the affine transformations in a positive direction $dir_{Y}=1$. We now measure this against the actual input in the same direction $dir_{X}=1$. The resulting number is entirely real.\\\\
-The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}). Therefore a convolution can be applied \emph{after} integration.\\
-It can have values between $[0,\inf]$, which is useful for this convolution:\\
+Note: The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}).\\\\
+The discrete notation of isolation is.
 \begin{equation}
-woodpecker(a,b,T)=isolation(a,b,T)
+isolation(a,b)= \prod _{i=a}^{b-1} (\frac{\norm{\xi(i+1)-\xi(i)}_{2}}{\norm{\iota_{X}(i+1)-\iota_{X}(i)}_{2}}/(b-a))
 \end{equation}
-Note: If we had chosen a product of geometric means instead of the convolution would make that isolation grows if the means are $(0,1]$, or even worse canceled out for zeros. A sum would not amplify the effect of large geometric means in short intervals.
 
 \chapter{Visibility}
 Visibility is computed by creating an auxiliary set of chart-wise points
