@@ -26,16 +26,16 @@ Anything \rightarrow \{(x,y)_{m}\}_{m \in \mathbb{Z}}
 Note: It is a metric space with the Euclidean norm $(\mathbb{R}^2,\norm{\cdot}_2)$.\\\\
 The Vector Graph of the sequence of vectors is its appended form. The vectors are translated by the preceding ones.\\
 \begin{equation}
-vectorgraph_{\log_{2}(m),n}: (x,y)_{n}=\sum_{i=0}^{n} (x,y)_{i}
+vectorgraph_{\log_{2}(m)}: (x,y)_{n}=\sum_{i=0}^{n} (x,y)_{i}
 \end{equation}
 Note: It is a metric space with a taxicab norm $(X,\norm{\cdot}_1)$.\\\\
 The appended form can, but does not have to be, subdivided into $2^j$ partitions of size $m/2^j$. The vectors in the partition are sumed and the resulting vector is stretched by the effective length of the taxicab norm of the vectors in the partition.
 \begin{equation}
-vectorgraph_{j,n}:(x,y)_{n}=\sum_{i=0}^{n} (\norm{(x,y)_{(i+1)*m/2^j}}_{1} - \norm{(x,y)_{i*m/2^j}}_{1} * \frac{\sum_{k=i*m/2^j}^{(i+1)*m/2^j} (x,y)_{k}}{\vert \sum_{k=i*m/2^j}^{(i+1)*m/2^j} (x,y)_{k} \vert})
+vectorgraph_{j}:(x,y)_{n}=\sum_{i=0}^{n} (\norm{(x,y)_{(i+1)*m/2^j}}_{1} - \norm{(x,y)_{i*m/2^j}}_{1} * \frac{\sum_{k=i*m/2^j}^{(i+1)*m/2^j} (x,y)_{k}}{\vert \sum_{k=i*m/2^j}^{(i+1)*m/2^j} (x,y)_{k} \vert})
 \end{equation}
 This ensures that the traversal distances are preserved!
 \begin{equation}
-(vectorgraph_{j,n},\norm{\cdot}_{1})=(vectorgraph_{j+1,n},\norm{\cdot}_{1})
+(vectorgraph_{j},\norm{\cdot}_{1})=(vectorgraph_{j+1},\norm{\cdot}_{1})
 \end{equation}
 Even a distance-variant version of the Vector Graph can be thought of. It is composed of a sequence of $p$ Vector Graph pieces on the same taxicab norm $(\{X_{p}\}_{p\in \mathbb{Z}},\norm{\cdot}_1)$.\\\\
 To avoid interpolation, integer multiples of the Euclidean norm $\norm{\cdot}_{2}$ over all sequences would have to be used.\\\\

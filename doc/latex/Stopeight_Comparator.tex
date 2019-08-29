@@ -42,29 +42,32 @@ vectorgraph^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
 It is possible to reconstruct a signal from the approximation, effectively making it a suitable format for compression. It can also make Vector Graphs, which have not been obtained from a signal, audible or suitable for 1-dimensional analysis.\\
 Note: The compression is dynamic. In some cases, the data may actually increase.
 
-\chapter{Downsampling Wavelet}
-Because the Vector Graph is invertible, any basis that can reconstruct the Vector Graph $\iota_{X}$ from derived parametrisations is also a basis of the original signal $s(x)$.\\
-The method is a multiresolution approach. It is not a proper wavelet. Instead, a frequency-only basis is applied inside the Grapher \cite{Stopeight}[1.1] \emph{before} the \emph{transversality} $Y$ is calculated. Then, a local cosine basis is applied on the parametrisations. \cite{Mallat}[1.3.4]\\\\
-The angles in the Vector Graph are a Wavelet if $2^j$ is the block size, n is the block index, t is as previously defined.\\\\
-The signal $s(t)$ is a parametrisation of $s(x)$. The taxicab norm $\norm{\cdot}_{1}$ is preserved $c,d \in X$.\\\\
-Summing the vectors in the Vector Graph up to the period $T \in dom(s)$ removes jitter and is subject to shift $i \in dom(s)$.
+\chapter{Spectrograms}
+Because of the fractal nature of the two variables isolation and visibility, a recursive function has to be used. The recursive step is applied on each downsampling step. We start with $2^j=m$, which is the full resolution of the Vector Graph. On each step we double the partition size until we reach $2^0$. The Vector Graph and any approximations thereof now consist of only one vector.\\\\
+The recursion is defined as follows. Here $t$ is the same parametrisation $t$ as used in previous chapters.
+\begin{equation}
+\psi_{j,n}(t)=\frac{1}{\sqrt{2^j}}\psi(\frac{t-2^j n}{2^j})
+\end{equation}
+Note: This is the dilation and translation of an individual time-frequency box of a Wavelet \cite{Mallat}[1.3.4].\\\\
+For this time-frequency box, a coefficient $vis_{j,n}$ or $iso_{j,n}$ can be calculated. This has to be done on the parametrisation bounds of the vector $(x,y)_n$ of the corresponding $vectorgraph_{j}$ \cite{Grapher}[1.3].
 \begin{align}
-Z = \{c,d \in X \vert T=\frac{\norm{d}_1-\norm{c}_1}{2^j};c=i+kT;k,j \in \mathbb{Z}\}
-\end{align}
-Note: Downsampling the signal $s(x)$ before calculating the \emph{Vector Graph}, would obliterate points in $\iota_{X}$. They would not be recoverable, because as a consequence of downsampling, the Vector Graph folds differently, rendering the points in the original full resolution invalid.\\\\
-In the following chapters the domain of the functions $f \circ g \circ h$ on which sets $Y,A,O$ depend on is overridden $dom(\iota_{Y},\xi,\iota_{O})=Z$.\\\\
-If $j=\inf$, then $T=0$. The resulting limits for isolation and visibility are one and zero respectively.
+vis_{j,n}=visibility(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1},j)\\
+iso_{j,n}=isolation(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})
+\end{align}\\
+If the sequence of Centres of Cliffs $O$ for a particular $vectorgraph_{j}$ is preserved, it can be reconstructed from its $visibility^{-1}(\omega)$. The Approximation Inverse makes visibility a base of a signal $s(x)$ \cite{Grapher}[current implementation] at a particular downsampling frequency.\\ Note: It is a wavelet orthonormal basis. \cite{Mallat}[1.3]\\\\
+The $isolation(a,b)$ is not invertible.\\\\
 
 \chapter{Isolation}
 Isolation is the product of the ratios of the arc-lengths of the approximation and the input.
 \begin{equation}
-isolation(a,b)=\lim _{k\rightarrow\inf} \prod _{i=0}^{(b-a)/k} \int \limits _{i*\frac{b-a}{k}}^{(i+1)*\frac{b-a}{k}} \frac{\xi'(t)}{\iota'_{X}(t)} \mathrm{d}t
+isolation(a,b)=\lim _{k\rightarrow\infty} \prod _{i=0}^{(b-a)/k} \int \limits _{i*\frac{b-a}{k}}^{(i+1)*\frac{b-a}{k}} \frac{\xi'(t)}{\iota'_{X}(t)} \mathrm{d}t
 \end{equation}
 Note: The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}).\\\\
 The discrete notation of isolation is.
 \begin{equation}
 isolation(a,b)= \prod _{i=a}^{b-1} (\frac{\norm{\xi(i+1)-\xi(i)}_{2}}{\norm{\iota_{X}(i+1)-\iota_{X}(i)}_{2}}/(b-a))
 \end{equation}
+Note: This may seem odd at first, because the full resolution is always used. But consider that the approximation $\xi$ changes drastically if the Vector Graph partitions change.
 
 \chapter{Visibility}
 Visibility is computed by creating an auxiliary set of chart-wise points
@@ -77,9 +80,9 @@ They are Centres of Cliffs by the arithmetic mean,
 O_{n}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U_{n} \}\\
 \norm{\cdot}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
 \end{align}
-$[-\pi,\pi]$ is replaced with $[a,b]$. This is the Continuous Fourier \emph{Transform}.
+$[-\pi,\pi]$ is replaced with $[a,b]$. This is the energy of the Continuous Fourier \emph{Transform} as in the Plancherel equality.
 \begin{align}
-visibility(a,b)= \int \limits _{-\inf}^{+inf}\int \limits _{a}^{b}\lvert \vert \xi(t)-\iota_{O}(t)\vert * \mathrm{e}^{-\mathrm{i}\omega t} \rvert^2 \mathrm{d}t \mathrm{d}\omega
+visibility(a,b)= \int \limits _{-\infty}^{+\infty}\int \limits _{a}^{b}\lvert \vert \xi(t)-\iota_{O}(t)\vert * \mathrm{e}^{-\mathrm{i}\omega t} \rvert^2 \mathrm{d}t \mathrm{d}\omega
 \end{align}\\\\
 Eventually a Discrete, Fast version of visibility can be used.\\
 The polar unit circle line corresponding to the absolute value of an angle is.
@@ -90,7 +93,6 @@ Visibility is now based on the Haar spots in the approximation.
 \begin{align}
 visibility(a,b,j)= \sum _{k=0}^{(b-a)/(m/2^j)}\lvert \vert \xi(k*(m/2^j))-\iota_{O}(k*(m/2^j))\vert * z(k) \rvert^2
 \end{align}
-Note: Orthogonal Wavelet Base? Is this a (Fast) Wavelet Transform?
 
 \chapter{Polynomials and Splines}
 Finding their Handrolls (chart on Spiral, tangential space).
