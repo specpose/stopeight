@@ -19,8 +19,7 @@
 \maketitle
 
 \chapter{Introduction}
-(Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\
-(Todo: Introduce formal definition of measure spaces)\\\\
+(Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
 This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\\\
@@ -51,10 +50,10 @@ The recursion is defined as follows. Here $t$ is the same parametrisation $t$ as
 Note: This is the dilation and translation of an individual time-frequency box of a Wavelet \cite{Mallat}[1.3.4].\\\\
 For this time-frequency box, a coefficient $vis_{j,n}$ or $iso_{j,n}$ can be calculated. This has to be done on the parametrisation bounds of the vector $(x,y)_n$ of the corresponding $vectorgraph_{j}$ \cite{Grapher}[1.3].
 \begin{align}
-vis_{j,n}=visibility(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1},j)\\
+vis_{j,n}=visibility(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})\\
 iso_{j,n}=isolation(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})
 \end{align}\\
-If the sequence of Centres of Cliffs $O$ for a particular $vectorgraph_{j}$ is preserved, it can be reconstructed from its $visibility^{-1}(\omega)$. The Approximation Inverse makes visibility a base of a signal $s(x)$ \cite{Grapher}[current implementation] at a particular downsampling frequency.\\ Note: It is a wavelet orthonormal basis. \cite{Mallat}[1.3]\\\\
+If the sequence of Centres of Cliffs $O$ for a particular $vectorgraph_{j}$ is preserved, it can be reconstructed from its $visibility^{-1}(\omega)$. The Approximation Inverse makes visibility a base of a signal $s(x)$ \cite{Grapher}[current implementation] at a particular downsampling frequency $\frac{\norm{(x,y)_{m}}_{1}}{2^j}$.\\ Note: It is a wavelet orthonormal basis. \cite{Mallat}[1.3]\\\\
 The $isolation(a,b)$ is not invertible.\\\\
 
 \chapter{Isolation}
@@ -83,16 +82,8 @@ O_{n}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U
 $[-\pi,\pi]$ is replaced with $[a,b]$. This is the energy of the Continuous Fourier \emph{Transform} as in the Plancherel equality.
 \begin{align}
 visibility(a,b)= \int \limits _{-\infty}^{+\infty}\int \limits _{a}^{b}\lvert \vert \xi(t)-\iota_{O}(t)\vert * \mathrm{e}^{-\mathrm{i}\omega t} \rvert^2 \mathrm{d}t \mathrm{d}\omega
-\end{align}\\\\
-Eventually a Discrete, Fast version of visibility can be used.\\
-The polar unit circle line corresponding to the absolute value of an angle is.
-\begin{align}
-z(k) = \cos(k*(m/2^j) + \mathrm{i}\sqrt{1-(\cos(k*(m/2^j)))^2}
-\end{align}
-Visibility is now based on the Haar spots in the approximation.
-\begin{align}
-visibility(a,b,j)= \sum _{k=0}^{(b-a)/(m/2^j)}\lvert \vert \xi(k*(m/2^j))-\iota_{O}(k*(m/2^j))\vert * z(k) \rvert^2
-\end{align}
+\end{align}\\
+Note: A Discrete, Fast version of the Fourier Transform can be applied. \cite{Formelsammlung}[7.9]
 
 \chapter{After Separation}
 Asymetric, non-repetitive non-smooth (pulses), which can be compared by matchline overlay comparison.\\\\
