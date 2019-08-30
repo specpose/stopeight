@@ -18,12 +18,17 @@
 \author{Fassio Blatter}
 \maketitle
 
-\chapter{Introduction}
+\section{Implementations}
 More complex scenarios may be considered, where Spirals are avoided, the number of 8's are limited or the signal is resampled.\\
 Within $f$ we are assigning a sequence of three points to compact Hausdorf invervals ~\cite[6.1.3.]{Mortad}:
 \begin{equation}
 \{x_{n}\}_{n \in \mathbb{N}} \mapsto \{S,C,E\}
 \end{equation}\\
+
+The function $vectorgraph(a,b)$ is a angle function with relative angles scaled by
+\begin{align}
+\pi*(\sup_{s(t)} s'(t)-\inf_{s(t)} s'(t))
+\end{align}
 
 The purpose of the Analyzer is to find intervals in a Vector Graph and produce an approximation. The input Vector Graph may be obtained from the Grapher, or it may be present in another mathematical context. Certain properties, such as the maximum derivative or the quantity or quality of measure spaces involved, are inherited from this context.
 \section{Stopeight Analyzer}
