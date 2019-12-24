@@ -24,7 +24,45 @@ This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\\\
 Initially the aim of this paper was to make separated sources in a mixed signal comparable using either numeric or geometric overlay comparison (currently implemented), regardless of time and amplitude stretch, but preserving frequency modulation and amplitude ratios.\\
-In the course of specifying the Stopeight Analyzer transversality, which serves as a foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition of two complex numbers, isolation and visibility. Visibility may lead to a method of approximating polynomials of arbitrary degree. Isolation is an indication of the fractal dimension and cutoff of the approximation.
+In the course of specifying the Stopeight Analyzer transversality, which serves as a foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition of two wavelets, isolation and visibility. They may lead to a method of approximating polynomials of arbitrary degree. They are an indication of the fractal dimension and cutoff of the approximation.
+
+\chapter{Isolation}
+Isolation is the integral of the absolute difference of the input and approximation transversalities.
+\begin{equation}
+isolation(a,b)=\int \limits _{a}^{b} \vert\iota_{X}(t)-\xi(t)\vert \mathrm{d}t
+\end{equation}
+Note: The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}).\\\\
+
+\chapter{Visibility}
+Visibility is computed by creating an auxiliary set of chart-wise points
+\begin{equation}
+h: U_{n} \mapsto [a,b] \mapsto O_{n}
+\end{equation}
+Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{n}) \geq 3$.\\\\
+They are Centres of Cliffs by the arithmetic mean,
+\begin{align}
+O_{n}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U_{n} \}\\
+\norm{\cdot}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
+\end{align}
+$\iota_{O}$ is the line connecting the cliff centers and each chart's bounds $S,E$. Visibility is the integral of the absolute difference of the cliff-center and approximation transversalities.
+\begin{align}
+visibility(a,b)= \int \limits _{a}^{b} \vert \xi(t)-\iota_{O}(t)\vert  \mathrm{d}t
+\end{align}\\
+
+\chapter{Wavelets}
+Because of the fractal nature of the two variables isolation and visibility, a recursive function has to be used. The recursive step is applied on each downsampling step. We start with $2^j=m$, which is the full resolution of the Vector Graph. On each step we double the partition size until we reach $2^0$. The Vector Graph and any approximations thereof now consist of only one vector.\\\\
+The recursion is defined as follows. Here $t$ is the same parametrisation $t$ as used in previous chapters.
+\begin{equation}
+\psi_{j,n}(t)=\frac{1}{\sqrt{2^j}}\psi(\frac{t-2^j n}{2^j})
+\end{equation}
+Note: This is the dilation and translation of an individual time-frequency box of a Wavelet \cite{Mallat}[1.3.4].\\\\
+For this time-frequency box, a coefficient $vis_{j,n}$ or $iso_{j,n}$ can be calculated. This has to be done on the parametrisation bounds of the vector $(x,y)_n$ of the corresponding $vectorgraph_{j}$ \cite{Grapher}[1.3].
+\begin{align}
+vis_{j,n}=visibility(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})\\
+iso_{j,n}=isolation(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})
+\end{align}\\
+Note: Time-scaling has to be preserved in the lengths of the vectors in the construction of the Vector Graph for this to work.\\
+(base of signal s(x), invertibility? Note: It is a wavelet orthonormal basis. \cite{Mallat}[1.3])
 
 \chapter{Vector Graph Inverses}
 \section{Graph Inverse}
@@ -41,49 +79,6 @@ vectorgraph^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
 It is possible to reconstruct a signal from the approximation, effectively making it a suitable format for compression. It can also make Vector Graphs, which have not been obtained from a signal, audible or suitable for 1-dimensional analysis.\\
 Note: The compression is dynamic. In some cases, the data may actually increase.
 
-\chapter{Spectrograms}
-Because of the fractal nature of the two variables isolation and visibility, a recursive function has to be used. The recursive step is applied on each downsampling step. We start with $2^j=m$, which is the full resolution of the Vector Graph. On each step we double the partition size until we reach $2^0$. The Vector Graph and any approximations thereof now consist of only one vector.\\\\
-The recursion is defined as follows. Here $t$ is the same parametrisation $t$ as used in previous chapters.
-\begin{equation}
-\psi_{j,n}(t)=\frac{1}{\sqrt{2^j}}\psi(\frac{t-2^j n}{2^j})
-\end{equation}
-Note: This is the dilation and translation of an individual time-frequency box of a Wavelet \cite{Mallat}[1.3.4].\\\\
-For this time-frequency box, a coefficient $vis_{j,n}$ or $iso_{j,n}$ can be calculated. This has to be done on the parametrisation bounds of the vector $(x,y)_n$ of the corresponding $vectorgraph_{j}$ \cite{Grapher}[1.3].
-\begin{align}
-vis_{j,n}=visibility(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})\\
-iso_{j,n}=isolation(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})
-\end{align}\\
-If the sequence of Centres of Cliffs $O$ for a particular $vectorgraph_{j}$ is preserved, it can be reconstructed from its $visibility^{-1}(\omega)$. The Approximation Inverse makes visibility a base of a signal $s(x)$ \cite{Grapher}[current implementation] at a particular downsampling frequency $\frac{\norm{(x,y)_{m}}_{1}}{2^j}$.\\ Note: It is a wavelet orthonormal basis. \cite{Mallat}[1.3]\\\\
-The $isolation(a,b)$ is not invertible.\\\\
-
-\chapter{Isolation}
-Isolation is the product of the ratios of the arc-lengths of the approximation and the input.
-\begin{equation}
-isolation(a,b)=\lim _{k\rightarrow\infty} \prod _{i=0}^{(b-a)/k} \int \limits _{i*\frac{b-a}{k}}^{(i+1)*\frac{b-a}{k}} \frac{\xi'(t)}{\iota'_{X}(t)} \mathrm{d}t
-\end{equation}
-Note: The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}).\\\\
-The discrete notation of isolation is.
-\begin{equation}
-isolation(a,b)= \prod _{i=a}^{b-1} (\frac{\norm{\xi(i+1)-\xi(i)}_{2}}{\norm{\iota_{X}(i+1)-\iota_{X}(i)}_{2}}/(b-a))
-\end{equation}
-Note: This may seem odd at first, because the full resolution is always used. But consider that the approximation $\xi$ changes drastically if the Vector Graph partitions change.
-
-\chapter{Visibility}
-Visibility is computed by creating an auxiliary set of chart-wise points
-\begin{equation}
-h: U_{n} \mapsto [a,b] \mapsto O_{n}
-\end{equation}
-Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{n}) \geq 3$.\\\\
-They are Centres of Cliffs by the arithmetic mean,
-\begin{align}
-O_{n}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U_{n} \}\\
-\norm{\cdot}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
-\end{align}
-$[-\pi,\pi]$ is replaced with $[a,b]$. This is the energy of the Continuous Fourier \emph{Transform} as in the Plancherel equality.
-\begin{align}
-visibility(a,b)= \int \limits _{-\infty}^{+\infty}\int \limits _{a}^{b}\lvert \vert \xi(t)-\iota_{O}(t)\vert * \mathrm{e}^{-\mathrm{i}\omega t} \rvert^2 \mathrm{d}t \mathrm{d}\omega
-\end{align}\\
-Note: A Discrete, Fast version of the Fourier Transform can be applied. \cite{Formelsammlung}[7.9]
 
 \chapter{After Separation}
 Asymetric, non-repetitive non-smooth (pulses), which can be compared by matchline overlay comparison.\\\\

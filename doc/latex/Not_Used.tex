@@ -193,8 +193,20 @@ Z = \{c,d \in X \vert T=\frac{\norm{d}_1-\norm{c}_1}{2^j};c=i+kT;k,j \in \mathbb
 Note: Downsampling the signal $s(x)$ before calculating the \emph{Vector Graph}, would obliterate points in $\iota_{X}$. They would not be recoverable, because as a consequence of downsampling, the Vector Graph folds differently, rendering the points in the original full resolution invalid.\\\\
 In the following chapters the domain of the functions $f \circ g \circ h$ on which sets $Y,A,O$ depend on is overridden $dom(\iota_{Y},\xi,\iota_{O})=Z$.\\\\
 If $j=\inf$, then $T=0$. The resulting limits for isolation and visibility are one and zero respectively.
+If the sequence of Centres of Cliffs $O$ for a particular $vectorgraph_{j}$ is preserved, it can be reconstructed from its $visibility^{-1}(\omega)$. The Approximation Inverse makes visibility a base of a signal $s(x)$ \cite{Grapher}[current implementation] at a particular downsampling frequency $\frac{\norm{(x,y)_{m}}_{1}}{2^j}$.\\ Note: It is a wavelet orthonormal basis. \cite{Mallat}[1.3]\\\\
+The $isolation(a,b)$ is not invertible.\\\\
+
 
 \subsection{Isolation}
+Isolation is the product of the ratios of the arc-lengths of the approximation and the input.
+\begin{equation}
+isolation(a,b)=\lim _{k\rightarrow\infty} \prod _{i=0}^{(b-a)/k} \int \limits _{i*\frac{b-a}{k}}^{(i+1)*\frac{b-a}{k}} \frac{\xi'(t)}{\iota'_{X}(t)} \mathrm{d}t
+\end{equation}
+The discrete notation of isolation is.
+\begin{equation}
+isolation(a,b)= \prod _{i=a}^{b-1} (\frac{\norm{\xi(i+1)-\xi(i)}_{2}}{\norm{\iota_{X}(i+1)-\iota_{X}(i)}_{2}}/(b-a))
+\end{equation}
+Note: This may seem odd at first, because the full resolution is always used. But consider that the approximation $\xi$ changes drastically if the Vector Graph partitions change.
 The square root of the product $\sqrt{\xi'(t)*\iota'_{X}(t)}$ happens to be the geometric mean.
 \begin{equation}
 isolation(a,b,T)=\int \limits _{a}^{b} \sqrt{\xi'(t)*\iota'_{X}(t)} \mathrm{d}t
@@ -205,6 +217,11 @@ It can have values between $[0,\inf]$, which is useful for woodpecker convolutio
 Note: If we had chosen a product of geometric means instead of the convolution would make that isolation grows if the means are $(0,1]$, or even worse canceled out for zeros. A sum would not amplify the effect of large geometric means in short intervals.
 
 \subsection{Visibility}
+$[-\pi,\pi]$ is replaced with $[a,b]$. This is the energy of the Continuous Fourier \emph{Transform} as in the Plancherel equality.
+\begin{align}
+visibility(a,b)= \int \limits _{-\infty}^{+\infty}\int \limits _{a}^{b}\lvert \vert \xi(t)-\iota_{O}(t)\vert * \mathrm{e}^{-\mathrm{i}\omega t} \rvert^2 \mathrm{d}t \mathrm{d}\omega
+\end{align}\\
+Note: A Discrete, Fast version of the Fourier Transform can be applied. \cite{Formelsammlung}[7.9]
 \begin{align}
 angle(t)=\arctan\frac{x(\gamma(t)-O_{m})}{y(\gamma(t)-O_{m})},t \in U_{m}
 \end{align}
