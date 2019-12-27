@@ -34,19 +34,9 @@ isolation(a,b)=\int \limits _{a}^{b} \vert\iota_{X}(t)-\xi(t)\vert \mathrm{d}t
 Note: The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}).\\\\
 
 \chapter{Visibility}
-Visibility is computed by creating an auxiliary set of chart-wise points
-\begin{equation}
-h: U_{n} \mapsto [a,b] \mapsto O_{n}
-\end{equation}
-Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{n}) \geq 3$.\\\\
-They are Centres of Cliffs by the arithmetic mean,
+The parametrisation $\iota_{Y}$ is the line connecting each chart's $U_{n}$ bounds $S,E$. Visibility is the integral of the absolute difference of the cliff-center and approximation transversalities.
 \begin{align}
-O_{n}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U_{n} \}\\
-\norm{\cdot}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
-\end{align}
-$\iota_{O}$ is the line connecting the cliff centers and each chart's bounds $S,E$. Visibility is the integral of the absolute difference of the cliff-center and approximation transversalities.
-\begin{align}
-visibility(a,b)= \int \limits _{a}^{b} \vert \xi(t)-\iota_{O}(t)\vert  \mathrm{d}t
+visibility(a,b)= \int \limits _{a}^{b} \vert \xi(t)-\iota_{Y}(t)\vert  \mathrm{d}t
 \end{align}\\
 
 \chapter{Wavelets}
@@ -63,6 +53,25 @@ iso_{j,n}=isolation(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})
 \end{align}\\
 Note: Time-scaling has to be preserved in the lengths of the vectors in the construction of the Vector Graph for this to work.\\
 (base of signal s(x), invertibility? Note: It is a wavelet orthonormal basis. \cite{Mallat}[1.3])
+
+\chapter{Spectrogram}
+The frequency content in an approximation can be evaluated by a spectrogram.\\\\
+Creating an auxiliary set of chart-wise points
+\begin{equation}
+h: U_{n} \mapsto [a,b] \mapsto O_{n}
+\end{equation}
+Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{n}) \geq 3$.\\\\
+They are Centres of Cliffs by the arithmetic mean,
+\begin{align}
+O_{n}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U_{n} \}\\
+\norm{\cdot}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
+\end{align}
+The spectrogram is calculated by applying a convolution transform to an artificially constructed signal for $t \in [a,b]$.
+\begin{align}
+rays(t)=ori(a,b)*\vert\iota_{X}(t)-O_{n}\vert\\
+woodpecker(\phi)=\cos(\arctan(\cot(\phi))) + \mathrm{i}\sin(\arctan(\cot(\phi)))\\
+nautilus(a,b,\phi)=\int \limits _{-\infty}^{\infty}\int \limits _{a}^{b}rays(t)*woodpecker(\phi)\mathrm{d}t\mathrm{d}\phi
+\end{align}
 
 \chapter{Vector Graph Inverses}
 \section{Graph Inverse}
@@ -81,7 +90,7 @@ Note: The compression is dynamic. In some cases, the data may actually increase.
 
 
 \chapter{After Separation}
-Asymetric, non-repetitive non-smooth (pulses), which can be compared by matchline overlay comparison.\\\\
+Asymetric, non-repetitive half-pulses, which can be compared by matchline overlay comparison.\\\\
 Sisyphus: A Foray into Fractals\\
 Let's take the example of Sisyphus rolling a rock up a parabolic hill. We measure the altitude of the rock as a function of time. Sisyphus will roll the rock up the hill much slower than it will roll down the hill. Therefore variance of the Vector Graph in one direction is much lower than going in the other direction, but the periodicity of the falling depends on the rising.\\
 If we compare this to the formation of mountain ridges and their erosion, we can still say they depend on each other, but the periodicity is much more disconnected. The formation of mountain ridges depends on the flow of magma and ultimately on the thermomagnetic energy within the planet. Erosion, however depends on a much shorter period, which depends on the availability of atmosphere and ocean and the electromagnetic energy directed at them by the sun.\\
