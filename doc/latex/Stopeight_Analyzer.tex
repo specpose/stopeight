@@ -150,8 +150,9 @@ The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4
 \subsection{Legal Segment}
 A legal segment is an affine transformtion of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous (when):
 \begin{align}
-\xi'_{x}(a),\xi'_{y}(a), (\xi'_{y}(b)\text{ optional?}) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), (\iota'_{y}(b)\text{ optional?}) = 0
+\xi'_{x}(a),\xi'_{y}(a), \xi'_{y}(b) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), \iota'_{y}(b) = 0
 \end{align}
+The orientation $ori(a,b)$ of any point $a < t < b$ is the $sign(\xi'_{y}(t))$ or $sign(\iota'_{y}(t))$ after the aforementioned affine transformation.
 
 \subsection{Straightness}
 A straight line segment is determined by means of straightness.\\
