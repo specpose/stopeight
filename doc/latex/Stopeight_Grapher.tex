@@ -50,6 +50,8 @@ Clearly, choosing a $j$ that results in a Euclidean distance smaller than the hi
 \end{equation}
 
 \chapter{Usage Scenarios}
+\section{Comparison}
+After the feature points have been extracted in the Analyser, a reference Vector Graph can be compared to a subsection of a query Vector Graph. This is being done by geometrically overlaying and matching them within an offset threshold. The overlay is being done using affine transformations. This is not documented but currently implemented in the Stopeight Comparator project.
 \section{Domain (Time) Scalability}
 This Vector Graph has to be constructed by appending a vector $(0,y)_{n+1}$ to an existing vector $(x,y)_{n}$ at an angle relative to the existing vector. Here, the length is the same sampling rate $2^j$ and the angle is chosen to be based on the average of the signal change and the actual change. The values are fitted to be in the range $[-\pi,\pi]$ to allow for the occurence of the full feature set supported by the Analyser.
 \begin{align}
@@ -57,14 +59,26 @@ angle_{n+1}=angle_{n}+2*\arcsin(\vert(x,y)_{n+1}\vert/\frac{\int \limits _{a}^{b
 \end{align}
 \subsection{Finding Bounds}
 In a one dimensional mixed signal $s(t)$, there are quiet, low frequencies. They are difficult to spot because of the presence of high frequency noise. Creating a Vector Graph provides a high precision solution to the adequate time-localisation of these pulses, and even half pulses where the wavelength is not known.
-\subsection{Comparison}
-After the feature points have been extracted in the Analyser, a reference Vector Graph can be compared to a subsection of a query Vector Graph. This is being done by geometrically overlaying and matching them within an offset threshold. The overlay is being done using affine transformations. This is not documented but currently implemented in the Stopeight Comparator project.\\\\
-For the comparison to work, both Vector Graphs have to be scaled by the same angle function.
+\subsection{Pitch}
+The benefit of this method is that a sequence of variable wavelength pulses can be compared at different pitches. For the comparison to work, both Vector Graphs have to be scaled by the same angle function.\\\\
+A harmonic will introduce a mirror axis for consecutive half-pulses.
 \subsection{Compression}
 image variance
 \section{Image (Amplitude) Scalability}
+This Vector Graph has to be constructed by appending vectors to each other without further rotation.
+\begin{align}
+vectorgraph_{j}: (x,y)_{n}=(\mathrm{Re(z_{n})},\mathrm{Im(z_{n})})
+\end{align}
+The complex numbers $z_{n}$ are obtained from Fourier Transform of $j$ partitions. The frequency is set to the frame size.
+\begin{align}
+z_{n}= \int \limits _{n*(m/j)}^{(n+1)*(m/j)} s(t)*1/(\cos(\frac{2\pi}{m/j}t)+\mathrm{i}\sin(\frac{2\pi}{m/j}t))\mathrm{d}t
+\end{align}
+Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X,+,*,\leq)$.\\\\
+Note: Complex multiplication?\\\\
+The Heisenberg Uncertainty can be reinterpreted: Arbitrary precision in the wavelength and amplitude domain can not be found.
 \subsection{Harmonics}
-complex multiplication
+The benefit of this method is that an audio feature in a mixed signal $s(t)$ can test positive in geometric overlay comparison regardless of the amplitude of the feature.\\\\
+A harmonic at a particular frame/window size will show up as a Straight.
 
 \chapter{Mathematical Methods}
 \section{Integrating a Derivative in Two Dimensions}
