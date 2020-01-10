@@ -148,7 +148,11 @@ h_{1}' & h_{2}' & h_{3}'
 The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$. ~\cite[Spline\_Axioms.tex]{Stopeight}
 
 \subsection{Legal Segment}
-A legal segment is an affine transformtion of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous (when):
+A legal segment is an affine transformation of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous:
+\begin{align}
+a<t<b\rightarrow \xi'_{x}(a)<\xi'_{x}(t)<\xi'_{x}(b) \Leftrightarrow \iota'_{x}(a)<\iota'_{x}(t)<\iota'_{x}(b)
+\end{align}
+When:
 \begin{align}
 \xi'_{x}(a),\xi'_{y}(a), \xi'_{y}(b) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), \iota'_{y}(b) = 0
 \end{align}
@@ -294,8 +298,14 @@ Max_{angle}=\frac{3\pi}{4}\\
 Min_{angle}=\frac{pi}{2}\\
 b' \in T_{2},C_{4}
 \end{align}
-It is part of ZigZag detection.\\
-Note: Angles of less than 90 degrees are caught by Cliff detection.
+Or 90 and 0 degrees:
+\begin{align}
+Max_{angle}=\frac{pi}{2}\\
+Min_{angle}=0\\
+b' \in T_{3}
+\end{align}
+Note: Very steep angles are likely not to be continuous when a lot of data points are available. They may be caught by Cliff detection.\\\\
+It is part of ZigZag detection.
 
 \subsection{Moustache?}
 Indicates a break or change of direction $dir_{Z}$ in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
