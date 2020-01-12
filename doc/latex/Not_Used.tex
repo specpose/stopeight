@@ -38,6 +38,12 @@ vectorgraph: \mathbb{R} \rightarrow \mathbb{R}^2
 \end{equation}
 Note: An absolute maximum $\sup_{}\vert s'(t) \vert$ can be used. Time-variant versions are excluded.\\\\
 
+This Vector Graph has to be constructed by appending a vector $(0,y)_{n+1}$ to an existing vector $(x,y)_{n}$ at an angle relative to the existing vector. Here, the length is the same sampling rate $2^j$ and the angle is chosen to be based on the average of the signal change and the actual change. The values are fitted to be in the range $[-\pi,\pi]$ to allow for the occurence of the full feature set supported by the Analyser.
+\begin{align}
+angle_{n+1}=angle_{n}+2*\arcsin(\vert(x,y)_{n+1}\vert/\frac{\int \limits _{a}^{b} s'(t) \mathrm{d}t}{b-a})
+\end{align}
+
+
 \section{Stopeight Analyzer}
 
 \subsection{Legal Segment}
