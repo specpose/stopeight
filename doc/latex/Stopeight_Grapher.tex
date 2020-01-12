@@ -55,7 +55,9 @@ After the feature points have been extracted in the Analyser, a reference Vector
 \section{Domain (Time) Scalability}
 This Vector Graph has to be constructed by appending vectors to each other without further rotation.
 \begin{align}
-vectorgraph_{j}: (x,y)_{n}=(\mathrm{Re(z_{n})},\mathrm{Im(z_{n})})
+vectorgraph_{j}: (x,y)_{n}=\sum \limits _{i=0}^{n}(x,y)_{i}\\
+(x,y)=(\mathrm{Re(z)},\mathrm{Im(z)})\\
+vectorgraph_{j}: (x,y)_{n}=(\mathrm{Re(z_{n})},\mathrm{Im(z_{n})})\\
 \end{align}
 The complex numbers $z_{n}$ are obtained from a Cartesian to Polar transform.
 \begin{align}
@@ -66,25 +68,25 @@ Note: Complex multiplication?\\\\
 \subsection{Finding Bounds}
 In a one dimensional mixed signal $s(t)$, there are quiet, low frequencies. They are difficult to spot because of the presence of high frequency noise. Creating a Vector Graph provides a high precision solution to the adequate time-localisation of these pulses, and even half pulses where the wavelength is not known.
 \subsection{Pitch}
-The benefit of this method is that a sequence of variable wavelength pulses can be compared at different pitches. For the comparison to work, both Vector Graphs have to be scaled by the same angle function.\\\\
+The benefit of this method is that a sequence of variable wavelength pulses can be compared at different pitches. The unbound independent scalar is exposing a wavelength/amplitude correlation (unlike just amplitude; See \eqref{eq:3}).\\\\
 A harmonic will introduce a mirror axis for consecutive half-pulses.
 \subsection{Compression}
 image variance
 \section{Image (Amplitude) Scalability}
 This Vector Graph has to be constructed by appending vectors to each other without further rotation.
 \begin{align}
-vectorgraph_{j}: (x,y)_{n}=(\mathrm{Re(z_{n})},\mathrm{Im(z_{n})})
+vectorgraph_{j}: (x,y)_{n}=\sum \limits _{i=0}^{n}(\mathrm{Re(z_{n})},\mathrm{Im(z_{n})})
 \end{align}
 The complex numbers $z_{n}$ are obtained from Fourier Transform of $j$ partitions (Polar to Cartesian). The frequency is set to the frame size.
 \begin{align}
-z_{n}= \int \limits _{n*(m/j)}^{(n+1)*(m/j)} s(t)*(\cos(\frac{2\pi}{m/j}t)+\mathrm{i}\sin(\frac{2\pi}{m/j}t))\mathrm{d}t
+z_{n}= \int \limits _{n*(m/j)}^{(n+1)*(m/j)} s(t)*(\cos(\frac{2\pi}{m/j}t)+\mathrm{i}\sin(\frac{2\pi}{m/j}t))\mathrm{d}t\label{eq:3}
 \end{align}
 Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X,+,*,\leq)$.\\\\
 Note: Complex multiplication?\\\\
 The Heisenberg Uncertainty can be reinterpreted: Arbitrary precision in the wavelength and amplitude domain can not be found.
 \subsection{Harmonics}
 The benefit of this method is that an audio feature in a mixed signal $s(t)$ can test positive in geometric overlay comparison regardless of the amplitude of the feature.\\\\
-A harmonic at a particular frame/window size will show up as a Straight.
+A harmonic at a particular frame and window size will show up as a Straight.
 
 \chapter{Mathematical Methods}
 \section{Integrating a Derivative in Two Dimensions}
