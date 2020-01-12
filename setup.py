@@ -57,7 +57,7 @@ setup( name='stopeight',
        author='Fassio Blatter',
        author_email='info@specpose.com',
        license='GNU General Public License, version 2',
-       url='http://www.stopeight.com',
+       url='https://github.com/specpose/stopeight',
        python_requires='>=2.7',
        classifiers=[
            "Development Status :: 3 - Alpha",

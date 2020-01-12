@@ -19,160 +19,78 @@
 \maketitle
 
 \chapter{Introduction}
-(Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\
-(Todo: Introduce formal definition of measure spaces)\\\\
+(Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
 This file is in the Stopeight repository on Github. Please edit here:\\
 \href{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}{https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex}\\
 The DOI can be found here ~\cite{Stopeight}.\\\\
-Geometric overlay comparison works for unseparated signals, but it is only of limited use, because it is inaccurate. The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.\\\\
-In signal analysis, there is the notion of source separation vs. spectral separation of pulses. The method of separation referred to in this text is meant to work $blind$ in a scenario where no prior knowledge of the likelyhood of occurence of waveforms is made. If prior statistical data, event metadata or multiple channels (stereo, etc.) are available, some of the requirements mentioned may be relaxed.
+Initially the aim of this paper was to make separated sources in a mixed signal comparable using either numeric or geometric overlay comparison (currently implemented), regardless of time and amplitude stretch, but preserving frequency modulation and amplitude ratios.\\
+In the course of specifying the Stopeight Analyzer transversality, which serves as a foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition of two wavelets, isolation and visibility. They may lead to a method of approximating polynomials of arbitrary degree. They are an indication of the fractal dimension and cutoff of the approximation.
 
-\subsection{Pulse}
-A symmetric pulse has two half pulses with the same wavelength/amplitude correlation.
-
-\subsection{Impulses}
-Impulses are consecutive half-pulses of variable wavelengths which originate from the same source and are separated from other overlaping impulses.
-
-\chapter{Spectral Separation}
-\section{Indicator}
-Every zero crossing $t_{m}$ of the 2nd derivative
+\chapter{Isolation}
+Isolation is the integral of the absolute difference of the input and approximation transversalities.
 \begin{equation}
-\{t_{m}\}_{m \in \mathbb{Z} , f''(t_{m})=0}
+isolation(a,b)=\int \limits _{a}^{b} \vert\iota_{X}(t)-\xi(t)\vert \mathrm{d}t
 \end{equation}
-For all the Intervals $t_{m}-t_{m-1}=T$ of a signal $f: \mathbb{R} \rightarrow \mathbb{R}$
+Note: The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}).\\\\
+
+\chapter{Visibility}
+The parametrisation $\iota_{Y}$ is the line connecting each chart's $U_{n}$ bounds $S,E$. Visibility is the integral of the absolute difference of the cliff-center and approximation transversalities.
+\begin{align}
+visibility(a,b)= \int \limits _{a}^{b} \vert \xi(t)-\iota_{Y}(t)\vert  \mathrm{d}t
+\end{align}\\
+
+\chapter{Wavelets}
+Because of the fractal nature of the two variables isolation and visibility, a recursive function has to be used. The recursive step is applied on each downsampling step. We start with $2^j=m$, which is the full resolution of the Vector Graph. On each step we double the partition size until we reach $2^0$. The Vector Graph and any approximations thereof now consist of only one vector.\\\\
+The recursion is defined as follows. Here $t$ is the same parametrisation $t$ as used in previous chapters.
 \begin{equation}
-\eta(T)=\{t \in \mathbb{R}; t_{m} - t_{m-1}=T \vert f''(t_{m})=0, f''(t_{m-1})=0, t \le t_{m}, t \ge t_{m-1} \}
+\psi_{j,n}(t)=\frac{1}{\sqrt{2^j}}\psi(\frac{t-2^j n}{2^j})
 \end{equation}
-Note: $\eta$ is a Lebesgue.\\\\
-For all the positive and negative function values $f(t)$ respectively
+Note: This is the dilation and translation of an individual time-frequency box of a Wavelet \cite{Mallat}[1.3.4].\\\\
+For this time-frequency box, a coefficient $vis_{j,n}$ or $iso_{j,n}$ can be calculated. This has to be done on the parametrisation bounds of the vector $(x,y)_n$ of the corresponding $vectorgraph_{j}$ \cite{Grapher}[1.3].
 \begin{align}
-\eta_{+}(T)=\{{\eta \vert f(t) \ge 0}\}\\
-\eta_{-}(T)=\{{\eta \vert f(t) \le 0}\}
-\end{align}
-Parseval's theorem
+vis_{j,n}=visibility(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})\\
+iso_{j,n}=isolation(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})
+\end{align}\\
+Note: Time-scaling has to be preserved in the lengths of the vectors in the construction of the Vector Graph for this to work.\\
+(base of signal s(x), invertibility? Note: It is a wavelet orthonormal basis. \cite{Mallat}[1.3])
+
+\chapter{Spectrogram}
+The frequency content in an approximation can be evaluated by a spectrogram.\\\\
+Creating an auxiliary set of chart-wise points
 \begin{equation}
-\int\limits_{-\infty}^{\infty} \vert f(t) \vert ^2 \mathrm{d} t = 1/2\pi * \int\limits_{-\infty}^{\infty} \vert \hat{f}(1/T) \vert ^2  \mathrm{d} T
+h: U_{n} \mapsto [a,b] \mapsto O_{n}
 \end{equation}
-Can be interpreted for signed function values as
+Note: Because of Corner insertion (\cite{Stopeight}[3.20]), $card(U_{n}) \geq 3$.\\\\
+They are Centres of Cliffs by the arithmetic mean,
+\begin{align}
+O_{n}=\{(x',y') \in \mathbb{R}^2 \vert \min \norm{(x,y)-(x',y')}_{2};(x,y) \in U_{n} \}\\
+\norm{\cdot}_{2}=\sqrt{(x-x')^2 + (y-y')^2}
+\end{align}
+The spectrogram is calculated by applying a convolution transform to an artificially constructed signal for $t \in [a,b]$.
+\begin{align}
+rays(t)=ori(a,b)*\vert\iota_{X}(t)-O_{n}\vert\\
+woodpecker(\phi)=\cos(\arctan(\cot(\phi))) + \mathrm{i}\sin(\arctan(\cot(\phi)))\\
+nautilus(a,b,\phi)=\int \limits _{-\infty}^{\infty}\int \limits _{a}^{b}rays(t)*woodpecker(\phi)\mathrm{d}t\mathrm{d}\phi
+\end{align}
+
+\chapter{Vector Graph Inverses}
+\section{Graph Inverse}
+Start of the signal $s(x);x=0$, scaling factor (for example numeric average $\frac{\int \limits _{0}^{n}\vert s(x)\vert \mathrm{d}x}{n}$) and $\iota_{X}(t)$ are needed.
 \begin{equation}
-\int\limits_{-\infty}^{\infty} (\underbrace{\int\limits_{-\infty}^{\infty} \delta (U - T) \mathrm{d} U}_{1} * (\int\int f(t) \mathrm{d} t \underbrace{\mathrm{d} \eta}_{\text{depends on T}}) )\mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} \hat{f}(1/T) \mathrm{d} T
+vectorgraph^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
 \end{equation}
-Note: Major $U$ is a unique period, not a point in time. $U$ is not continuous, $\delta$ is the discrete Dirac Delta.\\\\
-The convolution of the signal with a periodicity T is equal the distributed energy of two semi-pulse functions of the same periodicity. The negative part $\eta_{-}$ is interpreted as a purely imaginary complex number $z_{2}$.
+The signal reconstruction is lossless.
+\section{Approximation Inverse}
+Start of the signal $s(x);x=0$, scaling factor and $\xi(t)$ are needed. Consider the loss of information in Arcs $A$ caused by Straights and Spikes.
 \begin{equation}
-\int\limits_{-\infty}^{\infty}(\int\limits_{-\infty}^{\infty} \delta (U - T) \mathrm{d} U * (\underbrace{\int \int f(t) \mathrm{d} t \mathrm{d} \eta_{+}}_{z_{1}} * \underbrace{\mathrm{i} \int \int f(t) \mathrm{d} t \mathrm{d} \eta_{-}}_{z_{2}}))  \mathrm{d} T = 1/2\pi * \int\limits_{-\infty}^{\infty} ( \int\limits_{-\infty}^{\infty}  f(t) * (cos(t/T)+\mathrm{i} sin(t/T)) \mathrm{d} t ) \mathrm{d} T
+vectorgraph^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
 \end{equation}
-Note: If the angle $\phi$ between two complex numbers $z_{1},z_{2}$ is $\pm\frac{pi}{2}$, their complex multiple $z_{1}*z_{2}$ is equal the real $\lvert z_{1}\rvert*\lvert z_{2}\rvert$. If $x_{1}=y_{2}$, this simplifies to $\lvert x_{1} \rvert ^2$, which is what we have noted above (Parseval Theorem) for the real function $f(t)$ .\\\\
-This equation holds for every signal with frequency components separated in the time domain and symmetric in $mod(n/2)=0$ equal length parts. If this is not the case, we have either:\\
-1. Longer wavelength pulses overlapping the frequency component, which results in a amplitude modulation of the combined signal.\\
-2. Shorter wavelength pulses intersecting the segments of the frequency component, which results in frequency modulation of the combined signal.\\
-3. Non-symmetric waveforms and/or different length half-pulses, which can not be removed with this procedure. See Source Separation for further discussion of such signals.\\\\
-(A longer wavelength, undetected harmonic can be excluded in this scenario since source separated harmonics are symmetric pulses of integer multiples of the wavelength and we imply that the shortest $symmetric$ pulse is found beforehand in the removal procedure below, i.e. the higher harmonics are $not symmetric$ because of criteria 1)\\\\
-Conclusion: This method provides an indication for the spectral separation of the signal. For blind removal of individual pulses, the $waveform$ of the pulse needs to be known. Longer wavelength pulses have the highest likelyhood to contain pulses which violate the above criteria, so their $amplitude$ can not be determined. We have to start removal with the shortest isolated pulses which can be found in the sample.\\\\
-The main drawback of Fourier Transformation is that frames (integration bounds) and frequency window (measure) have to be adjusted. There are methods for finding bases in order to remove functions from the combined signal. Fourier Transformation does fulfil the task of spectral separation, but arbitrary precision in the time and frequency domain can not be found.
+It is possible to reconstruct a signal from the approximation, effectively making it a suitable format for compression. It can also make Vector Graphs, which have not been obtained from a signal, audible or suitable for 1-dimensional analysis.\\
+Note: The compression is dynamic. In some cases, the data may actually increase.
 
-\chapter{Source Separation}
-Stopeight Analyzer may provide a means of either finding exact frames (of length pulse or impulse?) in the original signal $s(x)$ (See Grapher), or in the signal as in parametric curve differences of the type $\lvert \xi(t)-\iota_{T}(t) \rvert$.\\\\
-Also Vector Graph manipulations such as finding/counting intersections and setting oriented section type occurence limitations (ex. Spiral $\Rightarrow$ scale) could yield interesting results.
 
-\section{Transversality}
-
-\subsection{Signs}
-The difference of the signs over an interval.
-\begin{align}
-dsi(a,b) = card(\mu_{+}\subseteq [a,b])-card(\mu_{-} \subseteq [a,b])\\
-ori(a,b) = \frac{dsi(a,b)}{\lvert dsi(a,b) \rvert}
-\end{align}
-A sequence of sections between $[a,b]$ is alternating $\mu_{-}\cup \mu_{zero}\cup\mu_{+}=\mu$.
-\begin{enumerate}
-\item $dsi(a,b)= 0; \exists(\mu_{n}\subseteq \mu_{+}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \exists(\mu_{n+2}\subseteq \mu_{-}) \Leftrightarrow alt(a,b)=n$
-\item $dsi(a,b)= 0; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \exists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-n$
-\item $dsi(a,b)= 1; \exists(\mu_{n}\subseteq \mu_{+}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{-}) \Leftrightarrow alt(a,b)=\frac{1}{n}$
-\item $dsi(a,b)= -1; \exists(\mu_{n}\subseteq \mu_{-}) \land \exists(\mu_{n+1}\subseteq \mu_{zero}) \land \nexists(\mu_{n+2}\subseteq \mu_{+}) \Leftrightarrow alt(a,b)=-\frac{1}{n}$
-\item $dsi(a,b)> \pm 1\Leftrightarrow alt(a,b)=0$;
-\end{enumerate}
-When the difference of the signs $dsi(a,b)$ is larger than one, orientation $ori$ serves as a weak expression of the imbalance.
-
-\subsection{Recursion}
-($alt(a,b)$ products across interval spaces?)\\\\
-Typically, we do $signs$ over scale-spaces by setting the domain to $dom(\iota,\xi)=K_{p}$.
-Which is reflected in the $\mu(\gamma_{dom})$ of sum of a function over a scale space.\\
-\begin{equation}
-signs(\mu_{+},function )= \sum \limits _{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function (a,b)
-\end{equation}
-$times$ is the product of a function over a interval space $dom(\iota,\xi)=T_{n}$.
-\begin{equation}
-times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function(a,b)
-\end{equation}
-
-\subsection{Area of Jitter}
-The integral of the parametrisation on a non-Straight segment is larger than the integral of the parametrisation of a straight segment. (Additional benefits?)
-\begin{align}
-area_{jitter}(a,b)=\frac{\int \limits _{0}^{(b-a)/2} \lvert \iota_{X}(b-t)-\iota_{X}(a+t)\rvert \mathrm{d}t}{\int \limits _{0}^{(b-a)/2} diameter_{horiz,T}(a+t,b-t)\mathrm{d}t}
-\end{align}
-
-\subsection{Imaginary Visibility}
-Visibility is an increase of the polynomial Coefficients(?) of a curve segment.
-(No: When visibility is increased in a Spiral, it creates more subsegments/scale spaces). Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
-\begin{align}
-visibility(a,b)= alt(a,b) * signs(\mu,solidangle_{Rel}(a,b))\\
-visibility(a,b)= alt(a,b) * signs(\mu,curvature(a,b)-Q(a,b))(?)
-\end{align}
-(Lebesgue on curvature? $Max_{Curve}$ based or sign based?)
-\subsection*{Cases}
-When curvature is decreased in a Spiral, it becomes a ZigZag.
-\subsection*{Scale Space}
-$area$ grows, but $diameter$ constant.
-
-\subsection{Real Isolation}
-(No: A lack of isolation is directly linked to the creation of more interval spaces.)
-\begin{align}
-isolation(a,b) = ori(a,b)*times(\mu,\frac{1}{area_{jitter}(a,b)})\\
-isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b))(?)
-\end{align}
-(Frame bundle orthonormal?)
-\subsection*{Interval Space}
-$jitter$ grows, but $diameter$ constant.
-
-\subsection{Jaggedness}
-Is aliasing of discretisation/rasterisation, but not to be confused with signal aliasing. Can be defined on Focals and Turns.
-\begin{align}
-jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}(t)-\xi_{F}(t)\rvert \mathrm{d}t
-\end{align}
-
-\section{Indicator}
-In order for Stopeight overlay comparison to work, source separation has to be performed. A complex function measuring separation can be defined as.
-\begin{equation}
-separation(a,b) = isolation(a,b) + \mathrm{i} visibility(a,b)
-\end{equation}
-Important: This can be calculated while resampling. (See Grapher)\\\\
-Eventually, bounds of periodicity could be found. The directed waves of straightness and curvature going forward/backward synchronously are periodic.
-\begin{align}
-periodicity(a,b) =  (\int \limits _{a}^{b} \xi(t)-\iota_{X}(t) \mathrm{dt}) *(visibility(a,b) +\mathrm{i} isolation(a,b))
-\end{align}
-Or directly on the signal?
-\begin{align}
-periodicity(a,b) =  (\int \limits _{a}^{b} s(t) \mathrm{dt}) *(visibility(a,b) +\mathrm{i} isolation(a,b))
-\end{align}
-Note: $visibility$ and $isolation$ already include the trigonometric functions of the polar to cartesian transform.\\\\
-Consider: A polar to cartesian transform is a convolution with a sum of two fundamental numeric Taylor Series Expansions. Sine and Cosine functions are intrinsically linked to the quadratic entity $\sqrt{x^2 + y^2} =1$ and dividing the circle by four (90 deg.). Hyperbolic Sine is linked to $1/x$.\\\\
-Explanation:\\
-The imaginary part is the other side of the wave vs\\
-The imaginary part is the phase shift (fft)\\\\
-(multiplication? addition?)
-\begin{align}
-(a,b) \mapsto znet
-\end{align}
-
-\subsection*{Complex Norm}
-A complex norm $\norm{\cdot}$ is defined on the transversality.
-\begin{align}
-\norm{\cdot} : \mathbb{C} \rightarrow \mathbb{R}\\
-\norm{z} = \sqrt{Re(z)^2+Im(z)^2}
-\end{align}
-
-\subsection*{After Separation}
-Asymetric, non-repetitive pulses, which can be compared by matchline overlay comparison (See Sisyphos)\\\\
+\chapter{After Separation}
+Asymetric, non-repetitive half-pulses, which can be compared by matchline overlay comparison.\\\\
 Sisyphus: A Foray into Fractals\\
 Let's take the example of Sisyphus rolling a rock up a parabolic hill. We measure the altitude of the rock as a function of time. Sisyphus will roll the rock up the hill much slower than it will roll down the hill. Therefore variance of the Vector Graph in one direction is much lower than going in the other direction, but the periodicity of the falling depends on the rising.\\
 If we compare this to the formation of mountain ridges and their erosion, we can still say they depend on each other, but the periodicity is much more disconnected. The formation of mountain ridges depends on the flow of magma and ultimately on the thermomagnetic energy within the planet. Erosion, however depends on a much shorter period, which depends on the availability of atmosphere and ocean and the electromagnetic energy directed at them by the sun.\\
