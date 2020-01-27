@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Stopeight Server &#8212; stopeight 0.1.1 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -25,17 +23,15 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
     <link rel="next" title="Stopeight Comparator" href="run_tests.html" />
     <link rel="prev" title="Editor" href="run_editor.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -94,7 +90,7 @@
 <h1>Stopeight Server<a class="headerlink" href="#stopeight-server" title="Permalink to this headline">¶</a></h1>
 <p>The server is only available in the git repository. See <a class="reference internal" href="stopeight.html"><span class="doc">Stopeight</span></a></p>
 <p>It relies on SOAP for client/server communication, therefore ZSI is needed.</p>
-<p>Python 3: ZSI 2.0 release candidates don&#8217;t work. Also ConfigParser is missing in Python3. Status Not working.</p>
+<p>Python 3: ZSI 2.0 release candidates don’t work. Also ConfigParser is missing in Python3. Status Not working.</p>
 <p>ZSI 2.1a2 is a version that does not require PyXML anymore. Install ZSI:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ svn checkout svn://svn.code.sf.net/p/pywebsvcs/code/trunk pywebsvcs-code
 </pre></div>
@@ -151,13 +147,6 @@
 <span class="gp">&gt;&gt;&gt; </span><span class="n">server_soap</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">8888</span><span class="p">)</span>
 </pre></div>
 </div>
-<span class="target" id="module-stopeight.server.server_soap"></span><dl class="function">
-<dt id="stopeight.server.server_soap.run">
-<code class="descclassname">stopeight.server.server_soap.</code><code class="descname">run</code><span class="sig-paren">(</span><em>port</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stopeight/server/server_soap.html#run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stopeight.server.server_soap.run" title="Permalink to this definition">¶</a></dt>
-<dd><p>This will launch a SOAP server.
-The default port can be found in <code class="xref py py-mod docutils literal"><span class="pre">stopeight.server.server_include</span></code> or supplied as an argument</p>
-</dd></dl>
-
 <div class="section" id="stopeight-server-testing-it">
 <h3>stopeight Server: Testing it<a class="headerlink" href="#stopeight-server-testing-it" title="Permalink to this headline">¶</a></h3>
 <p>I have provided example-scripts for all of the SOAP commands:</p>
@@ -176,7 +165,7 @@ Store this id.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client_matchLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>This will return both the data and the id&#8217;s that have matched your input.</p>
+<p>This will return both the data and the id’s that have matched your input.</p>
 <p>If you want to just retrieve the data of a reference line, you can do so by submitting the id:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">stopeight.server</span> <span class="k">import</span> <span class="n">client_getLine_test</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">client_getLine_test</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
@@ -203,8 +192,8 @@ Store this id.</p>
       
       
       
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
       <a href="_sources/run_server.txt"

@@ -1,23 +1,21 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Comparator &#8212; stopeight 0.1.1 documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
         VERSION:     '0.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
@@ -25,17 +23,15 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="stopeight 0.1.1 documentation" href="index.html" />
     <link rel="next" title="Analyzer Algorithm" href="dev_analyzer.html" />
     <link rel="prev" title="Stroke Analyzer" href="dev_stroke-analyzer.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-  
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head>
-  <body role="document">
+  <body>
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -87,7 +83,7 @@
 <div class="section" id="api-access">
 <h2>API Access<a class="headerlink" href="#api-access" title="Permalink to this headline">¶</a></h2>
 <p>This example uses the <code class="xref py py-mod docutils literal"><span class="pre">stopeight.legacy</span></code>, <code class="xref py py-mod docutils literal"><span class="pre">stopeight.tests</span></code> module and sample data. Please refer to <a class="reference internal" href="stopeight.html"><span class="doc">Stopeight</span></a> and <a class="reference internal" href="sample-data.html"><span class="doc">Sample-Data</span></a> on how to install them.</p>
-<p>This attempts to load all the files with &#8221;.sp&#8221; extension into parallel implementation of stroke analyzer:</p>
+<p>This attempts to load all the files with “.sp” extension into parallel implementation of stroke analyzer:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight
 &gt;&gt;&gt; from stopeight.tests import parser
 &gt;&gt;&gt; lines = parser.parse_directory(&#39;/path/to/where/extracted/sample/data&#39;,&#39;stopeight_clibs_legacy.stroke_parallel&#39;)
@@ -100,19 +96,6 @@ Run from a Python shell instead:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">comparator</span> <span class="o">=</span> <span class="n">pooling</span><span class="o">.</span><span class="n">MPLine</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="class">
-<dt id="stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass">
-<em class="property">class </em><code class="descclassname">stopeight.comparator.shapeMatchSubSection.</code><code class="descname">ShapeMatchSubSectionClass</code><span class="sig-paren">(</span><em>compvec</em>, <em>toleranceDivider=2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stopeight/comparator/shapeMatchSubSection.html#ShapeMatchSubSectionClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass.match">
-<code class="descname">match</code><span class="sig-paren">(</span><em>invec</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/stopeight/comparator/shapeMatchSubSection.html#ShapeMatchSubSectionClass.match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#stopeight.comparator.shapeMatchSubSection.ShapeMatchSubSectionClass.match" title="Permalink to this definition">¶</a></dt>
-<dd><p>This gives a boolean result for every line that is contained within another line.
-unequal length</p>
-</dd></dl>
-
-<p>Note: This includes a check for occurences in reverse order.</p>
-</dd></dl>
-
 <p>It tests every line against the whole dataset and itself:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
 <span class="gp">&gt;&gt;&gt; </span>    <span class="n">matches</span> <span class="o">=</span> <span class="n">comparator</span><span class="o">.</span><span class="n">matchLine</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
@@ -132,8 +115,8 @@ unequal length</p>
       
       
       
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |
       <a href="_sources/dev_comparator.txt"
