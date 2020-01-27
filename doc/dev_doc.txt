@@ -3,7 +3,7 @@ GitHub & Sphinx
 
 Get python sphinx / dvisvgm on ubuntu::
 
-    $ sudo apt-get install python-sphinx texlive texlive-latex-extra
+    $ sudo apt-get install python-sphinx texlive texlive-latex-extra make
 
 In order to rebuild the docs, do::
 
