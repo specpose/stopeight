@@ -20,13 +20,13 @@ requirements:
     - pybind11 # conda-forge
     - cmake # cmake
     - stopeight-clibs
-    - pyqt >=5.6.0
+    - pyqt <5.11.0
 
   run:
     - python
     - vs2017_win-64  # [win]
     - stopeight-clibs
-    - pyqt >=5.6.0
+    - pyqt <5.11.0
     - future
     - funcsigs # [python2]
     - matplotlib
