@@ -7,19 +7,7 @@ from subprocess import check_output
 import sys
 if len(sys.argv)>1:
     if sys.argv[1]=='sdist' or sys.argv[1]=='develop':
-        try:
-            _version = check_output(['git', 'describe','--abbrev=0']).decode('utf-8').rstrip()
-        except:
-            try:
-                _version = check_output(['git', 'describe','--abbrev=0']).rstrip()
-            except:
-                _version = '0.0.0'
         import os
-        _mod_version = 'HEAD'
-        try:
-            _mod_version = check_output(['git','rev-parse','--short','HEAD']).decode('utf-8').rstrip()
-        except:
-            _mod_version = check_output(['git','rev-parse','--short','HEAD']).rstrip()
         _lib_version = 'HEAD'
         try:
             _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).decode('utf-8').rstrip()
@@ -29,12 +17,8 @@ if len(sys.argv)>1:
         file.write('\"\"\"\n')
         file.write("This file is auto-generated in setup.py\n")
         file.write('\"\"\"\n')
-        file.write('_version = \''+str(_version)+'\'\n')
-        file.write('_mod_version = \''+str(_mod_version)+'\'\n')
         file.write('_lib_version = \''+str(_lib_version)+'\'\n')
         file.close()
-from stopeight import version
-_version = version.__dict__['_version']
 
 import os
 ###cmake start
@@ -51,7 +35,7 @@ my_path = os.path.dirname(os.path.realpath(__file__))
 from setuptools import setup, Extension
 
 setup( name='stopeight',
-       version=_version,
+       version_format='{tag}.dev{commitcount}+{gitsha}',
        description='stopeight: Comparing sequences of points in 2 dimensions',
        long_description='stopeight: Comparing sequences of points in 2 dimensions by visually overlapping them using matrix transformations (translation, scaling and rotation) and getting a boolean result.',
        author='Fassio Blatter',
@@ -135,6 +119,9 @@ setup( name='stopeight',
               ),
        ],
        cmdclass={'build_ext': BuildExt},
+       setup_requires=[
+           'setuptools-git-version',
+           ],
 #pip start
        install_requires=[
           'numpy',

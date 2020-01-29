@@ -21,6 +21,7 @@ requirements:
     - cmake # cmake
     - stopeight-clibs
     - pyqt <5.11.0
+    - setuptools-git-version
 
   run:
     - python
