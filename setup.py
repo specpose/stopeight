@@ -2,24 +2,6 @@
 
 _packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing','stopeight.util','stopeight.util.editor','stopeight.util.editor.modules']
 
-#print(version.__dict__['_version'])
-from subprocess import check_output
-import sys
-if len(sys.argv)>1:
-    if sys.argv[1]=='sdist' or sys.argv[1]=='develop':
-        import os
-        _lib_version = 'HEAD'
-        try:
-            _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).decode('utf-8').rstrip()
-        except:
-            _lib_version = check_output(['git','rev-parse','--short','HEAD'],cwd=os.path.join('stopeight-clibs')).rstrip()
-        file = open('stopeight/version.py','w')
-        file.write('\"\"\"\n')
-        file.write("This file is auto-generated in setup.py\n")
-        file.write('\"\"\"\n')
-        file.write('_lib_version = \''+str(_lib_version)+'\'\n')
-        file.close()
-
 import os
 ###cmake start
 ##__import__('cmake')
@@ -72,7 +54,8 @@ setup( name='stopeight',
                    get_pybind_include(),
                    get_pybind_include(user=True),
                    os.path.join(my_path,'stopeight-clibs','include'),
-                   os.path.join(my_path,'stopeight-clibs','grapher')
+                   os.path.join(my_path,'stopeight-clibs','grapher'),
+		   os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example')
                ],
                libraries=['stopeight-clibs-grapher'],
                language='c++',
@@ -86,7 +69,8 @@ setup( name='stopeight',
                    get_pybind_include(),
                    get_pybind_include(user=True),
                    os.path.join(my_path,'stopeight-clibs','include'),
-                   os.path.join(my_path,'stopeight-clibs','matrix')
+                   os.path.join(my_path,'stopeight-clibs','matrix'),
+		   os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example')
                ],
                libraries=['stopeight-clibs-matrix'],
                language='c++',
@@ -100,7 +84,8 @@ setup( name='stopeight',
                    get_pybind_include(),
                    get_pybind_include(user=True),
                    os.path.join(my_path,'stopeight-clibs','include'),
-                   os.path.join(my_path,'stopeight-clibs','analyzer')
+                   os.path.join(my_path,'stopeight-clibs','analyzer'),
+		   os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example')
                ],
                libraries=['stopeight-clibs-analyzer'],
                language='c++',
@@ -111,6 +96,7 @@ setup( name='stopeight',
                [os.path.join(my_path,'stopeight-clibs','legacy-wrappers','interfacepython.cpp')],
                include_dirs=[
                    os.path.join(my_path,'stopeight-clibs','legacy/include'),
+		   os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example'),
                    '/usr/include/x86_64-linux-gnu/qt5/'#ubuntu only
                ],
                libraries=['stopeight-clibs-legacy'],

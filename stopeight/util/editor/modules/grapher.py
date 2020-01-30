@@ -1,4 +1,6 @@
 # Copyright (C) 2018 Fassio Blatter
+from stopeight import grapher
+version=grapher.version
 
 from stopeight.util.editor.data import ScribbleData, WaveData, ScribblePoint
 from stopeight.util.editor.scribble import ScribbleArea

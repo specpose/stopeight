@@ -1,4 +1,6 @@
 # Copyright (C) 2019 Fassio Blatter
+from stopeight import analyzer
+version=analyzer.version
 
 from stopeight.util.editor.data import ScribbleData
 

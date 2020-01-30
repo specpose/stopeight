@@ -49,13 +49,12 @@ class Algorithm_Run:
         import os
         sub = 'HEAD'
         import pkg_resources
-        from stopeight import version
         if (package_type==True):
             #get head from current directory (os.getcwd()).endswith('stopeight')
             sub=pkg_resources.require('stopeight')[0].version.split('+')[1]
         else:
             #get head from stopeight-clibs
-            sub=version.__dict__['_lib_version']
+            sub=loader[module_name].version
         top = os.path.join(top,sub)
         return top
 
