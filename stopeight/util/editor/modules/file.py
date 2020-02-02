@@ -10,36 +10,34 @@ from PyQt5.QtWidgets import QFileDialog
 
 def save_ScribbleData(data):
     # this is not a real error but saves us from writing more code
+    data=data.data
     raise ValueError
 save_ScribbleData.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
 
 def save_as_ScribbleData(data):
-    assert type(data.data) is ScribbleData, "Could not save object type: %r" % type(data.data)
-    filename = QFileDialog.getSaveFileName(None,"QFileDialog.getSaveFileName()","","JSON Files (*.json)")
+    filename = QFileDialog.getSaveFileName(None,"QFileDialog.getSaveFileName()","","NumPy Files (*.npy)")
     log.debug("Saving to File "+str(filename[0]))
-    import json
-    f = open(filename[0],'w')
-    json.dump(data.data,f)
+    _to_file(filename[0],data.data)
     return filename
 save_as_ScribbleData.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
 
 def open_ScribbleData():
     filename = QFileDialog.getOpenFileName()
     log.debug("Reading from File "+str(filename[0]))
-    data = _read(filename[0])
-    assert type(data) is list, "Could not read file: %r" % filename
-    #data.__class__= ScribbleData
-    #Hack copy
-    data2 = ScribbleData()
-    for element in data:
-        data2.append(ScribblePoint((element[0],element[1])))
-    return data2
+    return _read(filename[0])
 open_ScribbleData.__annotations__ = {'return': ScribbleData}
 
 def _read(path):
-    import json
-    f = open(path,'r')
-    return json.load(f)
+    if path.endswith('.npy'):
+        import numpy
+        arr = numpy.load(path)
+        if arr.dtype==ScribbleData().dtype:
+            arr=arr.view(ScribbleData)
+        return arr
+    elif path.endswith('.json'):
+        import json
+        f = open(path,'r')
+        return json.load(f)
 
 def _write(data,timestamp,outdir=None):
     if outdir==None:
@@ -55,12 +53,17 @@ def _write(data,timestamp,outdir=None):
         os.makedirs(outdir)
     path = path.join(outdir,name)
     log.info("Writing method input data to: "+path)
+    _to_file(path,data)
 
-
+def _to_file(path,data):
     #import pickle
     #picl = pickle.Pickler(open(path+'.pickle','wb'),pickle.HIGHEST_PROTOCOL)
     #picl.dump(_DATA['MyScribble'].INPUT)
 
-    import json
-    f = open(path+'.json','w')
-    json.dump(data,f)
+    import numpy
+    if type(data).__bases__[0] == numpy.ndarray:
+        numpy.save(path,data,allow_pickle=True,fix_imports=True)#python3: fix_imports=False
+    else:
+        import json
+        f = open(path+'.json','w')
+        json.dump(data,f)
