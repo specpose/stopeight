@@ -1,19 +1,19 @@
 # Copyright (C) 2017 Fassio Blatter
 
-from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QFileDialog,QInputDialog
 from stopeight.util.editor.data import WaveData
 
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 
 def _convert(spf):
+    if spf.getcomptype()!='NONE':
+        raise Exception("Compressed WAV files are not supported.")
+    
     import numpy as np
 
     #Extract Raw Audio from Wav File
     signal = spf.readframes(-1)
-    #If Stereo
-    if spf.getnchannels() == 2:
-        raise Exception("Just mono files")
     datatype=None
     fconverter=lambda a:a
     if spf.getsampwidth()==1:
@@ -25,19 +25,26 @@ def _convert(spf):
         datatype=np.int16
         fconverter=lambda a: a / 32767.0
     samples = np.fromstring(signal, datatype)
-    return fconverter(np.asarray(samples, dtype=np.float64))
 
-def open_WaveData():
+    n = spf.getnchannels()
+    channels = ['{}'.format(i) for i in range(n)]
+    channel_num, ok = QInputDialog().getItem(None,"Select Channel","Channel:",channels,0,False)
+    if ok:
+        #left samples[0::2]
+        #right samples[1::2]
+        return fconverter(np.asarray(samples[int(channel_num)::n], dtype=np.float64))
+
+def open_WAV():
     import matplotlib.pyplot as ax
     import wave
     import sys
 
     filename = QFileDialog.getOpenFileName()
-    log.info("Opening "+str(filename[0]))
+    log.info("Opening "+str(filename[0]))    
     spf = wave.open(filename[0],'r')
     result = _convert(spf)
     spf.close()
     log.debug("wave ndarray is "+str(type(result)))
     log.debug("Length of samples in mono file "+str(len(result)))
     return result.view(WaveData)
-open_WaveData.__annotations__ = {'return': WaveData}
+open_WAV.__annotations__ = {'return': WaveData}
