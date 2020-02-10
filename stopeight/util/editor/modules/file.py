@@ -4,6 +4,8 @@
 from stopeight.logging import logSwitch
 log = logSwitch.logNone()
 
+from stopeight.util.runnable import EditorApp
+
 from stopeight.util.editor.data import ScribbleData,ScribblePoint
 from stopeight.util.editor.scribble import ScribbleArea
 from PyQt5.QtWidgets import QFileDialog
@@ -15,14 +17,14 @@ def save_ScribbleData(data):
 save_ScribbleData.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
 
 def save_as_ScribbleData(data):
-    filename = QFileDialog.getSaveFileName(None,"QFileDialog.getSaveFileName()","","NumPy Files (*.npy)")
+    filename = QFileDialog.getSaveFileName(EditorApp().window,"QFileDialog.getSaveFileName()","","NumPy Files (*.npy)")
     log.debug("Saving to File "+str(filename[0]))
     _to_file(filename[0],data.data)
     return filename
 save_as_ScribbleData.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
 
 def open_ScribbleData():
-    filename = QFileDialog.getOpenFileName()
+    filename = QFileDialog.getOpenFileName(EditorApp().window)
     log.debug("Reading from File "+str(filename[0]))
     return _read(filename[0])
 open_ScribbleData.__annotations__ = {'return': ScribbleData}

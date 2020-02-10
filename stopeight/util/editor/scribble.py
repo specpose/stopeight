@@ -56,11 +56,12 @@ from PyQt5.QtCore import QEvent
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
 
+from stopeight.util.runnable import EditorApp
 from stopeight.util.editor.data import ScribbleData,ScribbleBackup,ScribblePoint
 import numpy as np
 
 class ScribbleArea(QtWidgets.QDockWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=EditorApp().window):
         super(ScribbleArea, self).__init__(parent)
         self.setMinimumSize(QSize(250, 300))
 

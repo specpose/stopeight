@@ -10,10 +10,13 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
+from stopeight.util.runnable import EditorApp
+
 from stopeight.util.editor.data import WaveData
+from stopeight.util import runnable
 
 class WaveArea(QtWidgets.QDockWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent=EditorApp().window):
         super(WaveArea, self).__init__(parent)
 
         # a figure instance to plot on
@@ -79,7 +82,7 @@ class WaveArea(QtWidgets.QDockWidget):
         self.canvas.draw()
 
 if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
+    app = runnable.EditorApp()
     main = WaveArea()
     main.show()
     sys.exit(app.exec_())

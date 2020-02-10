@@ -12,11 +12,11 @@ log = logSwitch.logNone()
 
 # false if part of stopeight-clibs
 _DATA = {'Modules': [
-#    ('stopeight.util.editor.modules.legacy', False),
+    ('stopeight.util.editor.modules.legacy', False),
                             ('stopeight.util.editor.modules.file', True),
                              ('stopeight.util.editor.modules.file_wave',True),
-#                            ('stopeight.util.editor.modules.analyzer', False),
-                            ('stopeight.util.editor.modules.grapher', False)
+                            ('stopeight.util.editor.modules.grapher', False),
+                            ('stopeight.util.editor.modules.analyzer', False),
                     ]
          }
 
@@ -37,9 +37,7 @@ for module in _DATA['Modules']:
 if __name__ == '__main__':
 
     import sys
-    app = QApplication(sys.argv)
-    window = QMainWindow()
-    window.setWindowTitle("Editor")
+    app = runnable.EditorApp()
 
     #list or dict?
     connections = []
@@ -67,17 +65,17 @@ if __name__ == '__main__':
     wbox.addWidget(plotbutton)
     wgroup.setLayout(wbox)
     wbar.addWidget(wgroup)
-    window.addToolBar(wbar)
+    runnable.EditorApp().window.addToolBar(wbar)
 
-    window.setCentralWidget(wave.canvas)
-    #window.addDockWidget(Qt.TopDockWidgetArea,wave)    
+    runnable.EditorApp().window.setCentralWidget(wave.canvas)
+    #runnable.EditorApp().window.addDockWidget(Qt.TopDockWidgetArea,wave)    
 
     # Create results area
     from stopeight.util.editor.scribble import ScribbleArea
     scribble = ScribbleArea()
     outputs.append(scribble)
     from PyQt5.QtCore import Qt
-    window.addDockWidget(Qt.BottomDockWidgetArea,scribble)
+    runnable.EditorApp().window.addDockWidget(Qt.BottomDockWidgetArea,scribble)
 
     # Find modules
     callables = []
@@ -97,8 +95,8 @@ if __name__ == '__main__':
         box.addWidget(connection.button)
         group.setLayout(box)
         toolbox.addWidget(group)
-    window.addToolBar(Qt.BottomToolBarArea,toolbox)
-    #window.addDockWidget(Qt.BottomDockWidgetArea,toolbox)
+    runnable.EditorApp().window.addToolBar(Qt.BottomToolBarArea,toolbox)
+    #runnable.EditorApp().window.addDockWidget(Qt.BottomDockWidgetArea,toolbox)
     
-    window.show()
-    sys.exit(app.exec_())
+    runnable.EditorApp().window.show()
+    sys.exit(runnable.EditorApp().exec_())

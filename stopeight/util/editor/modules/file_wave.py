@@ -2,6 +2,7 @@
 
 from PyQt5.QtWidgets import QFileDialog,QInputDialog
 from stopeight.util.editor.data import WaveData
+from stopeight.util.runnable import EditorApp
 
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
@@ -28,7 +29,7 @@ def _convert(spf):
 
     n = spf.getnchannels()
     channels = ['{}'.format(i) for i in range(n)]
-    channel_num, ok = QInputDialog().getItem(None,"Select Channel","Channel:",channels,0,False)
+    channel_num, ok = QInputDialog().getItem(EditorApp().window,"Select Channel","Channel:",channels,0,False)
     if ok:
         #left samples[0::2]
         #right samples[1::2]
@@ -39,7 +40,7 @@ def open_WAV():
     import wave
     import sys
 
-    filename = QFileDialog.getOpenFileName()
+    filename = QFileDialog.getOpenFileName(EditorApp().window)
     log.info("Opening "+str(filename[0]))    
     spf = wave.open(filename[0],'r')
     result = _convert(spf)
