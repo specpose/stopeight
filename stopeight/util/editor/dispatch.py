@@ -10,36 +10,35 @@ from PyQt5.QtWidgets import QApplication,QMainWindow,QToolBar,QGroupBox,QHBoxLay
 from stopeight.logging import logSwitch
 log = logSwitch.logNone()
 
-# false if part of stopeight-clibs
+# False: Is part of a compiled library
 _DATA = {'Modules': [
-    ('stopeight.util.editor.modules.legacy', False),
+                            ('stopeight.util.editor.modules.legacy', False),
                             ('stopeight.util.editor.modules.file', True),
-                             ('stopeight.util.editor.modules.file_wave',True),
+                            ('stopeight.util.editor.modules.file_wave',True),
                             ('stopeight.util.editor.modules.grapher', False),
                             ('stopeight.util.editor.modules.analyzer', False),
                     ]
          }
 
 import importlib
+active=[]
 for module in _DATA['Modules']:
-#    try:
+    try:
         importlib.import_module(module[0])
-        #output class name
+        active.append(module)
         log.warning("Successfully imported module "+module[0])
-#    except ImportError as ie:
-#        log.warning(ie)
-#        log.warning("Install stopeight-clibs and reinstall stopeight afterwards to use module "+module[0])
-#        _DATA['Modules'].remove(module)
-#    except:
-#        log.warning("Module "+module[0]+" not loaded!")
-#        _DATA['Modules'].remove(module)
+    except ImportError as ie:
+        log.warning(ie)
+        log.warning("Install stopeight-clibs or external library and reinstall stopeight afterwards to use module "+module[0])
+    except:
+        log.warning("Module "+module[0]+" not loaded!")
+_DATA['Modules']=active
                 
 if __name__ == '__main__':
 
     import sys
     app = runnable.EditorApp()
 
-    #list or dict?
     connections = []
 
     outputs = []
