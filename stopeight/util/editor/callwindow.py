@@ -1,5 +1,6 @@
-from PyQt5.QtWidgets import QWidget,QTextEdit,QVBoxLayout
-
+from PyQt5.QtWidgets import QDockWidget,QTextEdit,QVBoxLayout,QGroupBox
+from PyQt5.QtCore import Qt, QSize
+from stopeight.util.runnable import EditorApp
 
 from stopeight.logging import logSwitch
 log = logSwitch.logPrint()
@@ -11,13 +12,14 @@ import io
 
 import funcsigs
 
-class outwindow(QWidget):
-    def __init__(self,*args):
-        QWidget.__init__(self, *args)
+class outwindow(QDockWidget):
+    def __init__(self,parent=EditorApp().window):
+        super(outwindow,self).__init__(parent)
+        self.setMinimumSize(QSize(30, 0))
+
         self.text = QTextEdit()
-        layout = QVBoxLayout(self)
-        layout.addWidget(self.text)
-        self.setLayout(layout)
+        self.setWidget(self.text)
+        self.text.setText("")
         self.data = None
         self.f = io.BytesIO()
 
