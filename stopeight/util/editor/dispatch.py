@@ -47,7 +47,7 @@ if __name__ == '__main__':
     wave = WaveArea()
     outputs.append(wave)
     
-    wbar = QToolBar()
+    wbar = QToolBar("WAV Viewer Toolbar")
     wgroup = QGroupBox()
     wbox = QtWidgets.QVBoxLayout()
     # Just some button connected to `plot` method
@@ -84,7 +84,7 @@ if __name__ == '__main__':
     EditorApp().window.addDockWidget(Qt.BottomDockWidgetArea,logwindow)
 
     # Hook up modules
-    toolbox = QToolBar()
+    toolbox = QToolBar("Algorithm Selector")
     #toolbox = QtWidgets.QDockWidget()
     from stopeight.util.editor.command import Connector
     for module in callables:

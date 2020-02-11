@@ -14,7 +14,7 @@ import funcsigs
 
 class outwindow(QDockWidget):
     def __init__(self,parent=EditorApp().window):
-        super(outwindow,self).__init__(parent)
+        super(outwindow,self).__init__("LogWindow",parent)
         self.setMinimumSize(QSize(30, 0))
 
         self.text = QTextEdit()

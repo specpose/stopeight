@@ -62,7 +62,7 @@ import numpy as np
 
 class ScribbleArea(QtWidgets.QDockWidget):
     def __init__(self, parent=EditorApp().window):
-        super(ScribbleArea, self).__init__(parent)
+        super(ScribbleArea, self).__init__("ScribbleArea",parent)
         self.setMinimumSize(QSize(300, 256))
 
         self.setAttribute(Qt.WA_StaticContents)
