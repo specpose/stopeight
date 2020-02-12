@@ -3,7 +3,7 @@ Build
 
 Requirements (can also be satisfied via conda :doc:`stopeight`)::
 
-    $ sudo apt-get install cmake build-essential qtbase5-dev python3-pip python3-pyqt5 python3-pybind11 python3-future
+    $ sudo apt-get install cmake build-essential qtbase5-dev
 
 The stopeight repository contains stopeight-clibs::
 
@@ -13,7 +13,7 @@ The stopeight repository contains stopeight-clibs::
 If you prefer the latest development version of stopeight-clibs::
 
     $ rm -R stopeight-clibs
-    $ git clone https://github.com/specpose/stopeight-clibs.git
+    $ git clone --recurse-submodules https://github.com/specpose/stopeight-clibs.git
 
 Build and install stopeight-clibs::
 
@@ -31,10 +31,6 @@ Build and install stopeight::
 
     $ cd /path/to/where/stopeight
 
-Needed to create packaging version required for install::
-
-    $ python3 setup.py sdist
-
 Finally install::
 
-    $ python3 setup.py install
+    $ python3 setup.py install --user

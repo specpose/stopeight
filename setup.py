@@ -108,12 +108,12 @@ setup( name='stopeight',
        cmdclass={'build_ext': BuildExt},
 #pip start
        install_requires=[
-          'numpy',
+          'numpy<1.17.0',#python2
           'future',
           'funcsigs',
-          'matplotlib',
+          'matplotlib<3.0',#python2
           'pybind11>=2.3',#not for cmake
-          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #also >=5.6.0 pip2 doesn't support it!
+          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #not for python2
           ],
 #pip end
 #distutils end
