@@ -12,6 +12,7 @@ import os
 __import__('python')
 from python import get_pybind_include, BuildExt
 my_path = os.path.dirname(os.path.realpath(__file__))
+from distutils import sysconfig
 #distutils end
 
 from setuptools import setup, Extension
@@ -21,7 +22,7 @@ setup( name='stopeight',
        description='stopeight: Comparing sequences of points in 2 dimensions',
        long_description='stopeight: Comparing sequences of points in 2 dimensions by visually overlapping them using matrix transformations (translation, scaling and rotation) and getting a boolean result.',
        author='Fassio Blatter',
-       author_email='info@specpose.com',
+       author_email='fassio@specpose.com',
        license='GNU General Public License, version 2',
        url='https://github.com/specpose/stopeight',
        python_requires='>=2.7',
@@ -97,7 +98,7 @@ setup( name='stopeight',
                include_dirs=[
                    os.path.join(my_path,'stopeight-clibs','legacy/include'),
 		   os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example'),
-                   '/usr/include/x86_64-linux-gnu/qt5/'#ubuntu only
+                   os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH')),'qt5')#ubuntu only
                ],
                libraries=['stopeight-clibs-legacy'],
                language='c++',
@@ -105,9 +106,6 @@ setup( name='stopeight',
               ),
        ],
        cmdclass={'build_ext': BuildExt},
-       setup_requires=[
-           'setuptools-git-version',
-           ],
 #pip start
        install_requires=[
           'numpy',
@@ -115,10 +113,12 @@ setup( name='stopeight',
           'funcsigs',
           'matplotlib',
           'pybind11>=2.3',#not for cmake
-          'PyQt5<5.11.0',#can not find private sip #also >=5.6.0 pip2 doesn't support it!
+          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #also >=5.6.0 pip2 doesn't support it!
           ],
 #pip end
 #distutils end
-
+       setup_requires=[
+           'setuptools-git-version',
+           ],
        zip_safe=False,
 )
