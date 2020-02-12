@@ -31,6 +31,15 @@ Build and install stopeight::
 
     $ cd /path/to/where/stopeight
 
-Finally install::
+Python 2: Optional BuildExt modules are not supported, Qt5 is mandatory. PyQt5 has been removed for Python 2. You have to install it manually from `Riverbank <https://www.riverbankcomputing.com/software/pyqt/download5>`_ or your distro. Also you may need a recent gcc::
+
+    $ git checkout Python2
+    $ git pull
+    $ sudo apt-get install qtbase5-dev python-pyqt5 gcc-6
+    $ pip install -r requirements-python2.txt
+    $ cd /path/to/where/stopeight/..
+    $ pip install --user --no-deps stopeight
+
+Python 3::
 
     $ python3 setup.py install --user
