@@ -21,47 +21,48 @@ def TCT_to_bezier(data):
     return stopeight.legacy.TCT_to_bezier(data)
 TCT_to_bezier.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
 
-import stopeight.finders
-from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
-from stopeight.grapher import *
-
-def findTurns(data):
-    log.info("Invoking findTurns...")
-    ql = stopeight.getters.QListDpoint(data)
-    turns = stopeight.finders.Turns(ql)
-    print(turns)
-    assert type(turns) == list
-    return turns
-findTurns.__annotations__ = {'data': ScribbleData, 'return': list}
-
-def sequencial(data):
-    log.info("Invoking findCliffs...")
-    ql = stopeight.getters.QListDpoint(data)
-    turns = stopeight.finders.Cliffs(ql)
-    print(turns)
-    assert type(turns) == list
-    return turns
-sequencial.__annotations__ = {'data': ScribbleData, 'return': list}
-
-def parallel(data):
-    log.info("Invoking findSpiralCliffs...")
-    ql = stopeight.getters.QListDpoint(data)
-    turns = stopeight.finders.Spirals(ql)
-    print(turns)
-    assert type(turns) == list
-    return turns
-parallel.__annotations__ = {'data': ScribbleData, 'return': list}
-
-
-import stopeight.getters
-import numpy as np
-
-def getFirstTurnByTriplets(data):
-    log.info("Invoking getFirstTurnByTriplets...")
-    ql = stopeight.getters.QListDpoint(data)
-    ta = stopeight.getters.Turn(ql)
-    turn = array(ta.next())
-    assert type(turn) == np.ndarray
-    return turn.view(ScribbleData)
-getFirstTurnByTriplets.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
+##import stopeight.finders
+##from stopeight.logging import logSwitch
+##log = logSwitch.logPrint()
+##from stopeight.grapher import *
+##
+##def findTurns(data):
+##    log.info("Invoking findTurns...")
+##    ql = stopeight.getters.QListDpoint(data)
+##    turns = stopeight.finders.Turns(ql)
+##    print(turns)
+##    assert type(turns) == list
+##    return turns
+##findTurns.__annotations__ = {'data': ScribbleData, 'return': list}
+##
+##def sequencial(data):
+##    log.info("Invoking findCliffs...")
+##    ql = stopeight.getters.QListDpoint(data)
+##    turns = stopeight.finders.Cliffs(ql)
+##    print(turns)
+##    assert type(turns) == list
+##    return turns
+##sequencial.__annotations__ = {'data': ScribbleData, 'return': list}
+##
+##def parallel(data):
+##    log.info("Invoking findSpiralCliffs...")
+##    ql = stopeight.getters.QListDpoint(data)
+##    turns = stopeight.finders.Spirals(ql)
+##    print(turns)
+##    assert type(turns) == list
+##    return turns
+##parallel.__annotations__ = {'data': ScribbleData, 'return': list}
+##
+##
+##import stopeight.getters
+##import numpy as np
+##
+##def getFirstTurnByTriplets(data):
+##    log.info("Invoking getFirstTurnByTriplets...")
+##    ql = stopeight.getters.QListDpoint(data)
+##    ta = stopeight.getters.Turn(ql)
+##    turn = array(ta.next())
+##    assert type(turn) == np.ndarray
+##    return turn.view(ScribbleData)
+##getFirstTurnByTriplets.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
+##

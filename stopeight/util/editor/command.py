@@ -51,7 +51,10 @@ class Algorithm_Run:
         import pkg_resources
         if (package_type==True):
             #get head from current directory (os.getcwd()).endswith('stopeight')
-            sub=pkg_resources.require('stopeight')[0].version.split('+g')[1].split('.')[0]
+            if pkg_resources.require('stopeight')[0].version.find('+g'):
+                sub=pkg_resources.require('stopeight')[0].version.split('+g')[1].split('.')[0]
+            else:
+                sub=pkg_resources.require('stopeight')[0].version
         else:
             #get head from stopeight-clibs
             sub=loader[module_name].version
