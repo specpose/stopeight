@@ -3,6 +3,9 @@ include README.md LICENSE.txt
 #cmake.py
 global-include CMakeLists.txt *.cmake
 recursive-include pybind11/include *.h
+include stopeight-clibs/cmake-git-version-tracking/git_watcher.cmake
+include stopeight-clibs/cmake-git-version-tracking/better-example/git.cc.in
+include stopeight-clibs/cmake-git-version-tracking/better-example/git.h
 #shared
 include stopeight-clibs/include/stopeight-clibs/algo.h
 include stopeight-clibs/include/stopeight-clibs/shared_types.h
@@ -11,7 +14,6 @@ include stopeight-clibs/include/stopeight-clibs/preloaderif.h
 include stopeight-clibs/include/stopeight-clibs/angle_functions.h
 include stopeight-clibs/include/stopeight-clibs/Matrix.h
 include stopeight-clibs/include/stopeight-clibs/analyzer.h
-include stopeight-clibs/cmake-git-version-tracking/better-example/git.h
 #matrix
 include stopeight-clibs/matrix-wrappers/IFPyMatrix.cpp
 #grapher
