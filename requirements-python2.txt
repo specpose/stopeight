@@ -9,5 +9,4 @@ pyparsing==2.4.6
 python-dateutil==2.8.1
 pytz==2019.3
 six==1.14.0
-stopeight==0.2.12.dev4+g2acde9b.d20200213
 subprocess32==3.5.4

@@ -47,7 +47,7 @@ setup( name='stopeight',
           'future',
           'funcsigs',
           'matplotlib<3.0',#python2
-          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #not for python2
+#          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #not for python2
           ],
 #pip end
 )
