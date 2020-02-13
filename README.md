@@ -17,6 +17,7 @@ $ sudo apt-get install python python-pip
 3. Clone the Python2 branch of the Github repository recursively.
 ```shell
 $ git clone --recurse-submodules https://github.com/specpose/stopeight.git
+$ cd stopeight
 $ git checkout Python2
 ```
 
