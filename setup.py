@@ -35,11 +35,11 @@ setup( name='stopeight',
        setup_requires=[
            'setuptools_scm',
            ],
-       zip_safe=False,
 #cmake start
        #ext_modules=[CMakeExtension('stopeight')],#,os.path.join('stopeight-clibs','grapher-wrappers'))],
        ext_modules=[CMakeExtension('stopeight.matrix'),CMakeExtension('stopeight.analyzer'),CMakeExtension('stopeight.grapher'),CMakeExtension('stopeight.legacy')],
        cmdclass=dict(build_ext=CMakeBuild),
+       zip_safe=False,
 #cmake end
 #pip start
        install_requires=[

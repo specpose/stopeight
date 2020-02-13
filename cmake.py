@@ -1,4 +1,4 @@
-# https://github.com/pybind/cmake_example/blob/master/LICENSE
+#wget -O cmake.py https://raw.githubusercontent.com/pybind/cmake_example/master/setup.py
 
 import os
 import re
@@ -10,10 +10,10 @@ from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
 from distutils.version import LooseVersion
 
+
 class CMakeExtension(Extension):
     def __init__(self, name, sourcedir=''):
         Extension.__init__(self, name, sources=[])
-#,include_dirs=['include/python3.6m'])
         self.sourcedir = os.path.abspath(sourcedir)
 
 
@@ -30,12 +30,8 @@ class CMakeBuild(build_ext):
             if cmake_version < '3.1.0':
                 raise RuntimeError("CMake >= 3.1.0 is required on Windows")
 
-        dirs = []
         for ext in self.extensions:
-            _dir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
-            if (_dir not in dirs):
-                self.build_extension(ext)
-                dirs.append(_dir)
+            self.build_extension(ext)
 
     def build_extension(self, ext):
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
@@ -52,7 +48,7 @@ class CMakeBuild(build_ext):
             build_args += ['--', '/m']
         else:
             cmake_args += ['-DCMAKE_BUILD_TYPE=' + cfg]
-            build_args += ['--', '-j9']
+            build_args += ['--', '-j2']
 
         env = os.environ.copy()
         env['CXXFLAGS'] = '{} -DVERSION_INFO=\\"{}\\"'.format(env.get('CXXFLAGS', ''),
