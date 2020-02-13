@@ -1,7 +1,5 @@
 #sdist package descriptor
 include README.md
-#distutils
-include python.py
 #shared
 include stopeight-clibs/include/stopeight-clibs/algo.h
 include stopeight-clibs/include/stopeight-clibs/shared_types.h
@@ -10,6 +8,7 @@ include stopeight-clibs/include/stopeight-clibs/preloaderif.h
 include stopeight-clibs/include/stopeight-clibs/angle_functions.h
 include stopeight-clibs/include/stopeight-clibs/Matrix.h
 include stopeight-clibs/include/stopeight-clibs/analyzer.h
+include stopeight-clibs/cmake-git-version-tracking/better-example/git.h
 #matrix
 include stopeight-clibs/matrix-wrappers/IFPyMatrix.cpp
 #grapher
@@ -20,6 +19,9 @@ include stopeight-clibs/analyzer-wrappers/IFPyAnalyzer.cpp
 include stopeight-clibs/legacy/include/error.h
 include stopeight-clibs/legacy-wrappers/interfacepython.cpp
 include stopeight-clibs/legacy-wrappers/interfacepython.h
+#include stopeight-clibs/legacy-wrappers/IFPyGetters.cpp
+#include stopeight-clibs/legacy-wrappers/IFPyFinders.cpp
+#include stopeight-clibs/legacy-wrappers/IFPyShared.cpp
 include stopeight-clibs/legacy/include/render.h
 include stopeight-clibs/legacy/include/dpoint.h
 include stopeight-clibs/legacy/include/legacy_global.h
