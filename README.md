@@ -11,7 +11,7 @@ $ sudo apt-get install python-pyqt5
 
 2. Install the following minimal requirements from the main repository.
 ```shell
-$ sudo apt-get install python python-pip
+$ sudo apt-get install python cmake build-essential
 ```
 
 3. Clone the Python2 branch of the Github repository recursively.
@@ -26,7 +26,7 @@ $ git checkout Python2
 $ sudo apt-get install qtbase5-dev
 ```
 
-5. Build in the stopeight directory.
+5. Build in the stopeight directory. Note: The pip/wheel build does not correctly link stopeight-clibs. Use the bdist_egg/easy_install.
 ```shell
 $ cd stopeight
 $ python setup.py install --user
