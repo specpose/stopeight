@@ -3,10 +3,6 @@
 _packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing','stopeight.util','stopeight.util.editor','stopeight.util.editor.modules']
 
 import os
-###cmake start
-##__import__('cmake')
-##from cmake import CMakeExtension, CMakeBuild
-###cmake end
 #distutils start
 #__import__('monkey_patch_parallel')
 __import__('python')
@@ -18,7 +14,7 @@ from distutils import sysconfig
 from setuptools import setup, Extension
 
 setup( name='stopeight',
-       version_format='{tag}.dev{commitcount}+{gitsha}',
+       use_scm_version=True,
        description='stopeight: Comparing sequences of points in 2 dimensions',
        long_description='stopeight: Comparing sequences of points in 2 dimensions by visually overlapping them using matrix transformations (translation, scaling and rotation) and getting a boolean result.',
        author='Fassio Blatter',
@@ -39,13 +35,22 @@ setup( name='stopeight',
        entry_points={
            'setuptools.installation':['eggsecutable = stopeight.util.editor.dispatch:main_func',]
            },
-
-###cmake start
-##       #ext_modules=[CMakeExtension('stopeight')],#,os.path.join('stopeight-clibs','grapher-wrappers'))],
-##       ext_modules=[CMakeExtension('stopeight.matrix'),CMakeExtension('stopeight.analyzer'),CMakeExtension('stopeight.grapher'),CMakeExtension('stopeight.legacy')],
-##       cmdclass=dict(build_ext=CMakeBuild),
-###cmake end
+       setup_requires=[
+           'pybind11>=2.4',
+           'setuptools_scm',
+           ],
+       zip_safe=False,
 #distutils start
+#pip start
+       install_requires=[
+          'numpy<1.17.0',#python2
+          'future',
+          'funcsigs',
+          'matplotlib<3.0',#python2
+          'pybind11>=2.4',
+          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #not for python2
+          ],
+#pip end
        ext_modules = [
            Extension(
                'stopeight.grapher',
@@ -106,19 +111,5 @@ setup( name='stopeight',
               ),
        ],
        cmdclass={'build_ext': BuildExt},
-#pip start
-       install_requires=[
-          'numpy<1.17.0',#python2
-          'future',
-          'funcsigs',
-          'matplotlib<3.0',#python2
-          'pybind11>=2.3',#not for cmake
-          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #not for python2
-          ],
-#pip end
 #distutils end
-       setup_requires=[
-           'setuptools-git-version',
-           ],
-       zip_safe=False,
 )

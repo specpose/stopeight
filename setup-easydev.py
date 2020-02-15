@@ -37,12 +37,8 @@ setup( name='stopeight',
        setup_requires=[
            'setuptools_scm',
            ],
-#cmake start
-       ext_modules=[CMakeExtension('stopeight.matrix',libraries=['stopeight-clibs-matrix']),CMakeExtension('stopeight.grapher',libraries=['stopeight-clibs-grapher']),CMakeExtension('stopeight.analyzer',libraries=['stopeight-clibs-analyzer']),CMakeExtension('stopeight.legacy',libraries=['stopeight-clibs-legacy'])],
-       cmdclass=dict(build_ext=CMakeBuild),
        zip_safe=False,
-#cmake end
-#pip start
+#pip start - not in cmake_examples
        install_requires=[
           'numpy<1.17.0',#python2
           'future',
@@ -50,5 +46,9 @@ setup( name='stopeight',
           'matplotlib<3.0',#python2
           'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #not for python2
           ],
-#pip end
+#pip end - not in cmake_examples
+#cmake start
+       ext_modules=[CMakeExtension('stopeight.matrix',libraries=['stopeight-clibs-matrix']),CMakeExtension('stopeight.grapher',libraries=['stopeight-clibs-grapher']),CMakeExtension('stopeight.analyzer',libraries=['stopeight-clibs-analyzer']),CMakeExtension('stopeight.legacy',libraries=['stopeight-clibs-legacy'])],
+       cmdclass=dict(build_ext=CMakeBuild),
+#cmake end
 )
