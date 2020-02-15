@@ -12,10 +12,10 @@ from distutils.version import LooseVersion
 
 
 class CMakeExtension(Extension):
-    def __init__(self, name, sourcedir=''):
+    def __init__(self, name, sourcedir='',libraries=[]):
         Extension.__init__(self, name, sources=[])
         self.sourcedir = os.path.abspath(sourcedir)
-
+        self.libraries = libraries
 
 class CMakeBuild(build_ext):
     def run(self):
@@ -32,6 +32,12 @@ class CMakeBuild(build_ext):
 
         for ext in self.extensions:
             self.build_extension(ext)
+##        dirs = []
+##        for ext in self.extensions:
+##            _dir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
+##            if (_dir not in dirs):
+##                self.build_extension(ext)
+##                dirs.append(_dir)
 
     def build_extension(self, ext):
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
