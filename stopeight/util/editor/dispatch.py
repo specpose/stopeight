@@ -12,11 +12,11 @@ log = logSwitch.logNone()
 
 # False: Is part of a compiled library
 _DATA = {'Modules': [
-                            ('stopeight.util.editor.modules.legacy', False),
+#                            ('stopeight.util.editor.modules.legacy', False),
                             ('stopeight.util.editor.modules.file', True),
                             ('stopeight.util.editor.modules.file_wave',True),
                             ('stopeight.util.editor.modules.grapher', False),
-                            ('stopeight.util.editor.modules.analyzer', False),
+#                            ('stopeight.util.editor.modules.analyzer', False),
                     ]
          }
 
