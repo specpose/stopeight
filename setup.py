@@ -13,24 +13,7 @@ from distutils import sysconfig
 
 from setuptools import setup, Extension
 
-setup( name='stopeight',
-       use_scm_version=True,
-       description='stopeight: Comparing sequences of points in 2 dimensions',
-       long_description='stopeight: Comparing sequences of points in 2 dimensions by visually overlapping them using matrix transformations (translation, scaling and rotation) and getting a boolean result.',
-       author='Fassio Blatter',
-       author_email='fassio@specpose.com',
-       license='GNU General Public License, version 2',
-       url='https://github.com/specpose/stopeight',
-       python_requires='>=2.7',
-       classifiers=[
-           "Development Status :: 3 - Alpha",
-           "Intended Audience :: Developers",
-           "Topic :: Multimedia :: Sound/Audio :: Analysis",
-           "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
-           "Programming Language :: Python :: 2.7",
-           "Programming Language :: Python :: 3",
-           ],
-       keywords="signal-analysis pen-stroke",
+setup( use_scm_version=True,
        packages=_packages,
        entry_points={
            'setuptools.installation':['eggsecutable = stopeight.util.editor.dispatch:main_func',]
