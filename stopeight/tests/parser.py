@@ -66,7 +66,6 @@ if __name__ == '__main__':
         nopath = True
     if nopath:
         raise Exception("Please specify the directory containing unpacked legacy pen-stroke files (i.e. stopeight-clibs/legacy/tests/)")
-    from stopeight.util import runnable
     lines = process_directory(sys.argv[1],legacy.stroke_sequential)
     comparator = pooling.MPLine(lines)
     for i,line in enumerate(lines):
