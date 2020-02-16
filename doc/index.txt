@@ -19,7 +19,7 @@ Installation
 .. toctree::
    :maxdepth: 1
 
-   stopeight
+   dev_build
 
    sample-data
 
@@ -31,8 +31,6 @@ Usage
 
    run_editor
 
-   run_server
-
    run_tests
 
 Developer
@@ -40,8 +38,6 @@ Developer
 
 .. toctree::
    :maxdepth: 1
-
-   dev_build
 
    dev_stroke-analyzer
 

@@ -5,4 +5,4 @@ The editor is the main entry point to the code. Currently it allows for drawing,
 
     $ python -m stopeight.util.editor.dispatch
 
-Note: The comparator algorithms are currently not accessible from the editor. They are accessible through the API and the server.
+Note: The comparator algorithms are currently not accessible from the editor. They are accessible through the API and the tests.
