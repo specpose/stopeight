@@ -9,9 +9,9 @@ This build has been tested on Ubuntu 18.04.
 $ sudo apt-get install python-pyqt5
 ```
 
-2. Install the following minimal requirements from the main repository.
+2. Install the following minimal requirements from the main repository. Note: Qt5 is needed for compilation of the PyPI/pip module.
 ```shell
-$ sudo apt-get install python cmake build-essential
+$ sudo apt-get install python cmake build-essential qtbase5-dev
 ```
 
 3. Clone the Python2 branch of the Github repository recursively.
@@ -21,18 +21,13 @@ $ cd stopeight
 $ git checkout Python2
 ```
 
-4. If you want to run the tests for the legacy algorithm, install Qt5.
-```shell
-$ sudo apt-get install qtbase5-dev
-```
-
-5. Build in the stopeight directory. Note: The pip/wheel build does not correctly link stopeight-clibs. Use the bdist_egg/easy_install.
+4. Build in the stopeight directory. Note: The pip/wheel build does not correctly link stopeight-clibs. Use the bdist_egg/easy_install.
 ```shell
 $ cd stopeight
 $ python setup.py install --user
 ```
 
-6. Launch the editor.
+5. Launch the editor.
 ```shell
 $ python -m stopeight.util.editor.dispatch
 ```
