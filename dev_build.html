@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Build &#8212; stopeight 0.1.1 documentation</title>
+    <title>Stopeight &#8212; stopeight 0.1.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Stroke Analyzer" href="dev_stroke-analyzer.html" />
-    <link rel="prev" title="Stopeight Comparator" href="run_tests.html" />
+    <link rel="next" title="Sample-Data" href="sample-data.html" />
+    <link rel="prev" title="Applications" href="applications.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -38,12 +38,20 @@
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/crab.png" alt="Logo"/>
-            </a></p><div class="relations">
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Stopeight</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="run_tests.html" title="previous chapter">Stopeight Comparator</a></li>
-      <li>Next: <a href="dev_stroke-analyzer.html" title="next chapter">Stroke Analyzer</a></li>
+      <li>Previous: <a href="applications.html" title="previous chapter">Applications</a></li>
+      <li>Next: <a href="sample-data.html" title="next chapter">Sample-Data</a></li>
   </ul></li>
 </ul>
 </div>
@@ -70,45 +78,40 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="build">
-<h1>Build<a class="headerlink" href="#build" title="Permalink to this headline">¶</a></h1>
-<dl class="docutils">
-<dt>Requirements (can also be satisfied via conda <a class="reference internal" href="stopeight.html"><span class="doc">Stopeight</span></a>)::</dt>
-<dd>$ sudo apt-get install cmake build-essential qtbase5-dev python3-pip python3-pyqt5 python3-pybind11 python3-future</dd>
-</dl>
-<p>The stopeight repository contains stopeight-clibs:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight.git
+  <div class="section" id="stopeight">
+<h1>Stopeight<a class="headerlink" href="#stopeight" title="Permalink to this headline">¶</a></h1>
+<p>Instructions have been tested on Ubuntu 18.04/bionic.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Minimal Requirements (main repository):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python cmake build-essential
+</pre></div>
+</div>
+<p>If you want to run the tests for the legacy algorithm, install Qt5 (main repository).</p>
+<blockquote>
+<div>$ sudo apt-get install qtbase5-dev</div></blockquote>
+<p>The stopeight repository contains stopeight-clibs (Github):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone --recurse-submodules https://github.com/specpose/stopeight.git
 $ cd /path/to/where/stopeight
 </pre></div>
 </div>
-<p>If you prefer the latest development version of stopeight-clibs:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ rm -R stopeight-clibs
-$ git clone https://github.com/specpose/stopeight-clibs.git
+<p>Build and install stopeight (easy_install):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ easy_install-3.6 --user virtualenv
+$ virtualenv ~/stopeight-test
+$ ~/stopeight-test/bin/python setup-easydev.py develop
 </pre></div>
 </div>
-<p>Build and install stopeight-clibs:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd stopeight-clibs
-$ mkdir build &amp;&amp; cd build
-$ cmake ../
-$ make &amp;&amp; sudo make install
+<p>Try the editor for a start:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ~/stopeight-test/bin/python -m stopeight.util.editor.dispatch
 </pre></div>
 </div>
-<p>Note: You may need to manually reinstall after a rebuild:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo cp libstopeight-clibs-* /path/to/where/your/syslibs
-$ sudo ldconfig
+<p>Uninstall:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ~/stopeight-test/bin/python setup-easydev.py develop --uninstall
+$ rm -R ~/stopeight-test
+$ rm -Rf /path/to/where/stopeight
+$ rm -R ~/.stopeight
 </pre></div>
 </div>
-<p>Build and install stopeight:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight
-</pre></div>
-</div>
-<p>Needed to create packaging version required for install:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ python setup.py sdist
-</pre></div>
-</div>
-<p>Finally install:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ python setup.py install
-</pre></div>
 </div>
 </div>
 

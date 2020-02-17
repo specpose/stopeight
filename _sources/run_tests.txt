@@ -18,3 +18,9 @@ Run the tests::
 
     $ cd /path/to/where/stopeight
     $ python -m stopeight.tests.parser stopeight-clibs/legacy/tests/
+
+Show the result of the legacy stroke analyzer which served as input for the comparator matching::
+
+    $ eog parser.out.svg
+
+To remove the check pattern transparent background go to menu (Image Viewer -> Preferences -> Image View -> Transparent Parts -> As custom color).

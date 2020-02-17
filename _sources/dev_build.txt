@@ -1,39 +1,37 @@
-Build
------
+Stopeight
+=========
 
-Requirements (can also be satisfied via conda :doc:`stopeight`)::
-    $ sudo apt-get install cmake build-essential qtbase5-dev python3-pip python3-pyqt5 python3-pybind11 python3-future
+Instructions have been tested on Ubuntu 18.04/bionic.
 
-The stopeight repository contains stopeight-clibs::
+Installation
+------------
 
-    $ git clone https://github.com/specpose/stopeight.git
+Minimal Requirements (main repository)::
+
+    $ sudo apt-get install python cmake build-essential
+
+If you want to run the tests for the legacy algorithm, install Qt5 (main repository).
+
+    $ sudo apt-get install qtbase5-dev
+
+The stopeight repository contains stopeight-clibs (Github)::
+
+    $ git clone --recurse-submodules https://github.com/specpose/stopeight.git
     $ cd /path/to/where/stopeight
 
-If you prefer the latest development version of stopeight-clibs::
+Build and install stopeight (easy_install)::
 
-    $ rm -R stopeight-clibs
-    $ git clone https://github.com/specpose/stopeight-clibs.git
+    $ easy_install-3.6 --user virtualenv
+    $ virtualenv ~/stopeight-test
+    $ ~/stopeight-test/bin/python setup-easydev.py develop
 
-Build and install stopeight-clibs::
+Try the editor for a start::
 
-    $ cd stopeight-clibs
-    $ mkdir build && cd build
-    $ cmake ../
-    $ make && sudo make install
+    $ ~/stopeight-test/bin/python -m stopeight.util.editor.dispatch
 
-Note: You may need to manually reinstall after a rebuild::
+Uninstall::
 
-    $ sudo cp libstopeight-clibs-* /path/to/where/your/syslibs
-    $ sudo ldconfig
-
-Build and install stopeight::
-
-    $ cd /path/to/where/stopeight
-
-Needed to create packaging version required for install::
-
-    $ python setup.py sdist
-
-Finally install::
-
-    $ python setup.py install
+    $ ~/stopeight-test/bin/python setup-easydev.py develop --uninstall
+    $ rm -R ~/stopeight-test
+    $ rm -Rf /path/to/where/stopeight
+    $ rm -R ~/.stopeight
