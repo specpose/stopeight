@@ -9,7 +9,7 @@ This build has been tested on Ubuntu 18.04.
 $ sudo apt-get install python-pyqt5
 ```
 
-2. Install the following minimal requirements from the main repository. Note: Qt5 is needed for compilation of the PyPI/pip module.
+2. Install the following minimal requirements from the main repository. Note: Qt5 is needed for compilation of the pip/wheel.
 ```shell
 $ sudo apt-get install python cmake build-essential qtbase5-dev
 ```
