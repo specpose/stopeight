@@ -39,25 +39,24 @@ def run():
         # for identifying echo in result
         input.id=0
         for i in input.lines:
-        print('Input line id: '+str(i.id))
+            print('Input line id: '+str(i.id))
         print('sending SOAP method: deleteLine...')
         # parameter name doesn't seem to matter
         result = b.deleteLine(sdklffjkdsla=input)
         for i in result['ABCSymbol']:
-        print('Deleted line id: '+str(i.id))
-        for p in i:
-            print(str(p.x),str(p.y))
-            pass
+            print('Deleted line id: '+str(i.id))
+            for p in i:
+                print(str(p.x),str(p.y))
+                pass
 
     except:
         exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
         print("*** print_tb:")
         traceback.print_tb(exceptionTraceback, limit=1, file=sys.stdout)
         print("*** print_exception:")
-        traceback.print_exception(exceptionType, exceptionValue, exceptionTraceback,
-                              limit=10, file=sys.stdout)
+        traceback.print_exception(exceptionType, exceptionValue, exceptionTraceback, limit=10, file=sys.stdout)
     fp.close()
 
 if __name__ == "__main__":
-        from stopeight.util import runnable
+    from stopeight.util import runnable
     run()
