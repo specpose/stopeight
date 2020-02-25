@@ -46,7 +46,7 @@ def process_directory(dir_path,analyzer=legacy.stroke_parallel):
                 log.info('Success')
             except:
                 log.info('Analyzer Failed')
-                tprinter.text('#' + str(count) + f + ' failed.')
+                tprinter.text('#' + str(count) + str(final_path) + ' parser failed.')
         except:
             log.info('Loading Failed')
     tprinter.text('Extracted ' + str(len(lines)) + ' Comparator lines out of ' + str(count) + ' readable Graph files.')
