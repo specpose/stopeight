@@ -14,7 +14,6 @@ class Algorithm_Select(dict):
     def __init__(self, module, **kwargs):
         super(Algorithm_Select,self).__init__(**kwargs)
         self._module = module
-        
         module_name = self._module[0]
         import importlib
         importlib.import_module(module_name)
@@ -131,8 +130,8 @@ class Connector:
     @staticmethod
     def _execute(executed,output,_module,functionName,customsubpath,logwindow,_data):
         if executed:
-            raise Exception("There are multiple objects handling "+str(type(_input.data))+". The \
-current version does not support handling multiple Input objects of the same type. Please remove "+str(type(_input))+" from module list.")
+            raise Exception("There are multiple objects handling "+str(type(_data))+". The \
+current version does not support handling multiple Input objects of the same type. Please remove "+str(type(_module))+" from module list.")
         with stdout_redirector(logwindow.f):
             if type(_data) != type(None):
                 log.info("Executing "+functionName+" with "+str(type(_data)))
