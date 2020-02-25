@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 
 def run():
