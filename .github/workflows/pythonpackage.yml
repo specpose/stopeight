@@ -24,7 +24,7 @@ jobs:
         pip install -r requirements.txt
     - name: Compile wrappers
       run: |
-        python setup.py build_ext
+        python setup-easydev.py build_ext
     - name: Lint with flake8
       run: |
         pip install flake8
