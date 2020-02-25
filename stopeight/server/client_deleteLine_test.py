@@ -41,12 +41,12 @@ def run():
 	    # for identifying echo in result
 	    input.id=0
 	    for i in input.lines:
-		print('Input line id: %d'%(i.id))
+		print('Input line id: '+str(i.id))
 	    print('sending SOAP method: deleteLine...')
 	    # parameter name doesn't seem to matter
 	    result = b.deleteLine(sdklffjkdsla=input)
 	    for i in result['ABCSymbol']:
-		print('Deleted line id: %d'%(i.id))
+		print('Deleted line id: '+str(i.id))
 		for p in i:
 		    print(str(p.x),str(p.y))
 		    pass

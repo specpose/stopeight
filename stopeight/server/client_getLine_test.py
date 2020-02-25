@@ -42,12 +42,12 @@ def run():
 	    # for identifying echo in result
 	    input.id=0
 	    for i in input.lines:
-		print (Input line id: %d'%(i.id))
+		print('Input line id: '+str(i.id))
 	    print('sending SOAP method: getLine...')
 	    # parameter name doesn't seem to matter
 	    result = b.getLine(sdklffjkdsla=input)
 	    for i in result['ABCSymbol']:
-		print('Received line id: %d'%(i.id))
+		print('Received line id: '+str(i.id))
 		for p in i:
 		    print p.x,p.y
 		    pass

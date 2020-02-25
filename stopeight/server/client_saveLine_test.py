@@ -28,15 +28,15 @@ def run():
 	    # for identifying echo in result
 	    input.id=0
 	    for i in input.lines:
-		print('Input line: ')
+		print("Input line:")
 		for p in i:
 		    print(str(p.x),str(p.y))
 		    pass
-	    print('sending SOAP method: saveLine...')
+	    print("sending SOAP method: saveLine...")
 	    # parameter name doesn't seem to matter
 	    result = b.saveLine(sdklffjkdsla=input)
 	    for i in result['ABCSymbol']:
-		print('Saved line id: %d'%(i.id))
+		print("Saved line id: "+(i.id))
 		for p in i:
 		    print p.x,p.y
 		    pass

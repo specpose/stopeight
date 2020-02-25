@@ -43,14 +43,14 @@ def run():
 	    #for identifying echo in result
 	    input.id=0
 	    for i in input.lines:
-		print('Input line: ')
+		print("Input line:")
 		for p in i:
 		    print(str(p.x),str(p.y))
 		    pass
 	    print('sending SOAP method: matchLine...')
 	    result = b.matchLine(sdklffjkdsla=input)
 	    for i in result['ABCSymbol']:
-		print('Matched line: ')
+		print("Matched line:")
 		for p in i:
 		    print(str(p.x),str(p.y))
 		    pass

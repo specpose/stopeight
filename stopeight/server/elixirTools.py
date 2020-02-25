@@ -59,13 +59,14 @@ setup_all()
 
 def create_database():
     create_all()
-    print 'elixirTools.py::create_database on %s'%(metadata.bind)
+    print('elixirTools.py::create_database on '+str(metadata.bind))
 
 if __name__ == "__main__":
     create_database()
     
 def storage_example():
-    vector = DBLine.from_numpy_array(array([[13,40],[50,125],[80,61],[123,79],[191,11]]))
+    import numpy
+    vector = DBLine.from_numpy_array(numpy.array([[13,40],[50,125],[80,61],[123,79],[191,11]]))
     vector.store()
     for dbrecord in DBLine.getAll():
         print dbrecord.to_numpy_array()
