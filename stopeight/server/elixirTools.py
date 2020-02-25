@@ -3,7 +3,7 @@
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 
 from stopeight.comparator import vectorTools
-+from stopeight.server.zsiTools import ABCPoint, ABCLine
+from stopeight.server.zsiTools import ABCPoint, ABCLine
 
 from stopeight.server import server_include
 
@@ -16,7 +16,7 @@ class DBPoint(ABCPoint,Entity):
     using_options(tablename='points')
     x = Field(Integer)
     y = Field(Integer)
-    line = ManyToOne('DBLine')        
+    line = ManyToOne('DBLine')
 
 class DBLine(ABCLine,Entity):
     using_options(tablename='slines')

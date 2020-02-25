@@ -41,21 +41,21 @@ def run():
 	    # for identifying echo in result
 	    input.id=0
 	    for i in input.lines:
-		print 'Input line id: %d'%(i.id)
-	    print 'sending SOAP method: deleteLine...'
+		print('Input line id: %d'%(i.id))
+	    print('sending SOAP method: deleteLine...')
 	    # parameter name doesn't seem to matter
 	    result = b.deleteLine(sdklffjkdsla=input)
 	    for i in result['ABCSymbol']:
-		print 'Deleted line id: %d'%(i.id)
+		print('Deleted line id: %d'%(i.id))
 		for p in i:
-		    print p.x,p.y
+		    print(str(p.x),str(p.y))
 		    pass
 
 	except:
 	    exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
-	    print "*** print_tb:"
+	    print("*** print_tb:")
 	    traceback.print_tb(exceptionTraceback, limit=1, file=sys.stdout)
-	    print "*** print_exception:"
+	    print("*** print_exception:")
 	    traceback.print_exception(exceptionType, exceptionValue, exceptionTraceback,
 		                      limit=10, file=sys.stdout)
 	fp.close()

@@ -33,7 +33,7 @@ from stopeight.server import zsiTools
 from stopeight.server.zsiTools import ABCPoint,ABCLine
 
 class DBPoint(ABCPoint):
-    pass       
+    pass
 
 import persistent,transaction
 
@@ -80,10 +80,9 @@ class DBLine(ABCLine,persistent.Persistent):
 
 if __name__ == "__main__":
     pass
-    
+
 def storage_example():
     vector = DBLine.from_numpy_array(array([[13,40],[50,125],[80,61],[123,79],[191,11]]))
     vector.store()
     for dbrecord in DBLine.getAll():
-        print dbrecord.to_numpy_array()
-
+        print(dbrecord.to_numpy_array())

@@ -42,21 +42,21 @@ def run():
 	    # for identifying echo in result
 	    input.id=0
 	    for i in input.lines:
-		print 'Input line id: %d'%(i.id)
-	    print 'sending SOAP method: getLine...'
+		print (Input line id: %d'%(i.id))
+	    print('sending SOAP method: getLine...')
 	    # parameter name doesn't seem to matter
 	    result = b.getLine(sdklffjkdsla=input)
 	    for i in result['ABCSymbol']:
-		print 'Received line id: %d'%(i.id)
+		print('Received line id: %d'%(i.id))
 		for p in i:
 		    print p.x,p.y
 		    pass
 
 	except:
 	    exceptionType, exceptionValue, exceptionTraceback = sys.exc_info()
-	    print "*** print_tb:"
+	    print("*** print_tb:")
 	    traceback.print_tb(exceptionTraceback, limit=1, file=sys.stdout)
-	    print "*** print_exception:"
+	    print("*** print_exception:")
 	    traceback.print_exception(exceptionType, exceptionValue, exceptionTraceback,
 		                      limit=10, file=sys.stdout)
 	fp.close()
