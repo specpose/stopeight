@@ -69,5 +69,5 @@ def storage_example():
     vector = DBLine.from_numpy_array(numpy.array([[13,40],[50,125],[80,61],[123,79],[191,11]]))
     vector.store()
     for dbrecord in DBLine.getAll():
-        print dbrecord.to_numpy_array()
+        print(str(dbrecord.to_numpy_array()))
 
