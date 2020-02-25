@@ -10,7 +10,7 @@ Minimal Requirements (main repository)::
 
     $ sudo apt-get install python cmake build-essential
 
-If you want to run the tests for the legacy algorithm, install Qt5 (main repository).
+If you want to run the tests for the legacy algorithm, install Qt5 (main repository)::
 
     $ sudo apt-get install qtbase5-dev
 
