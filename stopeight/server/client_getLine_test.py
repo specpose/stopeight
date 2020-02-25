@@ -47,7 +47,7 @@ def run():
         for i in result['ABCSymbol']:
             print('Received line id: '+str(i.id))
             for p in i:
-                print p.x,p.y
+                print(str(p.x),str(p.y))
                 pass
 
     except:
