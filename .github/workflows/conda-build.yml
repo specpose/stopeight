@@ -17,7 +17,7 @@ jobs:
           conda install conda-build
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
-          $CONDA/bin/pip3 install ./
+          pip3 install ./
 
   conda-build-mac:
     name: Mac Conda Build
