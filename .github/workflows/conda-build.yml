@@ -14,17 +14,14 @@ jobs:
         shell: bash
         run: |
           git submodule update --init --recursive
-          conda init bash
       - name: Bash
         shell: bash
         run: |
-          conda create --name btest
-          conda activate btest
           conda install conda-build
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
-          pip install setuptools wheel
-          python3 setup.py bdist
+          /usr/share/miniconda/bin/python3 -m pip install setuptools wheel
+          /usr/share/miniconda/bin/python3 python3 setup.py bdist
 
   conda-build-mac:
     name: Mac Conda Build
@@ -37,18 +34,15 @@ jobs:
         shell: sh
         run: |
           git submodule update --init --recursive
-          source $CONDA/bin/activate
-          conda init zsh
       - name: Sh
         shell: sh
         run: |
-          conda create --name btest
-          conda activate btest
+          source $CONDA/bin/activate
           conda install conda-build
           conda build --debug ./stopeight-clibs
           conda install --use-local stopeight-clibs
-          pip install setuptools wheel
-          python3 setup.py bdist
+          /usr/local/miniconda/bin/python3 -m pip install setuptools wheel
+          /usr/local/miniconda/bin/python3 setup.py bdist
 
   conda-build-win:
     name: Windows Conda Build
@@ -61,17 +55,13 @@ jobs:
         shell: pwsh
         run: |
           git submodule update --init --recursive
-          $env:Path += ";"+$env:CONDA+";"+$env:CONDA+"\Scripts\"
-          conda init powershell
       - name: PowerShell Core
         shell: pwsh
         run: |
           $env:Path += ";"+$env:CONDA+";"+$env:CONDA+"\Scripts\"
-          conda create --name btest
-          conda activate btest
           conda install conda-build
           Remove-Item -Path "C:\Program Files (x86)\Windows Kits\10\\include\wdf" -Recurse
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
-          pip install setuptools wheel
+          C:\Miniconda\Scripts\python3 -m pip install setuptools wheel
           C:\Miniconda\Scripts\python3 setup.py bdist
