@@ -14,15 +14,12 @@ jobs:
         shell: bash -l {0}
         run: |
           git submodule update --init --recursive
-      - name: Initialize conda shell
-        shell: bash -l {0}
-        run: |
-          conda init bash
       - name: Bash
         shell: bash -l {0}
         run: |
           conda create --name btest
           conda activate btest
+          conda init bash
           conda install conda-build
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
@@ -40,15 +37,13 @@ jobs:
         shell: sh -l {0}
         run: |
           git submodule update --init --recursive
-      - name: Initialize conda shell
-        shell: sh -l {0}
-        run: |
-          conda init zsh
       - name: Sh
         shell: sh -l {0}
         run: |
+          source $CONDA/bin/activate
           conda create --name btest
           conda activate btest
+          conda init zsh
           conda install conda-build
           conda build --debug ./stopeight-clibs
           conda install --use-local stopeight-clibs
@@ -69,12 +64,10 @@ jobs:
       - name: PowerShell Core
         shell: pwsh
         run: |
-          conda init powershell
-      - name: PowerShell Core
-        shell: pwsh
-        run: |
+          $env:Path += ";"+$env:CONDA+";"+$env:CONDA+"\Scripts\"
           conda create --name btest
           conda activate btest
+          conda init powershell
           conda install conda-build
           Remove-Item -path "C:\Program Files (x86)\Windows Kits\10\\include\wdf" -recursive
           conda build ./stopeight-clibs
