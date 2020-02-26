@@ -20,8 +20,8 @@ jobs:
           conda install conda-build
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
-          /usr/share/miniconda/bin/python3 -m pip install setuptools wheel
-          /usr/share/miniconda/bin/python3 python3 setup.py bdist
+          /usr/share/miniconda/bin/python -m pip install setuptools wheel
+          /usr/share/miniconda/bin/python python3 setup.py bdist
 
   conda-build-mac:
     name: Mac Conda Build
@@ -38,11 +38,12 @@ jobs:
         shell: sh
         run: |
           source $CONDA/bin/activate
-          conda install conda-build
-          conda build --debug ./stopeight-clibs
-          conda install --use-local stopeight-clibs
-          /usr/local/miniconda/bin/python3 -m pip install setuptools wheel
-          /usr/local/miniconda/bin/python3 setup.py bdist
+          conda create --name btest
+          conda install -n btest conda-build
+          conda build -n btest --debug ./stopeight-clibs
+          conda install -n btest --use-local stopeight-clibs
+          conda run -n btest "python -m pip install setuptools wheel"
+          conda run -n btest "python setup.py bdist"
 
   conda-build-win:
     name: Windows Conda Build
@@ -63,5 +64,5 @@ jobs:
           Remove-Item -Path "C:\Program Files (x86)\Windows Kits\10\\include\wdf" -Recurse
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
-          C:\Miniconda\Scripts\python3 -m pip install setuptools wheel
-          C:\Miniconda\Scripts\python3 setup.py bdist
+          C:\Miniconda\python -m pip install setuptools wheel
+          C:\Miniconda\python setup.py bdist
