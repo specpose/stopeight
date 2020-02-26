@@ -17,8 +17,8 @@ jobs:
       - name: Bash
         shell: bash -l {0}
         run: |
+          conda activate base
           conda create --name btest
-          conda update --name btest conda
           conda activate btest
           conda init bash
           conda install conda-build
@@ -42,8 +42,8 @@ jobs:
         shell: sh -l {0}
         run: |
           source $CONDA/bin/activate
+          conda activate base
           conda create --name btest
-          conda update --name btest conda
           conda activate btest
           conda init zsh
           conda install conda-build
@@ -67,8 +67,8 @@ jobs:
         shell: pwsh
         run: |
           $env:Path += ";"+$env:CONDA+";"+$env:CONDA+"\Scripts\"
+          conda activate base
           conda create --name btest
-          conda update --name btest conda
           conda activate btest
           conda init powershell
           conda install conda-build
@@ -76,4 +76,4 @@ jobs:
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
           pip install setuptools wheel
-          python3 setup.py bdist
+          C:\Miniconda\Scripts\python3 setup.py bdist
