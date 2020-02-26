@@ -42,9 +42,9 @@ jobs:
           source $CONDA/bin/activate
           conda create --name btest
           conda activate btest
-          conda install -n btest conda-build
-          conda build -n btest --debug ./stopeight-clibs
-          conda install -n btest --use-local stopeight-clibs
+          conda install conda-build
+          conda build --debug ./stopeight-clibs
+          conda install --use-local stopeight-clibs
           /Users/runner/.conda/envs/btest/bin/python -m pip install setuptools wheel
           /Users/runner/.conda/envs/btest/bin/python -m pip install -r requirements.txt
           /Users/runner/.conda/envs/btest/bin/python setup.py bdist
