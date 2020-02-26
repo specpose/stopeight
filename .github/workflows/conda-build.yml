@@ -14,12 +14,13 @@ jobs:
         shell: bash -l {0}
         run: |
           git submodule update --init --recursive
-          conda create --prefix ./envs
-          conda activate ./envs
+          conda create --name btest
+          conda activate btest
           conda install conda-build
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
-          pip install setuptools wheel ./
+          pip install setuptools wheel
+          python setup.py bdist
 
   conda-build-mac:
     name: Mac Conda Build
@@ -33,12 +34,13 @@ jobs:
         run: |
           git submodule update --init --recursive
           source $CONDA/bin/activate
-          conda create --prefix ./envs
-          conda activate ./envs
+          conda create --name btest
+          conda activate btest
           conda install conda-build
           conda build --debug ./stopeight-clibs
           conda install --use-local stopeight-clibs
-          pip install setuptools wheel ./
+          pip install setuptools wheel
+          python setup.py bdist
 
   conda-build-win:
     name: Windows Conda Build
@@ -52,8 +54,11 @@ jobs:
         run: |
           git submodule update --init --recursive
           SET PATH=%PATH%;%CONDA%;%CONDA%\Scripts\
+          conda create --name btest
+          conda activate btest
           conda install conda-build
           rd /s /q "C:\Program Files (x86)\Windows Kits\10\\include\wdf"
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
-          %CONDA%\Scripts\pip install setuptools wheel ./
+          pip install setuptools wheel
+          python setup.py bdist
