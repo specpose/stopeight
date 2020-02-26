@@ -11,11 +11,11 @@ jobs:
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: bash -l {0}
+        shell: bash
         run: |
           git submodule update --init --recursive
       - name: Bash
-        shell: bash -l {0}
+        shell: bash
         run: |
           conda activate base
           conda create --name btest
@@ -35,11 +35,11 @@ jobs:
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: sh -l {0}
+        shell: sh
         run: |
           git submodule update --init --recursive
       - name: Sh
-        shell: sh -l {0}
+        shell: sh
         run: |
           source $CONDA/bin/activate
           conda activate base
