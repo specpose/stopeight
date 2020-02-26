@@ -21,6 +21,7 @@ jobs:
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
           /usr/share/miniconda/bin/python -m pip install setuptools wheel
+          /usr/share/miniconda/bin/python -m pip install -r requirements.txt
           /usr/share/miniconda/bin/python setup.py bdist
 
   conda-build-mac:
@@ -31,11 +32,11 @@ jobs:
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: zsh
+        shell: sh
         run: |
           git submodule update --init --recursive
-      - name: Zsh
-        shell: zsh
+      - name: Sh
+        shell: sh
         run: |
           source $CONDA/bin/activate
           conda create --name btest
@@ -46,6 +47,7 @@ jobs:
           conda build -n btest --debug ./stopeight-clibs
           conda install -n btest --use-local stopeight-clibs
           conda run -n btest "python -m pip install setuptools wheel"
+          conda run -n btest "python -m pip install -r requirements.txt"
           conda run -n btest "python setup.py bdist"
 
   conda-build-win:
@@ -68,4 +70,5 @@ jobs:
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
           C:\Miniconda\python -m pip install setuptools wheel
+          C:\Miniconda\python -m pip install -r requirements.txt
           C:\Miniconda\python setup.py bdist
