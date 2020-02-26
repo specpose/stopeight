@@ -1,0 +1,57 @@
+name: "Conda Build"
+
+on: [push, pull_request]
+
+jobs:
+  conda-build-ubuntu:
+    name: Ubuntu Conda Build
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: 'false'
+      - name: Bash
+        shell: bash -l {0}
+        run: |
+          git submodule update --init --recursive
+          conda install conda-build
+          conda build ./stopeight-clibs
+          conda install stopeight-clibs
+          ~/miniconda3/bin/pip3 install ./
+
+  conda-build-mac:
+    name: Mac Conda Build
+    runs-on: 'macos-latest'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: 'false'
+      - name: Sh
+        shell: sh -l {0}
+        run: |
+          git submodule update --init --recursive
+          source $CONDA/bin/activate
+          conda create --prefix ./envs
+          conda activate ./envs
+          conda install conda-build
+          conda build --debug ./stopeight-clibs
+          conda install stopeight-clibs
+          $CONDA/bin/pip3 install ./
+
+  conda-build-win:
+    name: Windows Conda Build
+    runs-on: 'windows-latest'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: 'false'
+      - name: Cmd.exe
+        shell: cmd /C CALL {0}
+        run: |
+          git submodule update --init --recursive
+          SET PATH=%PATH%;%CONDA%;%CONDA%\Scripts\
+          conda install conda-build
+          rd /s /q "C:\Program Files (x86)\Windows Kits\10\\include\wdf"
+          conda build ./stopeight-clibs
+          conda install stopeight-clibs
+          %CONDA%\Scripts\pip3 install ./
