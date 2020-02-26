@@ -41,15 +41,13 @@ jobs:
         run: |
           source $CONDA/bin/activate
           conda create --name btest
-          conda install -n btest conda-build
           conda activate btest
-          conda init zsh
-          cat .zshrc
+          conda install -n btest conda-build
           conda build -n btest --debug ./stopeight-clibs
           conda install -n btest --use-local stopeight-clibs
-          conda run -n btest "python -m pip install setuptools wheel"
-          conda run -n btest "python -m pip install -r requirements.txt"
-          conda run -n btest "python setup.py bdist"
+          /Users/runner/.conda/envs/btest/bin/python -m pip install setuptools wheel
+          /Users/runner/.conda/envs/btest/bin/python -m pip install -r requirements.txt
+          /Users/runner/.conda/envs/btest/bin/python setup.py bdist
 
   conda-build-win:
     name: Windows Conda Build
