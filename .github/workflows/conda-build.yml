@@ -16,7 +16,7 @@ jobs:
           git submodule update --init --recursive
           conda install conda-build
           conda build ./stopeight-clibs
-          conda install stopeight-clibs
+          conda install --use-local stopeight-clibs
           ~/miniconda3/bin/pip3 install ./
 
   conda-build-mac:
@@ -35,7 +35,7 @@ jobs:
           conda activate ./envs
           conda install conda-build
           conda build --debug ./stopeight-clibs
-          conda install stopeight-clibs
+          conda install --use-local stopeight-clibs
           $CONDA/bin/pip3 install ./
 
   conda-build-win:
@@ -53,5 +53,5 @@ jobs:
           conda install conda-build
           rd /s /q "C:\Program Files (x86)\Windows Kits\10\\include\wdf"
           conda build ./stopeight-clibs
-          conda install stopeight-clibs
+          conda install --use-local stopeight-clibs
           %CONDA%\Scripts\pip3 install ./
