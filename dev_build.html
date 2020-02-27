@@ -84,21 +84,23 @@
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Minimal Requirements (main repository):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python cmake build-essential
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python3 python3-dev cmake build-essential
 </pre></div>
 </div>
-<p>If you want to run the tests for the legacy algorithm, install Qt5 (main repository).</p>
-<blockquote>
-<div>$ sudo apt-get install qtbase5-dev</div></blockquote>
+<p>If you want to run the tests for the legacy algorithm, install Qt5 (main repository):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install qtbase5-dev
+</pre></div>
+</div>
 <p>The stopeight repository contains stopeight-clibs (Github):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone --recurse-submodules https://github.com/specpose/stopeight.git
 $ cd /path/to/where/stopeight
 </pre></div>
 </div>
 <p>Build and install stopeight (easy_install):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ easy_install-3.6 --user virtualenv
-$ virtualenv ~/stopeight-test
-$ ~/stopeight-test/bin/python setup-easydev.py develop
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python3-venv
+$ python -m venv ~/stopeight-test
+$ source ~/stopeight-test/bin/activate
+$ python setup-easydev.py develop
 </pre></div>
 </div>
 <p>Try the editor for a start:</p>
