@@ -23,7 +23,7 @@ jobs:
           conda install --use-local stopeight-clibs
           /usr/share/miniconda/bin/python -m pip install setuptools wheel
           /usr/share/miniconda/bin/python -m pip install -r requirements.txt
-          /usr/share/miniconda/bin/python setup.py bdist
+          /usr/share/miniconda/bin/python setup.py sdist bdist_wheel
 
   conda-build-mac:
     name: Mac Conda Build
@@ -47,7 +47,7 @@ jobs:
           conda install --use-local stopeight-clibs
           /Users/runner/.conda/envs/btest/bin/python -m pip install setuptools wheel
           /Users/runner/.conda/envs/btest/bin/python -m pip install -r requirements.txt
-          /Users/runner/.conda/envs/btest/bin/python setup.py bdist
+          /Users/runner/.conda/envs/btest/bin/python setup.py sdist bdist_wheel
 
   conda-build-win:
     name: Windows Conda Build
@@ -70,4 +70,4 @@ jobs:
           conda install --use-local stopeight-clibs
           C:\Miniconda\python -m pip install setuptools wheel
           C:\Miniconda\python -m pip install -r requirements.txt
-          C:\Miniconda\python setup.py bdist
+          C:\Miniconda\python setup.py sdist bdist_wheel
