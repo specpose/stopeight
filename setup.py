@@ -15,7 +15,7 @@ _include_dirs=[
     get_pybind_include(),
     get_pybind_include(user=True),
 ]
-_qt5_include_dirs=[]
+_qt5_include_dirs=_include_dirs
 if sysconfig.get_config_var('INCLUDEDIR')!='None':
     _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH')),'qt5')) #ubuntu only
     _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH'))))
@@ -82,9 +82,9 @@ setup( use_scm_version=True,
            Extension(
               'stopeight.legacy',
                [os.path.join(my_path,'stopeight-clibs','legacy-wrappers','interfacepython.cpp')],
-               include_dirs=_include_dirs.extend([
+               include_dirs=_qt5_include_dirs.extend([
                    os.path.join(my_path,'stopeight-clibs','legacy/include')
-               ]).extend(_qt5_include_dirs),
+               ]),
                libraries=['stopeight-clibs-legacy'],
                language='c++',
                optional=True
