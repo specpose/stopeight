@@ -8,7 +8,7 @@ import os
 __import__('python')
 from python import get_pybind_include, BuildExt
 my_path = os.path.dirname(os.path.realpath(__file__))
-from distutils import sysconfig
+import sysconfig
 _include_dirs=[
     os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example'),
     # Path to pybind11 headers
@@ -18,6 +18,7 @@ _include_dirs=[
 _qt5_include_dirs=_include_dirs
 if sysconfig.get_path('include')!='None':
     _qt5_include_dirs.append(os.path.join(str(sysconfig.get_path('include')),'qt5')) #ubuntu only
+    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_path('include')),'qt')) #conda only
     _qt5_include_dirs.append(os.path.join(str(sysconfig.get_path('include'))))
 #distutils end
 
