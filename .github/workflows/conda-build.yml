@@ -63,11 +63,11 @@ jobs:
       - name: PowerShell Core
         shell: pwsh
         run: |
-          $env:Path += ";"+$env:CONDA+";"+$env:CONDA+"\Scripts\"
+          $CONDA\condabin\conda.bat activate
           conda install conda-build
           Remove-Item -Path "C:\Program Files (x86)\Windows Kits\10\\include\wdf" -Recurse
           conda build --debug ./stopeight-clibs
           conda install --use-local stopeight-clibs
-          C:\Miniconda\python -m pip install setuptools wheel
-          C:\Miniconda\python -m pip install -r requirements.txt
-          C:\Miniconda\python setup.py sdist bdist_wheel
+          python -m pip install setuptools wheel
+          python -m pip install -r requirements.txt
+          python setup.py sdist bdist_wheel
