@@ -8,7 +8,18 @@ import os
 __import__('python')
 from python import get_pybind_include, BuildExt
 my_path = os.path.dirname(os.path.realpath(__file__))
-from distutils import sysconfig
+import sysconfig
+_include_dirs=[
+    os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example'),
+    # Path to pybind11 headers
+    get_pybind_include(),
+    get_pybind_include(user=True),
+]
+_qt5_include_dirs=_include_dirs
+if sysconfig.get_config_var('CONFINCLUDEDIR')!='None':
+    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR')),'qt5')) #ubuntu only
+    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR')),'qt')) #conda only
+    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR'))))
 #distutils end
 
 from setuptools import setup, Extension
@@ -38,13 +49,9 @@ setup( use_scm_version=True,
            Extension(
                'stopeight.grapher',
                [os.path.join(my_path,'stopeight-clibs','grapher-wrappers','IFPyGrapher.cpp')],
-               include_dirs=[
-                   # Path to pybind11 headers
-                   get_pybind_include(),
-                   get_pybind_include(user=True),
+               include_dirs=_include_dirs + [
                    os.path.join(my_path,'stopeight-clibs','include'),
-                   os.path.join(my_path,'stopeight-clibs','grapher'),
-		   os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example')
+                   os.path.join(my_path,'stopeight-clibs','grapher')
                ],
                libraries=['stopeight-clibs-grapher'],
                language='c++',
@@ -53,13 +60,9 @@ setup( use_scm_version=True,
            Extension(
                'stopeight.matrix',
                [os.path.join(my_path,'stopeight-clibs','matrix-wrappers','IFPyMatrix.cpp')],
-               include_dirs=[
-                   # Path to pybind11 headers
-                   get_pybind_include(),
-                   get_pybind_include(user=True),
+               include_dirs=_include_dirs + [
                    os.path.join(my_path,'stopeight-clibs','include'),
-                   os.path.join(my_path,'stopeight-clibs','matrix'),
-		   os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example')
+                   os.path.join(my_path,'stopeight-clibs','matrix')
                ],
                libraries=['stopeight-clibs-matrix'],
                language='c++',
@@ -68,13 +71,9 @@ setup( use_scm_version=True,
            Extension(
                'stopeight.analyzer',
                [os.path.join(my_path,'stopeight-clibs','analyzer-wrappers','IFPyAnalyzer.cpp')],
-               include_dirs=[
-                   # Path to pybind11 headers
-                   get_pybind_include(),
-                   get_pybind_include(user=True),
+               include_dirs=_include_dirs + [
                    os.path.join(my_path,'stopeight-clibs','include'),
-                   os.path.join(my_path,'stopeight-clibs','analyzer'),
-		   os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example')
+                   os.path.join(my_path,'stopeight-clibs','analyzer')
                ],
                libraries=['stopeight-clibs-analyzer'],
                language='c++',
@@ -83,10 +82,8 @@ setup( use_scm_version=True,
            Extension(
               'stopeight.legacy',
                [os.path.join(my_path,'stopeight-clibs','legacy-wrappers','interfacepython.cpp')],
-               include_dirs=[
-                   os.path.join(my_path,'stopeight-clibs','legacy/include'),
-		   os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example'),
-                   os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH')),'qt5')#ubuntu only
+               include_dirs=_qt5_include_dirs + [
+                   os.path.join(my_path,'stopeight-clibs','legacy/include')
                ],
                libraries=['stopeight-clibs-legacy'],
                language='c++',
