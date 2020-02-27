@@ -5,24 +5,21 @@ _packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.
 import os
 #distutils start
 #__import__('monkey_patch_parallel')
-import sys
-if len(sys.argv)>1:
-    if sys.argv[1]=='build_ext':
-        __import__('python')
-        from python import get_pybind_include, BuildExt
-        my_path = os.path.dirname(os.path.realpath(__file__))
-        from distutils import sysconfig
-        _include_dirs=[
-            os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example'),
-            # Path to pybind11 headers
-            get_pybind_include(),
-            get_pybind_include(user=True),
-        ]
-        _qt5_include_dirs=[]
-        if sysconfig.get_config_var('INCLUDEDIR')!='None':
-            _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH')),'qt5')) #ubuntu only
-            _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH'))))
-            _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR'))))
+__import__('python')
+from python import get_pybind_include, BuildExt
+my_path = os.path.dirname(os.path.realpath(__file__))
+from distutils import sysconfig
+_include_dirs=[
+    os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example'),
+    # Path to pybind11 headers
+    get_pybind_include(),
+    get_pybind_include(user=True),
+]
+_qt5_include_dirs=[]
+if sysconfig.get_config_var('INCLUDEDIR')!='None':
+    _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH')),'qt5')) #ubuntu only
+    _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH'))))
+    _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR'))))
 #distutils end
 
 from setuptools import setup, Extension
