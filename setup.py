@@ -16,10 +16,10 @@ _include_dirs=[
     get_pybind_include(user=True),
 ]
 _qt5_include_dirs=_include_dirs
-if sysconfig.get_path('include')!='None':
-    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_path('include')),'qt5')) #ubuntu only
-    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_path('include')),'qt')) #conda only
-    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_path('include'))))
+if sysconfig.get_config_var('CONFINCLUDEDIR')!='None':
+    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR')),'qt5')) #ubuntu only
+    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR')),'qt')) #conda only
+    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR'))))
 #distutils end
 
 from setuptools import setup, Extension
