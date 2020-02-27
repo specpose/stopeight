@@ -20,9 +20,9 @@ if len(sys.argv)>1:
         ]
         _qt5_include_dirs=[]
         if sysconfig.get_config_var('INCLUDEDIR')!='None':
-            _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH')),'qt5')) #ubuntu only
-            _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH'))))
-            _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR'))))
+            _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH')),'qt5')) #ubuntu only
+            _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH'))))
+            _qt5_include_dirs.extend(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR'))))
 #distutils end
 
 from setuptools import setup, Extension
@@ -52,7 +52,7 @@ setup( use_scm_version=True,
            Extension(
                'stopeight.grapher',
                [os.path.join(my_path,'stopeight-clibs','grapher-wrappers','IFPyGrapher.cpp')],
-               include_dirs=_include_dirs.append([
+               include_dirs=_include_dirs.extend([
                    os.path.join(my_path,'stopeight-clibs','include'),
                    os.path.join(my_path,'stopeight-clibs','grapher')
                ]),
@@ -63,7 +63,7 @@ setup( use_scm_version=True,
            Extension(
                'stopeight.matrix',
                [os.path.join(my_path,'stopeight-clibs','matrix-wrappers','IFPyMatrix.cpp')],
-               include_dirs=_include_dirs.append([
+               include_dirs=_include_dirs.extend([
                    os.path.join(my_path,'stopeight-clibs','include'),
                    os.path.join(my_path,'stopeight-clibs','matrix')
                ]),
@@ -74,7 +74,7 @@ setup( use_scm_version=True,
            Extension(
                'stopeight.analyzer',
                [os.path.join(my_path,'stopeight-clibs','analyzer-wrappers','IFPyAnalyzer.cpp')],
-               include_dirs=_include_dirs.append([
+               include_dirs=_include_dirs.extend([
                    os.path.join(my_path,'stopeight-clibs','include'),
                    os.path.join(my_path,'stopeight-clibs','analyzer')
                ]),
@@ -85,9 +85,9 @@ setup( use_scm_version=True,
            Extension(
               'stopeight.legacy',
                [os.path.join(my_path,'stopeight-clibs','legacy-wrappers','interfacepython.cpp')],
-               include_dirs=_include_dirs.append([
+               include_dirs=_include_dirs.extend([
                    os.path.join(my_path,'stopeight-clibs','legacy/include')
-               ]).append(_qt5_include_dirs),
+               ]).extend(_qt5_include_dirs),
                libraries=['stopeight-clibs-legacy'],
                language='c++',
                optional=True
