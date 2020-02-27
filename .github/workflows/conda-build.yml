@@ -63,7 +63,7 @@ jobs:
       - name: PowerShell Core
         shell: pwsh
         run: |
-          $CONDA\condabin\conda.bat activate
+          & $env:CONDA"\condabin\conda.bat" activate
           conda install conda-build
           Remove-Item -Path "C:\Program Files (x86)\Windows Kits\10\\include\wdf" -Recurse
           conda build --debug ./stopeight-clibs
