@@ -19,7 +19,7 @@ jobs:
         run: |
           source /usr/share/miniconda/bin/activate
           conda install conda-build
-          conda build ./stopeight-clibs
+          conda build --debug ./stopeight-clibs
           conda install --use-local stopeight-clibs
           /usr/share/miniconda/bin/python -m pip install setuptools wheel
           /usr/share/miniconda/bin/python -m pip install -r requirements.txt
@@ -42,12 +42,12 @@ jobs:
           source $CONDA/bin/activate
           conda create --name btest
           conda activate btest
-          conda install conda-build
-          conda build --debug ./stopeight-clibs
-          conda install --use-local stopeight-clibs
-          /Users/runner/.conda/envs/btest/bin/python -m pip install setuptools wheel
-          /Users/runner/.conda/envs/btest/bin/python -m pip install -r requirements.txt
-          /Users/runner/.conda/envs/btest/bin/python setup.py sdist bdist_wheel
+          $CONDA_EXE install conda-build
+          $CONDA_EXE build --debug ./stopeight-clibs
+          $CONDA_EXE install --use-local stopeight-clibs
+          $CONDA_PYTHON_EXE -m pip install setuptools wheel
+          $CONDA_PYTHON_EXE -m pip install -r requirements.txt
+          $CONDA_PYTHON_EXE setup.py sdist bdist_wheel
 
   conda-build-win:
     name: Windows Conda Build
@@ -66,7 +66,7 @@ jobs:
           $env:Path += ";"+$env:CONDA+";"+$env:CONDA+"\Scripts\"
           conda install conda-build
           Remove-Item -Path "C:\Program Files (x86)\Windows Kits\10\\include\wdf" -Recurse
-          conda build ./stopeight-clibs
+          conda build --debug ./stopeight-clibs
           conda install --use-local stopeight-clibs
           C:\Miniconda\python -m pip install setuptools wheel
           C:\Miniconda\python -m pip install -r requirements.txt

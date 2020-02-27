@@ -16,10 +16,9 @@ _include_dirs=[
     get_pybind_include(user=True),
 ]
 _qt5_include_dirs=_include_dirs
-if sysconfig.get_config_var('INCLUDEDIR')!='None':
-    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH')),'qt5')) #ubuntu only
-    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR')),str(sysconfig.get_config_var('MULTIARCH'))))
-    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('INCLUDEDIR'))))
+if sysconfig.get_path('include')!='None':
+    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_path('include')),'qt5')) #ubuntu only
+    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_path('include'))))
 #distutils end
 
 from setuptools import setup, Extension
