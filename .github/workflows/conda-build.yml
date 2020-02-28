@@ -18,7 +18,7 @@ jobs:
         shell: bash -l {0}
         run: |
           $CONDA/bin/conda create --name btest
-          $CONDA/bin/conda activate btest
+          eval "$($CONDA/bin/conda activate btest)"
           which conda
           conda install --channel specpose stopeight-clibs
           which python
@@ -40,7 +40,7 @@ jobs:
         shell: sh -l {0}
         run: |
           $CONDA/bin/conda create --name btest
-          $CONDA/bin/conda activate btest
+          eval "$($CONDA/bin/conda activate btest)"
           which conda
           conda install --channel specpose stopeight-clibs
           which python
@@ -62,7 +62,7 @@ jobs:
         shell: cmd /C CALL {0}
         run: |
           "%CONDA%"\condabin\conda create --name btest
-          "%CONDA%"\Scripts\activate btest
+          "%CONDA%"\Scripts\conda.bat activate btest
           conda install --channel specpose stopeight-clibs
           python -m pip install setuptools wheel pybind11
           python setup.py sdist bdist
