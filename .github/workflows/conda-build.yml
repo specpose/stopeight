@@ -7,58 +7,50 @@ jobs:
     name: Ubuntu Conda Build
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: goanpeca/setup-miniconda@v1
-        with:
-          miniconda-version: 'latest'
-          activate-environment: btest
       - uses: actions/checkout@v2
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: bash
+        shell: bash -l {0}
         run: |
           git submodule update --init --recursive
       - name: Bash
         shell: bash -l {0}
         run: |
-          conda init
-          conda activate base
+          $CONDA/bin/conda create --name btest
+          $CONDA/bin/conda activate btest
+          which conda
           conda install --channel specpose stopeight-clibs
-          python3 -m pip install setuptools
-          python3 setup.py sdist bdist
+          which python
+          python -m pip install setuptools wheel
+          python setup.py sdist bdist
 
   conda-build-mac:
     name: Mac Conda Build
     runs-on: 'macos-latest'
     steps:
-      - uses: goanpeca/setup-miniconda@v1
-        with:
-          miniconda-version: 'latest'
-          activate-environment: btest
       - uses: actions/checkout@v2
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: sh
+        shell: sh -l {0}
         run: |
           git submodule update --init --recursive
       - name: Sh
         shell: sh -l {0}
         run: |
-          conda init
-          conda activate base
+          $CONDA/bin/conda create --name btest
+          $CONDA/bin/conda activate btest
+          which conda
           conda install --channel specpose stopeight-clibs
-          python3 -m pip install setuptools
-          python3 setup.py sdist bdist
+          which python
+          python -m pip install setuptools wheel
+          python setup.py sdist bdist
 
   conda-build-win:
     name: Windows Conda Build
     runs-on: 'windows-latest'
     steps:
-      - uses: goanpeca/setup-miniconda@v1
-        with:
-          miniconda-version: 'latest'
-          activate-environment: btest
       - uses: actions/checkout@v2
         with:
           persist-credentials: 'false'
@@ -69,8 +61,8 @@ jobs:
       - name: Cmd.exe
         shell: cmd /C CALL {0}
         run: |
-          conda init
-          conda activate base
+          "%CONDA%"\condabin\conda create --name btest
+          "%CONDA%"\condabin\conda activate btest
           conda install --channel specpose stopeight-clibs
-          python3 -m pip install setuptools
-          python3 setup.py sdist bdist
+          python -m pip install setuptools wheel
+          python setup.py sdist bdist
