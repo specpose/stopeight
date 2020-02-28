@@ -59,11 +59,11 @@ jobs:
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: pwsh
+        shell: cmd /C CALL {0}
         run: |
           git submodule update --init --recursive
-      - name: PowerShell Core
-        shell: pwsh
+      - name: Cmd.exe
+        shell: cmd /C CALL {0}
         run: |
           conda install --channel specpose stopeight-clibs
           python3 -m pip install setuptools
