@@ -23,7 +23,7 @@ jobs:
         run: |
           conda install --channel specpose stopeight-clibs
           python -m pip install setuptools
-          conda setup.py sdist bdist
+          python setup.py sdist bdist
 
   conda-build-mac:
     name: Mac Conda Build
@@ -45,7 +45,7 @@ jobs:
         run: |
           conda install --channel specpose stopeight-clibs
           python -m pip install setuptools
-          conda setup.py sdist bdist
+          python setup.py sdist bdist
 
   conda-build-win:
     name: Windows Conda Build
@@ -67,4 +67,4 @@ jobs:
         run: |
           conda install --channel specpose stopeight-clibs
           python -m pip install setuptools
-          conda setup.py sdist bdist
+          python setup.py sdist bdist
