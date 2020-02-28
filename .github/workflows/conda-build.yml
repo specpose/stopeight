@@ -61,7 +61,7 @@ jobs:
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: cmd /C CALL {0}
+        shell: powershell
         run: |
           git submodule update --init --recursive
       - name: PowerShell
