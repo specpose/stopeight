@@ -22,8 +22,8 @@ jobs:
         shell: bash -l {0}
         run: |
           conda install --channel specpose stopeight-clibs
-          python -m pip install setuptools
-          python setup.py sdist bdist
+          python3 -m pip install setuptools
+          python3 setup.py sdist bdist
 
   conda-build-mac:
     name: Mac Conda Build
@@ -44,8 +44,8 @@ jobs:
         shell: sh -l {0}
         run: |
           conda install --channel specpose stopeight-clibs
-          python -m pip install setuptools
-          python setup.py sdist bdist
+          python3 -m pip install setuptools
+          python3 setup.py sdist bdist
 
   conda-build-win:
     name: Windows Conda Build
@@ -59,12 +59,12 @@ jobs:
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: powershell
+        shell: pwsh
         run: |
           git submodule update --init --recursive
-      - name: PowerShell
-        shell: powershell
+      - name: PowerShell Core
+        shell: pwsh
         run: |
           conda install --channel specpose stopeight-clibs
-          python -m pip install setuptools
-          python setup.py sdist bdist
+          python3 -m pip install setuptools
+          python3 setup.py sdist bdist
