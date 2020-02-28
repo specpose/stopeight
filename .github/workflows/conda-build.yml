@@ -62,7 +62,7 @@ jobs:
           git submodule update --init --recursive
       - name: Cmd.exe
         shell: cmd /C CALL {0}
-        run: >-
+        run: |
           SET PATH=%PATH%;%CONDA%;%CONDA%\Scripts\
           conda install conda-build
           rd /s /q "C:\Program Files (x86)\Windows Kits\10\\include\wdf"
