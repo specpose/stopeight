@@ -21,6 +21,8 @@ jobs:
       - name: Bash
         shell: bash -l {0}
         run: |
+          conda init
+          conda activate base
           conda install --channel specpose stopeight-clibs
           python3 -m pip install setuptools
           python3 setup.py sdist bdist
@@ -43,6 +45,8 @@ jobs:
       - name: Sh
         shell: sh -l {0}
         run: |
+          conda init
+          conda activate base
           conda install --channel specpose stopeight-clibs
           python3 -m pip install setuptools
           python3 setup.py sdist bdist
@@ -65,6 +69,8 @@ jobs:
       - name: Cmd.exe
         shell: cmd /C CALL {0}
         run: |
+          conda init
+          conda activate base
           conda install --channel specpose stopeight-clibs
           python3 -m pip install setuptools
           python3 setup.py sdist bdist
