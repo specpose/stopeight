@@ -41,8 +41,8 @@ jobs:
           conda create --name btest
           conda activate btest
           $CONDA_EXE install --channel specpose stopeight-clibs
-          $CONDA_PYTHON_EXE -m pip install setuptools wheel
-          $CONDA_PYTHON_EXE -m pip install -r requirements.txt
+          $CONDA_PYTHON_EXE -m pip install --user setuptools wheel
+          $CONDA_PYTHON_EXE -m pip install --user -r requirements.txt
           $CONDA_PYTHON_EXE setup.py sdist bdist_wheel
 
   conda-build-win:
@@ -59,8 +59,10 @@ jobs:
       - name: Cmd.exe
         shell: cmd /C CALL {0}
         run: |
-          SET PATH=%PATH%;%CONDA%;%CONDA%\Scripts\
-          conda install --channel specpose stopeight-clibs
-          python -m pip install setuptools wheel
-          python -m pip install -r requirements.txt
-          python setup.py sdist bdist_wheel
+          %CONDA%\condabin\conda.bat activate
+          %CONDA_EXE% create --name btest
+          %CONDA_EXE% activate btest
+          %CONDA_EXE% install --channel specpose stopeight-clibs
+          %CONDA_PYTHON_EXE% -m pip install setuptools wheel
+          %CONDA_PYTHON_EXE% -m pip install -r requirements.txt
+          %CONDA_PYTHON_EXE% setup.py sdist bdist_wheel
