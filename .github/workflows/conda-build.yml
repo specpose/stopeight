@@ -17,10 +17,8 @@ jobs:
       - name: Bash
         shell: bash
         run: |
-          source /usr/share/miniconda/bin/activate
-          $CONDA_EXE install conda-build
-          $CONDA_EXE build ./stopeight-clibs
-          $CONDA_EXE install --use-local stopeight-clibs
+          source $CONDA/bin/activate
+          $CONDA_EXE install --channel specpose stopeight-clibs
           $CONDA_PYTHON_EXE -m pip install setuptools wheel
           $CONDA_PYTHON_EXE -m pip install -r requirements.txt
           $CONDA_PYTHON_EXE setup.py sdist bdist_wheel
@@ -42,9 +40,7 @@ jobs:
           source $CONDA/bin/activate
           conda create --name btest
           conda activate btest
-          $CONDA_EXE install conda-build
-          $CONDA_EXE build ./stopeight-clibs
-          $CONDA_EXE install --use-local stopeight-clibs
+          $CONDA_EXE install --channel specpose stopeight-clibs
           $CONDA_PYTHON_EXE -m pip install setuptools wheel
           $CONDA_PYTHON_EXE -m pip install -r requirements.txt
           $CONDA_PYTHON_EXE setup.py sdist bdist_wheel
@@ -64,10 +60,7 @@ jobs:
         shell: cmd /C CALL {0}
         run: |
           SET PATH=%PATH%;%CONDA%;%CONDA%\Scripts\
-          conda install conda-build
-          rd /s /q "C:\Program Files (x86)\Windows Kits\10\\include\wdf"
-          conda build ./stopeight-clibs
-          conda install --use-local stopeight-clibs
+          conda install --channel specpose stopeight-clibs
           python -m pip install setuptools wheel
           python -m pip install -r requirements.txt
           python setup.py sdist bdist_wheel
