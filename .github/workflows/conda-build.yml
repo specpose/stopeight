@@ -57,16 +57,15 @@ jobs:
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: pwsh
+        shell: cmd /C CALL {0}
         run: |
           git submodule update --init --recursive
-      - name: PowerShell Core
-        shell: pwsh
-        run: |
-          $env:Path += ";"+$env:CONDA+"\Scripts"
-          & $env:CONDA"\condabin\conda.bat" activate
+      - name: Cmd.exe
+        shell: cmd /C CALL {0}
+        run: >-
+          SET PATH=%PATH%;%CONDA%;%CONDA%\Scripts\
           conda install conda-build
-          Remove-Item -Path "C:\Program Files (x86)\Windows Kits\10\\include\wdf" -Recurse
+          rd /s /q "C:\Program Files (x86)\Windows Kits\10\\include\wdf"
           conda build ./stopeight-clibs
           conda install --use-local stopeight-clibs
           python -m pip install setuptools wheel
