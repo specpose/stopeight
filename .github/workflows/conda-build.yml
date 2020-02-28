@@ -17,12 +17,13 @@ jobs:
       - name: Bash
         shell: bash -l {0}
         run: |
-          $CONDA/bin/conda create --name btest
-          eval "$($CONDA/bin/conda activate btest)"
+          eval "$($CONDA/bin/conda shell.bash hook)"
+          conda create --name btest
+          conda activate btest
           which conda
           conda install --channel specpose stopeight-clibs
           which python
-          python -m pip install setuptools wheel pybind11
+          python -m pip install setuptools wheel
           python setup.py sdist bdist
 
   conda-build-mac:
@@ -39,12 +40,13 @@ jobs:
       - name: Sh
         shell: sh -l {0}
         run: |
-          $CONDA/bin/conda create --name btest
-          eval "$($CONDA/bin/conda activate btest)"
+          eval "$($CONDA/bin/conda shell.zsh hook)"
+          conda create --name btest
+          conda activate btest
           which conda
           conda install --channel specpose stopeight-clibs
           which python
-          python -m pip install setuptools wheel pybind11
+          python -m pip install setuptools wheel
           python setup.py sdist bdist
 
   conda-build-win:
@@ -61,8 +63,9 @@ jobs:
       - name: Cmd.exe
         shell: cmd /C CALL {0}
         run: |
+          "%CONDA%"\Scripts\conda.bat activate
           "%CONDA%"\condabin\conda create --name btest
-          "%CONDA%"\Scripts\conda.bat activate btest
+          "%CONDA%"\condabin\conda activate btest
           conda install --channel specpose stopeight-clibs
-          python -m pip install setuptools wheel pybind11
+          python -m pip install setuptools wheel
           python setup.py sdist bdist
