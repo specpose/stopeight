@@ -18,9 +18,9 @@ jobs:
         shell: bash -l {0}
         run: |
           $CONDA/condabin/conda create --name btest
-          $CONDA/envs/btest/bin/conda install --channel specpose stopeight-clibs
-          $CONDA/envs/btest/bin/python -m pip install setuptools wheel
-          $CONDA/envs/btest/bin/python setup.py sdist bdist
+          $CONDA/envs/btest/condabin/conda install --channel specpose stopeight-clibs
+          $CONDA/envs/btest/condabin/python -m pip install setuptools wheel
+          $CONDA/envs/btest/condabin/python setup.py sdist bdist
 
   conda-build-mac:
     name: Mac Conda Build
@@ -37,9 +37,9 @@ jobs:
         shell: sh -l {0}
         run: |
           $CONDA/condabin/conda create --name btest
-          ~/.conda/envs/btest/bin/conda install --channel specpose stopeight-clibs
-          ~/.conda/envs/btest/bin/python -m pip install setuptools wheel
-          ~/.conda/envs/btest/bin/python setup.py sdist bdist
+          ~/.conda/envs/btest/condabin/conda install --channel specpose stopeight-clibs
+          ~/.conda/envs/btest/condabin/python -m pip install setuptools wheel
+          ~/.conda/envs/btest/condabin/python setup.py sdist bdist
 
   conda-build-win:
     name: Windows Conda Build
@@ -56,6 +56,6 @@ jobs:
         shell: cmd /C CALL {0}
         run: |
           "%CONDA%"\Scripts\conda create --name btest
-          "%CONDA%"\envs\btest\condabin\conda install --channel specpose stopeight-clibs
-          "%CONDA%"\envs\btest\python -m pip install setuptools wheel
+          "%CONDA%"\envs\btest\Scripts\conda install --channel specpose stopeight-clibs
+          "%CONDA%"\envs\btest\Scripts\pip install setuptools wheel
           "%CONDA%"\envs\btest\python setup.py sdist bdist
