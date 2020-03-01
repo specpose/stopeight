@@ -62,8 +62,8 @@ jobs:
         shell: pwsh
         run: |
           (& $env:CONDA"\condabin\conda" shell.powershell hook)
-          conda create --name btest
-          conda activate btest
+          $Env:CONDA_EXE create --name btest
+          $Env:CONDA_EXE activate btest
           conda install --channel specpose python=3.7.6 stopeight-clibs
           python -m pip install -r requirements.txt
           python -m pip install setuptools wheel
