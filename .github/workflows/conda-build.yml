@@ -58,7 +58,7 @@ jobs:
         shell: pwsh
         run: |
           git submodule update --init --recursive
-      - name: Configure Windows Conda Shell
+      - name: PowerShell Core
         shell: pwsh
         run: |
           Set-ExecutionPolicy RemoteSigned
