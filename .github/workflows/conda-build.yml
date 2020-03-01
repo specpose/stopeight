@@ -17,10 +17,12 @@ jobs:
       - name: Bash
         shell: bash -l {0}
         run: |
-          $CONDA/condabin/conda create --name btest
-          $CONDA/condabin/conda install --name btest --channel specpose stopeight-clibs
-          $CONDA/condabin/conda run --name btest python -m pip install setuptools wheel
-          $CONDA/condabin/conda run --name btest python setup.py sdist bdist
+          eval "$($CONDA/condabin/conda shell.bash hook)"
+          conda create --name btest
+          conda activate btest
+          conda install --channel specpose python stopeight-clibs
+          python -m pip install setuptools wheel
+          python setup.py sdist bdist
 
   conda-build-mac:
     name: Mac Conda Build
@@ -36,10 +38,12 @@ jobs:
       - name: Sh
         shell: sh -l {0}
         run: |
-          $CONDA/condabin/conda create --name btest
-          $CONDA/condabin/conda install --name btest --channel specpose stopeight-clibs
-          $CONDA/condabin/conda run --name btest python -m pip install setuptools wheel
-          $CONDA/condabin/conda run --name btest python setup.py sdist bdist
+          eval "$($CONDA/condabin/conda shell.zsh hook)"
+          conda create --name btest
+          conda activate btest
+          conda install --channel specpose python stopeight-clibs
+          python -m pip install setuptools wheel
+          python setup.py sdist bdist
 
   conda-build-win:
     name: Windows Conda Build
@@ -49,13 +53,15 @@ jobs:
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: cmd /C CALL {0}
+        shell: pwsh
         run: |
           git submodule update --init --recursive
-      - name: Cmd.exe
-        shell: cmd /C CALL {0}
+      - name: PowerShell Core
+        shell: pwsh
         run: |
-          "%CONDA%"\Scripts\conda create --name btest
-          "%CONDA%"\Scripts\conda install --name btest --channel specpose stopeight-clibs
-          "%CONDA%"\Scripts\conda run --name btest python -m pip install setuptools wheel
-          "%CONDA%"\Scripts\conda run --name btest python setup.py sdist bdist
+          (& $env:CONDA"\condabin\conda shell.powershell hook")
+          conda create --name btest
+          conda activate btest
+          conda install --channel specpose python stopeight-clibs
+          python -m pip install setuptools wheel
+          python setup.py sdist bdist
