@@ -21,6 +21,7 @@ jobs:
           conda create --name btest
           conda activate btest
           conda install --channel specpose python stopeight-clibs
+          python -m pip install -e .
           python -m pip install setuptools wheel
           python setup.py sdist bdist
 
@@ -42,6 +43,7 @@ jobs:
           conda create --name btest
           conda activate btest
           conda install --channel specpose python stopeight-clibs
+          python -m pip install -e .
           python -m pip install setuptools wheel
           python setup.py sdist bdist
 
@@ -59,9 +61,10 @@ jobs:
       - name: PowerShell Core
         shell: pwsh
         run: |
-          (& $env:CONDA"\condabin\conda shell.powershell hook")
+          (& $env:CONDA"\condabin\conda" shell.powershell hook)
           conda create --name btest
           conda activate btest
           conda install --channel specpose python stopeight-clibs
+          python -m pip install -e .
           python -m pip install setuptools wheel
           python setup.py sdist bdist
