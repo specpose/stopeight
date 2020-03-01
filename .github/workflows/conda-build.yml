@@ -33,11 +33,11 @@ jobs:
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: sh -l {0}
+        shell: zsh -l {0}
         run: |
           git submodule update --init --recursive
-      - name: Sh
-        shell: sh -l {0}
+      - name: Zsh
+        shell: zsh -l {0}
         run: |
           eval "$($CONDA/condabin/conda shell.zsh hook)"
           conda create --name btest
@@ -55,11 +55,11 @@ jobs:
         with:
           persist-credentials: 'false'
       - name: Checkout submodules
-        shell: pwsh
+        shell: powershell
         run: |
           git submodule update --init --recursive
-      - name: PowerShell Core
-        shell: pwsh
+      - name: PowerShell
+        shell: powershell
         run: |
           Get-ExecutionPolicy
           Set-ExecutionPolicy RemoteSigned
