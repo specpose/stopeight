@@ -85,7 +85,7 @@ setup( use_scm_version=True,
                include_dirs=_qt5_include_dirs + [
                    os.path.join(my_path,'stopeight-clibs','legacy/include')
                ],
-               libraries=['stopeight-clibs-legacy'],
+               libraries=['stopeight-clibs-legacy','Qt5Core'],#Qt5Core needed for old wrapper
                language='c++',
                optional=True
               ),
