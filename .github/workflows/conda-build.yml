@@ -64,6 +64,7 @@ jobs:
           Get-ExecutionPolicy
           Set-ExecutionPolicy RemoteSigned
           Get-ExecutionPolicy
+          $env:Path += ";"+$env:CONDA+"\Scripts\"
           (& $env:CONDA"\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
           conda create --name btest
           conda activate btest

@@ -20,6 +20,11 @@ if sysconfig.get_config_var('CONFINCLUDEDIR')!='None':
     _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR')),'qt5')) #ubuntu only
     _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR')),'qt')) #conda only
     _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR'))))
+if sysconfig.get_config_var('prefix')!='None':
+    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('prefix')),'Library','include','qt'))#conda Windows only
+_library_dirs=[]
+if sysconfig.get_config_var('prefix')!='None':
+    _library_dirs.append(os.path.join(str(sysconfig.get_config_var('prefix')),'Library','lib'))#conda Windows only
 #distutils end
 
 from setuptools import setup, Extension
@@ -53,6 +58,7 @@ setup( use_scm_version=True,
                    os.path.join(my_path,'stopeight-clibs','include'),
                    os.path.join(my_path,'stopeight-clibs','grapher')
                ],
+               library_dirs=_library_dirs,
                libraries=['stopeight-clibs-grapher'],
                language='c++',
                optional=True
@@ -64,6 +70,7 @@ setup( use_scm_version=True,
                    os.path.join(my_path,'stopeight-clibs','include'),
                    os.path.join(my_path,'stopeight-clibs','matrix')
                ],
+               library_dirs=_library_dirs,
                libraries=['stopeight-clibs-matrix'],
                language='c++',
                optional=True
@@ -75,6 +82,7 @@ setup( use_scm_version=True,
                    os.path.join(my_path,'stopeight-clibs','include'),
                    os.path.join(my_path,'stopeight-clibs','analyzer')
                ],
+               library_dirs=_library_dirs,
                libraries=['stopeight-clibs-analyzer'],
                language='c++',
                optional=True
@@ -85,6 +93,7 @@ setup( use_scm_version=True,
                include_dirs=_qt5_include_dirs + [
                    os.path.join(my_path,'stopeight-clibs','legacy/include')
                ],
+               library_dirs=_library_dirs,
                libraries=['stopeight-clibs-legacy','Qt5Core'],#Qt5Core needed for old wrapper
                language='c++',
                optional=True
