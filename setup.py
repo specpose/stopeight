@@ -16,15 +16,19 @@ _include_dirs=[
     get_pybind_include(user=True),
 ]
 _qt5_include_dirs=_include_dirs
-if sysconfig.get_config_var('CONFINCLUDEDIR')!='None':
-    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR')),'qt5')) #ubuntu only
-    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR')),'qt')) #conda only
-    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('CONFINCLUDEDIR'))))
-if sysconfig.get_config_var('prefix')!='None':
-    _qt5_include_dirs.append(os.path.join(str(sysconfig.get_config_var('prefix')),'Library','include','qt'))#conda Windows only
 _library_dirs=[]
-if sysconfig.get_config_var('prefix')!='None':
-    _library_dirs.append(os.path.join(str(sysconfig.get_config_var('prefix')),'Library','lib'))#conda Windows only
+_CONFINCLUDEDIR=sysconfig.get_config_var('CONFINCLUDEDIR')
+_MULTIARCH=sysconfig.get_config_var('MULTIARCH')
+_prefix=sysconfig.get_config_var('prefix')
+if _CONFINCLUDEDIR!='None':
+    if _MULTIARCH!='None':
+	_CONFINCLUDEDIR=os.path.join(str(_CONFINCLUDEDIR),str(_MULTIARCH))
+    _qt5_include_dirs.append(os.path.join(str(_CONFINCLUDEDIR),'qt5')) #ubuntu only
+    _qt5_include_dirs.append(os.path.join(str(_CONFINCLUDEDIR),'qt')) #conda only
+    _qt5_include_dirs.append(os.path.join(str(_CONFINCLUDEDIR)))
+if _prefix!='None':
+    _qt5_include_dirs.append(os.path.join(str(_prefix),'Library','include','qt'))#conda Windows only
+    _library_dirs.append(os.path.join(str(_prefix),'Library','lib'))#conda Windows only
 #distutils end
 
 from setuptools import setup, Extension
