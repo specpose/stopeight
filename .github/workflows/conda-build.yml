@@ -64,10 +64,10 @@ jobs:
           Get-ExecutionPolicy
           Set-ExecutionPolicy RemoteSigned
           Get-ExecutionPolicy
-          (& $env:CONDA"\Scripts\conda.exe" "install" "conda=4.7.12")
+          (& $env:CONDA"\Scripts\conda.exe" "install" "conda=4.8.2")
           (& $env:CONDA"\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
           conda info
           conda install --channel specpose python=3.7.6 stopeight-clibs
           python -m pip install -r requirements.txt
           python -m pip install setuptools wheel
-          python setup.py sdist bdist
+          python -W ignore::UserWarning:distutils.dist setup.py sdist bdist
