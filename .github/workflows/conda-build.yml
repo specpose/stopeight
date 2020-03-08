@@ -64,9 +64,10 @@ jobs:
           Get-ExecutionPolicy
           Set-ExecutionPolicy RemoteSigned
           Get-ExecutionPolicy
-          $env:Path += ";"+$env:CONDA+"\Scripts\"
+          (& $env:CONDA"\Scripts\conda.bat" "activate")
           (& $env:CONDA"\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
           conda create --name btest
+          (& $env:CONDA"\Scripts\conda.bat" "activate" "btest")
           conda activate btest
           conda install --channel specpose python=3.7.6 stopeight-clibs
           python -m pip install -r requirements.txt
