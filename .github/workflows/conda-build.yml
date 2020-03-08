@@ -61,7 +61,7 @@ jobs:
         run: |
           git submodule update --init --recursive
       - name: PowerShell
-        shell: powershell -ExecutionPolicy RemoteSigned 2>$null
+        shell: powershell -ExecutionPolicy RemoteSigned 2>$null {0} {1} {2}
         run: |
           Get-ExecutionPolicy
           (& $env:CONDA"\Scripts\conda.exe" "install" "conda=4.7.12")
