@@ -64,7 +64,7 @@ jobs:
           Get-ExecutionPolicy
           Set-ExecutionPolicy RemoteSigned
           Get-ExecutionPolicy
-          (& $env:CONDA"\Scripts\conda.exe" "update" "conda=4.7.12")
+          (& $env:CONDA"\Scripts\conda.exe" "install" "conda=4.7.12")
           (& $env:CONDA"\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
           conda info
           conda create --name btest
