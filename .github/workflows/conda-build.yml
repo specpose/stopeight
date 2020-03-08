@@ -39,6 +39,7 @@ jobs:
       - name: Zsh
         shell: zsh -l {0}
         run: |
+          clang --version
           eval "$($CONDA/condabin/conda shell.zsh hook)"
           conda create --name btest
           conda activate btest
@@ -70,4 +71,4 @@ jobs:
           conda install --channel specpose python=3.7.6 stopeight-clibs
           python -m pip install -r requirements.txt
           python -m pip install setuptools wheel
-          python -W ignore::UserWarning:setuptools_scm setup.py sdist bdist
+          python -W ignore::UserWarning:setuptools_scm.git setup.py sdist bdist
