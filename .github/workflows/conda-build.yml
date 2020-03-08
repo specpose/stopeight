@@ -70,4 +70,4 @@ jobs:
           conda install --channel specpose python=3.7.6 stopeight-clibs
           python -m pip install -r requirements.txt
           python -m pip install setuptools wheel
-          python -W ignore::UserWarning:distutils.dist setup.py sdist bdist
+          python -W ignore::UserWarning:setuptools_scm setup.py sdist bdist
