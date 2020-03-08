@@ -51,7 +51,7 @@ setup( use_scm_version=True,
           'funcsigs',
           'matplotlib<3.0',#python2
           'pybind11>=2.4',
-          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #not for python2
+#          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #not for python2
           ],
 #pip end
        ext_modules = [
