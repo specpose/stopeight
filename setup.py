@@ -22,8 +22,7 @@ _MULTIARCH=sysconfig.get_config_var('MULTIARCH')
 _prefix=sysconfig.get_config_var('prefix')
 if _CONFINCLUDEDIR!='None':
     if _MULTIARCH!='None':
-        _CONFINCLUDEDIR=os.path.join(str(_CONFINCLUDEDIR),str(_MULTIARCH))
-    _qt5_include_dirs.append(os.path.join(str(_CONFINCLUDEDIR),'qt5')) #ubuntu only
+        _qt5_include_dirs.append(os.path.join(str(_CONFINCLUDEDIR),str(_MULTIARCH),'qt5')) #ubuntu only
     _qt5_include_dirs.append(os.path.join(str(_CONFINCLUDEDIR),'qt')) #conda only
     _qt5_include_dirs.append(os.path.join(str(_CONFINCLUDEDIR)))
 if _prefix!='None':
