@@ -4,7 +4,6 @@ _packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.
 
 import os
 #distutils start
-#__import__('monkey_patch_parallel')
 __import__('python')
 from python import get_pybind_include, BuildExt
 my_path = os.path.dirname(os.path.realpath(__file__))
@@ -12,8 +11,8 @@ import sysconfig
 _include_dirs=[
     os.path.join(my_path,'stopeight-clibs','cmake-git-version-tracking','better-example'),
     # Path to pybind11 headers
-    get_pybind_include(),
-    get_pybind_include(user=True),
+    str(get_pybind_include()),
+    str(get_pybind_include(user=True)),
 ]
 _qt5_include_dirs=_include_dirs
 _library_dirs=[]
