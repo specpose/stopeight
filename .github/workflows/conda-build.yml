@@ -66,7 +66,7 @@ jobs:
           $ErrorActionPreference = 'Continue'
           echo $ErrorActionPreference
           Get-ExecutionPolicy
-          Set-ExecutionPolicy -CurrentUser RemoteSigned
+          Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
           Get-ExecutionPolicy
           (& $env:CONDA"\Scripts\conda.exe" "install" "conda=4.7.12")
           (& $env:CONDA"\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
