@@ -23,11 +23,11 @@ setup( use_scm_version=True,
        zip_safe=False,
 #pip start - not in cmake_examples
        install_requires=[
-          'numpy<1.17.0',#python2
+          'numpy',
           'future',
           'funcsigs',
-          'matplotlib<3.0',#python2
-          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #not for python2
+          'matplotlib',
+          'PyQt5',# <5.11.0, because pip>=19.3
           ],
 #pip end - not in cmake_examples
 #cmake start

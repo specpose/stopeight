@@ -24,6 +24,7 @@ Build and install stopeight (easy_install)::
     $ sudo apt-get install python3-venv
     $ python -m venv ~/stopeight-test
     $ source ~/stopeight-test/bin/activate
+    $ python -m pip install setuptools pybind11 PyQt5
     $ python setup-easydev.py develop
 
 Try the editor for a start::

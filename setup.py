@@ -45,12 +45,12 @@ setup( use_scm_version=True,
 #distutils start
 #pip start
        install_requires=[
-          'numpy<1.17.0',#python2
+          'numpy',
           'future',
           'funcsigs',
-          'matplotlib<3.0',#python2
+          'matplotlib',
           'pybind11>=2.4',
-          'PyQt5<5.11.0',# <5.11.0, because pip>=19.3 #not for python2
+          'PyQt5',# <5.11.0, because pip>=19.3
           ],
 #pip end
        ext_modules = [
