@@ -19,9 +19,7 @@ In order to rebuild the docs, do::
 
 Only if Sphinx version is lower than 1.2::
 
-    $ git show master:doc/_extra/CNAME > ./CNAME
     $ git show master:doc/_extra/robots.txt > ./robots.txt
-    $ git add ./CNAME
     $ git add ./robots.txt
 
 Continue::
