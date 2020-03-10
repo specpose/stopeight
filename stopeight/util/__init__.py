@@ -15,9 +15,6 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-#When Python2 support is droped, remove this pkgutil-style file for native python3 namespaces
-__path__ = __import__('pkgutil').extend_path(__path__, __name__)
-
 from stopeight.logging import logSwitch
 # Note: This is done once at module import
 logSwitch.initialize_config()

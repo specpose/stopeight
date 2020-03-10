@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-_packages = [ 'stopeight','stopeight.logging','stopeight.comparator','stopeight.multiprocessing','stopeight.util','stopeight.util.editor','stopeight.util.editor.modules']
+_packages = ['stopeight']
 
 import os
 #distutils start
