@@ -53,8 +53,8 @@ from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
 from PyQt5.QtGui import QTabletEvent
 from PyQt5.QtCore import QEvent
 
-from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG,force=True)
 
 from stopeight.util.runnable import EditorApp
 from stopeight.util.editor.data import ScribbleData,ScribbleBackup,ScribblePoint

@@ -22,8 +22,8 @@ def TCT_to_bezier(data):
 TCT_to_bezier.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
 
 ##import stopeight.finders
-##from stopeight.logging import logSwitch
-##log = logSwitch.logPrint()
+##import stopeight.logging as log
+##log.basicConfig(level=log.DEBUG,force=True)
 ##from stopeight.grapher import *
 ##
 ##def findTurns(data):

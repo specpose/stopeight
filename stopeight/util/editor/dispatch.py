@@ -7,8 +7,8 @@ from stopeight.util.runnable import EditorApp
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication,QMainWindow,QToolBar,QGroupBox,QHBoxLayout
 
-from stopeight.logging import logSwitch
-log = logSwitch.logNone()
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG,force=True)
 
 # False: Is part of a compiled library
 _DATA = {'Modules': [

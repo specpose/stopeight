@@ -5,8 +5,8 @@ version=grapher.version
 from stopeight.util.editor.data import ScribbleData, WaveData, ScribblePoint
 from stopeight.util.editor.scribble import ScribbleArea
 
-from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG,force=True)
 
 def _append(data):
     for id,vector in enumerate(data):

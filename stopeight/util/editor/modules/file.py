@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 # Copyright (C) 2009-2016 Specific Purpose Software GmbH
-from stopeight.logging import logSwitch
-log = logSwitch.logNone()
+import stopeight.logging as log
+log.disable(log.CRITICAL)
 
 from stopeight.util.runnable import EditorApp
 

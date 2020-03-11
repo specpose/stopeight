@@ -29,55 +29,30 @@ class EditorApp(QApplication):
             self.window = QMainWindow()
             self.window.setWindowTitle("Editor")
 
-##class Singleton(type):
-##    print("_instances")
-##    _instances = " (same test data)"
-##    def __call__(cls, *args, **kwargs):
-##        print("__call__"+cls._instances)
-##        return type.__call__(cls,*args, **kwargs)
-##    def __new__(meta,name,bases,dict):
-##        print("__new__"+meta._instances)
-##        return type.__new__(meta,name,bases,dict)
-##    def __init__(meta,name,bases,dict):
-##        print("__init__"+meta._instances)
-##        return type.__init__(meta,name,bases,dict)
-
+#inherit: (StatefulClass,metaclass=Singleton)
 class Singleton(type):
     _instances = {}
+    ## type.__call__ is type(), not type()() unlike object()()
     def __call__(cls, *args, **kwargs):
+    #    print(str(cls)+"__call__")
         if cls not in cls._instances:
-            #cls._instances[cls] = super(Singleton,cls).__call__(*args, **kwargs)
-            cls._instances[cls] = type.__call__(cls,*args, **kwargs)
+            cls._instances[cls] = super(Singleton,cls).__call__(*args, **kwargs)
         return cls._instances[cls]
+    ## Prohibited!
+    # def __new__(cls, *args, **kwargs):
+    #     print(str(cls)+"__new__")
+    #     super(Singleton,cls).__new__(cls,*args, **kwargs)
+    def __init__(cls, *args, **kwargs):
+    #    print(str(cls)+"__init__")
+        super(Singleton,cls).__init__(*args, **kwargs)
 
-##class Singleton(type):
-##    _instances = {}
-##    def __new__(meta,name,bases,dict):
-##        print(meta,name,bases,dict)
-##        if meta not in meta._instances:
-##            meta._instances[meta] = type.__new__(meta,name,bases,dict)
-##        return meta._instances[meta]
-##    def __init__(meta,name,bases,dict):
-##        pass
-
-
-##class Singleton(object):
-##    _instances = {}
-##    def __call__(cls, *args, **kwargs):
-##        if cls not in cls._instances:
-##            cls._instances[cls] = super(Singleton,cls).__call__(*args, **kwargs)
-##        return cls._instances[cls]
-
-from future.utils import with_metaclass
-class SingletonList(with_metaclass(Singleton,list)):
+class SingletonList(list,metaclass=Singleton):
     pass
 import numpy
 from numpy import ndarray
-class SingletonNumpy(with_metaclass(Singleton,ndarray)):
+class SingletonNumpy(ndarray,metaclass=Singleton):
     def __call__(cls, *args, **kwargs):
         print("__call__ sub")
-##SingletonList = Singleton('SingletonList',(list,),{})
-##SingletonNumpy = Singleton('SingletonNumpy',(numpy.ndarray,),{})
 
 ##class Singleton(object):
 ##    _instance = None
@@ -109,5 +84,5 @@ if __name__ == '__main__':
     if (len(test1)!=len(test2)):
         raise Exception("Singleton instantiation test failed!")
     test3 = SingletonNumpy(shape=(1,),dtype=numpy.int16)
-    #test3 = SingletonNumpy()
+    test3 = SingletonNumpy()
     print(test3[0])

@@ -2,8 +2,8 @@ from PyQt5.QtWidgets import QDockWidget,QTextEdit,QVBoxLayout,QGroupBox
 from PyQt5.QtCore import Qt, QSize
 from stopeight.util.runnable import EditorApp
 
-from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG,force=True)
 
 import sys
 import os

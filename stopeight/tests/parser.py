@@ -2,8 +2,8 @@
 
 # Copyright (C) 2017 Fassio Blatter
 
-from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG,force=True)
 from stopeight.util import tableau_printer
 
 import os

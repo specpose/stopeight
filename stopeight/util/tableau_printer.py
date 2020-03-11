@@ -1,5 +1,5 @@
-from stopeight.logging import logSwitch
-log = logSwitch.logNone
+import stopeight.logging as log
+log.disable(log.CRITICAL)
 from stopeight.util import SVG,TCT_printer
 
 class tPrinter(TCT_printer.TCTPrinter):

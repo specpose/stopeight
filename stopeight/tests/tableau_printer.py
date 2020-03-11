@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-from stopeight.logging import logSwitch
-log = logSwitch.logNone
+import stopeight.logging as log
+log.disable(log.CRITICAL)
 
 if __name__=='__main__':
     from stopeight.util.tableau_printer import tPrinter

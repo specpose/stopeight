@@ -4,8 +4,8 @@ from PyQt5.QtWidgets import QFileDialog,QInputDialog
 from stopeight.util.editor.data import WaveData
 from stopeight.util.runnable import EditorApp
 
-from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG,force=True)
 
 def _convert(spf):
     if spf.getcomptype()!='NONE':

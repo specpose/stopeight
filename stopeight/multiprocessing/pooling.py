@@ -2,9 +2,8 @@
 
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 
-from stopeight.logging import logSwitch
-# Note: This is done depending on logging context
-log = logSwitch.logNone()
+import stopeight.logging as log
+log.disable(log.CRITICAL)
 
 import numpy
 from stopeight.comparator import vectorTools
@@ -106,7 +105,7 @@ def populate(result):
     
     
 if __name__ == "__main__":
-    log = logSwitch.logPrint()
+    log.disable(log.NOTSET)
     log.info('Starting lineMatch...')
     s = numpy.array([[20,20],[55,130],[80,60],[120,85],[200,10]])
     #log.info('rendering input.svg')

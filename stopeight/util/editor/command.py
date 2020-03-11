@@ -5,8 +5,8 @@ from sys import modules as loader
 
 from PyQt5.QtWidgets import QComboBox,QPushButton
 
-from stopeight.logging import logSwitch
-log = logSwitch.logPrint()
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG,force=True)
 _LOGDIR = '.stopeight' # this is not for logging messages; it is for data files
 
 from funcsigs import signature

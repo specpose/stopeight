@@ -1,0 +1,76 @@
+import inspect
+import os
+from stopeight.util.runnable import Singleton
+
+def _path(stack):
+    # bug: PERFORMANCE
+    return os.path.relpath(stack,os.path.dirname(os.path.realpath(__file__)))
+
+NOTSET=0
+DEBUG=10
+def debug(message):
+    basicConfig().debug(_path(inspect.stack()[1][1]),message)
+
+INFO=20
+def info(message):
+    basicConfig().info(_path(inspect.stack()[1][1]),message)
+
+WARNING=30
+def warning(message):
+    basicConfig().warning(_path(inspect.stack()[1][1]),message)
+
+ERROR=40
+def error(message):
+    basicConfig().error(_path(inspect.stack()[1][1]),message)
+
+CRITICAL=50
+def critical(message):
+    basicConfig().critical(_path(inspect.stack()[1][1]),message)
+
+class configClass():
+    _level=NOTSET
+    _defaultLevel=_level
+
+    def __new__(cls, *args, **kwargs):
+        self = super().__new__(cls)
+        if 'level' in kwargs:
+            self._defaultLevel=kwargs['level']
+            self._level=self._defaultLevel
+        else:
+            self._level=self._defaultLevel
+        return self
+
+class basicConfig(configClass):
+    _instances = {}
+    def __new__(cls, *args, **kwargs):
+        if 'force' in kwargs:
+            if kwargs['force']==True:
+                del kwargs['force']
+                cls._instances[cls] = super().__new__(cls, *args, **kwargs)
+                return cls._instances[cls]
+        if cls not in cls._instances:
+            cls._instances[cls] = super().__new__(cls, *args, **kwargs)
+        return cls._instances[cls]
+
+    def debug(self,relpath,message):
+        if self._level <= DEBUG:
+            print(relpath+": "+"debug: ",message)
+
+    def info(self,relpath,message):
+        if self._level <= INFO:
+            print(relpath+": "+"info: ",message)
+
+    def warning(self,relpath,message):
+        if self._level <= WARNING:
+            print(relpath+": "+"WARN: ",message)
+
+    def error(self,relpath,message):
+        if self._level <= ERROR:
+            print(relpath+": "+"ERROR: ",message)
+
+    def critical(self,relpath,message):
+        if self._level <= CRITICAL:
+            print(relpath+": "+"CRITICAL: ",message)
+
+def disable(level):
+    basicConfig()._level=level+1

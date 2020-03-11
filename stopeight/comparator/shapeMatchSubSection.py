@@ -6,8 +6,8 @@ from stopeight.comparator.matrixTools import *
 from stopeight.comparator import vectorTools
 from stopeight.comparator.shapeMatch import ShapeMatchClass
 
-from stopeight.logging import logSwitch
-log = logSwitch.logNone()
+import stopeight.logging as log
+log.disable(log.CRITICAL)
 
 class ShapeMatchSubSectionClass:
     def __init__(self,compvec,toleranceDivider = 2):
