@@ -5,7 +5,7 @@
 from stopeight.util.runnable import EditorApp
 
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication,QMainWindow,QToolBar,QGroupBox,QHBoxLayout
+from PyQt5.QtWidgets import QToolBar,QGroupBox,QHBoxLayout
 
 import stopeight.logging as log
 log.basicConfig(level=log.DEBUG,force=True)

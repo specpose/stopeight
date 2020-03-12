@@ -40,17 +40,18 @@ class configClass():
             self._level=self._defaultLevel
         return self
 
+# Singleton
 class basicConfig(configClass):
-    _instances = {}
+    _instance = None
     def __new__(cls, *args, **kwargs):
         if 'force' in kwargs:
             if kwargs['force']==True:
                 del kwargs['force']
-                cls._instances[cls] = super().__new__(cls, *args, **kwargs)
-                return cls._instances[cls]
-        if cls not in cls._instances:
-            cls._instances[cls] = super().__new__(cls, *args, **kwargs)
-        return cls._instances[cls]
+                cls._instance = super().__new__(cls, *args, **kwargs)
+                return cls._instance
+        if cls._instance == None:
+            cls._instance = super().__new__(cls, *args, **kwargs)
+        return cls._instance
 
     def debug(self,relpath,message):
         if self._level <= DEBUG:
