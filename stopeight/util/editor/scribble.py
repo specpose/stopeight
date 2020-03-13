@@ -67,10 +67,13 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.setAttribute(Qt.WA_StaticContents)
         self.scribbling = False
         self.scribblingData=[]
+        self.scribblingTop=self.scribblingBottom=self.scribblingLeft=self.scribblingRight=None
+        self.scribblingMove=0
+        self.scribblingDrawIndex = 0
+        
         self.myPenWidth = 1
         self.myPenColor = Qt.blue
         self.image = QImage()
-        self.lastPoint = None
 
         self.data = ScribbleData()
 
@@ -86,13 +89,27 @@ class ScribbleArea(QtWidgets.QDockWidget):
 
     def _input(self, x, y):
         self.scribblingData.append((x,y))
+        if y<self.scribblingTop:
+            self.scribblingTop=y
+        if y>self.scribblingBottom:
+            self.scribblingBottom=y
+        if x<self.scribblingLeft:
+            self.scribblingLeft=x
+        if x>self.scribblingRight:
+            self.scribblingRight=x
 
     def _press(self,event):
         self.clearImage()
         self.scribbling = True
+        self.scribblingTop=self.scribblingBottom=event.pos().y()
+        self.scribblingLeft=self.scribblingRight=event.pos().x()
+        self.scribblingDrawIndex=0
 
     def _move(self, event):
-        pass
+        self.scribblingMove+=1
+        if self.scribblingMove > 20:
+            self.drawLines()
+            self.scribblingMove=0
 
     def _release(self, event):
         self.scribbling = False
@@ -106,29 +123,21 @@ class ScribbleArea(QtWidgets.QDockWidget):
         if type(self.scribblingData) is not type(None):
             del self.scribblingData
         self.scribblingData = []
-        if type(self.lastPoint) is not type(None):
-            del self.lastPoint
-        self.lastPoint=None
 
-        
     def drawLines(self):
         painter = QPainter(self.image)
-        try:
-            painter.setPen(QPen(self.myPenColor, self.myPenWidth, Qt.SolidLine,Qt.RoundCap, Qt.RoundJoin))
-            if type(self.lastPoint) is not type(None) and len(self.scribblingData)>0:
-                painter.drawLine(QPoint(self.lastPoint[0],self.lastPoint[1]), QPoint(self.scribblingData[1][0],self.scribblingData[1][1]))
-            if len(self.scribblingData)>1:
-                for first,second in zip(self.scribblingData,self.scribblingData[1:]):
-                    painter.drawLine(QPoint(first[0],first[1]), QPoint(second[0],second[1]))
-        finally:
-            painter.end()
-        rad = self.myPenWidth / 2 + 2
-        # if type(self.lastPoint) is not type(None) and len(self.scribblingData)>0:
-        #     self.update(QRect(QPoint(self.lastPoint[0],self.lastPoint[1]), QPoint(self.scribblingData[-1][0],self.scribblingData[-1][1])).normalized().adjusted(-rad, -rad, +rad, +rad))
-        # elif len(self.scribblingData)>1:
-        #     self.update(QRect(QPoint(self.scribblingData[1][0],self.scribblingData[1][1]), QPoint(self.scribblingData[-1][0],self.scribblingData[-1][1])).normalized().adjusted(-rad, -rad, +rad, +rad))
-        self.update()
-        self.lastPoint=self.scribblingData[-1]
+        if len(self.scribblingData)>self.scribblingDrawIndex+1:
+            try:
+                painter.setPen(QPen(self.myPenColor, self.myPenWidth, Qt.SolidLine,Qt.RoundCap, Qt.RoundJoin))
+                for n in range(len(self.scribblingData)-1-self.scribblingDrawIndex):
+                    painter.drawLine(QPoint(self.scribblingData[n+self.scribblingDrawIndex][0],self.scribblingData[n+self.scribblingDrawIndex][1]), QPoint(self.scribblingData[n+1+self.scribblingDrawIndex][0],self.scribblingData[n+1+self.scribblingDrawIndex][1]))
+            finally:
+                painter.end()
+            rad = self.myPenWidth / 2 + 2
+            self.update(QRect(QPoint(self.scribblingLeft,self.scribblingTop), QPoint(self.scribblingRight,self.scribblingBottom)).normalized().adjusted(-rad, -rad, +rad, +rad))
+            self.scribblingDrawIndex=len(self.scribblingData)-1
+            self.scribblingTop=self.scribblingBottom=self.scribblingData[-1][1]
+            self.scribblingLeft=self.scribblingRight=self.scribblingData[-1][0]
 
     def tabletEvent(self, event):
         if event.type() == QEvent.TabletPress:
@@ -198,8 +207,8 @@ class ScribbleArea(QtWidgets.QDockWidget):
         painter = QPainter(self.image)
         try:
             painter.setPen(QPen(color, self.myPenWidth, Qt.SolidLine,Qt.RoundCap, Qt.RoundJoin))
-            for n in range(len(data)-1):
-                painter.drawLine(data[n]['coords'][0],data[n]['coords'][1],data[n+1]['coords'][0],data[n+1]['coords'][1])
+            for first,second in zip(data,data[1:]):
+                painter.drawLine(first['coords'][0],first['coords'][1],second['coords'][0],second['coords'][1])
         finally:
             painter.end()
         self.update()
