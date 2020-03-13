@@ -57,7 +57,7 @@ import stopeight.logging as log
 log.basicConfig(level=log.DEBUG,force=True)
 
 from stopeight.util.runnable import EditorApp
-from stopeight.util.editor.data import ScribbleData,ScribbleBackup,ScribblePoint
+from stopeight.util.editor.data import ScribbleData,ScribblePoint
 
 class ScribbleArea(QtWidgets.QDockWidget):
     def __init__(self, parent=EditorApp().window):
@@ -66,10 +66,11 @@ class ScribbleArea(QtWidgets.QDockWidget):
 
         self.setAttribute(Qt.WA_StaticContents)
         self.scribbling = False
+        self.scribblingData=[]
         self.myPenWidth = 1
         self.myPenColor = Qt.blue
         self.image = QImage()
-        self.lastPoint = QPoint()
+        self.lastPoint = None
 
         self.data = ScribbleData()
 
@@ -84,40 +85,58 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.update()
 
     def _input(self, x, y):
-        assert type(self.data) is list
-        self.data.append(ScribblePoint((x,y)))
+        self.scribblingData.append((x,y))
 
     def _press(self,event):
-        self.scribbling = True
-        self.lastPoint = event.pos()
         self.clearImage()
-        log.info("Erasing scribble data")
-        #don't assign new self.data = [], maybe self.data[:] = []
-        if type(self.data) is not type(None):
-            del self.data
-        self.data = []
+        self.scribbling = True
 
     def _move(self, event):
-        self.drawLineTo(event.pos())
+        pass
 
     def _release(self, event):
-        self.drawLineTo(event.pos())
         self.scribbling = False
-        assert type(self.data) is list
-        result = ScribbleData(size=len(self.data))
-        for i,v in enumerate(self.data):
-            result[i]['coords'] = [v[0],v[1]]
-        del self.data
-        self.data = result
+        self.drawLines()
+        if type(self.data) is not type(None):
+            del self.data
+        self.data = ScribbleData(size=len(self.scribblingData))
+        for i,v in enumerate(self.scribblingData):
+            self.data[i]['coords'] = [v[0],v[1]]
+        #don't assign new self.data = [], maybe self.data[:] = []
+        if type(self.scribblingData) is not type(None):
+            del self.scribblingData
+        self.scribblingData = []
+        if type(self.lastPoint) is not type(None):
+            del self.lastPoint
+        self.lastPoint=None
 
-
+        
+    def drawLines(self):
+        painter = QPainter(self.image)
+        try:
+            painter.setPen(QPen(self.myPenColor, self.myPenWidth, Qt.SolidLine,Qt.RoundCap, Qt.RoundJoin))
+            if type(self.lastPoint) is not type(None) and len(self.scribblingData)>0:
+                painter.drawLine(QPoint(self.lastPoint[0],self.lastPoint[1]), QPoint(self.scribblingData[1][0],self.scribblingData[1][1]))
+            if len(self.scribblingData)>1:
+                for first,second in zip(self.scribblingData,self.scribblingData[1:]):
+                    painter.drawLine(QPoint(first[0],first[1]), QPoint(second[0],second[1]))
+        finally:
+            painter.end()
+        rad = self.myPenWidth / 2 + 2
+        # if type(self.lastPoint) is not type(None) and len(self.scribblingData)>0:
+        #     self.update(QRect(QPoint(self.lastPoint[0],self.lastPoint[1]), QPoint(self.scribblingData[-1][0],self.scribblingData[-1][1])).normalized().adjusted(-rad, -rad, +rad, +rad))
+        # elif len(self.scribblingData)>1:
+        #     self.update(QRect(QPoint(self.scribblingData[1][0],self.scribblingData[1][1]), QPoint(self.scribblingData[-1][0],self.scribblingData[-1][1])).normalized().adjusted(-rad, -rad, +rad, +rad))
+        self.update()
+        self.lastPoint=self.scribblingData[-1]
 
     def tabletEvent(self, event):
         if event.type() == QEvent.TabletPress:
             self._press(event)
+            self._input(event.posF().x(),event.posF().y())
         elif (event.type() == QEvent.TabletMove) and self.scribbling:
-            self._move(event)
             self._input(event.posF().x(),event.posF().y())            
+            self._move(event)
         elif (event.type() == QEvent.TabletRelease) and self.scribbling:
             self._input(event.posF().x(),event.posF().y())
             self._release(event)
@@ -140,11 +159,12 @@ class ScribbleArea(QtWidgets.QDockWidget):
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self._press(event)
+            self._input(event.pos().x(),event.pos().y())            
 
     def mouseMoveEvent(self, event):
         if (event.buttons() & Qt.LeftButton) and self.scribbling:
+            self._input(event.pos().x(),event.pos().y())
             self._move(event)
-            self._input(event.pos().x(),event.pos().y())            
 
     def mouseReleaseEvent(self, event):
         if (event.button() == Qt.LeftButton) and self.scribbling:
@@ -165,19 +185,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
             newHeight = max(self.height() + 128, self.image.height())
             self.resizeImage(self.image, QSize(newWidth, newHeight))
             self.update()
-
-        super(ScribbleArea, self).resizeEvent(event)        
-
-    def drawLineTo(self, endPoint):
-        painter = QPainter(self.image)
-        try:
-            painter.setPen(QPen(self.myPenColor, self.myPenWidth, Qt.SolidLine,Qt.RoundCap, Qt.RoundJoin))
-            painter.drawLine(self.lastPoint, endPoint)
-        finally:
-            painter.end()
-        rad = self.myPenWidth / 2 + 2
-        self.update(QRect(self.lastPoint, endPoint).normalized().adjusted(-rad, -rad, +rad, +rad))
-        self.lastPoint = QPoint(endPoint)
+        super(ScribbleArea, self).resizeEvent(event)
 
     def __call__(self, data, color=Qt.blue, clear=True):
         assert type(self.data) is ScribbleData
