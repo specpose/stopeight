@@ -21,7 +21,7 @@ class outwindow(QDockWidget):
         self.setWidget(self.text)
         self.text.setText("")
         self.data = None
-        self.f = io.BytesIO()
+        self.f = io.StringIO()
 
     #def __call__(self,data=None):
     #    with stdout_redirector(self.f):
@@ -32,8 +32,7 @@ class outwindow(QDockWidget):
     #__call__.__annotations__ = {'data': funcsigs._empty}
     
     def update(self):
-        print('From callwindow: "{0}"'.format(self.f.getvalue().decode('utf-8')))
-        self.text.setText(self.f.getvalue().decode('utf-8'))
+        self.text.setText(self.f.getvalue())
         self.show()
         self.f.close()
         self.f = io.BytesIO()

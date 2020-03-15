@@ -55,23 +55,23 @@ class basicConfig(configClass):
 
     def debug(self,relpath,message):
         if self._level <= DEBUG:
-            print(relpath+": "+"debug: ",message)
+            print(str(relpath)+": "+"debug: "+str(message))
 
     def info(self,relpath,message):
         if self._level <= INFO:
-            print(relpath+": "+"info: ",message)
+            print(str(relpath)+": "+"info: "+str(message))
 
     def warning(self,relpath,message):
         if self._level <= WARNING:
-            print(relpath+": "+"WARN: ",message)
+            print(str(relpath)+": "+"WARN: "+str(message))
 
     def error(self,relpath,message):
         if self._level <= ERROR:
-            print(relpath+": "+"ERROR: ",message)
+            print(str(relpath)+": "+"ERROR: "+str(message))
 
     def critical(self,relpath,message):
         if self._level <= CRITICAL:
-            print(relpath+": "+"CRITICAL: ",message)
+            print(str(relpath)+": "+"CRITICAL: "+str(message))
 
 def disable(level):
     basicConfig()._level=level+1

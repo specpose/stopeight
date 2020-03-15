@@ -2,6 +2,15 @@
 
 # Copyright (C) 2017 Fassio Blatter
 
+try:
+    # new location for sip
+    # https://www.riverbankcomputing.com/static/Docs/PyQt5/incompatibilities.html#pyqt-v5-11
+   from PyQt5 import sip
+except ImportError:
+    from PyQt5 import QtCore
+    import sip
+from PyQt5.QtWidgets import QApplication,QMainWindow
+
 from stopeight.util.runnable import EditorApp
 
 from PyQt5 import QtWidgets
