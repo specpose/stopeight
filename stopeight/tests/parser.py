@@ -25,20 +25,23 @@ def find_files(dir_path,suffix='.sp'):
         raise Exception('Path ' + dir_path + ' is not a directory under ' + os.getcwd())
     return paths
 
-def process_directory(dir_path,analyzer=legacy.stroke_parallel):
-    tprinter = tableau_printer.tPrinter('parser.out',6)
+def process_directory(dir_path,suffix,file_adapter,analyzer,draw=False):
+    if draw:
+        tprinter = tableau_printer.tPrinter('parser.out',6)
     lines = []
-    files = find_files(dir_path)
+    files = find_files(dir_path,suffix)
     count = 0
     for final_path in files:
         log.info('Loading file ' + final_path + '... ')
         try:
-            graph = legacy.parse_file(final_path)
+            graph = file_adapter(final_path)
             count+=1
-            tprinter.draw(graph)
+            if draw:
+                tprinter.draw(graph)
             try:
                 points = analyzer(graph)
-                tprinter.draw(points)
+                if draw:
+                    tprinter.draw(points)
                 try:
                     lines.append(numpy.array(points))
                 except:
@@ -46,12 +49,13 @@ def process_directory(dir_path,analyzer=legacy.stroke_parallel):
                 log.info('Success')
             except:
                 log.info('Analyzer Failed')
-                tprinter.text('#' + str(count) + str(final_path) + ' parser failed.')
+                if draw:
+                    tprinter.text('#' + str(count) + str(final_path) + ' parser failed.')
         except:
             log.info('Loading Failed')
-    tprinter.text('Extracted ' + str(len(lines)) + ' Comparator lines out of ' + str(count) + ' readable Graph files.')
-    tprinter.write()
-
+    if draw:
+        tprinter.text('Extracted ' + str(len(lines)) + ' Comparator lines out of ' + str(count) + ' readable Graph files.')
+        tprinter.write()
     return lines
 
 from stopeight.multiprocessing import pooling
@@ -66,7 +70,7 @@ if __name__ == '__main__':
         nopath = True
     if nopath:
         raise Exception("Please specify the directory containing unpacked legacy pen-stroke files (i.e. stopeight-clibs/legacy/tests/)")
-    lines = process_directory(sys.argv[1],legacy.stroke_sequential)
+    lines = process_directory(sys.argv[1],'.sp',legacy.parse_file,legacy.stroke_sequential,draw=True)
     comparator = pooling.MPLine(lines)
     for i,line in enumerate(lines):
         matches = comparator.matchLine(line)

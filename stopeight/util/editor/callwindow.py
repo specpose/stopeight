@@ -35,4 +35,4 @@ class outwindow(QDockWidget):
         self.text.setText(self.f.getvalue())
         self.show()
         self.f.close()
-        self.f = io.BytesIO()
+        self.f = io.StringIO()
