@@ -39,7 +39,6 @@ class Algorithm_Select(dict):
                         data_type = None
                     self[name]=(return_type,data_type)
 
-#from stopeight.util.editor.data import ScribbleData, ScribbleBackup
 class Algorithm_Run:
 
     @staticmethod
@@ -64,9 +63,6 @@ class Algorithm_Run:
     def run(module,currentText,customsubpath,inputdata=None):
         import time
         time = time.time()
-        #data = ScribbleData()
-        #backup = ScribbleBackup()#get singleton
-        #backup[:] = data#assign copy
         outputdata=None
         try:
             if type(inputdata)!=type(None):

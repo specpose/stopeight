@@ -57,7 +57,7 @@ import stopeight.logging as log
 log.basicConfig(level=log.DEBUG,force=True)
 
 from stopeight.util.runnable import EditorApp
-from stopeight.util.editor.data import ScribbleData,ScribblePoint
+from stopeight.util.editor.data import ScribbleData
 
 class ScribbleArea(QtWidgets.QDockWidget):
     def __init__(self, parent=EditorApp().window):

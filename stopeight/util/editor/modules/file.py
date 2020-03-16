@@ -6,28 +6,28 @@ log.disable(log.CRITICAL)
 
 from stopeight.util.runnable import EditorApp
 
-from stopeight.util.editor.data import ScribbleData,ScribblePoint
+from stopeight.util.editor.data import ScribbleData
 from stopeight.util.editor.scribble import ScribbleArea
 from PyQt5.QtWidgets import QFileDialog
 
-def save_ScribbleData(data):
+def save_NPY(data):
     # this is not a real error but saves us from writing more code
     data=data.data
     raise ValueError
-save_ScribbleData.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
+save_NPY.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
 
-def save_as_ScribbleData(data):
+def save_as_NPY(data):
     filename = QFileDialog.getSaveFileName(EditorApp().window,"QFileDialog.getSaveFileName()","","NumPy Files (*.npy)")
     log.debug("Saving to File "+str(filename[0]))
     _to_file(filename[0],data.data)
     return filename
-save_as_ScribbleData.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
+save_as_NPY.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
 
-def open_ScribbleData():
+def open_NPY():
     filename = QFileDialog.getOpenFileName(EditorApp().window)
     log.debug("Reading from File "+str(filename[0]))
     return _read(filename[0])
-open_ScribbleData.__annotations__ = {'return': ScribbleData}
+open_NPY.__annotations__ = {'return': ScribbleData}
 
 def _read(path):
     if path.endswith('.npy'):

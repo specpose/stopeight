@@ -12,7 +12,8 @@ from stopeight import legacy
 
 import numpy
 
-def find_files(dir_path,suffix='.sp'):
+def find_files(dir_path,suffix='.npy',base_dir=os.getcwd()):
+    dir_path = os.path.join(base_dir,dir_path)
     paths = []
     if os.path.isdir(dir_path):
         log.debug('Parsing directory ' + dir_path)
@@ -25,11 +26,11 @@ def find_files(dir_path,suffix='.sp'):
         raise Exception('Path ' + dir_path + ' is not a directory under ' + os.getcwd())
     return paths
 
-def process_directory(dir_path,suffix,file_adapter,analyzer,draw=False):
+def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd(),draw=False,drawResize=True):
     if draw:
         tprinter = tableau_printer.tPrinter('parser.out',6)
     lines = []
-    files = find_files(dir_path,suffix)
+    files = find_files(dir_path,suffix,base_dir)
     count = 0
     for final_path in files:
         log.info('Loading file ' + final_path + '... ')
@@ -37,11 +38,11 @@ def process_directory(dir_path,suffix,file_adapter,analyzer,draw=False):
             graph = file_adapter(final_path)
             count+=1
             if draw:
-                tprinter.draw(graph)
+                tprinter.draw(graph,drawResize)
             try:
                 points = analyzer(graph)
                 if draw:
-                    tprinter.draw(points)
+                    tprinter.draw(points,drawResize)
                 try:
                     lines.append(numpy.array(points))
                 except:
@@ -70,7 +71,7 @@ if __name__ == '__main__':
         nopath = True
     if nopath:
         raise Exception("Please specify the directory containing unpacked legacy pen-stroke files (i.e. stopeight-clibs/legacy/tests/)")
-    lines = process_directory(sys.argv[1],'.sp',legacy.parse_file,legacy.stroke_sequential,draw=True)
+    lines = process_directory(sys.argv[1],'.sp',legacy.parse_file,legacy.stroke_sequential,draw=False,drawResize=False)
     comparator = pooling.MPLine(lines)
     for i,line in enumerate(lines):
         matches = comparator.matchLine(line)

@@ -1,18 +1,3 @@
-class ScribblePoint(tuple):
-    def __init__(self,lis):
-        """ Same signature as stopeight-clibs timecode"""
-        self.x = lis[0]
-        self.y = lis[1]
-
-    def get_x(self):
-        return self.x
-    def get_y(self):
-        return self.y
-    def set_x(self,x):
-        self.x=x
-    def set_y(self,y):
-        self.y=y
-
 from numpy import ndarray
 import numpy
 #todo make static call

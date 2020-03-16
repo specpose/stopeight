@@ -2,20 +2,36 @@
 
 import stopeight.legacy
 from stopeight.util.editor.data import ScribbleData
+from PyQt5.QtWidgets import QFileDialog
+from stopeight.util.runnable import EditorApp
+
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG,force=True)
 
 def stroke_parallel(data):
-    return stopeight.legacy.stroke_parallel(data)
+    return _convert(stopeight.legacy.stroke_parallel(list(map(tuple,data['coords'].tolist()))))
 stroke_parallel.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
 
 def stroke_sequential(data):
     # type: (ScribbleData) -> ScribbleData
-    return stopeight.legacy.stroke_sequential(data)
+    return _convert(stopeight.legacy.stroke_sequential(list(map(tuple,data['coords'].tolist()))))
 stroke_sequential.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
 
-def parse_file(data):
-    return stopeight.legacy.parse_file(data)
-parse_file.__annotations__ = {'data': str, 'return': ScribbleData}
+def _parse_file(filename):
+    legacy_data= stopeight.legacy.parse_file(filename)
+    return _convert(legacy_data)
 
+def _convert(legacy_data):
+    scribbledata = ScribbleData(size=len(legacy_data))
+    for i,v in enumerate(legacy_data):
+        scribbledata[i]['coords'] = [v[0],v[1]]
+    return scribbledata
+
+def open_SP():
+    filename = QFileDialog.getOpenFileName(EditorApp().window)
+    data = _parse_file(filename[0])
+    return data
+open_SP.__annotations__ = {'return': ScribbleData}
 
 def TCT_to_bezier(data):
     return stopeight.legacy.TCT_to_bezier(data)

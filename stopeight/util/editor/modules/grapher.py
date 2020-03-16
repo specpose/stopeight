@@ -2,7 +2,7 @@
 from stopeight import grapher
 version=grapher.version
 
-from stopeight.util.editor.data import ScribbleData, WaveData, ScribblePoint
+from stopeight.util.editor.data import ScribbleData, WaveData
 from stopeight.util.editor.scribble import ScribbleArea
 
 import stopeight.logging as log
@@ -21,36 +21,18 @@ def _extrema(data):
     bottom,top = top,bottom
     return left,right,bottom,top
 
-def _scalingfactors(left,right,bottom,top,obj):
+def _scalingfactors(left,right,bottom,top,width,height):
     d_x = abs(right - left)
     d_y = abs(top - bottom)
-    o_x = obj.width()
-    o_y = obj.height()
+    o_x = width
+    o_y = height
     return o_x/d_x,o_y/d_y
 
-def create_vector_graph(data):
-    assert type(data) is WaveData, "Input Error, wrong datatype: %r" % type(data)
-    log.debug("Loading with "+str(len(data)))
-    from stopeight.grapher import VectorDouble,VectorTimeCodeDouble,create_vector_graph
-    import numpy as np
-    invec = VectorDouble(data)
-    result = invec.create_vector_graph(1,1.0,True).__array__()
-    assert type(result) is np.ndarray, "Cast Error: %r" % type(result)
-    result = _append(result)
-    log.debug("Return Length "+str(len(result)))
-    return result.view(ScribbleData)
-create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
-
-#grapher data y inverted, scribble data y normal
-def resize(data):
-    #doesnt work: sip.wrappertype
-    #log.warning("data "+str(type(data)))
-    #log.warning("ScribbleArea "+str(ScribbleArea.__class__))
-    #assert type(data) is type(ScribbleArea), "Wrong input data type: %r" % data
-    assert type(data.data) is ScribbleData, "Wrong input data.data type: %r" % type(data.data)
-    log.debug("Width "+str(data.width())+" Height "+str(data.height()))
+def _resize(scribbledata,width,height):
+    assert type(scribbledata) is ScribbleData, "Wrong input data.data type: %r" % type(scribbledata)
+    log.debug("Width "+str(width)+" Height "+str(height))
     from stopeight.matrix import Vectors,Stack
-    vectors = Vectors(data.data)
+    vectors = Vectors(scribbledata)
     log.debug("First "+str(vectors.__array__()[0][0][0])+","+str(vectors.__array__()[0][0][1])+" Last "+str(vectors.__array__()[-1][0][0])+","+str(vectors.__array__()[-1][0][1]))
     stack=Stack()
     stack.identity()
@@ -73,7 +55,7 @@ def resize(data):
     left,right,bottom,top=_extrema(vectors.__array__())
     log.debug("Left "+str(left)+" Right "+str(right)+" Bottom "+str(bottom)+" Top "+str(top))
     log.debug("Width "+str(abs(right-left))+" Height "+str(abs(top-bottom)))
-    sx,sy=_scalingfactors(left,right,bottom,top,data)
+    sx,sy=_scalingfactors(left,right,bottom,top,width,height)
     log.warning("scaling data "+str(sx)+","+str(sy))
     landscape= True if sx<sy else False
     log.debug("Mode landscape "+str(landscape))
@@ -93,24 +75,36 @@ def resize(data):
     log.debug("First "+str(vectors.__array__()[0][0][0])+","+str(vectors.__array__()[0][0][1])+" Last "+str(vectors.__array__()[-1][0][0])+","+str(vectors.__array__()[-1][0][1]))
     stack=Stack()
     stack.identity()
-    tx,ty=((data.width()-abs(right-left))/2,0) if not landscape else (0,(data.height()-abs(top-bottom))/2)
+    tx,ty=((width-abs(right-left))/2,0) if not landscape else (0,(height-abs(top-bottom))/2)
     log.debug("translating "+str(tx)+","+str(ty))
     stack.translate(tx,ty)
     vectors.apply(stack)
     log.debug("First "+str(vectors.__array__()[0][0][0])+","+str(vectors.__array__()[0][0][1])+" Last "+str(vectors.__array__()[-1][0][0])+","+str(vectors.__array__()[-1][0][1]))
     testvec = vectors.__array__()
-##    from stopeight.util.editor.data import ScribblePoint
-##    testvec = []
-##    test=ScribblePoint([0.0,data.height()/2])
-##    testvec.append(test)
-##    test=ScribblePoint([data.width()/2,data.height()/2])
-##    testvec.append(test)
     log.debug("Rendering...")
     log.debug("First "+str(testvec[0][0][0])+","+str(testvec[0][0][1])+" Last "+str(testvec[-1][0][0])+","+str(testvec[-1][0][1]))
-    #Hack copy
-    result = ScribbleData(size=len(testvec))
-    for i,v in enumerate(testvec):
-        result[i]['coords'] = [v[0][0],v[0][1]]
-    data(result)
+    return testvec.view(ScribbleData) 
+
+def create_vector_graph(data):
+    assert type(data) is WaveData, "Input Error, wrong datatype: %r" % type(data)
+    log.debug("Loading with "+str(len(data)))
+    from stopeight.grapher import VectorDouble,VectorTimeCodeDouble,create_vector_graph
+    import numpy as np
+    invec = VectorDouble(data)
+    result = invec.create_vector_graph(1,1.0,True).__array__()
+    assert type(result) is np.ndarray, "Cast Error: %r" % type(result)
+    result = _append(result)
+    log.debug("Return Length "+str(len(result)))
+    return result.view(ScribbleData)
+create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
+
+#grapher data y inverted, scribble data y normal
+def resize(data):
+    log.disable(log.DEBUG)
+    #doesnt work: sip.wrappertype
+    #log.warning("data "+str(type(data)))
+    #log.warning("ScribbleArea "+str(ScribbleArea.__class__))
+    #assert data.__class__ is type(ScribbleArea), "Wrong input data type: %r" % data
+    data(_resize(data.data,data.width(),data.height()))
     return None
 resize.__annotations__ = {'data':ScribbleArea,'return':type(None)}

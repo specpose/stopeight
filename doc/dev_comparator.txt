@@ -9,8 +9,8 @@ This example uses the :mod:`stopeight.legacy`, :mod:`stopeight.tests` module and
 This attempts to load all the files with ".sp" extension into parallel implementation of stroke analyzer::
 
     $ cd /path/to/where/stopeight
-    >>> from stopeight.tests import parser
-    >>> lines = parser.parse_directory('/path/to/where/extracted/sample/data','stopeight_clibs_legacy.stroke_parallel')
+    >>> from stopeight.util import parser
+    >>> lines = parser.process_directory('path/to/where/extracted/sample/data','.sp',legacy._parse_file,legacy.stroke_parallel)
 
 The :mod:`stopeight.multiprocessing.pooling` makes parallel calls to :mod:`stopeight.comparator`.
 Note: The IDLE shell does not support spawning.

@@ -1,6 +1,6 @@
 from stopeight.util.editor.modules.file_wave import _convert
 import wave
-from stopeight.util.editor.data import WaveData,ScribbleData,ScribblePoint
+from stopeight.util.editor.data import WaveData,ScribbleData
 from stopeight.util.editor.modules.grapher import _append
 from stopeight.grapher import create_vector_graph
 import numpy as np

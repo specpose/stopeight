@@ -41,7 +41,7 @@ def open_WAV():
     import sys
 
     filename = QFileDialog.getOpenFileName(EditorApp().window)
-    log.info("Opening "+str(filename[0]))    
+    log.info("Opening "+str(filename[0]))
     spf = wave.open(filename[0],'r')
     result = _convert(spf)
     spf.close()

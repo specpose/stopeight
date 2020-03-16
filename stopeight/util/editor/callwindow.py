@@ -23,8 +23,9 @@ class outwindow(QDockWidget):
         self.data = None
         self.f = io.StringIO()
 
+    #from contextlib import redirect_stdout
     #def __call__(self,data=None):
-    #    with stdout_redirector(self.f):
+    #    with redirect_stdout(self.f)
     #        print('foobar')
     #        print(12)
     #        #libc.puts(b'this comes from C')

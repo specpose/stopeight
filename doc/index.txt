@@ -31,8 +31,6 @@ Usage
 
    run_editor
 
-   run_tests
-
 Developer
 =========
 
