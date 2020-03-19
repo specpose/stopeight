@@ -1,8 +1,9 @@
-import stopeight.logging as log
-log.disable(log.CRITICAL)
 from stopeight.util import SVG,TCT_printer
 from stopeight.util.editor.modules.grapher import _resize
 from stopeight.util.editor.data import ScribbleData
+
+import stopeight.logging as log
+log.disable(log.CRITICAL)
 
 class tPrinter(TCT_printer.TCTPrinter):
     def __init__(self,filename,columns=2):

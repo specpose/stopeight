@@ -16,9 +16,6 @@ from stopeight.util.runnable import EditorApp
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QToolBar,QGroupBox,QHBoxLayout
 
-import stopeight.logging as log
-log.basicConfig(level=log.DEBUG,force=True)
-
 # False: Is part of a compiled library
 _DATA = {'Modules': [
 #                            ('stopeight.util.editor.modules.legacy', False),
@@ -28,6 +25,9 @@ _DATA = {'Modules': [
 #                            ('stopeight.util.editor.modules.analyzer', False),
                     ]
          }
+
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG,force=True)
 
 import importlib
 active=[]
@@ -43,6 +43,8 @@ for module in _DATA['Modules']:
         log.warning("Module "+module[0]+" not loaded!")
 _DATA['Modules']=active
                 
+log.disable(log.NOTSET)
+
 if __name__ == '__main__':
 
     import sys

@@ -2,15 +2,13 @@ from PyQt5.QtWidgets import QDockWidget,QTextEdit,QVBoxLayout,QGroupBox
 from PyQt5.QtCore import Qt, QSize
 from stopeight.util.runnable import EditorApp
 
-import stopeight.logging as log
-log.basicConfig(level=log.DEBUG,force=True)
-
 import sys
 import os
 import io
-
-
 import funcsigs
+
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG,force=True)
 
 class outwindow(QDockWidget):
     def __init__(self,parent=EditorApp().window):

@@ -25,4 +25,4 @@ def allGraphs(allChannels):
 def test_NonAveraged():
     from PyQt5.QtWidgets import QApplication,QMainWindow
     from stopeight.util.parser import process_directory
-    graphs = process_directory('./','.wav',fileAdapter,allGraphs,draw=False,drawResize=True)
+    graphs = process_directory('./','.wav',fileAdapter,allGraphs)

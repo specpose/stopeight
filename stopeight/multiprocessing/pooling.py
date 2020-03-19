@@ -2,15 +2,15 @@
 
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 
-import stopeight.logging as log
-log.disable(log.CRITICAL)
-
 import numpy
 from stopeight.comparator import vectorTools
 #from stopeight.comparator.shapeMatch import ShapeMatchClass
 from stopeight.comparator.shapeMatchSubSection import ShapeMatchSubSectionClass
 import multiprocessing
 from stopeight.comparator.vectorTools import NumpyLine
+
+import stopeight.logging as log
+log.disable(log.CRITICAL)
 
 class mp_data_line():
     def __init__(self,input,dbrecord,listpos):

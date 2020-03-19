@@ -2,15 +2,12 @@
 
 # Copyright (C) 2017 Fassio Blatter
 
+from stopeight.util import tableau_printer
+import os
+import numpy
+
 import stopeight.logging as log
 log.basicConfig(level=log.DEBUG,force=True)
-from stopeight.util import tableau_printer
-
-import os
-
-from stopeight import legacy
-
-import numpy
 
 def find_files(dir_path,suffix='.npy',base_dir=os.getcwd()):
     dir_path = os.path.join(base_dir,dir_path)
@@ -26,9 +23,9 @@ def find_files(dir_path,suffix='.npy',base_dir=os.getcwd()):
         raise Exception('Path ' + dir_path + ' is not a directory under ' + os.getcwd())
     return paths
 
-def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd(),draw=False,drawResize=True):
-    if draw:
-        tprinter = tableau_printer.tPrinter('parser.out',6)
+def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd(),filename=None,drawResize=True):
+    if type(filename) is str:
+        tprinter = tableau_printer.tPrinter(filename,6)
     lines = []
     files = find_files(dir_path,suffix,base_dir)
     count = 0
@@ -37,11 +34,11 @@ def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd()
         try:
             graph = file_adapter(final_path)
             count+=1
-            if draw:
+            if type(filename) is str:
                 tprinter.draw(graph,drawResize)
             try:
                 points = analyzer(graph)
-                if draw:
+                if type(filename) is str:
                     tprinter.draw(points,drawResize)
                 try:
                     lines.append(numpy.array(points))
@@ -50,29 +47,11 @@ def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd()
                 log.info('Success')
             except:
                 log.info('Analyzer Failed')
-                if draw:
+                if type(filename) is str:
                     tprinter.text('#' + str(count) + str(final_path) + ' parser failed.')
         except:
             log.info('Loading Failed')
-    if draw:
+    if type(filename) is str:
         tprinter.text('Extracted ' + str(len(lines)) + ' Comparator lines out of ' + str(count) + ' readable Graph files.')
         tprinter.write()
     return lines
-
-from stopeight.multiprocessing import pooling
-
-if __name__ == '__main__':
-    nopath = False
-    import sys
-    if len(sys.argv)>1:
-        if sys.argv[1]==None:
-            nopath = True
-    else:
-        nopath = True
-    if nopath:
-        raise Exception("Please specify the directory containing unpacked legacy pen-stroke files (i.e. stopeight-clibs/legacy/tests/)")
-    lines = process_directory(sys.argv[1],'.sp',legacy.parse_file,legacy.stroke_sequential,draw=False,drawResize=False)
-    comparator = pooling.MPLine(lines)
-    for i,line in enumerate(lines):
-        matches = comparator.matchLine(line)
-        print('Line ' + str(i) + ' matched ' + str(len(matches)) + ' occurences ' + str(matches))

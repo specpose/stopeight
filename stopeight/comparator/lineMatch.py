@@ -2,12 +2,12 @@
 
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 
-import stopeight.logging as log
-log.disable(log.CRITICAL)
-
 from stopeight.comparator.matrixTools import *
 from stopeight.comparator import vectorTools
 from numpy import zeros_like
+
+import stopeight.logging as log
+log.disable(log.CRITICAL)
 
 class LineMatchClass:
     minTolerance = 2

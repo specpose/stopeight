@@ -1,7 +1,8 @@
-import stopeight.logging as log
-log.disable(log.CRITICAL)
 from stopeight.util import SVG
 import os
+
+import stopeight.logging as log
+log.disable(log.CRITICAL)
 
 class TCTPrinter:
     def __init__(self,filename):

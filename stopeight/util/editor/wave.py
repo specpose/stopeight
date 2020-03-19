@@ -80,9 +80,3 @@ class WaveArea(QtWidgets.QDockWidget):
         #self.ax.show()
         # refresh canvas
         self.canvas.draw()
-
-if __name__ == '__main__':
-    app = runnable.EditorApp()
-    main = WaveArea()
-    main.show()
-    sys.exit(app.exec_())

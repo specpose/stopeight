@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
 # Copyright (C) 2009-2016 Specific Purpose Software GmbH
-import stopeight.logging as log
-log.disable(log.CRITICAL)
 
 from stopeight.util.runnable import EditorApp
 
 from stopeight.util.editor.data import ScribbleData
 from stopeight.util.editor.scribble import ScribbleArea
 from PyQt5.QtWidgets import QFileDialog
+
+import stopeight.logging as log
+log.disable(log.CRITICAL)
 
 def save_NPY(data):
     # this is not a real error but saves us from writing more code

@@ -2,10 +2,10 @@
 
 # Copyright (C) 2009-2012 Specific Purpose Software GmbH
 
+from stopeight.comparator.lineMatch import LineMatchClass
+
 import stopeight.logging as log
 log.disable(log.CRITICAL)
-
-from stopeight.comparator.lineMatch import LineMatchClass
 
 class ShapeMatchClass(LineMatchClass):
     def __init__(self, compvec, toleranceDivider=2):
