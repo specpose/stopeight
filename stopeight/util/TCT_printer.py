@@ -26,7 +26,8 @@ class TCTPrinter:
     def text(self,text):
         self.scene.add(SVG.Text(self.offset((0,128)),text))
 
-    def write(self):
+    def write(self,display=False):
         self.scene.set_height(self.height)
         self.scene.write_svg()
-        self.scene.display()
+        if display:
+            self.scene.display()
