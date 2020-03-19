@@ -6,7 +6,7 @@ from sys import modules as loader
 from PyQt5.QtWidgets import QComboBox,QPushButton
 
 import stopeight.logging as log
-log.basicConfig(level=log.DEBUG,force=True)
+log.basicConfig(level=log.INFO,force=True)
 _LOGDIR = '.stopeight' # this is not for logging messages; it is for data files
 
 from funcsigs import signature
@@ -104,7 +104,8 @@ class Algorithm_Run:
 from PyQt5.QtCore import Qt
 import inspect
 import funcsigs
-from contextlib import redirect_stdout
+from contextlib import redirect_stdout,redirect_stderr
+import sys
 #def zoo(a: str)->int:
     #if (signature(zoo).return_annotation!=Signature.empty):
 class Connector:
@@ -125,13 +126,14 @@ class Connector:
         if executed:
             raise Exception("There are multiple objects handling "+str(type(_data))+". The \
 current version does not support handling multiple Input objects of the same type. Please remove "+str(type(_module))+" from module list.")
-        with redirect_stdout(logwindow.f):
-            if type(_data) != type(None):
-                log.info("Executing "+functionName+" with "+str(type(_data)))
-                computed=Algorithm_Run.run(_module,functionName,customsubpath,inputdata=_data)
-            else:
-                log.info("Executing "+functionName+" with without data")
-                computed=Algorithm_Run.run(_module,functionName,"")
+        with redirect_stderr(sys.stdout):
+            with redirect_stdout(logwindow.f):
+                if type(_data) != type(None):
+                    log.info("Executing "+functionName+" with "+str(type(_data)))
+                    computed=Algorithm_Run.run(_module,functionName,customsubpath,inputdata=_data)
+                else:
+                    log.info("Executing "+functionName+" with without data")
+                    computed=Algorithm_Run.run(_module,functionName,"")
         log.debug("update logwindow")
         logwindow.update()
         if output!=None:

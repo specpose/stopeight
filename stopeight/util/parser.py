@@ -29,29 +29,35 @@ def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd()
     lines = []
     files = find_files(dir_path,suffix,base_dir)
     count = 0
+    succeeded = 0
     for final_path in files:
-        log.info('Loading file ' + final_path + '... ')
         try:
             graph = file_adapter(final_path)
+            log.info("SUCCESS: "+str(file_adapter.__name__) + " " + final_path)
             count+=1
             if type(filename) is str:
                 tprinter.draw(graph,drawResize)
             try:
                 points = analyzer(graph)
+                succeeded+=1
                 if type(filename) is str:
                     tprinter.draw(points,drawResize)
                 try:
-                    lines.append(numpy.array(points))
+                    lines.append(points)
                 except:
-                    log.info('Cast from Analyzer Failed')
-                log.info('Success')
+                    log.critical("Cast from Analyzer Failed")
+                    return
             except:
-                log.info('Analyzer Failed')
+                log.warning("FAILED: "+str(analyzer.__name__))
                 if type(filename) is str:
-                    tprinter.text('#' + str(count) + str(final_path) + ' parser failed.')
+                    tprinter.text("#" + str(count) + " " + str(final_path))
         except:
-            log.info('Loading Failed')
+            log.warning("FAILED: "+str(file_adapter.__name__) + " " + final_path)
     if type(filename) is str:
-        tprinter.text('Extracted ' + str(len(lines)) + ' Comparator lines out of ' + str(count) + ' readable Graph files.')
+        tprinter.text("Extracted " + str(len(lines)) + " Comparator lines out of " + str(count) + " readable Graph files.")
         tprinter.write()
+    if len(lines)!=count:
+        log.critical(str(len(files)-count) + " files out of " + str(len(files)) + " corrupted.")
+    if count!=succeeded:
+        log.critical(str(count-succeeded)+" inputs out of "+str(count)+" failed.")
     return lines

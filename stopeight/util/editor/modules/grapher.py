@@ -56,7 +56,7 @@ def _resize(scribbledata,width,height):
     log.debug("Left "+str(left)+" Right "+str(right)+" Bottom "+str(bottom)+" Top "+str(top))
     log.debug("Width "+str(abs(right-left))+" Height "+str(abs(top-bottom)))
     sx,sy=_scalingfactors(left,right,bottom,top,width,height)
-    log.warning("scaling data "+str(sx)+","+str(sy))
+    log.info("Uniform scaling "+str(len(scribbledata))+" vectors with effective horiz: "+str(sx)+", and vert: "+str(sy)+" factors.")
     landscape= True if sx<sy else False
     log.debug("Mode landscape "+str(landscape))
     sx,sy= (sy,sy) if sx>sy else (sx,sx)
