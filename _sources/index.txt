@@ -33,15 +33,13 @@ Usage
 
    run_tests
 
+   run_comparator
+
 Developer
 =========
 
 .. toctree::
    :maxdepth: 1
-
-   dev_stroke-analyzer
-
-   dev_comparator
 
    dev_analyzer
 
