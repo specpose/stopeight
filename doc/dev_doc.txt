@@ -16,16 +16,6 @@ In order to rebuild the docs, do::
     $ git add doc/_build/html/*
     $ git mv -v doc/_build/html/_static ./
     $ git mv -v doc/_build/html/_sources ./
-
-Only if Sphinx version is lower than 1.2::
-
-    $ git show master:doc/_extra/CNAME > ./CNAME
-    $ git show master:doc/_extra/robots.txt > ./robots.txt
-    $ git add ./CNAME
-    $ git add ./robots.txt
-
-Continue::
-
     $ git mv -v doc/_build/html/* ./
     $ touch ./.nojekyll
     $ git add ./.nojekyll
