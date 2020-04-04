@@ -6,7 +6,6 @@ from PyQt5.QtWidgets import QFileDialog
 from stopeight.util.runnable import EditorApp
 
 import stopeight.logging as log
-log.basicConfig(level=log.DEBUG,force=True)
 
 def stroke_parallel(data):
     return _convert(stopeight.legacy.stroke_parallel(list(map(tuple,data['coords'].tolist()))))
@@ -38,8 +37,6 @@ def TCT_to_bezier(data):
 TCT_to_bezier.__annotations__ = {'data': ScribbleData, 'return': ScribbleData}
 
 ##import stopeight.finders
-##import stopeight.logging as log
-##log.basicConfig(level=log.DEBUG,force=True)
 ##from stopeight.grapher import *
 ##
 ##def findTurns(data):

@@ -40,7 +40,6 @@ class ShapeMatchSubSectionClass:
 if __name__ == "__main__":
     from stopeight.util import runnable
     from stopeight.comparator import vectorTools
-    log = logSwitch.logPrint()
     log.info('Starting shapeMatch...')
     input = array([[20,20],[55,130],[80,60],[120,85],[200,10]]).view(vectorTools.NumpyLine)
     log.info('rendering input.svg')

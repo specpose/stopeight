@@ -7,7 +7,7 @@ import os
 import numpy
 
 import stopeight.logging as log
-log.basicConfig(level=log.DEBUG,force=True)
+log.disable(log.WARNING)
 
 def find_files(dir_path,suffix='.npy',base_dir=os.getcwd()):
     dir_path = os.path.join(base_dir,dir_path)

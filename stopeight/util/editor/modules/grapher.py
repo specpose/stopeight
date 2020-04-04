@@ -6,7 +6,6 @@ from stopeight.util.editor.data import ScribbleData, WaveData
 from stopeight.util.editor.scribble import ScribbleArea
 
 import stopeight.logging as log
-log.basicConfig(level=log.DEBUG,force=True)
 
 def _append(data):
     for id,vector in enumerate(data):
@@ -29,6 +28,7 @@ def _scalingfactors(left,right,bottom,top,width,height):
     return o_x/d_x,o_y/d_y
 
 def _resize(scribbledata,width,height):
+    log.setLevel(log.INFO)
     assert type(scribbledata) is ScribbleData, "Wrong input data.data type: %r" % type(scribbledata)
     log.debug("Width "+str(width)+" Height "+str(height))
     from stopeight.matrix import Vectors,Stack
@@ -100,7 +100,7 @@ create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
 
 #grapher data y inverted, scribble data y normal
 def resize(data):
-    log.disable(log.DEBUG)
+    log.setLevel(log.DEBUG)
     #doesnt work: sip.wrappertype
     #log.warning("data "+str(type(data)))
     #log.warning("ScribbleArea "+str(ScribbleArea.__class__))

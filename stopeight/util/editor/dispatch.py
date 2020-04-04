@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 # Copyright (C) 2017 Fassio Blatter
+import stopeight.logging as log
+log.basicConfig(level=log.DEBUG)
 
 try:
     # new location for sip
@@ -26,9 +28,6 @@ _DATA = {'Modules': [
                     ]
          }
 
-import stopeight.logging as log
-log.basicConfig(level=log.DEBUG,force=True)
-
 import importlib
 active=[]
 for module in _DATA['Modules']:
@@ -43,9 +42,8 @@ for module in _DATA['Modules']:
         log.warning("Module "+module[0]+" not loaded!")
 _DATA['Modules']=active
                 
-log.disable(log.NOTSET)
-
 if __name__ == '__main__':
+    log.setLevel(log.NOTSET)
 
     import sys
     app = EditorApp()

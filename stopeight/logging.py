@@ -73,5 +73,8 @@ class basicConfig(configClass):
         if self._level <= CRITICAL:
             print(str(relpath)+": "+"CRITICAL: "+str(message))
 
+def setLevel(level):
+    basicConfig()._level=level
+
 def disable(level):
     basicConfig()._level=level+1

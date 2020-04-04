@@ -6,7 +6,6 @@ from sys import modules as loader
 from PyQt5.QtWidgets import QComboBox,QPushButton
 
 import stopeight.logging as log
-log.basicConfig(level=log.INFO,force=True)
 _LOGDIR = '.stopeight' # this is not for logging messages; it is for data files
 
 from funcsigs import signature
@@ -144,6 +143,7 @@ current version does not support handling multiple Input objects of the same typ
         return True
 
     def run(self):
+        log.setLevel(log.INFO)
         functionName = self.select.currentText()
         log.debug(str(self.methods))
         if functionName in self.methods:

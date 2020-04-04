@@ -7,9 +7,6 @@ import os
 import io
 import funcsigs
 
-import stopeight.logging as log
-log.basicConfig(level=log.DEBUG,force=True)
-
 class outwindow(QDockWidget):
     def __init__(self,parent=EditorApp().window):
         super(outwindow,self).__init__("LogWindow",parent)

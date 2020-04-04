@@ -9,7 +9,6 @@ import numpy as np
 import sys
 
 import stopeight.logging as log
-log.basicConfig(level=log.DEBUG,force=True)
 
 def _getChannel(spf,channel_num=0,total_channels=1):
     #Extract Raw Audio from Wav File
@@ -40,6 +39,7 @@ def _selectChannel(spf):
         return 0,int(n)
 
 def _open(filename):
+    log.setLevel(log.INFO)
     spf = wave.open(filename,'r')
     if spf.getcomptype()!='NONE':
         raise Exception("Compressed WAV files are not supported.")
@@ -47,10 +47,11 @@ def _open(filename):
     samples = _getChannel(spf,*channels)
     spf.close()
     log.debug("wave ndarray is "+str(type(samples)))
-    log.debug("Length of samples in track "+str(len(samples)))
+    log.info("Length of samples in track "+str(len(samples)))
     return samples
 
 def open_WAV():
+    log.setLevel(log.INFO)
     filename = QFileDialog.getOpenFileName(EditorApp().window)
     log.info("Opening "+str(filename[0]))
     samples = _open(filename[0])

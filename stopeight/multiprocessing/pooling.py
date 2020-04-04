@@ -105,7 +105,7 @@ def populate(result):
     
     
 if __name__ == "__main__":
-    log.disable(log.NOTSET)
+    log.setLevel(log.NOTSET)
     log.info('Starting lineMatch...')
     s = numpy.array([[20,20],[55,130],[80,60],[120,85],[200,10]])
     #log.info('rendering input.svg')
