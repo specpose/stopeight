@@ -41,7 +41,10 @@ jobs:
         run: |
           echo `ls -alF /usr/bin/gcc`
           echo `clang --version`
+          echo "Activating conda version 4.8.x"
           eval "$($CONDA/condabin/conda shell.zsh hook)"
+          conda create --name btest
+          conda activate btest
           conda install --channel specpose python stopeight-clibs
           python -m pip install -r requirements.txt
           python -m pip install setuptools wheel
