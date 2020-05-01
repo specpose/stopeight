@@ -1,14 +1,14 @@
 PyTest
 ------
 
-Unpack the legacy test files :doc:`sample_data`.
+Unpack the legacy test files :doc:`sample-data`.
 
 Run the tests::
 
     $ cd /path/to/where/stopeight
     $ pytest stopeight
 
-Show the result of the legacy stroke analyzer which served as input for the comparator matching::
+Show SVG results from the parser::
 
     $ eog SOMETEST.out.svg
 

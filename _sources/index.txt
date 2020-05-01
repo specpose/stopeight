@@ -43,6 +43,8 @@ Developer
 
    dev_analyzer
 
+   build_latex
+
    dev_doc
 
 Indices and tables

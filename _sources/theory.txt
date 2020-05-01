@@ -8,10 +8,6 @@ Preparing the data involves the following two or three steps:
 .. toctree::
    :maxdepth: 2
 
-   vector-graph
-
-   analyzer
-
 * :doc:`vector-graph`
     Working.
 
@@ -28,5 +24,3 @@ The Comparator can do searches in the prepared data:
 
 * Comparator
     Working.
-
-    (Documentation missing: See developer instructions :doc:`dev_comparator`)

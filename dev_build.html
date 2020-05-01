@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Stopeight &#8212; stopeight 0.1.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Sample-Data" href="sample-data.html" />
@@ -30,8 +23,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -39,13 +31,42 @@
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/crab.png" alt="Logo"/>
             </a></p>
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Stopeight</a><ul>
-<li><a class="reference internal" href="#installation">Installation</a></li>
+<h1 class="logo"><a href="index.html">stopeight</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=specpose&repo=stopeight&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
 </ul>
-</li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Stopeight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample-data.html">Sample-Data</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run_editor.html">Editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_tests.html">PyTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_comparator.html">Stopeight Comparator</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev_analyzer.html">Analyzer Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_latex.html">LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_doc.html">GitHub &amp; Sphinx</a></li>
+</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -55,21 +76,16 @@
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/dev_build.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -80,36 +96,41 @@
             
   <div class="section" id="stopeight">
 <h1>Stopeight<a class="headerlink" href="#stopeight" title="Permalink to this headline">¶</a></h1>
-<p>Instructions have been tested on Ubuntu 18.04/bionic.</p>
+<p>Instructions have been tested on Ubuntu 20.04 Focal Fossa.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Minimal Requirements (main repository):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python3 python3-dev cmake build-essential
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install git build-essential python3-dev cmake
 </pre></div>
 </div>
-<p>If you want to run the tests for the legacy algorithm, install Qt5 (main repository):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install qtbase5-dev
+<p>To run the editor, legacy tests and install to a separate environment (universe repository):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install qtbase5-dev python3-venv
 </pre></div>
 </div>
 <p>The stopeight repository contains stopeight-clibs (Github):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone --recurse-submodules https://github.com/specpose/stopeight.git
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone --recurse-submodules https://github.com/specpose/stopeight.git
 $ cd /path/to/where/stopeight
 </pre></div>
 </div>
 <p>Build and install stopeight (easy_install):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python3-venv
-$ python -m venv ~/stopeight-test
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m venv ~/stopeight-test
 $ source ~/stopeight-test/bin/activate
-$ python -m pip install setuptools pybind11 PyQt5
-$ python setup-easydev.py develop
 </pre></div>
 </div>
-<p>Try the editor for a start:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ ~/stopeight-test/bin/python -m stopeight.util.editor.dispatch
+<p>Run this before setup. easy_install may provide broken packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m pip install setuptools pybind11 PyQt5
+</pre></div>
+</div>
+<p>And finally. This is using easy_install, not pip:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python setup-easydev.py develop
+</pre></div>
+</div>
+<p>Try the editor for a start. PyQt5 may segfault when running from inside a snap or an IDE-bound shell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ~/stopeight-test/bin/python -m stopeight.util.editor.dispatch
 </pre></div>
 </div>
 <p>Uninstall:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ ~/stopeight-test/bin/python setup-easydev.py develop --uninstall
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ~/stopeight-test/bin/python setup-easydev.py develop --uninstall
 $ rm -R ~/stopeight-test
 $ rm -Rf /path/to/where/stopeight
 $ rm -R ~/.stopeight
@@ -128,7 +149,7 @@ $ rm -R ~/.stopeight
       
       
       
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

@@ -9,7 +9,7 @@ To run the tests using the legacy frontend pooling is needed.
 
     >>> from multiprocessing import synchronize
 
-Unpack the legacy test files :doc:`sample_data`.
+Unpack the legacy test files :doc:`sample-data`.
 
 Run the test::
 

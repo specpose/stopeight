@@ -4,23 +4,16 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Stopeight &#8212; stopeight 0.1.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
@@ -28,8 +21,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -37,14 +29,42 @@
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/crab.png" alt="Logo"/>
             </a></p>
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Stopeight</a><ul>
-<li><a class="reference internal" href="#stopeight-clibs">stopeight-clibs</a></li>
-<li><a class="reference internal" href="#id1">stopeight</a></li>
+<h1 class="logo"><a href="index.html">stopeight</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=specpose&repo=stopeight&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
 </ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev_build.html">Stopeight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample-data.html">Sample-Data</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run_editor.html">Editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_tests.html">PyTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_comparator.html">Stopeight Comparator</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev_analyzer.html">Analyzer Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_latex.html">LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_doc.html">GitHub &amp; Sphinx</a></li>
+</ul>
+
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
@@ -52,21 +72,16 @@
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/stopeight.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -81,7 +96,7 @@
 <h2>stopeight-clibs<a class="headerlink" href="#stopeight-clibs" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://conda.io/docs/user-guide/install/index.html">Download and install anaconda</a></p>
 <p>You have to add cmake and qt dependencies manually and install stopeight-clibs:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ conda install -c specpose cmake qt stopeight-clibs
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ conda install -c specpose cmake qt stopeight-clibs
 </pre></div>
 </div>
 <p>For installation from source refer to <a class="reference internal" href="dev_build.html"><span class="doc">Stopeight</span></a>.</p>
@@ -90,15 +105,15 @@
 <h2>stopeight<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Note: You need to install stopeight-clibs before installing stopeight or the python extensions are not compiled.</p>
 <p>Pip from universe:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install python3-pip
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install python3-pip
 </pre></div>
 </div>
 <p>Python 3:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip3 install --user stopeight
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip3 install --user stopeight
 </pre></div>
 </div>
 <p>Eventually you will need the server module, test scripts and test data:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight.git
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/specpose/stopeight.git
 </pre></div>
 </div>
 </div>
@@ -114,7 +129,7 @@
       
       
       
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

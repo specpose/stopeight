@@ -4,60 +4,88 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>LaTeX &#8212; stopeight 0.1.1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="GitHub &amp; Sphinx" href="dev_doc.html" />
+    <link rel="prev" title="Analyzer Algorithm" href="dev_analyzer.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/crab.png" alt="Logo"/>
-            </a></p><div class="relations">
+            </a></p>
+<h1 class="logo"><a href="index.html">stopeight</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=specpose&repo=stopeight&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications.html">Applications</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev_build.html">Stopeight</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sample-data.html">Sample-Data</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="run_editor.html">Editor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_tests.html">PyTest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_comparator.html">Stopeight Comparator</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dev_analyzer.html">Analyzer Algorithm</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LaTeX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_doc.html">GitHub &amp; Sphinx</a></li>
+</ul>
+
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="dev_analyzer.html" title="previous chapter">Analyzer Algorithm</a></li>
+      <li>Next: <a href="dev_doc.html" title="next chapter">GitHub &amp; Sphinx</a></li>
   </ul></li>
 </ul>
 </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/build_latex.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -70,27 +98,28 @@
 <h1>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h1>
 <p>Most of the mathematics are only available in LaTeX form at the moment. PDF files have to be built from source.</p>
 <p>The directory for mathematical definitions (.tex) and bibliography (.bib) is:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight/doc/latex
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /path/to/where/stopeight/doc/latex
 </pre></div>
 </div>
-<p>Install from universe:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install texlive-latex-extra texlive-bibtex-extra
+<p>Install from the universe repository (same as <a class="reference internal" href="dev_doc.html"><span class="doc">GitHub &amp; Sphinx</span></a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install texlive texlive-latex-extra
 </pre></div>
 </div>
-<p>Install the following packages:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ sudo apt-get install texlive-latex-base texlive-latex-recommended
+<p>Install from the universe repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install texlive-bibtex-extra
 </pre></div>
 </div>
-<p>First run pdflatex to create the bcf file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ pdflatex ./filename.tex
+<p>First run pdflatex to create the bcf file. If there is an aux file already, delete it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rm ./filename.aux
+$ pdflatex ./filename.tex
 </pre></div>
 </div>
-<p>Then run bibtex on the tex file:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ bibtex ./filename.bcf
+<p>Then run bibtex on the bcf file (Don’t add the file extension):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bibtex ./filename
 </pre></div>
 </div>
 <p>Create the PDF:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ pdflatex filename.tex
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pdflatex ./filename.tex
 </pre></div>
 </div>
 </div>
@@ -105,7 +134,7 @@
       
       
       
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
       |

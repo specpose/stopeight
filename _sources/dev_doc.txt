@@ -1,9 +1,13 @@
 GitHub & Sphinx
 ===============
 
-Get python sphinx / dvisvgm on ubuntu::
+Get python sphinx / dvisvgm on ubuntu (main repository)::
 
-    $ sudo apt-get install python-sphinx texlive texlive-latex-extra make
+    $ sudo apt-get install make python3-sphinx python3-alabaster
+    
+Theory part of the docs needs latex (universe repository)::
+
+    $ sudo apt-get install texlive texlive-latex-extra
 
 In order to rebuild the docs, do::
 
