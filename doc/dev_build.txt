@@ -32,7 +32,7 @@ And finally. This is using easy_install, not pip::
 
     $ python setup-easydev.py develop
 
-Try the editor for a start::
+Try the editor for a start. PyQt5 may segfault when running from inside a snap or an IDE-bound shell::
 
     $ ~/stopeight-test/bin/python -m stopeight.util.editor.dispatch
 
