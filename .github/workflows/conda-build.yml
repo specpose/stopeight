@@ -42,6 +42,7 @@ jobs:
           echo `ls -alF /usr/bin/gcc`
           echo `clang --version`
           echo "Activating conda version 4.8.x"
+          sudo chown -R 501:20 /usr/local/miniconda
           eval "$($CONDA/condabin/conda shell.zsh hook)"
           conda create --name btest
           conda activate btest
@@ -69,6 +70,7 @@ jobs:
           Get-ExecutionPolicy
           Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
           Get-ExecutionPolicy
+          echo "Activating conda version 4.6.x"
           (& $env:CONDA"\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
           conda create --name btest
           conda activate btest
