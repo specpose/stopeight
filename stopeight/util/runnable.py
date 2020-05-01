@@ -25,7 +25,7 @@ class EditorApp(QApplication):
         return cls._instance
     def __init__(self, *args, **kwargs):
         if self.window==None:
-            s = super().__init__(sys.argv)
+            super().__init__(sys.argv)
             self.window = EditorWindow()
 
 class Singleton(type):
