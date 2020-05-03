@@ -105,7 +105,7 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.clearImage()
         self.scribbling = True
         if (event.type() == QEvent.TouchBegin):
-            self.scribblingFingerCount=0
+            self.scribblingFingerCount=len(event.touchPoints())
             self.scribblingCurrentFinger=len(event.touchPoints())-1
             self.scribblingTop=self.scribblingBottom=0
             self.scribblingLeft=self.scribblingRight=0
@@ -119,7 +119,9 @@ class ScribbleArea(QtWidgets.QDockWidget):
 
     def _move(self, event):
         if (event.type() == QEvent.TouchUpdate):
-            self.scribblingCurrentFinger=len(event.touchPoints())-1
+            if (len(event.touchPoints())!=self.scribblingFingerCount):
+                self.scribblingFingerCount=len(event.touchPoints())
+                self.scribblingCurrentFinger=len(event.touchPoints())-1
         self.scribblingMove+=1
         if self.scribblingMove > 20:
             self._drawLines()
@@ -129,7 +131,8 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.scribbling = False
         if (event.type() == QEvent.TouchEnd):
             self.scribblingFingerCount=0
-            self.scribblingCurrentFinger=len(event.touchPoints())-1
+            if (len(event.touchPoints())!=self.scribblingFingerCount):
+                self.scribblingCurrentFinger=len(event.touchPoints())-1
         self._drawLines()
         if type(self.data) is not type(None):
             del self.data
@@ -145,7 +148,8 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.scribbling = False
         if (event.type() == QEvent.TouchCancel):
             self.scribblingFingerCount=0
-            self.scribblingCurrentFinger=len(event.touchPoints())-1
+            if (len(event.touchPoints())!=self.scribblingFingerCount):
+                self.scribblingCurrentFinger=len(event.touchPoints())-1
         if type(self.scribblingData) is not type(None):
             del self.scribblingData
         self.scribblingData=[]
@@ -190,21 +194,21 @@ class ScribbleArea(QtWidgets.QDockWidget):
         if event.type() == QEvent.TouchBegin:
             print("event.QEvent.TouchBegin")
             self._press(event)
-            self._input(event.touchPoints()[len(event.touchPoints())-1].pos().x(),event.touchPoints()[len(event.touchPoints())-1].pos().y())
+            self._input(event.touchPoints()[-1].pos().x(),event.touchPoints()[-1].pos().y())
             return True
         elif (event.type() == QEvent.TouchUpdate):
             print("event.QEvent.TouchUpdate")
-            self._input(event.touchPoints()[len(event.touchPoints())-1].pos().x(),event.touchPoints()[len(event.touchPoints())-1].pos().y())
+            self._input(event.touchPoints()[-1].pos().x(),event.touchPoints()[-1].pos().y())
             self._move(event)
             return True
         elif (event.type() == QEvent.TouchEnd):
             print("event.QEvent.TouchEnd")
-            self._input(event.touchPoints()[len(event.touchPoints())-1].pos().x(),event.touchPoints()[len(event.touchPoints())-1].pos().y())
+            self._input(event.touchPoints()[-1].pos().x(),event.touchPoints()[-1].pos().y())
             self._release(event)
             return True
         elif (event.type() == QEvent.TouchCancel):
             print("event.QEvent.TouchCancel")
-            self._input(event.touchPoints()[len(event.touchPoints())-1].pos().x(),event.touchPoints()[len(event.touchPoints())-1].pos().y())
+            self._input(event.touchPoints()[-1].pos().x(),event.touchPoints()[-1].pos().y())
             self._cancel(event)
             return True
         return super().event(event)
