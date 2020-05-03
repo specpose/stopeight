@@ -50,7 +50,7 @@ setup( use_scm_version=True,
           'funcsigs',
           'matplotlib',
           'pybind11>=2.4',
-          'PyQt5',# <5.11.0, because pip>=19.3
+          'PyQt5',# >5.11.0: install with pip, not easy_setup!
           ],
 #pip end
        ext_modules = [
@@ -92,9 +92,12 @@ setup( use_scm_version=True,
            ),
            Extension(
               'stopeight.legacy',
-               [os.path.join(my_path,'stopeight-clibs','legacy-wrappers','interfacepython.cpp')],
+               [os.path.join(my_path,'stopeight-clibs','legacy-wrappers','interfacepython.cpp'),
+               os.path.join(my_path,'stopeight-clibs','legacy-wrappers','IFPyGetters.cpp'),
+               os.path.join(my_path,'stopeight-clibs','legacy-wrappers','IFPyShared.cpp')],
                include_dirs=_qt5_include_dirs + [
-                   os.path.join(my_path,'stopeight-clibs','legacy/include')
+                   os.path.join(my_path,'stopeight-clibs','legacy/include'),
+                   os.path.join(my_path,'stopeight-clibs','legacy-wrappers')
                ],
                library_dirs=_library_dirs,
                libraries=['stopeight-clibs-legacy','Qt5Core'],#Qt5Core needed for old wrapper

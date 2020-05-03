@@ -27,7 +27,7 @@ setup( use_scm_version=True,
           'future',
           'funcsigs',
           'matplotlib',
-          'PyQt5',# <5.11.0, because pip>=19.3
+          'PyQt5',# >5.11.0: install with pip, not easy_setup!
           ],
 #pip end - not in cmake_examples
 #cmake start
