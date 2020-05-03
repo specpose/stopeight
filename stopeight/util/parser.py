@@ -23,8 +23,8 @@ def find_files(dir_path,suffix='.npy',base_dir=os.getcwd()):
         raise Exception('Path ' + dir_path + ' is not a directory under ' + os.getcwd())
     return paths
 
-def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd(),filename=None,drawResize=True):
-    if type(filename) is str:
+def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd(),filename:str=None,drawResize=True):
+    if filename != None:
         tprinter = tableau_printer.tPrinter(filename,6)
     lines = []
     files = find_files(dir_path,suffix,base_dir)
@@ -35,12 +35,12 @@ def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd()
             graph = file_adapter(final_path)
             log.info("SUCCESS: "+str(file_adapter.__name__) + " " + final_path)
             count+=1
-            if type(filename) is str:
+            if filename != None:
                 tprinter.draw(graph,drawResize)
             try:
                 points = analyzer(graph)
                 succeeded+=1
-                if type(filename) is str:
+                if filename != None:
                     tprinter.draw(points,drawResize)
                 try:
                     lines.append(points)
@@ -49,11 +49,11 @@ def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd()
                     return
             except:
                 log.warning("FAILED: "+str(analyzer.__name__))
-                if type(filename) is str:
+                if filename != None:
                     tprinter.text("#" + str(count) + " " + str(final_path))
         except:
             log.warning("FAILED: "+str(file_adapter.__name__) + " " + final_path)
-    if type(filename) is str:
+    if filename != None:
         tprinter.text("Extracted " + str(len(lines)) + " Comparator lines out of " + str(count) + " readable Graph files.")
         tprinter.write()
     if len(lines)!=count:
