@@ -173,15 +173,32 @@ class ScribbleArea(QtWidgets.QDockWidget):
             self.scribblingTop=self.scribblingBottom=self.scribblingData[-1][1]
             self.scribblingLeft=self.scribblingRight=self.scribblingData[-1][0]
 
-    #todo: Remove try/catch
+    #todo: Remove try/catch in tableteventrealease
     #todo: Switch to hiResGlobalX; remainder: global - int(global); QWidget mapFromGlobal
-    def tabletEvent(self, event):
-        if event.type() == QEvent.TabletPress:
+    def event(self,event):
+        if (event.type() == QEvent.MouseButtonPress):
+            if event.button() == Qt.LeftButton:
+                self._press(event)
+                self._input(event.localPos().x(),event.localPos().y())
+                return True           
+        elif (event.type() == QEvent.MouseMove and self.scribbling):
+            if (event.buttons() & Qt.LeftButton) and self.scribbling:
+                self._input(event.localPos().x(),event.localPos().y())
+                self._move(event)
+                return True
+        elif (event.type() == QEvent.MouseButtonRelease and self.scribbling):
+            if (event.button() == Qt.LeftButton) and self.scribbling:
+                self._input(event.localPos().x(),event.localPos().y())
+                self._release(event)
+                return True
+        elif (event.type() == QEvent.TabletPress):
             self._press(event)
             self._input(event.posF().x(),event.posF().y())
+            return True
         elif (event.type() == QEvent.TabletMove) and self.scribbling:
             self._input(event.posF().x(),event.posF().y())            
             self._move(event)
+            return True
         elif (event.type() == QEvent.TabletRelease) and self.scribbling:
             self._input(event.posF().x(),event.posF().y())
             self._release(event)
@@ -189,25 +206,20 @@ class ScribbleArea(QtWidgets.QDockWidget):
                 self.tablet_id=event.uniqueId()
             except:
                 self.__dict__.__delattr__('tablet_id')
-
-    def event(self,event):
-        if event.type() == QEvent.TouchBegin:
-            print("event.QEvent.TouchBegin")
+            return True
+        elif (event.type() == QEvent.TouchBegin):
             self._press(event)
             self._input(event.touchPoints()[-1].pos().x(),event.touchPoints()[-1].pos().y())
             return True
-        elif (event.type() == QEvent.TouchUpdate):
-            print("event.QEvent.TouchUpdate")
+        elif (event.type() == QEvent.TouchUpdate and self.scribbling):
             self._input(event.touchPoints()[-1].pos().x(),event.touchPoints()[-1].pos().y())
             self._move(event)
             return True
-        elif (event.type() == QEvent.TouchEnd):
-            print("event.QEvent.TouchEnd")
+        elif (event.type() == QEvent.TouchEnd and self.scribbling):
             self._input(event.touchPoints()[-1].pos().x(),event.touchPoints()[-1].pos().y())
             self._release(event)
             return True
-        elif (event.type() == QEvent.TouchCancel):
-            print("event.QEvent.TouchCancel")
+        elif (event.type() == QEvent.TouchCancel and self.scribbling):
             self._input(event.touchPoints()[-1].pos().x(),event.touchPoints()[-1].pos().y())
             self._cancel(event)
             return True
@@ -223,21 +235,6 @@ class ScribbleArea(QtWidgets.QDockWidget):
         else:
             sub = 'MouseData'
         return sub
-
-    def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
-            self._press(event)
-            self._input(event.localPos().x(),event.localPos().y())            
-
-    def mouseMoveEvent(self, event):
-        if (event.buttons() & Qt.LeftButton) and self.scribbling:
-            self._input(event.localPos().x(),event.localPos().y())
-            self._move(event)
-
-    def mouseReleaseEvent(self, event):
-        if (event.button() == Qt.LeftButton) and self.scribbling:
-            self._input(event.localPos().x(),event.localPos().y())
-            self._release(event)
 
     def paintEvent(self, event):
         painter = QPainter(self)

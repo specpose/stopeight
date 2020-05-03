@@ -27,7 +27,7 @@ class EditorApp(QApplication):
             cls._instance.setAttribute(Qt.AA_CompressTabletEvents, False)
             cls._instance.setAttribute(Qt.AA_SynthesizeTouchForUnhandledMouseEvents, False)
             cls._instance.setAttribute(Qt.AA_SynthesizeMouseForUnhandledTouchEvents, False)
-            #cls._instance.setAttribute(Qt.AA_SynthesizeMouseForUnhandledTabletEvents, False)
+            cls._instance.setAttribute(Qt.AA_SynthesizeMouseForUnhandledTabletEvents, False)
         return cls._instance
     def __init__(self, *args, **kwargs):
         if self.window==None:
