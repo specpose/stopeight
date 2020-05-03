@@ -64,12 +64,16 @@ class ScribbleArea(QtWidgets.QDockWidget):
         self.setMinimumSize(QSize(300, 256))
 
         self.setAttribute(Qt.WA_StaticContents)
+        self.setAttribute(Qt.WA_AcceptTouchEvents)
+        self.setAttribute(Qt.WA_TouchPadAcceptSingleTouchEvents)
         self.scribbling = False
         self.scribblingData=[]
         self.scribblingTop=self.scribblingBottom=self.scribblingLeft=self.scribblingRight=None
         self.scribblingMove=0
         self.scribblingDrawIndex = 0
-        
+        self.scribblingFingerCount = 0
+        self.scribblingCurrentFinger=None
+
         self.myPenWidth = 1
         self.myPenColor = Qt.blue
         self.image = QImage()
@@ -100,19 +104,33 @@ class ScribbleArea(QtWidgets.QDockWidget):
     def _press(self,event):
         self.clearImage()
         self.scribbling = True
-        self.scribblingTop=self.scribblingBottom=event.pos().y()
-        self.scribblingLeft=self.scribblingRight=event.pos().x()
+        if (event.type() == QEvent.TouchBegin):
+            self.scribblingFingerCount=0
+            self.scribblingCurrentFinger=len(event.touchPoints())-1
+            self.scribblingTop=self.scribblingBottom=0
+            self.scribblingLeft=self.scribblingRight=0
+        elif (event.type() == QEvent.MouseButtonPress):
+            self.scribblingTop=self.scribblingBottom=event.localPos().y()
+            self.scribblingLeft=self.scribblingRight=event.localPos().x()
+        elif (event.type() == QEvent.TabletPress):
+            self.scribblingTop=self.scribblingBottom=event.posF().y()
+            self.scribblingLeft=self.scribblingRight=event.posF().x()
         self.scribblingDrawIndex=0
 
     def _move(self, event):
+        if (event.type() == QEvent.TouchUpdate):
+            self.scribblingCurrentFinger=len(event.touchPoints())-1
         self.scribblingMove+=1
         if self.scribblingMove > 20:
-            self.drawLines()
+            self._drawLines()
             self.scribblingMove=0
 
     def _release(self, event):
         self.scribbling = False
-        self.drawLines()
+        if (event.type() == QEvent.TouchEnd):
+            self.scribblingFingerCount=0
+            self.scribblingCurrentFinger=len(event.touchPoints())-1
+        self._drawLines()
         if type(self.data) is not type(None):
             del self.data
         self.data = ScribbleData(size=len(self.scribblingData))
@@ -123,7 +141,20 @@ class ScribbleArea(QtWidgets.QDockWidget):
             del self.scribblingData
         self.scribblingData = []
 
-    def drawLines(self):
+    def _cancel(self, event):
+        self.scribbling = False
+        if (event.type() == QEvent.TouchCancel):
+            self.scribblingFingerCount=0
+            self.scribblingCurrentFinger=len(event.touchPoints())-1
+        if type(self.scribblingData) is not type(None):
+            del self.scribblingData
+        self.scribblingData=[]
+        self.scribblingTop=self.scribblingBottom=self.scribblingLeft=self.scribblingRight=None
+        self.scribblingMove=0
+        self.scribblingDrawIndex = 0
+
+
+    def _drawLines(self):
         painter = QPainter(self.image)
         if len(self.scribblingData)>self.scribblingDrawIndex+1:
             try:
@@ -138,6 +169,8 @@ class ScribbleArea(QtWidgets.QDockWidget):
             self.scribblingTop=self.scribblingBottom=self.scribblingData[-1][1]
             self.scribblingLeft=self.scribblingRight=self.scribblingData[-1][0]
 
+    #todo: Remove try/catch
+    #todo: Switch to hiResGlobalX; remainder: global - int(global); QWidget mapFromGlobal
     def tabletEvent(self, event):
         if event.type() == QEvent.TabletPress:
             self._press(event)
@@ -153,7 +186,30 @@ class ScribbleArea(QtWidgets.QDockWidget):
             except:
                 self.__dict__.__delattr__('tablet_id')
 
-    def identify(self):
+    def event(self,event):
+        if event.type() == QEvent.TouchBegin:
+            print("event.QEvent.TouchBegin")
+            self._press(event)
+            self._input(event.touchPoints()[len(event.touchPoints())-1].pos().x(),event.touchPoints()[len(event.touchPoints())-1].pos().y())
+            return True
+        elif (event.type() == QEvent.TouchUpdate):
+            print("event.QEvent.TouchUpdate")
+            self._input(event.touchPoints()[len(event.touchPoints())-1].pos().x(),event.touchPoints()[len(event.touchPoints())-1].pos().y())
+            self._move(event)
+            return True
+        elif (event.type() == QEvent.TouchEnd):
+            print("event.QEvent.TouchEnd")
+            self._input(event.touchPoints()[len(event.touchPoints())-1].pos().x(),event.touchPoints()[len(event.touchPoints())-1].pos().y())
+            self._release(event)
+            return True
+        elif (event.type() == QEvent.TouchCancel):
+            print("event.QEvent.TouchCancel")
+            self._input(event.touchPoints()[len(event.touchPoints())-1].pos().x(),event.touchPoints()[len(event.touchPoints())-1].pos().y())
+            self._cancel(event)
+            return True
+        return super().event(event)
+
+    def identify(self)->str:
         import os
             
         #if (os.getcwd()).endswith('stopeight'):
@@ -167,16 +223,16 @@ class ScribbleArea(QtWidgets.QDockWidget):
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self._press(event)
-            self._input(event.pos().x(),event.pos().y())            
+            self._input(event.localPos().x(),event.localPos().y())            
 
     def mouseMoveEvent(self, event):
         if (event.buttons() & Qt.LeftButton) and self.scribbling:
-            self._input(event.pos().x(),event.pos().y())
+            self._input(event.localPos().x(),event.localPos().y())
             self._move(event)
 
     def mouseReleaseEvent(self, event):
         if (event.button() == Qt.LeftButton) and self.scribbling:
-            self._input(event.pos().x(),event.pos().y())
+            self._input(event.localPos().x(),event.localPos().y())
             self._release(event)
 
     def paintEvent(self, event):

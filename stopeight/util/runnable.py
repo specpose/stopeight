@@ -8,6 +8,7 @@ if (exec_dir==file_dir):
 
 import sys
 from PyQt5.QtWidgets import QApplication,QMainWindow
+from PyQt5.QtCore import Qt
 
 class EditorWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
@@ -22,6 +23,11 @@ class EditorApp(QApplication):
     def __new__(cls, *args, **kwargs):
         if cls._instance==None:
             cls._instance = super().__new__(cls,sys.argv)
+            cls._instance.setAttribute(Qt.AA_CompressHighFrequencyEvents, False)
+            cls._instance.setAttribute(Qt.AA_CompressTabletEvents, False)
+            cls._instance.setAttribute(Qt.AA_SynthesizeTouchForUnhandledMouseEvents, False)
+            cls._instance.setAttribute(Qt.AA_SynthesizeMouseForUnhandledTouchEvents, False)
+            #cls._instance.setAttribute(Qt.AA_SynthesizeMouseForUnhandledTabletEvents, False)
         return cls._instance
     def __init__(self, *args, **kwargs):
         if self.window==None:
