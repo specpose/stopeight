@@ -1,5 +1,5 @@
 # Copyright (C) 2018 Fassio Blatter
-
+version="TooOld"
 import stopeight.legacy
 from stopeight.util.editor.data import ScribbleData
 from PyQt5.QtWidgets import QFileDialog
@@ -67,9 +67,15 @@ import stopeight.getters
 import numpy as np
 
 def getFirstTurnByTriplets(data:ScribbleData)->ScribbleData:
-    log.info("Invoking getFirstTurnByTriplets...")
+    log.setLevel(log.DEBUG)
+    log.info("Invoking getFirstTurnByTriplets with "+str(len(data))+" data points...")
+    #from stopeight.matrix import Vectors
+    #invec = Vectors(data)
+    #log.debug("Creating a legacy QListDpoint from a matrix Vectors length "+str(len(invec)))
     ql = stopeight.getters.QListDpoint(data)
+    log.debug("Initializing turn chopping algorithm length "+str(len(ql)))
     ta = stopeight.getters.Turn(ql)
-    turn = np.array(ta.next())
-    assert type(turn) == np.ndarray
-    return turn.view(ScribbleData)
+    log.debug("Invoking turn chopping algorithm length "+str(len(ta)))
+    out = ta.next()#.__array__()
+    log.debug("Read length of a object of type "+str(type(out))+" and length "+str(len(out)))
+    return out.view(ScribbleData)

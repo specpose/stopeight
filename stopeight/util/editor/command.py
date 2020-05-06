@@ -137,7 +137,7 @@ current version does not support handling multiple Input objects of the same typ
         logwindow.update()
         if output!=None:
             if type(computed)!=type(output.data):
-                raise TypeError("functionreturn "+str(type(computed))+" not equal callannotation "+str(type(output.data)))
+                raise TypeError("functionreturn "+str(type(computed))+" of function "+str(functionName)+" not equal callannotation "+str(type(output.data)))
             output(computed)
             output.data=computed
         return True
