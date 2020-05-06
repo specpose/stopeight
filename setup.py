@@ -62,7 +62,8 @@ setup( use_scm_version=True,
                    os.path.join(my_path,'stopeight-clibs','grapher')
                ],
                library_dirs=_library_dirs,
-               libraries=['stopeight-clibs-grapher'],
+               libraries=['stopeight-clibs-grapher',
+               'stopeight-clibs-matrix'],
                language='c++',
                optional=True
            ),
@@ -100,7 +101,7 @@ setup( use_scm_version=True,
                    os.path.join(my_path,'stopeight-clibs','legacy-wrappers')
                ],
                library_dirs=_library_dirs,
-               libraries=['stopeight-clibs-legacy','Qt5Core'],#Qt5Core needed for old wrapper
+               libraries=['stopeight-clibs-legacy','stopeight-clibs-matrix','Qt5Core'],#Qt5Core needed for old wrapper
                language='c++',
                optional=True
               ),

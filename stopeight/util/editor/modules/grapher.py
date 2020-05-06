@@ -85,18 +85,19 @@ def _resize(scribbledata,width,height):
     log.debug("First "+str(testvec[0][0][0])+","+str(testvec[0][0][1])+" Last "+str(testvec[-1][0][0])+","+str(testvec[-1][0][1]))
     return testvec.view(ScribbleData) 
 
-def create_vector_graph(data):
+def create_vector_graph(data:WaveData)->ScribbleData:
     assert type(data) is WaveData, "Input Error, wrong datatype: %r" % type(data)
     log.debug("Loading with "+str(len(data)))
-    from stopeight.grapher import VectorDouble,VectorTimeCodeDouble,create_vector_graph
+    #from stopeight.matrix import Vectors #Hard crash if symbol used but missing: create_vector_graph return value
+    from stopeight.grapher import VectorDouble,create_vector_graph
     import numpy as np
     invec = VectorDouble(data)
-    result = invec.create_vector_graph(1,1.0,True).__array__()
+    #result = invec.create_vector_graph(1,1.0,True).__array__()
+    result = create_vector_graph(invec,1,1.0,True)
     assert type(result) is np.ndarray, "Cast Error: %r" % type(result)
     result = _append(result)
     log.debug("Return Length "+str(len(result)))
     return result.view(ScribbleData)
-create_vector_graph.__annotations__ = {'data':WaveData,'return':ScribbleData}
 
 #grapher data y inverted, scribble data y normal
 def resize(data):
