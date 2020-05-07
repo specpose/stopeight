@@ -42,7 +42,7 @@ for module in _DATA['Modules']:
         log.warning("Module "+module[0]+" not loaded!")
 _DATA['Modules']=active
                 
-if __name__ == '__main__':
+def main():
     log.setLevel(log.NOTSET)
 
     import sys
@@ -110,3 +110,6 @@ if __name__ == '__main__':
     
     EditorApp().window.show()
     sys.exit(EditorApp().exec_())
+
+if __name__ == '__main__':
+    main()
