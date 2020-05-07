@@ -63,3 +63,16 @@ class CMakeBuild(build_ext):
             os.makedirs(self.build_temp)
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, env=env)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
+#WINDOWS setuptools easy_install workaround
+        if platform.system() == "Windows":
+            from stopeight.util.parser import find_files
+            for library in ext.libraries:
+                dll_file = find_files(self.build_temp,suffix=str(library)+'.dll')
+                if len(dll_file)==1:
+                    file_origin=dll_file[0]
+                    file_destination=os.path.join(ext.sourcedir,'stopeight',str(library)+'.dll')
+                    print("BUGFIX: setuptools Windows collecting dll: "+str(file_origin))
+                    print("BUGFIX: setuptools Windows installing dll to: "+str(file_destination))
+                    from shutil import copyfile
+                    copyfile(file_origin,file_destination)
+                    

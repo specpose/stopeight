@@ -13,7 +13,7 @@ import site
 
 setup( use_scm_version=True,
        packages=_packages,
-       data_files=[(str(site.getusersitepackages()),['stopeight.pth'])],#required by stopeight-clibs if enabled in CMakeLists.txt
+#      data_files=[(str(site.getusersitepackages()),['stopeight.pth'])],#required by stopeight-clibs if enabled in CMakeLists.txt
        entry_points={
            'setuptools.installation':['eggsecutable = stopeight.util.editor.dispatch:main_func',]
            },

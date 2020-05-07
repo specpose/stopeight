@@ -2,7 +2,6 @@
 
 # Copyright (C) 2017 Fassio Blatter
 
-from stopeight.util import tableau_printer
 import os
 import numpy
 
@@ -25,6 +24,7 @@ def find_files(dir_path,suffix='.npy',base_dir=os.getcwd()):
 
 def process_directory(dir_path,suffix,file_adapter,analyzer,base_dir=os.getcwd(),filename:str=None,drawResize=True):
     if filename != None:
+        from stopeight.util import tableau_printer
         tprinter = tableau_printer.tPrinter(filename,6)
     lines = []
     files = find_files(dir_path,suffix,base_dir)
