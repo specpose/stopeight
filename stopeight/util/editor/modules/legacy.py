@@ -26,6 +26,8 @@ def _convert(legacy_data):
 
 def open_SP()->ScribbleData:
     filename = QFileDialog.getOpenFileName(EditorApp().window)
+    assert type(filename[0]) == str
+    assert len(filename[0]) != 0
     data = _parse_file(filename[0])
     return data
 

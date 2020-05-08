@@ -53,6 +53,8 @@ def _open(filename):
 def open_WAV():
     log.setLevel(log.INFO)
     filename = QFileDialog.getOpenFileName(EditorApp().window)
+    assert type(filename[0]) == str
+    assert len(filename[0]) != 0
     log.info("Opening "+str(filename[0]))
     samples = _open(filename[0])
     return samples

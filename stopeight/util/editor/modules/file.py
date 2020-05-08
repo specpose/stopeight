@@ -14,18 +14,23 @@ log.disable(log.CRITICAL)
 def save_NPY(data):
     # this is not a real error but saves us from writing more code
     data=data.data
+    log.error("DISREGARD THIS ERROR, IT HAS BEEN TRIGGERED TO SAVE THE FILE")
     raise ValueError
 save_NPY.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
 
 def save_as_NPY(data):
     filename = QFileDialog.getSaveFileName(EditorApp().window,"QFileDialog.getSaveFileName()","","NumPy Files (*.npy)")
-    log.debug("Saving to File "+str(filename[0]))
+    assert type(filename[0]) == str
+    assert len(filename[0]) != 0
     _to_file(filename[0],data.data)
+    log.info("Saved to File "+str(filename[0]))
     return filename
 save_as_NPY.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
 
 def open_NPY():
     filename = QFileDialog.getOpenFileName(EditorApp().window)
+    assert type(filename[0]) == str
+    assert len(filename[0]) != 0, "No filename"
     log.debug("Reading from File "+str(filename[0]))
     return _read(filename[0])
 open_NPY.__annotations__ = {'return': ScribbleData}

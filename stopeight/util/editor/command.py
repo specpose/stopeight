@@ -38,6 +38,8 @@ class Algorithm_Select(dict):
                         data_type = None
                     self[name]=(return_type,data_type)
 
+import sys,traceback
+
 class Algorithm_Run:
 
     @staticmethod
@@ -81,9 +83,10 @@ class Algorithm_Run:
                 log.info("Size after call: Output "+str(len(outputdata)))
 
         #except:
-        except BaseException as e:
-            log.error("Error during method invokation: "+module[0]+'.'+currentText)
-            
+        except AssertionError as ass:
+            log.error(str(traceback.extract_tb(sys.exc_info()[2],limit=2).format()[1]))
+        except BaseException as be:
+            log.critical(str(sys.exc_info()[1])+" during method invokation: "+module[0]+'.'+currentText)
             from stopeight.util.editor.modules import file
             from os.path import expanduser,join
             file._write(backup,time,outdir=join(expanduser("~"),_LOGDIR
@@ -97,14 +100,12 @@ class Algorithm_Run:
                         raise Exception("outputdata clear failed!")
                 except TypeError:
                     pass
-            log.error(e)
         return outputdata
     
 from PyQt5.QtCore import Qt
 import inspect
 import funcsigs
 from contextlib import redirect_stdout,redirect_stderr
-import sys
 #def zoo(a: str)->int:
     #if (signature(zoo).return_annotation!=Signature.empty):
 class Connector:
@@ -127,19 +128,26 @@ class Connector:
 current version does not support handling multiple Input objects of the same type. Please remove "+str(type(_module))+" from module list.")
         with redirect_stderr(sys.stdout):
             with redirect_stdout(logwindow.f):
-                if type(_data) != type(None):
-                    log.info("Executing "+functionName+" with "+str(type(_data)))
-                    computed=Algorithm_Run.run(_module,functionName,customsubpath,inputdata=_data)
-                else:
-                    log.info("Executing "+functionName+" with without data")
-                    computed=Algorithm_Run.run(_module,functionName,"")
+                try:
+                    if type(_data) != type(None):
+                        log.info("Executing "+functionName+" with "+str(type(_data)))
+                        computed=Algorithm_Run.run(_module,functionName,customsubpath,inputdata=_data)
+                    else:
+                        log.info("Executing "+functionName+" with without data")
+                        computed=Algorithm_Run.run(_module,functionName,"")
+                    if output!=None:
+                        if type(computed)!=type(output.data):
+                            raise TypeError("functionreturn "+str(type(computed))+" of function "+str(functionName)+" not equal callannotation "+str(type(output.data)))
+                        output(computed)
+                        output.data=computed
+                except AssertionError as ass:
+                    log.info("AssertionError occurred during execution "+str(ass))
+                except TypeError as tpe:
+                    log.info("TypeError occurred during execution "+str(tpe))
+                except BaseException as be:
+                    raise be
         log.debug("update logwindow")
         logwindow.update()
-        if output!=None:
-            if type(computed)!=type(output.data):
-                raise TypeError("functionreturn "+str(type(computed))+" of function "+str(functionName)+" not equal callannotation "+str(type(output.data)))
-            output(computed)
-            output.data=computed
         return True
 
     def run(self):
