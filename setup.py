@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-_packages = ['stopeight']
-
 import os
 #distutils start
 __import__('python')
@@ -29,10 +27,10 @@ if _prefix!='None':
     _library_dirs.append(os.path.join(str(_prefix),'Library','lib'))#conda Windows only
 #distutils end
 
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_namespace_packages
 
 setup( use_scm_version=True,
-       packages=_packages,
+       packages=find_namespace_packages(include=['stopeight.*']),
        entry_points={
            'setuptools.installation':['eggsecutable = stopeight.util.editor.dispatch:main_func',]
            },
