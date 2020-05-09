@@ -2,8 +2,6 @@
 version="TooOld"
 import stopeight.legacy
 from stopeight.util.editor.data import ScribbleData
-from PyQt5.QtWidgets import QFileDialog
-from stopeight.util.runnable import EditorApp
 
 import stopeight.logging as log
 
@@ -25,6 +23,8 @@ def _convert(legacy_data):
     return scribbledata
 
 def open_SP()->ScribbleData:
+    from stopeight.util.runnable import EditorApp
+    from PyQt5.QtWidgets import QFileDialog
     filename = QFileDialog.getOpenFileName(EditorApp().window)
     assert type(filename[0]) == str
     assert len(filename[0]) != 0

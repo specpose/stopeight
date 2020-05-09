@@ -1,6 +1,5 @@
 import inspect
 import os
-from stopeight.util.runnable import Singleton
 
 def _path(stack):
     # bug: PERFORMANCE

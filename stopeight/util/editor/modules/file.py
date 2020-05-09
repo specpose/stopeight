@@ -2,11 +2,8 @@
 
 # Copyright (C) 2009-2016 Specific Purpose Software GmbH
 
-from stopeight.util.runnable import EditorApp
-
 from stopeight.util.editor.data import ScribbleData
 from stopeight.util.editor.scribble import ScribbleArea
-from PyQt5.QtWidgets import QFileDialog
 
 import stopeight.logging as log
 log.disable(log.CRITICAL)
@@ -19,6 +16,8 @@ def save_NPY(data):
 save_NPY.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
 
 def save_as_NPY(data):
+    from stopeight.util.runnable import EditorApp
+    from PyQt5.QtWidgets import QFileDialog
     filename = QFileDialog.getSaveFileName(EditorApp().window,"QFileDialog.getSaveFileName()","","NumPy Files (*.npy)")
     assert type(filename[0]) == str
     assert len(filename[0]) != 0
@@ -28,6 +27,8 @@ def save_as_NPY(data):
 save_as_NPY.__annotations__ = {'data': ScribbleArea, 'return': type(None)}
 
 def open_NPY():
+    from stopeight.util.runnable import EditorApp
+    from PyQt5.QtWidgets import QFileDialog
     filename = QFileDialog.getOpenFileName(EditorApp().window)
     assert type(filename[0]) == str
     assert len(filename[0]) != 0, "No filename"

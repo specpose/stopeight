@@ -1,6 +1,5 @@
 def test_linePrinter():
     from stopeight.util.TCT_printer import TCTPrinter
-    from stopeight.util import runnable
     from stopeight import legacy
     myprinter = TCTPrinter('linePrinter.out')
     fileline = legacy.parse_file('stopeight-clibs/legacy/tests/stage3-build04-authWorking/almostStraightLeg.sp')

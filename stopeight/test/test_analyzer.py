@@ -1,5 +1,4 @@
 def test_UserFiles():
-    from PyQt5.QtWidgets import QApplication,QMainWindow
     from stopeight.util.editor.modules import legacy
     from stopeight.util.editor.modules import file
     from stopeight.util.parser import process_directory
