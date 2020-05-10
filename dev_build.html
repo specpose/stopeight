@@ -112,17 +112,28 @@
 $ cd /path/to/where/stopeight
 </pre></div>
 </div>
+<p>Build and install stopeight-clibs. (Alternative: Uncomment stopeight-clibs in CMakeLists.txt):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd stopeight-clibs
+$ mkdir build
+$ cd build
+$ cmake ../
+$ make
+$ sudo make install
+$ sudo ldconfig
+$ cd ../../
+</pre></div>
+</div>
 <p>Build and install stopeight (easy_install):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m venv ~/stopeight-test
 $ source ~/stopeight-test/bin/activate
 </pre></div>
 </div>
 <p>Run this before setup. easy_install may provide broken packages:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m pip install setuptools pybind11 PyQt5
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m pip install setuptools PyQt5
 </pre></div>
 </div>
 <p>And finally. This is using easy_install, not pip:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python setup-easydev.py develop
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python setup.py develop
 </pre></div>
 </div>
 <p>Try the editor for a start. PyQt5 may segfault when running from inside a snap or an IDE-bound shell:</p>
