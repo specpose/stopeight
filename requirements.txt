@@ -1,12 +1,12 @@
 cycler==0.10.0
 funcsigs==1.0.2
 future==0.18.2
-kiwisolver==1.1.0
-matplotlib==3.2.0
-numpy==1.18.1
-pybind11==2.5.0
-pyparsing==2.4.6
-PyQt5==5.14.1
-PyQt5-sip==12.7.1
+kiwisolver==1.2.0
+matplotlib==3.2.1
+numpy==1.18.4
+pyparsing==2.4.7
+PyQt5==5.14.2
+PyQt5-sip==12.7.2
 python-dateutil==2.8.1
 six==1.14.0
+-e git+https://github.com/specpose/stopeight.git@9ef2313da3f76503553bef3b6ad22e5c0ae940da#egg=stopeight

@@ -1,9 +1,14 @@
-name: "Conda Build"
+name: Upload PyPi Package
 
-on: [push, pull_request]
+on:
+  release:
+    types: [created]
+    branches:
+      - master
+
 
 jobs:
-  conda-build-ubuntu:
+  conda-publish-ubuntu:
     name: Ubuntu Conda Build
     runs-on: 'ubuntu-latest'
     steps:
@@ -16,16 +21,20 @@ jobs:
           git submodule update --init --recursive
       - name: Bash
         shell: bash -l {0}
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
           eval "$($CONDA/condabin/conda shell.bash hook)"
           conda create --name btest
           conda activate btest
           conda install --channel specpose python stopeight-clibs
           python -m pip install -r requirements.txt
-          python -m pip install setuptools wheel
+          python -m pip install setuptools wheel twine
           python setup.py sdist bdist_wheel
+          twine upload dist/*
 
-  conda-build-mac:
+  conda-publish-mac:
     name: Mac Conda Build
     runs-on: 'macos-latest'
     steps:
@@ -38,6 +47,9 @@ jobs:
           git submodule update --init --recursive
       - name: Zsh
         shell: zsh -l {0}
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
           echo `ls -alF /usr/bin/gcc`
           echo `clang --version`
@@ -48,10 +60,11 @@ jobs:
           conda activate btest
           conda install --channel specpose python stopeight-clibs
           python -m pip install -r requirements.txt
-          python -m pip install setuptools wheel
+          python -m pip install setuptools wheel twine
           python setup.py sdist bdist_wheel
+          twine upload dist/*
 
-  conda-build-win:
+  conda-publish-win:
     name: Windows Conda Build
     runs-on: 'windows-latest'
     steps:
@@ -64,6 +77,9 @@ jobs:
           git submodule update --init --recursive
       - name: PowerShell
         shell: powershell
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
           $ErrorActionPreference = 'Continue'
           echo $ErrorActionPreference
@@ -76,5 +92,6 @@ jobs:
           conda activate btest
           conda install --channel specpose python stopeight-clibs
           python -m pip install -r requirements.txt
-          python -m pip install setuptools wheel
+          python -m pip install setuptools wheel twine
           python setup.py sdist bdist_wheel
+          twine upload dist/*
