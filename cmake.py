@@ -33,30 +33,32 @@ class CMakeBuild(build_ext):
 
         for ext in self.extensions:
             self.build_extension(ext)
-##        dirs = []
-##        for ext in self.extensions:
-##            _dir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
-##            if (_dir not in dirs):
-##                self.build_extension(ext)
-##                dirs.append(_dir)
+##OLD start
+#        dirs = []
+#        for ext in self.extensions:
+#            _dir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
+#            if (_dir not in dirs):
+#                self.build_extension(ext)
+#                dirs.append(_dir)
+##OLD end
     def initialize_options(self):
         super().initialize_options()
         self.debug = True
-        self.inplace = 1
-###WINDOWS setuptools easy_install workaround
-##    def copy_libraries_to_source(self,ext):
-##        #super().copy_extensions_to_source(self)
-##        if os.name == 'nt':
-##            from stopeight.util.parser import find_files
-##            for library in ext.libraries:
-##                dll_file = find_files(self.build_temp,suffix=str(library)+'.dll')
-##                if len(dll_file)==1:
-##                    file_origin=dll_file[0]
-##                    file_destination=os.path.join(ext.sourcedir,'stopeight',str(library)+'.dll')
-##                   print("COPYING: setuptools Windows collecting dll: "+str(file_origin))
-##                   print("COPYING: setuptools Windows installing dll to: "+str(file_destination))
-##                    from shutil import copyfile
-##                    copyfile(file_origin,file_destination)
+##WINDOWS setuptools develop dependencies copy start
+#        self.inplace = 1
+#    def copy_libraries_to_source(self,ext):
+#        from stopeight.util.parser import find_files
+#        for library in ext.libraries:
+#            dll_file = find_files(self.build_temp,suffix=str(library)+'.dll')
+#            if len(dll_file)==1:
+#                file_origin=dll_file[0]
+#                file_destination=os.path.join(ext.sourcedir,'stopeight',str(library)+'.dll')
+#                print("COPYING: setuptools Windows collecting dll: "+str(file_origin))
+#                print("COPYING: setuptools Windows installing dll to: "+str(file_destination))
+#                from shutil import copyfile
+#                copyfile(file_origin,file_destination)
+##WINDOWS setuptools develop dependencies copy end
+
 
     def build_extension(self, ext):
         extdir = os.path.abspath(os.path.dirname(self.get_ext_fullpath(ext.name)))
@@ -88,5 +90,9 @@ class CMakeBuild(build_ext):
         subprocess.check_call(['cmake', ext.sourcedir] + cmake_args, cwd=self.build_temp, env=env)
         subprocess.check_call(['cmake', '--build', '.'] + build_args, cwd=self.build_temp)
         print("INPLACE option after build is "+str(self.inplace))
-##        #if self.inplace:
-##        self.copy_libraries_to_source(ext)
+##WINDOWS setuptools develop dependencies copy start
+#        if self.inplace:
+#            if os.name == 'nt':
+#                self.copy_libraries_to_source(ext)
+##WINDOWS setuptools develop dependencies copy end
+
