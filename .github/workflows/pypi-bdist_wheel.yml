@@ -31,7 +31,7 @@ jobs:
           conda install --channel specpose python stopeight-clibs
           python -m pip install -r requirements.txt
           python -m pip install setuptools wheel twine
-          python setup.py sdist bdist_wheel
+          python setup.py bdist_wheel
           twine upload dist/*
 
   conda-publish-mac:
@@ -61,7 +61,7 @@ jobs:
           conda install --channel specpose python stopeight-clibs
           python -m pip install -r requirements.txt
           python -m pip install setuptools wheel twine
-          python setup.py sdist bdist_wheel
+          python setup.py bdist_wheel
           twine upload dist/*
 
   conda-publish-win:
@@ -93,5 +93,5 @@ jobs:
           conda install --channel specpose python stopeight-clibs
           python -m pip install -r requirements.txt
           python -m pip install setuptools wheel twine
-          python setup.py sdist bdist_wheel
+          python setup.py bdist_wheel
           twine upload dist/*
