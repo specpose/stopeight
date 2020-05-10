@@ -21,8 +21,7 @@ setup( use_scm_version=True,
            'setuptools.installation':['eggsecutable = stopeight.util.editor.dispatch:main_func',]
            },
        setup_requires=[
-           'setuptools',
-           'pybind11>=2.4',
+           'pybind11>=2.5.0',
            'setuptools_scm',
            ],
        zip_safe=False,
@@ -30,10 +29,7 @@ setup( use_scm_version=True,
 #pip start
        install_requires=[
           'numpy',
-          'future',
-          'funcsigs',
           'matplotlib',
-          'pybind11>=2.5.0',
           'PyQt5',# >5.11.0: install with pip, not easy_setup!
           ],
 #pip end

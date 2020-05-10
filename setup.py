@@ -20,8 +20,6 @@ setup( use_scm_version=True,
 #pip start - not in cmake_examples
        install_requires=[
           'numpy',
-          'future',
-          'funcsigs',
           'matplotlib',
           'PyQt5',# >5.11.0: install with pip, not easy_setup!
           ],

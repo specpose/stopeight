@@ -6,7 +6,7 @@ project(stopeight)
 
 add_subdirectory(pybind11)
 
-add_subdirectory(stopeight-clibs)
+#add_subdirectory(stopeight-clibs)
 
 add_subdirectory(stopeight-clibs/matrix-wrappers)
 add_subdirectory(stopeight-clibs/grapher-wrappers)

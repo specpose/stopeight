@@ -5,7 +5,6 @@ from stopeight.util.runnable import EditorApp
 import sys
 import os
 import io
-import funcsigs
 
 class outwindow(QDockWidget):
     def __init__(self,parent=EditorApp().window):
@@ -25,7 +24,6 @@ class outwindow(QDockWidget):
     #        print(12)
     #        #libc.puts(b'this comes from C')
     #        os.system('echo and this is from echo')
-    #__call__.__annotations__ = {'data': funcsigs._empty}
     
     def update(self):
         self.text.setText(self.f.getvalue())

@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QComboBox,QPushButton
 import stopeight.logging as log
 _LOGDIR = '.stopeight' # this is not for logging messages; it is for data files
 
-from funcsigs import signature
+from inspect import signature
 class Algorithm_Select(dict):
     def __init__(self, module, **kwargs):
         super(Algorithm_Select,self).__init__(**kwargs)
@@ -103,8 +103,6 @@ class Algorithm_Run:
         return outputdata
     
 from PyQt5.QtCore import Qt
-import inspect
-import funcsigs
 from contextlib import redirect_stdout,redirect_stderr
 #def zoo(a: str)->int:
     #if (signature(zoo).return_annotation!=Signature.empty):

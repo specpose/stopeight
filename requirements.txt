@@ -1,11 +1,8 @@
 cycler==0.10.0
-funcsigs==1.0.2
-future==0.18.2
 kiwisolver==1.2.0
 matplotlib==3.2.1
 numpy==1.18.4
-pybind11==2.5.0
-pyparsing==2.4.7
+pyparsing==3.0.0a1
 PyQt5==5.14.2
 PyQt5-sip==12.7.2
 python-dateutil==2.8.1
