@@ -1,8 +1,9 @@
 def test_linePrinter():
     from stopeight.util.TCT_printer import TCTPrinter
     from stopeight import legacy
+    import os
     myprinter = TCTPrinter('linePrinter.out')
-    fileline = legacy.parse_file('stopeight-clibs/legacy/tests/stage3-build04-authWorking/almostStraightLeg.sp')
+    fileline = legacy.parse_file(os.path.join('stopeight-clibs','legacy','test-data','stage3-build04-authWorking','almostStraightLeg.sp'))
     myprinter.lines(fileline)
     fileline = legacy.stroke_sequential(fileline)
     fileline = legacy.TCT_to_bezier(fileline)

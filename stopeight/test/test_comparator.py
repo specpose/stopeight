@@ -3,7 +3,8 @@ def test_comparator():
     from stopeight import legacy
     from stopeight.multiprocessing import pooling
     from numpy import array
-    listoflines = process_directory('stopeight-clibs/legacy/tests/','.sp',legacy.parse_file,legacy.stroke_sequential)
+    import os
+    listoflines = process_directory(os.path.join('stopeight-clibs','legacy','test-data'),'.sp',legacy.parse_file,legacy.stroke_sequential)
     listofarrays = []
     for line in listoflines:
         listofarrays.append(array(line))

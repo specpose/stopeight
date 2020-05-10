@@ -3,7 +3,6 @@
 from PyQt5.QtWidgets import QFileDialog,QInputDialog
 from stopeight.util.editor.data import WaveData
 
-import wave
 import numpy as np
 import sys
 
@@ -39,6 +38,8 @@ def _selectChannel(spf):
         return 0,int(n)
 
 def _open(filename):
+    import wave
+    from wave import open
     log.setLevel(log.INFO)
     spf = wave.open(filename,'r')
     if spf.getcomptype()!='NONE':
