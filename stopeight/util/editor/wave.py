@@ -10,10 +10,10 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
-from stopeight.util.runnable import EditorApp
+from stopeight.util.editor.runnable import EditorApp
 
 from stopeight.util.editor.data import WaveData
-from stopeight.util import runnable
+from stopeight.util.editor import runnable
 
 class WaveArea(QtWidgets.QDockWidget):
     def __init__(self, parent=EditorApp().window):

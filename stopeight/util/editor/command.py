@@ -1,6 +1,6 @@
 # Copyright (C) 2018 Fassio Blatter
 
-from stopeight.util import runnable
+from stopeight.util.editor import runnable
 from sys import modules as loader
 
 from PyQt5.QtWidgets import QComboBox,QPushButton

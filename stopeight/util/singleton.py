@@ -1,39 +1,5 @@
 # Copyright (C) 2017 Fassio Blatter
 
-import os
-exec_dir = os.path.abspath(os.path.join(os.getcwd(),os.pardir))
-file_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),os.pardir))
-if (exec_dir==file_dir):
-    raise Exception("This script should not be run from inside the module's directories.")
-
-import sys
-from PyQt5.QtWidgets import QApplication,QMainWindow
-from PyQt5.QtCore import Qt
-
-class EditorWindow(QMainWindow):
-    def __init__(self, *args, **kwargs):
-        s = super().__init__(*args, **kwargs)
-        self.setWindowTitle("Editor")
-
-# Singleton
-class EditorApp(QApplication):
-    _instance=None
-    window=None
-    ## object.__call__ is object()(), not object() unlike type()
-    def __new__(cls, *args, **kwargs):
-        if cls._instance==None:
-            cls._instance = super().__new__(cls,sys.argv)
-            cls._instance.setAttribute(Qt.AA_CompressHighFrequencyEvents, False)
-            cls._instance.setAttribute(Qt.AA_CompressTabletEvents, False)
-            cls._instance.setAttribute(Qt.AA_SynthesizeTouchForUnhandledMouseEvents, False)
-            cls._instance.setAttribute(Qt.AA_SynthesizeMouseForUnhandledTouchEvents, False)
-            cls._instance.setAttribute(Qt.AA_SynthesizeMouseForUnhandledTabletEvents, False)
-        return cls._instance
-    def __init__(self, *args, **kwargs):
-        if self.window==None:
-            super().__init__(sys.argv)
-            self.window = EditorWindow()
-
 class Singleton(type):
     """
     inherit: (StatefulClass,metaclass=Singleton)

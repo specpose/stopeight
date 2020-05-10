@@ -56,7 +56,6 @@ class ShapeMatchClass(LineMatchClass):
             return False
 
 if __name__ == "__main__":
-    from stopeight.util import runnable
     from stopeight.comparator import vectorTools
     from numpy import array
     log.disable(log.NOTSET)

@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QDockWidget,QTextEdit,QVBoxLayout,QGroupBox
 from PyQt5.QtCore import Qt, QSize
-from stopeight.util.runnable import EditorApp
+from stopeight.util.editor.runnable import EditorApp
 
 import sys
 import os

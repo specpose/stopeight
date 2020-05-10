@@ -28,7 +28,7 @@ def _getChannel(spf,channel_num=0,total_channels=1):
     return fconverter(np.asarray(np.fromstring(signal, datatype)[channel_num::total_channels], dtype=np.float64)).view(WaveData)
 
 def _selectChannel(spf):
-    from stopeight.util.runnable import EditorApp
+    from stopeight.util.editor.runnable import EditorApp
     n = spf.getnchannels()
     channels = ['{}'.format(i) for i in range(n)]
     channel_num, ok = QInputDialog().getItem(EditorApp().window,"Select Channel","Channel:",channels,0,False)
@@ -53,7 +53,7 @@ def _open(filename):
 
 def open_WAV():
     log.setLevel(log.INFO)
-    from stopeight.util.runnable import EditorApp
+    from stopeight.util.editor.runnable import EditorApp
     filename = QFileDialog.getOpenFileName(EditorApp().window)
     assert type(filename[0]) == str
     assert len(filename[0]) != 0
