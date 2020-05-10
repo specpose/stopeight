@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+_packages = ['stopeight']
+
 import os
 #cmake start
 __import__('cmake')
@@ -9,7 +11,7 @@ from cmake import CMakeExtension, CMakeBuild
 from setuptools import setup, Extension
 
 setup( use_scm_version=True,
-       packages=find_namespace_packages(include=['stopeight.*']),
+       packages=_packages,
        entry_points={
            'setuptools.installation':['eggsecutable = stopeight.util.editor.dispatch:main_func',]
            },
