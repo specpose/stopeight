@@ -1,4 +1,5 @@
 def test_UserFiles():
+    from stopeight.util import editor
     from stopeight.util.editor.modules import legacy
     from stopeight.util.editor.modules import file
     from stopeight.util.parser import process_directory
