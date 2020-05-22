@@ -97,6 +97,19 @@ setup( use_scm_version=True,
                language='c++',
                optional=True
               ),
+            Extension(
+              'stopeight.finders',
+               [os.path.join('stopeight-clibs','legacy-wrappers','IFPyFinders.cpp'),
+               os.path.join('stopeight-clibs','legacy-wrappers','IFPyShared.cpp')],
+               include_dirs=_qt5_include_dirs + [
+                   os.path.join('stopeight-clibs','legacy/include'),
+                   os.path.join('stopeight-clibs','legacy-wrappers')
+               ],
+               library_dirs=_library_dirs,
+               libraries=['stopeight-clibs-legacy','stopeight-clibs-matrix','Qt5Core'],#Qt5Core needed for old wrapper
+               language='c++',
+               optional=True
+              ),
        ],
        cmdclass={'build_ext': BuildExt},
 #distutils end
