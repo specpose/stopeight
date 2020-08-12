@@ -6,6 +6,7 @@
 
 (* ::Input:: *)
 (*Clear["Spline`*"];*)
+(*pascalMatrix::usage="";*)
 
 
 (* ::Input:: *)
@@ -30,6 +31,7 @@
 
 (* ::Input:: *)
 (*Begin["Spline`Private`"];*)
+(*pascalMatrix[n_]:=DiagonalMatrix[Table[1,{n}]]+DiagonalMatrix[Table[-1,{n-1}],-1]*)
 
 
 (* ::Input:: *)
