@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     50245,       1195]
-NotebookOptionsPosition[     48649,       1162]
-NotebookOutlinePosition[     48997,       1177]
-CellTagsIndexPosition[     48954,       1174]
+NotebookDataLength[     48690,       1125]
+NotebookOptionsPosition[     47095,       1092]
+NotebookOutlinePosition[     47443,       1107]
+CellTagsIndexPosition[     47400,       1104]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -36,17 +36,7 @@ Cell[BoxData[
 
 Cell[CellGroupData[{
 
-Cell[BoxData[{
- RowBox[{
-  RowBox[{"MatrixForm", "[", 
-   RowBox[{"M1", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"1", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
+Cell[BoxData[
  RowBox[{"DynamicModule", "[", 
   RowBox[{
    RowBox[{"{", 
@@ -66,9 +56,7 @@ Cell[BoxData[{
          RowBox[{"Dynamic", "[", 
           RowBox[{"Point", "[", 
            RowBox[{"arc1", "[", 
-            RowBox[{
-             RowBox[{"pascalMatrix", "[", "2", "]"}], ",", "M1", ",", "s", 
-             ",", "e"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"s", ",", "e"}], "]"}], "]"}], "]"}], ",", 
          RowBox[{"Locator", "[", 
           RowBox[{"Dynamic", "[", "s", "]"}], "]"}], ",", 
          RowBox[{"Locator", "[", 
@@ -78,11 +66,11 @@ Cell[BoxData[{
       RowBox[{"Dynamic", "[", 
        RowBox[{
         RowBox[{"poly1", "=", " ", 
-         RowBox[{"M1", ".", 
-          RowBox[{"H1", "[", 
-           RowBox[{
-            RowBox[{"pascalMatrix", "[", "2", "]"}], ",", "M1", ",", "s", ",",
-             "e"}], "]"}]}]}], ";", 
+         RowBox[{"H1", "[", 
+          RowBox[{
+           RowBox[{"pascalMatrix", "[", "2", "]"}], ",", 
+           RowBox[{"IdentityMatrix", "[", "2", "]"}], ",", "s", ",", "e"}], 
+          "]"}]}], ";", 
         RowBox[{"cps1", "=", 
          RowBox[{"Map", "[", 
           RowBox[{
@@ -102,7 +90,7 @@ Cell[BoxData[{
                 RowBox[{"{", 
                  RowBox[{"t", ",", "0", ",", "1"}], "}"}]}], "]"}]}], "}"}]}],
             "]"}], ",", "cps1"}], "]"}]}], "]"}], "}"}]}], "}"}]}], 
-  "]"}]}], "Input",
+  "]"}]], "Input",
  CellChangeTimes->{{3.753647826762274*^9, 3.753647880150669*^9}, 
    3.753647910990225*^9, 3.753647956047772*^9, {3.754051357194474*^9, 
    3.754051375763378*^9}, {3.7544907583082743`*^9, 3.754490759418449*^9}, {
@@ -121,8 +109,9 @@ Cell[BoxData[{
    3.756381752314064*^9, 3.756381796610859*^9}, {3.75638187953824*^9, 
    3.756381953387698*^9}, {3.756382034335*^9, 3.75638203853331*^9}, {
    3.7563821836493263`*^9, 3.756382258646069*^9}, {3.8062498279054832`*^9, 
-   3.8062498310154653`*^9}, 
-   3.806249903493571*^9},ExpressionUUID->"af07487f-0f3b-4347-96f1-\
+   3.8062498310154653`*^9}, 3.806249903493571*^9, 3.806298636732834*^9, {
+   3.8062994968304873`*^9, 3.806299506902216*^9}, {3.8063005876794996`*^9, 
+   3.8063005924562907`*^9}},ExpressionUUID->"af07487f-0f3b-4347-96f1-\
 f47706dc5442"],
 
 Cell[BoxData[
@@ -132,20 +121,17 @@ Cell[BoxData[
     GraphicsBox[{
       DynamicBox[Typeset`ToBoxes[
         Point[
-         Spline`arc1[
-          Spline`pascalMatrix[
-          2], $CellContext`M1, $CellContext`s$$, $CellContext`e$$]], 
-        StandardForm, Graphics],
+         Spline`arc1[$CellContext`s$$, $CellContext`e$$]], StandardForm, 
+        Graphics],
        ImageSizeCache->{{88.5, 136.5}, {-4.5, -1.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
     RowBox[{"{", 
-     DynamicBox[ToBoxes[$CellContext`poly1 = Dot[$CellContext`M1, 
-          Spline`H1[
-           Spline`pascalMatrix[
-           2], $CellContext`M1, $CellContext`s$$, $CellContext`e$$]]; \
-$CellContext`cps1 = Map[
+     DynamicBox[ToBoxes[$CellContext`poly1 = Spline`H1[
+          Spline`pascalMatrix[2], 
+          IdentityMatrix[
+          2], $CellContext`s$$, $CellContext`e$$]; $CellContext`cps1 = Map[
           Function[$CellContext`sub1, 
            CharacteristicPolynomial[$CellContext`sub1, $CellContext`t]], 
           SubSpaces`ListSubSpaces[$CellContext`poly1]]; Map[
@@ -179,24 +165,16 @@ $CellContext`cps1 = Map[
    3.75638192343869*^9, 3.756381955592681*^9}, {3.756382014044818*^9, 
    3.756382039467905*^9}, {3.756382197689049*^9, 3.756382225275826*^9}, 
    3.7563822596913633`*^9, 3.756383387862844*^9, 3.806249796071463*^9, 
-   3.806249909223608*^9},ExpressionUUID->"6e1af099-d21f-4a71-84d8-\
-2c04978f04fd"]
+   3.806249909223608*^9, 3.8062518552876167`*^9, 3.8062987473102894`*^9, 
+   3.8062996127618165`*^9, 3.806300673778653*^9, {3.8063007753694496`*^9, 
+   3.8063007869911823`*^9}},ExpressionUUID->"10c726c8-8be7-4f32-a008-\
+bdce552253b5"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"MatrixForm", "[", 
-   RowBox[{"M2", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "}"}]}], "]"}], ";", 
   RowBox[{"l2", "=", 
    RowBox[{"(", 
     RowBox[{"2", "*", 
@@ -241,9 +219,7 @@ Cell[BoxData[{
           RowBox[{"Dynamic", "[", 
            RowBox[{"Point", "[", 
             RowBox[{"arc2", "[", 
-             RowBox[{
-              RowBox[{"pascalMatrix", "[", "3", "]"}], ",", "M2", ",", "s", 
-              ",", "c1", ",", "e"}], "]"}], "]"}], "]"}], ",", 
+             RowBox[{"s", ",", "c1", ",", "e"}], "]"}], "]"}], "]"}], ",", 
           RowBox[{"Locator", "[", 
            RowBox[{"Dynamic", "[", "s", "]"}], "]"}], ",", 
           RowBox[{"Locator", "[", 
@@ -255,11 +231,11 @@ Cell[BoxData[{
        RowBox[{"Dynamic", "[", 
         RowBox[{
          RowBox[{"poly2", "=", " ", 
-          RowBox[{"M2", ".", 
-           RowBox[{"H2", "[", 
-            RowBox[{
-             RowBox[{"pascalMatrix", "[", "3", "]"}], ",", "M2", ",", "s", 
-             ",", "c1", ",", "e"}], "]"}]}]}], ";", 
+          RowBox[{"H2", "[", 
+           RowBox[{
+            RowBox[{"pascalMatrix", "[", "3", "]"}], ",", 
+            RowBox[{"IdentityMatrix", "[", "3", "]"}], ",", "s", ",", "c1", 
+            ",", "e"}], "]"}]}], ";", 
          RowBox[{"cps2", "=", 
           RowBox[{"Map", "[", 
            RowBox[{
@@ -304,9 +280,7 @@ Cell[BoxData[{
          RowBox[{"Dynamic", "[", 
           RowBox[{"Point", "[", 
            RowBox[{"arc2", "[", 
-            RowBox[{
-             RowBox[{"pascalMatrix", "[", "3", "]"}], ",", "M2", ",", "s", 
-             ",", "c1", ",", "e"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"s", ",", "c1", ",", "e"}], "]"}], "]"}], "]"}], ",", 
          RowBox[{"Locator", "[", 
           RowBox[{"Dynamic", "[", "s", "]"}], "]"}], ",", 
          RowBox[{"Locator", "[", 
@@ -318,11 +292,11 @@ Cell[BoxData[{
       RowBox[{"Dynamic", "[", 
        RowBox[{
         RowBox[{"poly3", "=", " ", 
-         RowBox[{"M2", ".", 
-          RowBox[{"H2", "[", 
-           RowBox[{
-            RowBox[{"pascalMatrix", "[", "3", "]"}], ",", "M2", ",", "s", ",",
-             "c1", ",", "e"}], "]"}]}]}], ";", 
+         RowBox[{"H2", "[", 
+          RowBox[{
+           RowBox[{"pascalMatrix", "[", "3", "]"}], ",", 
+           RowBox[{"IdentityMatrix", "[", "3", "]"}], ",", "s", ",", "c1", 
+           ",", "e"}], "]"}]}], ";", 
         RowBox[{"cps3", "=", 
          RowBox[{"Map", "[", 
           RowBox[{
@@ -356,8 +330,10 @@ Cell[BoxData[{
    3.756210638508424*^9, 3.756210655237959*^9}, {3.756382299824771*^9, 
    3.756382314004757*^9}, {3.756382380962267*^9, 3.756382424986185*^9}, {
    3.7563824864538813`*^9, 3.756382533445814*^9}, {3.806249847198207*^9, 
-   3.8062498545565977`*^9}, 
-   3.806249895740744*^9},ExpressionUUID->"5d70f809-3415-4942-baca-\
+   3.8062498545565977`*^9}, 3.806249895740744*^9, {3.806298650815097*^9, 
+   3.806298657663802*^9}, {3.806299511740763*^9, 3.806299534443925*^9}, {
+   3.806300602408326*^9, 
+   3.806300608329013*^9}},ExpressionUUID->"5d70f809-3415-4942-baca-\
 6a1b97b567af"],
 
 Cell[BoxData[
@@ -369,21 +345,19 @@ Cell[BoxData[
     GraphicsBox[{
       DynamicBox[Typeset`ToBoxes[
         Point[
-         Spline`arc2[
-          Spline`pascalMatrix[
-          3], $CellContext`M2, $CellContext`s$$, $CellContext`c1$$, \
-$CellContext`e$$]], StandardForm, Graphics],
+         Spline`arc2[$CellContext`s$$, $CellContext`c1$$, $CellContext`e$$]], 
+        StandardForm, Graphics],
        ImageSizeCache->{{88.5, 136.5}, {-8.975528266042307, -1.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
     RowBox[{"{", 
-     DynamicBox[ToBoxes[$CellContext`poly2 = Dot[$CellContext`M2, 
-          Spline`H2[
-           Spline`pascalMatrix[
-           3], $CellContext`M2, $CellContext`s$$, $CellContext`c1$$, \
-$CellContext`e$$]]; $CellContext`cps2 = Map[
+     DynamicBox[ToBoxes[$CellContext`poly2 = Spline`H2[
+          Spline`pascalMatrix[3], 
+          IdentityMatrix[
+          3], $CellContext`s$$, $CellContext`c1$$, $CellContext`e$$]; \
+$CellContext`cps2 = Map[
           Function[$CellContext`sub2, 
            CharacteristicPolynomial[$CellContext`sub2, $CellContext`t]], 
           SubSpaces`ListSubSpaces[$CellContext`poly2]]; Map[
@@ -393,10 +367,13 @@ $CellContext`e$$]]; $CellContext`cps2 = Map[
              1}]}], $CellContext`cps2], StandardForm],
       ImageSizeCache->{698.4, {46., 52.}}], "}"}]}], "}"}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.756382426411004*^9, 3.756382535302038*^9, 
-  3.756383389292183*^9, 3.806249796110092*^9, 
-  3.8062499098938074`*^9},ExpressionUUID->"3e40c10d-0e9f-4cfc-b59c-\
-021b543301e2"],
+ CellChangeTimes->{
+  3.756382426411004*^9, 3.756382535302038*^9, 3.756383389292183*^9, 
+   3.806249796110092*^9, 3.8062499098938074`*^9, 3.806251855325732*^9, 
+   3.8062987474901805`*^9, 3.8062996138548555`*^9, 3.8063006738136215`*^9, {
+   3.8063007754141636`*^9, 
+   3.806300787030478*^9}},ExpressionUUID->"d929355a-186d-402e-b36e-\
+cced6a6d9bc1"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -407,21 +384,19 @@ Cell[BoxData[
     GraphicsBox[{
       DynamicBox[Typeset`ToBoxes[
         Point[
-         Spline`arc2[
-          Spline`pascalMatrix[
-          3], $CellContext`M2, $CellContext`s$$, $CellContext`c1$$, \
-$CellContext`e$$]], StandardForm, Graphics],
+         Spline`arc2[$CellContext`s$$, $CellContext`c1$$, $CellContext`e$$]], 
+        StandardForm, Graphics],
        ImageSizeCache->{{88.5, 136.5}, {-15.75, -1.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
     RowBox[{"{", 
-     DynamicBox[ToBoxes[$CellContext`poly3 = Dot[$CellContext`M2, 
-          Spline`H2[
-           Spline`pascalMatrix[
-           3], $CellContext`M2, $CellContext`s$$, $CellContext`c1$$, \
-$CellContext`e$$]]; $CellContext`cps3 = Map[
+     DynamicBox[ToBoxes[$CellContext`poly3 = Spline`H2[
+          Spline`pascalMatrix[3], 
+          IdentityMatrix[
+          3], $CellContext`s$$, $CellContext`c1$$, $CellContext`e$$]; \
+$CellContext`cps3 = Map[
           Function[$CellContext`sub3, 
            CharacteristicPolynomial[$CellContext`sub3, $CellContext`t]], 
           SubSpaces`ListSubSpaces[$CellContext`poly3]]; Map[
@@ -431,29 +406,18 @@ $CellContext`e$$]]; $CellContext`cps3 = Map[
              1}]}], $CellContext`cps3], StandardForm],
       ImageSizeCache->{524., {53., 57.}}], "}"}]}], "}"}],
   DynamicModuleValues:>{}]], "Output",
- CellChangeTimes->{3.756382426411004*^9, 3.756382535302038*^9, 
-  3.756383389292183*^9, 3.806249796110092*^9, 
-  3.8062499099789114`*^9},ExpressionUUID->"618422a4-72d8-433f-82b6-\
-7976a35a5548"]
+ CellChangeTimes->{
+  3.756382426411004*^9, 3.756382535302038*^9, 3.756383389292183*^9, 
+   3.806249796110092*^9, 3.8062499098938074`*^9, 3.806251855325732*^9, 
+   3.8062987474901805`*^9, 3.8062996138548555`*^9, 3.8063006738136215`*^9, {
+   3.8063007754141636`*^9, 
+   3.806300787118017*^9}},ExpressionUUID->"a3751996-fd5a-47e9-877f-\
+c3da57c332ac"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[{
- RowBox[{
-  RowBox[{"MatrixForm", "[", 
-   RowBox[{"M3", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"1", ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1", ",", "0", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "1", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "0", ",", "1"}], "}"}]}], "}"}]}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"l3", "=", 
    RowBox[{"(", 
@@ -517,9 +481,8 @@ Cell[BoxData[{
          RowBox[{"Dynamic", "[", 
           RowBox[{"Point", "[", 
            RowBox[{"arc3", "[", 
-            RowBox[{
-             RowBox[{"pascalMatrix", "[", "4", "]"}], ",", "M3", ",", "s", 
-             ",", "c1", ",", "c2", ",", "e"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"s", ",", "c1", ",", "c2", ",", "e"}], "]"}], "]"}], 
+          "]"}], ",", 
          RowBox[{"Locator", "[", 
           RowBox[{"Dynamic", "[", "s", "]"}], "]"}], ",", 
          RowBox[{"Locator", "[", 
@@ -533,11 +496,11 @@ Cell[BoxData[{
       RowBox[{"Dynamic", "[", 
        RowBox[{
         RowBox[{"poly4", "=", " ", 
-         RowBox[{"M3", ".", 
-          RowBox[{"H3", "[", 
-           RowBox[{
-            RowBox[{"pascalMatrix", "[", "4", "]"}], ",", "M3", ",", "s", ",",
-             "c1", ",", "c2", ",", "e"}], "]"}]}]}], ";", 
+         RowBox[{"H3", "[", 
+          RowBox[{
+           RowBox[{"pascalMatrix", "[", "4", "]"}], ",", 
+           RowBox[{"IdentityMatrix", "[", "4", "]"}], ",", "s", ",", "c1", 
+           ",", "c2", ",", "e"}], "]"}]}], ";", 
         RowBox[{"cps4", "=", 
          RowBox[{"Map", "[", 
           RowBox[{
@@ -587,9 +550,8 @@ Cell[BoxData[{
          RowBox[{"Dynamic", "[", 
           RowBox[{"Point", "[", 
            RowBox[{"arc3", "[", 
-            RowBox[{
-             RowBox[{"pascalMatrix", "[", "4", "]"}], ",", "M3", ",", "s", 
-             ",", "c1", ",", "c2", ",", "e"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"s", ",", "c1", ",", "c2", ",", "e"}], "]"}], "]"}], 
+          "]"}], ",", 
          RowBox[{"Locator", "[", 
           RowBox[{"Dynamic", "[", "s", "]"}], "]"}], ",", 
          RowBox[{"Locator", "[", 
@@ -603,11 +565,11 @@ Cell[BoxData[{
       RowBox[{"Dynamic", "[", 
        RowBox[{
         RowBox[{"poly5", "=", " ", 
-         RowBox[{"M3", ".", 
-          RowBox[{"H3", "[", 
-           RowBox[{
-            RowBox[{"pascalMatrix", "[", "4", "]"}], ",", "M3", ",", "s", ",",
-             "c1", ",", "c2", ",", "e"}], "]"}]}]}], ";", 
+         RowBox[{"H3", "[", 
+          RowBox[{
+           RowBox[{"pascalMatrix", "[", "4", "]"}], ",", 
+           RowBox[{"IdentityMatrix", "[", "4", "]"}], ",", "s", ",", "c1", 
+           ",", "c2", ",", "e"}], "]"}]}], ";", 
         RowBox[{"cps5", "=", 
          RowBox[{"Map", "[", 
           RowBox[{
@@ -644,8 +606,10 @@ Cell[BoxData[{
    3.7562096560408297`*^9, 3.7562097213233957`*^9}, {3.756210677779427*^9, 
    3.756210690894452*^9}, {3.756382627360982*^9, 3.75638264802183*^9}, {
    3.756382692026477*^9, 3.756382738389123*^9}, {3.756382837552002*^9, 
-   3.756382889284719*^9}, {3.8062498686209726`*^9, 
-   3.80624988701854*^9}},ExpressionUUID->"276d508d-f653-4fc6-9da7-\
+   3.756382889284719*^9}, {3.8062498686209726`*^9, 3.80624988701854*^9}, {
+   3.8062986644309444`*^9, 3.8062986726458545`*^9}, {3.806299542674655*^9, 
+   3.8062995673458443`*^9}, {3.8063006223130937`*^9, 
+   3.806300627616762*^9}},ExpressionUUID->"276d508d-f653-4fc6-9da7-\
 c2489ee10b6e"],
 
 Cell[BoxData[
@@ -663,10 +627,8 @@ Cell[BoxData[
     GraphicsBox[{
       DynamicBox[Typeset`ToBoxes[
         Point[
-         Spline`arc3[
-          Spline`pascalMatrix[
-          4], $CellContext`M3, $CellContext`s$$, $CellContext`c1$$, \
-$CellContext`c2$$, $CellContext`e$$]], StandardForm, Graphics],
+         Spline`arc3[$CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
+$CellContext`e$$]], StandardForm, Graphics],
        ImageSizeCache->{{88.5, 136.5}, {-13.765018033293602`, -1.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
@@ -674,11 +636,11 @@ $CellContext`c2$$, $CellContext`e$$]], StandardForm, Graphics],
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
     RowBox[{"{", 
-     DynamicBox[ToBoxes[$CellContext`poly4 = Dot[$CellContext`M3, 
-          Spline`H3[
-           Spline`pascalMatrix[
-           4], $CellContext`M3, $CellContext`s$$, $CellContext`c1$$, \
-$CellContext`c2$$, $CellContext`e$$]]; $CellContext`cps4 = Map[
+     DynamicBox[ToBoxes[$CellContext`poly4 = Spline`H3[
+          Spline`pascalMatrix[4], 
+          IdentityMatrix[
+          4], $CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
+$CellContext`e$$]; $CellContext`cps4 = Map[
           Function[$CellContext`sub4, 
            CharacteristicPolynomial[$CellContext`sub4, $CellContext`t]], 
           SubSpaces`ListSubSpaces[$CellContext`poly4]]; Map[
@@ -712,9 +674,11 @@ $CellContext`c2$$, $CellContext`e$$]]; $CellContext`cps4 = Map[
    3.756210207076954*^9, 3.756210603001677*^9, 3.7562107210343657`*^9, 
    3.756210955195856*^9, 3.756380993363947*^9, 3.756381817184799*^9, 
    3.756382739913807*^9, 3.7563828911636877`*^9, 3.756383390430666*^9, 
-   3.8062497963112693`*^9, 
-   3.8062499101614857`*^9},ExpressionUUID->"68a17555-9818-441d-b03f-\
-ab45e1506e02"],
+   3.8062497963112693`*^9, 3.8062499101614857`*^9, 3.8062518555803285`*^9, 
+   3.8062987477302065`*^9, 3.806299615099784*^9, 3.8063006739927216`*^9, {
+   3.806300775459035*^9, 
+   3.8063007872215924`*^9}},ExpressionUUID->"00e1cd6c-c988-403c-956c-\
+0c2a739957d6"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -727,10 +691,8 @@ Cell[BoxData[
     GraphicsBox[{
       DynamicBox[Typeset`ToBoxes[
         Point[
-         Spline`arc3[
-          Spline`pascalMatrix[
-          4], $CellContext`M3, $CellContext`s$$, $CellContext`c1$$, \
-$CellContext`c2$$, $CellContext`e$$]], StandardForm, Graphics],
+         Spline`arc3[$CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
+$CellContext`e$$]], StandardForm, Graphics],
        ImageSizeCache->{{88.5, 136.5}, {-14.625, -1.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
@@ -738,11 +700,11 @@ $CellContext`c2$$, $CellContext`e$$]], StandardForm, Graphics],
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
     RowBox[{"{", 
-     DynamicBox[ToBoxes[$CellContext`poly5 = Dot[$CellContext`M3, 
-          Spline`H3[
-           Spline`pascalMatrix[
-           4], $CellContext`M3, $CellContext`s$$, $CellContext`c1$$, \
-$CellContext`c2$$, $CellContext`e$$]]; $CellContext`cps5 = Map[
+     DynamicBox[ToBoxes[$CellContext`poly5 = Spline`H3[
+          Spline`pascalMatrix[4], 
+          IdentityMatrix[
+          4], $CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
+$CellContext`e$$]; $CellContext`cps5 = Map[
           Function[$CellContext`sub5, 
            CharacteristicPolynomial[$CellContext`sub5, $CellContext`t]], 
           SubSpaces`ListSubSpaces[$CellContext`poly5]]; Map[
@@ -776,51 +738,17 @@ $CellContext`c2$$, $CellContext`e$$]]; $CellContext`cps5 = Map[
    3.756210207076954*^9, 3.756210603001677*^9, 3.7562107210343657`*^9, 
    3.756210955195856*^9, 3.756380993363947*^9, 3.756381817184799*^9, 
    3.756382739913807*^9, 3.7563828911636877`*^9, 3.756383390430666*^9, 
-   3.8062497963112693`*^9, 
-   3.80624991030142*^9},ExpressionUUID->"942b8f31-cf1b-418e-80f5-\
-0facbfb67f48"]
+   3.8062497963112693`*^9, 3.8062499101614857`*^9, 3.8062518555803285`*^9, 
+   3.8062987477302065`*^9, 3.806299615099784*^9, 3.8063006739927216`*^9, {
+   3.806300775459035*^9, 
+   3.806300787365349*^9}},ExpressionUUID->"8f4c8be7-b7ad-49ed-9704-\
+c23ad50bb7f0"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"MatrixForm", "[", 
-   RowBox[{"Coef4", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"-", "1"}], ",", "1", ",", "0", ",", "0", ",", "0"}], "}"}], 
-      ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", 
-        RowBox[{"-", "1"}], ",", "1", ",", "0", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", 
-        RowBox[{"-", "1"}], ",", "1", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "0", ",", 
-        RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], "]"}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"MatrixForm", "[", 
-   RowBox[{"M4", "=", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"1", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "1", ",", "0", ",", "0", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "1", ",", "0", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "0", ",", "1", ",", "0"}], "}"}], ",", 
-      RowBox[{"{", 
-       RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "1"}], "}"}]}], 
-     "}"}]}], "]"}], ";", 
   RowBox[{"l3", "=", "2"}], ";", 
   RowBox[{"x3", "=", 
    RowBox[{
@@ -875,9 +803,8 @@ Cell[BoxData[{
          RowBox[{"Dynamic", "[", 
           RowBox[{"Point", "[", 
            RowBox[{"arc4", "[", 
-            RowBox[{
-            "Coef4", ",", "M4", ",", "s", ",", "c1", ",", "c2", ",", "c3", 
-             ",", "e"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"s", ",", "c1", ",", "c2", ",", "c3", ",", "e"}], "]"}], 
+           "]"}], "]"}], ",", 
          RowBox[{"Locator", "[", 
           RowBox[{"Dynamic", "[", "s", "]"}], "]"}], ",", 
          RowBox[{"Locator", "[", 
@@ -893,11 +820,11 @@ Cell[BoxData[{
       RowBox[{"Dynamic", "[", 
        RowBox[{
         RowBox[{"poly6", "=", " ", 
-         RowBox[{"M4", ".", 
-          RowBox[{"H4", "[", 
-           RowBox[{
-           "Coef4", ",", "M4", ",", "s", ",", "c1", ",", "c2", ",", "c3", ",",
-             "e"}], "]"}]}]}], ";", 
+         RowBox[{"H4", "[", 
+          RowBox[{
+           RowBox[{"pascalMatrix", "[", "5", "]"}], ",", 
+           RowBox[{"IdentityMatrix", "[", "5", "]"}], ",", "s", ",", "c1", 
+           ",", "c2", ",", "c3", ",", "e"}], "]"}]}], ";", 
         RowBox[{"cps6", "=", 
          RowBox[{"Map", "[", 
           RowBox[{
@@ -952,9 +879,8 @@ Cell[BoxData[{
          RowBox[{"Dynamic", "[", 
           RowBox[{"Point", "[", 
            RowBox[{"arc4", "[", 
-            RowBox[{
-            "Coef4", ",", "M4", ",", "s", ",", "c1", ",", "c2", ",", "c3", 
-             ",", "e"}], "]"}], "]"}], "]"}], ",", 
+            RowBox[{"s", ",", "c1", ",", "c2", ",", "c3", ",", "e"}], "]"}], 
+           "]"}], "]"}], ",", 
          RowBox[{"Locator", "[", 
           RowBox[{"Dynamic", "[", "s", "]"}], "]"}], ",", 
          RowBox[{"Locator", "[", 
@@ -970,11 +896,11 @@ Cell[BoxData[{
       RowBox[{"Dynamic", "[", 
        RowBox[{
         RowBox[{"poly7", "=", " ", 
-         RowBox[{"M4", ".", 
-          RowBox[{"H4", "[", 
-           RowBox[{
-           "Coef4", ",", "M4", ",", "s", ",", "c1", ",", "c2", ",", "c3", ",",
-             "e"}], "]"}]}]}], ";", 
+         RowBox[{"H4", "[", 
+          RowBox[{
+           RowBox[{"pascalMatrix", "[", "5", "]"}], ",", 
+           RowBox[{"IdentityMatrix", "[", "5", "]"}], ",", "s", ",", "c1", 
+           ",", "c2", ",", "c3", ",", "e"}], "]"}]}], ";", 
         RowBox[{"cps7", "=", 
          RowBox[{"Map", "[", 
           RowBox[{
@@ -1013,8 +939,10 @@ Cell[BoxData[{
    3.756208425461*^9}, {3.756209739463132*^9, 3.756209793012476*^9}, {
    3.756210700678748*^9, 3.7562107155569687`*^9}, {3.756382915397595*^9, 
    3.756382926534843*^9}, {3.756383023413638*^9, 3.756383076497923*^9}, {
-   3.7563831659931993`*^9, 
-   3.756383242995501*^9}},ExpressionUUID->"5aa70448-c70b-4324-8969-\
+   3.7563831659931993`*^9, 3.756383242995501*^9}, {3.8062986913746305`*^9, 
+   3.806298696853572*^9}, {3.8062995766457148`*^9, 3.806299601062857*^9}, {
+   3.8063006387677884`*^9, 3.8063006437691483`*^9}, {3.80630071515961*^9, 
+   3.8063007718073425`*^9}},ExpressionUUID->"5aa70448-c70b-4324-8969-\
 c157f8a502cc"],
 
 Cell[BoxData[
@@ -1030,9 +958,8 @@ Cell[BoxData[
     GraphicsBox[{
       DynamicBox[Typeset`ToBoxes[
         Point[
-         Spline`arc4[$CellContext`Coef4, $CellContext`M4, $CellContext`s$$, \
-$CellContext`c1$$, $CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]], 
-        StandardForm, Graphics],
+         Spline`arc4[$CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
+$CellContext`c3$$, $CellContext`e$$]], StandardForm, Graphics],
        ImageSizeCache->{{88.5, 136.5}, {-26.999999999999996`, -1.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
@@ -1041,11 +968,11 @@ $CellContext`c1$$, $CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]],
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
     RowBox[{"{", 
-     DynamicBox[ToBoxes[$CellContext`poly6 = Dot[$CellContext`M4, 
-          
-          Spline`H4[$CellContext`Coef4, $CellContext`M4, $CellContext`s$$, \
-$CellContext`c1$$, $CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]]; \
-$CellContext`cps6 = Map[
+     DynamicBox[ToBoxes[$CellContext`poly6 = Spline`H4[
+          Spline`pascalMatrix[5], 
+          IdentityMatrix[
+          5], $CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
+$CellContext`c3$$, $CellContext`e$$]; $CellContext`cps6 = Map[
           Function[$CellContext`sub6, 
            CharacteristicPolynomial[$CellContext`sub6, $CellContext`t]], 
           SubSpaces`ListSubSpaces[$CellContext`poly6]]; Map[
@@ -1084,9 +1011,11 @@ $CellContext`cps6 = Map[
    3.756210207292482*^9, 3.756210603361829*^9, 3.756210721274468*^9, 
    3.756210955678162*^9, 3.7563809938616257`*^9, 3.756381817421007*^9, 
    3.756383081420892*^9, 3.756383245551059*^9, 3.7563833918805037`*^9, 
-   3.8062497970440965`*^9, 
-   3.806249910809891*^9},ExpressionUUID->"7286741f-0549-40ea-8173-\
-b5495497f1da"],
+   3.8062497970440965`*^9, 3.806249910809891*^9, 3.8062518558740067`*^9, 
+   3.806298748035448*^9, 3.806299616129783*^9, 3.8063006742576513`*^9, {
+   3.80630077552337*^9, 
+   3.806300787501957*^9}},ExpressionUUID->"55b178f8-1c51-4239-9929-\
+dbb3e9be9117"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -1101,9 +1030,8 @@ Cell[BoxData[
     GraphicsBox[{
       DynamicBox[Typeset`ToBoxes[
         Point[
-         Spline`arc4[$CellContext`Coef4, $CellContext`M4, $CellContext`s$$, \
-$CellContext`c1$$, $CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]], 
-        StandardForm, Graphics],
+         Spline`arc4[$CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
+$CellContext`c3$$, $CellContext`e$$]], StandardForm, Graphics],
        ImageSizeCache->{{88.5, 136.5}, {-13.5, -1.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
@@ -1112,11 +1040,11 @@ $CellContext`c1$$, $CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]],
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
     RowBox[{"{", 
-     DynamicBox[ToBoxes[$CellContext`poly7 = Dot[$CellContext`M4, 
-          
-          Spline`H4[$CellContext`Coef4, $CellContext`M4, $CellContext`s$$, \
-$CellContext`c1$$, $CellContext`c2$$, $CellContext`c3$$, $CellContext`e$$]]; \
-$CellContext`cps7 = Map[
+     DynamicBox[ToBoxes[$CellContext`poly7 = Spline`H4[
+          Spline`pascalMatrix[5], 
+          IdentityMatrix[
+          5], $CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
+$CellContext`c3$$, $CellContext`e$$]; $CellContext`cps7 = Map[
           Function[$CellContext`sub7, 
            CharacteristicPolynomial[$CellContext`sub7, $CellContext`t]], 
           SubSpaces`ListSubSpaces[$CellContext`poly7]]; Map[
@@ -1155,13 +1083,15 @@ $CellContext`cps7 = Map[
    3.756210207292482*^9, 3.756210603361829*^9, 3.756210721274468*^9, 
    3.756210955678162*^9, 3.7563809938616257`*^9, 3.756381817421007*^9, 
    3.756383081420892*^9, 3.756383245551059*^9, 3.7563833918805037`*^9, 
-   3.8062497970440965`*^9, 
-   3.8062499109977274`*^9},ExpressionUUID->"98100aea-5741-4e9f-a83e-\
-bd2c20005260"]
+   3.8062497970440965`*^9, 3.806249910809891*^9, 3.8062518558740067`*^9, 
+   3.806298748035448*^9, 3.806299616129783*^9, 3.8063006742576513`*^9, {
+   3.80630077552337*^9, 
+   3.80630078768096*^9}},ExpressionUUID->"6adfc49c-a206-4ad2-a987-\
+65236b455e7d"]
 }, Open  ]]
 },
 WindowSize->{927, 1021},
-WindowMargins->{{Automatic, 235}, {Automatic, 0}},
+WindowMargins->{{Automatic, 202}, {Automatic, 6}},
 FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
 StyleDefinitions->"Default.nb"
 ]
@@ -1179,23 +1109,23 @@ Notebook[{
 Cell[558, 20, 217, 5, 28, "Input",ExpressionUUID->"50fcc07e-b04b-4b06-be90-516d39e07f29"],
 Cell[778, 27, 323, 7, 28, "Input",ExpressionUUID->"dc37c5c1-800f-42da-88ac-3d4a585491bb"],
 Cell[CellGroupData[{
-Cell[1126, 38, 3686, 87, 124, "Input",ExpressionUUID->"af07487f-0f3b-4347-96f1-f47706dc5442"],
-Cell[4815, 127, 2969, 55, 199, "Output",ExpressionUUID->"6e1af099-d21f-4a71-84d8-2c04978f04fd"]
+Cell[1126, 38, 3465, 76, 105, "Input",ExpressionUUID->"af07487f-0f3b-4347-96f1-f47706dc5442"],
+Cell[4594, 116, 3034, 54, 199, "Output",ExpressionUUID->"10c726c8-8be7-4f32-a008-bdce552253b5"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7821, 187, 6529, 173, 276, "Input",ExpressionUUID->"5d70f809-3415-4942-baca-6a1b97b567af"],
-Cell[14353, 362, 1600, 36, 325, "Output",ExpressionUUID->"3e40c10d-0e9f-4cfc-b59c-021b543301e2"],
-Cell[15956, 400, 1535, 36, 199, "Output",ExpressionUUID->"618422a4-72d8-433f-82b6-7976a35a5548"]
+Cell[7665, 175, 6203, 161, 257, "Input",ExpressionUUID->"5d70f809-3415-4942-baca-6a1b97b567af"],
+Cell[13871, 338, 1677, 37, 325, "Output",ExpressionUUID->"d929355a-186d-402e-b36e-cced6a6d9bc1"],
+Cell[15551, 377, 1612, 37, 199, "Output",ExpressionUUID->"a3751996-fd5a-47e9-877f-c3da57c332ac"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17528, 441, 7749, 207, 314, "Input",ExpressionUUID->"276d508d-f653-4fc6-9da7-c2489ee10b6e"],
-Cell[25280, 650, 3566, 66, 444, "Output",ExpressionUUID->"68a17555-9818-441d-b03f-ab45e1506e02"],
-Cell[28849, 718, 3272, 62, 338, "Output",ExpressionUUID->"942b8f31-cf1b-418e-80f5-0facbfb67f48"]
+Cell[17200, 419, 7302, 193, 295, "Input",ExpressionUUID->"276d508d-f653-4fc6-9da7-c2489ee10b6e"],
+Cell[24505, 614, 3631, 66, 444, "Output",ExpressionUUID->"00e1cd6c-c988-403c-956c-0c2a739957d6"],
+Cell[28139, 682, 3338, 62, 338, "Output",ExpressionUUID->"8f4c8be7-b7ad-49ed-9704-c23ad50bb7f0"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[32158, 785, 8749, 232, 333, "Input",ExpressionUUID->"5aa70448-c70b-4324-8969-c157f8a502cc"],
-Cell[40910, 1019, 3913, 69, 650, "Output",ExpressionUUID->"7286741f-0549-40ea-8173-b5495497f1da"],
-Cell[44826, 1090, 3807, 69, 493, "Output",ExpressionUUID->"98100aea-5741-4e9f-a83e-bd2c20005260"]
+Cell[31514, 749, 7658, 196, 257, "Input",ExpressionUUID->"5aa70448-c70b-4324-8969-c157f8a502cc"],
+Cell[39175, 947, 4005, 70, 650, "Output",ExpressionUUID->"55b178f8-1c51-4239-9929-dbb3e9be9117"],
+Cell[43183, 1019, 3896, 70, 493, "Output",ExpressionUUID->"6adfc49c-a206-4ad2-a987-65236b455e7d"]
 }, Open  ]]
 }
 ]
