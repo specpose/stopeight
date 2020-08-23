@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     48690,       1125]
-NotebookOptionsPosition[     47095,       1092]
-NotebookOutlinePosition[     47443,       1107]
-CellTagsIndexPosition[     47400,       1104]
+NotebookDataLength[     49144,       1117]
+NotebookOptionsPosition[     47506,       1083]
+NotebookOutlinePosition[     47897,       1099]
+CellTagsIndexPosition[     47854,       1096]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -22,17 +22,16 @@ Cell[BoxData[
  RowBox[{"ClearAll", "[", 
   RowBox[{"Evaluate", "[", 
    RowBox[{
-    RowBox[{"Context", "[", "]"}], "<>", "\"\<*\>\""}], "]"}], "]"}]], "Input",\
-ExpressionUUID->"50fcc07e-b04b-4b06-be90-516d39e07f29"],
+    RowBox[{"Context", "[", "]"}], "<>", "\"\<*\>\""}], "]"}], "]"}]], "Input",
+ CellLabel->"In[65]:=",ExpressionUUID->"50fcc07e-b04b-4b06-be90-516d39e07f29"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"Needs", "[", "\"\<Spline`\>\"", "]"}], ";", 
   RowBox[{"Needs", "[", "\"\<SubSpaces`\>\"", "]"}]}]], "Input",
  CellChangeTimes->{{3.753702624847374*^9, 3.753702651682048*^9}, {
-  3.7562091338207912`*^9, 
-  3.7562091398916073`*^9}},ExpressionUUID->"dc37c5c1-800f-42da-88ac-\
-3d4a585491bb"],
+  3.7562091338207912`*^9, 3.7562091398916073`*^9}},
+ CellLabel->"In[66]:=",ExpressionUUID->"dc37c5c1-800f-42da-88ac-3d4a585491bb"],
 
 Cell[CellGroupData[{
 
@@ -111,8 +110,8 @@ Cell[BoxData[
    3.7563821836493263`*^9, 3.756382258646069*^9}, {3.8062498279054832`*^9, 
    3.8062498310154653`*^9}, 3.806249903493571*^9, 3.806298636732834*^9, {
    3.8062994968304873`*^9, 3.806299506902216*^9}, {3.8063005876794996`*^9, 
-   3.8063005924562907`*^9}},ExpressionUUID->"af07487f-0f3b-4347-96f1-\
-f47706dc5442"],
+   3.8063005924562907`*^9}},
+ CellLabel->"In[67]:=",ExpressionUUID->"af07487f-0f3b-4347-96f1-f47706dc5442"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`e$$ = {1, 0}}, 
@@ -123,7 +122,7 @@ Cell[BoxData[
         Point[
          Spline`arc1[$CellContext`s$$, $CellContext`e$$]], StandardForm, 
         Graphics],
-       ImageSizeCache->{{88.5, 136.5}, {-4.5, -1.5}}], 
+       ImageSizeCache->{{88.5, 136.5}, {-3.5, -0.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
      PlotRange->2], ",", 
@@ -139,7 +138,7 @@ Cell[BoxData[
            
            Plot[$CellContext`cp1, {$CellContext`t, 0, 
              1}]}], $CellContext`cps1], StandardForm],
-      ImageSizeCache->{236., {54., 58.}}], "}"}]}], "}"}],
+      ImageSizeCache->{239., {54., 58.}}], "}"}]}], "}"}],
   DynamicModuleValues:>{}]], "Output",
  CellChangeTimes->{
   3.7536478955333557`*^9, {3.7536479475604362`*^9, 3.7536479639347963`*^9}, 
@@ -167,8 +166,8 @@ Cell[BoxData[
    3.7563822596913633`*^9, 3.756383387862844*^9, 3.806249796071463*^9, 
    3.806249909223608*^9, 3.8062518552876167`*^9, 3.8062987473102894`*^9, 
    3.8062996127618165`*^9, 3.806300673778653*^9, {3.8063007753694496`*^9, 
-   3.8063007869911823`*^9}},ExpressionUUID->"10c726c8-8be7-4f32-a008-\
-bdce552253b5"]
+   3.8063007869911823`*^9}, 3.807187402471902*^9},
+ CellLabel->"Out[67]=",ExpressionUUID->"d33083ee-e84c-4867-9b1a-322eed42e341"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -332,9 +331,8 @@ Cell[BoxData[{
    3.7563824864538813`*^9, 3.756382533445814*^9}, {3.806249847198207*^9, 
    3.8062498545565977`*^9}, 3.806249895740744*^9, {3.806298650815097*^9, 
    3.806298657663802*^9}, {3.806299511740763*^9, 3.806299534443925*^9}, {
-   3.806300602408326*^9, 
-   3.806300608329013*^9}},ExpressionUUID->"5d70f809-3415-4942-baca-\
-6a1b97b567af"],
+   3.806300602408326*^9, 3.806300608329013*^9}},
+ CellLabel->"In[68]:=",ExpressionUUID->"5d70f809-3415-4942-baca-6a1b97b567af"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -347,7 +345,7 @@ Cell[BoxData[
         Point[
          Spline`arc2[$CellContext`s$$, $CellContext`c1$$, $CellContext`e$$]], 
         StandardForm, Graphics],
-       ImageSizeCache->{{88.5, 136.5}, {-8.975528266042307, -1.5}}], 
+       ImageSizeCache->{{88.5, 136.5}, {-7.975528266042306, -0.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
@@ -365,15 +363,14 @@ $CellContext`cps2 = Map[
            
            Plot[$CellContext`cp2, {$CellContext`t, 0, 
              1}]}], $CellContext`cps2], StandardForm],
-      ImageSizeCache->{698.4, {46., 52.}}], "}"}]}], "}"}],
+      ImageSizeCache->{702.35625, {46., 51.}}], "}"}]}], "}"}],
   DynamicModuleValues:>{}]], "Output",
  CellChangeTimes->{
   3.756382426411004*^9, 3.756382535302038*^9, 3.756383389292183*^9, 
    3.806249796110092*^9, 3.8062499098938074`*^9, 3.806251855325732*^9, 
    3.8062987474901805`*^9, 3.8062996138548555`*^9, 3.8063006738136215`*^9, {
-   3.8063007754141636`*^9, 
-   3.806300787030478*^9}},ExpressionUUID->"d929355a-186d-402e-b36e-\
-cced6a6d9bc1"],
+   3.8063007754141636`*^9, 3.806300787030478*^9}, 3.807187402547944*^9},
+ CellLabel->"Out[68]=",ExpressionUUID->"115a9f53-2625-4b34-a005-487d1430b3db"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -386,7 +383,7 @@ Cell[BoxData[
         Point[
          Spline`arc2[$CellContext`s$$, $CellContext`c1$$, $CellContext`e$$]], 
         StandardForm, Graphics],
-       ImageSizeCache->{{88.5, 136.5}, {-15.75, -1.5}}], 
+       ImageSizeCache->{{88.5, 136.5}, {-14.75, -0.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`e$$]]},
@@ -404,15 +401,14 @@ $CellContext`cps3 = Map[
            
            Plot[$CellContext`cp3, {$CellContext`t, 0, 
              1}]}], $CellContext`cps3], StandardForm],
-      ImageSizeCache->{524., {53., 57.}}], "}"}]}], "}"}],
+      ImageSizeCache->{534., {52., 57.}}], "}"}]}], "}"}],
   DynamicModuleValues:>{}]], "Output",
  CellChangeTimes->{
   3.756382426411004*^9, 3.756382535302038*^9, 3.756383389292183*^9, 
    3.806249796110092*^9, 3.8062499098938074`*^9, 3.806251855325732*^9, 
    3.8062987474901805`*^9, 3.8062996138548555`*^9, 3.8063006738136215`*^9, {
-   3.8063007754141636`*^9, 
-   3.806300787118017*^9}},ExpressionUUID->"a3751996-fd5a-47e9-877f-\
-c3da57c332ac"]
+   3.8063007754141636`*^9, 3.806300787030478*^9}, 3.807187402609372*^9},
+ CellLabel->"Out[69]=",ExpressionUUID->"66f8c139-1c14-43b8-8ef9-f6030caa6bbb"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -608,9 +604,8 @@ Cell[BoxData[{
    3.756382692026477*^9, 3.756382738389123*^9}, {3.756382837552002*^9, 
    3.756382889284719*^9}, {3.8062498686209726`*^9, 3.80624988701854*^9}, {
    3.8062986644309444`*^9, 3.8062986726458545`*^9}, {3.806299542674655*^9, 
-   3.8062995673458443`*^9}, {3.8063006223130937`*^9, 
-   3.806300627616762*^9}},ExpressionUUID->"276d508d-f653-4fc6-9da7-\
-c2489ee10b6e"],
+   3.8062995673458443`*^9}, {3.8063006223130937`*^9, 3.806300627616762*^9}},
+ CellLabel->"In[70]:=",ExpressionUUID->"276d508d-f653-4fc6-9da7-c2489ee10b6e"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -629,7 +624,7 @@ Cell[BoxData[
         Point[
          Spline`arc3[$CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
 $CellContext`e$$]], StandardForm, Graphics],
-       ImageSizeCache->{{88.5, 136.5}, {-13.765018033293602`, -1.5}}], 
+       ImageSizeCache->{{88.5, 136.5}, {-12.765018033293602`, -0.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`c2$$]], 
@@ -648,7 +643,7 @@ $CellContext`e$$]; $CellContext`cps4 = Map[
            
            Plot[$CellContext`cp4, {$CellContext`t, 0, 
              1}]}], $CellContext`cps4], StandardForm],
-      ImageSizeCache->{717.0999999999999, {166., 49.}}], "}"}]}], "}"}],
+      ImageSizeCache->{720.641625, {165., 48.}}], "}"}]}], "}"}],
   DynamicModuleValues:>{}]], "Output",
  CellChangeTimes->{
   3.7536442751502028`*^9, 3.7536443112831583`*^9, 3.753644596353655*^9, 
@@ -676,9 +671,8 @@ $CellContext`e$$]; $CellContext`cps4 = Map[
    3.756382739913807*^9, 3.7563828911636877`*^9, 3.756383390430666*^9, 
    3.8062497963112693`*^9, 3.8062499101614857`*^9, 3.8062518555803285`*^9, 
    3.8062987477302065`*^9, 3.806299615099784*^9, 3.8063006739927216`*^9, {
-   3.806300775459035*^9, 
-   3.8063007872215924`*^9}},ExpressionUUID->"00e1cd6c-c988-403c-956c-\
-0c2a739957d6"],
+   3.806300775459035*^9, 3.8063007872215924`*^9}, 3.807187402758004*^9},
+ CellLabel->"Out[73]=",ExpressionUUID->"570606f4-0dae-4654-a307-40bd62265751"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -693,7 +687,7 @@ Cell[BoxData[
         Point[
          Spline`arc3[$CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
 $CellContext`e$$]], StandardForm, Graphics],
-       ImageSizeCache->{{88.5, 136.5}, {-14.625, -1.5}}], 
+       ImageSizeCache->{{88.5, 136.5}, {-13.625, -0.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`c2$$]], 
@@ -712,7 +706,7 @@ $CellContext`e$$]; $CellContext`cps5 = Map[
            
            Plot[$CellContext`cp5, {$CellContext`t, 0, 
              1}]}], $CellContext`cps5], StandardForm],
-      ImageSizeCache->{805.2, {53., 57.}}], "}"}]}], "}"}],
+      ImageSizeCache->{534.296875, {180., 49.}}], "}"}]}], "}"}],
   DynamicModuleValues:>{}]], "Output",
  CellChangeTimes->{
   3.7536442751502028`*^9, 3.7536443112831583`*^9, 3.753644596353655*^9, 
@@ -740,9 +734,8 @@ $CellContext`e$$]; $CellContext`cps5 = Map[
    3.756382739913807*^9, 3.7563828911636877`*^9, 3.756383390430666*^9, 
    3.8062497963112693`*^9, 3.8062499101614857`*^9, 3.8062518555803285`*^9, 
    3.8062987477302065`*^9, 3.806299615099784*^9, 3.8063006739927216`*^9, {
-   3.806300775459035*^9, 
-   3.806300787365349*^9}},ExpressionUUID->"8f4c8be7-b7ad-49ed-9704-\
-c23ad50bb7f0"]
+   3.806300775459035*^9, 3.8063007872215924`*^9}, 3.8071874028548737`*^9},
+ CellLabel->"Out[74]=",ExpressionUUID->"00692cc8-253a-4edf-8277-60a8e1d8a667"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -942,8 +935,8 @@ Cell[BoxData[{
    3.7563831659931993`*^9, 3.756383242995501*^9}, {3.8062986913746305`*^9, 
    3.806298696853572*^9}, {3.8062995766457148`*^9, 3.806299601062857*^9}, {
    3.8063006387677884`*^9, 3.8063006437691483`*^9}, {3.80630071515961*^9, 
-   3.8063007718073425`*^9}},ExpressionUUID->"5aa70448-c70b-4324-8969-\
-c157f8a502cc"],
+   3.8063007718073425`*^9}},
+ CellLabel->"In[75]:=",ExpressionUUID->"5aa70448-c70b-4324-8969-c157f8a502cc"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -960,7 +953,7 @@ Cell[BoxData[
         Point[
          Spline`arc4[$CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
 $CellContext`c3$$, $CellContext`e$$]], StandardForm, Graphics],
-       ImageSizeCache->{{88.5, 136.5}, {-26.999999999999996`, -1.5}}], 
+       ImageSizeCache->{{88.5, 136.5}, {-25.999999999999996`, -0.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`c2$$]], 
@@ -980,7 +973,7 @@ $CellContext`c3$$, $CellContext`e$$]; $CellContext`cps6 = Map[
            
            Plot[$CellContext`cp6, {$CellContext`t, 0, 
              1}]}], $CellContext`cps6], StandardForm],
-      ImageSizeCache->{787.9, {322., 58.}}], "}"}]}], "}"}],
+      ImageSizeCache->{797.641625, {320., 57.}}], "}"}]}], "}"}],
   DynamicModuleValues:>{}]], "Output",
  CellChangeTimes->{{3.7535217936252937`*^9, 3.753521830288795*^9}, 
    3.753521863521718*^9, {3.75363945820516*^9, 3.753639498286676*^9}, 
@@ -1013,9 +1006,8 @@ $CellContext`c3$$, $CellContext`e$$]; $CellContext`cps6 = Map[
    3.756383081420892*^9, 3.756383245551059*^9, 3.7563833918805037`*^9, 
    3.8062497970440965`*^9, 3.806249910809891*^9, 3.8062518558740067`*^9, 
    3.806298748035448*^9, 3.806299616129783*^9, 3.8063006742576513`*^9, {
-   3.80630077552337*^9, 
-   3.806300787501957*^9}},ExpressionUUID->"55b178f8-1c51-4239-9929-\
-dbb3e9be9117"],
+   3.80630077552337*^9, 3.806300787501957*^9}, 3.807187403080887*^9},
+ CellLabel->"Out[76]=",ExpressionUUID->"d0ab7a90-f523-489c-939d-5cfc7ef278e5"],
 
 Cell[BoxData[
  DynamicModuleBox[{$CellContext`s$$ = {0, 0}, $CellContext`c1$$ = {
@@ -1032,7 +1024,7 @@ Cell[BoxData[
         Point[
          Spline`arc4[$CellContext`s$$, $CellContext`c1$$, $CellContext`c2$$, \
 $CellContext`c3$$, $CellContext`e$$]], StandardForm, Graphics],
-       ImageSizeCache->{{88.5, 136.5}, {-13.5, -1.5}}], 
+       ImageSizeCache->{{88.5, 136.5}, {-12.5, -0.5}}], 
       LocatorBox[Dynamic[$CellContext`s$$]], 
       LocatorBox[Dynamic[$CellContext`c1$$]], 
       LocatorBox[Dynamic[$CellContext`c2$$]], 
@@ -1052,7 +1044,7 @@ $CellContext`c3$$, $CellContext`e$$]; $CellContext`cps7 = Map[
            
            Plot[$CellContext`cp7, {$CellContext`t, 0, 
              1}]}], $CellContext`cps7], StandardForm],
-      ImageSizeCache->{619.5999999999999, {174., 57.}}], "}"}]}], "}"}],
+      ImageSizeCache->{639.034375, {174., 56.}}], "}"}]}], "}"}],
   DynamicModuleValues:>{}]], "Output",
  CellChangeTimes->{{3.7535217936252937`*^9, 3.753521830288795*^9}, 
    3.753521863521718*^9, {3.75363945820516*^9, 3.753639498286676*^9}, 
@@ -1085,15 +1077,15 @@ $CellContext`c3$$, $CellContext`e$$]; $CellContext`cps7 = Map[
    3.756383081420892*^9, 3.756383245551059*^9, 3.7563833918805037`*^9, 
    3.8062497970440965`*^9, 3.806249910809891*^9, 3.8062518558740067`*^9, 
    3.806298748035448*^9, 3.806299616129783*^9, 3.8063006742576513`*^9, {
-   3.80630077552337*^9, 
-   3.80630078768096*^9}},ExpressionUUID->"6adfc49c-a206-4ad2-a987-\
-65236b455e7d"]
+   3.80630077552337*^9, 3.806300787501957*^9}, 3.807187403198061*^9},
+ CellLabel->"Out[77]=",ExpressionUUID->"355a9970-21cb-46d1-889c-7a5c45e6f99e"]
 }, Open  ]]
 },
-WindowSize->{927, 1021},
-WindowMargins->{{Automatic, 202}, {Automatic, 6}},
-FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
-StyleDefinitions->"Default.nb"
+WindowSize->{927, 1016},
+WindowMargins->{{Automatic, 202}, {0, Automatic}},
+FrontEndVersion->"12.1 for Linux x86 (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"3b47e9e7-b900-4a30-b1a3-98ff8e8b66df"
 ]
 (* End of Notebook Content *)
 
@@ -1106,26 +1098,26 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 217, 5, 28, "Input",ExpressionUUID->"50fcc07e-b04b-4b06-be90-516d39e07f29"],
-Cell[778, 27, 323, 7, 28, "Input",ExpressionUUID->"dc37c5c1-800f-42da-88ac-3d4a585491bb"],
+Cell[558, 20, 239, 5, 30, "Input",ExpressionUUID->"50fcc07e-b04b-4b06-be90-516d39e07f29"],
+Cell[800, 27, 342, 6, 30, "Input",ExpressionUUID->"dc37c5c1-800f-42da-88ac-3d4a585491bb"],
 Cell[CellGroupData[{
-Cell[1126, 38, 3465, 76, 105, "Input",ExpressionUUID->"af07487f-0f3b-4347-96f1-f47706dc5442"],
-Cell[4594, 116, 3034, 54, 199, "Output",ExpressionUUID->"10c726c8-8be7-4f32-a008-bdce552253b5"]
+Cell[1167, 37, 3487, 76, 119, "Input",ExpressionUUID->"af07487f-0f3b-4347-96f1-f47706dc5442"],
+Cell[4657, 115, 3078, 54, 199, "Output",ExpressionUUID->"d33083ee-e84c-4867-9b1a-322eed42e341"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7665, 175, 6203, 161, 257, "Input",ExpressionUUID->"5d70f809-3415-4942-baca-6a1b97b567af"],
-Cell[13871, 338, 1677, 37, 325, "Output",ExpressionUUID->"d929355a-186d-402e-b36e-cced6a6d9bc1"],
-Cell[15551, 377, 1612, 37, 199, "Output",ExpressionUUID->"a3751996-fd5a-47e9-877f-c3da57c332ac"]
+Cell[7772, 174, 6221, 160, 339, "Input",ExpressionUUID->"5d70f809-3415-4942-baca-6a1b97b567af"],
+Cell[13996, 336, 1721, 36, 326, "Output",ExpressionUUID->"115a9f53-2625-4b34-a005-487d1430b3db"],
+Cell[15720, 374, 1652, 36, 199, "Output",ExpressionUUID->"66f8c139-1c14-43b8-8ef9-f6030caa6bbb"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[17200, 419, 7302, 193, 295, "Input",ExpressionUUID->"276d508d-f653-4fc6-9da7-c2489ee10b6e"],
-Cell[24505, 614, 3631, 66, 444, "Output",ExpressionUUID->"00e1cd6c-c988-403c-956c-0c2a739957d6"],
-Cell[28139, 682, 3338, 62, 338, "Output",ExpressionUUID->"8f4c8be7-b7ad-49ed-9704-c23ad50bb7f0"]
+Cell[17409, 415, 7320, 192, 339, "Input",ExpressionUUID->"276d508d-f653-4fc6-9da7-c2489ee10b6e"],
+Cell[24732, 609, 3664, 65, 446, "Output",ExpressionUUID->"570606f4-0dae-4654-a307-40bd62265751"],
+Cell[28399, 676, 3388, 61, 291, "Output",ExpressionUUID->"00692cc8-253a-4edf-8277-60a8e1d8a667"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[31514, 749, 7658, 196, 257, "Input",ExpressionUUID->"5aa70448-c70b-4324-8969-c157f8a502cc"],
-Cell[39175, 947, 4005, 70, 650, "Output",ExpressionUUID->"55b178f8-1c51-4239-9929-dbb3e9be9117"],
-Cell[43183, 1019, 3896, 70, 493, "Output",ExpressionUUID->"6adfc49c-a206-4ad2-a987-65236b455e7d"]
+Cell[31824, 742, 7680, 196, 295, "Input",ExpressionUUID->"5aa70448-c70b-4324-8969-c157f8a502cc"],
+Cell[39507, 940, 4050, 69, 431, "Output",ExpressionUUID->"d0ab7a90-f523-489c-939d-5cfc7ef278e5"],
+Cell[43560, 1011, 3930, 69, 486, "Output",ExpressionUUID->"355a9970-21cb-46d1-889c-7a5c45e6f99e"]
 }, Open  ]]
 }
 ]

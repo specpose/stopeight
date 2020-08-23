@@ -3,6 +3,8 @@
 (* ::Input:: *)
 (*BeginPackage["SubSpaces`"];*)
 (*Clear["SubSpaces`*"];*)
+(*SubMatrix::usage="Subtracts the diagonal from MxM and returns lower left submatrix (M-1)x(M-1).";*)
+(*SMLowLeftNoDiag::usage="";*)
 (*ListSubSpaces::usage="Get a list of all linear independent (sub-)spaces of a lower left triangular matrix.";*)
 (*Begin["SubSpaces`Private`"];*)
 
