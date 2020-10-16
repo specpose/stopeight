@@ -53,14 +53,14 @@ The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has 
 
 \chapter{Representation}
 
-The affine transformations $q$ are functions that map to control points $Q \subset \mathbb{R}^2$:
+The functions $q$ yield on-curve $q \in A$ and off-curve $q \in Q$ control points $q \in \mathbb{R}^2$:
 \begin{align}
-q: S \times C \times E \rightarrow Q\\
+q: S \times C \times E \rightarrow Q \cup A\\
 Q \cap X = 0; Q \cap Y = 0
 \end{align}
-The combination $Y \cup Q$ has parts from the original $X$'s, and constructed $Q$'s that are not in $A$ $\footnote{insertion: $C \notin X$, otherwise: $C \in X \cap A$}$:
+Apart from $S,C,E$, none of the control points are in the Vector Graph $X$.$\footnote{insertion: $C \notin X$, otherwise: $C \in X \cap A$}$:
 \begin{align*}
-S,C,E \in X; Q \setminus A=\{q_{1}(S,C,E),q_{3}(S,C,E),q_{4}(S,C,E),q_{6}(S,C,E)\}
+S,C,E \in X; q_{1}(S,C,E),q_{3}(S,C,E),q_{4}(S,C,E),q_{6}(S,C,E) \in Q;q_{2}(S,C,E),q_{5}(S,C,E) \in A
 \end{align*}
 and is composed of four quadratic bezier splines $\gamma_{H}(t)$:
 \begin{align}
@@ -79,7 +79,7 @@ with control point sets $\{H_{1},...,H_{4}\}$ per chart of $Y \cup Q$. The Arc s
 \gamma_{H_{3}}(t); H_{4}=\{q_{5}(S,C_{3},E),q_{6}(S,C_{3},E),E\} & t \in [\frac{3}{4},1]
 \end{cases}
 \end{align*}
-(Do we need a quartic for correct scaling of $t$?)\\
+Notation: Here, $H$ are sets of points, whereas in SplineAxioms they are 3 by 3 matrices.\\
 Note: The continuous function $\xi$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ~\cite[6.1.3.]{Mortad}\\\\
 In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$, we have to connect all $P_{n}, P_{n+1} \in X$ with one linear bezier spline each, because $X$ is discrete:
 \begin{align}

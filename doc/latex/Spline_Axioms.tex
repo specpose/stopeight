@@ -72,7 +72,7 @@ The characteristic polynomials of the diagonal and bidiagonal are composed of bi
 \chi_{\begin{pmatrix}-1 & 0\\0 & -1\end{pmatrix}} = \begin{pmatrix}2 \\ 0\end{pmatrix}*t^0 + \begin{pmatrix}2 \\ 1\end{pmatrix}*t^1 + \begin{pmatrix}2 \\ 2\end{pmatrix}*t^2
 \end{align}
 Note: It is a sparse approximation.\\\\
-If start and end points are limited to be in the transversality $S,E \in Y$ due to approximation, the maximal polynomial degree can be reduced to four.
+If start and end points are limited to be in the transversality $S,E \in Y$, the maximal polynomial degree can be reduced to four.
 \begin{equation}
 quart(t):
 \begin{pmatrix}
@@ -91,7 +91,7 @@ H
 x \\ y \\ 0 \\ 0 \\ 0
 \end{pmatrix}
 \end{equation}
-Note: Because we are only interested in a $2x2$ subspace, the tri- and quadridiagonals can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace (Sparse).\\\\
+Note: Because we are only interested in planar coordinates, the tri- and quadridiagonals can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace (Sparse).\\\\
 Axiom: Because of associativity, an inverse of the control points can be left multiplied. Because of associativity, the inverse of the Jordanian can be left multiplied.
 \begin{equation}
 quart(t):
@@ -110,6 +110,49 @@ H^{-1}
 \begin{pmatrix}
 x \\ y \\ 0 \\ 0 \\ 0
 \end{pmatrix}
+\end{equation}
+
+\subsection{Representation}
+
+A quartic spline is fully defined by $S,E$ and three on spline control points $c_{1},c_{3} \in A;c_{2} \in C_{3}$. The corresponding Bezier control points $q_{1},q_{2} \in Q_{3}$ are obtained by substituting $t=1/4$,$t=2/4$ and $t=3/4$ with $c_{1}$,$c_{2}$ and $c_{3}$ in the quartic linear equation.
+\begin{align}
+H=\begin{bmatrix}
+x(S) & x(q_{1}) & x(C_{3}) & x(q_{2}) & x(E) \\
+y(S) & y(q_{1}) & y(C_{3}) & y(q_{2}) & x(E) \\
+0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0
+\end{bmatrix}\\
+representation: S \times C_{3} \times E \rightarrow A \times V \times A\\
+S,C_{3},E \in A; S,V,E \in \iota_{Y}\\
+(S,C,E)\mapsto(c_{1},v_{1},c_{3})
+\end{align}\\
+The four quadratic splines $\gamma_{H_{1}} ... \gamma_{H_{4}}$ are defined by $S,E$ and on spline control points $c_{1},c_{2},c_{3},c_{5},c_{6},c_{7} \in A;c_{4} \in C_{3}$. The corresponding Bezier control points $q_{1},q_{2},q_{3},q_{4} \in Q_{1}$ for the pieces $H_{1},H_{2},H_{3},H_{4}$ are obtained by substituting $t=0,t=1/2$ and $t=1$ with $c_{1},c_{3},c_{5},c_{7}$ in each of the four quadratic linear equations.
+\begin{equation}
+H_{1}=
+\begin{bmatrix}
+x(S) & x(q_{1}) & x(c_{2})\\
+y(S) & y(q_{1}) & y(c_{2})\\
+0 & 0 & 0
+\end{bmatrix};
+H_{1}=
+\begin{bmatrix}
+x(c_{2}) & x(q_{2}) & x(c_{4})\\
+y(c_{2}) & y(q_{2}) & y(c_{4})\\
+0 & 0 & 0
+\end{bmatrix};
+H_{1}=
+\begin{bmatrix}
+x(c_{4}) & x(q_{3}) & x(c_{6})\\
+y(c_{4}) & y(q_{3}) & y(c_{6})\\
+0 & 0 & 0
+\end{bmatrix};
+H_{1}=
+\begin{bmatrix}
+x(c_{6}) & x(q_{4}) & x(E)\\
+y(c_{6}) & y(q_{4}) & y(E)\\
+0 & 0 & 0
+\end{bmatrix}
 \end{equation}
 
 \iffalse
