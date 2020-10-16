@@ -1,8 +1,7 @@
-\documentclass[a4paper,landscape]{report}
+\documentclass[a4paper,portrait]{report}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{hyperref}
 
 \iffalse
 \usepackage{biblatex}
@@ -18,100 +17,98 @@
 
 \chapter{Single Spline}
 
-\subsection{Affine Transformations}
-The matrix $M$ is a product of affine (sub-)space transformations. Any set of vectors $h'$ within bounds $[a,b]$ can be translated, rotated and scaled, so that $h'(a)=\begin{pmatrix}0 & 0\end{pmatrix}$ and $h'(b)=\begin{pmatrix}1 & 0\end{pmatrix}$. Any approximation with a parametrisation $t$ can be expressed with a single spline if the Coefficients can be brought into a triangular form.\\\\
-The simple case of a straight line
+\subsection{Spline Approximations}
+A set of vectors $\begin{pmatrix}x \\ y\end{pmatrix} \in X$ within any parametrisation bounds $t\in[a,b]$ can be translated, rotated and scaled by $M^{3x3}$, so that $\iota_{X}(a)=\begin{pmatrix}0 \\ 0\end{pmatrix}$ and $\iota_{X}(b)=\begin{pmatrix}1 \\ 0\end{pmatrix}$. An approximation (arc) $A$ of arbitrary polynomial degree is required.\\\\
+For example, approximating a straight line has polynomial degree one.
 \begin{equation}
 line(t):
 \begin{pmatrix}
-1 & t
+1 \\
+t
 \end{pmatrix}
-\underbrace{\begin{bmatrix}
-1 & 0\\
--1 & 1
-\end{bmatrix}}_{Coefficients}
-M
+\underbrace{\begin{pmatrix}
+1 & -1\\
+0 & 1
+\end{pmatrix}}_{Jordanian}
 \begin{pmatrix}
-h_{1} \\
-h_{2}
+M \begin{pmatrix} 0 \\ 0 \end{pmatrix} & M \begin{pmatrix} 1 \\ 0 \end{pmatrix}
 \end{pmatrix}
 =
 \begin{pmatrix}
-h_{1}' & h_{2}'
+x \\
+y
 \end{pmatrix}
 \end{equation}
+Here, the matrix $M^{3x3}$ of affine transformations is the identity matrix. It will be omitted in the following.\\\\
 The more complicated case of a quadratic bezier spline
 \begin{equation}
 quad(t):
 \begin{pmatrix}
-1 & t & t^2
+1 \\
+t \\
+t^2
 \end{pmatrix}
 \underbrace{\begin{bmatrix}
-1 & 0 & 0\\
--1 & 1 & 0\\
-0 & -1 &1
-\end{bmatrix}}_{Coefficients}
-M
-\begin{pmatrix}
-h_{1} \\
-h_{2} \\
-h_{3}
-\end{pmatrix}
+1 & -1 & 0\\
+0 & 1 & -1\\
+0 & 0 &1
+\end{bmatrix}}_{Jordanian}
+\underbrace{\begin{pmatrix}
+x(S) & x(C_{1}) & x(E) \\
+y(S) & y(C_{1}) & y(E) \\
+0 & 0 & 0
+\end{pmatrix}}_{Bezier Control Points}
 =
 \begin{pmatrix}
-h_{1}' & h_{2}' & h_{3}'
+x \\
+y \\
+0
 \end{pmatrix}
 \end{equation}
-The Coefficients are composed of the sum of identity matrices in lower left sub-spaces.
-The characteristic polynomials of the diagonal and bidiagonal is composed of binomial coefficients.
-\begin{equation}
-\chi_{\begin{pmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{pmatrix}} = \begin{pmatrix}3 \\ 0\end{pmatrix}*t^0 - \begin{pmatrix}3 \\ 1\end{pmatrix}*t^1 + \begin{pmatrix}3 \\ 2\end{pmatrix}*t^2 - \begin{pmatrix}3 \\ 3\end{pmatrix}*t^3;
+The Jordanian is composed of the sum of identity matrices in upper right sub-spaces.
+The characteristic polynomials of the diagonal and bidiagonal are composed of binomial coefficients.
+\begin{align}
+\chi_{\begin{pmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{pmatrix}} = \begin{pmatrix}3 \\ 0\end{pmatrix}*t^0 - \begin{pmatrix}3 \\ 1\end{pmatrix}*t^1 + \begin{pmatrix}3 \\ 2\end{pmatrix}*t^2 - \begin{pmatrix}3 \\ 3\end{pmatrix}*t^3\\
 \chi_{\begin{pmatrix}-1 & 0\\0 & -1\end{pmatrix}} = \begin{pmatrix}2 \\ 0\end{pmatrix}*t^0 + \begin{pmatrix}2 \\ 1\end{pmatrix}*t^1 + \begin{pmatrix}2 \\ 2\end{pmatrix}*t^2
-\end{equation}
-The quartic spline
+\end{align}
+Note: It is a sparse approximation.\\\\
+If start and end points are limited to be in the transversality $S,E \in Y$ due to approximation, the maximal polynomial degree can be reduced to four.
 \begin{equation}
 quart(t):
 \begin{pmatrix}
-1 & t & t^2 & t^3 & t^4
+1 \\ t \\ t^2 \\ t^3 \\ t^4
 \end{pmatrix}
-\underbrace{\begin{bmatrix}
-1 & 0 & 0 & 0 & 0\\
--1 & 1 & 0 & 0 & 0\\
-0 & -1 &1 & 0 & 0\\
-0 & 0 & -1 & 1 & 0\\
-0 & 0 & 0 & -1 & 1
-\end{bmatrix}}_{Coefficients}
-M
-\begin{pmatrix}
-h_{1} \\
-h_{2} \\
-h_{3} \\
-h_{4} \\
-h_{5}
-\end{pmatrix}
+\underbrace{\begin{pmatrix}
+1 & -1 & 0 & 0 & 0\\
+0 & 1 & -1 & 0 & 0\\
+0 & 0 &1 & -1 & 0\\
+0 & 0 & 0 & 1 & -1\\
+0 & 0 & 0 & 0 & 1
+\end{pmatrix}}_{Jordanian}
+H
 =
 \begin{pmatrix}
-h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
+x \\ y \\ 0 \\ 0 \\ 0
 \end{pmatrix}
 \end{equation}
-Note: Because we are only interested in a $2x2$ subspace, the tri- and quadridiagonals can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace. $h'_{3},h'_{4},h'_{5}$ are irrelevant in this case.\\\\
-Axiom: Because of associativity, an inverse of the control points can be left multiplied. Because of associativity, an inverse of the transformation can be left multiplied. Because of associativity, an inverse of the Coefficients can be left multiplied.
+Note: Because we are only interested in a $2x2$ subspace, the tri- and quadridiagonals can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace (Sparse).\\\\
+Axiom: Because of associativity, an inverse of the control points can be left multiplied. Because of associativity, the inverse of the Jordanian can be left multiplied.
 \begin{equation}
 quart(t):
 \begin{pmatrix}
-1 & t & t^2 & t^3 & t^4
+1 \\ t \\ t^2 \\ t^3 \\ t^4
 \end{pmatrix}
 =
 \underbrace{\begin{bmatrix}
-1 & 0 & 0 & 0 & 0\\
-1 & 1 & 0 & 0 & 0\\
-1 & 1 &1 & 0 & 0\\
-1 & 1 & 1 & 1 & 0\\
-1 & 1 & 1 & 1 & 1
-\end{bmatrix}}_{Coefficients^{-1}}
-M^{-1}H^{-1}
+1 & 1 & 1 & 1 & 1\\
+0 & 1 & 1 & 1 & 1\\
+0 & 0 & 1 & 1 & 1\\
+0 & 0 & 0 & 1 & 1\\
+0 & 0 & 0 & 0 & 1
+\end{bmatrix}}_{Jordanian^{-1}}
+H^{-1}
 \begin{pmatrix}
-h_{1}' & h_{2}' & h_{3}' & h_{4}' & h_{5}'
+x \\ y \\ 0 \\ 0 \\ 0
 \end{pmatrix}
 \end{equation}
 
