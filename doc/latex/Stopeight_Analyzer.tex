@@ -49,7 +49,7 @@ but $W$ is not. See \eqref{eq:1}.
 \begin{align}
 Y: \text{0-submanifold} \Rightarrow (dim(W)=1)=(codim(Y)=1) \Rightarrow W \text{ joint } A
 \end{align}
-The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ (see Stopeight Comparator), while preserving the $Representation$ using quadratic bezier splines.\\\\
+The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ ~\cite[Stopeight\_Comparator.tex]{Comparator}, while preserving the $Representation$ using quadratic bezier splines.\\\\
 
 \chapter{Representation}
 
@@ -62,11 +62,11 @@ Apart from $S,C,E$, none of the control points are in the Vector Graph $X$.$\foo
 \begin{align*}
 S,C,E \in X; q_{1}(S,C,E),q_{3}(S,C,E),q_{4}(S,C,E),q_{6}(S,C,E) \in Q;q_{2}(S,C,E),q_{5}(S,C,E) \in A
 \end{align*}
-and is composed of four quadratic bezier splines $\gamma_{H}(t)$:
+The quartic representations are constrained to express four quadratic bezier splines $\gamma_{H}(t)$:
 \begin{align}
 \gamma_{H}: \mathbb{R} \rightarrow \mathbb{R}^2; t \mapsto (x,y)
 \end{align}
-with control point sets $\{H_{1},...,H_{4}\}$ per chart of $Y \cup Q$. The Arc segment defining function $\xi$ forms the planar coordinates $(x',y')$ of Arc $U_{m}$:
+with control point sets $\{H_{1},...,H_{4}\}$. The Arc segment defining function $\xi$ forms the planar coordinates $(x',y')$ of Arc $U_{m}$:
 \begin{equation}
 \xi: \mathbb{R} \rightarrow A; t \mapsto (x,y)
 \end{equation}
@@ -79,7 +79,7 @@ with control point sets $\{H_{1},...,H_{4}\}$ per chart of $Y \cup Q$. The Arc s
 \gamma_{H_{3}}(t); H_{4}=\{q_{5}(S,C_{3},E),q_{6}(S,C_{3},E),E\} & t \in [\frac{3}{4},1]
 \end{cases}
 \end{align*}
-Notation: Here, $H$ are sets of points, whereas in SplineAxioms they are 3 by 3 matrices.\\
+Notation: Here, $H$ are sets of points, whereas in ~\cite[Spline\_Axioms.tex]{Axioms} they are 3 by 3 matrices.\\
 Note: The continuous function $\xi$ makes the topological space $A$ path-connected. Therefore it is a $path$ from $U_{m}$ to $U_{m+1}$ and intersects at least once at the unilateral limit $S \cap E$. ~\cite[6.1.3.]{Mortad}\\\\
 In order to compare the length from $[a,b] \subseteq A$ with $[a.b] \subseteq X$, we have to connect all $P_{n}, P_{n+1} \in X$ with one linear bezier spline each, because $X$ is discrete:
 \begin{align}
@@ -123,26 +123,29 @@ When the direction of analysis $dir_{Y}$ is reversed, the curve areas lie on the
 Note: $\mu$ is a Lebesgue.
 
 \subsection{Affine Transformation}
-An affine transformation $M$ of a parametrised curve $\gamma_{H}$ with control points $\{h_{1},h_{2},h_{3}\} = H$ and parameter $t$:
+An affine transformation $M$ of a parametrised curve $\gamma_{H}$ with control points $\{S,C_{2},E\} = H$ and parameter $t$:
 \begin{equation}
 transform(\gamma):
 \begin{pmatrix}
-1 & t & t^2
+1 \\
+t \\
+t^2
 \end{pmatrix}
 \underbrace{\begin{bmatrix}
-1 & 0 & 0\\
--1 & 1 & 0\\
-0 & -1 &1
-\end{bmatrix}}_{Coefficients}
-M
-\begin{pmatrix}
-h_{1} \\
-h_{2} \\
-h_{3}
-\end{pmatrix}
+1 & -1 & 0\\
+0 & 1 & -1\\
+0 & 0 &1
+\end{bmatrix}}_{Jordanian}
+\underbrace{\begin{pmatrix}
+x(MS) & x(MC_{1}) & x(ME) \\
+y(MS) & y(MC_{1}) & y(ME) \\
+0 & 0 & 0
+\end{pmatrix}}_{Bezier Control Points}
 =
 \begin{pmatrix}
-h_{1}' & h_{2}' & h_{3}'
+x \\
+y \\
+0
 \end{pmatrix}
 \end{equation}
 The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$. ~\cite[Spline\_Axioms.tex]{Stopeight}
@@ -194,22 +197,27 @@ curvature_{Algo}(a,b)= dir \frac{\sum \limits _{i=0}^{n}y(P_{i})*(x(P_{i+1})-x(P
 \subsection{Corner}
 A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a section $[a,b] \subseteq W$ is.
 \begin{equation}
-C_{3} = \{C_{3} \in T_{1} \mid \max_{U}\lvert curvature(a,b) \rvert \cap (\inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0) \}
+C_{4} = \{C_{4} \in T_{4} \mid \max_{U}\lvert curvature(a,b) \rvert \cap (\inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0) \}
 \end{equation}
-The indexing corresponds to the minimal grade of the polynomial that is necessary.
-\begin{align}
-\xi_{C_{1}} : \text{Quadratic Bezier Spline}\\
-\xi_{C_{2}} : \text{Cubic Bezier Spline}\\
-\xi_{C_{3}} : \text{Quartic Bezier Spline}
-\end{align}
-Note: Except for insertion (See Straight), $C_{3},C_{0} \in Y$, but all the others $C_{1},C_{2},C_{4},... \not\in X$, because they are only found in the approximation $C_{1},C_{2},C_{4},... \in A$.\\
-(To be disclosed: Algorithms for finding lower Corner indexes from higher Corner indices $q_{2},q_{5}$, Control points inbetween $q_{1},q_{3},q_{4},q_{6}$ and the inverse.)
 
 \subsection{Turn}
 A turn $T$ is a change of sign in the orientation of the curve. In a segment $[a,b] \subseteq W$ an infinite amount of non-straight sections can be found.
 \begin{equation}
-T_{2} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}\gamma(t) \rvert \approx 0
+T_{4} \subseteq \inf_{t \in U} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}\gamma(t) \rvert \approx 0
 \end{equation}
+
+\subsection{Notation}
+The indexing corresponds to the minimal degree of the polynomial that is needed by the representation ($C$) or expected by the computation ($T$).
+\begin{align}
+C_{1} : \text{Point on a straight line}\\
+C_{2} : \text{Quadratic on-spline control point}\\
+C_{3} : \text{Cubic on-spline control point}\\
+C_{4} : \text{Quartic on-spline control point}
+\end{align}
+$C_{n}$ : Solution to a linear independent planar projection of a polynomial of one variable t of degree n at domain value t between 0 and 1.\\\\
+Note: Except for insertion (See Straight), $C_{4} \in Y$, but all the others $C_{1},C_{2},C_{3},C_{5}...,C_{n} \not\in X$, because they are only found in the approximation $C_{1},C_{2},C_{3},...,C_{n} \in A$.\\
+The on-spline control points $A_{n}$ and the Bezier control points $Q_{n}$ are labeled using the same scheme.\\\\
+If numbers are omitted $C$ refers to $C_{4}$ in this paper. In other uses it may be considered to be a local maximum.
 
 \section*{Oriented Sections}
 Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of computational priority. They create further sections of Turns $T$ in the transversality $Y$.
@@ -307,28 +315,23 @@ b' \in T_{3}
 Note: Very steep angles are likely not to be continuous when a lot of data points are available. They may be caught by Cliff detection.\\\\
 It is part of ZigZag detection.
 
-\subsection{Moustache?}
-Indicates a break or change of direction $dir_{Z}$ in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
-\begin{equation}
-b' \in T_{3}
-\end{equation}
-Moustache is correctly handled by the backside Crest, but it would only be a $T_{2}$ if not caught by Compact Covers.
-
 \subsection*{Adjusted Differences}
 By now, we can improve the differences by setting $dom(\xi,\iota)=Crest \cup Spike \cup C_{4}$.
 
 \section{Compact Covers}
 We introduce another set of charts $\{V_{n}\} \subset Z$ which span one or more of the charts $\{U_{n}\} \subset A$.
+\subsubsection*{Notation}
+$T_{0}$ refers to a scalar offset of beginning and end of computational analysis of a Vector Graph in a very flat segment or $C_{0}$ in a very curved segment.
 \subsubsection*{Open}
 \begin{align}
 A \text{ is open} \Leftrightarrow \inf_{A},\sup_{A}\in T_{0},C_{0}
 \end{align}
-In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail. Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out left and right, a mixed approach or a fully centered one could be chosen. One could also decide to interleave frontside and backside entities of the same type.
+In computer science there is the concept of the stream operator. This means that approximation $A$ would have to be recomputed whenever elements are added to the front or to the tail. Also it would require that a supremum arc length would have to be found from all the sections between turns $A \cap T$. It would make sense that the longest Spiral be chosen, which depends on curvature. One could also argue that the longest ZigZag with an absolute straightness of $1$ be chosen for the first center. Spreading out forward and backward, a mixed approach or a fully centered one could be chosen. One could also decide not to interleave frontside and backside entities of the same type.
 \subsubsection*{Closed}
 \begin{align}
 A \text{ is closed} \Leftrightarrow \min_{A},\max_{A}\in T_{0},C_{0}
 \end{align}
-For the time being, the approach in this paper is a compromise. Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Edges exhibit a transcendence of fractal dimension, which significantly offset the consecutive oriented functions. Even finding Swings and Edg shifts the adjacent entities. The reversal and priority of segments and sections imposes a certain rigor in programming technique. A compatible software architecture is a requirement.\\
+For the time being, the approach in this paper is a compromise. Half-open front and tail sections $\footnote{It is questionable, whether losing front/tail sections is significant for most uses}$ are obliterated and the oriented manifolds between them are never fully centered. In particular the Crests and Edges exhibit a transcendence of fractal dimension, which significantly offset the consecutive oriented functions. Even finding Swings and Edges shifts the adjacent entities. The reversal and priority of segments and sections imposes a certain rigor in programming technique. A compatible software architecture is a requirement.\\
 Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparator is increased, which lowers the requirement for overlay comparison matching accuracy ($Comparator$).
 It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented (Causal Structure).
 
@@ -353,7 +356,7 @@ Below 90 degree, a single Spike section is.
 b' \in T_{3} \Rightarrow (\text{third derivative }= 0?)
 \end{align}
 \subsection{Swell}
-Swell $\supset$ Crest $\supset$ Swing $\supset$ Straight(?)\\
+Swell $\supset$ Crest $\supset$ Swing $\not \supset$ Spike\\
 A swell is centered by triplets.\\\\
 The Captain of Swing\\
 Picking up where Sisyphos left in the previous article. At the top of the hill. Waves fall in formation. The captain is steering in high seas. He is swinging the wheel off the top as the next wave builds up. As if the water could feel the magnetic disruption, the surface tension breaks up. The second peak crumbles. The engine roars up in an attempt to dig the stern deeper into the dune. It stutters and almost...\\
@@ -364,6 +367,13 @@ But we are not looking at the peaks, are we?\\
 We are dealing with frequencies. The waveform starts with an upward swing. The ship is almost in a suspended state mid-air, before it starts falling into the trough after the second swing. At the foot of the third swing we can almost make out the first peak. This is when we can start finding out where we fell through:\\
 The second swing.\\
 The triplet of swings is our most accurate index for stabilising the frequencies.
+
+\subsection{Moustache?}
+Indicates a break or change of direction $dir_{Z}$ in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
+\begin{equation}
+b' \in T_{3}
+\end{equation}
+Moustache is correctly handled by the backside Crest, but it would only be a $T_{2}$ if not caught by Compact Covers.
 
 \subsection*{Direction}
 If the affine transformations $dir_{Y}$ are applied left to right $[a,b];a<b$, the Compact Cover $dir_{Z}$ is positive. If the direction of analysis $dir_{Y}$ is reversed $[b,a]$, it is negative. The same applies to the diameter, but it is not the analytic direction but the direction of integration $dir_{X}$.\\\\
