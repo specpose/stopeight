@@ -195,13 +195,13 @@ curvature_{Algo}(a,b)= dir \frac{\sum \limits _{i=0}^{n}y(P_{i})*(x(P_{i+1})-x(P
 \end{align}
 
 \subsection{Corner}
-A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a section $[a,b] \subseteq W$ is.
+A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a section $[a,b] \subseteq X$ is.
 \begin{equation}
-C_{2} = \{C_{2} \in T_{2} \mid \min_{t \in U}\lvert((b-a)/2)-t\rvert;\inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0 \}
+C_{2} = \{C_{2} \in T_{2} \mid \min_{t \in U}\lvert(\frac{b-a}{2})-t\rvert;\inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0 \}
 \end{equation}
 
 \subsection{Turn}
-A turn $T$ is a change of sign in the orientation of the curve. In a segment $[a,b] \subseteq W$ an infinite amount of non-straight sections can be found.
+A turn $T$ is a change of sign in the orientation of the curve. In a segment $[a,b] \subseteq X$ an infinite amount of non-straight sections can be found.
 \begin{equation}
 T_{4} \subseteq \inf_{t \in X} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}\xi(t) \rvert \approx 0
 \end{equation}
@@ -233,12 +233,15 @@ C_{4} \ni b'
 \end{align}
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of arc-length of one eight of a circle to its direct connecting line. This happens to coincide with the number of on curve control points for a quartic spline. It is a part of a Spike, or being used at lowest priority of computation to replace the Straight half of an $\{S,C,E\} \subset T$, or to identify a Spike with an angle of less than 90 degrees. A Corner is $inserted$.
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of arc-length of one eight of a circle to its direct connecting line. This happens to coincide with the number of quadratic end-points $E$ for a circle. It is a part of a Spike,
 \begin{align}
-Max_{Straight}=\frac{\pi r / 4}{\sqrt{(\frac{r}{2})^2+(\frac{r}{2})^2}}\\
-C_{1} \ni \frac{b-a}{2}
+Max_{Straight}=\frac{\pi r / 4}{\sqrt{(\frac{r}{2})^2+(\frac{r}{2})^2}}
 \end{align}
-A special case is when $card(U_{m})=2$, a Corner is inserted as well.\\\\
+or being used at lowest priority of computation to replace a curved $\{S,C,E\} \subset T$ with a straight one. The Corner is $moved$.
+\begin{align}
+\xi(\frac{b-a}{2}) = \iota_{T}(a)+\frac{\iota_{T}(b)-\iota_{T}(a)}{2}
+\end{align}
+A special case is when $card(U_{m})=2$, a Corner is $inserted$.\\\\
 Straightness is no more than what is not to be considered straight under any linear transformation of any segment.
 
 \subsection{Swing}
@@ -300,9 +303,9 @@ A frontside Spike is a section $[a,b',c]$, where
 \item The Forward direction of analysis $dir_{Y}=1$ reveals a frontside Edge $[a,b']$, and
 \item The Backward direction of analysis $dir_{Y}=-1$ reveals a frontside Edge $[c,b'']$ 
 \end{enumerate}
-and the $angle$ in the intersection of the extensions of the two edges is between 90 and 135 degrees.\\
+and the $angle$ in the intersection of the extensions of the two edges is between 90 (square) and 135 degrees (pentagon).\\
 \begin{align}
-Max_{angle}=\frac{3\pi}{4}\\
+Max_{angle}=\frac{3\pi}{5}\\
 Min_{angle}=\frac{pi}{2}\\
 b' \in T_{1} \Rightarrow b' \not\in C_{4}
 \end{align}
@@ -313,7 +316,7 @@ Min_{angle}=0\\
 b' \in T_{1} \land b' \in C_{\infty} \Rightarrow (\text{third derivative?})
 \end{align}
 Note: Very steep angles are likely not to be continuous when a lot of data points are available. They may be caught by Cliff detection.\\\\
-It is part of ZigZag detection.
+For the sake of data reduction and comparison, cubic and quadratic subsectioning is omitted (see Introduction).
 
 \subsection*{Adjusted Differences}
 By now, we can improve the differences by setting $dom(\xi,\iota)=Crest \cup Spike \cup C_{4}$.
@@ -336,7 +339,7 @@ Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparato
 It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented (Causal Structure).
 
 \subsection{Spiral}
-Spiral $\supset$ Cliff $\not \supset$ Straight\\
+Spiral $\supset$ Cliff; Spiral $\not \supset$ Straight; Spiral $\not \supset$ Swing;\\ Spiral $\not \supset$ Crest; Spiral $\not \supset$ Spike\\\\
 A Spiral section $[a,b']$ is a Cliff, where
 \begin{align}
 Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \subseteq Spiral\}}\\
@@ -344,12 +347,12 @@ b' \in C_{n}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature measured inward from $a,b$.
 \subsection{ZigZag}
-ZigZag $\supset$ Spike $\supset$ Straight\\\\
+ZigZag $\not\supset$ Cliff; ZigZag $\supset$ Straight; ZigZag $\not\supset$ Swing;\\ ZigZag $\not\supset$ Crest; ZigZag $\supset$ Spike\\\\
 Whether it is a Turn or a Corner depends on orientation of the adjacent Straights relative to each other.\\\\
 Whether angles less than 90 degree are allowed to be in the dataset is subject of definition.
 From 90 degree to 180 degree, it is not losing its orientation.
 \subsection{Swell}
-Swell $\supset$ Crest $\supset$ Swing $\not \supset$ Spike\\
+Swell $supset$ Cliff; Swell $\not\supset$ Straight; Swell $\supset$ Swing;\\ Swell $\supset$ Crest; Swell $\not\supset$ Spike\\\\
 A swell is centered by triplets.\\\\
 The Captain of Swing\\
 Picking up where Sisyphos left in the previous article. At the top of the hill. Waves fall in formation. The captain is steering in high seas. He is swinging the wheel off the top as the next wave builds up. As if the water could feel the magnetic disruption, the surface tension breaks up. The second peak crumbles. The engine roars up in an attempt to dig the stern deeper into the dune. It stutters and almost...\\
@@ -364,7 +367,7 @@ The triplet of swings is our most accurate index for stabilising the frequencies
 \subsection{Moustache?}
 Indicates a break or change of direction $dir_{Z}$ in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
 \begin{equation}
-b' \in T_{n}
+b' \in T_{\infty}
 \end{equation}
 Moustache is correctly handled by the backside Crest, but it would only be a $T_{4}$ if not caught by Compact Covers.
 
