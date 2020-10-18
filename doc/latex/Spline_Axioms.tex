@@ -15,9 +15,7 @@
 \author{Fassio Blatter}
 \maketitle
 
-\chapter{Single Spline}
-
-\subsection{Spline Approximations}
+\chapter{Spline Approximations}
 A set of vectors $\begin{pmatrix}x \\ y\end{pmatrix} \in X$ within any parametrisation bounds $t\in[a,b]$ can be translated, rotated and scaled by $M^{3x3}$, so that $\iota_{X}(a)=\begin{pmatrix}0 \\ 0\end{pmatrix}$ and $\iota_{X}(b)=\begin{pmatrix}1 \\ 0\end{pmatrix}$. An approximation (arc) $A$ of arbitrary polynomial degree is required.\\\\
 For example, approximating a straight line has polynomial degree one.
 \begin{equation}
@@ -112,7 +110,7 @@ x \\ y \\ 0 \\ 0 \\ 0
 \end{pmatrix}
 \end{equation}
 
-\subsection{Representation}
+\chapter{Representation}
 
 A quartic spline is fully defined by $S,E$ and three on spline control points $c_{1},c_{3} \in A;c_{2} \in C_{3}$. The corresponding Bezier control points $q_{1},q_{2} \in Q_{3}$ are obtained by substituting $t=1/4$,$t=2/4$ and $t=3/4$ with $c_{1}$,$c_{2}$ and $c_{3}$ in the quartic linear equation.
 \begin{align}
@@ -128,120 +126,32 @@ S,C_{3},E \in A; S,V,E \in \iota_{Y}\\
 (S,C,E)\mapsto(c_{1},v_{1},c_{3})
 \end{align}\\
 The four quadratic splines $\gamma_{H_{1}} ... \gamma_{H_{4}}$ are defined by $S,E$ and on spline control points $c_{1},c_{2},c_{3},c_{5},c_{6},c_{7} \in A;c_{4} \in C_{3}$. The corresponding Bezier control points $q_{1},q_{2},q_{3},q_{4} \in Q_{1}$ for the pieces $H_{1},H_{2},H_{3},H_{4}$ are obtained by substituting $t=0,t=1/2$ and $t=1$ with $c_{1},c_{3},c_{5},c_{7}$ in each of the four quadratic linear equations.
-\begin{equation}
+\begin{align}
 H_{1}=
 \begin{bmatrix}
 x(S) & x(q_{1}) & x(c_{2})\\
 y(S) & y(q_{1}) & y(c_{2})\\
 0 & 0 & 0
 \end{bmatrix};
-H_{1}=
+H_{2}=
 \begin{bmatrix}
 x(c_{2}) & x(q_{2}) & x(c_{4})\\
 y(c_{2}) & y(q_{2}) & y(c_{4})\\
 0 & 0 & 0
-\end{bmatrix};
-H_{1}=
+\end{bmatrix}\\
+H_{3}=
 \begin{bmatrix}
 x(c_{4}) & x(q_{3}) & x(c_{6})\\
 y(c_{4}) & y(q_{3}) & y(c_{6})\\
 0 & 0 & 0
 \end{bmatrix};
-H_{1}=
+H_{4}=
 \begin{bmatrix}
 x(c_{6}) & x(q_{4}) & x(E)\\
 y(c_{6}) & y(q_{4}) & y(E)\\
 0 & 0 & 0
 \end{bmatrix}
-\end{equation}
-
-\iffalse
-\subsection{Number of Variables}
-Axiom: Within the bounds $[a,b]$ a combination of multiple $splines$ can occur. They are independent, $iff$ for all vectors there is a sum $g' +h'$\\\\
-\begin{equation}
-sum(t):
-\begin{bmatrix}
-1 & t & t^2\\
-1 & u & u^2
-\end{bmatrix}
-\underbrace{CMH}_{}
-=
-\begin{pmatrix}
-g_{1}' & g_{2}' & g_{3}'\\
-h_{1}' & h_{2}' & h_{3}'
-\end{pmatrix}
-\end{equation}
-Theorem: They are harmonic, hence there is a non-sparse separation.
-\fi
-
-\subsection{Spline Group}
-\subsubsection{Existence of Bounds}
-A group spline can be found for the integer $Image \in \mathbb{Z}^3$ in dimensions $x,y$
-\begin{equation}
-splinegroup(t):
-\begin{pmatrix}
-1 & t & t^2
-\end{pmatrix}
-\begin{pmatrix}
-1 & 0 & 0\\
--1 & 1 & 0\\
-0 & -1 & 1
-\end{pmatrix}\begin{bmatrix}
-\underbrace{Mh_{1}}_{S=\begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix}} & \underbrace{Mh_{2}}_{c_{1}} & \underbrace{Mh_{3}}_{E=\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}}
-\end{bmatrix}
-=
-\underbrace{
-\begin{pmatrix}
-h_{1}' & h_{2}' & h_{3}'
-\end{pmatrix}}_{Image}
-\end{equation}
-For a Lie Group
-\begin{align}
-\text{\{GL(3,$\mathbb{Z}$)} \subset M \vert \forall m \in M \exists c_{1}\}
 \end{align}
-Axiom: For a spline base with $S=\begin{pmatrix}0 \\ 0 \\ 0\end{pmatrix}$ and $E=\begin{pmatrix}1 \\ 0 \\ 0\end{pmatrix}$, there exist only two Eigenvalues ~\cite["Spline\_Eigensystems.nb"]{Stopeight}
-\begin{align}
-ev_{1}=Eigenvalue(
-\underbrace{\begin{pmatrix}
-a & 0 & 0\\
-b & c & 0\\
-0 & d & e
-\end{pmatrix}}_{Base})\\
-ev_{2}=Eigenvalue(
-\underbrace{\begin{pmatrix}
-0 & 0 & 0\\
-b & 0 & 0\\
-0 & d & 0
-\end{pmatrix}}_{Base})
-\end{align}
-Theorem: The approximation algorithm imposes a constraint on the Eigenvectors ~\cite["Spline\_EVConstraint.nb"]{Stopeight}
-
-\chapter{Polynomial Degree}
-\subsection{Combination of Spaces}
-A quartic bezier spline has a total of five Control points which can be reduced to three if the subspline alignment is smooth. A circle has a total of two focal points, which can be reduced to one if smoothness applies. If we deviate from this smoothness, a Spiral forms.
-\subsection{Parametrised Korners}
-Beyond quadratic approximation, each Corner is a Korner $K$ with a focal vector. On a Spiral there are multiple Korners, on a ZigZag, there is none. The Korners mostly make sense in the context of sub-pulse analysis, i.e. the comparison of rise and fall.\\\\
-If we have $T_{3}$ and all the Compact Covers worked out, Korners can be defined (Swell?) and new differences and areas parametrised. $p$ supremums are considered over the whole section of the Compact Cover $V_{n}$. The interval over the bounds of a supremum is $[a(K_{p}),b(K_{p})]$.
-\begin{align}
-K_{p+1} = \{ C_{3} \in  [a,b]\vert \sup \limits _{V_{n} \setminus [a(K_{p}),b(K_{p})]} \lvert curvature(a,b) \rvert \}
-\end{align}
-There is one Korner per arc $\{U_{m}\}$.\\
-As a consequence $diameter$ and $area$ could be parametrised on the new Korners $dom(\iota)=T_{3}\cup K_{p}$. ($dom(\xi)$?).\\
-\begin{align}
-area_{sup}(K_{p})=\int \limits _{a(K_{p})}^{b(K_{p})} \lvert \iota_{K_{p}}(t)-\iota_{K_{p+1}}(t) \rvert \mathrm{d}t\\
-diameter_{sup}(a,b)=\sup \limits _{c,d \in [a,b]} \lvert \xi(d) - \xi(c) \rvert
-\end{align}
-The solid angle now depends on the bisection and $area_{sup}$. (sum or product?)
-\begin{equation}
-solidangle_{Abs}(a,b)=\sum \limits _{i=0}^{p} \frac{area_{sup}(K_{i})}{(\xi(t(K_{i}))-\iota(t(K_{i})))^2}
-\end{equation}
-The horizontals on the bisections are defined by the transversality of the eliptic approximation.
-\begin{align}
-area_{horiz}(a,b)=\int \limits _{0}^{?} \lvert \xi(b-t)-\xi(a+t) \rvert \mathrm{d}t
-\end{align}
-(change of variable?)
-\subsection{Tangential Paraglide Differences}
-Focal points are intersections of normals on tangents. Distribution can be parametrised without breaking the bounds $iff$ there is only one Korner. Adjusted $area$
 
 \iffalse
 \printbibliography
