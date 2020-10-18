@@ -28,16 +28,21 @@ t
 1 & -1\\
 0 & 1
 \end{pmatrix}}_{Jordanian}
+(\underbrace{\begin{bmatrix}
+1 & 0\\
+0 & 1
+\end{bmatrix}}_{M^{2x2}}
 \begin{pmatrix}
-M \begin{pmatrix} 0 \\ 0 \end{pmatrix} & M \begin{pmatrix} 1 \\ 0 \end{pmatrix}
-\end{pmatrix}
+0 & 1\\
+0 & 0
+\end{pmatrix})
 =
 \begin{pmatrix}
 x \\
 y
 \end{pmatrix}
 \end{equation}
-Here, the matrix $M^{3x3}$ of affine transformations is the identity matrix. It will be omitted in the following.\\\\
+Note: Because $S$ and $E$ are already at $\begin{pmatrix}0\\0\end{pmatrix}$ and $\begin{pmatrix}1\\0\end{pmatrix}$, the matrix $M^{2x2}$ of affine transformations is the identity matrix.\\\\
 The more complicated case of a quadratic bezier spline
 \begin{equation}
 quad(t):
@@ -46,16 +51,16 @@ quad(t):
 t \\
 t^2
 \end{pmatrix}
-\underbrace{\begin{bmatrix}
+\underbrace{\begin{pmatrix}
 1 & -1 & 0\\
 0 & 1 & -1\\
 0 & 0 &1
-\end{bmatrix}}_{Jordanian}
-\underbrace{\begin{pmatrix}
+\end{pmatrix}}_{Jordanian}
+(M^{3x3}*\underbrace{\begin{pmatrix}
 x(S) & x(C_{1}) & x(E) \\
 y(S) & y(C_{1}) & y(E) \\
 0 & 0 & 0
-\end{pmatrix}}_{Bezier Control Points}
+\end{pmatrix}}_{\text{Bezier Control Points}})
 =
 \begin{pmatrix}
 x \\
@@ -63,6 +68,7 @@ y \\
 0
 \end{pmatrix}
 \end{equation}
+Note: $M^{NxN}$ has Rank 2\\\\
 The Jordanian is composed of the sum of identity matrices in upper right sub-spaces.
 The characteristic polynomials of the diagonal and bidiagonal are composed of binomial coefficients.
 \begin{align}
@@ -83,13 +89,13 @@ quart(t):
 0 & 0 & 0 & 1 & -1\\
 0 & 0 & 0 & 0 & 1
 \end{pmatrix}}_{Jordanian}
-H
+(M^{5x5}*H^{5x5})
 =
 \begin{pmatrix}
 x \\ y \\ 0 \\ 0 \\ 0
 \end{pmatrix}
 \end{equation}
-Note: Because we are only interested in planar coordinates, the tri- and quadridiagonals can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace (Sparse).\\\\
+Note: Because we are only interested in planar coordinates, the tri- and quadridiagonals of the Jordanian can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace (Sparse).\\\\
 Axiom: Because of associativity, an inverse of the control points can be left multiplied. Because of associativity, the inverse of the Jordanian can be left multiplied.
 \begin{equation}
 quart(t):
@@ -104,7 +110,7 @@ quart(t):
 0 & 0 & 0 & 1 & 1\\
 0 & 0 & 0 & 0 & 1
 \end{bmatrix}}_{Jordanian^{-1}}
-H^{-1}
+(M^{5x5}H^{5x5})^{-1}
 \begin{pmatrix}
 x \\ y \\ 0 \\ 0 \\ 0
 \end{pmatrix}
