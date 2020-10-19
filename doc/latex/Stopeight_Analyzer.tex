@@ -197,13 +197,13 @@ curvature_{Algo}(a,b)= dir \frac{\sum \limits _{i=0}^{n}y(P_{i})*(x(P_{i+1})-x(P
 \subsection{Corner}
 A curvature is composed of an infinite amount of local maxima. Therefore the Corner $C$ in a section $[a,b] \subseteq X$ is.
 \begin{equation}
-C_{2} = \{C_{2} \in T_{2} \mid \min_{t \in U}\lvert(\frac{b-a}{2})-t\rvert;\inf_{t \in U} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\gamma(t) \rvert \approx 0 \}
+C_{4} \subseteq \inf_{t \in A} \lvert \frac{\mathrm{d}}{\mathrm{d}t}\xi(t) \rvert \approx 0 \ \land C_{4} = \min_{t \in C_{4}}\lvert(\frac{b-a}{2})-t\rvert
 \end{equation}
 
 \subsection{Turn}
 A turn $T$ is a change of sign in the orientation of the curve. In a segment $[a,b] \subseteq X$ an infinite amount of non-straight sections can be found.
 \begin{equation}
-T_{4} \subseteq \inf_{t \in X} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}\xi(t) \rvert \approx 0
+T_{4} \subseteq \inf_{t \in A} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}\xi(t) \rvert \approx 0
 \end{equation}
 
 \subsection{Notation}
@@ -267,11 +267,7 @@ straightness(a,b')\leq Max_{Straight}\\ straightness(b',c)> Max_{Straight}
 \end{align}
 
 \section{Recursive Sections}
-Recursive sections have higher computational priority. This is because they can reduce shift and improve curve-fitting when working with spline polynoms of higher degree and data with relatively high bandwith.\\\\
-The following recursive subsections reveal hidden derivatives.
-\begin{equation}
-T_{>4} \subseteq \inf_{t \in A} \lvert \frac{\mathrm{d}^3}{\mathrm{d}t^3}\xi(t) \rvert \approx 0
-\end{equation}
+Recursive sections have higher computational priority. This is because they can reduce shift and improve curve-fitting when working with spline polynoms of higher degree and data with relatively high bandwith.
 
 \subsection{Crest}
 A backside Crest section $[a,a']$ is an iteration of:

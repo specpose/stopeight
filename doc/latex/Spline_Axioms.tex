@@ -118,17 +118,17 @@ x \\ y \\ 0 \\ 0 \\ 0
 
 \chapter{Representation}
 
-A quartic spline is fully defined by $S,E$ and three on spline control points $c_{1},c_{3} \in A;c_{2} \in C_{3}$. The corresponding Bezier control points $q_{1},q_{2} \in Q_{3}$ are obtained by substituting $t=1/4$,$t=2/4$ and $t=3/4$ with $c_{1}$,$c_{2}$ and $c_{3}$ in the quartic linear equation.
+A quartic spline is fully defined by $S,E$ and three on spline control points $c_{1},c_{3} \in A;c_{2} \in C_{4}$. The corresponding Bezier control points $q_{1},q_{2} \in Q_{3}$ are obtained by substituting $t=1/4$,$t=2/4$ and $t=3/4$ with $c_{1}$,$c_{2}$ and $c_{3}$ in the quartic linear equation.
 \begin{align}
 H=\begin{bmatrix}
-x(S) & x(q_{1}) & x(C_{3}) & x(q_{2}) & x(E) \\
-y(S) & y(q_{1}) & y(C_{3}) & y(q_{2}) & x(E) \\
+x(S) & x(q_{1}) & x(C_{4}) & x(q_{2}) & x(E) \\
+y(S) & y(q_{1}) & y(C_{4}) & y(q_{2}) & x(E) \\
 0 & 0 & 0 & 0 & 0\\
 0 & 0 & 0 & 0 & 0\\
 0 & 0 & 0 & 0 & 0
 \end{bmatrix}\\
-representation: S \times C_{3} \times E \rightarrow A \times V \times A\\
-S,C_{3},E \in A; S,V,E \in \iota_{Y}\\
+representation: S \times C_{4} \times E \rightarrow A \times V \times A\\
+S,C_{4},E \in A; S,V,E \in \iota_{T}\\
 (S,C,E)\mapsto(c_{1},v_{1},c_{3})
 \end{align}\\
 The four quadratic splines $\gamma_{H_{1}} ... \gamma_{H_{4}}$ are defined by $S,E$ and on spline control points $c_{1},c_{2},c_{3},c_{5},c_{6},c_{7} \in A;c_{4} \in C_{3}$. The corresponding Bezier control points $q_{1},q_{2},q_{3},q_{4} \in Q_{1}$ for the pieces $H_{1},H_{2},H_{3},H_{4}$ are obtained by substituting $t=0,t=1/2$ and $t=1$ with $c_{1},c_{3},c_{5},c_{7}$ in each of the four quadratic linear equations.
@@ -158,7 +158,25 @@ y(c_{6}) & y(q_{4}) & y(E)\\
 0 & 0 & 0
 \end{bmatrix}
 \end{align}
+\section{Geometric Meaning}
+The axis connecting $C_{4}$ to $V$ is the focal axis in a perfect half circle. In an oval which can not be ruled out, $C_{4}$ is the only point intersecting the focal axis with a tangent on-spline. If the $S_{2}\cap E_{2}$ are bent outwards from the perfect half circle position, there are a total of three focal axes in a quartic spline, which is the default for a quartic spline. Because the Stopeight\_Analyzer algorithm is catching the bends starting from the limit of $straightness$, this case can be ruled out. Therefore, the number of $card(C_{4})$ per chart $U_{m}$ is reduced from $3$ to $1$.
 
+\chapter{Inverse Representation}
+In Representation\_Parallelogram.nb and Representation\_Circles.nb there are currently two representations evaluated. The parallelogram construction favors half-circles, while the more computationally extensive circles positions the two omitted $C_{4}$ closer togther for ovals, etc. The latter is described below.\\\\
+The inverse of the representation reconstructs $S,C_{4},E$ from the left and right on-spline control points $q \in A_{4}$ and the intersection of the angle-bisection in the triangle $SCE$ with the line $SE$.
+\begin{align}
+representation^{-1}: A \times V \times A \rightarrow S \times C_{4} \times E\\
+(c_{1},v_{1},c_{3})\mapsto(S,C_{4},E)
+\end{align}
+The point $C_{4}$ is relatively easy to reconstruct under the assumption, that the line...\\\\
+\section{Geometric Meaning}
+If the representation itself is re-interpreted to define a quartic spline of its own $S=c_{1},C_{3}=v_{1},E=c_{3}$, the resulting geometric figure is a sort of reflection surface, with the area narrowing down when repeating this procedure. The focal axis of each subsequent quartic spline rotates depending on how far towards $S$ or $E$, the single $C_{4}$'s are stretched. The inverse expands this area.
+
+\chapter{Signals}
+A quartic representation is sufficient for pen-stroke analysis. Two possible implementations are provided. Going from two quartic to a quintic requires $n-3$ on-spline control points, $n$ stands for the polynomial degree. In a Spiral, it would make sense to position these at the $C_{4}$ of the two Cliffs with $t_{5}=1/3$ and $t_{5}=2/3$. For two circles, the control points would have to be at $t_{6}=1/4,t_{6}=2/4$ and $t_{6}=3/4$. The number of quartic splines required for a polynomial of higher degree doubles with every step $4...n$. The control points for a Swell would have to be at the $C_{4}$'s.\\\\
+Axiom: Factorisation requires maximal polynomial degree.\\\\
+Axiom: Frame-bounds have to be $S,E$ of Compact Covers.\\\\
+Axiom: Complex multiplication preserves signal characteristics even in time-variant scenario.\\\\
 \iffalse
 \printbibliography
 \fi
