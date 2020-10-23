@@ -2,7 +2,6 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{hyperref}
 
 \iffalse
 \usepackage{biblatex}
@@ -22,37 +21,40 @@
 \section{Vector Graph}
 Consider a function that produces a sequence of independent vectors with coordinates $x,y \in \mathbb{R}$.
 \begin{equation}
-Anything \rightarrow \{(x,y)_{m}\}_{m \in \mathbb{Z}}
+Anything \rightarrow \{(x,y)_{m}\}_{m \in \mathbb{N}}
 \end{equation}
 Note: It is a metric space with the Euclidean norm $(\mathbb{R}^2,\norm{\cdot}_2)$.\\\\
 The Vector Graph of the sequence of vectors is its appended form. The vectors are translated by the preceding ones.\\
 \begin{equation}
-vectorgraph_{\log_{2}(m)}: (x,y)_{n}=\sum_{i=0}^{n} (x,y)_{i}
+vectorgraph_{1}: (x,y)_{m=n}=\sum_{i=1}^{n} (x,y)_{i}
 \end{equation}
 Note: It is a metric space with a taxicab norm $(X,\norm{\cdot}_1)$.
 \section{Wavelets}
-The appended form can, but does not have to be, subdivided into $2^j$ partitions of size $m/2^j$. The vectors in the partition are sumed and the resulting vector is stretched by the effective length of the taxicab norm of the vectors in the partition.
+The appended form can, but does not have to be, subdivided into $n$ partitions of size $m/2^j$. The vectors in the partition are sumed and the resulting vector is stretched by the effective length of the taxicab norm of the vectors in the partition.
 \begin{equation}
-vectorgraph_{j}:(x,y)_{n}=\sum_{i=0}^{n} (\norm{(x,y)_{(i+1)*m/2^j}}_{1} - \norm{(x,y)_{i*m/2^j}}_{1} * \frac{\sum_{k=i*m/2^j}^{(i+1)*m/2^j} (x,y)_{k}}{\vert \sum_{k=i*m/2^j}^{(i+1)*m/2^j} (x,y)_{k} \vert})
+vectorgraph_{m/2^j}:(x,y)_{n}=\sum_{i=1}^{n} (\underbrace{\norm{(x,y)_{(i+1)*m/2^j}}_{1} - \norm{(x,y)_{i*m/2^j}}_{1}}_{length} * \underbrace{\frac{\sum_{k=i*m/2^j}^{(i+1)*m/2^j} (x,y)_{k}}{\vert \sum_{k=i*m/2^j}^{(i+1)*m/2^j} (x,y)_{k} \vert}}_{direction})
 \end{equation}
 Algorithm Version: Affine 2D scaling transformation (to be disclosed)\\\\
 This ensures that the traversal distances are preserved!
 \begin{equation}
-(vectorgraph_{j},\norm{\cdot}_{1})=(vectorgraph_{j+1},\norm{\cdot}_{1})
+(vectorgraph_{m/2^j},\norm{\cdot}_{1})=(vectorgraph_{m/2^(j+1)},\norm{\cdot}_{1})
 \end{equation}
-\section{Time Variant}
-Even a time-variant version of the Vector Graph can be thought of. It is composed of a sequence of $p$ Vector Graph pieces on the same taxicab norm $(\{X_{p}\}_{p\in \mathbb{Z}},\norm{\cdot}_1)$.
+\section{Time (vector-length) Variant}
+Time-variance can be dealt with, because the ~\cite[Stopeight\_Analyzer.tex]{Stopeight} seamlessly ignores missing values. A time-variant version is composed of a sequence of $p$ Vector Graph pieces on the same taxicab norm $(\{X_{p}\}_{p\in \mathbb{Z}},\norm{\cdot}_1)$.
 \subsection{Equalising Length}
 It may be desirable to work with vectors of the same length. This may be required for inverting the Vector Graph $vectorgraph^{-1}$ or comparing two different Vector Graphs.\\\\
-To avoid interpolation, integer multiples of the vector lengths over all sequences would have to be used.\\\\
+To avoid interpolation, integer multiples of the vector lengths over all pieces would have to be used.\\\\
 Clearly, choosing a $j$ that results in a Euclidean distance smaller than the highest Euclidean distance in the entire sequence $\{X_{p}\}$ is not recommended for comparison because of missing data.
 \begin{equation}
 (m/2^j)*\inf \limits _{X} \sqrt{(x^2+y^2)} \geq \sup \limits _{\{X_{p}\}} \sqrt{(x^2+y^2)}\label{eq:4}
 \end{equation}
+\subsection{Breaking Condition}
+If one or more values break the Compact Cover, i.e. polynomial degree of the approximation, a shift of the subsequent $TCT$ sections is induced. This renders the approximation as a whole unusable for comparison. It is thus advisable to use fixed size frame-bounds instead of frame-bounds produced by the ~\cite[Stopeight\_Analyzer.tex]{Stopeight}, just like signals $s(t)$ are dealt with in conventional signal processing.\\
+Notation: The rest of the proceedings in this paper includes the preliminary stage of creating a Vector Graph $(x,y)_{n}$ from a signal (function of one variable) $s(t)$. 
 
 \chapter{Usage Scenarios}
 \section{Comparison}
-After the feature points have been extracted in the Analyser, a reference Vector Graph can be compared to a subsection of a query Vector Graph. This is being done by geometrically overlaying and matching them within an offset threshold. The overlay is being done using affine transformations. This is not documented but currently implemented in the Stopeight Comparator project.
+After the feature points have been extracted in the Analyser, a reference Vector Graph can be compared to a subsection of a query Vector Graph. This is being done by geometrically overlaying and matching them within an offset threshold. The overlay is being done using affine transformations. This is not documented but currently implemented in the ~\cite[Stopeight\_Comparator.tex]{Stopeight} project.
 \section{Domain (Time) Scalability}
 This Vector Graph has to be constructed by appending vectors to each other.
 \begin{align}

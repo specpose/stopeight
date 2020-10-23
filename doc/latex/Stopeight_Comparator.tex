@@ -79,7 +79,7 @@ The recursion is defined as follows. Here $t$ is the same parametrisation $t$ as
 \psi_{j,n}(t)=\frac{1}{\sqrt{2^j}}\psi(\frac{t-2^j n}{2^j})
 \end{equation}
 Note: This is the dilation and translation of an individual time-frequency box of a Wavelet \cite{Mallat}[1.3.4].\\\\
-For this time-frequency box, a coefficient $vis_{j,n}$ or $iso_{j,n}$ can be calculated. This has to be done on the parametrisation bounds of the vector $(x,y)_n$ of the corresponding $vectorgraph_{j}$ \cite{Grapher}[1.3].
+For this time-frequency box, a coefficient $vis_{j,n}$ or $iso_{j,n}$ can be calculated. This has to be done on the parametrisation bounds of the vector $(x,y)_n$ of the corresponding $vectorgraph_{m/2^j}$ \cite{Grapher}[1.3].
 \begin{align}
 vis_{j,n}=visibility(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})\\
 iso_{j,n}=isolation(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})
@@ -98,9 +98,9 @@ Unlike visibility, the orientation can change between two charts $ori(a,b)\neq o
 
 \chapter{Vector Graph Inverses}
 \section{Graph Inverse}
-The full resolution $vectorgraph$ is considered $2^j=m$. Start of the signal $s(t);t=0$ and end of the signal $s(t);t=m$ are needed.
+The full resolution $vectorgraph_{1}$ is considered. Start of the signal $s(t);t=0$ and end of the signal $s(t);t=m$ are needed.
 \begin{equation}
-(vectorgraph_{log_{2}(m)})^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
+(vectorgraph_{1})^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
 \end{equation}
 The signal reconstruction is lossless, albeit normalized.
 \section{Approximation Inverse}
