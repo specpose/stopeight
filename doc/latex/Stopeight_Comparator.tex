@@ -23,7 +23,8 @@ This file is in the Stopeight repository on Github. Please edit here:\\
 https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex\\
 The DOI can be found here ~\cite{Analyzer}.\\\\
 Initially the aim of this paper was to make separated sources in a mixed signal comparable using either numeric or geometric overlay comparison (currently implemented), regardless of time and amplitude stretch, but preserving frequency modulation and amplitude ratios.\\
-In the course of specifying the Stopeight Analyzer transversality, which serves as a foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition of two wavelets, isolation and visibility. They may lead to a method of approximating polynomials of arbitrary degree. They are an indication of the fractal dimension and cutoff of the approximation.
+In the course of specifying the Stopeight Analyzer transversality, which serves as a foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition of two spectrograms, isolation and visibility. They are an indication of the fractal dimension and cutoff of the approximation.\\
+Finally, the role of Compact Covers has become part of a speculation, that signals ultimately need bounds of a maximal polynomial degree for comparison and that the Turns $T_{4}$ and Corners $C_{4}$ could be viable for complex factorisation.
 
 \chapter{Isolation}
 Isolation is the integral of the absolute difference of the input and approximation transversalities.
@@ -72,21 +73,16 @@ For a Swell or a ZigZag type Compact Cover, the transversality is as expected.
 \end{align*}
 Note: The outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds.
 
-\chapter{Wavelets}
-Because of the fractal nature of the two variables isolation and visibility, a recursive function has to be used. The recursive step is applied on each downsampling step. We start with $2^j=m$, which is the full resolution of the Vector Graph. On each step we double the partition size until we reach $2^0$. The Vector Graph and any approximations thereof now consist of only one vector.\\\\
-The recursion is defined as follows. Here $t$ is the same parametrisation $t$ as used in previous chapters.
-\begin{equation}
-\psi_{j,n}(t)=\frac{1}{\sqrt{2^j}}\psi(\frac{t-2^j n}{2^j})
-\end{equation}
-Note: This is the dilation and translation of an individual time-frequency box of a Wavelet \cite{Mallat}[1.3.4].\\\\
-For this time-frequency box, a coefficient $vis_{j,n}$ or $iso_{j,n}$ can be calculated. This has to be done on the parametrisation bounds of the vector $(x,y)_n$ of the corresponding $vectorgraph_{m/2^j}$ \cite{Grapher}[1.3].
+\chapter{Group Spectrogram}
+Visibility and Isolation can be calculated on different Vector Graph resolutions between all bounds $a,b$. They will disappear, if $b-a$ is shorter than the partition size $m/2^j$.
+The bounds should be considerably longer than the partition size. Keep in mind that the integrals are being calculated on top of approximations $\xi$, so for every Vector Graph resolution, Stopeight Analyzer has to be run separately and the individual bounds need not correspond. The purpose of this task is to filter out unwanted parts of the signal by selecting a relevant Vector Graph resolution.
 \begin{align}
-vis_{j,n}=visibility(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})\\
-iso_{j,n}=isolation(\norm{(x,y)_{n}}_{1},\norm{(x,y)_{n+1}}_{1})
+visibility_{m/2^j}(a,b)\\
+isolation_{m/2^j}(a,b)
 \end{align}\\
 Note: Time-scaling has to be preserved in the lengths of the vectors in the construction of the Vector Graph for this to work.
 
-\chapter{Spectrogram}
+\chapter{Individual Spectrogram}
 The frequency content in an approximation can be evaluated by a spectrogram.\\\\
 The spectrogram is calculated by applying a convolution transform to an artificially constructed signal for $t \in [a,b]$.
 \begin{align}

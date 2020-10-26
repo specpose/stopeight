@@ -29,7 +29,7 @@ The Vector Graph of the sequence of vectors is its appended form. The vectors ar
 vectorgraph_{1}: (x,y)_{m=n-1}=\sum_{i=0}^{n-1} (x,y)_{i}
 \end{equation}
 Note: It is a metric space with a taxicab norm $(X,\norm{\cdot}_1)$.
-\section{Wavelets}
+\section{Multiresolution Partitions}
 The appended form can, but does not have to be, subdivided into $n$ partitions of size $m/2^j$. The vectors in the partition are sumed and the resulting vector is stretched by the effective length of the taxicab norm of the vectors in the partition.
 \begin{equation}
 vectorgraph_{m/2^{j}}:(x,y)_{n}=\sum_{i=0}^{n-1} (\underbrace{\norm{(x,y)_{(i+1)*m/2^j}}_{1} - \norm{(x,y)_{i*m/2^j}}_{1}}_{length} * \underbrace{\frac{\sum_{k=i*m/2^j}^{(i+1)*m/2^j} (x,y)_{k}}{\vert \sum_{k=i*m/2^j}^{(i+1)*m/2^{j}} (x,y)_{k} \vert}}_{direction})

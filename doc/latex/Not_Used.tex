@@ -146,6 +146,15 @@ isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b))(?)
 \subsection*{Interval Space}
 $jitter$ grows, but $diameter$ constant.
 
+\subsection{Fake Wavelets}
+The time-frequency boxes are borrowed from the Haar-wavelet for $n=\frac{m}{2^j}$ partitions for each frequency-band $j$. It is $not$ a signal expansion of basis functions and does not allow for the algebraic conversions. Algebraic definitions of frames can be found for the polynomial functions in ~\cite[Spline\_Axioms.tex]{Axioms}.\\\\
+Because of the multiscale nature of the two variables isolation and visibility, they can be used for separation, i.e. choosing an appropriate Vector Graph resolution. Each Vector Graph stand for a downsampling step. We start with $2^j=m$, which is the full resolution of the Vector Graph. On each step we double the partition size until we reach $2^0$. The Vector Graph and any approximations thereof now consist of only one vector.\\\\
+The recursion is defined as follows. Here $t$ is the same parametrisation $t$ as used in previous chapters.
+\begin{equation}
+\psi_{j,n}(t)=\frac{1}{\sqrt{2^j}}\psi(\frac{t-2^j n}{2^j})
+\end{equation}
+Note: This is the dilation and translation of an individual time-frequency box of a Wavelet \cite{Mallat}[1.3.4].\\\\
+
 \subsection{Jaggedness}
 Is aliasing of discretisation/rasterisation, but not to be confused with signal aliasing. Can be defined on Focals and Turns.
 \begin{align}
