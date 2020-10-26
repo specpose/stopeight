@@ -249,6 +249,19 @@ It can have values between $[0,\inf]$, which is useful for woodpecker convolutio
 Note: If we had chosen a product of geometric means instead of the convolution would make that isolation grows if the means are $(0,1]$, or even worse canceled out for zeros. A sum would not amplify the effect of large geometric means in short intervals.
 
 \subsection{Visibility}
+An auxiliary set of chart-wise points:
+\begin{equation}
+h: U_{n} \mapsto [a,b] \mapsto O_{n}
+\end{equation}
+Note: Because of Corner insertion (\cite{Analyzer}[3.20]), $card(U_{n}) > 2$.\\\\
+are Centres of Cliffs by the arithmetic mean:
+\begin{align}
+O_{n}=\int \limits _{a(U_{n})}^{b(U_{n})} \iota_{X}(t)\mathrm{d}t
+\end{align}
+Algorithm Version
+\begin{align}
+O_{n}=(\sum \limits _{i=0}^{m} (x,y)_{i})/(m+1)
+\end{align}
 $[-\pi,\pi]$ is replaced with $[a,b]$. This is the energy of the Continuous Fourier \emph{Transform} as in the Plancherel equality.
 \begin{align}
 visibility(a,b)= \int \limits _{-\infty}^{+\infty}\int \limits _{a}^{b}\lvert \vert \xi(t)-\iota_{O}(t)\vert * \mathrm{e}^{-\mathrm{i}\omega t} \rvert^2 \mathrm{d}t \mathrm{d}\omega
