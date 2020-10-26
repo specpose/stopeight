@@ -26,7 +26,7 @@ Anything \rightarrow \{(x,y)_{m}\}_{m \in \mathbb{N}}
 Note: It is a metric space with the Euclidean norm $(\mathbb{R}^2,\norm{\cdot}_2)$.\\\\
 The Vector Graph of the sequence of vectors is its appended form. The vectors are translated by the preceding ones.\\
 \begin{equation}
-vectorgraph_{1}: (x,y)_{m=n-1}=\sum_{i=0}^{n-1} (x,y)_{i}
+vectorgraph_{1}: (x,y)_{m=n}=\sum_{i=0}^{n-1} (x,y)_{i}
 \end{equation}
 Note: It is a metric space with a taxicab norm $(X,\norm{\cdot}_1)$.
 \section{Multiresolution Partitions}
@@ -56,22 +56,6 @@ Notation: The rest of the proceedings in this paper includes the preliminary sta
 \section*{Comparison}
 After the feature points have been extracted in the Analyser, a reference Vector Graph can be compared to a subsection of a query Vector Graph. This is being done by geometrically overlaying and matching them within an offset threshold. The overlay is being done using affine transformations. This is not documented but currently implemented in the ~\cite[Stopeight\_Comparator.tex]{Analyzer} project.\\\\
 Another way of comparison is the factorisation of the Compact Covers, ie. splines of maximal polynomial degree using complex numbers $\mathbb{C}^1$ and their multiplication.
-\section{Bitstream}
-A signal $s(t)\in\{0,1\}$ is used to construct a $relative$ Vector Graph which turns left/right or goes straight.
-\begin{align}
-vectorgraph_{1}: (x,y)_{n}=
-\begin{cases}
-(1,0) & (x,y)_{n-1}= (0,-1)\land s(t_{n})-s(t_{n-1})=1\\
-(0,-1) & (x,y)_{n-1}= (-1,0)\land s(t_{n})-s(t_{n-1})=1\\
-(-1,0) & (x,y)_{n-1}= (0,1)\land s(t_{n})-s(t_{n-1})=1\\
-(0,1) & (x,y)_{n-1}= (1,0)\land s(t_{n})-s(t_{n-1})=1\\
-(1,0) & (x,y)_{n-1}= (0,1)\land s(t_{n})-s(t_{n-1})=-1\\
-(0,1) & (x,y)_{n-1}= (-1,0)\land s(t_{n})-s(t_{n-1})=-1\\
-(-1,0) & (x,y)_{n-1}= (0,-1)\land s(t_{n})-s(t_{n-1})=-1\\
-(0,-1) & (x,y)_{n-1}= (1,0)\land s(t_{n})-s(t_{n-1})=-1\\
-(x,y)_{n-1} & s(t_{n})-s(t_{n-1})=0\\
-\end{cases};(x,y)_{1}=(1,0)
-\end{align}
 \section{Domain (Time) Scalability}
 This $absolute$ Vector Graph has to be constructed from a signal $s(t)\in \mathbb{R}$ by appending vectors to each other.
 \begin{align}

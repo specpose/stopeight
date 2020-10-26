@@ -42,6 +42,24 @@ This Vector Graph has to be constructed by appending a vector $(0,y)_{n+1}$ to a
 angle_{n+1}=angle_{n}+2*\arcsin(\vert(x,y)_{n+1}\vert/\frac{\int \limits _{a}^{b} s'(t) \mathrm{d}t}{b-a})
 \end{align}
 
+\section{Stopeight Grapher}
+
+\section{Bitstream}
+A signal $s(t)\in\{0,1\}$ is used to construct a $relative$ Vector Graph which turns left/right or goes straight.
+\begin{align}
+vectorgraph_{1}: (x,y)_{n}=
+\begin{cases}
+(1,0) & (x,y)_{n-1}= (0,-1)\land s(t_{n})-s(t_{n-1})=1\\
+(0,-1) & (x,y)_{n-1}= (-1,0)\land s(t_{n})-s(t_{n-1})=1\\
+(-1,0) & (x,y)_{n-1}= (0,1)\land s(t_{n})-s(t_{n-1})=1\\
+(0,1) & (x,y)_{n-1}= (1,0)\land s(t_{n})-s(t_{n-1})=1\\
+(1,0) & (x,y)_{n-1}= (0,1)\land s(t_{n})-s(t_{n-1})=-1\\
+(0,1) & (x,y)_{n-1}= (-1,0)\land s(t_{n})-s(t_{n-1})=-1\\
+(-1,0) & (x,y)_{n-1}= (0,-1)\land s(t_{n})-s(t_{n-1})=-1\\
+(0,-1) & (x,y)_{n-1}= (1,0)\land s(t_{n})-s(t_{n-1})=-1\\
+(x,y)_{n-1} & s(t_{n})-s(t_{n-1})=0\\
+\end{cases};(x,y)_{1}=(1,0)
+\end{align}
 
 \section{Stopeight Analyzer}
 
