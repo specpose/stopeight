@@ -174,11 +174,8 @@ If the representation itself is re-interpreted to define a quartic spline of its
 
 \chapter{Signals}
 A quartic representation is sufficient for pen-stroke analysis. Two possible implementations are provided. Going from two quartic to a quintic requires $n-3$ on-spline control points, $n$ stands for the polynomial degree. In a Spiral, it would make sense to position these at the $C_{4}$ of the two Cliffs with $t_{5}=1/3$ and $t_{5}=2/3$. For two circles, the control points would have to be at $t_{6}=1/4,t_{6}=2/4$ and $t_{6}=3/4$. The number of quartic splines required for a polynomial of higher degree doubles with every step $4...n$. The control points for a Swell would have to be at the $C_{4}$'s.\\\\
-Axiom: Factorisation requires maximal polynomial degree.\\\\
-Axiom: Frame-bounds have to be $S,E$ of Compact Covers.\\\\
+Axiom: Factorisation requires maximal polynomial degree, so Frame-bounds have to be $S,E$ of Compact Covers. Is the path-length (not arc-length) preserving the radial complex distortion?\\\\
 Axiom: Changes in polynomial degree indicate third derivatives (of the approximation).\\\\
-Axiom: Complex multiplication preserves signal characteristics even in time-variant scenario.\\\\
-Axiom: Binomial formula apply to complex multiplication\\\\
 \iffalse
 \printbibliography
 \fi
