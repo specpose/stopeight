@@ -57,14 +57,14 @@ Notation: The rest of the proceedings in this paper includes the preliminary sta
 After the feature points have been extracted in the Analyser, a reference Vector Graph can be compared to a subsection of a query Vector Graph. This is being done by geometrically overlaying and matching them within an offset threshold. The overlay is being done using affine transformations. This is not documented but currently implemented in the ~\cite[Stopeight\_Comparator.tex]{Analyzer} project.\\\\
 Another way of comparison is the factorisation of the Compact Covers, ie. splines of maximal polynomial degree using complex numbers $\mathbb{C}^1$ and their multiplication.
 \section{Domain (Time) Scalability}
-This $absolute$ Vector Graph has to be constructed from a signal $s(t)\in \mathbb{R}$ by appending vectors to each other.
+This $relative$ Vector Graph has to be constructed from a signal $s(t)\in \mathbb{R}$ by appending vectors to each other.
 \begin{align}
 waveform_{m/j}: (x,y)_{n}=\sum \limits _{i=0}^{n-1}(Re(z_{i}),Im(z_{i}))
 \end{align}
 The complex numbers $z_{n}$ are obtained from a Polar to Cartesian transform. The angles are scaled to the maximum expected angle in the specific vectorgraph.
 \begin{align}
 z_{n}=\sum \limits _{i=n*m/j}^{(n+1)*m/j}r_{i}\cos(\phi_{i})+r_{i}\mathrm{i}\sin(\phi_{i})\\
-\phi_{n}=\frac{s(t_{n})-s(t_{n-1})}{\sup \lvert s(t_{m})-s(t_{m-1}) \rvert}*\pi;\phi_{0}=0\\
+\phi_{n}=\frac{s(t_{n})-s(t_{n-1})}{\sup \lvert s(t_{m})-s(t_{m-1}) \rvert}*\pi+\phi_{n-1};\phi_{0}=0\\
 r_{n}=t_{n}-t_{n-1};r_{0}=0
 \end{align}
 Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X,+,*,\leq)$.
