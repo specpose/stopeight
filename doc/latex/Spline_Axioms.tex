@@ -95,8 +95,8 @@ quart(t):
 x \\ y \\ 0 \\ 0 \\ 0
 \end{pmatrix}
 \end{equation}
-Note: Because we are only interested in planar coordinates, the tri- and quadridiagonals of the Jordanian can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace (Sparse).\\\\
-Axiom: Because of associativity, an inverse of the control points can be left multiplied. Because of associativity, the inverse of the Jordanian can be left multiplied.
+Note: We are only interested in planar coordinates, the tri- and quadridiagonals of the Jordanian can be ignored. It is a polynomial of degree 4 in a 2 dimensional subspace (Sparse).\\\\
+Because of associativity, an inverse of the control points can be left multiplied if it would exist. Because of associativity, the inverse of the Jordanian can be left multiplied.
 \begin{equation}
 quart(t):
 \begin{pmatrix}
@@ -162,13 +162,12 @@ y(c_{6}) & y(q_{4}) & y(E)\\
 The axis connecting $C_{4}$ to $V$ is the focal axis in a perfect half circle. In an oval which can not be ruled out, $C_{4}$ is the only point intersecting the focal axis with a tangent on-spline. If the $S_{2}\cap E_{2}$ are bent outwards from the perfect half circle position, there are a total of three focal axes in a quartic spline, which is the default for a quartic spline. Because the Stopeight\_Analyzer algorithm is catching the bends starting from the limit of $straightness$, this case can be ruled out. Therefore, the number of $card(C_{4})$ per chart $U_{m}$ is reduced from $3$ to $1$.
 
 \chapter{Inverse Representation}
-In Representation\_Parallelogram.nb and Representation\_Circles.nb there are currently two representations evaluated. The parallelogram construction favors half-circles, while the more computationally extensive circles positions the two omitted $C_{4}$ closer togther for ovals, etc. The latter is described below.\\\\
+In Representation\_Parallelogram.nb and Representation\_Circles.nb there are currently two representations evaluated. The parallelogram construction favors half-circles, while the more computationally extensive circles positions the two omitted $C_{4}$ closer togther for ovals, etc.\\\\
 The inverse of the representation reconstructs $S,C_{4},E$ from the left and right on-spline control points $q \in A_{4}$ and the intersection of the angle-bisection in the triangle $SCE$ with the line $SE$.
 \begin{align}
 representation^{-1}: A \times V \times A \rightarrow S \times C_{4} \times E\\
 (c_{1},v_{1},c_{3})\mapsto(S,C_{4},E)
 \end{align}
-The point $C_{4}$ is relatively easy to reconstruct under the assumption, that the line...\\\\
 \section{Geometric Meaning}
 If the representation itself is re-interpreted to define a quartic spline of its own $S=c_{1},C_{3}=v_{1},E=c_{3}$, the resulting geometric figure is a sort of reflection surface, with the area narrowing down when repeating this procedure. The focal axis of each subsequent quartic spline rotates depending on how far towards $S$ or $E$, the single $C_{4}$'s are stretched. The inverse expands this area.
 \section{Representation\_Circles}

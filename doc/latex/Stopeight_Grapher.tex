@@ -39,8 +39,8 @@ This ensures that the traversal distances are preserved!
 \begin{equation}
 (vectorgraph_{m/2^j},\norm{\cdot}_{1})=(vectorgraph_{m/2^{j+1}},\norm{\cdot}_{1})
 \end{equation}
-\chapter{Time (vector-length) Variant}
-Time-variance can be dealt with, because the ~\cite[Stopeight\_Analyzer.tex]{Analyzer} seamlessly ignores missing values. A time-variant version is composed of a sequence of $p$ Vector Graph pieces on the same taxicab norm $(\{X_{p}\}_{p\in \mathbb{Z}},\norm{\cdot}_1)$.
+\chapter{Vector-length Variant}
+Variance can be dealt with, because the ~\cite[Stopeight\_Analyzer.tex]{Analyzer} seamlessly ignores missing values. A variant version is composed of a sequence of $p$ Vector Graph pieces on the same taxicab norm $(\{X_{p}\}_{p\in \mathbb{Z}},\norm{\cdot}_1)$.
 \section{Equalising Length}
 It may be desirable to work with vectors of the same length. This may be required for inverting the Vector Graph $vectorgraph^{-1}$ or comparing two different Vector Graphs.\\\\
 To avoid interpolation, integer multiples of the vector lengths over all pieces would have to be used.\\\\
@@ -71,8 +71,7 @@ Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X
 \subsection{Finding Bounds}
 In a one dimensional mixed signal $s(t)$, there are quiet, low frequencies. They are difficult to spot because of the presence of high frequency noise. Creating a Vector Graph provides a high precision solution to the adequate time-localisation of these pulses, and even half pulses where the wavelength is not known.
 \subsection{Pitch}
-The benefit of this method is that a sequence of variable wavelength pulses can be compared at different pitches. The unbound independent scalar is exposing a wavelength/amplitude correlation (unlike just amplitude; See \eqref{eq:3}).\\\\
-A harmonic at a particular frame and window size will show up as a Straight. This is because the complex conjugate cancels the angle of its complex (multiplication).
+The benefit of this method is that a sequence of variable wavelength pulses can be compared at different pitches. The unbound independent scalar is exposing a wavelength/amplitude correlation (unlike just amplitude; See \eqref{eq:3}).
 \subsection{Compression}
 Image Variance (to be disclosed).
 \section{Image (Amplitude) Scalability}

@@ -22,8 +22,8 @@
 This file is in the Stopeight repository on Github. Please edit here:\\
 https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex\\
 The DOI can be found here ~\cite{Analyzer}.\\\\
-Initially the aim of this paper was to make separated sources in a mixed signal comparable using either numeric or geometric overlay comparison (currently implemented), regardless of time and amplitude stretch, but preserving frequency modulation and amplitude ratios.\\
-In the course of specifying the Stopeight Analyzer transversality, which serves as a foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition of two multiresolution spectrograms, Isolation and Visibility. They are an indication of the fractal dimension and cutoff of the approximation.\\
+Initially the aim of this paper was to make separated sources in a mixed signal comparable using either numeric or geometric overlay comparison (currently implemented), regardless of (combined) time and amplitude stretch, but preserving frequency modulation and amplitude ratios (waveform).\\
+In the course of specifying the Stopeight Analyzer transversality, which serves as a foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition of two multiresolution spectrograms, Isolation and Visibility. They are an indication of the fractal dimension ~\cite{Widon} and cutoff of the approximation.\\
 Finally, the role of Compact Covers has become part of a speculation, that signals ultimately need bounds of a maximal polynomial degree for comparison and that the Turns $T_{4}$ and Corners $C_{4}$ could be viable for complex factorisation.
 
 \chapter{Multiresolution Spectrogram}
@@ -32,14 +32,14 @@ The bounds should be considerably longer than the partition size. Keep in mind t
 Note: taxi-cab traversal scale has to be preserved in the lengths of the vectors in the construction of the Vector Graph for this to work.
 
 \section{Isolation}
-Isolation is the integral of the absolute difference of the input and approximation transversalities.
+Isolation is the integral of the absolute difference of the input and approximation.
 \begin{equation}
 isolation_{m/2^j}(a,b)=\int \limits _{a}^{b} \vert\iota_{X}(t)-\xi(t)\vert \mathrm{d}t
 \end{equation}
 Note: The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}).\\\\
 
 \section{Visibility}
-$V$ is the intersection of the focal axis and the base-line $S,E$. Visibility is the integral of the absolute difference of the focal intersection and the approximation transversalities.
+$V$ is the intersection of the focal axis and the base-line $S,E$. Visibility is the integral of the absolute difference of the focal intersection and the approximation.
 \begin{align}
 visibility_{m/2^j}(a,b)= \int \limits _{a}^{b} \vert \xi(t)-\iota_{V}(t)\vert  \mathrm{d}t
 \end{align}
@@ -74,7 +74,7 @@ rays(t)=ori(t)*\vert\iota_{X}(t)-\iota_{V}(t)\vert\\
 woodpecker(\phi)=\cos(\arctan(\cot(\phi))) + \mathrm{i} arccot(\phi)\\
 nautilus(a,b,\phi)=\int \limits _{-\infty}^{\infty}\int \limits _{a}^{b}rays(t)*woodpecker(\phi)\mathrm{d}t\mathrm{d}\phi
 \end{align}
-Unlike visibility, the orientation can change between two charts $ori(a,b)\neq ori(b,c)$.
+Unlike visibility, the orientation $ori(a,b)\neq ori(b,c)$ can change between two charts $U_{m},U_{m+1}$.
 
 \chapter{Vector Graph Inverses}
 \section{Graph Inverse}

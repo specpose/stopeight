@@ -49,7 +49,7 @@ but $W$ is not. See \eqref{eq:1}.
 \begin{align}
 Y: \text{0-submanifold} \Rightarrow (dim(W)=1)=(codim(Y)=1) \Rightarrow W \text{ joint } A
 \end{align}
-The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ ~\cite[Stopeight\_Comparator.tex]{Comparator}, while preserving the $Representation$ using quadratic bezier splines.\\\\
+The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ ~\cite[Stopeight\_Comparator.tex]{Comparator}, while preserving the $Representation$ using quadratic Bezier splines.\\\\
 
 \chapter{Representation}
 
@@ -99,8 +99,8 @@ link: W \rightarrow A, (x,y) \mapsto (x',y'); link^{-1}: A \rightarrow W, (x',y'
 \chapter{Computation}
 
 \section{Non-Oriented Segments}
-Auxiliary functions are functions of the form $A,B \times A,B \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (B,d),(A,d)$ without any constraints.\\\\
-The curve functions $ \gamma (t)$ can be interprated as $\gamma(x(t),y(t))$. The derivative in the following is meant to be the total derivative. (chain rule)
+Auxiliary functions are functions of the form $A \times A \rightarrow \mathbb{R}$ that can be applied to any segment $[a,b] \subseteq (A,d)$ without any constraints.\\\\
+The curve functions $ \gamma (t)$ of any degree can be interprated as $\gamma(x(t),y(t))$. The derivative in the following is meant to be the total derivative. (chain rule)
 \begin{align}
 \frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \frac{\mathrm{d}}{\mathrm{d} t} \gamma (x(t),y(t)) = \gamma(t)* (\frac{\partial}{\partial x}  \frac{\mathrm{d} x}{\mathrm{d}t} + \frac{\partial}{\partial y} \frac{\mathrm{d} y}{\mathrm{d}t})
 \end{align}\\
@@ -110,7 +110,7 @@ The second order total derivative. (product rule)
 \end{align}
 The direction of analysis $dir_{Y}$ is preserved in the sign for both straightness and curvature.
 \begin{align}
-dir = \frac{(b-a)}{\lvert b-a \rvert}
+dir = \frac{b-a}{\lvert b-a \rvert}
 \end{align}
 The horizontal diameter is based on the metric of $\iota_{T}$.
 \begin{equation}
@@ -118,12 +118,12 @@ diameter_{horiz,T}(a,b)= dir \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
 When the direction of analysis $dir_{Y}$ is reversed, the curve areas lie on the other side, therefore the direction flips the sign of the curve segments.
 \begin{align}
-\mu_{+}(\xi(t) -\iota_{T}(t))=\{[a,b] \subseteq A,B; \gamma(t)=\xi(t) -\iota_{T}(t) \vert \gamma(t)>0\}
+\mu_{+}(\xi(t) -\iota_{T}(t))=\{[a,b] \subseteq A; \gamma(t)=\xi(t) -\iota_{T}(t) \vert \gamma(t)>0\}
 \end{align}
 Note: $\mu$ is a Lebesgue.
 
 \subsection{Affine Transformation}
-An affine transformation $M$ of a parametrised curve $\gamma_{H}$ with control points $\{S,C_{2},E\} = H$ and parameter $t$:
+An affine transformation $M$ of the parametrised quadratic curve $\gamma_{H}$ with control points $\{S,C_{2},E\} = H^{3x3}$ and parameter $t$:
 \begin{equation}
 transform(\gamma):
 \begin{pmatrix}
@@ -148,18 +148,18 @@ y \\
 0
 \end{pmatrix}
 \end{equation}
-The composite $transform(\xi)$ is based on parameter $t$ and $\{H_{1}, ... ,H_{4}\}$. ~\cite[Spline\_Axioms.tex]{Analyzer}
+The composite $transform(\xi)$ of the quartic curve $\xi$ is based on parameter $t$ and $H^{5x5}$. ~\cite[Spline\_Axioms.tex]{Analyzer}
 
 \subsection{Legal Segment}
-A legal segment is an affine transformation of the arc curve function $transform(\xi) = \xi'$, so that all $\xi'_{y}(t)$ for $\xi'_{x}(t)$ are continuous:
+A legal segment is an affine transformation of the arc curve function $transform(\xi) = \xi'$, so that all $y(\xi'(t))$ for $x(\xi'(t))$ are continuous:
 \begin{align}
-a<t<b\rightarrow \xi'_{x}(a)<\xi'_{x}(t)<\xi'_{x}(b) \Leftrightarrow \iota'_{x}(a)<\iota'_{x}(t)<\iota'_{x}(b)
+a<t<b\rightarrow x(\xi'(a))<x(\xi'(t))<x(\xi'(b)) \Leftrightarrow x(\iota'(a))<x(\iota'(t))<x(\iota'(b))
 \end{align}
 When:
 \begin{align}
-\xi'_{x}(a),\xi'_{y}(a), \xi'_{y}(b) = 0 \Leftrightarrow \iota'_{x}(a),\iota'_{y}(a), \iota'_{y}(b) = 0
+x(\xi'(a)),y(\xi'(a)), y(\xi'(b)) = 0 \Leftrightarrow x(\iota'(a)),y(\iota'(a)), y(\iota'(b)) = 0
 \end{align}
-The orientation $ori(a,b)$ of any point $a < t < b$ is the $sign(\xi'_{y}(t))$ or $sign(\iota'_{y}(t))$ after the aforementioned affine transformation.
+The orientation $ori(a,b)$ of any point $a < t < b$ is the $sign(y(\xi'(t)))$ or $sign(y(\iota'(t)))$ after the aforementioned affine transformation.
 
 \subsection{Straightness}
 A straight line segment is determined by means of straightness.\\
@@ -170,7 +170,7 @@ straightness_{Rel}(a,b)=\frac{\int \limits _{a}^{b} \lvert \iota_{X}'(t) \rvert 
 A threshold can be chosen, which makes the segment straight or bent in A.\\
 It is closely related to the curvature.
 \subsubsection{Algorithm Version}
-It is using Heron's formula for the area of a triangle in $P_{n}, P_{n+1},P_{n+2} \in [a,b] \subseteq X$.
+It is using Heron's formula ~\cite{Formelsammlung} for the area of a triangle in $P_{n}, P_{n+1},P_{n+2} \in [a,b] \subseteq X$.
 \begin{align*}
 \mathcal{A}=\lvert P_{i+1}-P_{i} \rvert\\
 \mathcal{B}=\lvert P_{i+2} - P_{i+1} \rvert\\
@@ -221,7 +221,7 @@ The on-spline control points $A_{n}$ and the Bezier control points $Q_{n}$ are l
 If numbers are omitted $C$ refers to $C_{4}$ in this paper. In other uses it may be considered to be a local maximum.
 
 \section*{Oriented Sections}
-Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (B,d),(A,d)$ with constraints of computational priority. They create further sections of Turns $T$ in the transversality $Y$.
+Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (A,d)$ with constraints of computational priority. They create further sections of Turns $T$ in the transversality $Y$.
 
 \section{Non-recursive Sections}
 Non-recursive sections are not proper section types, but merely an expression of intermediate calculation and are therefore of medium computational priority (See discussion of oriented submanifolds in Compact Covers). They do induce a shift inside the Compact Cover if they're not centered.\\\\
@@ -246,7 +246,7 @@ A special case is when $card(U_{m})=2$, a Corner is $inserted$.\\\\
 Straightness is no more than what is not to be considered straight under any linear transformation of any segment.
 
 \subsection{Swing}
-A Swing is the section $[a,b']$ $\footnote{$a \in Y, b' \in A,B$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
+A Swing is the section $[a,b']$ $\footnote{$a \in Y, b' \in A$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
 \begin{align}
 \xi'(c)>0;\xi'(b')=0;\xi'(d)<0\\
 T_{\approx 3} \ni b'
@@ -310,7 +310,7 @@ Or 90 and 0 degrees:
 \begin{align}
 Max_{angle}=\frac{pi}{2}\\
 Min_{angle}=0\\
-b' \in T_{1} \land b' \in C_{\infty} \Rightarrow (\text{third derivative?})
+b' \in T_{1} \land b' \in C_{\infty}
 \end{align}
 Note: Very steep angles are likely not to be continuous when a lot of data points are available. They may be caught by Cliff detection.\\\\
 For the sake of data reduction and comparison, cubic and quadratic subsectioning is omitted (see Introduction).
@@ -323,6 +323,7 @@ We introduce another set of charts $\{V_{n}\} \subset Z$ which span one or more 
 \subsubsection*{Notation}
 $T_{0}$ refers to a scalar offset of beginning and end of computational analysis of a Vector Graph in a very flat segment or $C_{0}$ in a very curved segment.
 \subsubsection*{Open}
+~\cite{Mortad}
 \begin{align}
 A \text{ is open} \Leftrightarrow \inf_{A},\sup_{A}\in T_{0},C_{0}
 \end{align}
@@ -340,7 +341,7 @@ Spiral $\supset$ Cliff; Spiral $\not \supset$ Straight; Spiral $\not \supset$ Sw
 A Spiral section $[a,b']$ is a Cliff, where
 \begin{align}
 Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \subseteq Spiral\}}\\
-b' \in C_{n}
+b' \in C_{4}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature measured inward from $a,b$.
 \subsection{ZigZag}
