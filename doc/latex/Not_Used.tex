@@ -179,6 +179,14 @@ Is aliasing of discretisation/rasterisation, but not to be confused with signal 
 jaggedness(a,b)=\int \limits _{a}^{b} \lvert \iota_{X}(t)-\xi_{F}(t)\rvert \mathrm{d}t
 \end{align}
 
+\section{Simulation}
+(An attempt to extend the algebra to generic problems in physics.)\\\\
+\section{Series Expansion}
+\begin{equation}
+\begin{bmatrix}1 & \frac{(t-t_{0})}{1!} & \frac{(t-t_{0})^{2}}{2!} & ... \end{bmatrix}\begin{bmatrix}1 \\ \frac{\mathrm{d}}{\mathrm{d} t} \\ \frac{\mathrm{d}^2}{\mathrm{d}^2t} \\ ... \end{bmatrix} \gamma (x(t),y(t))
+\end{equation}
+Note: Lie series is $t^j$ not $2^j$. $\gamma(x(t),y(t))$ is not holomorphic $\gamma(z)$?
+
 \section{Indicator}
 In order for Stopeight overlay comparison to work, source separation has to be performed. A complex function measuring separation can be defined as.
 \begin{equation}
