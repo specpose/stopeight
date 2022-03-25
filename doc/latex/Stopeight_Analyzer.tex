@@ -292,6 +292,7 @@ The breaking condition is that no more entities are being found after the second
 \begin{equation}
 b' \in T_{2}
 \end{equation}
+A backside Edge does not exist. It is handled by Straight detection (~\cite{Analyzer}[3.23]).
 
 \subsection*{Adjusted Differences}
 By now, we can improve the differences by setting $dom(\xi,\iota)=Crest \cup Edge \cup C_{4}$.
@@ -323,7 +324,11 @@ b' \in C_{4}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature measured inward from $a,b$.
 \subsubsection{Moustache}
-A Moustache is a CC-Separator. It is handled by Cliff or Crest detection, but it would only be a $T_{4}$ if not caught by Compact Covers. Indicates a break or change of direction $dir_{Z}$ in Swells and Spirals $[a,b',c]$ at the most.
+A Moustache is a CC-Separator.
+\begin{equation}
+(ori(a,b')<0\land ori(b',c)<0)\lor (ori(a,b')>0\land ori(b',c)>0)
+\end{equation}
+It is handled by Cliff or Crest detection, but it would only be a $T_{4}$ if not caught by Compact Covers. Indicates a break or change of direction $dir_{Z}$ in Swells and Spirals $[a,b',c]$ at the most.
 \begin{equation}
 b' \in T_{\infty}
 \end{equation}
@@ -338,7 +343,11 @@ Whether it is a Turn or a Corner depends on orientation of the adjacent Straight
 Whether angles less than 90 degree are allowed to be in the dataset is subject of definition.
 From 90 degree to 180 degree, it is not losing its orientation.
 \subsubsection{Spike}
-A Spike is a TT-Qualifier. If it is not in the in the Vector Graph $X$, it has to be approximated in the transversality $Y$. It is of highest computational priority.\\\\
+A Spike is a TT-Qualifier.
+\begin{equation}
+ori(a,b')=0\land ori(b',c)=0
+\end{equation}
+If $b'$ is not in the in the Vector Graph $X$, it has to be approximated in the transversality $Z$ by linear regression of $X$. It is of highest computational priority.\\\\
 The $angle$ in the intersection of the extensions of the two edges determines the type of the Corner.\\\\
 It is between 90 (square) and 135 degrees (pentagon).
 \begin{align}
@@ -367,7 +376,12 @@ We are dealing with frequencies. The waveform starts with an upward swing. The s
 The second swing.\\
 The triplet of swings is our most accurate index for stabilising the frequencies.
 \subsubsection{Ramp}
-A Ramp is a CC-Qualifier. A frontside Ramp is handled by Edge detection, a backside Ramp is handled by Crest detection. It is not a break of the Compact Cover and is only a $T_{4}$.
+A Ramp is a CC-Qualifier.
+\begin{align}
+(ori(a,b')=0\land ori(b',c)<0)\lor (ori(a,b')=0\land ori(b',c)>0)\\
+(ori(a,b')<0\land ori(b',c)=0)\lor (ori(a,b')>0\land ori(b',c)=0)
+\end{align}
+A frontside Ramp is handled by Edge detection, a backside Ramp is handled by Crest detection. It is not a break of the Compact Cover and is only a $T_{4}$.
 \begin{equation}
 U_{m-1}\cap U_{m}\in X; V_{n}\supset U_{m-1},U_{m}
 \end{equation}
