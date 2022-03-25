@@ -234,19 +234,18 @@ C_{4} \ni b'
 \end{align}
 
 \subsection{Straight}
-A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of arc-length of one eight of a circle to its direct connecting line. This happens to coincide with the number of quadratic end-points $E$ for a circle. It is a part of a Spike,
+A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of the corresponding arc-length of $2n$ regular polygon sides in a circle to the length of the direct line $\mathcal{AC}$. Choosing the polygon $n\geq 4$ is subject to the underlying pen-tablet or signal analog to digital converter. It is a part of an Edge,
 \begin{align}
-Max_{Straight}=\frac{\pi r / 4}{\sqrt{(\frac{r}{2})^2+(\frac{r}{2})^2}}
+Max_{Straight}=\frac{4\pi r / n}{\mathcal{AC}}
 \end{align}
 or being used at lowest priority of computation to replace a curved $\{S,C,E\} \subset T$ with a straight one. The Corner is $moved$.
 \begin{align}
 \xi(\frac{b-a}{2}) = \iota_{T}(a)+\frac{\iota_{T}(b)-\iota_{T}(a)}{2}
 \end{align}
-A special case is when $card(U_{m})=2$, a Corner is $inserted$.\\\\
-Straightness is no more than what is not to be considered straight under any linear transformation of any segment.
+A special case is when $card(U_{m})=2$, a Corner is $inserted$.\\
 
 \subsection{Swing}
-A Swing is the section $[a,b']$ $\footnote{$a \in Y, b' \in A$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
+A Swing is a segment $[a,b']$ $\footnote{$a \in Y, b' \in A$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
 \begin{align}
 \xi'(c)>0;\xi'(b')=0;\xi'(d)<0\\
 T_{\approx 3} \ni b'
@@ -256,7 +255,7 @@ The criteria, whether a segment is within a chart is ~\cite[20.7]{Loring}.
 [a,b] \subseteq U_{m} \Rightarrow \exists  \xi'(t) - \iota_{T}'(t) >0 \land \nexists \xi'(t) - \iota_{T}'(t) \leq 0
 \end{equation}
 (both vice-versa)\\\\
-A special case is where the whole chart is flat and Straight.
+A special case is where the whole chart is flat and Straight. The Corner is $moved$ (~\cite{Analyzer}[3.23]).
 \begin{equation}
 [a,b] \subseteq U_{m} \Rightarrow \nexists \xi'(t) - \iota_{T}'(t) <0 \land \nexists \xi'(t) - \iota_{T}'(t) >0
 \end{equation}
@@ -283,7 +282,7 @@ b' \in T_{4}
 \end{equation}
 
 \subsection{Edge}
-A frontside Edge segment $[a,b']$ is an iteration of:
+A frontside Edge section $[a,b']$ is an iteration of:
 \begin{enumerate}
 \item The Forward direction of analysis $dir_{Y}=1$ of a frontside Dune $[a,b',c]$
 \item The Reverse direction of analysis $dir_{Y}=-1;[b',a]$ of a frontside Dune $[b',b'',a]; b''<b<b'$ 
@@ -294,32 +293,11 @@ The breaking condition is that no more entities are being found after the second
 b' \in T_{2}
 \end{equation}
 
-\subsection{Spike}
-A frontside Spike is a section $[a,b',c]$, where
-\begin{enumerate}
-\item The Forward direction of analysis $dir_{Y}=1$ reveals a frontside Edge $[a,b']$, and
-\item The Backward direction of analysis $dir_{Y}=-1$ reveals a frontside Edge $[c,b'']$ 
-\end{enumerate}
-and the $angle$ in the intersection of the extensions of the two edges is between 90 (square) and 135 degrees (pentagon).\\
-\begin{align}
-Max_{angle}=\frac{3\pi}{5}\\
-Min_{angle}=\frac{pi}{2}\\
-b' \in T_{1} \Rightarrow b' \not\in C_{4}
-\end{align}
-Or 90 and 0 degrees:
-\begin{align}
-Max_{angle}=\frac{pi}{2}\\
-Min_{angle}=0\\
-b' \in T_{1} \land b' \in C_{\infty}
-\end{align}
-Note: Very steep angles are likely not to be continuous when a lot of data points are available. They may be caught by Cliff detection.\\\\
-For the sake of data reduction and comparison, cubic and quadratic subsectioning is omitted (see Introduction).
-
 \subsection*{Adjusted Differences}
-By now, we can improve the differences by setting $dom(\xi,\iota)=Crest \cup Spike \cup C_{4}$.
+By now, we can improve the differences by setting $dom(\xi,\iota)=Crest \cup Edge \cup C_{4}$.
 
 \section{Compact Covers}
-We introduce another set of charts $\{V_{n}\} \subset Z$ which span one or more of the charts $\{U_{n}\} \subset A$.
+We introduce another set of charts $\{V_{n}\} \subset Z$ which span one or more of the charts $\{U_{m}\} \subset A$.
 \subsubsection*{Notation}
 $T_{0}$ refers to a scalar offset of beginning and end of computational analysis of a Vector Graph in a very flat segment or $C_{0}$ in a very curved segment.
 \subsubsection*{Open}
@@ -337,20 +315,47 @@ Nevertheless the curve can be interpreted, if a threshold in Stopeight Comparato
 It all comes down to whether oriented submanifolds are allowed and whether the enclosing submanifolds and the whole manifold are allowed to be oriented (Causal Structure).
 
 \subsection{Spiral}
-Spiral $\supset$ Cliff; Spiral $\not \supset$ Straight; Spiral $\not \supset$ Swing;\\ Spiral $\not \supset$ Crest; Spiral $\not \supset$ Spike\\\\
+Spiral $\supset$ Cliff; Spiral $\not \supset$ Straight; Spiral $\not \supset$ Dune; Spiral $\not \supset$ Swing;\\ Spiral $\not \supset$ Crest; Spiral $\not \supset$ Edge\\\\
 A Spiral section $[a,b']$ is a Cliff, where
 \begin{align}
 Max_{Spiral}=\frac{curvature(a,b)}{\{n-m\in \mathbb{N} \vert U_{m},...,U_{n} \subseteq Spiral\}}\\
 b' \in C_{4}
 \end{align}
 The Cliffs are centered outside in so that all cliffs in a spiral have the same curvature measured inward from $a,b$.
+\subsubsection{Moustache}
+A Moustache is a CC-Separator. It is handled by Cliff or Crest detection, but it would only be a $T_{4}$ if not caught by Compact Covers. Indicates a break or change of direction $dir_{Z}$ in Swells and Spirals $[a,b',c]$ at the most.
+\begin{equation}
+b' \in T_{\infty}
+\end{equation}
+A Moustache is not allowed to occur in a Swell by definition, therefore it divides a Swell $V_{n}$ and a Spiral/Swell $V_{n-1}$ or two Spirals $V_{n-1},V_{n}$.
+\begin{equation}
+V_{n-1}\cap V_{n}\in X; V_{n-1}\supset U_{m-1}\land V_{n}\supset U_{m}
+\end{equation}
+
 \subsection{ZigZag}
-ZigZag $\not\supset$ Cliff; ZigZag $\supset$ Straight; ZigZag $\not\supset$ Swing;\\ ZigZag $\not\supset$ Crest; ZigZag $\supset$ Spike\\\\
+ZigZag $\not\supset$ Cliff; ZigZag $\supset$ Straight; ZigZag $\not\supset$ Dune; ZigZag $\not\supset$ Swing;\\ ZigZag $\not\supset$ Crest; ZigZag $\supset$ Edge\\\\
 Whether it is a Turn or a Corner depends on orientation of the adjacent Straights relative to each other.\\\\
 Whether angles less than 90 degree are allowed to be in the dataset is subject of definition.
 From 90 degree to 180 degree, it is not losing its orientation.
+\subsubsection{Spike}
+A Spike is a TT-Qualifier. If it is not in the in the Vector Graph $X$, it has to be approximated in the transversality $Y$. It is of highest computational priority.\\\\
+The $angle$ in the intersection of the extensions of the two edges determines the type of the Corner.\\\\
+It is between 90 (square) and 135 degrees (pentagon).
+\begin{align}
+Max_{angle}=\frac{3\pi}{5}\\
+Min_{angle}=\frac{pi}{2}\\
+b' \in T_{1} \Rightarrow b' \not\in C_{4}
+\end{align}
+Or 90 and 0 degrees:
+\begin{align}
+Max_{angle}=\frac{pi}{2}\\
+Min_{angle}=0\\
+b' \in T_{1} \land b' \in C_{\infty}
+\end{align}
+Note: Very steep angles are likely not to be continuous when a lot of data points are available. They may be caught by Cliff detection.\\
+
 \subsection{Swell}
-Swell $\supset$ Cliff; Swell $\not\supset$ Straight; Swell $\supset$ Swing;\\ Swell $\supset$ Crest; Swell $\not\supset$ Spike\\\\
+Swell $\not\supset$ Cliff; Swell $\supset$ Straight; Swell $\supset$ Dune; Swell $\supset$ Swing;\\ Swell $\supset$ Crest; Swell $\supset$ Edge\\\\
 A swell is centered by triplets.\\\\
 The Captain of Swing\\
 Picking up where Sisyphos left in the previous article. At the top of the hill. Waves fall in formation. The captain is steering in high seas. He is swinging the wheel off the top as the next wave builds up. As if the water could feel the magnetic disruption, the surface tension breaks up. The second peak crumbles. The engine roars up in an attempt to dig the stern deeper into the dune. It stutters and almost...\\
@@ -361,13 +366,11 @@ But we are not looking at the peaks, are we?\\
 We are dealing with frequencies. The waveform starts with an upward swing. The ship is almost in a suspended state mid-air, before it starts falling into the trough after the second swing. At the foot of the third swing we can almost make out the first peak. This is when we can start finding out where we fell through:\\
 The second swing.\\
 The triplet of swings is our most accurate index for stabilising the frequencies.
-
-\subsection{Moustache?}
-Indicates a break or change of direction $dir_{Z}$ in Swells and Spirals $[a,b',c]$ at the most. A Spike on the other hand only leads to the creation of a ZigZag.
+\subsubsection{Ramp}
+A Ramp is a CC-Qualifier. A frontside Ramp is handled by Edge detection, a backside Ramp is handled by Crest detection. It is not a break of the Compact Cover and is only a $T_{4}$.
 \begin{equation}
-b' \in T_{\infty}
+U_{m-1}\cap U_{m}\in X; V_{n}\supset U_{m-1},U_{m}
 \end{equation}
-Moustache is correctly handled by the backside Crest, but it would only be a $T_{4}$ if not caught by Compact Covers.
 
 \subsection*{Direction}
 If the affine transformations $dir_{Y}$ are applied left to right $[a,b];a<b$, the Compact Cover $dir_{Z}$ is positive. If the direction of analysis $dir_{Y}$ is reversed $[b,a]$, it is negative. The same applies to the diameter, but it is not the analytic direction but the direction of integration $dir_{X}$.\\\\
