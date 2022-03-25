@@ -344,10 +344,10 @@ Whether angles less than 90 degree are allowed to be in the dataset is subject o
 From 90 degree to 180 degree, it is not losing its orientation.
 \subsubsection{Spike}
 A Spike is a TT-Qualifier.
-\begin{equation}
-ori(a,b')=0\land ori(b',c)=0
-\end{equation}
-If $b'$ is not in the in the Vector Graph $X$, it has to be approximated in the transversality $Z$ by linear regression of $X$. It is of highest computational priority.\\\\
+\begin{align}
+straightness(a,b')\leq Max_{Straight}\\ straightness(b',c)\leq Max_{Straight}
+\end{align}
+If $b'$ is not in the in the Vector Graph $X$, it has to be approximated in the transversality $Z$ by linear regression of $X\supset (U_{m-1}\cup U_{m})$. It is of highest computational priority. $T=U_{m-1}\cap U_{m}$ is then re-assigned to the new approximated $T_{0}\in Z$.\\\\
 The $angle$ in the intersection of the extensions of the two edges determines the type of the Corner.\\\\
 It is between 90 (square) and 135 degrees (pentagon).
 \begin{align}
