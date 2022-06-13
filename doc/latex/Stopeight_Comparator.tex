@@ -10,7 +10,6 @@
 \usepackage{natbib}
 
 \renewcommand{\baselinestretch}{1.25}
-\newcommand\norm[1]{\left\lVert#1\right\rVert}
 
 \begin{document}
 \title{Stopeight Comparator}
@@ -22,17 +21,16 @@
 This file is in the Stopeight repository on Github. Please edit here:\\
 https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex\\
 The DOI can be found here ~\cite{Analyzer}.\\\\
-Initially the aim of this paper was to make a dataset from each of two $separated$ signal sources comparable. The sources stem from two mixed signals, becoming comparable using geometric overlay comparison (currently implemented), regardless of (combined) time and amplitude stretch, but preserving frequency modulation and amplitude ratios (waveform).\\
+Initially the aim of this paper was to make a dataset from each of two $separated$ signal sources comparable. The sources stem from two mixed signals, becoming comparable using geometric overlay comparison (currently implemented). Following the simple time-based example in the Sphinx docs, this happens regardless of the scale of correlated time and amplitude stretch, but preserving frequency modulation and amplitude ratios (More in theory of Grapher).\\
 It has now become evident that the methods in this paper can provide the $separation$ task itself to some extent. The content of this paper now generally applies to datasets in the Cartesian plane. Specifically it refers to addition operations in the Complex plane, such as the Fourier integrands in Stopeight Grapher\cite{Grapher}[1.1] .\\
 In the course of specifying the Stopeight Analyzer transversality, which serves as foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition of two multiresolution spectrograms, Isolation and Visibility. They are an indication of the fractal dimension ~\cite{Widon} and cutoff of the approximation. On the other hand the methods described in Antis \cite{Antis} may provide an alternative separation indicator not relying on the Stopeight Analyzer transversality.\\
 Finally, the role of Compact Covers has become part of a speculation, that signals ultimately need bounds of a maximal polynomial degree for comparison and that the Turns $T_{4}$ and Corners $C_{4}$ could be viable for neural networks. The reason for this assumption is founded on the theory that the Stopeight Analyzer transversality exhibits a Causal Structure.
 
 \chapter{Multiresolution Spectrogram}
-Visibility and Isolation can be calculated on multiple Vector Graph resolutions between all bounds $a,b$. They will disappear, if $b-a$ is shorter than the partition size $m/2^j$.
-The bounds should be considerably longer than the partition size. Keep in mind that the integrals are being calculated on top of approximations $\xi$, so for every Vector Graph resolution, Stopeight Analyzer has to be run separately and the individual bounds need not correspond. The purpose of this task is to filter out unwanted parts by selecting a relevant Vector Graph resolution.\\\\
-Note: taxi-cab traversal scale has to be preserved in the lengths of the vectors in the construction of the Vector Graph for this to work.
+Visibility and Isolation can be calculated on multiple resolutions between all possible bounds $a,b$. The resolutions are based on summing block size (Visibility) and straightness calibration (Isolation). They disappear at the maximum resolution, which is the Aproximation where nothing is straight (Isolation) and the Vector Graph where the summing block size is 1 (Visibility). Visibility and Isolation are covariant. To address this issue we keep straightness calibration $polygon n=\infty$ in Visibility and summing block size $j=1$ in Isolation respectively fixed.
 
 \section{Isolation}
+For every resolution, a Vector Graph has to be calculated and the transversality applied.
 Isolation is the integral of the absolute difference of the input and approximation.
 \begin{equation}
 isolation_{m/2^j}(a,b)=\int \limits _{a}^{b} \vert\iota_{X}(t)-\xi(t)\vert \mathrm{d}t
@@ -40,6 +38,7 @@ isolation_{m/2^j}(a,b)=\int \limits _{a}^{b} \vert\iota_{X}(t)-\xi(t)\vert \math
 Note: The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}).\\\\
 
 \section{Visibility}
+For every resolution, the transversality for $vectorgraph_{1}$ has to be recalibrated. When $Max_{Straight}$ falls below the area of the smallest triangle of consecutive points in $X$, the maximum resolution is reached.
 $V$ is the intersection of the focal axis and the base-line $S,E$. Visibility is the integral of the absolute difference of the focal intersection and the approximation.
 \begin{align}
 visibility_{m/2^j}(a,b)= \int \limits _{a}^{b} \vert \xi(t)-\iota_{V}(t)\vert  \mathrm{d}t
@@ -66,16 +65,6 @@ For a Swell or a ZigZag type Compact Cover, the transversality is as expected.
 \end{cases}
 \end{align*}
 Note: The outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds.
-
-\chapter{Single Graph Spectrogram}
-The frequency content in an approximation can be evaluated by a spectrogram.\\\\
-The spectrogram is calculated by applying a convolution transform to an artificially constructed signal for $t \in [a,b]$.
-\begin{align}
-rays(t)=ori(t)*\vert\iota_{X}(t)-\iota_{V}(t)\vert\\
-woodpecker(\phi)=\cos(\arctan(\cot(\phi))) + \mathrm{i} arccot(\phi)\\
-nautilus(a,b,\phi)=\int \limits _{-\infty}^{\infty}\int \limits _{a}^{b}rays(t)*woodpecker(\phi)\mathrm{d}t\mathrm{d}\phi
-\end{align}
-Unlike visibility, the orientation $ori(a,b)\neq ori(b,c)$ can change between two charts $U_{m},U_{m+1}$.
 
 \chapter{Vector Graph Inverses}
 \section{Graph Inverse}
