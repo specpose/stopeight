@@ -163,6 +163,17 @@ isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b))(?)
 (Frame bundle orthonormal?)
 \subsection*{Interval Space}
 $jitter$ grows, but $diameter$ constant.
+Note: The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}).\\\\
+
+\chapter{Factorisation}
+Axiom: Complex multiplication preserves signal characteristics even in time-variant scenario. Rescaling is just a single factor, but depending on the sampling rate, the frames are affected differently.
+\begin{align}
+\prod \limits _{U \in \xi'} C_{4}-V;C_{4}-V \in \mathbb{C}^1\\
+\prod \limits _{U \in \xi} E-S;E-S \in \mathbb{C}^1
+\end{align}
+What pulling together or subdividing factors is doing to an audio signal $s(t)$ is not yet evaluated. There could be a possibility of quick search in Vector Graph factor databases.
+\section{Binomials}
+Binomial factor decomposition works for complex numbers. Particularly formula with changing signs are of interest because of their application to the multiplication of complex conjugates $(x+\mathrm{i}y)(x-\mathrm{i}y)=x^2+y^2$, $(x+\mathrm{i}y)(x-\mathrm{i}y)(x+\mathrm{i}y)$, etc.
 
 \subsection{Fake Wavelets}
 The time-frequency boxes are borrowed from the Haar-wavelet for $n=\frac{m}{2^j}$ partitions for each frequency-band $j$. It is $not$ a signal expansion of basis functions and does not allow for the algebraic conversions. Algebraic definitions of frames can be found for the polynomial functions in ~\cite[Spline\_Axioms.tex]{Axioms}.\\\\
