@@ -29,21 +29,27 @@ Finally, the role of Compact Covers has become part of a speculation, that signa
 \chapter{Multiresolution Spectrogram}
 Visibility and Isolation can be calculated on multiple resolutions between all possible bounds $a,b$. The resolutions are based on summing block size (Visibility) and straightness calibration (Isolation). They disappear at the maximum resolution, which is the Aproximation where nothing is straight (Visibility) and the Vector Graph where the summing block size is 1 (Isolation).
 
-\section{Fake Isolation}
-For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer applied.
-Isolation is the integral of the absolute difference of the input and approximation.
-\begin{equation}
-isolation_{m/2^j}(a,b)=\int \limits _{a}^{b} \vert\iota_{X}(t)-\xi(t)\vert \mathrm{d}t
-\end{equation}
-This is true for a near ZigZag-type Vector Graph, where the approximation $\xi$ is based on $straightness(a,b)almostequal1follows\iota_{x}=\xi$, but for larger ocurrences of straightness this is approach is not viable.
+\chapter{Partial Derivatives}
+Visibility and Isolation are covariant. To address this issue we keep straightness calibration $polygon n=\infty$ in Isolation and summing block size $j=1$ in Visibility respectively fixed.
 
 \section{Fake Visibility}
+For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer applied.
+Visibility is the integral of the absolute difference of the input and approximation.
+\begin{equation}
+isolation_{m/2^j}(a,b)=\int \limits _{a}^{b} \xi(t)\frac{\mathrm{d}}{\mathrm{dt}} \mathrm{d}t
+\end{equation}
+For a Spiral this would be a viable solution.
+For a ZigZag, the Edges would start shifting.
+For a Swell, the Crests, together with the Edges induce massive shifting.
+This approach is not viable.
+
+\section{Fake Isolation}
 For every resolution, the Stopeight Analyzer for $vectorgraph_{1}$ has to be recalibrated. $V$ is the intersection of the focal axis and the base-line $S,E$.
-Visibility is the integral of the absolute difference of the focal intersection and the approximation.
+Isolation is the integral of the absolute difference of the focal intersection and the approximation.
 \begin{align}
 visibility_{m/2^j}(a,b)= \int \limits _{a}^{b} \vert \xi(t)-\iota_{V}(t)\vert  \mathrm{d}t
 \end{align}
-But as you can see, for a Spiral type Compact Cover, the transversality is irregular.
+For a Spiral type Compact Cover, the transversality is irregular.
 \begin{align*}
 \iota_{V}(t) =
 \begin{cases}
@@ -62,11 +68,8 @@ For a Swell or a ZigZag type Compact Cover, the transversality is as expected.
 (S,V_{n},E) & t \in [t(S),t(E)]\\
 \end{cases}
 \end{align*}
-This is true if the outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds, so this approach is also not viable.
-
-
-\chapter{Partial Derivatives}
-Visibility and Isolation are covariant. To address this issue we keep straightness calibration $polygon n=\infty$ in Visibility and summing block size $j=1$ in Isolation respectively fixed.
+This is true if the outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds.
+This approach is also not viable.
 
 \section{Simulation}
 In order to get from function graph analysis to the Stopeigh Analyzer, geometric analysis was required. In order to understand Visibility and Isolation, the Stopeight Analyzer is not enough, and some of the phenomena in Simulation have to be looked at beforehand.
