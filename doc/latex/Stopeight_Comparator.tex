@@ -89,6 +89,17 @@ For a Swell or a ZigZag type Compact Cover, the transversality is as expected.
 This is true if the outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds.
 This approach is also not viable.
 
+\section{Spectrogram}
+The 2D spectrogram would be given by:
+\begin{align}
+spectrogram(a,b)=\frac{\partial visibility}{\partial bs \partial sn}*\frac{\partial isolation}{\partial sn \partial bs}
+\end{align}
+But as you can see, there are two variables, $bs$ and $sn$ as a function of the parameter $t$ of the parametrisation between $a$ and $b$, so this approach is not viable.
+
+\chapter{Convolution}
+
+The solution is a convolution.
+
 \section{Simulation}
 In order to get from function graph analysis to the Stopeigh Analyzer, geometric analysis was required. In order to understand Visibility and Isolation, the Stopeight Analyzer is not enough, and some of the phenomena in Simulation have to be looked at beforehand.
 
@@ -98,7 +109,7 @@ A $backside crest$ in the formation of ocean swell creates gravitational energy 
 
 A $carriage wheel$ can get hitched if it bumps against a tree-root. Prediciting where this increased Visibility will reduce the Isolation of the wheel can not be ultimately concluded, just by looking at the wheel. There is only a probability that the wheel will start to break, when it encounters a backward thrust against its wooden spines. It is therefore not at all a neighboring relationship of cause and effect.
 
-\chapter{Coordinate Transform}
+\section{Coordinate Transform}
 
 If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns as Corners (see Spiral). The result is that you are realigning focal axes. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform on a ZigZag (needs computational verification).
 
@@ -106,7 +117,10 @@ If you would happen to look for a signal expansion on a coordinate transform in 
 
 Even though Visibility and Isolation are present in the two examples above ($Visibility=0$ for ZigZag and $Visibility=\infty=k2\pi$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
 
-\chapter{Fourier Transform}
+\section{Real Visibility and Real Isolation}
+
+The convolution of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating shifting bounds, which does not require exact bounds like Fourier Series, but also can not provide the $same$ algebraic consequence.\\\\
+Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic polar base, but on the parametrised base $arctan(\frac{y'}{x'})$ from the coordinate transform.
 
 \chapter{Vector Graph Inverses}
 \section{Graph Inverse}
@@ -130,7 +144,7 @@ Asymetric, non-repetitive half-pulses, which can be compared by matchline overla
 Sisyphus: A Foray into Fractals\\
 Let's take the example of Sisyphus rolling a rock up a parabolic hill. We measure the altitude of the rock as a function of time. Sisyphus will roll the rock up the hill much slower than it will roll down the hill. Therefore variance of the Vector Graph in one direction is much lower than going in the other direction, but the periodicity of the falling depends on the rising.\\
 If we compare this to the formation of mountain ridges and their erosion, we can still say they depend on each other, but the periodicity is much more disconnected. The formation of mountain ridges depends on the flow of magma and ultimately on the thermomagnetic energy within the planet. Erosion, however depends on a much shorter period, which depends on the availability of atmosphere and ocean and the electromagnetic energy directed at them by the sun.\\
-The Vector Graph is non-symmetric in regard of time. Because phase varies there is no frequency; We speak of periodicity. An acoustic impulse propagates symmetrically as it oscillates between two fixed values. We can therefore assume that it has a fixed variance in both directions. This criteria is not true for our geological example. We may have to use different means to find correlations. This is where the Stopeight Comparator comes in handy.\\
+The Vector Graph is non-symmetric in regard of time. Because phase varies there is no frequency; We speak of periodicity. An acoustic impulse propagates symmetrically as it oscillates between two fixed values. We can therefore assume that it has a fixed variance in both directions. This criteria is not true for our geology example. We may have to use different means to find correlations. This is where the Stopeight Comparator comes in handy.\\
 
 
 \iffalse
