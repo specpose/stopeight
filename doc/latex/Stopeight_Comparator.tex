@@ -26,28 +26,46 @@ It has now become evident that the methods in this paper can provide the $separa
 In the course of specifying the Stopeight Analyzer transversality, which serves as foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition Isolation and Visibility. They are an indication of the fractal dimension ~\cite{Widon} and cutoff of the approximation. On the other hand the methods described in Antis \cite{Antis} may provide an alternative separation indicator not relying on the Stopeight Analyzer transversality.\\
 Finally, the role of Compact Covers has become part of a speculation, that signals ultimately need bounds of a maximal polynomial degree for comparison and that the Turns $T_{4}$ and Corners $C_{4}$ could be viable for neural networks. The reason for this assumption is founded on the theory that the Stopeight Analyzer transversality exhibits a Causal Structure.
 
-\chapter{Multiresolution Spectrogram}
-Visibility and Isolation can be calculated on multiple resolutions between all possible bounds $a,b$. The resolutions are based on summing block size (Visibility) and straightness calibration (Isolation). They disappear at the maximum resolution, which is the Aproximation where nothing is straight (Visibility) and the Vector Graph where the summing block size is 1 (Isolation).
-
 \chapter{Partial Derivatives}
-Visibility and Isolation are covariant. To address this issue we keep straightness calibration $polygon n=\infty$ in Isolation and summing block size $j=1$ in Visibility respectively fixed.
+Visibility and Isolation can be calculated on multiple resolutions between all possible bounds $a,b$.
+Visibility and Isolation are based on chained functions.
+\begin{align*}
+function(sn,bs) \circ Analyzer(sn) \circ vectorgraph_{bs}\\
+bs=blocksize;sn=straightness
+\end{align*}
+Note: $g \circ f(a,b)$ is the functional notation for $g(f(a,b))$.\\\\
+The resolutions are based on summing block size (Visibility) and straightness calibration (Isolation). They disappear at the maximum resolution, which is the Aproximation where nothing is straight (Visibility) and the Vector Graph where the summing block size is 1 (Isolation).\\\\
+Visibility and Isolation are covariant. To address this issue we keep straightness calibration $sn$ in Visibility and blocksize $bs$ in Isolation respectively fixed.
+\begin{align}
+visibility_{sn}(bs) \circ Analyzer(sn) \circ vectorgraph_{bs}\\
+isolation_{bs}(sn) \circ Analyzer(sn) \circ vectorgraph_{bs}
+\end{align}
+The chain rule allows us to express their total derivative.
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d} t} function (sn,bs)\\
+= \frac{\mathrm{d}}{\mathrm{d} t} function (Analyzer_{sn}(vectorgraph(bs)))\\
+= function(t)* (\frac{\partial}{\partial sn}  \frac{\mathrm{d} sn}{\mathrm{d}t} * \frac{\mathrm{d}}{\mathrm{d} t}Analyzer(vectorgraph(bs)))\\
+= function(t)* (\frac{\partial}{\partial sn}  \frac{\mathrm{d} sn}{\mathrm{d}t} * Analyzer(\frac{\partial}{\partial bs} \frac{\mathrm{d} bs}{\mathrm{d}t}*vectorgraph(a,b)))
+\end{align}
+
+
 
 \section{Fake Visibility}
-For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer applied.
-Visibility is the integral of the absolute difference of the input and approximation.
-\begin{equation}
-isolation_{m/2^j}(a,b)=\int \limits _{a}^{b} \xi(t)\frac{\mathrm{d}}{\mathrm{dt}} \mathrm{d}t
-\end{equation}
+For every resolution, a Vector Graph with adjusted blocksize $bs=m/n$ has to be calculated and Stopeight Analyzer has to be applied.
+Visibility is the path integral on the approximation.
+\begin{align}
+visibility(a,b)=\int \limits _{a}^{b} \xi(t)\frac{\mathrm{d}}{\mathrm{dt}} \mathrm{d}t
+\end{align}
 For a Spiral this would be a viable solution.
 For a ZigZag, the Edges would start shifting.
 For a Swell, the Crests, together with the Edges induce massive shifting.
 This approach is not viable.
 
 \section{Fake Isolation}
-For every resolution, the Stopeight Analyzer for $vectorgraph_{1}$ has to be recalibrated. $V$ is the intersection of the focal axis and the base-line $S,E$.
+For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer straightness $sn=polyn$ has to be calibrated. $V$ is the intersection of the focal axis and the base-line $S,E$.
 Isolation is the integral of the absolute difference of the focal intersection and the approximation.
 \begin{align}
-visibility_{m/2^j}(a,b)= \int \limits _{a}^{b} \vert \xi(t)-\iota_{V}(t)\vert  \mathrm{d}t
+isolation(a,b)= \int \limits _{a}^{b} \vert \xi(t)-\iota_{V}(t)\vert  \mathrm{d}t
 \end{align}
 For a Spiral type Compact Cover, the transversality is irregular.
 \begin{align*}
