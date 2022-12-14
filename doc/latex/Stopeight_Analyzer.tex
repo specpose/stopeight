@@ -175,11 +175,11 @@ It is using Heron's formula ~\cite{Formelsammlung} for the area of a triangle in
 \mathcal{B}=\lvert P_{i+2} - P_{i+1} \rvert\\
 \mathcal{C}=\lvert P_{i+2} - P_{i} \rvert\\
 \mathcal{L}=\frac{\mathcal{A}+\mathcal{B}+\mathcal{C}}{2}\\
-\mathcal{Q}=\sqrt{\mathcal{L}(\mathcal{L}-\mathcal{A})(\mathcal{L}-\mathcal{B})(\mathcal{L}-\mathcal{C})}
+\mathcal{Q}_{\Delta}=\sqrt{\mathcal{L}(\mathcal{L}-\mathcal{A})(\mathcal{L}-\mathcal{B})(\mathcal{L}-\mathcal{C})}
 \end{align*}
 to calculate the ratio of the areas in $A$ and lines in $W$.
 \begin{align}
-straightness_{Algo}(a,b)=dir \sum_{i=0}^{n+2}\frac{\mathcal{Q}}{\mathcal{A}+\mathcal{B}}
+straightness_{Algo}(a,c)=dir \sum_{i=0}^{n+2}\frac{\mathcal{Q}}{\mathcal{A}+\mathcal{B}}
 \end{align}
 
 \subsection{Curvature}
@@ -188,9 +188,11 @@ Curvature is determined by the ratio of Area to Diameter.
 curvature_{Rel}(a,b) = \frac{\int \limits _{a}^{b} \lvert \xi'(t) \rvert \mathrm{d}t}{diameter_{horiz,T}(a,b)}
 \end{align}
 \subsubsection{Algorithm Version}
-The sum of the pieces in the legal segment [a,b] with $P_{n}, P_{n+1} \in [a,b] \subseteq X$.
+It is using a Nautilus formula with center at the start $a$ for the area of two external segments, and one inlay triangle.\\
+The sum of the pieces in the legal segments $[0,m]$ in $[a,b',b,\ldots,c',c]$ with $P_{n}, P_{n+1} \in [a,c] \subset X$.
 \begin{align}
-curvature_{Algo}(a,b)= dir \frac{\sum \limits _{i=0}^{n}y(P_{i})*(x(P_{i+1})-x(P_{i}))}{x(P_{n+1})-x(P_{0})}
+curvature_{Algo}(a,b)=dir(\mathcal{Q}_{\Theta}(a,b')+\mathcal{Q}_{\Delta}(P(a),P(b'),P(b))/\mathcal{C}+\mathcal{Q}_{\Theta}(b',b)+\ldots+\mathcal{Q}_{\Theta}(c',c))\\
+\mathcal{Q}_{\Theta}= \frac{\sum \limits _{i=0}^{n}y(P_{i})*(x(P_{i+1})-x(P_{i}))}{x(P_{n+1})-x(P_{0})}
 \end{align}
 
 \subsection{Corner}
