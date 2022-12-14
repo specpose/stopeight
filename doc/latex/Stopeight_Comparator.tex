@@ -48,8 +48,6 @@ The chain rule allows us to express their total derivative.
 = function(t)* (\frac{\partial}{\partial sn}  \frac{\mathrm{d} sn}{\mathrm{d}t} * Analyzer(\frac{\partial}{\partial bs} \frac{\mathrm{d} bs}{\mathrm{d}t}*vectorgraph(a,b)))
 \end{align}
 
-
-
 \section{Fake Visibility}
 For every resolution, a Vector Graph with adjusted blocksize $bs=m/n$ has to be calculated and Stopeight Analyzer has to be applied.
 Visibility is the path integral on the approximation.
@@ -67,7 +65,7 @@ Isolation is the area function under the approximation.
 \begin{align}
 isolation(a,b)= \int \limits _{a}^{b} \vert \xi(t)-V(U_{m})\vert  \mathrm{d}t
 \end{align}
-Note: This implicit definition uses differential geometry. For a discrete implementation, use the Nautilus area with a fixed center.\\\\
+Note: This implicit definition uses differential geometry. For a discrete implementation, use something like the Algorithm Version for curvature, but with center $V(U_{m})$ instead of $S(U_{m})$.\\\\
 This is true if the outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds.
 This approach is also not viable.
 
@@ -82,11 +80,9 @@ But as you can see, there are two variables, $bs$ and $sn$ as a function of the 
 
 From a geometric point of view, it would appear that Visibility is the area under the curve. Intuitively it would also appear that Isolation is simply the formula of Straightness, but applied on the approximation $\xi$ instead of the original Vector Graph $\iota_{X}$. It is the other way arround.\\\\
 Think of Visibility as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two path integrals with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two different oriented approximations. Remember that Visibility is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.\\\\
-The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V(U_{m}(Analyzer))$. This performs even worse under shifting bounds as we calibrate straightness $sn$. The meaning of Isolation will become more evident in the following chapter. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact.
+The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V(U_{m}(Analyzer))$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact.
 
-\chapter{Convolution}
-
-The solution is a convolution.
+\chapter{Coordinate Transforms}
 
 \section{Simulation}
 In order to get from function graph analysis to the Stopeigh Analyzer, geometric analysis was required. In order to understand Visibility and Isolation, the Stopeight Analyzer is not enough, and some of the phenomena in Simulation have to be looked at beforehand.
@@ -97,7 +93,15 @@ A $backside crest$ in the formation of ocean swell creates gravitational energy 
 
 A $carriage wheel$ can get hitched if it bumps against a tree-root. Prediciting where this increased Visibility will reduce the Isolation of the wheel can not be ultimately concluded, just by looking at the wheel. There is only a probability that the wheel will start to break, when it encounters a backward thrust against its wooden spines. It is therefore not at all a neighboring relationship of cause and effect.
 
-\section{Coordinate Transform}
+\section{Orthonormal}
+
+Looking at a chart from $V(U_{M}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $VC(U_{m})$, multiplied by a complex conjugate $VC(U_{m+1})$ in the same analytic direction $dir$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
+The coordinate transform with an orthonormal basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$.\\\\
+Less obvious is that if the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $VE(U_{m})$ and $VC(U_{m})$, the complex sum of a positive $ori$ $backsidecrest$ and its mirror negative $ori$ $backsidecrest$ zero out in the imaginary dimension.\\
+Also two consecutive half-circles facing opposite directions $ori$, zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.\\\\
+The coordinate transform with a non-orthonormal basis is the equivalent of a cartesian to polar transform.
+
+\subsection*{Compact Cover}
 
 If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns as Corners (see Spiral). The result is that you are realigning focal axes. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform on a ZigZag (needs computational verification).
 
@@ -113,7 +117,7 @@ The presence of a signal base is a requirement for deep learning. The mixed sign
 
 \section{Impossible Figures}
 
-\chapter{Vector Graph Inverses}
+\chapter{Signal}
 \section{Graph Inverse}
 The full resolution $vectorgraph_{1}$ is considered. Start of the signal $s(t);t=0$ and end of the signal $s(t);t=m$ are needed.
 \begin{equation}
