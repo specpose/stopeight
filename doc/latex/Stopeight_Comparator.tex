@@ -26,7 +26,7 @@ It has now become evident that the methods in this paper can provide the $separa
 In the course of specifying the Stopeight Analyzer transversality, which serves as foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition Isolation and Visibility. They are an indication of the fractal dimension ~\cite{Widon} and cutoff of the approximation. On the other hand the methods described in Antis \cite{Antis} may provide an alternative separation indicator not relying on the Stopeight Analyzer transversality.\\
 Finally, the role of Compact Covers has become part of a speculation, that signals ultimately need bounds of a maximal polynomial degree for comparison and that the Turns $T_{4}$ and Corners $C_{4}$ could be viable for neural networks. The reason for this assumption is founded on the theory that the Stopeight Analyzer transversality exhibits a Causal Structure.
 
-\chapter{Partial Derivatives}
+\chapter{Multiresolution}
 Visibility and Isolation can be calculated on multiple resolutions between all possible bounds $a,b$.
 Visibility and Isolation are based on chained functions.
 \begin{align*}
@@ -34,7 +34,7 @@ function(sn,bs) \circ Analyzer(sn) \circ vectorgraph_{bs}\\
 bs=blocksize;sn=straightness
 \end{align*}
 Note: $g \circ f(a,b)$ is the functional notation for $g(f(a,b))$.\\\\
-The resolutions are based on summing block size (Visibility) and straightness calibration (Isolation). They disappear at the maximum resolution, which is the Aproximation where nothing is straight (Visibility) and the Vector Graph where the summing block size is 1 (Isolation).\\\\
+The resolutions are based on summing block size (Visibility) and straightness calibration (Isolation). They disappear at the maximum resolution, which is the Aproximation where nothing is straight (Isolation) and the Vector Graph where the summing block size is 1 (Visibility).\\\\
 Visibility and Isolation are covariant. To address this issue we keep straightness calibration $sn$ in Visibility and blocksize $bs$ in Isolation respectively fixed.
 \begin{align}
 visibility_{sn}(bs) \circ Analyzer(sn) \circ vectorgraph_{bs}\\
@@ -62,39 +62,27 @@ For a Swell, the Crests, together with the Edges induce massive shifting.
 This approach is not viable.
 
 \section{Fake Isolation}
-For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer straightness $sn=polyn$ has to be calibrated. $V$ is the intersection of the focal axis and the base-line $S,E$.
-Isolation is the integral of the absolute difference of the focal intersection and the approximation.
+For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer straightness $sn=polyn$ has to be calibrated. $V$ is a point on the base-line $S,E$ defined by the focal axis in $C$.
+Isolation is the area function under the approximation.
 \begin{align}
-isolation(a,b)= \int \limits _{a}^{b} \vert \xi(t)-\iota_{V}(t)\vert  \mathrm{d}t
+isolation(a,b)= \int \limits _{a}^{b} \vert \xi(t)-V(U_{m})\vert  \mathrm{d}t
 \end{align}
-For a Spiral type Compact Cover, the transversality is irregular.
-\begin{align*}
-\iota_{V}(t) =
-\begin{cases}
-(S,V_{0}) & t \in [t(S),t(C_{4})]\\
-(V_{0},V_{1}, ... , V_{n}) & t \in [t(C_{4}),t(C_{4})]\\
-(V_{n},E) & t \in [t(C_{4}),t(E)]
-\end{cases}
-\end{align*}
-For a Swell or a ZigZag type Compact Cover, the transversality is as expected.
-\begin{align*}
-\iota_{V}(t) =
-\begin{cases}
-(S,V_{0},E) & t \in [t(S),t(E)]\\
-(S,V_{1},E) & t \in [t(S),t(E)]\\
-...\\
-(S,V_{n},E) & t \in [t(S),t(E)]\\
-\end{cases}
-\end{align*}
+Note: This implicit definition uses differential geometry. For a discrete implementation, use the Nautilus area with a fixed center.\\\\
 This is true if the outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds.
 This approach is also not viable.
 
-\section{Spectrogram}
+\section{Partial Derivatives}
 The 2D spectrogram would be given by:
 \begin{align}
 spectrogram(a,b)=\frac{\partial visibility}{\partial bs \partial sn}*\frac{\partial isolation}{\partial sn \partial bs}
 \end{align}
 But as you can see, there are two variables, $bs$ and $sn$ as a function of the parameter $t$ of the parametrisation between $a$ and $b$, so this approach is not viable.
+
+\section{Hausdorff Dimension}
+
+From a geometric point of view, it would appear that Visibility is the area under the curve. Intuitively it would also appear that Isolation is simply the formula of Straightness, but applied on the approximation $\xi$ instead of the original Vector Graph $\iota_{X}$. It is the other way arround.\\\\
+Think of Visibility as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two path integrals with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two different oriented approximations. Remember that Visibility is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.\\\\
+The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V(U_{m}(Analyzer))$. This performs even worse under shifting bounds as we calibrate straightness $sn$. The meaning of Isolation will become more evident in the following chapter. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact.
 
 \chapter{Convolution}
 
@@ -119,8 +107,11 @@ Even though Visibility and Isolation are present in the two examples above ($Vis
 
 \section{Real Visibility and Real Isolation}
 
-The convolution of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating shifting bounds, which does not require exact bounds like Fourier Series, but also can not provide the $same$ algebraic consequence.\\\\
-Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic polar base, but on the parametrised base $arctan(\frac{y'}{x'})$ from the coordinate transform.
+The convolution of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but also can not provide the $same$ algebraic consequence.\\\\
+Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic polar base, but on the parametrised base $arctan(\frac{y'}{x'})$ from the coordinate transform.\\\\
+The presence of a signal base is a requirement for deep learning. The mixed signal and oriented manifold of the approximation make it an ideal candidate for feed forward neural networks.
+
+\section{Impossible Figures}
 
 \chapter{Vector Graph Inverses}
 \section{Graph Inverse}

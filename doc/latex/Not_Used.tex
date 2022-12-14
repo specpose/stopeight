@@ -153,6 +153,26 @@ visibility(a,b)= alt(a,b) * signs(\mu,curvature(a,b)-Q(a,b))(?)
 When curvature is decreased in a Spiral, it becomes a ZigZag.
 \subsection*{Scale Space}
 $area$ grows, but $diameter$ constant.
+\subsection*{Irregular transversality}
+For a Spiral type Compact Cover, the transversality is irregular.
+\begin{align*}
+\iota_{V}(t) =
+\begin{cases}
+(S,V_{0}) & t \in [t(S),t(C_{4})]\\
+(V_{0},V_{1}, ... , V_{n}) & t \in [t(C_{4}),t(C_{4})]\\
+(V_{n},E) & t \in [t(C_{4}),t(E)]
+\end{cases}
+\end{align*}
+For a Swell or a ZigZag type Compact Cover, the transversality is as expected.
+\begin{align*}
+\iota_{V}(t) =
+\begin{cases}
+(S,V_{0},E) & t \in [t(S),t(E)]\\
+(S,V_{1},E) & t \in [t(S),t(E)]\\
+...\\
+(S,V_{n},E) & t \in [t(S),t(E)]\\
+\end{cases}
+\end{align*}
 
 \subsection{Real Isolation}
 (No: A lack of isolation is directly linked to the creation of more interval spaces.)
