@@ -52,7 +52,7 @@ The chain rule allows us to express their total derivative.
 For every resolution, a Vector Graph with adjusted blocksize $bs=m/n$ has to be calculated and Stopeight Analyzer has to be applied.
 Visibility is the path integral on the approximation.
 \begin{align}
-visibility(a,b)=\int \limits _{a}^{b} \xi(t)\frac{\mathrm{d}}{\mathrm{dt}} \mathrm{d}t
+visibility(a,b)= dir \int \limits _{a}^{b} \xi(t)\frac{\mathrm{d}}{\mathrm{dt}} \mathrm{d}t
 \end{align}
 For a Spiral this would be a viable solution.
 For a ZigZag, the Edges would start shifting.
@@ -63,7 +63,7 @@ This approach is not viable.
 For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer straightness $sn=polyn$ has to be calibrated. $V$ is a point on the base-line $S,E$ defined by the focal axis in $C$.
 Isolation is the area function under the approximation.
 \begin{align}
-isolation(a,b)= \int \limits _{a}^{b} \vert \xi(t)-V(U_{m})\vert  \mathrm{d}t
+isolation(a,b)= ori \int \limits _{a}^{b} \vert \xi(t)-V(U_{m})\vert  \mathrm{d}t
 \end{align}
 Note: This implicit definition uses differential geometry. For a discrete implementation, use something like the Algorithm Version for curvature, but with center $V(U_{m})$ instead of $S(U_{m})$.\\\\
 This is true if the outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds.
@@ -96,10 +96,59 @@ A $carriage wheel$ can get hitched if it bumps against a tree-root. Prediciting 
 \section{Orthonormal}
 
 Looking at a chart from $V(U_{M}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $VC(U_{m})$, multiplied by a complex conjugate $VC(U_{m+1})$ in the same analytic direction $dir$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
-The coordinate transform with an orthonormal basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$.\\\\
+The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the translation.
+\begin{align}
+\underbrace{
+\begin{pmatrix}
+0 & 0 & 0 & 0 & -x(V-S) \\
+0 & 0 & 0 & 0 & -y(V-S) \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+}_{translation T}
+*(
+\underbrace{
+(M^{5x5} * H^{5x5})^{-1}
+}_{global to local for spline}
+*\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
+\end{align}
+Note: The rank of M and H is lower than their dimensions, but their product has full rank, so it is invertible.\\\\
+The rotation angle $\phi$ is applied afterwards using the translated coordinates. Instead of doing a translation to $S$, followed by a rotation by $\phi(S',E')$ and another translation by $-V'$, we are doing a single translation to $V$, followed by a rotation by $\phi(V',E')$.\\
+The coordinate transform with an orthonormal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a polar to cartesian transform $r(T(\iota_{T}(t_{S},t_{E}))),\phi(R(\iota_{T}(t_{S},t_{E}),T(r)))$.
+\begin{align}
+\phi_{x}(P_{1},P_{2}) = -\mathrm{arccos}(x(P_{2})/P_{1}P_{2}))\\
+\begin{pmatrix}x' \\ y' \\ 0 \\ 0 \\ 0\end{pmatrix}=
+\underbrace{
+\begin{pmatrix}
+\mathrm{cos}(\phi_{x}(V',E')) & -\mathrm{sin}(\phi_{x}(V',E')) & 0 & 0 & 0 \\
+\mathrm{sin}(\phi_{x}(V',E')) & \mathrm{cos}(\phi_{x}(V',E')) & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+}_{rotation R}*
+T((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
+\end{align}
+Note: There is no more $dir$ here.\\\\
 Less obvious is that if the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $VE(U_{m})$ and $VC(U_{m})$, the complex sum of a positive $ori$ $backsidecrest$ and its mirror negative $ori$ $backsidecrest$ zero out in the imaginary dimension.\\
 Also two consecutive half-circles facing opposite directions $ori$, zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.\\\\
-The coordinate transform with a non-orthonormal basis is the equivalent of a cartesian to polar transform.
+The coordinate transform to a non-orthonormal basis is the equivalent of a cartesian to polar transform $y(R(T(r),\xi(t_{C}))),x(R(T(r),\iota_{T}(t_{SE})))$.
+\begin{align}
+\phi_{y}(P_{1},P_{2}) = ori\frac{\pi}{2}-\mathrm{arccos}(x(P_{2})/P_{1}P_{2}))\\
+\begin{pmatrix}x'' \\ y'' \\ 0 \\ 0 \\ 0\end{pmatrix}=
+\underbrace{
+\begin{pmatrix}
+\mathrm{cos}(\phi_{x}(V',E')) & -\mathrm{sin}(\phi_{x}(V',E')) & 0 & 0 & 0 \\
+\mathrm{sin}(\phi_{y}(V',C')) & \mathrm{cos}(\phi_{y}(V',C')) & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0
+\end{pmatrix}
+}_{rotation R}*
+T((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
+\end{align}
+Note: Stetige Funktion auf Kompaktem Traeger.
 
 \subsection*{Compact Cover}
 
@@ -109,13 +158,22 @@ If you would happen to look for a signal expansion on a coordinate transform in 
 
 Even though Visibility and Isolation are present in the two examples above ($Visibility=0$ for ZigZag and $Visibility=\infty=k2\pi$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
 
-\section{Real Visibility and Real Isolation}
+\section{Impossible Figures}
+
+The convolution indicates, but does not guarantee, that forward $dir$ signals can be separated on bounds.
+\begin{equation}
+\prod{(x'+\mathrm{i}y')}
+\end{equation}
+The expansion also works when adding forward and backward $dir$ signals together.
+\begin{equation}
+\sum{(x''+\mathrm{i}y'')}
+\end{equation}
+
+\section{Fourier Transform}
 
 The convolution of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but also can not provide the $same$ algebraic consequence.\\\\
 Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic polar base, but on the parametrised base $arctan(\frac{y'}{x'})$ from the coordinate transform.\\\\
 The presence of a signal base is a requirement for deep learning. The mixed signal and oriented manifold of the approximation make it an ideal candidate for feed forward neural networks.
-
-\section{Impossible Figures}
 
 \chapter{Signal}
 \section{Graph Inverse}
