@@ -49,13 +49,12 @@ Clearly, choosing a $j$ that results in a Euclidean distance smaller than the hi
 (m/j)*\inf \limits _{X} \sqrt{(x^2+y^2)} \geq \sup \limits _{\{X_{p}\}} \sqrt{(x^2+y^2)}\label{eq:4}
 \end{equation}
 \section{Breaking Condition}
-If one or more values break the Compact Cover, i.e. polynomial degree of the approximation, a shift of the subsequent $TCT$ sections is induced. This renders the approximation as a whole unusable for comparison. It is thus advisable to use fixed size frame-bounds instead of frame-bounds produced by the ~\cite[Stopeight\_Analyzer.tex]{Analyzer}, just like signals $s(t)$ are dealt with in conventional signal processing.\\
+If one or more values break the Compact Cover, a shift of the subsequent $TCT$ sections is induced. This renders the approximation as a whole unusable for comparison. It is thus advisable to use fixed size frame-bounds instead of frame-bounds produced by the ~\cite[Stopeight\_Analyzer.tex]{Analyzer}, just like signals $s(t)$ are dealt with in conventional signal processing.\\
 Notation: The rest of the proceedings in this paper includes the preliminary stage of creating a Vector Graph $(x,y)_{n}$ from a signal (function of one variable) $s(t)$. 
 
 \chapter{Usage Scenarios}
 \section*{Comparison}
-After the feature points have been extracted in the Analyser, a reference Vector Graph can be compared to a subsection of a query Vector Graph. This is being done by geometrically overlaying and matching them within an offset threshold. The overlay is being done using affine transformations. This is not documented but currently implemented in the ~\cite[Stopeight\_Comparator.tex]{Comparator} project.\\\\
-Another way of comparison is the factorisation of the Compact Covers, ie. splines of maximal polynomial degree using complex numbers $\mathbb{C}^1$ and their multiplication.
+After the feature points have been extracted in the Analyser, a reference Vector Graph can be compared to a subsection of a query Vector Graph. This is being done by geometrically overlaying and matching them within an offset threshold. The overlay is being done using affine transformations. This is not documented but currently implemented in the ~\cite[Stopeight\_Comparator.tex]{Comparator} project.
 \section{Domain (Time) Scalability}
 This $relative$ Vector Graph has to be constructed from a signal $s(t)\in \mathbb{R}$ by appending vectors to each other.
 \begin{align}
@@ -87,12 +86,6 @@ Note: There is a leaking effect if the block size $m/j$ is not an integer multip
 Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X,+,*,\leq)$.
 \subsection{Harmonics}
 The benefit of this method is that an audio feature in a mixed signal $s(t)$ can test positive in geometric overlay comparison regardless of the amplitude of the feature.
-
-\chapter{Mathematical Methods}
-\section{Integrating a Derivative in Two Dimensions}
-Based on the assumption, that a quadratic approximation has enough accuracy for a curve estimation. (to be disclosed)
-\section{Interpolating a One Dimensional Domain-Variant Signal}
-Based on the assumption, that there are enough data points available to avoid significant time-shift of feature points. (to be disclosed)
 
 \iffalse
 \printbibliography
