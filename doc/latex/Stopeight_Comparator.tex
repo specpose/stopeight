@@ -93,8 +93,7 @@ A $backside crest$ in the formation of ocean swell creates gravitational energy 
 
 A $carriage wheel$ can get hitched if it bumps against a tree-root. Prediciting where this increased Visibility will reduce the Isolation of the wheel can not be ultimately concluded, just by looking at the wheel. There is only a probability that the wheel will start to break, when it encounters a backward thrust against its wooden spines. It is therefore not at all a neighboring relationship of cause and effect.
 
-\section{Orthonormal}
-
+\subsection{Orthonormal}
 Looking at a chart from $V(U_{M}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $VC(U_{m})$, multiplied by a complex conjugate $VC(U_{m+1})$ in the same analytic direction $dir$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
 The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the translation.
 \begin{align}
@@ -130,7 +129,8 @@ The coordinate transform with an orthonormal, but individual and local basis is 
 }_{rotation R}*
 T((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
-Note: There is no more $dir$ here.\\\\
+Note: There is no more $dir$ here.
+\subsection{Non-Orthonormal}
 Less obvious is that if the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $VE(U_{m})$ and $VC(U_{m})$, the complex sum of a positive $ori$ $backsidecrest$ and its mirror negative $ori$ $backsidecrest$ zero out in the imaginary dimension.\\
 Also two consecutive half-circles facing opposite directions $ori$, zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.\\\\
 The coordinate transform to a non-orthonormal basis is the equivalent of a cartesian to polar transform $y(R(T(r),\xi(t_{C}))),x(R(T(r),\iota_{T}(t_{SE})))$.
@@ -148,29 +148,34 @@ The coordinate transform to a non-orthonormal basis is the equivalent of a carte
 }_{rotation R}*
 T((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
-Note: Stetige Funktion auf Kompaktem Traeger.
+To make the radius $r$ continuous, the integration bounds $E(U_{m})=S(U_{m+1}$ after the local Corner $C(U_{m})$ and before the next Corner $C(U_{m+1})$ have to be adjusted to $T'$, so that
+\begin{align}
+\lvert T' - V(U_{m}) \rvert = \lvert V(U_{m+1}) -T' \rvert
+\end{align}
+Note: Stetige Funktion $r(t)$ auf Kompaktem Traeger.\\\\
+These new bounds are only for integration purposes. Shifting them would break the quartic approximation in some cases.\\
+Bounds with the length condition above can always be found, but they may fall before the local Corner $t(T') < t(C(U_{m}))$ or after the next Corner $t(T') > t(C(U_{m+1}))$.  
 
 \subsection*{Compact Cover}
 
-If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns as Corners (see Spiral). The result is that you are realigning focal axes. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform on a ZigZag (needs computational verification).
-
-If you would happen to look for a signal expansion on a coordinate transform in a Spiral, you would probably try to look for a common center of all the Cliffs. You would then have a function $\phi of r$, which would have an analytic meaning, for example on a signal base $e^ik;k \in I$.
-
+If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns as Corners (see Spiral). The result is that you are realigning focal axes. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform on a ZigZag (needs computational verification).\\\\
+If you would happen to look for a signal expansion on a coordinate transform in a Spiral, you would probably try to look for a common center of all the Cliffs. You would then have a function $\phi of r$, which would have an analytic meaning, for example on a signal base $e^ik;k \in I$.\\\\
 Even though Visibility and Isolation are present in the two examples above ($Visibility=0$ for ZigZag and $Visibility=\infty=k2\pi$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
 
 \section{Impossible Figures}
 
+With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this, is that you can get back data. Data that has been previously removed by $\xi$. The application is for the procedures below. Anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
 The convolution indicates, but does not guarantee, that forward $dir$ signals can be separated on bounds.
 \begin{equation}
-\prod{(x'+\mathrm{i}y')}
+spectrogram(a,b)=\prod \limits _{z \in [a,b]} (x'+\mathrm{i}y')
 \end{equation}
 The expansion also works when adding forward and backward $dir$ signals together.
 \begin{equation}
-\sum{(x''+\mathrm{i}y'')}
+spectrogram(a,b)=\sum \limits _{z(a)}^{z(b)} (x''+\mathrm{i}y'')
 \end{equation}
+The expansion should now show $Isolation$ as the intensity of the spectrogram and $Visibility$ as the vertical shift. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
 \section{Fourier Transform}
-
 The convolution of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but also can not provide the $same$ algebraic consequence.\\\\
 Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic polar base, but on the parametrised base $arctan(\frac{y'}{x'})$ from the coordinate transform.\\\\
 The presence of a signal base is a requirement for deep learning. The mixed signal and oriented manifold of the approximation make it an ideal candidate for feed forward neural networks.
@@ -190,15 +195,12 @@ vectorgraph^{-1}: \mathbb{R}^2 \rightarrow \mathbb{R}
 It is possible to reconstruct a signal from the approximation, effectively making it a suitable format for compression or even upsampling. It can also make Vector Graphs, which have not been obtained from a signal, audible or suitable for 1-dimensional analysis.\\
 Note: The compression is dynamic. In some cases, the data may actually increase.
 
-
-
 \chapter{After Separation}
 Asymetric, non-repetitive half-pulses, which can be compared by matchline overlay comparison.\\\\
 Sisyphus: A Foray into Fractals\\
 Let's take the example of Sisyphus rolling a rock up a parabolic hill. We measure the altitude of the rock as a function of time. Sisyphus will roll the rock up the hill much slower than it will roll down the hill. Therefore variance of the Vector Graph in one direction is much lower than going in the other direction, but the periodicity of the falling depends on the rising.\\
 If we compare this to the formation of mountain ridges and their erosion, we can still say they depend on each other, but the periodicity is much more disconnected. The formation of mountain ridges depends on the flow of magma and ultimately on the thermomagnetic energy within the planet. Erosion, however depends on a much shorter period, which depends on the availability of atmosphere and ocean and the electromagnetic energy directed at them by the sun.\\
 The Vector Graph is non-symmetric in regard of time. Because phase varies there is no frequency; We speak of periodicity. An acoustic impulse propagates symmetrically as it oscillates between two fixed values. We can therefore assume that it has a fixed variance in both directions. This criteria is not true for our geology example. We may have to use different means to find correlations. This is where the Stopeight Comparator comes in handy.\\
-
 
 \iffalse
 \printbibliography
