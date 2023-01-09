@@ -21,13 +21,13 @@
 \section{Specific}
 Notation: Below I refer to representation as training data for machine-learning, not the representations from ~\cite[Spline\_Axioms.tex]{Axioms}.\\\\
 Sound source separation is a $preliminary$ for $accoustic scene classification$. It can be argued, that rare sound detection can be performed without separation. but in most cases it also depends on it.\\\\
-I have come up with the theory that the full $time domain$, or if assumptions are made on the waveform, even the $sequence$ of events can be $discarded$ for accoustic scene classification.\\\\
-For short frames or time bins, a $statistical representation$ should be enough to correctly identify the scene. Even more so, if machine learning methods are applied.\\\\
-I have also come up with the theory that $energy$ scalograms are applied $pulse$-length or $waveform$-length wise. This can enhance the representation for machine learning.\\\\
+I have made a few Mathematica scripts (tbd.) based on the theory that the full $time domain$, or if assumptions are made on the waveform, even the $sequence$ of events can be $discarded$ in the machine-learning representations for accoustic scene classification.\\
+For short frames or time bins, a $statistical representation$ should be enough to correctly identify the scene.\\
+I have also adjusted the representations, so that $energy$ scalograms are applied $pulse$-length or $waveform$-length wise. This can enhance the representation for machine learning.\\
 Furthermore I have used derivatives of the time signal and applied similar signal processing methods to them. For visualisation I have added them to the original scalogram. The use of $derivatives$ is very much $distorted$ if the sound is not separated.
-\section{General}
-Geometric overlay comparison works for unseparated signals, but it is only of limited use, because it is inaccurate. The goal of separation is to find impulses or notes as they may be referred to in a musical context. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.\\\\
-In signal analysis, there is the notion of source separation vs. spectral separation of pulses. The method of separation referred to in this text is meant to work $blind$ in a scenario where no prior knowledge of the likelyhood of occurence of waveforms is made. If prior statistical data, event metadata or multiple channels (stereo, etc.) are available, some of the requirements mentioned may be relaxed.
+\section{Context}
+Geometric overlay comparison as in Stopeight Comparator works for unseparated signals, but it is only of limited use, because it is inaccurate. The goal of separation is to clean up the signal, so that impulses or notes as they may be referred to in a musical context can be found. It is important to note that the individual pulses have a causal relationship that connects them. Most oscillations are subject to amplitude and/or frequency-modulation, but they are usually repetitive, so they can be removed by statistical means. Truly random/stochastic signals on the other hand can not be filtered.\\\\
+In signal analysis, there is the notion of source separation vs. spectral separation of pulses. The method of testing a signal for spectral separation referred to in this text is meant to work $blind$ in a scenario where no prior knowledge of the likelyhood of occurence of waveforms is made.
 
 \subsection{Pulse}
 A symmetric pulse has two half pulses with the same wavelength/amplitude correlation.
