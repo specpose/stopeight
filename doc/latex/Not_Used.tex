@@ -42,6 +42,15 @@ This Vector Graph has to be constructed by appending a vector $(0,y)_{n+1}$ to a
 angle_{n+1}=angle_{n}+2*\arcsin(\vert(x,y)_{n+1}\vert/\frac{\int \limits _{a}^{b} s'(t) \mathrm{d}t}{b-a})
 \end{align}
 
+\section{Antis}
+
+The convolution of the signal with a periodicity T is equal the distributed energy of two semi-pulse functions of the same periodicity. The negative part $\eta_{-}$ is interpreted as a purely imaginary complex number $z_{2}$.
+\begin{align*}
+\int\limits_{-\infty}^{\infty}(\int\limits_{-\infty}^{\infty} \delta (U - T) \mathrm{d} U * (\underbrace{\int \int f(t) \mathrm{d} t \mathrm{d} \eta_{+}}_{z_{1}} + \underbrace{\mathrm{i} \int \int f(t) \mathrm{d} t \mathrm{d} \eta_{-}}_{z_{2}}))  \mathrm{d} T \\= 1/2\pi * \int\limits_{-\infty}^{\infty} ( \int\limits_{-\infty}^{\infty}  f(t) * (cos(t/T)+\mathrm{i} sin(t/T)) \mathrm{d} t ) \mathrm{d} T
+\end{align*}
+Note: If the angle $\phi$ between two complex numbers $z_{1},z_{2}$ is $\pm\frac{pi}{2}$, their complex multiple $z_{1}*z_{2}$ is equal the real $\lvert z_{1}\rvert*\lvert z_{2}\rvert$. If $x_{1}=y_{2}$, this simplifies to $\lvert x_{1} \rvert ^2$, which is what we have noted above (Parseval Theorem) for the real function $f(t)$ .\\\\
+
+
 \section{Stopeight Grapher}
 
 \section{Bitstream}
