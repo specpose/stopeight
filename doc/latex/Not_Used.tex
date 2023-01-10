@@ -53,6 +53,12 @@ Note: If the angle $\phi$ between two complex numbers $z_{1},z_{2}$ is $\pm\frac
 
 \section{Stopeight Grapher}
 
+\subsection{Breaking Condition}
+If one or more values break the Compact Cover, a shift of the subsequent $TCT$ sections is induced. This renders the approximation as a whole unusable for comparison. It is thus advisable to use fixed size frame-bounds instead of frame-bounds produced by the ~\cite[Stopeight\_Analyzer.tex]{Analyzer}, just like signals $s(t)$ are dealt with in conventional signal processing.
+
+\subsection*{Comparison}
+After the feature points have been extracted in the Analyser, a reference Vector Graph can be compared to a subsection of a query Vector Graph. This is being done by geometrically overlaying and matching them within an offset threshold. The overlay is being done using affine transformations. This is not documented but currently implemented in the ~\cite[Stopeight\_Comparator.tex]{Comparator} project.
+
 \section{Bitstream}
 A signal $s(t)\in\{0,1\}$ is used to construct a $relative$ Vector Graph which turns left/right or goes straight.
 \begin{align}
