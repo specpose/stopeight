@@ -23,17 +23,19 @@ Consider a function that produces a sequence of independent vectors with coordin
 \begin{equation}
 Anything \rightarrow \{(x,y)_{m}\}_{m \in \mathbb{N}}
 \end{equation}
-Note: It is a metric space with the Euclidean norm $(\mathbb{R}^2,\norm{\cdot}_2)$.\\\\
+Note: It is a vector space with the Euclidean norm $((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2)$.\\\\
 The Vector Graph of the sequence of vectors is its appended form. The vectors are translated by the preceding ones.\\
 \begin{equation}
 vectorgraph_{1}: (x,y)_{m=n}=\sum_{i=0}^{n-1} (x,y)_{i}
 \end{equation}
-Note: It is a metric space with a taxicab norm $(X,\norm{\cdot}_1)$.
+Note: The vector space preserves the taxicab norm $(((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1)$.
 \section{Partitioning}
 The appended form can, but does not have to be, subdivided into $n$ partitions of size $m/2^j$. The vectors in the partition are sumed and the resulting vector is stretched by the effective length of the taxicab norm of the vectors in the partition.
-\begin{equation}
+\begin{align}
+partitioning: (((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1) \rightarrow (((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1)\\
+partitioning: vectorgraph_{1} \mapsto vectorgraph_{m/2^{j}}\\
 vectorgraph_{m/2^{j}}:(x,y)_{n}=\sum_{i=0}^{n-1} (\underbrace{\norm{(x,y)_{(i+1)*m/2^j}}_{1} - \norm{(x,y)_{i*m/2^j}}_{1}}_{length} * \underbrace{\frac{\sum_{k=i*m/2^j}^{(i+1)*m/2^j} (x,y)_{k}}{\vert \sum_{k=i*m/2^j}^{(i+1)*m/2^{j}} (x,y)_{k} \vert}}_{direction})
-\end{equation}
+\end{align}
 Algorithm Version: Affine 2D scaling transformation (to be disclosed)\\\\
 This ensures that the traversal distances are preserved!
 \begin{equation}
