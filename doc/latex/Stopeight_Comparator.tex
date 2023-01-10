@@ -30,15 +30,16 @@ Finally, the role of Compact Covers has become part of a speculation, that signa
 Visibility and Isolation can be calculated on multiple resolutions between all possible bounds $a,b$.
 Visibility and Isolation are based on chained functions.
 \begin{align*}
-function(sn,bs) \circ Analyzer(sn) \circ vectorgraph_{bs}\\
-bs=blocksize;sn=straightness
+function(sn,bs) \circ Analyzer(sn) \circ vectorgraph_{m/bs}\\
+bs=j;sn=Max_{Straight}
 \end{align*}
-Note: $g \circ f(a,b)$ is the functional notation for $g(f(a,b))$.\\\\
+Note: $g \circ f(a,b)$ is the functional notation for $g(f(a,b))$.\\
+Note: $m,j,n-samples$ are defined in Stopeight Grapher~\cite{Grapher} and $Max_{Straight},n-sides$ are defined in Stopeight Analyzer~\cite{Analyzer}.\\\\
 The resolutions are based on summing block size (Visibility) and straightness calibration (Isolation). They disappear at the maximum resolution, which is the Aproximation where nothing is straight (Isolation) and the Vector Graph where the summing block size is 1 (Visibility).\\\\
 Visibility and Isolation are covariant. To address this issue we keep straightness calibration $sn$ in Visibility and blocksize $bs$ in Isolation respectively fixed.
 \begin{align}
-visibility_{sn}(bs) \circ Analyzer(sn) \circ vectorgraph_{bs}\\
-isolation_{bs}(sn) \circ Analyzer(sn) \circ vectorgraph_{bs}
+visibility_{sn}(bs) \circ Analyzer(sn) \circ vectorgraph_{m/bs}\\
+isolation_{bs}(sn) \circ Analyzer(sn) \circ vectorgraph_{m/bs}
 \end{align}
 The chain rule allows us to express their total derivative.
 \begin{align}
@@ -60,7 +61,7 @@ For a Swell, the Crests, together with the Edges induce massive shifting.
 This approach is not viable.
 
 \section{Fake Isolation}
-For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer straightness $sn=polyn$ has to be calibrated. $V$ is a point on the base-line $S,E$ defined by the focal axis in $C$.
+For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer straightness $sn(n-sides)$ has to be calibrated. $V$ is a point on the base-line $S,E$ defined by the focal axis in $C$.
 Isolation is the area function under the approximation.
 \begin{align}
 isolation(a,b)= ori \int \limits _{a}^{b} \vert \xi(t)-V(U_{m})\vert  \mathrm{d}t
@@ -167,7 +168,7 @@ Even though Visibility and Isolation are present in the two examples above ($Vis
 With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this, is that you can get back data. Data that has been previously removed by $\xi$. The application is for the procedures below. Anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
 The convolution indicates, but does not guarantee, that forward $dir$ signals can be separated on bounds.
 \begin{equation}
-spectrogram(a,b)=\prod \limits _{z \in [a,b]} (x'+\mathrm{i}y')
+spectrogram(a,b)=\prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')
 \end{equation}
 The expansion also works when adding forward and backward $dir$ signals together.
 \begin{equation}
