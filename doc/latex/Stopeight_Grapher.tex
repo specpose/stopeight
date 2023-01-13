@@ -30,16 +30,16 @@ vectorgraph_{1}: (x,y)_{m=n}=\sum_{i=0}^{n-1} (x,y)_{i}
 \end{equation}
 Note: The vector space preserves the taxicab norm $(((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1)$.
 \section{Partitioning}
-The appended form can, but does not have to be, subdivided into $n$ partitions of blocksize $j=m/n$ with $m\mod j=0$. The vectors in the partition are sumed and the resulting vector is stretched by the effective length of the taxicab norm of the vectors in the partition.
+The appended form can, but does not have to be, subdivided into $n$ partitions of blocksize $m/n$ with $m\mod n=0$. The vectors in the partition are sumed and the resulting vector is stretched by the effective length of the taxicab norm of the vectors in the partition.
 \begin{align}
 partitioning: (((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1) \rightarrow (((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1)\\
-partitioning: vectorgraph_{1} \mapsto vectorgraph_{m/j}\\
-vectorgraph_{m/j}:(x,y)_{n}=\sum_{i=0}^{n-1} (\underbrace{\norm{(x,y)_{(i+1)*m/j}}_{1} - \norm{(x,y)_{i*m/j}}_{1}}_{length} * \underbrace{\frac{\sum_{k=i*m/j}^{(i+1)*m/j} (x,y)_{k}}{\vert \sum_{k=i*m/j}^{(i+1)*m/j} (x,y)_{k} \vert}}_{direction})
+partitioning: vectorgraph_{1} \mapsto vectorgraph_{m/n}\\
+vectorgraph_{m/n}:(x,y)_{n}=\sum_{i=0}^{n-1} (\underbrace{\norm{(x,y)_{(i+1)*m/n}}_{1} - \norm{(x,y)_{i*m/n}}_{1}}_{length} * \underbrace{\frac{\sum_{k=i*m/n}^{(i+1)*m/n} (x,y)_{k}}{\vert \sum_{k=i*m/n}^{(i+1)*m/n} (x,y)_{k} \vert}}_{direction})
 \end{align}
 Algorithm Version: Affine 2D scaling transformation (to be disclosed)\\\\
 This ensures that the traversal distances are preserved!
 \begin{equation}
-(vectorgraph_{m/j_{1}},\norm{\cdot}_{1})=(vectorgraph_{m/j_{2}},\norm{\cdot}_{1})
+(vectorgraph_{m/n_{1}},\norm{\cdot}_{1})=(vectorgraph_{m/n_{2}},\norm{\cdot}_{1})
 \end{equation}
 \chapter{Vector-length Variant}
 Variance can be dealt with, because the ~\cite[Stopeight\_Analyzer.tex]{Analyzer} seamlessly ignores missing values. A variant version is composed of a sequence of $p$ Vector Graph pieces on the same taxicab norm $(\{X_{p}\}_{p\in \mathbb{Z}},\norm{\cdot}_1)$.
@@ -49,9 +49,9 @@ To avoid interpolation, integer multiples of the vector lengths over all pieces 
 \begin{equation}
 \sup \limits _{\{X_{p}\}} \sqrt{(x^2+y^2)} \mod \inf \limits _{X} \sqrt{(x^2+y^2)} = 0
 \end{equation}
-Clearly, choosing a blocksize $j$ that results in a Euclidean distance smaller than the highest Euclidean distance in a particular section of the entire sequence $\{X_{p}\}$ is not recommended for comparison because of the missing data in that particular section.
+Clearly, choosing a blocksize $m/n$ that results in a Euclidean distance smaller than the highest Euclidean distance in a particular section of the entire sequence $\{X_{p}\}$ is not recommended for comparison because of the missing data in that particular section.
 \begin{equation}
-(m/j)*\inf \limits _{X} \sqrt{(x^2+y^2)} \geq \sup \limits _{\{X_{p}\}} \sqrt{(x^2+y^2)}\label{eq:4}
+(m/n)*\inf \limits _{X} \sqrt{(x^2+y^2)} \geq \sup \limits _{\{X_{p}\}} \sqrt{(x^2+y^2)}\label{eq:4}
 \end{equation}
 
 \chapter{Usage Scenarios}
@@ -59,15 +59,15 @@ Notation: The rest of the proceedings in this paper includes the preliminary sta
 \section{Domain (Time) Scalability}
 This $relative$ Vector Graph has to be constructed from a signal $s(t)\in \mathbb{R}$ by appending vectors to each other.
 \begin{align}
-waveform_{m/j}: (x,y)_{n}=\sum \limits _{i=0}^{n-1}(Re(z_{i}),Im(z_{i}))
+waveform_{m/n}: (x,y)_{n}=\sum \limits _{i=0}^{n-1}(Re(z_{i}),Im(z_{i}))
 \end{align}
 The complex numbers $z_{n}$ are obtained from a Polar to Cartesian transform. The angles are scaled to the maximum expected angle in the specific vectorgraph.
 \begin{align}
-z_{n}=\sum \limits _{i=n*m/j}^{(n+1)*m/j}r_{i}\cos(\phi_{i})+r_{i}\mathrm{i}\sin(\phi_{i})\\
+z_{n}=\sum \limits _{i=n*m/n}^{(n+1)*m/n}r_{i}\cos(\phi_{i})+r_{i}\mathrm{i}\sin(\phi_{i})\\
 \phi_{n}=\frac{s(t_{n})-s(t_{n-1})}{\sup \lvert s(t_{m})-s(t_{m-1}) \rvert}*\pi+\phi_{n-1};\phi_{0}=0\\
 r_{n}=t_{n}-t_{n-1};r_{0}=0
 \end{align}
-Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X,+,*,\leq)$.
+Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X,\oplus,\odot,\leq)$.
 \subsection{Finding Bounds}
 In a one dimensional mixed signal $s(t)$, there are quiet, low frequencies. They are difficult to spot because of the presence of high frequency noise. Creating a Vector Graph provides a high precision solution to the adequate time-localisation of these pulses, and even half pulses where the wavelength is not known.
 \subsection{Pitch}
@@ -77,14 +77,14 @@ Image Variance (to be disclosed).
 \section{Image (Amplitude) Scalability}
 This $absolute$ Vector Graph has to be constructed by appending vectors to each other.
 \begin{align}
-phaseprofile_{m/j}: (x,y)_{n}=\sum \limits _{i=0}^{n-1}(\mathrm{Re(z_{i})},\mathrm{Im(z_{i})})
+phaseprofile_{m/n}: (x,y)_{n}=\sum \limits _{i=0}^{n-1}(\mathrm{Re(z_{i})},\mathrm{Im(z_{i})})
 \end{align}
-The complex numbers $z_{n}$ are obtained from Fourier Transform of $m/j=n$ partitions (Polar to Cartesian). The frequency multiplier is set to the frame size.
+The complex numbers $z_{n}$ are obtained from Fourier Transform of $n$ partitions (Polar to Cartesian). The frequency multiplier is set to the frame size.
 \begin{align}
-z_{n}= \sum \limits _{i=n*(m/j)}^{(n+1)*(m/j)} s(t_{i})*(\cos(\frac{2\pi}{m/j}t_{i})+\mathrm{i}\sin(\frac{2\pi}{m/j}t_{i}))\label{eq:3}
+z_{n}= \sum \limits _{i=n*(m/n)}^{(n+1)*(m/n)} s(t_{i})*(\cos(\frac{2\pi}{m/n}t_{i})+\mathrm{i}\sin(\frac{2\pi}{m/n}t_{i}))\label{eq:3}
 \end{align}
-Note: There is a leaking effect if the block size $m/j$ is not an integer multiple of the period of the signal $s(t)$ ~\cite[Fensterfunktion]{Fensterfunktion}. To some extent this can be solved by adjusting the partition size $m/j$ according to visibility and isolation in ~\cite[Stopeight\_Comparator.tex]{Comparator}\\\\
-Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X,+,*,\leq)$.
+Note: There is a leaking effect if the block size $m/n$ is not an integer multiple of the period of the signal $s(t)$ ~\cite[Fensterfunktion]{Fensterfunktion}. To some extent this can be solved by adjusting the partition size $m/n$ according to visibility and isolation in ~\cite[Stopeight\_Comparator.tex]{Comparator}\\\\
+Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X,\oplus,\odot,\leq)$.
 \subsection{Harmonics}
 The benefit of this method is that an audio feature in a mixed signal $s(t)$ can test positive in geometric overlay comparison regardless of the amplitude of the feature.
 

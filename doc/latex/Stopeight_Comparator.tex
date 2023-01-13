@@ -31,11 +31,11 @@ Visibility and Isolation can be calculated on multiple resolutions between all p
 Visibility and Isolation are based on chained functions.
 \begin{align*}
 function() \circ Analyzer(sn) \circ vectorgraph(bs)\\
-bs=j=m/(npartitions);sn=(nsides)
+(bs)=m/(npartitions);(sn)=(nsides)
 \end{align*}
 Note: $h \circ g(a) \circ f(b)$ is the functional notation for $h(g(a,f(b)))$.\\
-Note: $m,j,npartitions$ are defined in Stopeight Grapher~\cite{Grapher}[1.2] and $Max_{Straight}$ depending on $nsides$ are defined in Stopeight Analyzer~\cite{Analyzer}[3.23].\\\\
-The resolutions are based on summing block size $npartitions$ (Visibility) and straightness calibration $nsides$ (Isolation). They disappear at the maximum resolution, which is the Aproximation where nothing is straight (Isolation) and the Vector Graph where the summing block size is 1 (Visibility).\\\\
+Note: $m,npartitions$ are defined in Stopeight Grapher~\cite{Grapher}[1.2] and $Max_{Straight}$ depending on $nsides$ are defined in Stopeight Analyzer~\cite{Analyzer}[3.23].\\\\
+The resolutions are based on summing block size $m/npartitions$ (Visibility) and straightness calibration $nsides$ for the unit circle (Isolation). They disappear at the maximum resolution, which is the approximation where nothing is straight (Isolation) and the Vector Graph where the summing block size is 1 (Visibility).\\\\
 Visibility and Isolation are covariant. To address this issue we keep straightness calibration $sn$ in Visibility and blocksize $bs$ in Isolation respectively fixed.
 \begin{align}
 visibility_{sn} \circ Analyzer(sn) \circ vectorgraph(bs)\\
@@ -44,7 +44,7 @@ isolation_{bs} \circ Analyzer(sn) \circ vectorgraph(bs)
 Note: $h_{a} \circ g(a) \circ f(b)$ is the functional notation for $h(g(a=const,f(b)))$.
 
 \section{Fake Visibility}
-For every resolution, a Vector Graph with adjusted blocksize $bs=m/n$ has to be calculated and Stopeight Analyzer has to be applied.
+For every resolution, a Vector Graph with adjusted blocksize $bs$ has to be calculated and Stopeight Analyzer has to be applied.
 Visibility is the path integral on the approximation.
 \begin{align}
 visibility(a,b)= dir \int \limits _{a}^{b} \xi(t)\frac{\mathrm{d}}{\mathrm{dt}} \mathrm{d}t
@@ -55,7 +55,7 @@ For a Swell, the Crests, together with the Edges induce massive shifting.
 This approach is not viable.
 
 \section{Fake Isolation}
-For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer straightness $sn(n-sides)$ has to be calibrated. $V$ is a point on the base-line $S,E$ defined by the focal axis in $C$.
+For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer straightness $sn$ has to be calibrated. $V$ is a point on the base-line $S,E$ defined by the focal axis in $C$.
 Isolation is the area function under the approximation.
 \begin{align}
 isolation(a,b)= ori \int \limits _{a}^{b} \vert \xi(t)-V(U_{m})\vert  \mathrm{d}t
@@ -80,7 +80,7 @@ But the outcome of $Analyzer$ still depends on $vectorgraph$, so for every inter
 
 From a geometric point of view, it would appear that Visibility is the area under the curve. Intuitively it would also appear that Isolation is simply the formula of Straightness, but applied on the approximation $\xi$ instead of the original Vector Graph $\iota_{X}$. It is the other way arround.\\\\
 Think of Visibility as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two path integrals with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two different oriented approximations. Remember that Visibility is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.\\\\
-The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V(U_{m}(Analyzer))$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact.
+The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V\circ U_{m}(Analyzer)$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact.
 
 \chapter{Coordinate Transforms}
 
@@ -94,7 +94,7 @@ A $backside crest$ in the formation of ocean swell creates gravitational energy 
 A $carriage wheel$ can get hitched if it bumps against a tree-root. Prediciting where this increased Visibility will reduce the Isolation of the wheel can not be ultimately concluded, just by looking at the wheel. There is only a probability that the wheel will start to break, when it encounters a backward thrust against its wooden spines. It is therefore not at all a neighboring relationship of cause and effect.
 
 \subsection{Orthonormal}
-Looking at a chart from $V(U_{M}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $VC(U_{m})$, multiplied by a complex conjugate $VC(U_{m+1})$ in the same analytic direction $dir$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
+Looking at a chart from $V(U_{m}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $VC(U_{m})$, multiplied by a complex conjugate $VC(U_{m+1})$ in the same analytic direction $dir$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
 The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the translation.
 \begin{align}
 \underbrace{
