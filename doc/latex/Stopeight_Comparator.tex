@@ -84,7 +84,7 @@ The area function under the curve is the Nautilus area. Instead of a ratio, we t
 
 \chapter{Coordinate Transforms}
 
-\section{Simulation}
+\subsubsection*{Simulation}
 In order to get from function graph analysis to the Stopeigh Analyzer, geometric analysis was required. In order to understand Visibility and Isolation, the Stopeight Analyzer is not enough, and some of the phenomena in Simulation have to be looked at beforehand.
 
 A $backside dune$ has a hill-shape figure on the frontside and a straight section on the backside. The dune has a Visibility which does not change in a short time-frame. The wind is blowing sand over the hill-top and Isolation breaks up on the straight part. There is a cause and effect relationship between $neighboring$ segments.
@@ -105,16 +105,16 @@ The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the translation.
 0 & 0 & 0 & 0 & 0 \\
 0 & 0 & 0 & 0 & 0
 \end{pmatrix}
-}_{translation T}
+}_{\text{translation } T}
 *(
 \underbrace{
 (M^{5x5} * H^{5x5})^{-1}
-}_{global to local for spline}
+}_{\text{global to local for spline}}
 *\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
 Note: The rank of M and H is lower than their dimensions, but their product has full rank, so it is invertible.\\\\
 The rotation angle $\phi$ is applied afterwards using the translated coordinates. Instead of doing a translation to $S$, followed by a rotation by $\phi(S',E')$ and another translation by $-V'$, we are doing a single translation to $V$, followed by a rotation by $\phi(V',E')$.\\
-The coordinate transform with an orthonormal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a polar to cartesian transform $r(T(\iota_{T}(t_{S},t_{E}))),\phi(R(\iota_{T}(t_{S},t_{E}),T(r)))$.
+The coordinate transform with an orthonormal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a polar to cartesian transform $r\circ (T\circ \iota_{T}(t_{S},t_{E})),\phi \circ (R\circ (\iota_{T}(t_{S},t_{E}),T(r)))$.
 \begin{align}
 \phi_{x}(P_{1},P_{2}) = -\mathrm{arccos}(x(P_{2})/P_{1}P_{2}))\\
 \begin{pmatrix}x' \\ y' \\ 0 \\ 0 \\ 0\end{pmatrix}=
@@ -133,7 +133,7 @@ Note: There is no more $dir$ here.
 \subsection{Non-Orthonormal}
 Less obvious is that if the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $VE(U_{m})$ and $VC(U_{m})$, the complex sum of a positive $ori$ $backsidecrest$ and its mirror negative $ori$ $backsidecrest$ zero out in the imaginary dimension.\\
 Also two consecutive half-circles facing opposite directions $ori$, zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.\\\\
-The coordinate transform to a non-orthonormal basis is the equivalent of a cartesian to polar transform $y(R(T(r),\xi(t_{C}))),x(R(T(r),\iota_{T}(t_{SE})))$.
+The coordinate transform to a non-orthonormal basis is the equivalent of a cartesian to polar transform $y\circ (R\circ (T(r),\xi(t_{C}))),x\circ (R\circ (T(r),\iota_{T}(t_{SE})))$.
 \begin{align}
 \phi_{y}(P_{1},P_{2}) = ori\frac{\pi}{2}-\mathrm{arccos}(x(P_{2})/P_{1}P_{2}))\\
 \begin{pmatrix}x'' \\ y'' \\ 0 \\ 0 \\ 0\end{pmatrix}=
@@ -150,35 +150,44 @@ T((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
 To make the radius $r$ continuous, the integration bounds $E(U_{m})=S(U_{m+1}$ after the local Corner $C(U_{m})$ and before the next Corner $C(U_{m+1})$ have to be adjusted to $T'$, so that
 \begin{align}
-\lvert T' - V(U_{m}) \rvert = \lvert V(U_{m+1}) -T' \rvert
+\lvert T' - V(U_{m}) \rvert = \lvert V(U_{m+1}) -T' \rvert\label{eq:2}
 \end{align}
 Note: Stetige Funktion $r(t)$ auf Kompaktem Traeger.\\\\
 These new bounds are only for integration purposes. Shifting them would break the quartic approximation in some cases.\\
-Bounds with the length condition above can always be found, but they may fall before the local Corner $t(T') < t(C(U_{m}))$ or after the next Corner $t(T') > t(C(U_{m+1}))$.  
+Bounds with the length condition above can always be found, but they may fall before the local Corner $t(T') < t\circ C(U_{m})$ or after the next Corner $t(T') > t\circ C(U_{m+1})$.  
 
-\subsection*{Compact Cover}
+\subsubsection*{Compact Cover}
 
-If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns as Corners (see Spiral). The result is that you are realigning focal axes. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform on a ZigZag (needs computational verification).\\\\
-If you would happen to look for a signal expansion on a coordinate transform in a Spiral, you would probably try to look for a common center of all the Cliffs. You would then have a function $\phi of r$, which would have an analytic meaning, for example on a signal base $e^ik;k \in I$.\\\\
-Even though Visibility and Isolation are present in the two examples above ($Visibility=0$ for ZigZag and $Visibility=\infty=k2\pi$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
+If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns $T$ as Corners $C$ (see Spiral). The result is that you are realigning focal axes $VC$. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform \cite{Woodpecker} on a ZigZag (needs computational verification).\\\\
+If you would happen to look for a signal expansion on a coordinate transform in a Spiral, you would probably try to look for a common center of all the Cliffs. You would then have a function $\phi (r)$, which would have an analytic meaning, for example on a signal base $e^{ik};k \in \mathbb{Z}$.\\\\
+Even though Visibility and Isolation are present in the two examples above ($Fake Isolation=0$ for ZigZag and $Fake Isolation=\infty$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
 
-\section{Impossible Figures}
+\subsection{Impossible Figures}
 
-With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this, is that you can get back data. Data that has been previously removed by $\xi$. The application is for the procedures below. Anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
+With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this, is that you can get back data. Data that has been previously removed by $\xi$. The application is for the procedures below. Anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.
+
+\section{Complex Isolation and Visibility}
 The convolution indicates, but does not guarantee, that forward $dir$ signals can be separated on bounds.
 \begin{equation}
-spectrogram(a,b)=\prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')
+convolution(a,b)=\prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')
 \end{equation}
 The expansion also works when adding forward and backward $dir$ signals together.
 \begin{equation}
-spectrogram(a,b)=\sum \limits _{z(a)}^{z(b)} (x''+\mathrm{i}y'')
+expansion(a,b)=\sum \limits _{z(a)}^{z(b)} (x''+\mathrm{i}y'')
 \end{equation}
-The expansion should now show $Isolation$ as the intensity of the spectrogram and $Visibility$ as the vertical shift. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
+The expansion should now show $Complex Isolation$ as the intensity of the single, combined 2D spectrogram and $Complex Visibility$ as the vertical shift. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
-\section{Fourier Transform}
-The convolution of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but also can not provide the $same$ algebraic consequence.\\\\
-Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic polar base, but on the parametrised base $arctan(\frac{y'}{x'})$ from the coordinate transform.\\\\
+\subsection*{Fourier Transform}
+The $expansion$ of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but also can not provide the $same$ algebraic consequence.\\\\
+Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic $\phi$ base, but getting smoothness from $r$ under condition \eqref{eq:2} in the coordinate transform.\\\\
 The presence of a signal base is a requirement for deep learning. The mixed signal and oriented manifold of the approximation make it an ideal candidate for feed forward neural networks.
+
+\subsection*{Fourier Series}
+The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).\\\\
+A similar link could eventually be established between the product and the sum of the $orthonormal$ coordinate transform of an artificially constructed $vectorgraph$. Instead of $s(t)$ we would be using $waveform(t)$\cite{Grapher}[3.1]. This identity could be valid for coinciding projected vectors (work in progress).
+\begin{align}
+\vert \sum \limits _{z(a)}^{z(b)} (x'+\mathrm{i}y')\circ waveform(t) \vert=\vert \prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')\circ waveform(t) \vert
+\end{align}
 
 \chapter{Signal}
 \section{Graph Inverse}
