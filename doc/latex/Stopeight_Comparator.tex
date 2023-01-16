@@ -93,9 +93,10 @@ A $backside crest$ in the formation of ocean swell creates gravitational energy 
 
 A $carriage wheel$ can get hitched if it bumps against a tree-root. Prediciting where this increased Visibility will reduce the Isolation of the wheel can not be ultimately concluded, just by looking at the wheel. There is only a probability that the wheel will start to break, when it encounters a backward thrust against its wooden spines. It is therefore not at all a neighboring relationship of cause and effect.
 
-\subsection{Orthonormal}
-Looking at a chart from $V(U_{m}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $VC(U_{m})$, multiplied by a complex conjugate $VC(U_{m+1})$ in the same analytic direction $dir$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
-The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the translation.
+\subsection{Orthogonal}
+Looking at a chart from $V(U_{m}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $VC(U_{m}')$, multiplied by a complex conjugate $VC(U_{m+1}')$ in the same analytic direction $dir(\iota_{T})=1\lor dir(\iota_{T})=-1$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
+Aditionally, we flip the complex axes, so that the upward-facing $ori(\iota_{T})=1$ half circles lie to the complex real positive side and the downward-facing $ori(\iota_{T})=-1$ half circles lie to the complex real negative side. The Turns $T$, should cancel each other when multiplying or adding the complex numbers, the Corners $C$ should grow if the $vectorgraph$ is not symmetric.\\\\
+The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the translation. 
 \begin{align}
 \underbrace{
 \begin{pmatrix}
@@ -114,10 +115,13 @@ The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the translation.
 \end{align}
 Note: The rank of M and H is lower than their dimensions, but their product has full rank, so it is invertible.\\\\
 The rotation angle $\phi$ is applied afterwards using the translated coordinates. Instead of doing a translation to $S$, followed by a rotation by $\phi(S',E')$ and another translation by $-V'$, we are doing a single translation to $V$, followed by a rotation by $\phi(V',E')$.\\
-The coordinate transform with an orthonormal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a polar to cartesian transform $r\circ (T\circ \iota_{T}(t_{S},t_{E})),\phi \circ (R\circ (\iota_{T}(t_{S},t_{E}),T(r)))$.
+The coordinate transform with an orthogonal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a polar to cartesian transform $r\circ (T\circ \iota_{T}(t_{S},t_{E})),\phi \circ (R\circ (\iota_{T}(t_{S},t_{E}),T(r)))$.
 \begin{align}
-\phi_{x}(P_{1},P_{2}) = -\mathrm{arccos}(x(P_{2})/P_{1}P_{2}))\\
-\begin{pmatrix}x' \\ y' \\ 0 \\ 0 \\ 0\end{pmatrix}=
+\phi_{x}(P_{1},P_{2}) = -\mathrm{arccos}(x(P_{2})/P_{1}P_{2})\\
+\underbrace{
+\begin{pmatrix}y' \\ x' \\ 0 \\ 0 \\ 0\end{pmatrix}
+}_{\text{flip}}
+=
 \underbrace{
 \begin{pmatrix}
 \mathrm{cos}(\phi_{x}(V',E')) & -\mathrm{sin}(\phi_{x}(V',E')) & 0 & 0 & 0 \\
@@ -129,13 +133,12 @@ The coordinate transform with an orthonormal, but individual and local basis is 
 }_{rotation R}*
 T((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
-Note: There is no more $dir$ here.
-\subsection{Non-Orthonormal}
-Less obvious is that if the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $VE(U_{m})$ and $VC(U_{m})$, the complex sum of a positive $ori$ $backsidecrest$ and its mirror negative $ori$ $backsidecrest$ zero out in the imaginary dimension.\\
-Also two consecutive half-circles facing opposite directions $ori$, zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.\\\\
-The coordinate transform to a non-orthonormal basis is the equivalent of a cartesian to polar transform $y\circ (R\circ (T(r),\xi(t_{C}))),x\circ (R\circ (T(r),\iota_{T}(t_{SE})))$.
+\subsection{Non-Orthogonal}
+Less obvious is that if the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $VE(U_{m}')$ and $VC(U_{m}')$, the complex sum of a positive $ori(\iota_{T})=1$ $backsidecrest$ and its mirror negative $ori(\iota_{T})=-1$ $backsidecrest$ zero out in the imaginary dimension.\\
+Likewise two consecutive half-circles facing opposite directions, zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.\\\\
+The coordinate transform to a non-orthogonal basis is the equivalent of a cartesian to polar transform $y\circ (R\circ (T(r),\xi(t_{C}))),x\circ (R\circ (T(r),\iota_{T}(t_{SE})))$.
 \begin{align}
-\phi_{y}(P_{1},P_{2}) = ori\frac{\pi}{2}-\mathrm{arccos}(x(P_{2})/P_{1}P_{2}))\\
+\phi_{y}(P_{1},P_{2}) = ori\frac{\pi}{2}-\mathrm{arccos}(x(P_{2})/P_{1}P_{2})\\
 \begin{pmatrix}x'' \\ y'' \\ 0 \\ 0 \\ 0\end{pmatrix}=
 \underbrace{
 \begin{pmatrix}
@@ -184,9 +187,9 @@ The presence of a signal base is a requirement for deep learning. The mixed sign
 
 \subsection*{Fourier Series}
 The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).\\\\
-A similar link could eventually be established between the product and the sum of the $orthonormal$ coordinate transform of an artificially constructed $vectorgraph$. Instead of $s(t)$ we would be using $waveform(t)$\cite{Grapher}[3.1]. This identity could be valid for coinciding projected vectors (work in progress).
+A similar link could eventually be established between the product and the sum of the $orthogonal$ coordinate transform of an artificially constructed $vectorgraph$. Instead of $s(t)$ we would be using $waveform(t)$\cite{Grapher}[3.1]. This identity could be valid for coinciding projected vectors (work in progress).
 \begin{align}
-\vert \sum \limits _{z(a)}^{z(b)} (x'+\mathrm{i}y')\circ waveform(t) \vert=\vert \prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')\circ waveform(t) \vert
+k * \vert \sum \limits _{z(a)}^{z(b)} (x'+\mathrm{i}y')\circ waveform(t) \vert=\vert \prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')\circ waveform(t) \vert; k\in \mathbb{N}
 \end{align}
 
 \chapter{Signal}
