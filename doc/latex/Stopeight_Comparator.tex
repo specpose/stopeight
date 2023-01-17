@@ -79,10 +79,12 @@ But the outcome of $Analyzer$ still depends on $vectorgraph$, so for every inter
 \section{Hausdorff Dimension}
 
 From a geometric point of view, it would appear that Visibility is the area under the curve. Intuitively it would also appear that Isolation is simply the formula of Straightness, but applied on the approximation $\xi$ instead of the original Vector Graph $\iota_{X}$. It is the other way arround.\\\\
-Think of Visibility as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two path integrals with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two different oriented approximations. Remember that Visibility is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.\\\\
-The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V\circ U_{m}(Analyzer)$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact.
+Think of Visibility as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two path integrals with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two non overlying approximations. Remember that Visibility is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.\\\\
+The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V\circ U_{m}(Analyzer)$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact at a certain level.
 
 \chapter{Coordinate Transforms}
+
+Note: The coordinate transforms break the global affine space $(AffineSpace,(X,\mathbb{R}^2,\oplus,\odot),\overrightarrow{\text{ }})$ into charts $U(m)$.
 
 \subsubsection*{Simulation}
 In order to get from function graph analysis to the Stopeigh Analyzer, geometric analysis was required. In order to understand Visibility and Isolation, the Stopeight Analyzer is not enough, and some of the phenomena in Simulation have to be looked at beforehand.
@@ -94,9 +96,9 @@ A $backside crest$ in the formation of ocean swell creates gravitational energy 
 A $carriage wheel$ can get hitched if it bumps against a tree-root. Prediciting where this increased Visibility will reduce the Isolation of the wheel can not be ultimately concluded, just by looking at the wheel. There is only a probability that the wheel will start to break, when it encounters a backward thrust against its wooden spines. It is therefore not at all a neighboring relationship of cause and effect.
 
 \subsection{Orthogonal}
-Looking at a chart from $V(U_{m}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $VC(U_{m}')$, multiplied by a complex conjugate $VC(U_{m+1}')$ in the same analytic direction $dir(\iota_{T})=1\lor dir(\iota_{T})=-1$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
+Looking at a chart from $V(U_{m}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $\overrightarrow{VC(U_{m}')}$, multiplied by a complex conjugate $\overrightarrow{VC(U_{m+1}')}$ in the same analytic direction $dir(\iota_{T})=1\lor dir(\iota_{T})=-1$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
 Aditionally, we flip the complex axes, so that the upward-facing $ori(\iota_{T})=1$ half circles lie to the complex real positive side and the downward-facing $ori(\iota_{T})=-1$ half circles lie to the complex real negative side. The Turns $T$, should cancel each other when multiplying or adding the complex numbers, the Corners $C$ should grow if the $vectorgraph$ is not symmetric.\\\\
-The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the translation. 
+The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the Translation. 
 \begin{align}
 \underbrace{
 \begin{pmatrix}
@@ -106,7 +108,7 @@ The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the translation.
 0 & 0 & 0 & 0 & 0 \\
 0 & 0 & 0 & 0 & 0
 \end{pmatrix}
-}_{\text{translation } T}
+}_{Translation}
 *(
 \underbrace{
 (M^{5x5} * H^{5x5})^{-1}
@@ -114,10 +116,10 @@ The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the translation.
 *\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
 Note: The rank of M and H is lower than their dimensions, but their product has full rank, so it is invertible.\\\\
-The rotation angle $\phi$ is applied afterwards using the translated coordinates. Instead of doing a translation to $S$, followed by a rotation by $\phi(S',E')$ and another translation by $-V'$, we are doing a single translation to $V$, followed by a rotation by $\phi(V',E')$.\\
-The coordinate transform with an orthogonal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a polar to cartesian transform $r\circ (T\circ \iota_{T}(t_{S},t_{E})),\phi \circ (R\circ (\iota_{T}(t_{S},t_{E}),T(r)))$.
+The rotation angle $\phi$ is applied afterwards using the translated coordinates. Instead of doing a Translation to $S$, followed by a Rotation by $\phi(S',E')$ and another Translation by $-V'$, we are doing a single Translation to $V$, followed by a Rotation by $\phi(V',E')$.\\
+The coordinate transform with an orthogonal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a polar to cartesian transform $r\circ (Translation\circ \iota_{T}(t_{S},t_{E})),\phi \circ (Rotation\circ (\iota_{T}(t_{S},t_{E}),Translation(r)))$.
 \begin{align}
-\phi_{x}(P_{1},P_{2}) = -\mathrm{arccos}(x(P_{2})/P_{1}P_{2})\\
+\phi_{x}(P_{1},P_{2}) = -\mathrm{arccos}(x(P_{2})/\lvert \overrightarrow{P_{1}P_{2}}\rvert)\\
 \underbrace{
 \begin{pmatrix}y' \\ x' \\ 0 \\ 0 \\ 0\end{pmatrix}
 }_{\text{flip}}
@@ -130,15 +132,15 @@ The coordinate transform with an orthogonal, but individual and local basis is f
 0 & 0 & 0 & 0 & 0 \\
 0 & 0 & 0 & 0 & 0
 \end{pmatrix}
-}_{rotation R}*
-T((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
+}_{Rotation}*
+Translation((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
 \subsection{Non-Orthogonal}
-Less obvious is that if the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $VE(U_{m}')$ and $VC(U_{m}')$, the complex sum of a positive $ori(\iota_{T})=1$ $backsidecrest$ and its mirror negative $ori(\iota_{T})=-1$ $backsidecrest$ zero out in the imaginary dimension.\\
-Likewise two consecutive half-circles facing opposite directions, zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.\\\\
-The coordinate transform to a non-orthogonal basis is the equivalent of a cartesian to polar transform $y\circ (R\circ (T(r),\xi(t_{C}))),x\circ (R\circ (T(r),\iota_{T}(t_{SE})))$.
+Less obvious is that if the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $\overrightarrow{VE(U_{m}')}/\lvert \overrightarrow{VE(U_{m}')}\rvert$ and $\overrightarrow{VC(U_{m}')}/\lvert \overrightarrow{VC(U_{m}')}\rvert$, the complex sum of a positive $ori(\iota_{T})=1$ $backsidecrest$ and its mirror negative $ori(\iota_{T})=-1$ $backsidecrest$ zero out in the imaginary dimension.\\
+Likewise two consecutive half-circles facing opposite orientations $ori$ zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.\\\\
+The coordinate transform to a non-orthogonal basis is the equivalent of a cartesian to polar transform $y\circ (Rotation\circ (Translation(r),\xi(t_{C}))),x\circ (Rotation\circ (Translation(r),\iota_{T}(t_{S},t_{E})))$.
 \begin{align}
-\phi_{y}(P_{1},P_{2}) = ori\frac{\pi}{2}-\mathrm{arccos}(x(P_{2})/P_{1}P_{2})\\
+\phi_{y}(P_{1},P_{2}) = ori\frac{\pi}{2}-\mathrm{arccos}(x(P_{2})/\lvert \overrightarrow{P_{1}P_{2}}\rvert)\\
 \begin{pmatrix}x'' \\ y'' \\ 0 \\ 0 \\ 0\end{pmatrix}=
 \underbrace{
 \begin{pmatrix}
@@ -148,8 +150,8 @@ The coordinate transform to a non-orthogonal basis is the equivalent of a cartes
 0 & 0 & 0 & 0 & 0 \\
 0 & 0 & 0 & 0 & 0
 \end{pmatrix}
-}_{rotation R}*
-T((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
+}_{Rotation}*
+Translation((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
 To make the radius $r$ continuous, the integration bounds $E(U_{m})=S(U_{m+1}$ after the local Corner $C(U_{m})$ and before the next Corner $C(U_{m+1})$ have to be adjusted to $T'$, so that
 \begin{align}
@@ -161,7 +163,7 @@ Bounds with the length condition above can always be found, but they may fall be
 
 \subsubsection*{Compact Cover}
 
-If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns $T$ as Corners $C$ (see Spiral). The result is that you are realigning focal axes $VC$. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform \cite{Woodpecker} on a ZigZag (needs computational verification).\\\\
+If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns $T$ as Corners $C$ (see Spiral). The result is that you are realigning focal axes $\overline{VC}$. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform \cite{Woodpecker} on a ZigZag (needs computational verification).\\\\
 If you would happen to look for a signal expansion on a coordinate transform in a Spiral, you would probably try to look for a common center of all the Cliffs. You would then have a function $\phi (r)$, which would have an analytic meaning, for example on a signal base $e^{ik};k \in \mathbb{Z}$.\\\\
 Even though Visibility and Isolation are present in the two examples above ($Fake Isolation=0$ for ZigZag and $Fake Isolation=\infty$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
 
@@ -178,18 +180,18 @@ The expansion also works when adding forward and backward $dir$ signals together
 \begin{equation}
 expansion(a,b)=\sum \limits _{z(a)}^{z(b)} (x''+\mathrm{i}y'')
 \end{equation}
-The expansion should now show $Complex Isolation$ as the intensity of the single, combined 2D spectrogram and $Complex Visibility$ as the vertical shift. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
+The expansion should now show $Complex Isolation$ as the intensity of the single, combined 2D spectrogram and $Complex Visibility$ as the vertical shift. Separation of the $vectorgraphs$ is now possible based on $visibility$ and signal graph inverse (See below). The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
 \subsection*{Fourier Transform}
 The $expansion$ of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but also can not provide the $same$ algebraic consequence.\\\\
 Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic $\phi$ base, but getting smoothness from $r$ under condition \eqref{eq:2} in the coordinate transform.\\\\
-The presence of a signal base is a requirement for deep learning. The mixed signal and oriented manifold of the approximation make it an ideal candidate for feed forward neural networks.
+The presence of a signal base is a requirement for deep learning. The mixed signal and oriented manifold $dir$ of the approximation make it an ideal candidate for feed forward neural networks.
 
 \subsection*{Fourier Series}
 The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).\\\\
 A similar link could eventually be established between the product and the sum of the $orthogonal$ coordinate transform of an artificially constructed $vectorgraph$. Instead of $s(t)$ we would be using $waveform(t)$\cite{Grapher}[3.1]. This identity could be valid for coinciding projected vectors (work in progress).
 \begin{align}
-k * \vert \sum \limits _{z(a)}^{z(b)} (x'+\mathrm{i}y')\circ waveform(t) \vert=\vert \prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')\circ waveform(t) \vert; k\in \mathbb{N}
+\vert \sum \limits _{z(a)}^{z(b)} \prod (x'+\mathrm{i}y')\circ waveform(t) \vert=\vert \prod \limits _{z \in [a,b)} \sum (x'+\mathrm{i}y')\circ waveform(t) \vert
 \end{align}
 
 \chapter{Signal}
