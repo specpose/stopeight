@@ -158,7 +158,8 @@ When:
 \begin{align}
 x(\xi'(a)),y(\xi'(a)), y(\xi'(b)) = 0 \Leftrightarrow x(\iota'(a)),y(\iota'(a)), y(\iota'(b)) = 0
 \end{align}
-The orientation $ori(a,b)$ of any point $a < t < b$ is the $sign(y(\xi'(t)))$ or $sign(y(\iota'(t)))$ after the aforementioned affine transformation.
+The orientation $ori(a,b)$ of any point $a < t < b$ is the $sign(y(\xi'(t)))$ or $sign(y(\iota'(t)))$ after the aforementioned affine transformation.\\
+Notation: The orientation $ori$ of a point, relative to the x-axis is not to be confused with the notion of an oriented manifold, which depends on the analytic direction $dir$.
 
 \subsection{Straightness}
 A straight line segment is determined by means of straightness.\\
@@ -203,7 +204,7 @@ median = \min_{t \in U}\lvert(\frac{b-a}{2})-t\rvert
 \end{align}
 
 \subsection{Turn}
-A turn $T$ is a change of sign in the orientation of the curve. In a segment $[a,b] \subseteq X$ an infinite amount of non-straight sections can be found.
+A turn $T$ is a change of sign in the orientation $ori$ of the curve. In a segment $[a,b] \subseteq X$ an infinite amount of non-straight sections can be found.
 \begin{equation}
 T_{4} \subseteq \inf_{t \in A} \lvert \frac{\mathrm{d}^2}{\mathrm{d}t^2}\xi(t) \rvert \approx 0
 \end{equation}
@@ -340,7 +341,7 @@ V_{n-1}\cap V_{n}\in X; V_{n-1}\supset U_{m-1}\land V_{n}\supset U_{m}
 
 \subsection{ZigZag}
 ZigZag $\not\supset$ Cliff; ZigZag $\supset$ Straight; ZigZag $\not\supset$ Dune; ZigZag $\not\supset$ Swing;\\ ZigZag $\not\supset$ Crest; ZigZag $\supset$ Edge\\\\
-Whether it is a Turn or a Corner depends on orientation of the adjacent Straights relative to each other.\\\\
+Whether it is a Turn or a Corner depends on orientation $ori$ of the adjacent Straights relative to each other.\\\\
 Whether angles less than 90 degree are allowed to be in the dataset is subject of definition.
 From 90 degree to 180 degree, it is not losing its orientation.
 \subsubsection{Spike}
