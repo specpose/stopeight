@@ -23,7 +23,7 @@ https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Analyzer.
 The DOI can be found here ~\cite{Analyzer}.\\
 A brief overview can be found here:\\
 https://specpose.github.io/stopeight/dev\_analyzer.html\\\\
-Notation: Please keep in mind that a single (') denotes an image or transformation of a variable or function. Derivatives are always denoted as $(\frac{\mathrm{d}}{\mathrm{d}t})$.\\\\
+Notation: Please keep in mind that a single (') denotes an image or transformation of a variable or function. Derivatives are always denoted as $(\frac{\mathrm{d}}{\mathrm{d}t})$ in this paper.\\\\
 The purpose of the Analyzer is to find intervals in a Vector Graph and produce an approximation. The input Vector Graph can be obtained from the Grapher. \cite{Grapher}[1.1]\\\\
 The sequence of Arcs $A \subset \mathbb{R}^2$ are an approximation of a Vector Graph $X \subset \mathbb{R}^2$:
 \begin{align}
@@ -159,7 +159,7 @@ When:
 x(\xi'(a)),y(\xi'(a)), y(\xi'(b)) = 0 \Leftrightarrow x(\iota'(a)),y(\iota'(a)), y(\iota'(b)) = 0
 \end{align}
 The orientation $ori(a,b)$ of any point $a < t < b$ is the $sign(y(\xi'(t)))$ or $sign(y(\iota'(t)))$ after the aforementioned affine transformation.\\
-Notation: The orientation $ori$ of a point, relative to the x-axis is not to be confused with the notion of an oriented manifold, which depends on the analytic direction $dir$.
+Notation: The orientation $ori$ of a point, relative to the x-axis is not the notion of an oriented manifold, which depends on the analytic direction $dir$.
 
 \subsection{Straightness}
 A straight line segment is determined by means of straightness.\\
@@ -220,7 +220,7 @@ C_{4} : \text{Quartic on-spline control point}
 $C_{n}$ : Solution to a linear independent planar projection of a polynomial of one variable t of degree n at domain value t between 0 and 1.\\\\
 Note: Except for insertion (See Straight), $C_{4} \in Y$, but all the others $C_{1},C_{2},C_{3},C_{5}...,C_{n} \not\in X$, because they are only found in the approximation $C_{1},C_{2},C_{3},...,C_{n} \in A$.\\
 The on-spline control points $A_{n}$ and the Bezier control points $Q_{n}$ are labeled using the same scheme.\\\\
-If numbers are omitted $C$ refers to $C_{4}$ in this paper. In other uses it may be considered to be a local maximum.
+Notation: If numbers are omitted $C$ refers to $C_{4}$ in this paper. In other uses it may be considered to be a local maximum.
 
 \section*{Oriented Sections}
 Sectioning/charting functions are functions of the form $(a,b) \mapsto (a,b')$ that can be applied to certain sections $[a,b] \subseteq (A,d)$ with constraints of computational priority. They create further sections of Turns $T$ in the transversality $Y$.
@@ -240,27 +240,27 @@ A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to
 \begin{align}
 Max_{Straight}=\frac{4\pi r / n}{\vert (\sin \frac{4\pi r}{n}-r*1,\cos \frac{1\pi r}{n}-r*0) \vert}
 \end{align}
-or being used at lowest priority of computation to replace a curved $\{S,C,E\} \subset T$ with a straight one. The Corner is $moved$.
+or being used at lowest priority of computation to replace a curved $\{S,C,E\} \subset T$ with a straight one. The Corner $C_{4} \notin X,Y \rightarrow C_{4} \in Z,A$ is $replaced$.
 \begin{align}
-\xi(\frac{b-a}{2}) = \iota_{T}(a)+\frac{\iota_{T}(b)-\iota_{T}(a)}{2}
+\xi(\frac{b-a}{2}) = \iota_{T}(a)+\frac{\iota_{T}(b)-\iota_{T}(a) }{2}
 \end{align}
-A special case is when $card(U_{m})=2$, a Corner is $inserted$.\\
+A special case is when $card(U_{m})=2$, a Corner $C_{4} \in Z,A; C_{4} \notin X,Y$ is $inserted$.\\
 
 \subsection{Swing}
 A Swing is a segment $[a,b']$ $\footnote{$a \in Y, b' \in A$ but it is not guaranteed, that $b' \in X$}$, where a legal segment $[a,b]$ is delimited by a sign change $[c,d]; c<b'<d$ under affine transformation $\xi'$. It is part of the Crest detection.\\
 \begin{align}
-\xi'(c)>0;\xi'(b')=0;\xi'(d)<0\\
+\exists y(\xi'(c))>0,\exists y(\xi'(b'))=0,\exists y(\xi'(d))<0\\
 T_{\approx 3} \ni b'
 \end{align}
 The criteria, whether a segment is within a chart is ~\cite[20.7]{Loring}.
 \begin{equation}
-[a,b] \subseteq U_{m} \Rightarrow \exists  \xi'(t) - \iota_{T}'(t) >0 \land \nexists \xi'(t) - \iota_{T}'(t) \leq 0
+[a,b] \subseteq U_{m} \Rightarrow \exists  y(\xi'(t) - \iota_{T}'(t)) >0 \land \nexists y(\xi'(t) - \iota_{T}'(t)) < 0
 \end{equation}
 (both vice-versa)\\\\
-A special case is where the whole chart is flat and Straight. The Corner is $moved$ (~\cite{Analyzer}[3.23]).
-\begin{equation}
-[a,b] \subseteq U_{m} \Rightarrow \nexists \xi'(t) - \iota_{T}'(t) <0 \land \nexists \xi'(t) - \iota_{T}'(t) >0
-\end{equation}
+When $b' \notin X$, it is interpolated $b' \in Z,A; b' \notin X,Y$.
+\begin{align}
+[a,b] \subseteq U_{m}, \exists y(\iota_{X}'(t)) <0 \land \exists y(\iota_{X}'(t)) >0\Rightarrow \exists \land y(\iota_{W}')=0
+\end{align}
 
 \subsection{Dune}
 A frontside Dune $[a,b',c]$ is a segment [a,b], where a Straight segment $[a,b']$ is followed by a Non-Straight segment $[b',c]; $. It is part of the Edge detection.
@@ -378,7 +378,7 @@ We are dealing with frequencies. The waveform starts with an upward swing. The s
 The second swing.\\
 The triplet of swings is our most accurate index for stabilising the frequencies.
 \subsubsection{Ramp}
-A Ramp is a CC-Qualifier.
+A Ramp is a TT-Qualifier.
 \begin{align}
 (ori(a,b')=0\land ori(b',c)<0)\lor (ori(a,b')=0\land ori(b',c)>0)\\
 (ori(a,b')<0\land ori(b',c)=0)\lor (ori(a,b')>0\land ori(b',c)=0)
