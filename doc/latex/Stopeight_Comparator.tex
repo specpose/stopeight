@@ -79,8 +79,9 @@ But the outcome of $Analyzer$ still depends on $vectorgraph$, so for every inter
 \section{Hausdorff Dimension}
 
 From a geometric point of view, it would appear that Visibility is the area under the curve. Intuitively it would also appear that Isolation is simply the formula of Straightness, but applied on the approximation $\xi$ instead of the original Vector Graph $\iota_{X}$. It is the other way arround.\\\\
-Think of Visibility as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two path integrals with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two non overlying approximations. Remember that Visibility is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.\\\\
-The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V\circ U_{m}(Analyzer)$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact at a certain level.
+Think of Visibility as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two path integrals with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two non overlying approximations. Remember that Visibility is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.\\
+The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V\circ U_{m}(Analyzer)$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact at a certain level.\\\\
+Consider: A vectorgraph resembling the solution for an ordinary differential equation of one variable. The vectorgraph has a start because it is a Anfangswertproblem and a blocksize $bs$ corresponding to the differential $\mathrm{d}$. The straightness calibration $sn$ would simplify the solution.
 
 \chapter{Coordinate Transforms}
 
@@ -169,7 +170,8 @@ Even though Visibility and Isolation are present in the two examples above ($Fak
 
 \subsection{Impossible Figures}
 
-With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this, is that you can get back data. Data that has been previously removed by $\xi$. The application is for the procedures below. Anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.
+With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this, is that you can get back data. Data that has been previously removed by $\xi$. The application is for the procedures below. Anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\
+Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ could be integrated using the non-orthogonal coordinate transform, thus giving complex visibility and isolation. ($sn$ would be a scalar controlling linear regression after $bs$ is applied for the buoy example.)
 
 \section{Complex Isolation and Visibility}
 The convolution indicates, but does not guarantee, that forward $dir$ signals can be separated on bounds.
