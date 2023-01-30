@@ -51,7 +51,7 @@ Y: \text{0-submanifold} \Rightarrow (dim(W)=1)=(codim(Y)=1) \Rightarrow W \text{
 The approximation aims to find the maximal smooth atlas. Each chart $U_{m}$ has a start of Turn $T \ni S = \min \limits _{U_{m}}$, a Corner $C \in U_{m}$ and an end of Turn $T \ni E = \max \limits _{U_{m}}$. This format has the benefit of reducing the amount of data for $Comparison$ ~\cite[Stopeight\_Comparator.tex]{Comparator}, while preserving the $Representation$ using quadratic Bezier splines.\\\\
 
 \chapter{Representation}
-
+Notation: Representation refers to a representation leading from a generative polynomial spline to a target 2D affine space, not a representation for a neural network input vector, or weights obtained by training a neural network.\\\\
 The functions $q$ yield on-curve $q \in A$ and off-curve $q \in Q$ control points $q \in \mathbb{R}^2$:
 \begin{align}
 q: S \times C \times E \rightarrow Q \cup A\\
@@ -115,7 +115,7 @@ The horizontal diameter is based on the metric of $\iota_{T}$.
 \begin{equation}
 diameter_{horiz,T}(a,b)= dir \lvert \iota_{T}(b) - \iota_{T}(a) \rvert
 \end{equation}
-When the direction of analysis $dir_{Y}$ is reversed, the curve areas lie on the other side, therefore the direction flips the sign of the curve segments.
+When the direction of integration $dir_{X}$ is reversed, the curve areas lie on the other side, therefore the direction flips the sign of the curve segments.
 \begin{align}
 \mu_{+}(\xi(t) -\iota_{T}(t))=\{[a,b] \subseteq A; \gamma(t)=\xi(t) -\iota_{T}(t) \vert \gamma(t)>0\}
 \end{align}
@@ -159,7 +159,7 @@ When:
 x(\xi'(a)),y(\xi'(a)), y(\xi'(b)) = 0 \Leftrightarrow x(\iota'(a)),y(\iota'(a)), y(\iota'(b)) = 0
 \end{align}
 The orientation $ori(a,b)$ of any point $a < t < b$ is the $sign(y(\xi'(t)))$ or $sign(y(\iota'(t)))$ after the aforementioned affine transformation.\\
-Notation: The orientation $ori$ of a point, relative to the x-axis is not the notion of an oriented manifold, which depends on the analytic direction $dir$.
+Notation: The orientation $ori$ of a point, relative to the x-axis is not the notion of an oriented manifold, which depends on the analytic direction $dir_{Y}$.
 
 \subsection{Straightness}
 A straight line segment is determined by means of straightness.\\
@@ -240,7 +240,7 @@ A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to
 \begin{align}
 Max_{Straight}=\frac{4\pi r / n}{\vert (\sin \frac{4\pi r}{n}-r*1,\cos \frac{1\pi r}{n}-r*0) \vert}
 \end{align}
-or being used at lowest priority of computation to replace a curved $\{S,C,E\} \subset T$ with a straight one. The Corner $C_{4} \in U_{m }\subset X,Y,A$ is $replaced$ with $C_{4} \in Z,A; C_{4} \notin X,Y$.
+or being used at lowest priority of computation (TT-Qualifier) to replace a curved $\{S,C,E\} \subset T$ with a straight one. The Corner $C_{4} \in U_{m }\subset X,Y,A$ is $replaced$ with $C_{4} \in Z,A; C_{4} \notin X,Y$.
 \begin{align}
 \xi(\frac{b-a}{2}) = \iota_{T}(a)+\frac{\iota_{T}(b)-\iota_{T}(a) }{2}
 \end{align}
@@ -274,8 +274,8 @@ Recursive sections have higher computational priority. This is because they can 
 \subsection{Crest}
 A backside Crest section $[a,a']$ is an iteration of:
 \begin{enumerate}
-\item The Forward direction of analysis $dir_{Y}=1$ of a $[a,b']$ Swing, followed by 
-\item The Reverse direction of analysis $dir_{Y}=-1;[b',a]$ reveals a Backward $[b',a']$ Swing
+\item The Forward direction of integration $dir_{X}=1$ of a $[a,b']$ Swing, followed by 
+\item The Reverse direction of integration $dir_{X}=-1;[b',a]$ reveals a Backward $[b',a']$ Swing
 \item Continue iteration $[a',b']...$
 \end{enumerate}
 The breaking condition is that no more entities are being found after the second step.
@@ -286,8 +286,8 @@ b' \in T_{4}
 \subsection{Edge}
 A frontside Edge section $[a,b']$ is an iteration of:
 \begin{enumerate}
-\item The Forward direction of analysis $dir_{Y}=1$ of a frontside Dune $[a,b',c]$
-\item The Reverse direction of analysis $dir_{Y}=-1;[b',a]$ of a frontside Dune $[b',b'',a]; b''<b<b'$ 
+\item The Forward direction of integration $dir_{X}=1$ of a frontside Dune $[a,b',c]$
+\item The Reverse direction of integration $dir_{X}=-1;[b',a]$ of a frontside Dune $[b',b'',a]; b''<b<b'$ 
 \item Continue iteration $[a,b'',b']...$
 \end{enumerate}
 The breaking condition is that no more entities are being found after the second step.
@@ -390,7 +390,7 @@ U_{m-1}\cap U_{m}\in X; V_{n}\supset U_{m-1},U_{m}
 \end{equation}
 
 \subsection*{Direction}
-If the affine transformations $dir_{Y}$ are applied left to right $[a,b];a<b$, the Compact Cover $dir_{Z}$ is positive. If the direction of analysis $dir_{Y}$ is reversed $[b,a]$, it is negative. The same applies to the diameter, but it is not the analytic direction but the direction of integration $dir_{X}$.\\\\
+If the affine transformations $dir_{Y}$ are applied left to right $[a,b];a<b$, the Compact Cover $dir_{Y}$ is positive. If the direction of analysis $dir_{Y}$ is reversed $[b,a]$, it is negative. The same applies to the diameter, but it is not the analytic direction but the direction of integration $dir_{X}$.\\\\
 Summary: $X$ is original data, $A$ full approximation, $Y$ initial transversality only, $Z$ Compact Cover point transversality only.
 
 \iffalse

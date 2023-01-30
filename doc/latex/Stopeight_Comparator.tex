@@ -47,7 +47,7 @@ Note: $h_{a} \circ g(a) \circ f(b)$ is the functional notation for $h(g(a=const,
 For every resolution, a Vector Graph with adjusted blocksize $bs$ has to be calculated and Stopeight Analyzer has to be applied.
 Visibility is the path integral on the approximation.
 \begin{align}
-visibility(a,b)= dir \int \limits _{a}^{b} \xi(t)\frac{\mathrm{d}}{\mathrm{dt}} \mathrm{d}t
+fakevisibility(a,b)= dir_{Y} \int \limits _{a}^{b} \lvert \xi(t)\frac{\mathrm{d}}{\mathrm{dt}} \rvert \mathrm{d}t
 \end{align}
 For a Spiral this would be a viable solution.
 For a ZigZag, the Edges would start shifting.
@@ -58,7 +58,7 @@ This approach is not viable.
 For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer straightness $sn$ has to be calibrated. $V$ is a point on the base-line $S,E$ defined by the focal axis in $C$.
 Isolation is the area function under the approximation.
 \begin{align}
-isolation(a,b)= ori \int \limits _{a}^{b} \vert \xi(t)-V(U_{m})\vert  \mathrm{d}t
+fakeisolation(a,b)= ori \int \limits _{a}^{b} \vert \xi(t)-V(U_{m})\vert  \mathrm{d}t
 \end{align}
 Note: This implicit definition uses differential geometry. For a discrete implementation, use something like the Algorithm Version for curvature, but with center $V(U_{m})$ instead of $S(U_{m})$.\\\\
 This is true if the outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds.
@@ -98,7 +98,7 @@ A $backside crest$ in the formation of ocean swell creates gravitational energy 
 A $carriage wheel$ can get hitched if it bumps against a tree-root. Prediciting where this increased Visibility will reduce the Isolation of the wheel can not be ultimately concluded, just by looking at the wheel. There is only a probability that the wheel will start to break, when it encounters a backward thrust against its wooden spines. It is therefore not at all a neighboring relationship of cause and effect.
 
 \subsection{Orthogonal}
-Looking at a chart from $V(U_{m}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $\overrightarrow{VC(U_{m}')}$, multiplied by a complex conjugate $\overrightarrow{VC(U_{m+1}')}$ in the same analytic direction $dir(\iota_{T})=1\lor dir(\iota_{T})=-1$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
+Looking at a chart from $V(U_{m}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $\overrightarrow{VC(U_{m}')}$, multiplied by a complex conjugate $\overrightarrow{VC(U_{m+1}')}$ in the same analytic direction $dir_{Y}=1\lor dir_{Y}=-1$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
 Aditionally, we flip the complex axes, so that the upward-facing $ori(\iota_{T})=1$ half circles lie to the complex real positive side and the downward-facing $ori(\iota_{T})=-1$ half circles lie to the complex real negative side. The Turns $T$, should cancel each other when multiplying or adding the complex numbers, the Corners $C$ should grow if the $vectorgraph$ is not symmetric.\\\\
 The adjustment of $r=\sqrt{x^2+y^2}$ is performed by the Translation. 
 \begin{align}
@@ -171,15 +171,15 @@ Even though Visibility and Isolation are present in the two examples above ($Fak
 
 \subsection{Impossible Figures}
 
-With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this, is that you can get back data. Data that has been previously removed by $\xi$. The application is for the procedures below. Anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\
-Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ could be integrated using the non-orthogonal coordinate transform, thus giving complex visibility and isolation. ($sn$ would be a scalar controlling linear regression after $bs$ is applied for the buoy example.)
+With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this, is that you can get back data. Data that has been previously removed by $\xi$. The application is for the procedures below. Anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
+Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ is already smooth (stetig) and could be integrated using the non-orthogonal coordinate transform, thus giving complex visibility and isolation. ($sn$ would be a scalar controlling linear regression after $bs$ is applied for the buoy example.)
 
 \section{Complex Isolation and Visibility}
-The convolution indicates, but does not guarantee, that forward $dir$ signals can be separated on bounds.
+The convolution indicates, but does not guarantee, that forward $dir_{Y}$ signals can be separated on bounds $T$.
 \begin{equation}
 convolution(a,b)=\prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')
 \end{equation}
-The expansion also works when adding forward and backward $dir$ signals together.
+The expansion also works when adding forward and backward $dir_{Y}$ signals together.
 \begin{equation}
 expansion(a,b)=\sum \limits _{z(a)}^{z(b)} (x''+\mathrm{i}y'')
 \end{equation}
@@ -190,16 +190,17 @@ The expansion should now show $Complex Isolation$ as the intensity of the single
 Separation of the $vectorgraphs$ is now possible based on $visibility$ and signal graph inverse (See below). The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
 \subsection*{Fourier Transform}
-The $expansion$ of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but as \eqref{eq:3} is not smooth (stetig).\\\\
-Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from \eqref{eq:2} in the coordinate transform.\\
+The $expansion$ of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but \eqref{eq:3} is not smooth (stetig).\\\\
+Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from \eqref{eq:2} in the coordinate transform.\\\\
 Note: A Fourier transform is an attempt to make the continuous, but non-smooth function $s(t)$ integrable, but it does not provide an antiderivative.\\\\
-The presence of a signal base is a requirement for deep learning. Both the points in $Y\cup Z$ and the $expansion$ integrals provide a base. The oriented manifold $dir$ of the approximation makes it a candidate for the most common uses of neural networks.
+The presence of a signal base is a requirement for deep learning. Both the points in $Y\cup Z$ and the $expansion$ integrals provide bases. The oriented manifold $dir_{Y}$ of the approximation is a limitation for use in neural networks.
 \subsubsection{Scalogram}
-The key to getting a good rate of neural network inference rate lies in finding a consistent autocalibration algorithm for both inference and training data. Because the antiderivative in \eqref{eq:3} does not exist, a scalogram with $xaxis=bs$ and $yaxis=sn$ has to be calculated for each individual signal $s(t)$.\\
+The key to achieving a good neural network inference rate lies in finding a consistent autocalibration algorithm for both inference and training data. Because the antiderivative in \eqref{eq:3} does not exist, a scalogram with $xaxis=bs$ and $yaxis=sn$ has to be calculated for each individual signal $s(t)$.\\
 Note: $sn$ is fully defined in $(0,\infty)$. $bs$ can theoretically be made continuous by interpolation, but it is only defined in $[1,m]$ and has the irregularities when $(m\mod n) > 0$.
 
 
 \subsection*{Fourier Series}
+Note: Only when $s(t)$ is smooth (and continuous), there can be a corresponding Fourier Series for that signal.\\\\
 The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).\\\\
 A similar link could eventually be established between the product and the sum of the $orthogonal$ coordinate transform of an artificially constructed $vectorgraph$. Instead of $s(t)$ we would be using $waveform(t)$\cite{Grapher}[3.1]. This identity could be valid for coinciding projected vectors (work in progress).
 \begin{align}
