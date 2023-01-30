@@ -71,6 +71,7 @@ The total derivative here is relatively simple, unlike ~\cite{Analyzer}[3.1] the
 = \frac{\mathrm{d}}{\mathrm{d} t} function(t) \circ Analyzer(sn) \circ vectorgraph(bs)\\
 = \frac{\partial}{\partial t} function(t) \circ ( \frac{\partial}{\partial sn}  \frac{\mathrm{d} }{\mathrm{d}t} * Analyzer(sn) \circ (\frac{\partial}{\partial bs} \frac{\mathrm{d}}{\mathrm{d}t}*vectorgraph(bs)) )
 \end{align}
+Note: The derivative is continuous (kompakter traeger), but not smooth (stetig). Therefore the antiderivative does not exist.\\\\
 But the outcome of $Analyzer$ still depends on $vectorgraph$, so for every interval $[a,b]$, there are two variables $\partial sn$ and $\partial bs$ for each function $fake visibility, fake isolation$, so this approach is not viable for a combined 2D spectrogram!
 \begin{align}
 \frac{\partial}{\partial bs\partial sn} fakevisibility(a,b),\frac{\partial}{\partial sn\partial bs} fakeisolation(a,b)
@@ -85,7 +86,7 @@ Consider: A vectorgraph resembling the solution for an ordinary differential equ
 
 \chapter{Coordinate Transforms}
 
-Note: The coordinate transforms break the global affine space $(AffineSpace,(X,\mathbb{R}^2,\oplus,\odot),\overrightarrow{\text{ }})$ into charts $U(m)$.
+Note: The coordinate transforms break the global affine space $(AffineSpace,(X,\mathbb{R}^2,\oplus,\odot),\overrightarrow{\text{ }})$ into charts $U_{m}$.
 
 \subsubsection*{Simulation}
 In order to get from function graph analysis to the Stopeigh Analyzer, geometric analysis was required. In order to understand Visibility and Isolation, the Stopeight Analyzer is not enough, and some of the phenomena in Simulation have to be looked at beforehand.
@@ -158,7 +159,7 @@ To make the radius $r$ continuous, the integration bounds $E(U_{m})=S(U_{m+1}$ a
 \begin{align}
 \lvert T' - V(U_{m}) \rvert = \lvert V(U_{m+1}) -T' \rvert\label{eq:2}
 \end{align}
-Note: Stetige Funktion $r(t)$ auf Kompaktem Traeger.\\\\
+Note: The function $r(t)$ is continuous (auf Kompaktem Traeger) $and$ smooth (stetig).\\\\
 These new bounds are only for integration purposes. Shifting them would break the quartic approximation in some cases.\\
 Bounds with the length condition above can always be found, but they may fall before the local Corner $t(T') < t\circ C(U_{m})$ or after the next Corner $t(T') > t\circ C(U_{m+1})$.  
 
@@ -182,12 +183,21 @@ The expansion also works when adding forward and backward $dir$ signals together
 \begin{equation}
 expansion(a,b)=\sum \limits _{z(a)}^{z(b)} (x''+\mathrm{i}y'')
 \end{equation}
-The expansion should now show $Complex Isolation$ as the intensity of the single, combined 2D spectrogram and $Complex Visibility$ as the vertical shift. Separation of the $vectorgraphs$ is now possible based on $visibility$ and signal graph inverse (See below). The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
+The expansion should now show $Complex Isolation$ as the intensity of the single, combined 2D spectrogram and $Complex Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
+\begin{align}
+\frac{\partial}{\partial bs\partial sn} expansion(a,b)\label{eq:3}
+\end{align}
+Separation of the $vectorgraphs$ is now possible based on $visibility$ and signal graph inverse (See below). The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
 \subsection*{Fourier Transform}
-The $expansion$ of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but also can not provide the $same$ algebraic consequence.\\\\
-Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic $\phi$ base, but getting smoothness from $r$ under condition \eqref{eq:2} in the coordinate transform.\\\\
-The presence of a signal base is a requirement for deep learning. The mixed signal and oriented manifold $dir$ of the approximation make it an ideal candidate for feed forward neural networks.
+The $expansion$ of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but as \eqref{eq:3} is not smooth (stetig).\\\\
+Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from \eqref{eq:2} in the coordinate transform.\\
+Note: A Fourier transform is an attempt to make the continuous, but non-smooth function $s(t)$ integrable, but it does not provide an antiderivative.\\\\
+The presence of a signal base is a requirement for deep learning. Both the points in $Y\cup Z$ and the $expansion$ integrals provide a base. The oriented manifold $dir$ of the approximation makes it a candidate for the most common uses of neural networks.
+\subsubsection{Scalogram}
+The key to getting a good rate of neural network inference rate lies in finding a consistent autocalibration algorithm for both inference and training data. Because the antiderivative in \eqref{eq:3} does not exist, a scalogram with $xaxis=bs$ and $yaxis=sn$ has to be calculated for each individual signal $s(t)$.\\
+Note: $sn$ is fully defined in $(0,\infty)$. $bs$ can theoretically be made continuous by interpolation, but it is only defined in $[1,m]$ and has the irregularities when $(m\mod n) > 0$.
+
 
 \subsection*{Fourier Series}
 The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).\\\\
