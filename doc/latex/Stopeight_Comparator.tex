@@ -10,6 +10,7 @@
 \usepackage{natbib}
 
 \renewcommand{\baselinestretch}{1.25}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
 
 \begin{document}
 \title{Stopeight Comparator}
@@ -86,7 +87,7 @@ Consider: A vectorgraph resembling the solution for an ordinary differential equ
 
 \chapter{Coordinate Transforms}
 
-Note: The coordinate transforms break the global affine space $(AffineSpace,(X,\mathbb{R}^2,\oplus,\odot),\overrightarrow{\text{ }})$ into charts $U_{m}$.
+The coordinate transforms break the global affine space $(AffineSpace,(X,\mathbb{R}^2,\oplus,\odot),\overrightarrow{\text{ }})$ into charts $U_{m}$. For the orthogonal coordinate transform the transversality remains the same. For the non-orthogonal coordinate transform, a slightly adjusted transversality is created.
 
 \subsubsection*{Simulation}
 In order to get from function graph analysis to the Stopeigh Analyzer, geometric analysis was required. In order to understand Visibility and Isolation, the Stopeight Analyzer is not enough, and some of the phenomena in Simulation have to be looked at beforehand.
@@ -163,26 +164,32 @@ Note: The function $r(t)$ is continuous (auf Kompaktem Traeger) $and$ smooth (st
 These new bounds are only for integration purposes. Shifting them would break the quartic approximation in some cases.\\
 Bounds with the length condition above can always be found, but they may fall before the local Corner $t(T') < t\circ C(U_{m})$ or after the next Corner $t(T') > t\circ C(U_{m+1})$.  
 
-\subsubsection*{Compact Cover}
+\section{Impossible Figures}
+
+\subsection*{Compact Cover}
 
 If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns $T$ as Corners $C$ (see Spiral). The result is that you are realigning focal axes $\overline{VC}$. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform \cite{Woodpecker} on a ZigZag (needs computational verification).\\\\
 If you would happen to look for a signal expansion on a coordinate transform in a Spiral, you would probably try to look for a common center of all the Cliffs. You would then have a function $\phi (r)$, which would have an analytic meaning, for example on a signal base $e^{ik};k \in \mathbb{Z}$.\\\\
 Even though Visibility and Isolation are present in the two examples above ($Fake Isolation=0$ for ZigZag and $Fake Isolation=\infty$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
 
-\subsection{Impossible Figures}
+\subsection{Breaking The Transversality}
 
-With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this, is that you can get back data. Data that has been previously removed by $\xi$. The application is for the procedures below. Anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
-Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ is already smooth (stetig) and could be integrated using the non-orthogonal coordinate transform, thus giving complex visibility and isolation. ($sn$ would be a scalar controlling linear regression after $bs$ is applied for the buoy example.)
+With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this is that you can get back data. Data that has been previously removed by $\xi$. Applying this to anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
+Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ is already smooth (stetig) and could be integrated using the non-orthogonal coordinate transform, thus giving complex visibility and isolation. ($sn$ would be a scalar controlling linear regression $before$ $bs$ is applied for the buoy example.)\\\\
+Impossible Figures break the transversality $Y$. The original Euclidean norm $\norm{\cdot}_2 = \lvert z_{m+1}-z_{m} \rvert$ is still the same. But the taxicab norm $\norm{\cdot}_1 = \sum \lvert z_{m} \rvert$ works on bounds $T \not \in Y,Z; T \in X$.\\\\
+Note: It is not advisable to switch to a norm of the complex angle $\norm{\cdot} = \arctan \frac{y}{x}$ here, because complex isolation would disappear. $sn$ would be more accurately represented by linear regression and $bs$ would create angular distortion.
 
 \section{Complex Isolation and Visibility}
 The convolution indicates, but does not guarantee, that forward $dir_{Y}$ signals can be separated on bounds $T$.
-\begin{equation}
-convolution(a,b)=\prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')
-\end{equation}
+\begin{align}
+convolution(a,b)=\prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')\\
+\norm{\cdot}=\arctan \frac{y}{x}
+\end{align}
 The expansion also works when adding forward and backward $dir_{Y}$ signals together.
-\begin{equation}
-expansion(a,b)=\sum \limits _{z(a)}^{z(b)} (x''+\mathrm{i}y'')
-\end{equation}
+\begin{align}
+expansion(a,b)=\sum \limits _{z(a)}^{z(b)} (x''+\mathrm{i}y'')\\
+\norm{\cdot}=\norm{\cdot}_1
+\end{align}
 The expansion should now show $Complex Isolation$ as the intensity of the single, combined 2D spectrogram and $Complex Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
 \begin{align}
 \frac{\partial}{\partial bs\partial sn} expansion(a,b)\label{eq:3}
