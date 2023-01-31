@@ -196,23 +196,27 @@ The expansion should now show $Complex Isolation$ as the intensity of the single
 \end{align}
 Separation of the $vectorgraphs$ is now possible based on $visibility$ and signal graph inverse (See below). The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
-\subsection*{Fourier Transform}
+\subsection{Fourier Transform}
 The $expansion$ of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but \eqref{eq:3} is not smooth (stetig).\\\\
 Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from \eqref{eq:2} in the coordinate transform.\\\\
 Note: A Fourier transform is an attempt to make the continuous, but non-smooth function $s(t)$ integrable, but it does not provide an antiderivative.\\\\
-The presence of a signal base is a requirement for deep learning. Both the points in $Y\cup Z$ and the $expansion$ integrals provide bases. The oriented manifold $dir_{Y}$ of the approximation is a limitation for use in neural networks.
+The presence of a signal base is a requirement for neural networks. Both the points in $Y\cup Z$ and the coordinate transforms provide bases. The oriented manifold $dir_{Y}$ of the approximation is a limitation for use in neural networks.\\\\
+Note: A norm is a constraint on a space affecting a prospective differential. A base is an affine or non-affine transform mapping the prospective integrand.
 \subsubsection{Scalogram}
 The key to achieving a good neural network inference rate lies in finding a consistent autocalibration algorithm for both inference and training data. Because the antiderivative in \eqref{eq:3} does not exist, a scalogram with $xaxis=bs$ and $yaxis=sn$ has to be calculated for each individual signal $s(t)$.\\
 Note: $sn$ is fully defined in $(0,\infty)$. $bs$ can theoretically be made continuous by interpolation, but it is only defined in $[1,m]$ and has the irregularities when $(m\mod n) > 0$.
 
 
-\subsection*{Fourier Series}
+\subsection{Fourier Series}
 Note: Only when $s(t)$ is smooth (and continuous), there can be a corresponding Fourier Series for that signal.\\\\
-The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).\\\\
+The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).
+\subsubsection{Axiom}
 A similar link could eventually be established between the product and the sum of the $orthogonal$ coordinate transform of an artificially constructed $vectorgraph$. Instead of $s(t)$ we would be using $waveform(t)$\cite{Grapher}[3.1]. This identity could be valid for coinciding projected vectors (work in progress).
 \begin{align}
 \vert \sum \limits _{z(a)}^{z(b)} \prod (x'+\mathrm{i}y')\circ waveform(t) \vert=\vert \prod \limits _{z \in [a,b)} \sum (x'+\mathrm{i}y')\circ waveform(t) \vert
 \end{align}
+\subsubsection{Axiom}
+If $z_{1}+z_{2}\in (x+\mathrm{i}0)$ and $\lvert z_{1}+z_{2}\rvert=diameter$ and $\lvert z_{1}*z_{2}\rvert=(diameter)^2$, $z_{1}$ and $z_{2}$ could be corresponding Fourier bounds for a polar norm $\norm{\cdot}=\phi$.
 
 \chapter{Signal}
 \section{Graph Inverse}
