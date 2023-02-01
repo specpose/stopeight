@@ -180,28 +180,55 @@ Impossible Figures break the transversality $Y$. The original Euclidean norm $\n
 Note: It is not advisable to switch to a norm of the complex angle $\norm{\cdot} = \arctan \frac{y}{x}$ here, because complex isolation would disappear. $sn$ would be more accurately represented by linear regression and $bs$ would create angular distortion.
 
 \section{Complex Isolation and Visibility}
-The convolution indicates, but does not guarantee, that forward $dir_{Y}$ signals can be separated on bounds $T$.
+There are two main modes of integration. The polar mode is
 \begin{align}
-convolution(a,b)=\prod \limits _{z \in [a,b)} (x'+\mathrm{i}y')\\
-\norm{\cdot}=\arctan \frac{y}{x}
+orthogonal(a,b)=\int \limits _{-\infty}^{\infty} \lvert (x'+\mathrm{i}y')\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
+(\int,\norm{\phi}= \arctan \frac{y'}{x'})
 \end{align}
-The expansion also works when adding forward and backward $dir_{Y}$ signals together.
+Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b}$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space $(\mathbb{R},\norm{i}_2)$ is defined. A set $\mathbb{R}$ with bounds $a,b \in \mathbb{R}$ has to be open, closed $open \lor closed$ or clopen $open \land closed$.\\\\
+The cartesian mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together.
 \begin{align}
-expansion(a,b)=\sum \limits _{z(a)}^{z(b)} (x''+\mathrm{i}y'')\\
-\norm{\cdot}=\norm{\cdot}_1
+nonorthogonal(a,b)=\int \limits _{z(a)}^{z(b)} (x''+\mathrm{i}y'') \mathrm{d} t\\
+(\int,\norm{t}=\norm{z''}_1)
 \end{align}
-The expansion should now show $Complex Isolation$ as the intensity of the single, combined 2D spectrogram and $Complex Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
+The cartesian mode should now show $Complex Isolation$ as the intensity of the single, combined 2D spectrogram and $Complex Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
 \begin{align}
-\frac{\partial}{\partial bs\partial sn} expansion(a,b)\label{eq:3}
+\frac{\partial}{\partial bs\partial sn} nonorthogonal(a,b)\label{eq:3}
 \end{align}
-Separation of the $vectorgraphs$ is now possible based on $visibility$ and signal graph inverse (See below). The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
+A viable signal decomposition of the $vectorgraphs$ is now possible based on $visibility$ and signal graph inverse (See below). However it is still not a full blown signal expansion. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
 \subsection{Fourier Transform}
+Consider the $z_{n}$ of a $waveform$ \cite{Grapher}[3.1] representing two consecutive, perfect half circles facing opposite orientation $ori$ on the $xaxis$. Modulate the complex radius of the orthogonal coordinate transform by a sine wave on the corresponding bounds where $t_{1}$ is the start of the first half-circle and $t_{2}$ is the end of the second half-circle.
+\begin{align}
+z_{n} = \int \limits _{t_{1}}^{t_{2}} \sin \underbrace{\frac{2\pi}{(t_{2}-t_{1})}t}_{\approx \text{numerator }Max_{Straight}} * \underbrace{\lvert (x'(t)+\mathrm{i}y'(t)) \rvert}_{1\text{ in this case}} \mathrm{d}t \label{eq:4}
+\end{align}
+Note: The resulting $z_{n}$ is entirely real.\\\\
+Next create a $phaseprofile_{t_{2}-t_{1}}$ with $z_{n}$ derived from that waveform.
+\begin{align}
+z_{n} = \int \limits _{t_{1}}^{t_{2}} \lvert \underbrace{waveform_{1}'(x(t),y(t))}_{\text{orthogonal c.t.}} \rvert \mathrm{e}^{-2\pi t/(t_{2}-t_{1})}\mathrm{d}t
+\end{align}
+Note: Choosing a $waveform$ $bs$ other than 1 is not required, because there is no jitter (perfect).\\\\
+Going back to the $waveform$ \eqref{eq:4}, the Fourier transform of the modulating function over the whole bounds $t_{1}$ to $t_{2}$ is
+\begin{align}
+\hat{f}(1/\tau) = \int \limits _{0}^{\tau} \lvert \sin \frac{2\pi t}{\tau}\rvert (\cos \frac{-2\pi t}{\tau} + \mathrm{i} \sin \frac{-2\pi t}{\tau}) \mathrm{d}t
+\end{align}
+Notation: $\tau$ is the period of the frequency $\omega=\frac{1}{\tau}$, not a Turn $T$ from the Analyzer.\\\\
+The resulting $phaseprofile_{\tau}$ is entirely real!\\\\
+Reinterpreting the representation of the approximation from the $Analyzer(sn=1) \circ waveform(bs=1)$ \eqref{eq:4} as a signal $\xi (t) - \iota_{T}(t)$, the Parseval theorem states
+\begin{align}
+\int\limits_{-\infty}^{\infty} \lvert \underbrace{y(\xi '(t))}_{\approx \text{numerator }Max_{Curve}}\rvert ^2 \mathrm{d} t = 1/2\pi * \int\limits_{-\infty}^{\infty} \vert \hat{f}(1/\tau) \vert ^2 \mathrm{d} \tau
+\end{align}
+Note: $waveform$ $bs=1$ (perfect) and $sn=1$ (nothing is Straight).\\\\
+And generalising the Fourier transform
+\begin{align}
+\hat{f}(1/\tau) = \int \limits _{-\infty}^{\infty} \lvert \underbrace{waveform_{1}'(x(t),y(t))}_{\text{orthogonal c.t.}} \rvert \mathrm{e}^{-2\pi t/\tau}\mathrm{d}t
+\end{align}
+Note: The $waveform$ $bs$ is still 1. The period $\tau$ is only relevant to the Fourier basis $e^{\mathrm{i}t}$.\\\\
 The $expansion$ of the coordinate transform of the transversality replaces a Fourier transform on a signal. Visibility removes artifact, Isolation omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but \eqref{eq:3} is not smooth (stetig).\\\\
 Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from \eqref{eq:2} in the coordinate transform.\\\\
 Note: A Fourier transform is an attempt to make the continuous, but non-smooth function $s(t)$ integrable, but it does not provide an antiderivative.\\\\
 The presence of a signal base is a requirement for neural networks. Both the points in $Y\cup Z$ and the coordinate transforms provide bases. The oriented manifold $dir_{Y}$ of the approximation is a limitation for use in neural networks.\\\\
-Note: A norm is a constraint on a space affecting a prospective differential. A base is an affine or non-affine transform mapping the prospective integrand.
+Note: A norm is a constraint on a space affecting a prospective differential. A base is an affine or non-affine transform mapping the prospective integrand. A norm for a frequency is a polar norm. A base for signal energy has a cartesian norm and is composed of the sum of polar bases.
 \subsubsection{Scalogram}
 The key to achieving a good neural network inference rate lies in finding a consistent autocalibration algorithm for both inference and training data. Because the antiderivative in \eqref{eq:3} does not exist, a scalogram with $xaxis=bs$ and $yaxis=sn$ has to be calculated for each individual signal $s(t)$.\\
 Note: $sn$ is fully defined in $(0,\infty)$. $bs$ can theoretically be made continuous by interpolation, but it is only defined in $[1,m]$ and has the irregularities when $(m\mod n) > 0$.
