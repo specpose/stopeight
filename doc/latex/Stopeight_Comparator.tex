@@ -198,7 +198,8 @@ The cartesian mode should now show $Complex Isolation$ as the intensity of the s
 A viable signal decomposition of the $vectorgraphs$ is now possible based on $visibility$ and signal graph inverse (See below). However it is still not a full blown signal expansion. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
 \section{Fourier Transform}
-\subsection*{Proof}
+\subsection*{Parseval Identity}
+A geometric proof.\\\\
 Consider the $z_{n}$ of a $waveform$ \cite{Grapher}[3.1] representing two consecutive, perfect half circles facing opposite orientation $ori$ on the $xaxis$. Modulate the complex radius of the orthogonal coordinate transform by a sine wave on the corresponding bounds where $t_{1}$ is the start of the first half-circle and $t_{2}$ is the end of the second half-circle.
 \begin{align}
 z_{n} = \int \limits _{t_{1}}^{t_{2}} \sin \underbrace{\frac{2\pi}{(t_{2}-t_{1})}t}_{\approx \text{numerator }Max_{Straight}} * \underbrace{\lvert (x'(t)+\mathrm{i}y'(t)) \rvert}_{1\text{ in this case}} \mathrm{d}t \label{eq:4}
@@ -231,17 +232,18 @@ The $expansion$ of the coordinate transform of the transversality replaces a Fou
 Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It retains a polar to cartesian transform like the Fourier transform, but it is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from \eqref{eq:2} in the coordinate transform.\\\\
 Note: A Fourier transform is an attempt to make the continuous, but non-smooth function $s(t)$ integrable, but it does not provide an antiderivative.
 
+\section{Fourier Series}
+Note: Only when $s(t)$ is smooth (and continuous), there can be a corresponding Fourier Series for that signal.
+\subsection*{Plancherel Identity}
+An algebraic proof, whether the Plancherel identity applies to a set of complex numbers comprises the following conditions.\\\\
+If $z_{1}+z_{2}\in (x+\mathrm{i}0)$ and $\lvert z_{1}+z_{2}\rvert=diameter$ and $\lvert z_{1}*z_{2}\rvert=(diameter)^2$, $z_{1}$ and $z_{2}$ could be corresponding Fourier bounds for a polar norm $\norm{\cdot}=\phi$.
+The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).
+
 \section{Neural Networks}
 The presence of a signal base is a requirement for neural networks. Both the points in $Y\cup Z$ and the coordinate transforms provide bases. The oriented manifold $dir_{Y}$ of the approximation is a limitation for use in neural networks.\\\\
 Note: A norm is a constraint on a space affecting a prospective differential. A base is an affine or non-affine transform mapping the prospective integrand. A norm for a frequency is a polar norm. A base for signal energy has a cartesian norm and is composed of the sum of local bases.\\\\
 The key to achieving a good neural network inference rate lies in finding a consistent autocalibration $bs,sn$ algorithm for both inference and training data. Because the antiderivative in \eqref{eq:3} does not exist, a scalogram with $xaxis=bs$ and $yaxis=sn$ has to be calculated for each individual signal $s(t)$.\\\\
 Note: $sn$ is fully defined (continuous) in $[1,\infty)$. $bs$ can theoretically be made continuous by interpolation, but it is only defined in $[4,m]$ and has the irregularities when $(m\mod n) > 0$.
-
-\section{Fourier Series}
-Note: Only when $s(t)$ is smooth (and continuous), there can be a corresponding Fourier Series for that signal.\\\\
-The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).
-\subsubsection{Axiom}
-If $z_{1}+z_{2}\in (x+\mathrm{i}0)$ and $\lvert z_{1}+z_{2}\rvert=diameter$ and $\lvert z_{1}*z_{2}\rvert=(diameter)^2$, $z_{1}$ and $z_{2}$ could be corresponding Fourier bounds for a polar norm $\norm{\cdot}=\phi$.
 
 \chapter{Signal}
 \section{Graph Inverse}
