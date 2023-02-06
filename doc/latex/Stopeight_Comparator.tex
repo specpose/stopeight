@@ -118,7 +118,7 @@ The point of view transformation $V(U_{m}')$ to $\overrightarrow{SE}/2$ is a rot
 Note: The rank of M and H is lower than their dimensions, but their product has full rank, so it is invertible.\\\\
 The rotation angle $\phi$ is applied afterwards using the translated coordinates. Instead of doing a Translation to $S$, followed by a Rotation by $\phi(S',E')$ and another Translation by $-V'$, we are doing a single Translation to $V$, followed by a Rotation by $\phi(V',E')$.
 \begin{align}
-\phi_{x}(P_{1},P_{2}) = -\mathrm{arccos}(x(P_{2})/\lvert \overrightarrow{P_{1}P_{2}}\rvert)\\
+\phi_{x}(P_{1},P_{2}) = -ori\lvert \mathrm{arccos}(x(P_{2})/\lvert \overrightarrow{P_{1}P_{2}}\rvert)\rvert\\
 \upsilon
 \begin{pmatrix}x \\ y \\ 0 \\ 0 \\ 0\end{pmatrix}
 =
@@ -136,14 +136,15 @@ Translation((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 Note: The coordinate transform with an orthogonal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a polar to cartesian transform $r\circ (Translation\circ \iota_{T}(t_{S},t_{E})),\phi \circ (Rotation\circ (\iota_{T}(t_{S},t_{E}),Translation(r)))$.\\\\
 To make the complex angle $\phi$ smooth connecting the charts $U_{m}\cap U_{m-1}$ we take the angle of the last vector $E\in U_{m-1}$.
 \begin{align}
-\phi (U_{m}) = \phi (E \in U_{m-1})+\phi(U_{m});\phi (U_{0})=0
+\phi (U_{m}) = \phi (E \in U_{m-1})+\phi(U_{m})\\
+\phi (U_{0})=\phi(U_{0}) -\pi
 \end{align}
 Notation: Here, $\phi (U_{m})$ is short for $\{\upsilon (z) \}_{z \in U_{m}}$
 \subsection{Non-Orthogonal}
 If the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $\overrightarrow{VE(U_{m}')}/\lvert \overrightarrow{VE(U_{m}')}\rvert$ and $\overrightarrow{VC(U_{m}')}/\lvert \overrightarrow{VC(U_{m}')}\rvert$, the complex sum of a positive $ori(\xi)=1$ $backsidecrest$ and its mirror negative $ori(\xi)=-1$ $backsidecrest$ zero out in the imaginary dimension.\\
 Likewise two consecutive half-circles facing opposite orientations $ori$ zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.
 \begin{align}
-\phi_{y}(P_{1},P_{2}) = -ori\frac{\pi}{2}-\mathrm{arccos}(x(P_{2})/\lvert \overrightarrow{P_{1}P_{2}}\rvert)\\
+\phi_{y}(P_{1},P_{2}) = ori(\frac{\pi}{2}-\lvert \mathrm{arccos}(x(P_{2})/\lvert \overrightarrow{P_{1}P_{2}}\rvert)\rvert)\\
 \vartheta
 \begin{pmatrix}x \\ y \\ 0 \\ 0 \\ 0\end{pmatrix}=
 \underbrace{
@@ -163,7 +164,7 @@ To make the radius $r$ smooth (stetig), the integration bounds $E(U_{m})=S(U_{m+
 \lvert T' - V(U_{m}) \rvert = \lvert V(U_{m+1}) -T' \rvert\label{eq:2}
 \end{align}
 Note: The function $r(t)$ is continuous (auf Kompaktem Traeger) $and$ smooth (stetig).\\\\
-These new bounds are only for integration purposes. Shifting them would break the quartic approximation in some cases.\\
+These new bounds are only for integration purposes. Note that they are set before the non-orthogonal coordinate transform $\vartheta$, but after the transversality $Y$ is calculated. Shifting them would break the quartic approximation in some cases.\\
 Bounds with the length condition above can always be found, but they may fall before the local Corner $t(T') < t\circ C(U_{m})$ or after the next Corner $t(T') > t\circ C(U_{m+1})$.  
 
 \section{Impossible Figures}
@@ -184,10 +185,10 @@ Impossible Figures break the transversality $Y$. The original Euclidean norm $\n
 \section{Complex Isolation and Visibility}
 There are two main modes of integration. The cartesian mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together. Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
 \begin{align}
-cartesian(a,b)=\int \limits _{z(a)}^{z(b)} \vartheta (x+\mathrm{i}y) \mathrm{d} t\\
-(\int,\norm{t}=\norm{z''}_1)
+cartesian(a,b)=\int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d} t\\
+(((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
 \end{align}
-Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b}$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\\\
+Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\\\
 The cartesian mode should now show $Complex Isolation$ as the intensity of the single, combined 2D spectrogram and $Complex Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
 \begin{align}
 \frac{\partial}{\partial bs\partial sn} cartesian(a,b)\label{eq:3}
@@ -198,38 +199,39 @@ A viable signal decomposition of the $vectorgraphs$ is now possible based on $vi
 \section{Phase Retaining Signal Expansion}
 The polar mode is
 \begin{align}
-polar(a,b)=\int \limits _{-\infty}^{\infty} \lvert \upsilon (x+\mathrm{i}y)\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
-(\int,\norm{\phi}= \phi_{m}-\phi_{m-1})
+polar(a,b)=\int \limits _{-\infty}^{\infty} \lvert \upsilon (x(t)+\mathrm{i}y(t))\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
+(((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)
 \end{align}
+Note: This is not a double integral! A double integral would be $\int \int \mathrm{d}y\mathrm{d}x$ with $(\mathbb{R}^2,\norm{x},\norm{y})$.
 
 \subsection{Parseval Theorem}
 A geometric proof.\\\\
-Consider the $z_{n}$ of a $waveform$ \cite{Grapher}[3.1] representing two consecutive, perfect half circles facing opposite orientation $ori$ on the $xaxis$. Modulate the complex radius of the orthogonal coordinate transform $\upsilon$ by a sine wave on the corresponding bounds where $t_{1}$ is the start of the first half-circle and $t_{2}$ is the end of the second half-circle.
+Consider the $z_{n}$ of a $waveform$ \cite{Grapher}[3.1] representing two consecutive, perfect half circles facing opposite orientation $ori$ on the $xaxis$, where $t_{1}$ is the start of the first half-circle and $t_{2}$ is the end of the second half-circle.
 \begin{align}
-z_{n} = \int \limits _{t_{1}}^{t_{2}} \sin \underbrace{\frac{2\pi}{(t_{2}-t_{1})}t}_{\approx \text{numerator }Max_{Straight}} * \underbrace{\lvert \upsilon (x(t)+\mathrm{i}y(t)) \rvert}_{1\text{ in this case}} \mathrm{d}t \label{eq:4}
+z_{n} = \int \limits _{a}^{b}\cos \frac{2\pi}{(t_{2}-t_{1})}t + \sin \frac{2\pi}{(t_{2}-t_{1})}t \mathrm{d}t;a,b\geq 0 \land a,b\leq \pi \land a\leq b\\
+z_{n} = \int \limits _{a}^{b}-(\cos \frac{2\pi}{(t_{2}-t_{1})}t + \sin \frac{2\pi}{(t_{2}-t_{1})}t) \mathrm{d}t;a,b\geq \pi \land a,b\leq 2\pi \land a\leq b
 \end{align}
 Note: The resulting $z_{n}$ is entirely real.\\\\
-Next create a $phaseprofile_{t_{2}-t_{1}}$ with $z_{n}$ derived from that waveform.
+Factor out the complex radius by dividing with the signal base of the corresponding frequency.
 \begin{align}
-z_{n} = \int \limits _{t_{1}}^{t_{2}} \lvert \underbrace{\upsilon \circ waveform_{1}(x(t),y(t))}_{\text{orthogonal }\upsilon} \rvert \mathrm{e}^{-2\pi t/(t_{2}-t_{1})}\mathrm{d}t
+z_{n} = \int \limits _{t_{1}}^{t_{2}} \lvert \underbrace{\upsilon \circ waveform_{1}(x(t),y(t))}_{\text{orthogonal }\upsilon} \rvert \mathrm{e}^{-\mathrm{i}2\pi t/(t_{2}-t_{1})}\mathrm{d}t;a,b\geq 0 \land a,b\leq 2\pi \land a\leq b\label{eq:4}
 \end{align}
-Note: Choosing a $waveform$ $bs$ other than 1 is not required, because there is no jitter (perfect).\\\\
-Going back to the $waveform$ \eqref{eq:4}, the Fourier transform of the modulating function over the whole bounds $t_{1}$ to $t_{2}$ is
+Note: Choosing a $waveform$ $bs$ other than 1 is not required, because there is no jitter (perfect).\\
+The resulting $phaseprofile_{t_{2}-t_{1}}$ is entirely real!\\\\
+$phaseprofile_{m}$ ($m\Rightarrow \text{1 vector}$) is the Fourier transform $\mathrm{e}^{-\mathrm{i}\omega t}$
 \begin{align}
-\hat{f}(1/\tau) = \int \limits _{0}^{\tau} \lvert \sin \frac{2\pi t}{\tau}\rvert (\cos \frac{-2\pi t}{\tau} + \mathrm{i} \sin \frac{-2\pi t}{\tau}) \mathrm{d}t
+z_{0} = \hat{f}(1/T)\circ \underbrace{\lvert \upsilon \circ waveform_{1}(x(t),y(t))\rvert}_{\text{orthogonal }\upsilon} = \int \limits _{0}^{\tau} \cos^2 \frac{-2\pi t}{\tau} + \mathrm{i} \sin^2 \frac{-2\pi t}{\tau} \mathrm{d}t
 \end{align}
-Notation: $\tau$ is the period of the frequency $\omega=\frac{1}{\tau}$, not a Turn $T$ from the Analyzer.\\\\
-The resulting $phaseprofile_{\tau}$ is entirely real!\\\\
+Notation: $\tau$ is the period of the frequency $\omega=\frac{1}{\tau}$, not a Turn $T$ from the Analyzer.\\
+Note: The period $\tau$ is only relevant to the Fourier basis $e^{-\mathrm{i}t}$.\\\\
 Reinterpreting the representation of the approximation from the $Analyzer(sn=1) \circ waveform(bs=1)$ \eqref{eq:4} as a signal $\xi (t) - \iota_{T}(t)$, the Parseval theorem states
 \begin{align}
-\int\limits_{-\infty}^{\infty} \lvert \underbrace{y(\xi '(t))}_{\approx \text{numerator }Max_{Curve}}\rvert ^2 \mathrm{d} t = 1/2\pi * \int\limits_{-\infty}^{\infty} \vert \hat{f}(1/\tau) \vert ^2 \mathrm{d} \tau
+\int\limits_{-\infty}^{\infty} \lvert \underbrace{y(\xi '(t))}_{\text{rotated to }xaxis}\rvert ^2 \mathrm{d} t = 1/2\pi * \int\limits_{-\infty}^{\infty} \vert \hat{f}(1/T)\circ \underbrace{\upsilon (\xi (t))}_{waveform} \vert ^2 \mathrm{d} \tau\\
+(((\int \int,\norm{z}=\norm{r}_2),\odot),\norm{\phi}= \sup \phi)
 \end{align}
 Note: $waveform$ $bs=1$ (perfect) and $sn=1$ (nothing is Straight).\\\\
-And generalising the Fourier transform
-\begin{align}
-\hat{f}(1/\tau) = \int \limits _{-\infty}^{\infty} \lvert \underbrace{\upsilon \circ waveform_{1}(x(t),y(t))}_{\text{orthogonal }\upsilon} \rvert \mathrm{e}^{-2\pi t/\tau}\mathrm{d}t
-\end{align}
-Note: The $waveform$ $bs$ is still 1. The period $\tau$ is only relevant to the Fourier basis $e^{\mathrm{i}t}$.\\\\
+
+\subsection{Discussion}
 $phaseprofile$ $bs$ removes artifact, $phaseprofile$ $sn$ omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but \eqref{eq:3} is not smooth (stetig).\\\\
 Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from \eqref{eq:2} in the coordinate transform.\\\\
 Note: A Fourier transform is an attempt to make the continuous, but non-smooth function $s(t)$ integrable, but it does not provide an antiderivative.
