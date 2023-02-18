@@ -85,9 +85,9 @@ This $absolute$ Vector Graph has to be constructed by appending vectors to each 
 \begin{align}
 phaseprofile_{m/n}: (x,y)_{n}=\sum \limits _{i=0}^{n-1}(\mathrm{Re(z_{i})},\mathrm{Im(z_{i})})
 \end{align}
-The complex numbers $z_{n}$ are obtained from Fourier Transform of $n$ partitions (Polar to Cartesian). The frequency multiplier is set to the frame size.
+The complex numbers $z_{n}$ are obtained from inverse Fourier Transform of $n$ partitions (Polar to Cartesian). The frequency multiplier is set to the frame size.
 \begin{align}
-z_{n}= \sum \limits _{i=n*(m/n)}^{(n+1)*(m/n)} s(t_{i})*(\cos(\frac{2\pi}{m/n}t_{i})+\mathrm{i}\sin(\frac{2\pi}{m/n}t_{i}))\label{eq:3}
+z_{n}= \sum \limits _{i=n*(m/n)}^{(n+1)*(m/n)} s(t_{i})*(\cos(\frac{-2\pi}{m/n}t_{i})+\mathrm{i}\sin(\frac{-2\pi}{m/n}t_{i}))\label{eq:3}
 \end{align}
 Note: There is a leaking effect if the block size $m/n$ is not an integer multiple of the period of the signal $s(t)$ ~\cite[Fensterfunktion]{Fensterfunktion}. To some extent this can be solved by adjusting the partition size $m/n$ according to visibility and isolation in ~\cite[Stopeight\_Comparator.tex]{Comparator}\\\\
 Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X,\oplus,\odot,\leq)$.

@@ -193,6 +193,10 @@ The cartesian mode should now show $Complex Isolation$ as the intensity of the s
 \begin{align}
 \frac{\partial}{\partial bs\partial sn} cartesian(a,b)\label{eq:3}
 \end{align}
+\subsection{Plancherel Identity}
+An algebraic (computational) proof, whether the Plancherel identity applies to a set of complex numbers comprises the following conditions.\\\\
+If $z_{1}+z_{2}\in (x+\mathrm{i}0)$ and $\lvert z_{1}+z_{2}\rvert=diameter$ and $\lvert z_{1}*z_{2}\rvert=(diameter)^2$, $z_{1}$ and $z_{2}$ could be corresponding Fourier bounds for a polar norm $\norm{\cdot}=\phi$.
+The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).
 \subsection{Signal Decomposition}
 A viable signal decomposition of the $vectorgraphs$ is now possible based on $visibility$ and signal graph inverse (See below). Moreover the signal decomposition is retaining the bounds of the underlying $vectorgraph$. However it is still not a full blown signal expansion. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
@@ -200,47 +204,57 @@ A viable signal decomposition of the $vectorgraphs$ is now possible based on $vi
 The polar mode is
 \begin{align}
 polar(a,b)=\int \limits _{-\infty}^{\infty} \lvert \upsilon (x(t)+\mathrm{i}y(t))\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
-(((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)
+(((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)\Rightarrow \norm{r}_1 \sim \norm{\phi}
 \end{align}
 Note: This is not a double integral! A double integral would be $\int \int \mathrm{d}y\mathrm{d}x$ with $(\mathbb{R}^2,\norm{x},\norm{y})$.
 
 \subsection{Parseval Theorem}
 A geometric proof.\\\\
-Consider the $z_{n}$ of a $waveform$ \cite{Grapher}[3.1] representing two consecutive, perfect half circles facing opposite orientation $ori$ on the $xaxis$, where $t_{1}$ is the start of the first half-circle and $t_{2}$ is the end of the second half-circle.
+Consider the $z_{n}$ of a $waveform$ \cite{Grapher}[3.1] representing two consecutive, perfect half circles facing opposite orientation $ori$ on the $xaxis$, where $t_{1}=0$ is the start of the first half-circle and $t_{2}=2\pi$ is the end of the second half-circle. This is the maximum signal $r(t)$ to be expected from the Analyzer.
 \begin{align}
-z_{n} = \int \limits _{a}^{b}\cos \frac{2\pi}{(t_{2}-t_{1})}t + \sin \frac{2\pi}{(t_{2}-t_{1})}t \mathrm{d}t;a,b\geq 0 \land a,b\leq \pi \land a\leq b\\
-z_{n} = \int \limits _{a}^{b}-(\cos \frac{2\pi}{(t_{2}-t_{1})}t + \sin \frac{2\pi}{(t_{2}-t_{1})}t) \mathrm{d}t;a,b\geq \pi \land a,b\leq 2\pi \land a\leq b
+z_{n} = \int \limits _{a}^{b}(\cos \frac{2\pi}{(t_{2}-t_{1})}t)+ \sin \frac{2\pi}{(t_{2}-t_{1})}t) \mathrm{d}t;a,b\geq t_{1} \land a,b\leq (t_{2}-t_{1})/2 \land a\leq b\label{eq:5}\\
+z_{n} = \int \limits _{a}^{b}-(\cos \frac{2\pi}{(t_{2}-t_{1})}t)+ \sin \frac{2\pi}{(t_{2}-t_{1})}t) \mathrm{d}t;a,b\geq (t_{2}-t_{1})/2 \land a,b\leq t_{2} \land a\leq b
 \end{align}
-Note: The resulting $z_{n}$ is entirely real.\\\\
-Factor out the complex radius by dividing with the signal base of the corresponding frequency.
+Note: The sequence $\{z_{n}\}$ is entirely real.\\\\
+Factor out the complex radius by dividing with the Fourier base of the corresponding frequency.
 \begin{align}
-z_{n} = \int \limits _{t_{1}}^{t_{2}} \lvert \underbrace{\upsilon \circ waveform_{1}(x(t),y(t))}_{\text{orthogonal }\upsilon} \rvert \mathrm{e}^{-\mathrm{i}2\pi t/(t_{2}-t_{1})}\mathrm{d}t;a,b\geq 0 \land a,b\leq 2\pi \land a\leq b\label{eq:4}
+z_{n} = \int \limits _{t_{1}}^{t_{2}} \underbrace{\lvert \upsilon \circ waveform_{1}(a,b)\rvert}_{\text{here }\pi /2} \mathrm{e}^{\mathrm{i}2\pi t/(t_{2}-t_{1})}\mathrm{d}t\label{eq:4}
 \end{align}
-Note: Choosing a $waveform$ $bs$ other than 1 is not required, because there is no jitter (perfect).\\
-The resulting $phaseprofile_{t_{2}-t_{1}}$ is entirely real!\\\\
-$phaseprofile_{m}$ ($m\Rightarrow \text{1 vector}$) is the Fourier transform $\mathrm{e}^{-\mathrm{i}\omega t}$
+Note: The $phaseprofile_{t_{2}-t_{1}}$ (from start to end) is entirely real.\\\\
+$phaseprofile_{t_{2}-t_{1}}$ ($m=n\Rightarrow \text{1 vector}$) is the inverse Fourier transform $\mathrm{e}^{\mathrm{i}\omega t}$
 \begin{align}
-z_{0} = \hat{f}(1/T)\circ \underbrace{\lvert \upsilon \circ waveform_{1}(x(t),y(t))\rvert}_{\text{orthogonal }\upsilon} = \int \limits _{0}^{\tau} \cos^2 \frac{-2\pi t}{\tau} + \mathrm{i} \sin^2 \frac{-2\pi t}{\tau} \mathrm{d}t
+z_{0} = \hat{f}^{-1}(1/\tau)\circ \underbrace{\lvert \upsilon \circ waveform_{1}(a,b)\rvert}_{\text{orthogonal }\upsilon} = \int \limits _{t_{1}}^{t_{2}} \sin \frac{2\pi t}{\tau} + \mathrm{i} \sin^2 \frac{2\pi t}{\tau} \mathrm{d}t
 \end{align}
 Notation: $\tau$ is the period of the frequency $\omega=\frac{1}{\tau}$, not a Turn $T$ from the Analyzer.\\
-Note: The period $\tau$ is only relevant to the Fourier basis $e^{-\mathrm{i}t}$.\\\\
-Reinterpreting the representation of the approximation from the $Analyzer(sn=1) \circ waveform(bs=1)$ \eqref{eq:4} as a signal $\xi (t) - \iota_{T}(t)$, the Parseval theorem states
+Note: Choosing a $waveform$ $bs$ other than 1 is not required, because there is no jitter (perfect).\\
+Note: The period $\tau$ is only relevant to the Fourier basis $e^{\mathrm{i}t}$, not the waveform. Since the $phaseprofile$ $is$ the Fourier basis, setting $bs$ of $phaseprofile$ is the equivalent of adjusting $\tau$ and setting $sn$ of $waveform$ is a low pass filter.\\\\
+Reinterpreting the representation of the approximation from the $Analyzer(sn=1) \circ waveform(bs=1)$ \eqref{eq:4} as a waveform, the Parseval theorem states
 \begin{align}
-\int\limits_{-\infty}^{\infty} \lvert \underbrace{y(\xi '(t))}_{\text{rotated to }xaxis}\rvert ^2 \mathrm{d} t = 1/2\pi * \int\limits_{-\infty}^{\infty} \vert \hat{f}(1/T)\circ \underbrace{\upsilon (\xi (t))}_{waveform} \vert ^2 \mathrm{d} \tau\\
+\int\limits_{-\infty}^{\infty} \lvert \underbrace{\hat{f}^{-1}(1/\tau)\circ \upsilon(\xi (t))}_{\text{what we've just done}}\rvert ^2 \mathrm{d}\tau = 1/2\pi * \int\limits_{-\infty}^{\infty} \lvert \underbrace{\upsilon (\xi (t))}_{\text{what we started with}} \rvert ^2 \mathrm{d}t\label{eq:6}\\
 (((\int \int,\norm{z}=\norm{r}_2),\odot),\norm{\phi}= \sup \phi)
 \end{align}
 Note: $waveform$ $bs=1$ (perfect) and $sn=1$ (nothing is Straight).\\\\
+Reinterpreting the waveform \eqref{eq:5} as a signal $\xi (t) - \iota_{T}(t)$, we assume (geometric proof) that the (Riemann) integral of the signal is proportional to the integral of the complex radius of the orthogonal transform.
+\begin{align}
+\int\limits_{t_{1}}^{t_{2}} \lvert \underbrace{y(\xi '(t))}_{\text{rotated to }xaxis}\rvert \mathrm{d} t \sim \int\limits_{t_{1}}^{t_{2}} \lvert \underbrace{\upsilon (\xi (t))}_{\text{circle from center}} \rvert \mathrm{d}t\label{eq:7}
+\end{align}
+Reinterpreting the signal $y(\xi '(t))$ \eqref{eq:7} as an arbitrary signal $s(t);a \leq t \leq b$ and substituting into \eqref{eq:6}, there exists a $phaseprofile_{\tau}$ for every frequency in an $arbitrary$ signal and a $combined$ orthogonal transform.
+\begin{align}
+\int\limits_{-\infty}^{\infty} \lvert \underbrace{\hat{f}^{-1}(1/\tau)\circ \hat{s}(t)}_{\text{individual phaseprofile}}\rvert ^2 \mathrm{d}\tau \sim 1/2\pi * \int\limits_{-\infty}^{\infty} \lvert \underbrace{\upsilon \circ vectorgraph_{1}(a,b)}_{\text{combined transform}} \rvert ^2 \mathrm{d}t
+\end{align}
+Note: Setting $bs=\tau$ is possible here, because $\mathrm{d}t$ integration bounds formally do not get exhausted (open $(a=-\infty,b=\infty)$).\\\\
+If we start from a signal, we can construct a $combined$ vectorgraph by multiplying with the Fourier basis
+\begin{align}
+\underbrace{ \hat{f}_{\tau}\circ s}_{\hat{s}(t)}(a,b): (x,y)_{m/(b-a)} = \frac{1}{2\pi} \int\limits_{a}^{b} \lvert s(t)\rvert \mathrm{e}^{-\mathrm{i}2\pi t/\tau} \mathrm{d}t\\
+combined_{bs=(b-a)}(t_{1},t_{2}): (x,y)_{m/bs} = \int \limits_{-\infty}^{\infty} \hat{s}_{\tau}(a,b) \mathrm{d}\tau\\
+derivative(t_{1},t_{2}): (x,y)_{(m-1)/bs} = \int \limits_{-\infty}^{\infty} \hat{s}_{\tau}(a,b) \frac{\mathrm{d}}{\mathrm{d}(bs)} \mathrm{d}\tau
+\end{align}
 
 \subsection{Discussion}
-$phaseprofile$ $bs$ removes artifact, $phaseprofile$ $sn$ omits artifact, which is the equivalent of the Fourier transform window function. Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but \eqref{eq:3} is not smooth (stetig).\\\\
+$phaseprofile$ $bs$ removes artifact (Fourier transform window function), $phaseprofile$ $sn$ omits artifact (covariant low pass filter). Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but \eqref{eq:3} is not smooth (stetig). (is smooth $\Rightarrow \exists$ antiderivative?; invertible $\Rightarrow \exists$ reconstruction)\\\\
 Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from \eqref{eq:2} in the coordinate transform.\\\\
-Note: A Fourier transform is an attempt to make the continuous, but non-smooth function $s(t)$ integrable, but it does not provide an antiderivative.
-
-\subsection{Plancherel Identity}
-Note: Only when $s(t)$ is smooth (and continuous), there can be a corresponding Fourier Series for that signal.\\\\
-An algebraic proof, whether the Plancherel identity applies to a set of complex numbers comprises the following conditions.\\\\
-If $z_{1}+z_{2}\in (x+\mathrm{i}0)$ and $\lvert z_{1}+z_{2}\rvert=diameter$ and $\lvert z_{1}*z_{2}\rvert=(diameter)^2$, $z_{1}$ and $z_{2}$ could be corresponding Fourier bounds for a polar norm $\norm{\cdot}=\phi$.
-The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).
+Note: A Fourier transform is an attempt to make the continuous, but non-smooth function $s(t)$ integrable, but it does $not$ provide an antiderivative?\\\\
+Note: Only when $s(t)$ is smooth (and continuous), there can be a corresponding Fourier Series for that signal.
 
 \section{Neural Networks}
 The presence of a signal base is a requirement for neural networks. Both the points in $Y\cup Z$ and the coordinate transforms provide bases. The oriented manifold $dir_{Y}$ of the approximation is a limitation for use in neural networks.\\\\
