@@ -28,37 +28,49 @@ The Vector Graph of the sequence of vectors is its appended form. The vectors ar
 \begin{equation}
 vectorgraph_{1}: (x,y)_{m=n}=\sum_{i=0}^{n-1} (x,y)_{i}
 \end{equation}
-Note: The vector space preserves the taxicab norm $(((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1)$.
+Note: The vector space preserves the taxicab norm $((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2,\norm{\cdot}_1)$.
 \section{Partitioning}
 The appended form can, but does not have to be, subdivided into $n$ partitions of blocksize $m/n$ with $m\mod n=0$. The vectors in the partition are sumed and the resulting vector is stretched by the effective length of the taxicab norm of the vectors in the partition.
 \begin{align}
-partitioning: (((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1) \rightarrow (((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1)\\
+partitioning: ((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2,\norm{\cdot}_1) \rightarrow (((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1)\\
 partitioning: vectorgraph_{1} \mapsto vectorgraph_{m/n}\\
 vectorgraph_{m/n}:(x,y)_{n}=\sum_{i=0}^{n-1} (\underbrace{\norm{(x,y)_{(i+1)*m/n}}_{1} - \norm{(x,y)_{i*m/n}}_{1}}_{length} * \underbrace{\frac{\sum_{k=i*m/n}^{(i+1)*m/n} (x,y)_{k}}{\vert \sum_{k=i*m/n}^{(i+1)*m/n} (x,y)_{k} \vert}}_{direction})
 \end{align}
 Algorithm Version: Affine 2D scaling transformation (to be disclosed)\\\\
 This ensures that the traversal distances are preserved!
 \begin{equation}
-(vectorgraph_{m/n_{1}},\norm{\cdot}_{1})=(vectorgraph_{m/n_{2}},\norm{\cdot}_{1})
+(vectorgraph_{m/n_{1}},\norm{\cdot}_{1})=(vectorgraph_{m/n_{2}},\norm{\cdot}_{1})\label{eq:9}
 \end{equation}
 \chapter{Vector-length Variant}
-Variance can be dealt with, because the ~\cite[Stopeight\_Analyzer.tex]{Analyzer} seamlessly ignores missing values. A variant version is composed of a sequence of $p$ Vector Graph pieces on the same taxicab norm $(\{X_{p}\}_{p\in \mathbb{Z}},\norm{\cdot}_1)$.
-\subsection*{Unequal Length}
-The ~\cite[Stopeight\_Analyzer.tex]{Analyzer} not only ignores missing values that are not provided by the $vectorgraph$, but can also omit values, which it considers Straight. The proportion of the blocksize and the straightness adjustment of each piece $p$ of the sequence can be tracked.
-\begin{equation}
-\frac{(m/n)_{p}}{\norm{\{X_{p}\}}_{1}} \sim \frac{(nsides)_{p}}{\norm{\{X_{p}\}}_{1}}
-\end{equation}
-Note: $Max_{Straight}$ depending on $nsides$ is defined in Stopeight Analyzer~\cite{Analyzer}[3.23].
+A variant version is composed of a sequence of $p$ Vector Graph pieces on the same taxicab norm $(\{X_{p}\}_{p\in \mathbb{Z}},\norm{\cdot}_1)$. Not only the traversal distances of the individual pieces \eqref{eq:9}, but also the traversal distance of the whole graph has to be kept constant.
+\begin{align}
+(m/n)_{0}\frac{\norm{X_{0}}_{1}}{(m/n)_{0}}+...+(m/n)_{p}\frac{\norm{X_{p}}_{1}}{(m/n)_{p}}=\norm{variantgraph}_1
+\end{align}
+Notation: $\norm{X_{p}}$ is short for $\norm{\max \limits _{X_{p}} x}$
 \section{Equalising Length}
-It may be desirable to work with vectors of the same length. This may be required for inverting the Vector Graph $vectorgraph^{-1}$ or comparing two different Vector Graphs.\\\\
+It may be desirable to work with vectors of the same length. This may be required for inverting the Vector Graph $vectorgraph^{-1}$, comparing two different Vector Graphs or using a Hilbert (dot product) space algebra.\\\\
 To avoid interpolation, integer multiples of the vector lengths over all pieces would have to be used.
 \begin{equation}
-\sup \limits _{\{X_{p}\}} \sqrt{(x^2+y^2)} \mod \inf \limits _{X} \sqrt{(x^2+y^2)} = 0
+\sqrt{(x^2+y^2)} \mod \inf \limits _{X} \sqrt{(x^2+y^2)} = 0
 \end{equation}
 Clearly, choosing a blocksize $m/n$ for a piece $q$ that results in the occurrence of a block that is shorter than the highest Euclidean distance in any particular piece $p$ of the entire sequence $\{X_{p}\}$ is not recommended for comparison because of the missing data in that particular piece.
 \begin{equation}
-(m/n)_{q}*\inf \limits _{X} \sqrt{(x^2+y^2)} \geq \sup \limits _{\{X_{p}\}} \sqrt{(x^2+y^2)}\label{eq:4}
+(m/n)_{q}*\inf \limits _{X} \sqrt{(x^2+y^2)} \geq \sup \limits _{X_{p}} \sqrt{(x^2+y^2)}\label{eq:4}
 \end{equation}
+\section{Approximations}
+Variance can be dealt with, because the ~\cite[Stopeight\_Analyzer.tex]{Analyzer} seamlessly ignores missing values.
+\subsection{Piecewise Calibration}
+The ~\cite[Stopeight\_Analyzer.tex]{Analyzer} not only ignores missing values that are not provided by the $vectorgraph$, but can also omit values, which it considers Straight. The goal of fitting multiple pieces together is to make the entire sequence comparable ~\cite[Non-Orthogonal]{Comparator}. The proportion of the blocksize and the straightness adjustment of each piece $p$ of the sequence is an important consideration when fitting individual pieces together.
+\begin{equation}
+\frac{(m/n)_{p}}{\norm{X_{p}}_{1}} \sim \frac{(nsides)_{p}}{\norm{X_{p}}_{1}}
+\end{equation}
+Note: $Max_{Straight}$ depending on $nsides$ is defined in Stopeight Analyzer~\cite{Analyzer}[3.23].
+\subsection{Comparator Constraint}
+The calibration $nsides$ leads to a major change of arc-length and the traversal distance has to be adjusted. The choice of representation of the approximation also leads to a minor change in arc-length, similar to the (Riemann) integration remainder $C$.
+\begin{align}
+(\norm{Analyzer_{nsides}(X_{0})}_{1}+C_{0})+...+(\norm{Analyzer_{nsides}(X_{p})}_{1}+C_{p})=\norm{vectorgraph_{(m/n)}}_1
+\end{align}
+Running the Analyzer on the individual pieces $X_{p}$ and dividing the approximation into $n$ equal blocks of size $m/n$ not only eliminates variance, but also sets a norm on the arc-length which is extensively used as a $constraint$ in Stopeight Comparator~\cite{Analyzer}.
 
 \chapter{Usage Scenarios}
 Notation: The rest of the proceedings in this paper includes the preliminary stage of creating a Vector Graph $(x,y)_{n}$ from a signal (function of one variable) $s(t)$.
@@ -87,7 +99,7 @@ phaseprofile_{m/n}: (x,y)_{n}=\sum \limits _{i=0}^{n-1}(\mathrm{Re(z_{i})},\math
 \end{align}
 The complex numbers $z_{n}$ are obtained from inverse Fourier Transform of $n$ partitions (Polar to Cartesian). The frequency multiplier is set to the frame size.
 \begin{align}
-z_{n}= \sum \limits _{i=n*(m/n)}^{(n+1)*(m/n)} s(t_{i})*(\cos(\frac{-2\pi}{m/n}t_{i})+\mathrm{i}\sin(\frac{-2\pi}{m/n}t_{i}))\label{eq:3}
+z_{n}= \sum \limits _{i=n*(m/n)}^{(n+1)*(m/n)} s(t_{i})*(\cos(\frac{2\pi}{m/n}t_{i})+\mathrm{i}\sin(\frac{2\pi}{m/n}t_{i}))\label{eq:3}
 \end{align}
 Note: There is a leaking effect if the block size $m/n$ is not an integer multiple of the period of the signal $s(t)$ ~\cite[Fensterfunktion]{Fensterfunktion}. To some extent this can be solved by adjusting the partition size $m/n$ according to visibility and isolation in ~\cite[Stopeight\_Comparator.tex]{Comparator}\\\\
 Note: The convolution is a Riesz space. It multiplies a factor on both sides $(X,\oplus,\odot,\leq)$.
