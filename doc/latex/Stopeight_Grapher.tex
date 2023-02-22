@@ -23,12 +23,13 @@ Consider a function that produces a sequence of independent vectors with coordin
 \begin{equation}
 Anything \rightarrow \{(x,y)_{m}\}_{m \in \mathbb{N}}
 \end{equation}
-Note: It is a vector space with the Euclidean norm $((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2)$.\\\\
+Note: It is a vector space with the Euclidean norm $((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2)$. Setting a norm $\norm{\cdot}_2$ implies that the distance $\sqrt{x^2+y^2}$ can be $divided$ into $n \in \mathbb{R}$ vector parts with a zero remainder $m \mod n = 0$. This type of condition on a norm extends $\odot$ so that a unitary base $\lvert \overrightarrow{base} \rvert$ can be generated for all vectors $(x,y)$ of a metric space $(\mathbb{R}^2,\oplus,\odot)$.\\\\
 The Vector Graph of the sequence of vectors is its appended form. The vectors are translated by the preceding ones.\\
 \begin{equation}
 vectorgraph_{1}: (x,y)_{m=n}=\sum_{i=0}^{n-1} (x,y)_{i}
 \end{equation}
 Note: The vector space preserves the taxicab norm $((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2,\norm{\cdot}_1)$.
+Note: Setting a norm $\norm{\cdot}_1$ implies the total number of elements $m$ can be $divided$ into $n \in \mathbb{Z}$ pieces with a zero remainder $m \mod n = 0$. However the base from the vector space $\lvert \overrightarrow{base} \rvert$ does not have a corresponding vector $\overrightarrow{base}$ in the metric space $(R^2,\norm{\cdot}_{1})$. It can be used, like in the procedings for the total traversal distance of a vectorgraph.
 \section{Partitioning}
 The appended form can, but does not have to be, subdivided into $n$ partitions of blocksize $m/n$ with $m\mod n=0$. The vectors in the partition are sumed and the resulting vector is stretched by the effective length of the taxicab norm of the vectors in the partition.
 \begin{align}

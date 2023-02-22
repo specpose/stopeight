@@ -184,19 +184,46 @@ There are two main modes of integration. The cartesian mode is also useful for s
 cartesian(a,b)=\int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d} t\\
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
 \end{align}
-Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\\\
-The cartesian mode should now show $Complex Isolation$ as the intensity of the single, combined 2D spectrogram and $Complex Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
+Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\
+Note: To make the discrete notation from the Grapher consistent with this infinitesimal notation, the norm from the Comparator Constraint is extended to the path integral of an approximation $\norm{vectorgraph_{(m/n)}}_1=\int \lvert \gamma (t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t$.
+\subsection{Blocksize Expansion}
+Consider $fake visibility$ to be the complex radius of the non-orthogonal transform $\vartheta$.
+\begin{equation}
+fakevisibility(a,b)=\int \limits _{a}^{b} \lvert \vartheta (x+\mathrm{i}y) \rvert \mathrm{d}t 
+\end{equation}
+Consider $fake isolation$ to be a signal scaled (amplified) to the length of the entire vectorgraph without being scaled to a the non-orthogonal unitary, local length of the base.
 \begin{align}
-\frac{\partial}{\partial bs\partial sn} cartesian(a,b)\label{eq:3}
+\lvert fakeisolation(a,b) \rvert = \int \limits _{a}^{b} \lvert (x+\mathrm{i}y) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t
 \end{align}
+Reinterpret the non-orthogonal transform $\vartheta$ to be the equivalent of a Fourier basis $\cos \phi + \mathrm{i} \sin \phi$.
+\begin{align}
+isolation(a,b) * cartesian(a,b) = \int \limits _{a}^{b} \lvert (x+\mathrm{i}y) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \vartheta (x+\mathrm{i}y) \mathrm{d}t\\
+operation^{-1}(bs) \circ isolation(a,b) = isolation(a,b) * cartesian(a,b)
+\end{align}
+Note: Dividing by a Fourier-like base is an inverse operation.\\
+Note: Changing the differential $\mathrm{d}t$ to $\mathrm{d}\phi$ would require interpolation.\\\\
+The combination should now show $Isolation$ as the intensity of the single, combined 2D spectrogram and $Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
+\begin{align}
+\frac{\partial}{\partial bs\partial sn} isolation(a,b) * cartesian(a,b)\label{eq:3}
+\end{align}
+Note: Switching the Fourier-like basis on a full resolution signal is a forward transform.
+\begin{align}
+operation(bs) \circ (isolation(a,b) * cartesian(a,b)) = \int \limits _{a}^{b} \lvert (x+\mathrm{i}y)_{bs} \frac{\mathrm{d}}{\mathrm{d}t} \rvert \vartheta (x+\mathrm{i}y)_{bs} e^{-\mathrm{i}bs*t} \mathrm{d}t
+\end{align}
+In some cases, such as pen-stroke or sensor device calibration, straightness $sn$ can be pre-emptively determined and assumed constant.
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d} bs} (operation^{-1}(bs) \circ isolation(a,b))_{sn}
+\end{align}
+Note: In discrete notation (Stopeight Grapher), $bs$ and $sn$ are proportional. This hides the fact that straightness is resolution independent.
+
 \subsection{Plancherel Identity}
-An algebraic (computational) proof, whether the Plancherel identity applies to a set of complex numbers comprises the following conditions.\\\\
+An computational proof (tbd), whether the Plancherel identity applies to a set of complex numbers comprises the following conditions.\\\\
 If $z_{1}+z_{2}\in (x+\mathrm{i}0)$ and $\lvert z_{1}+z_{2}\rvert=diameter$ and $\lvert z_{1}*z_{2}\rvert=(diameter)^2$, $z_{1}$ and $z_{2}$ could be corresponding Fourier bounds for a polar norm $\norm{\cdot}=\phi$.
 The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).
 \subsection{Signal Decomposition}
-A viable signal decomposition of the $vectorgraphs$ is now possible based on $visibility$ and signal graph inverse (See below). Moreover the signal decomposition is retaining the bounds of the underlying $vectorgraph$. However it is still not a full blown signal expansion. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
+A viable signal decomposition of the $vectorgraphs$ is now possible based on a particular blocksize and signal graph inverse (See below). Moreover the signal decomposition is retaining the bounds of the underlying $vectorgraph$. However it is still not a full blown signal expansion. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
-\section{Phase Retaining Signal Expansion}
+\section{Phase Retaining Signal Graph}
 The polar mode is
 \begin{align}
 polar(a,b)=\int \limits _{-\infty}^{\infty} \lvert \upsilon (x(t)+\mathrm{i}y(t))\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
