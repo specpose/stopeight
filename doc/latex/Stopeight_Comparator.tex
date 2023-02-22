@@ -44,22 +44,22 @@ isolation_{bs} \circ Analyzer(sn) \circ vectorgraph(bs)
 \end{align}
 Note: $h_{a} \circ g(a) \circ f(b)$ is the functional notation for $h(g(a=const,f(b)))$.
 
-\section{Fake Visibility}
+\section{Fake Isolation}
 For every resolution, a Vector Graph with adjusted blocksize $bs$ has to be calculated and Stopeight Analyzer has to be applied.
-Visibility is the path integral on the approximation.
+Isolation is the path integral on the approximation.
 \begin{align}
-fakevisibility(a,b)= dir_{Y} \int \limits _{a}^{b} \lvert \xi(t)\frac{\mathrm{d}}{\mathrm{dt}} \rvert \mathrm{d}t
+fakeisolation(a,b)= dir_{Y} \int \limits _{a}^{b} \lvert \xi(t)\frac{\mathrm{d}}{\mathrm{dt}} \rvert \mathrm{d}t
 \end{align}
 For a Spiral this would be a viable solution.
 For a ZigZag, the Edges would start shifting.
 For a Swell, the Crests, together with the Edges induce massive shifting.
 This approach is not viable.
 
-\section{Fake Isolation}
+\section{Fake Visibility}
 For every resolution, a Vector Graph has to be calculated and the Stopeight Analyzer straightness $sn$ has to be calibrated. $V$ is a point on the base-line $S,E$ defined by the focal axis in $C$.
-Isolation is the area function under the approximation.
+Visibility is the area function under the approximation.
 \begin{align}
-fakeisolation(a,b)= ori \int \limits _{a}^{b} \vert \xi(t)-V(U_{m})\vert  \mathrm{d}t
+fakevisibility(a,b)= ori \int \limits _{a}^{b} \vert \xi(t)-V(U_{m})\vert  \mathrm{d}t
 \end{align}
 Note: This implicit definition uses differential geometry. For a discrete implementation, use something like the Algorithm Version for curvature, but with center $V(U_{m})$ instead of $S(U_{m})$.\\\\
 This is true if the outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds.
@@ -80,9 +80,9 @@ But the outcome of $Analyzer$ still depends on $vectorgraph$, so for every inter
 
 \section{Hausdorff Dimension}
 
-From a geometric point of view, it would appear that Visibility is the area under the curve. Intuitively it would also appear that Isolation is simply the formula of Straightness, but applied on the approximation $\xi$ instead of the original Vector Graph $\iota_{X}$. It is the other way arround.\\\\
-Think of Visibility as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two path integrals with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two non overlying approximations. Remember that Visibility is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.\\
-The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V\circ U_{m}(Analyzer)$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact at a certain level.\\\\
+From a geometric point of view, Visibility is the area under the curve. Intuitively it also appears that Isolation is simply the formula of Straightness, but applied on the approximation $\xi$ instead of the original Vector Graph $\iota_{X}$.\\\\
+Think of Isolation as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two path integrals with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two non overlying approximations. Remember that Isolation is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.\\
+The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V\circ U_{m}(Analyzer)$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Visibility is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact at a certain level.\\\\
 Consider: A vectorgraph resembling the solution for an ordinary differential equation of one variable. The vectorgraph has a start because it is a Anfangswertproblem and a blocksize $bs$ corresponding to the differential $\mathrm{d}$. The straightness calibration $sn$ would simplify the solution.
 
 \chapter{Coordinate Transforms}
@@ -93,7 +93,8 @@ In order to get from function graph analysis to the Stopeigh Analyzer, geometric
 
 A $backside dune$ has a hill-shape figure on the frontside and a straight section on the backside. The dune has a Visibility which does not change in a short time-frame. The wind is blowing sand over the hill-top and Isolation breaks up on the straight part. There is a cause and effect relationship between $neighboring$ segments.
 
-A $backside crest$ in the formation of ocean swell creates gravitational energy on the backside of multiple wave-packets which in turn modifies the surface tension on the frontside of the same wave-packets. There is a cause and effect relationship between $neighboring$ sections, but it affects all the wave packets in the wave-train. In an electronic circuit, this would have to be implemented using a feedback convolution.
+A $backside crest$ in the formation of ocean swell creates gravitational energy on the backside of multiple wave-packets which in turn modifies the surface tension on the frontside of the same wave-packets. There is a cause and effect relationship between $neighboring$ sections, but it affects all the wave packets in the wave-train.\\
+Example: In an electronic circuit, this would have to be implemented using a feedback convolution.
 
 A $carriage wheel$ can get hitched if it bumps against a tree-root. Prediciting where this increased Visibility will reduce the Isolation of the wheel can not be ultimately concluded, just by looking at the wheel. There is only a probability that the wheel will start to break, when it encounters a backward thrust against its wooden spines. It is therefore not at all a neighboring relationship of cause and effect.
 
@@ -142,11 +143,12 @@ To make the complex angle $\phi$ smooth connecting the charts $U_{m}\cap U_{m-1}
 Notation: Here, $\phi (U_{m})$ is short for $\{\upsilon (z) \}_{z \in U_{m}}$
 \subsection{Non-Orthogonal}
 If the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $\overrightarrow{VE(U_{m}')}/\lvert \overrightarrow{VE(U_{m}')}\rvert$ and $\overrightarrow{VC(U_{m}')}/\lvert \overrightarrow{VC(U_{m}')}\rvert$, the complex sum of a positive $ori(\xi)=1$ $backsidecrest$ and its mirror negative $ori(\xi)=-1$ $backsidecrest$ zero out in the imaginary dimension.\\
-Likewise two consecutive half-circles facing opposite orientations $ori$ zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.
+Likewise two consecutive half-circles facing opposite orientations $ori$ zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.\\
+To make the complex radius $r$ smooth (stetig), the new bases for both coordinates $x,y$ are made unitary by dividing them by the base lengths.
 \begin{align}
 \phi_{y}(P_{1},P_{2}) = ori(\frac{\pi}{2}-\lvert \mathrm{arccos}(x(P_{2})/\lvert \overrightarrow{P_{1}P_{2}}\rvert)\rvert)\\
 \vartheta
-\begin{pmatrix}x \\ y \\ 0 \\ 0 \\ 0\end{pmatrix}=
+\begin{pmatrix}x/\overline{V'E'} \\ ori(y/\overline{V'C'}) \\ 0 \\ 0 \\ 0\end{pmatrix}=
 \underbrace{
 \begin{pmatrix}
 \mathrm{cos}(\phi_{x}(V',E')) & -\mathrm{sin}(\phi_{x}(V',E')) & 0 & 0 & 0 \\
@@ -158,14 +160,8 @@ Likewise two consecutive half-circles facing opposite orientations $ori$ zero ou
 }_{Rotation}*
 Translation((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
-Note: The coordinate transform to a non-orthogonal basis is the equivalent of a cartesian to polar transform $y\circ (Rotation\circ (Translation(r),\xi(t_{C}))),x\circ (Rotation\circ (Translation(r),\iota_{T}(t_{S},t_{E})))$.\\\\
-To make the radius $r$ smooth (stetig), the integration bounds $E(U_{m})=S(U_{m+1}$ after the local Corner $C(U_{m})$ and before the next Corner $C(U_{m+1})$ have to be adjusted to $T'$, so that
-\begin{align}
-\lvert T' - V(U_{m}) \rvert = \lvert V(U_{m+1}) -T' \rvert\label{eq:2}
-\end{align}
-Note: The function $r(t)$ is continuous (auf Kompaktem Traeger) $and$ smooth (stetig).\\\\
-These new bounds are only for integration purposes. Note that they are set before the non-orthogonal coordinate transform $\vartheta$, but after the transversality $Y$ is calculated. Shifting them would break the quartic approximation in some cases.\\
-Bounds with the length condition above can always be found, but they may fall before the local Corner $t(T') < t\circ C(U_{m})$ or after the next Corner $t(T') > t\circ C(U_{m+1})$.  
+Note: The coordinate transform to a non-orthogonal basis is the equivalent of a cartesian to polar transform $y\circ (Rotation\circ (Translation(r),\xi(t_{C}))),x\circ (Rotation\circ (Translation(r),\iota_{T}(t_{S},t_{E})))$.\\
+Note: The function $r(t)$ is continuous (auf Kompaktem Traeger) $and$ smooth (stetig).
 
 \section{Impossible Figures}
 
@@ -173,7 +169,7 @@ Bounds with the length condition above can always be found, but they may fall be
 
 If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns $T$ as Corners $C$ (see Spiral). The result is that you are realigning focal axes $\overline{VC}$. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform \cite{Woodpecker} on a ZigZag (needs computational verification).\\\\
 If you would happen to look for a signal expansion on a coordinate transform in a Spiral, you would probably try to look for a common center of all the Cliffs. You would then have a function $\phi (r)$, which would have an analytic meaning, for example on a signal base $e^{ik};k \in \mathbb{Z}$.\\\\
-Even though Visibility and Isolation are present in the two examples above ($Fake Isolation=0$ for ZigZag and $Fake Isolation=\infty$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
+Even though Visibility and Isolation are present in the two examples above ($Fake Visibility=0$ for ZigZag and $Fake Visibility=\infty$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
 
 \subsection{Breaking The Transversality}
 
@@ -252,7 +248,7 @@ derivative(t_{1},t_{2}): (x,y)_{(m-1)/bs} = \int \limits_{-\infty}^{\infty} \hat
 
 \subsection{Discussion}
 $phaseprofile$ $bs$ removes artifact (Fourier transform window function), $phaseprofile$ $sn$ omits artifact (covariant low pass filter). Both are operating on shifting bounds, which does not require exact bounds like Fourier Series, but \eqref{eq:3} is not smooth (stetig). (is smooth $\Rightarrow \exists$ antiderivative?; invertible $\Rightarrow \exists$ reconstruction)\\\\
-Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from \eqref{eq:2} in the coordinate transform.\\\\
+Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from normalisation in the non-orthogonal coordinate transform.\\\\
 Note: A Fourier transform is an attempt to make the continuous, but non-smooth function $s(t)$ integrable, but it does $not$ provide an antiderivative?\\\\
 Note: Only when $s(t)$ is smooth (and continuous), there can be a corresponding Fourier Series for that signal.
 
