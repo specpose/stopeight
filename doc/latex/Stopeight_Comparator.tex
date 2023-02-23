@@ -166,17 +166,30 @@ Note: The function $r(t)$ is continuous (auf Kompaktem Traeger) $and$ smooth (st
 \section{Impossible Figures}
 
 \subsection*{Compact Cover}
-
-If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns $T$ as Corners $C$ (see Spiral). The result is that you are realigning focal axes $\overline{VC}$. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform \cite{Woodpecker} on a ZigZag (needs computational verification).\\\\
+If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns $T$ as Corners $C$ (see Spiral). The result is that you are realigning focal axes $\overline{VC}$. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform (See below) on a ZigZag.\\\\
 If you would happen to look for a signal expansion on a coordinate transform in a Spiral, you would probably try to look for a common center of all the Cliffs. You would then have a function $\phi (r)$, which would have an analytic meaning, for example on a signal base $e^{ik};k \in \mathbb{Z}$.\\\\
 Even though Visibility and Isolation are present in the two examples above ($Fake Visibility=0$ for ZigZag and $Fake Visibility=\infty$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
 
 \subsection{Breaking The Transversality}
-
 With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this is that you can get back data. Data that has been previously removed by $\xi$. Applying this to anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
 Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ is already smooth (stetig) and could be integrated using the non-orthogonal coordinate transform $\vartheta$, thus giving complex visibility and isolation.\\
 Note: It is not advisable to switch to a norm of the complex angle $\norm{\phi} = \phi_{m}-\phi_{m-1}$ in this buoy example, because complex isolation would disappear. $sn$ would be more accurately represented by linear regression and $bs$ would create angular distortion.\\\\
 Impossible Figures break the transversality $Y$. The original Euclidean norm $\norm{\cdot}_2 = \lvert z_{m+1}-z_{m} \rvert$ is still the same. But the taxicab norm $\norm{\cdot}_1 = \sum \lvert z_{m} \rvert$ works on bounds $T \not \in Y,Z; T \in X$.
+
+\subsection{Fourier Basis Alternative}
+The $woodpecker$ can be used for switching bases in Fourier-like transforms. The angle $\phi$ has to be defined to the required scale, for example the diameter in Analyzer.\\\\
+The $woodpecker$ is an artificially constructed (periodic signal) for $t \in [a,b]$.\\
+Any base can be made periodic if the pseudo-periodic sections are expressed in local coordinates and either the angle or the radius is made smooth.\\
+To keep the integration from maxing out, usually a complex basis with an absolute value of 1 is used.\\
+Many (periodic) bases can be made to be within that range by inverting them, or for non-periodic bases a local transform with a unitary set to the supremum can be used.\\
+The inversion also determines, whether the (Fourier-like) transform is inverted $operation^{-1}$ or forward.\\\\
+Here it is used on the non-orthogonal transform $\vartheta$
+\begin{align}
+C_{\infty}=\inf_{Cliff \in X} \lvert \iota_{X}(t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert; [a,b] \in Cliff\\
+impossiblefigure(a,b)=\int \limits _{a}^{b} \lvert\vartheta \circ \iota_{X}(t)\rvert\mathrm{d}t\\
+woodpecker^{-1}(\phi)=\cos(\arctan(\cot(\phi))) + \mathrm{i} arccot(\phi)\\
+operation(\phi) \circ impossiblefigure(a,b)=impossiblefigure(a,b)*woodpecker
+\end{align}
 
 \section{Complex Isolation and Visibility}
 There are two main modes of integration. The cartesian mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together. Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
