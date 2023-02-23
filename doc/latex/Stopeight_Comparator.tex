@@ -206,9 +206,10 @@ The combination should now show $Isolation$ as the intensity of the single, comb
 \begin{align}
 \frac{\partial}{\partial bs\partial sn} isolation(a,b) * cartesian(a,b)\label{eq:3}
 \end{align}
-Note: Switching the Fourier-like basis on a full resolution signal is a forward transform.
+Eventually a different Fourier-like base can be applied after the inverse of some Fourier-like base has been applied. This is a forward (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ for separation.
 \begin{align}
-operation(bs) \circ (isolation(a,b) * cartesian(a,b)) = \int \limits _{a}^{b} \lvert (x+\mathrm{i}y)_{bs} \frac{\mathrm{d}}{\mathrm{d}t} \rvert \vartheta (x+\mathrm{i}y)_{bs} e^{-\mathrm{i}bs*t} \mathrm{d}t
+operation(bs) \circ (isolation(a,b) * cartesian(a,b)) = \int \limits _{a}^{b} \lvert (x+\mathrm{i}y) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \vartheta (x+\mathrm{i}y) e^{-\mathrm{i}\phi t} \mathrm{d}t\\
+\phi = 2\pi\overline{VC}/(bs)
 \end{align}
 In some cases, such as pen-stroke or sensor device calibration, straightness $sn$ can be pre-emptively determined and assumed constant.
 \begin{align}

@@ -16,15 +16,20 @@
 \author{Fassio Blatter}
 \maketitle
 
-\chapter{Single Graph Spectrogram}
-The frequency content in an approximation can be evaluated by a spectrogram.\\\\
-The spectrogram is calculated by applying a convolution transform to an artificially constructed signal for $t \in [a,b]$.
+\chapter{Fourier Basis Alternative}
+The $woodpecker$ can be used for switching bases in Fourier-like transforms. The angle $\phi$ has to be defined to the required scale, for example the diameter in Analyzer.\\\\
+The $woodpecker$ is an artificially constructed (periodic signal) for $t \in [a,b]$.\\
+Any base can be made periodic if the pseudo-periodic sections are expressed in local coordinates and either the angle or the radius is made smooth.\\
+To keep the integration from maxing out, usually a complex basis with an absolute value of 1 is used.\\
+Many (periodic) bases can be made to be within that range by inverting them, or for non-periodic bases a local transform with a unitary set to the supremum can be used.\\
+The inversion also determines, whether the (Fourier-like) transform is inverted $operation^{-1}$ or forward.\\\\
+Here it is used on the non-orthogonal transform $\vartheta$
 \begin{align}
-rays(t)=ori(t)*\vert\iota_{X}(t)-\iota_{V}(t)\vert\\
-woodpecker(\phi)=\cos(\arctan(\cot(\phi))) + \mathrm{i} arccot(\phi)\\
-nautilus(a,b,\phi)=\int \limits _{-\infty}^{\infty}\int \limits _{a}^{b}rays(t)*woodpecker(\phi)\mathrm{d}t\mathrm{d}\phi
+C_{\infty}=\inf_{Cliff \in X} \lvert \iota_{X}(t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert; [a,b] \in Cliff\\
+impossiblefigure(a,b)=\int \limits _{a}^{b} \lvert\vartheta \circ \iota_{X}(t)\rvert\mathrm{d}t\\
+woodpecker^{-1}(\phi)=\cos(\arctan(\cot(\phi))) + \mathrm{i} arccot(\phi)\\
+operation(\phi) \circ impossiblefigure(a,b)=impossiblefigure(a,b)*woodpecker
 \end{align}
-Unlike $fake isolation$, the orientation $ori(a,b)\neq ori(b,c)$ can change between two charts $U_{m},U_{m+1}$.
 
 
 \iffalse
