@@ -21,39 +21,57 @@
 \section{Vector Graph}
 Consider a function that produces a sequence of independent vectors with coordinates $x,y \in \mathbb{R}$.
 \begin{equation}
-Anything \rightarrow \{(x,y)_{m}\}_{m \in \mathbb{N}}
+Anything \mapsto \{(x,y)_{m}\}_{m \in \mathbb{N}}
 \end{equation}
-Note: It is a vector space with the Euclidean norm $((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2)$. Setting a norm $\norm{\cdot}_2$ implies that the distance $\sqrt{x^2+y^2}$ can be $divided$ into $n \in \mathbb{R}$ vector parts with a zero remainder $m \mod n = 0$. This type of condition on a norm extends $\odot$ so that a unitary base $\lvert \overrightarrow{base} \rvert$ can be generated for all vectors $(x,y)$ of a metric space $(\mathbb{R}^2,\oplus,\odot)$.\\\\
-The Vector Graph of the sequence of vectors is its appended form. The vectors are translated by the preceding ones.\\
-\begin{equation}
+Note: It is a metric space $((X,(\mathbb{Q}^2,+,\cdot),\odot,\leq), \norm{\cdot}_2)$. The operator $\odot$ verifies that a unitary base $\lvert \overrightarrow{e} \rvert$ can be generated $for all$ elements $x$ of a body with the multiplication $*$ operator $x \in ((\mathbb{Q}^2,\cdot),\odot)$. The operator $\leq$ verifies that the set $X$ is a sequence $(x_{1},x_{2})_{m}$ in the body $\mathbb{R}^2$, but it destroys the commutative condition $x+y+z=x+(z+y)$ in the operator $\oplus$.\\\\
+The Vector Graph of the sequence of vectors is its appended form. The vectors are translated by the preceding ones.
+\begin{align}
+vectorgraph: ((X,(\mathbb{Q}^2,+,\cdot),\odot,\leq), \norm{\cdot}_2)\rightarrow ((X,(\mathbb{Q}^2,+,\cdot),\odot,\leq), \norm{\cdot}_2, \norm{\cdot}_1)\\
+vectorgraph: \{(x,y)_{n}\}_{n \in \mathbb{N}} \mapsto \{(x,y)_{n}\}_{n \in \mathbb{N}}\\
 vectorgraph_{1}: (x,y)_{m=n}=\sum_{i=0}^{n-1} (x,y)_{i}
-\end{equation}
-Note: The vector space preserves the taxicab norm $((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2,\norm{\cdot}_1)$.
-Note: Setting a norm $\norm{\cdot}_1$ implies the total number of elements $m$ can be $divided$ into $n \in \mathbb{Z}$ pieces with a zero remainder $m \mod n = 0$. However the base from the vector space $\lvert \overrightarrow{base} \rvert$ does not have a corresponding vector $\overrightarrow{base}$ in the metric space $(R^2,\norm{\cdot}_{1})$. It can be used, like in the procedings for the total traversal distance of a vectorgraph.
+\end{align}
+Note: It also is a metric space $(X,\norm{\cdot}_1)$. The taxicab norm $\norm{\cdot}_1$ preserves the traversal distance.
 \section{Partitioning}
 The appended form can, but does not have to be, subdivided into $n$ partitions of blocksize $m/n$ with $m\mod n=0$. The vectors in the partition are sumed and the resulting vector is stretched by the effective length of the taxicab norm of the vectors in the partition.
 \begin{align}
-partitioning: ((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2,\norm{\cdot}_1) \rightarrow (((X,\mathbb{R}^2,\oplus,\odot),\norm{\cdot}_2),\norm{\cdot}_1)\\
-partitioning: vectorgraph_{1} \mapsto vectorgraph_{m/n}\\
-vectorgraph_{m/n}:(x,y)_{n}=\sum_{i=0}^{n-1} (\underbrace{\norm{(x,y)_{(i+1)*m/n}}_{1} - \norm{(x,y)_{i*m/n}}_{1}}_{length} * \underbrace{\frac{\sum_{k=i*m/n}^{(i+1)*m/n} (x,y)_{k}}{\vert \sum_{k=i*m/n}^{(i+1)*m/n} (x,y)_{k} \vert}}_{direction})
+partitioning: (X,\norm{\cdot}_1) \rightarrow ((X\backslash\norm{\cdot}_2),\norm{\cdot}_1)\\
+partitioning: \{(x,y)_{n}\}_{n \in \mathbb{N}} \mapsto (x,y)_n\\
+vectorgraph_{m/n}:(x,y)_{n}=\sum_{i=0}^{n-1} (\underbrace{\sum_{k=i*m/n}^{(i+1)*m/n} \norm{(x,y)_{k}}_2}_{\text{traversal length}} * \underbrace{\frac{\sum_{k=i*m/n}^{(i+1)*m/n} (x,y)_{k}}{\norm{ \sum_{k=i*m/n}^{(i+1)*m/n} (x,y)_{k} }_2}}_{direction})
 \end{align}
+Note: It is a metric space $(vectorgraph_{m/n}, \norm{\cdot}_1)$.\\\\
 Algorithm Version: Affine 2D scaling transformation (to be disclosed)\\\\
 This ensures that the traversal distances are preserved!
 \begin{equation}
-(vectorgraph_{m/n_{1}},\norm{\cdot}_{1})=(vectorgraph_{m/n_{2}},\norm{\cdot}_{1})\label{eq:9}
+\norm{vectorgraph_{m/n_{1}}}_{1}=\norm{vectorgraph_{m/n_{2}}}_{1}\label{eq:9}
 \end{equation}
 \chapter{Vector-length Variant}
-A variant version is composed of a sequence of $p$ Vector Graph pieces on the same taxicab norm $(\{X_{p}\}_{p\in \mathbb{Z}},\norm{\cdot}_1)$. Not only the traversal distances of the individual pieces \eqref{eq:9}, but also the traversal distance of the whole graph has to be kept constant.
+Variance can be dealt with, because the Stopeight Analyzer seamlessly ignores missing values. The variant version of a vectorgraph is simply denoted as $vectorgraph$ without a subscript.\\\\
+For variant and non-variant vectorgraphs, addition does not work as expected.
 \begin{align}
-(m/n)_{0}\frac{\norm{X_{0}}_{1}}{(m/n)_{0}}+...+(m/n)_{p}\frac{\norm{X_{p}}_{1}}{(m/n)_{p}}=\norm{variantgraph}_1
+\oplus : (vectorgraph_{m/n}, \norm{\cdot}_1) \rightarrow (vectorgraph, \norm{\cdot}_1)\\
+\oplus : (x,y)_{n-1},(x,y)_{n}\mapsto (x,y)_{n}\\
+\oplus : (x_{1},y_{1})+(x_{2},y_{2})=\norm{(x_{1},y_{1})}_2+\norm{(x_{2},y_{2})}_2*\frac{((x_{1},y_{1})+(x_{2},y_{2}))}{\norm{(x_{1},y_{1})+(x_{2},y_{2})}_{2}}
 \end{align}
-Notation: $\norm{X_{p}}$ is short for $\norm{\max \limits _{X_{p}} x}$
+Note: It is a metric space $(((((X,(\mathbb{Q}^2,+,\cdot))\backslash\oplus),\odot,\leq)\backslash\norm{\cdot}_2), \norm{\cdot}_1)$\\\\
+A variant version is composed of a sequence of $p$ Vector Graphs $\{(vectorgraph_{m_{p}/n_{p}})_{p}\}_{p\in \mathbb{Z}}$ which do not have the same traversal length. The traversal distances of the individual pieces \eqref{eq:9} have to be kept constant through all transformations of $the$ individual piece. Such transformations could be Analyzer approximation, approximation discretisation or blocksize adjustment of the individual piece.
+\begin{align}
+variantgraph: ((X\backslash\norm{\cdot}_2),\norm{\cdot}_1)\times ((X\backslash\norm{\cdot}_2),\norm{\cdot}_1) \rightarrow ((X\backslash\norm{\cdot}_2),\norm{\cdot}_1)\\
+(m_{0}/n_{0})\frac{\norm{(vectorgraph_{(m_{0}/n_{0})})_{0}}_{1}}{(m_{0}/n_{0})}+...+(m_{p}/n_{p})\frac{\norm{(vectorgraph_{(m_{p}/n_{p})})_{p}}_{1}}{(m_{p}/n_{p})}=\norm{variantgraph}_1
+\end{align}
+Note: It is a metric space $(variantgraph, \norm{\cdot}_1)$.
 \section{Equalising Length}
-It may be desirable to work with vectors of the same length. This may be required for inverting the Vector Graph $vectorgraph^{-1}$, comparing two different Vector Graphs or using a Hilbert (dot product) space algebra.\\\\
+A variant version can also be denoted as a sequence of $p$ Vector Graphs.
+\begin{align}
+\{vectorgraph_{p}\}_{p\in \mathbb{Z}}
+\end{align}
+Note: $\forall v \in vectorgraph\exists x \in X,\norm{v}_2\not =\norm{x}_2,\not\forall x \in X\exists v \in vectorgraph$.\\
+Notation: Only here, the subscript in vectorgraph denotes a sequence element, not $m/n$.\\\\
+It may be desirable to work with vectors of the same lengths. This may be required for inverting the Vector Graph $vectorgraph^{-1}$, comparing two different Vector Graphs or using a Hilbert (dot product) space algebra.\\\\
 To avoid interpolation, integer multiples of the vector lengths over all pieces would have to be used.
 \begin{equation}
-\sqrt{(x^2+y^2)} \mod \inf \limits _{X} \sqrt{(x^2+y^2)} = 0
+\{\norm{(x,y)_{n}-(x,y)_{n-1}}_2\vert (x,y)_{n} \in vectorgraph\} \mod \inf \limits _{vectorgraph} \norm{(x,y)_{n}-(x,y)_{n-1}}_2 = 0
 \end{equation}
+Note: It is a metric space $\{(x,y)_{m}\}_{m \in \mathbb{N}} \subset ((vectorgraph,(\mathbb{Q}^2,+,\cdot),\odot),\norm{\cdot}_2)$.\\\\
 Clearly, choosing a blocksize $m/n$ for a piece $q$ that results in the occurrence of a block that is shorter than the highest Euclidean distance in any particular piece $p$ of the entire sequence $\{X_{p}\}$ is not recommended for comparison because of the missing data in that particular piece.
 \begin{equation}
 (m/n)_{q}*\inf \limits _{X} \sqrt{(x^2+y^2)} \geq \sup \limits _{X_{p}} \sqrt{(x^2+y^2)}\label{eq:4}
@@ -71,6 +89,7 @@ The calibration $nsides$ leads to a major change of arc-length and the traversal
 \begin{align}
 (\norm{Analyzer_{nsides}(X_{0})}_{1}+C_{0})+...+(\norm{Analyzer_{nsides}(X_{p})}_{1}+C_{p})=\norm{vectorgraph_{(m/n)}}_1
 \end{align}
+Notation: Here, $C_{p}$ is a remainder, not a Corner $C_{\infty}$ from the Analyzer.\\\\
 Running the Analyzer on the individual pieces $X_{p}$ and dividing the approximation into $n$ equal blocks of size $m/n$ not only eliminates variance, but also sets a norm on the arc-length which is extensively used as a $constraint$ in Stopeight Comparator~\cite{Analyzer}.
 
 \chapter{Usage Scenarios}
