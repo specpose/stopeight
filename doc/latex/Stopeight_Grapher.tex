@@ -45,14 +45,15 @@ This ensures that the traversal distances are preserved!
 \norm{vectorgraph_{m/n_{1}}}_{1}=\norm{vectorgraph_{m/n_{2}}}_{1}\label{eq:9}
 \end{equation}
 \chapter{Vector-length Variant}
-Variance can be dealt with, because the Stopeight Analyzer seamlessly ignores missing values. The variant version of a vectorgraph is simply denoted as $vectorgraph$ without a subscript.\\\\
+Variance can be dealt with, because the ~\cite[Stopeight\_Analyzer.tex]{Analyzer} seamlessly ignores missing values. The variant version of a vectorgraph is simply denoted as $vectorgraph$ without a subscript.\\\\
 For variant and non-variant vectorgraphs, addition does not work as expected.
 \begin{align}
-\oplus : (vectorgraph_{m/n}, \norm{\cdot}_1) \rightarrow (vectorgraph, \norm{\cdot}_1)\\
-\oplus : (x,y)_{n-1},(x,y)_{n}\mapsto (x,y)_{n}\\
-\oplus : (x_{1},y_{1})+(x_{2},y_{2})=\norm{(x_{1},y_{1})}_2+\norm{(x_{2},y_{2})}_2*\frac{((x_{1},y_{1})+(x_{2},y_{2}))}{\norm{(x_{1},y_{1})+(x_{2},y_{2})}_{2}}
+\oplus : (X, \norm{\cdot}_1) \rightarrow (vectorgraph, \norm{\cdot}_1)\\
+\oplus : (x,y)_{n-1},(x,y)_{n}\mapsto (x,y)_{p}\\
+\oplus : (x_{1},y_{1})+(x_{2},y_{2})=(\norm{(x_{1},y_{1})}_2+\norm{(x_{2},y_{2})}_2)*\frac{(x_{1},y_{1})+(x_{2},y_{2})}{\norm{(x_{1},y_{1})+(x_{2},y_{2})}_{2}}
 \end{align}
-Note: It is a metric space $(((((X,(\mathbb{Q}^2,+,\cdot))\backslash\oplus),\odot,\leq)\backslash\norm{\cdot}_2), \norm{\cdot}_1)$\\\\
+Note: It is a metric space $(((((vectorgraph,(\mathbb{Q}^2,+,\cdot))\backslash\oplus),\odot,\leq)\backslash\norm{\cdot}_2), \norm{\cdot}_1)$\\
+Note: The $(X,\oplus,\odot)$ operations are used in the equation.\\\\
 A variant version is composed of a sequence of $p$ Vector Graphs $\{(vectorgraph_{m_{p}/n_{p}})_{p}\}_{p\in \mathbb{Z}}$ which do not have the same traversal length. The traversal distances of the individual pieces \eqref{eq:9} have to be kept constant through all transformations of $the$ individual piece. Such transformations could be Analyzer approximation, approximation discretisation or blocksize adjustment of the individual piece.
 \begin{align}
 variantgraph: ((X\backslash\norm{\cdot}_2),\norm{\cdot}_1)\times ((X\backslash\norm{\cdot}_2),\norm{\cdot}_1) \rightarrow ((X\backslash\norm{\cdot}_2),\norm{\cdot}_1)\\
@@ -62,32 +63,40 @@ Note: It is a metric space $(variantgraph, \norm{\cdot}_1)$.
 \section{Equalising Length}
 A variant version can also be denoted as a sequence of $p$ Vector Graphs.
 \begin{align}
-\{vectorgraph_{p}\}_{p\in \mathbb{Z}}
+\{(vectorgraph_{m_{p}/n_{p}})_{p}\}_{p\in \mathbb{Z}}\\
+\sum \limits _{i=0}^{p} (vectorgraph_{m_{p}/n_{p}})_p = vectorgraph
 \end{align}
-Note: $\forall v \in vectorgraph\exists x \in X,\norm{v}_2\not =\norm{x}_2,\not\forall x \in X\exists v \in vectorgraph$.\\
-Notation: Only here, the subscript in vectorgraph denotes a sequence element, not $m/n$.\\\\
-It may be desirable to work with vectors of the same lengths. This may be required for inverting the Vector Graph $vectorgraph^{-1}$, comparing two different Vector Graphs or using a Hilbert (dot product) space algebra.\\\\
+Note: $\forall v \in vectorgraph\exists x \in X,\norm{v}_2\not =\norm{x}_2,\not\forall x \in X\exists v \in vectorgraph$.\\\\
+It may be desirable to work with vectors of the same lengths. This may be required for inverting the Vector Graph $vectorgraph^{-1}$ or comparing two different Vector Graphs.\\
+For base modifications $\odot$, the division has to be followed by a multiplication.
+\begin{align}
+\odot : K\times (X, \norm{\cdot}_1) \rightarrow (vectorgraph_{m/p}, \norm{\cdot}_1)\\
+\odot : k,(x,y)_{n} \mapsto \{(x,y)_p\}_{p\in \mathbb{Z}}\\
+\odot : (x,y)_{p} = (p+1) * \frac{(x,y)_{n}}{k}
+\end{align}
+Note: It is a metric space $(((((vectorgraph_{m/n},(\mathbb{Q}^2,+,\cdot))\backslash\odot),\oplus,\leq),\backslash\norm{\cdot}_1), \norm{\cdot}_2)$\\
+Note: The $(\mathbb{Q}^2,+,\cdot)$ operations are used in the equation.\\\\
 To avoid interpolation, integer multiples of the vector lengths over all pieces would have to be used.
 \begin{equation}
 \{\norm{(x,y)_{n}-(x,y)_{n-1}}_2\vert (x,y)_{n} \in vectorgraph\} \mod \inf \limits _{vectorgraph} \norm{(x,y)_{n}-(x,y)_{n-1}}_2 = 0
 \end{equation}
 Note: It is a metric space $\{(x,y)_{m}\}_{m \in \mathbb{N}} \subset ((vectorgraph,(\mathbb{Q}^2,+,\cdot),\odot),\norm{\cdot}_2)$.\\\\
-Clearly, choosing a blocksize $m/n$ for a piece $q$ that results in the occurrence of a block that is shorter than the highest Euclidean distance in any particular piece $p$ of the entire sequence $\{X_{p}\}$ is not recommended for comparison because of the missing data in that particular piece.
+Clearly, choosing a blocksize $m/n$ for a piece $q$ that results in the occurrence of a block that is shorter than the highest Euclidean distance in any particular piece $p$ of the entire sequence $\{(vectorgraph_{m_{p}/n_{p}})_{p}\}$ is not recommended for comparison because of the missing data in that particular piece.
 \begin{equation}
-(m/n)_{q}*\inf \limits _{X} \sqrt{(x^2+y^2)} \geq \sup \limits _{X_{p}} \sqrt{(x^2+y^2)}\label{eq:4}
+(m/n)_{q}*\inf \limits _{(vectorgraph_{m_{q}/n_{q}})_{q}} \norm{(x,y)}_2 \geq \sup \limits _{\{(vectorgraph_{m_{p}/n_{p}})_{p}\}} \norm{(x+y)}_2\label{eq:4}
 \end{equation}
+Note: It is a metric space $\{(x,y)_{m}\}_{m \in \mathbb{N}} \subset ((\{(vectorgraph_{m_{p}/n_{p}})_{p}\},(\mathbb{Q}^2,+,\cdot),\odot),\norm{\cdot}_2)$.
 \section{Approximations}
-Variance can be dealt with, because the ~\cite[Stopeight\_Analyzer.tex]{Analyzer} seamlessly ignores missing values.
 \subsection{Piecewise Calibration}
 The ~\cite[Stopeight\_Analyzer.tex]{Analyzer} not only ignores missing values that are not provided by the $vectorgraph$, but can also omit values, which it considers Straight. The goal of fitting multiple pieces together is to make the entire sequence comparable ~\cite[Non-Orthogonal]{Comparator}. The proportion of the blocksize and the straightness adjustment of each piece $p$ of the sequence is an important consideration when fitting individual pieces together.
 \begin{equation}
-\frac{(m/n)_{p}}{\norm{X_{p}}_{1}} \sim \frac{(nsides)_{p}}{\norm{X_{p}}_{1}}
+\frac{(m_{p}/n_{p})_{p}}{\norm{(vectorgraph_{m_{p}/n_{p}})_{p}}_{1}} \sim \frac{(nsides)_{p}}{\norm{(vectorgraph_{m_{p}/n_{p}})_{p}}_{1}}
 \end{equation}
 Note: $Max_{Straight}$ depending on $nsides$ is defined in Stopeight Analyzer~\cite{Analyzer}[3.23].
 \subsection{Comparator Constraint}
 The calibration $nsides$ leads to a major change of arc-length and the traversal distance has to be adjusted. The choice of representation of the approximation also leads to a minor change in arc-length, similar to the (Riemann) integration remainder $C$.
 \begin{align}
-(\norm{Analyzer_{nsides}(X_{0})}_{1}+C_{0})+...+(\norm{Analyzer_{nsides}(X_{p})}_{1}+C_{p})=\norm{vectorgraph_{(m/n)}}_1
+(\norm{Analyzer_{nsides}((vectorgraph)_{0})}_{1}+C_{0})+...+(\norm{Analyzer_{nsides}((vectorgraph)_{p})}_{1}+C_{p})=\norm{vectorgraph_{(m/n)}}_1
 \end{align}
 Notation: Here, $C_{p}$ is a remainder, not a Corner $C_{\infty}$ from the Analyzer.\\\\
 Running the Analyzer on the individual pieces $X_{p}$ and dividing the approximation into $n$ equal blocks of size $m/n$ not only eliminates variance, but also sets a norm on the arc-length which is extensively used as a $constraint$ in Stopeight Comparator~\cite{Analyzer}.
