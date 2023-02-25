@@ -160,7 +160,13 @@ To make the complex radius $r$ smooth (stetig), the new bases for both coordinat
 }_{Rotation}*
 Translation((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
-Note: The coordinate transform to a non-orthogonal basis is the equivalent of a cartesian to polar transform $y\circ (Rotation\circ (Translation(r),\xi(t_{C}))),x\circ (Rotation\circ (Translation(r),\iota_{T}(t_{S},t_{E})))$.\\
+Note: The coordinate transform to a non-orthogonal basis is the equivalent of a cartesian to polar transform $y\circ (Rotation\circ (Translation(r),\xi(t_{C}))),x\circ (Rotation\circ (Translation(r),\iota_{T}(t_{S},t_{E})))$.\\\\
+To make the radius $r$ smooth (stetig), the integration bounds $E(U_{m})=S(U_{m+1}$ after the local Corner $C(U_{m})$ and before the next Corner $C(U_{m+1})$ have to be adjusted to $T'$, so that
+\begin{align}
+\lvert T' - V(U_{m}) \rvert = \lvert V(U_{m+1}) -T' \rvert\label{eq:2}
+\end{align}
+These new bounds are only for integration purposes. Note that they are set before the non-orthogonal coordinate transform $\vartheta$, but after the transversality $Y$ is calculated. Shifting them would break the quartic approximation in some cases.\\
+Bounds with the length condition above can always be found, but they may fall before the local Corner $t(T') < t\circ C(U_{m})$ or after the next Corner $t(T') > t\circ C(U_{m+1})$.\\
 Note: The function $r(t)$ is continuous (auf Kompaktem Traeger) $and$ smooth (stetig).
 
 \section{Impossible Figures}
