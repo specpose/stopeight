@@ -177,7 +177,7 @@ If you would happen to look for a signal expansion on a coordinate transform in 
 Even though Visibility and Isolation are present in the two examples above ($Fake Visibility=0$ for ZigZag and $Fake Visibility=\infty$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
 
 \subsection{Breaking The Transversality}
-With the coordinate transforms, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this is that you can get back data. Data that has been previously removed by $\xi$. Applying this to anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
+Changing from global to local coordinates $\mathrm{d}t\rightarrow\mathrm{dx}\mathrm{dy}$, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this is that you can get back data. Data that has been previously removed by $\xi$. Applying this to anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
 Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ is already smooth (stetig) and could be integrated using the non-orthogonal coordinate transform $\vartheta$, thus giving complex visibility and isolation.\\
 Note: It is not advisable to switch to a norm of the complex angle $\norm{\phi} = \phi_{m}-\phi_{m-1}$ in this buoy example, because complex isolation would disappear. $sn$ would be more accurately represented by linear regression and $bs$ would create angular distortion.\\\\
 Impossible Figures break the transversality $Y$. The original Euclidean norm $\norm{\cdot}_2 = \lvert z_{m+1}-z_{m} \rvert$ is still the same. But the taxicab norm $\norm{\cdot}_1 = \sum \lvert z_{m} \rvert$ works on bounds $T \not \in Y,Z; T \in X$.
@@ -192,19 +192,24 @@ The inversion also determines, whether the (Fourier-like) transform is inverted 
 Here it is used on the non-orthogonal transform $\vartheta$
 \begin{align}
 C_{\infty}=\inf_{Cliff \in X} \lvert \iota_{X}(t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert; [a,b] \in Cliff\\
-impossiblefigure(a,b)=\int \limits _{a}^{b} \lvert\vartheta \circ \iota_{X}(t)\rvert\mathrm{d}t\\
-woodpecker^{-1}(\phi)=\cos(\arctan(\cot(\phi))) + \mathrm{i} arccot(\phi)\\
+impossiblefigure(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \lvert\vartheta \circ \iota_{X}(t)\rvert\mathrm{d}x\mathrm{d}y\\
+woodpecker^{-1}(\phi)=\sin(\arctan(\cot(\phi))) + \mathrm{i} \cos(\arctan(\cot(\phi)))\\
 operation(\phi) \circ impossiblefigure(a,b)=impossiblefigure(a,b)*woodpecker
 \end{align}
 
 \section{Complex Isolation and Visibility}
+To make the non-orthogonal transform integrable, a change of variable is needed.
+\begin{align}
+\int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d} t\\
+\mathrm{d} t = \mathrm{d}x \mathrm{d}y
+\end{align}
 There are two main modes of integration. The cartesian mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together. Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
 \begin{align}
-cartesian(a,b)=\int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d} t\\
+isolation(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d}x(t) \mathrm{d}y(t)\\
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
 \end{align}
+Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The total derivative is obsolete, because coordinates are local $\frac{\mathrm{d}}{\mathrm{d} x(t)}\frac{\mathrm{d}}{\mathrm{d} y(t)}\not = \frac{\mathrm{d}}{\mathrm{d}t}$.\\
 Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\
-Note: To make the discrete notation from the Grapher consistent with this infinitesimal notation, the norm from the Comparator Constraint is extended to the path integral of an approximation $\norm{vectorgraph_{(m/n)}}_1=\int \lvert \gamma (t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t$.
 \subsection{Blocksize Expansion}
 Consider $fake visibility$ to be the complex radius of the non-orthogonal transform $\vartheta$.
 \begin{equation}
@@ -249,7 +254,8 @@ The polar mode is
 polar(a,b)=\int \limits _{-\infty}^{\infty} \lvert \upsilon (x(t)+\mathrm{i}y(t))\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
 (((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)\Rightarrow \norm{r}_1 \sim \norm{\phi}
 \end{align}
-Note: This is not a double integral! A double integral would be $\int \int \mathrm{d}y\mathrm{d}x$ with $(\mathbb{R}^2,\norm{x},\norm{y})$.
+Note: This is not a double integral! A double integral would be $\int \int \mathrm{d}y\mathrm{d}x$ with $(\mathbb{R}^2,\norm{x},\norm{y})$.\\
+Note: To make the discrete notation from the Grapher consistent with this infinitesimal notation, the norm from the Comparator Constraint is extended to the path integral of an approximation $\norm{vectorgraph_{(m/n)}}_1=\int \lvert \gamma (t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t$.
 
 \subsection{Parseval Theorem}
 A geometric proof.\\\\
