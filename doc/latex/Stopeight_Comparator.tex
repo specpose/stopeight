@@ -182,12 +182,10 @@ Note: It is not advisable to switch to a norm of the complex angle $\norm{\phi} 
 Impossible Figures break the transversality $Y$. The original Euclidean norm $\norm{\cdot}_2 = \lvert z_{m+1}-z_{m} \rvert$ is still the same. But the taxicab norm $\norm{\cdot}_1 = \sum \lvert z_{m} \rvert$ works on bounds $T \not \in Y,Z; T \in X$.
 
 \subsection{Fourier Basis Alternative}
-The $woodpecker$ can be used for switching bases in Fourier-like transforms. The angle $\phi$ has to be defined to the required scale, for example the diameter in Analyzer.\\\\
-The $woodpecker$ is an artificially constructed (periodic signal) for $t \in [a,b]$.\\
-Any base can be made periodic if the pseudo-periodic sections are expressed in local coordinates and either the angle or the radius is made smooth.\\
-To keep the integration from maxing out, usually a complex basis with an absolute value of 1 is used.\\
-Many (periodic) bases can be made to be within that range by inverting them, or for non-periodic bases a local transform with a unitary set to the supremum can be used.\\
-The inversion also determines, whether the (Fourier-like) transform is inverted $operation^{-1}$ or forward.\\\\
+The $woodpecker$ can be used for switching bases in Fourier-like transforms. The angle $\phi$ has to be defined to the required scale, for example the diameter in Analyzer (change of variable). The $woodpecker$ is an artificially constructed (periodic signal) for $t \in [a,b]$.\\\\
+Any base can be made periodic if the pseudo-periodic sections are expressed in local coordinates and the angle (no overlap) and the radius are made smooth (normed).\\\\
+To keep the integration from maxing out, usually a complex basis with an absolute value of 1 is used. Many (periodic) bases can be made to be within that range by inverting them, or for non-periodic bases a local transform with a unitary set to the supremum can be used.\\\\
+The inversion determines, whether the (Fourier-like) transform is inverted $operation^{-1}$ or forward.\\\\
 Here it is used on the non-orthogonal transform $\vartheta$
 \begin{align}
 C_{\infty}=\inf_{Cliff \in X} \lvert \iota_{X}(t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert; [a,b] \in Cliff\\
@@ -204,7 +202,7 @@ To make the non-orthogonal transform integrable, a change of variable is needed.
 \end{align}
 There are two main modes of integration. The cartesian mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together. Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
 \begin{align}
-isolation(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d}x(t) \mathrm{d}y(t)\\
+isolation(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \lvert \vartheta (x(t)+\mathrm{i}y(t)) \rvert \mathrm{d}x(t) \mathrm{d}y(t)\\
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
 \end{align}
 Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The total derivative is obsolete, because coordinates are local $\frac{\mathrm{d}}{\mathrm{d} x(t)}\frac{\mathrm{d}}{\mathrm{d} y(t)}\not = \frac{\mathrm{d}}{\mathrm{d}t}$.\\
@@ -213,10 +211,10 @@ The combination should now show $Isolation$ as the intensity of the single, comb
 \begin{align}
 \frac{\partial}{\partial bs\partial sn} isolation(a,b) * cartesian(a,b)\label{eq:3}
 \end{align}
-Eventually a different Fourier-like base can be applied after the inverse of some Fourier-like base has been applied. This is a forward (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ for separation.
+Eventually a different Fourier-like base can be applied after the inverse of some Fourier-like base has been applied. This is a forward (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ for separation. (change of variable)
 \begin{align}
-operation(bs) \circ (isolation(a,b) * cartesian(a,b)) = \int \limits _{a}^{b} \lvert (x+\mathrm{i}y) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \vartheta (x+\mathrm{i}y) e^{-\mathrm{i}\phi t} \mathrm{d}t\\
-\phi = 2\pi\overline{VC}/(bs)
+operation(bs) \circ (iso(a,b) * vis(a,b)) = \int \limits _{a}^{b} \frac{\log iso(t)}{\log \overline{SE}} vis(t) e^{-\mathrm{i}\phi} \mathrm{d}\phi\\
+\phi = 2\pi\frac{\overline{SE}}{2}t/(bs)
 \end{align}
 In some cases, such as pen-stroke or sensor device calibration, straightness $sn$ can be pre-emptively determined and assumed constant.
 \begin{align}
@@ -234,7 +232,7 @@ A viable signal decomposition of the $vectorgraphs$ is now possible based on a p
 \section{Phase Retaining Signal Graph}
 The polar mode is
 \begin{align}
-polar(a,b)=\int \limits _{-\infty}^{\infty} \lvert \upsilon (x(t)+\mathrm{i}y(t))\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
+visibility(a,b)=\int \limits _{-\infty}^{\infty} \lvert \upsilon (x(t)+\mathrm{i}y(t))\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
 (((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)\Rightarrow \norm{r}_1 \sim \norm{\phi}
 \end{align}
 Note: This is not a double integral! A double integral would be $\int \int \mathrm{d}y\mathrm{d}x$ with $(\mathbb{R}^2,\norm{x},\norm{y})$.\\
@@ -248,7 +246,7 @@ z_{n} = \int \limits _{a}^{b}(\cos \frac{2\pi}{(t_{2}-t_{1})}t)+ \sin \frac{2\pi
 z_{n} = \int \limits _{a}^{b}-(\cos \frac{2\pi}{(t_{2}-t_{1})}t)+ \sin \frac{2\pi}{(t_{2}-t_{1})}t) \mathrm{d}t;a,b\geq (t_{2}-t_{1})/2 \land a,b\leq t_{2} \land a\leq b
 \end{align}
 Note: The sequence $\{z_{n}\}$ is entirely real.\\\\
-Factor out the complex radius by dividing with the Fourier base of the corresponding frequency.
+Factor out the complex radius by dividing with the Fourier base of the corresponding frequency (change of variable).
 \begin{align}
 z_{n} = \int \limits _{t_{1}}^{t_{2}} \underbrace{\lvert \upsilon \circ waveform_{1}(a,b)\rvert}_{\text{here }\pi /2} \mathrm{e}^{\mathrm{i}2\pi t/(t_{2}-t_{1})}\mathrm{d}t\label{eq:4}
 \end{align}
