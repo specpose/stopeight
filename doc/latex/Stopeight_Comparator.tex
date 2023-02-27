@@ -143,12 +143,11 @@ To make the complex angle $\phi$ smooth connecting the charts $U_{m}\cap U_{m-1}
 Notation: Here, $\phi (U_{m})$ is short for $\{\upsilon (z) \}_{z \in U_{m}}$
 \subsection{Non-Orthogonal}
 If the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $\overrightarrow{VE(U_{m}')}/\lvert \overrightarrow{VE(U_{m}')}\rvert$ and $\overrightarrow{VC(U_{m}')}/\lvert \overrightarrow{VC(U_{m}')}\rvert$, the complex sum of a positive $ori(\xi)=1$ $backsidecrest$ and its mirror negative $ori(\xi)=-1$ $backsidecrest$ zero out in the imaginary dimension.\\
-Likewise two consecutive half-circles facing opposite orientations $ori$ zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.\\
-To make the complex radius $r$ smooth (stetig), the new bases for both coordinates $x,y$ are made unitary by dividing them by the base lengths.
+Likewise two consecutive half-circles facing opposite orientations $ori$ zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.
 \begin{align}
 \phi_{y}(P_{1},P_{2}) = ori(\frac{\pi}{2}-\lvert \mathrm{arccos}(x(P_{2})/\lvert \overrightarrow{P_{1}P_{2}}\rvert)\rvert)\\
 \vartheta
-\begin{pmatrix}x/\overline{V'E'} \\ ori(y/\overline{V'C'}) \\ 0 \\ 0 \\ 0\end{pmatrix}=
+\begin{pmatrix}x \\ ori(y) \\ 0 \\ 0 \\ 0\end{pmatrix}=
 \underbrace{
 \begin{pmatrix}
 \mathrm{cos}(\phi_{x}(V',E')) & -\mathrm{sin}(\phi_{x}(V',E')) & 0 & 0 & 0 \\
@@ -209,23 +208,7 @@ isolation(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \vartheta (x(t)+\math
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
 \end{align}
 Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The total derivative is obsolete, because coordinates are local $\frac{\mathrm{d}}{\mathrm{d} x(t)}\frac{\mathrm{d}}{\mathrm{d} y(t)}\not = \frac{\mathrm{d}}{\mathrm{d}t}$.\\
-Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\
-\subsection{Blocksize Expansion}
-Consider $fake visibility$ to be the complex radius of the non-orthogonal transform $\vartheta$.
-\begin{equation}
-fakevisibility(a,b)=\int \limits _{a}^{b} \lvert \vartheta (x+\mathrm{i}y) \rvert \mathrm{d}t 
-\end{equation}
-Consider $fake isolation$ to be a signal scaled (amplified) to the length of the entire vectorgraph without being scaled to a the non-orthogonal unitary, local length of the base.
-\begin{align}
-\lvert fakeisolation(a,b) \rvert = \int \limits _{a}^{b} \lvert (x+\mathrm{i}y) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t
-\end{align}
-Reinterpret the non-orthogonal transform $\vartheta$ to be the equivalent of a Fourier basis $\cos \phi + \mathrm{i} \sin \phi$.
-\begin{align}
-isolation(a,b) * cartesian(a,b) = \int \limits _{a}^{b} \lvert (x+\mathrm{i}y) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \vartheta (x+\mathrm{i}y) \mathrm{d}t\\
-operation^{-1}(bs) \circ isolation(a,b) = isolation(a,b) * cartesian(a,b)
-\end{align}
-Note: Dividing by a Fourier-like base is an inverse operation.\\
-Note: Changing the differential $\mathrm{d}t$ to $\mathrm{d}\phi$ would require interpolation.\\\\
+Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\\\
 The combination should now show $Isolation$ as the intensity of the single, combined 2D spectrogram and $Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
 \begin{align}
 \frac{\partial}{\partial bs\partial sn} isolation(a,b) * cartesian(a,b)\label{eq:3}
