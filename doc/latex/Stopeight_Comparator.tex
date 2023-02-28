@@ -211,11 +211,12 @@ The combination should now show $Isolation$ as the intensity of the single, comb
 \begin{align}
 \frac{\partial}{\partial bs\partial sn} isolation(a,b) * cartesian(a,b)\label{eq:3}
 \end{align}
-Eventually a different Fourier-like base can be applied after the inverse of some Fourier-like base has been applied. This is a forward (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ for separation. (change of variable)
+Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable).
 \begin{align}
-operation(bs) \circ (iso(a,b) * vis(a,b)) = \int \limits _{a}^{b} \frac{\log iso(t)}{\log \overline{SE}} vis(t) e^{-\mathrm{i}\phi} \mathrm{d}\phi\\
+\frac{\log isolation(t)}{\log \overline{SE}} visibility(t)\\
 \phi = 2\pi\frac{\overline{SE}}{2}t/(bs)
 \end{align}
+Eventually a forward operation can be applied for separation.\\\\
 In some cases, such as pen-stroke or sensor device calibration, straightness $sn$ can be pre-emptively determined and assumed constant.
 \begin{align}
 \frac{\mathrm{d}}{\mathrm{d} bs} (operation^{-1}(bs) \circ isolation(a,b))_{sn}
