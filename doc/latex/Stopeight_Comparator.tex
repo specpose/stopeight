@@ -194,7 +194,7 @@ woodpecker^{-1}(\phi)=\sin(\arctan(\cot(\phi))) + \mathrm{i} \cos(\arctan(\cot(\
 operation(\phi) \circ impossiblefigure(a,b)=impossiblefigure(a,b)*woodpecker
 \end{align}
 
-\section{Complex Isolation and Visibility}
+\section{Complex Isolation}
 To make the non-orthogonal transform integrable, a change of variable is needed.
 \begin{align}
 \int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d} t\\
@@ -214,7 +214,7 @@ The combination should now show $Isolation$ as the intensity of the single, comb
 Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable).
 \begin{align}
 \frac{\log isolation(t)}{\log \overline{SE}} visibility(t)\\
-\phi = 2\pi\frac{\overline{SE}}{2}t/(bs)
+\phi_{visibility} = 2\pi\frac{\overline{SE}}{2}t/(bs)
 \end{align}
 Eventually a forward operation can be applied for separation.\\\\
 In some cases, such as pen-stroke or sensor device calibration, straightness $sn$ can be pre-emptively determined and assumed constant.
@@ -230,10 +230,12 @@ The Plancherel identity only applies to Fourier Series. Fouries Series imply tha
 \subsection{Signal Decomposition}
 A viable signal decomposition of the $vectorgraphs$ is now possible based on a particular blocksize and signal graph inverse (See below). Moreover the signal decomposition is retaining the bounds of the underlying $vectorgraph$. However it is still not a full blown signal expansion. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
-\section{Phase Retaining Signal Graph}
+\section{Complex Visibility}
 The polar mode is
 \begin{align}
-visibility(a,b)=\int \limits _{-\infty}^{\infty} \lvert \upsilon (x(t)+\mathrm{i}y(t))\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
+visibility_{bs}(a,b)=\int \limits _{a}^{b} \lvert \upsilon (\xi (t))\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
+\phi = \int \limits _{-\infty}^{\infty} \lvert \xi (t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t / (\tau = bs); bs \in (-\infty,\infty)\\
+visibility_{bs} \frac{\mathrm{d}}{\mathrm{d}bs}\\
 (((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)\Rightarrow \norm{r}_1 \sim \norm{\phi}
 \end{align}
 Note: This is not a double integral! A double integral would be $\int \int \mathrm{d}y\mathrm{d}x$ with $(\mathbb{R}^2,\norm{x},\norm{y})$.\\
@@ -274,6 +276,7 @@ Reinterpreting the signal $y(\xi '(t))$ \eqref{eq:7} as an arbitrary signal $s(t
 \int\limits_{-\infty}^{\infty} \lvert \underbrace{\hat{f}^{-1}(1/\tau)\circ \hat{s}(t)}_{\text{individual phaseprofile}}\rvert ^2 \mathrm{d}\tau \sim 1/2\pi * \int\limits_{-\infty}^{\infty} \lvert \underbrace{\upsilon \circ vectorgraph_{1}(a,b)}_{\text{combined transform}} \rvert ^2 \mathrm{d}t
 \end{align}
 Note: Setting $bs=\tau$ is possible here, because $\mathrm{d}t$ integration bounds formally do not get exhausted (open $(a=-\infty,b=\infty)$).\\\\
+\subsection{Phase Retaining Signal Graph}
 If we start from a signal, we can construct a $combined$ vectorgraph by multiplying with the Fourier basis
 \begin{align}
 \underbrace{ \hat{f}_{\tau}\circ s}_{\hat{s}(t)}(a,b): (x,y)_{m/(b-a)} = \frac{1}{2\pi} \int\limits_{a}^{b} \lvert s(t)\rvert \mathrm{e}^{-\mathrm{i}2\pi t/\tau} \mathrm{d}t\\
