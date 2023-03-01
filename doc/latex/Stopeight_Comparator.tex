@@ -147,7 +147,7 @@ Likewise two consecutive half-circles facing opposite orientations $ori$ zero ou
 \begin{align}
 \phi_{y}(P_{1},P_{2}) = ori(\frac{\pi}{2}-\lvert \mathrm{arccos}(x(P_{2})/\lvert \overrightarrow{P_{1}P_{2}}\rvert)\rvert)\\
 \vartheta
-\begin{pmatrix}x \\ ori(y) \\ 0 \\ 0 \\ 0\end{pmatrix}=
+\begin{pmatrix}x \\ y \\ 0 \\ 0 \\ 0\end{pmatrix}=
 \underbrace{
 \begin{pmatrix}
 \mathrm{cos}(\phi_{x}(V',E')) & -\mathrm{sin}(\phi_{x}(V',E')) & 0 & 0 & 0 \\
@@ -197,15 +197,16 @@ operation(\phi) \circ impossiblefigure(a,b)=impossiblefigure(a,b)*woodpecker
 \section{Complex Isolation}
 To make the non-orthogonal transform integrable, a change of variable is needed.
 \begin{align}
-\int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d} t\\
+\int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d}t\\
 \mathrm{d} t = \mathrm{d}x \mathrm{d}y
 \end{align}
 There are two main modes of integration. The cartesian mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together. Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
 \begin{align}
-isolation(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \lvert \vartheta (x(t)+\mathrm{i}y(t)) \rvert \mathrm{d}x(t) \mathrm{d}y(t)\\
+isolation(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \lvert \vartheta (x(t)+\mathrm{i}y(t)) * (\frac{\mathrm{d}}{\mathrm{d}x(t)}+\frac{\mathrm{d}}{\mathrm{d}y(t)}) \rvert \mathrm{d}x(t) \mathrm{d}y(t)\\
+interpolation: \phi = arclength(Umkreisradius-Inkreisradius)*t/Polygonseite; \int \lvert \vartheta (\xi (t(\phi)))\frac{\mathrm{d}}{\mathrm{d}t} \rvert e^{\mathrm{i}\phi}\mathrm{d}\phi\\
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
 \end{align}
-Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The total derivative is obsolete, because coordinates are local $\frac{\mathrm{d}}{\mathrm{d} x(t)}\frac{\mathrm{d}}{\mathrm{d} y(t)}\not = \frac{\mathrm{d}}{\mathrm{d}t}$.\\
+Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The total derivative is obsolete, because coordinates are local $\frac{\mathrm{d}}{\mathrm{d} x(t)}\frac{\mathrm{d}}{\mathrm{d} y(t)}\not = \frac{\mathrm{d}}{\mathrm{d}t}$ (not a chain rule).\\
 Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\\\
 The combination should now show $Isolation$ as the intensity of the single, combined 2D spectrogram and $Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
 \begin{align}
@@ -213,8 +214,7 @@ The combination should now show $Isolation$ as the intensity of the single, comb
 \end{align}
 Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable).
 \begin{align}
-\frac{\log isolation(t)}{\log \overline{SE}} visibility(t)\\
-\phi_{visibility} = 2\pi\frac{\overline{SE}}{2}t/(bs)
+\frac{\log isolation_{\iota_{X}}}{dir_{Y}\log\overline{\vartheta (VC)}} \odot \frac{visibility_{\xi}}{\overline{\upsilon (SE)}}
 \end{align}
 Eventually a forward operation can be applied for separation.\\\\
 In some cases, such as pen-stroke or sensor device calibration, straightness $sn$ can be pre-emptively determined and assumed constant.
@@ -233,13 +233,15 @@ A viable signal decomposition of the $vectorgraphs$ is now possible based on a p
 \section{Complex Visibility}
 The polar mode is
 \begin{align}
-visibility_{bs}(a,b)=\int \limits _{a}^{b} \lvert \upsilon (\xi (t))\rvert \mathrm{e}^{\mathrm{i}\phi} \mathrm{d}\phi\\
-\phi = \int \limits _{-\infty}^{\infty} \lvert \xi (t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t / (\tau = bs); bs \in (-\infty,\infty)\\
-visibility_{bs} \frac{\mathrm{d}}{\mathrm{d}bs}\\
+visibility(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \upsilon (x(t)+\mathrm{i}y(t)) \mathrm{d}x(t)\mathrm{d}y(t)\\
+interpolation: \phi = 2\pi\frac{\overline{SE}}{2}t/(bs); \int \lvert \upsilon (\xi (t(\phi)))\rvert e^{\mathrm{i}\phi}\mathrm{d}\phi\\
 (((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)\Rightarrow \norm{r}_1 \sim \norm{\phi}
 \end{align}
+Note: If expansion is not needed, it is enough to have an indicator. Interchanging Fourier-like bases needs a modulator (interpolation).\\
+Note: 1.5 circles is in there, because we have smooth $\phi$. Visibility has it from $\xi$ (and isolation has it from $\iota_{W}$. By definition, the discretisation of visibility and isolation match.\\
 Note: This is not a double integral! A double integral would be $\int \int \mathrm{d}y\mathrm{d}x$ with $(\mathbb{R}^2,\norm{x},\norm{y})$.\\
 Note: To make the discrete notation from the Grapher consistent with this infinitesimal notation, the norm from the Comparator Constraint is extended to the path integral of an approximation $\norm{vectorgraph_{(m/n)}}_1=\int \lvert \gamma (t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t$.
+Note: $X,A$ norms are on $transversality_{\gamma}$ from Analyzer, not $transversality_{vectorgraph}$ from Grapher.
 
 \subsection{Parseval Theorem}
 A geometric proof.\\\\
@@ -259,7 +261,7 @@ $phaseprofile_{t_{2}-t_{1}}$ ($m=n\Rightarrow \text{1 vector}$) is the inverse F
 z_{0} = \hat{f}^{-1}(1/\tau)\circ \underbrace{\lvert \upsilon \circ waveform_{1}(a,b)\rvert}_{\text{orthogonal }\upsilon} = \int \limits _{t_{1}}^{t_{2}} \sin \frac{2\pi t}{\tau} + \mathrm{i} \sin^2 \frac{2\pi t}{\tau} \mathrm{d}t
 \end{align}
 Notation: $\tau$ is the period of the frequency $\omega=\frac{1}{\tau}$, not a Turn $T$ from the Analyzer.\\
-Note: Choosing a $waveform$ $bs$ other than 1 is not required, because there is no jitter (perfect).\\
+Note: Choosing a $waveform$ $bs$ other than 1 is not required, because there is no jitter (perfect=interpolated).\\
 Note: The period $\tau$ is only relevant to the Fourier basis $e^{\mathrm{i}t}$, not the waveform. Since the $phaseprofile$ $is$ the Fourier basis, setting $bs$ of $phaseprofile$ is the equivalent of adjusting $\tau$ and setting $sn$ of $waveform$ is a low pass filter.\\\\
 Reinterpreting the representation of the approximation from the $Analyzer(sn=1) \circ waveform(bs=1)$ \eqref{eq:4} as a waveform, the Parseval theorem states
 \begin{align}
