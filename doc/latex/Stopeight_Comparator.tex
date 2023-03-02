@@ -179,22 +179,15 @@ Even though Visibility and Isolation are present in the two examples above ($Fak
 Changing from global to local coordinates $\mathrm{d}t\rightarrow\mathrm{dx}\mathrm{dy}$, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this is that you can get back data. Data that has been previously removed by $\xi$. Applying this to anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
 Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ is already smooth (stetig) and could be integrated using the non-orthogonal coordinate transform $\vartheta$, thus giving complex visibility and isolation.\\
 Note: It is not advisable to switch to a norm of the complex angle $\norm{\phi} = \phi_{m}-\phi_{m-1}$ in this buoy example, because complex isolation would disappear. $sn$ would be more accurately represented by linear regression and $bs$ would create angular distortion.\\\\
-Impossible Figures break the transversality $Y$. The original Euclidean norm $\norm{\cdot}_2 = \lvert z_{m+1}-z_{m} \rvert$ is still the same. But the taxicab norm $\norm{\cdot}_1 = \sum \lvert z_{m} \rvert$ works on bounds $T \not \in Y,Z; T \in X$.
-
-\subsection{Fourier Basis Alternative}
-The $woodpecker$ can be used for switching bases in Fourier-like transforms. The angle $\phi$ has to be defined to the required scale, for example the diameter in Analyzer (change of variable). The $woodpecker$ is an artificially constructed (periodic signal) for $t \in [a,b]$.\\\\
-Any base can be made periodic if the pseudo-periodic sections are expressed in local coordinates and the angle (no overlap) and the radius are made smooth (normed).\\\\
-To keep the integration from maxing out, usually a complex basis with an absolute value of 1 is used. Many (periodic) bases can be made to be within that range by inverting them, or for non-periodic bases a local transform with a unitary set to the supremum can be used.\\\\
-The inversion determines, whether the (Fourier-like) transform is inverted $operation^{-1}$ or forward.\\\\
+Impossible Figures break the transversality $Y$. The original Euclidean norm $\norm{\cdot}_2 = \lvert z_{m+1}-z_{m} \rvert$ is still the same. But the taxicab norm $\norm{\cdot}_1 = \sum \lvert z_{m} \rvert$ works on bounds $T \not \in Y,Z; T \in X$.\\\\
 Here it is used on the non-orthogonal transform $\vartheta$
 \begin{align}
 C_{\infty}=\inf_{Cliff \in X} \lvert \iota_{X}(t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert; [a,b] \in Cliff\\
-impossiblefigure(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \lvert\vartheta \circ \iota_{X}(t)\rvert\mathrm{d}x\mathrm{d}y\\
-woodpecker^{-1}(\phi)=\sin(\arctan(\cot(\phi))) + \mathrm{i} \cos(\arctan(\cot(\phi)))\\
-operation(\phi) \circ impossiblefigure(a,b)=impossiblefigure(a,b)*woodpecker
+impossiblefigure(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \lvert\vartheta \circ \iota_{X}(t)\rvert\mathrm{d}x\mathrm{d}y
 \end{align}
 
-\section{Complex Isolation}
+\section{2D Spectrogram}
+\subsection{Complex Isolation}
 To make the non-orthogonal transform integrable, a change of variable is needed.
 \begin{align}
 \int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d}t\\
@@ -208,29 +201,7 @@ interpolation: \phi = arclength(Umkreisradius-Inkreisradius)*t/Polygonseite; \in
 \end{align}
 Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The total derivative is obsolete, because coordinates are local $\frac{\mathrm{d}}{\mathrm{d} x(t)}\frac{\mathrm{d}}{\mathrm{d} y(t)}\not = \frac{\mathrm{d}}{\mathrm{d}t}$ (not a chain rule).\\
 Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\\\
-The combination should now show $Isolation$ as the intensity of the single, combined 2D spectrogram and $Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
-\begin{align}
-\frac{\partial}{\partial bs\partial sn} isolation(a,b) * cartesian(a,b)\label{eq:3}
-\end{align}
-Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable).
-\begin{align}
-\frac{\log isolation_{\iota_{X}}}{dir_{Y}\log\overline{\vartheta (VC)}} \odot \frac{visibility_{\xi}}{\overline{\upsilon (SE)}}
-\end{align}
-Eventually a forward operation can be applied for separation.\\\\
-In some cases, such as pen-stroke or sensor device calibration, straightness $sn$ can be pre-emptively determined and assumed constant.
-\begin{align}
-\frac{\mathrm{d}}{\mathrm{d} bs} (operation^{-1}(bs) \circ isolation(a,b))_{sn}
-\end{align}
-Note: In discrete notation (Stopeight Grapher), $bs$ and $sn$ are proportional. This hides the fact that straightness is resolution independent.
-
-\subsection{Plancherel Identity}
-An computational proof (tbd), whether the Plancherel identity applies to a set of complex numbers comprises the following conditions.\\\\
-If $z_{1}+z_{2}\in (x+\mathrm{i}0)$ and $\lvert z_{1}+z_{2}\rvert=diameter$ and $\lvert z_{1}*z_{2}\rvert=(diameter)^2$, $z_{1}$ and $z_{2}$ could be corresponding Fourier bounds for a polar norm $\norm{\cdot}=\phi$.
-The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).
-\subsection{Signal Decomposition}
-A viable signal decomposition of the $vectorgraphs$ is now possible based on a particular blocksize and signal graph inverse (See below). Moreover the signal decomposition is retaining the bounds of the underlying $vectorgraph$. However it is still not a full blown signal expansion. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
-
-\section{Complex Visibility}
+\subsection{Complex Visibility}
 The polar mode is
 \begin{align}
 visibility(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \upsilon (x(t)+\mathrm{i}y(t)) \mathrm{d}x(t)\mathrm{d}y(t)\\
@@ -243,6 +214,45 @@ Note: This is not a double integral! A double integral would be $\int \int \math
 Note: To make the discrete notation from the Grapher consistent with this infinitesimal notation, the norm from the Comparator Constraint is extended to the path integral of an approximation $\norm{vectorgraph_{(m/n)}}_1=\int \lvert \gamma (t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t$.
 Note: $X,A$ norms are on $transversality_{\gamma}$ from Analyzer, not $transversality_{vectorgraph}$ from Grapher.
 
+\subsection{Indicator}
+Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable).
+\begin{align}
+\frac{\log isolation_{\iota_{X}}}{dir_{Y}\log\overline{\vartheta (VC)}} \odot \frac{visibility_{\xi}}{\overline{\upsilon (SE)}}
+\end{align}
+Eventually a forward operation can be applied for separation.\\\\
+The combination should now show $Isolation$ as the intensity of the single, combined 2D spectrogram and $Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
+\begin{align}
+\frac{\partial}{\partial bs\partial sn}\label{eq:3}
+\end{align}
+In some cases, such as pen-stroke or sensor device calibration, straightness $sn$ can be pre-emptively determined and assumed constant.
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d} bs} (operation^{-1}(bs) \circ isolation(a,b))_{sn}
+\end{align}
+Note: In discrete notation (Stopeight Grapher), $bs$ and $sn$ are proportional. This hides the fact that straightness is resolution independent.
+
+\subsection{Scalogram}
+The presence of a signal base is a requirement for neural networks. Both the points in $Y\cup Z$ and the coordinate transforms provide bases. The oriented manifold $dir_{Y}$ of the approximation is a limitation for use in neural networks.\\\\
+Note: A norm is a constraint on a space affecting a prospective differential. A base is an affine or non-affine transform mapping the prospective integrand. A norm for a frequency is a polar norm. A base for signal energy has a cartesian norm and is composed of the sum of local bases.\\\\
+The key to achieving a good neural network inference rate lies in finding a consistent autocalibration $bs,sn$ algorithm for both inference and training data. Because the antiderivative in \eqref{eq:3} does not exist, a scalogram with $xaxis=bs$ and $yaxis=sn$ has to be calculated for each individual signal $s(t)$.\\\\
+Note: $sn$ is fully defined (continuous) in $[1,\infty)$. $bs$ can theoretically be made continuous by interpolation, but it is only defined in $[4,m]$ and has the irregularities when $(m\mod n) > 0$.
+
+\subsection{Plancherel Identity}
+An computational proof (tbd), whether the Plancherel identity applies to a set of complex numbers comprises the following conditions.\\\\
+If $z_{1}+z_{2}\in (x+\mathrm{i}0)$ and $\lvert z_{1}+z_{2}\rvert=diameter$ and $\lvert z_{1}*z_{2}\rvert=(diameter)^2$, $z_{1}$ and $z_{2}$ could be corresponding Fourier bounds for a polar norm $\norm{\cdot}=\phi$.
+The Plancherel identity only applies to Fourier Series. Fouries Series imply that the sums of the components of the signal expansion be zero on the respective component's periodic bounds. It makes a link between the complex radius (signal energy) and the complex angle (convolved frequency components).
+\subsection{Signal Decomposition}
+A viable signal decomposition of the $vectorgraphs$ is now possible based on a particular blocksize and signal graph inverse (See below). Moreover the signal decomposition is retaining the bounds of the underlying $vectorgraph$. However it is still not a full blown signal expansion. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
+
+\section{Composed Signal}
+\subsection{Fourier Basis Alternative}
+The $woodpecker$ can be used for switching bases in Fourier-like transforms. The angle $\phi$ has to be defined to the required scale, for example the diameter in Analyzer (change of variable). The $woodpecker$ is an artificially constructed (periodic signal) for $t \in [a,b]$.\\\\
+Any base can be made periodic if the pseudo-periodic sections are expressed in local coordinates and the angle (no overlap) and the radius are made smooth (normed).\\\\
+To keep the integration from maxing out, usually a complex basis with an absolute value of 1 is used. Many (periodic) bases can be made to be within that range by inverting them, or for non-periodic bases a local transform with a unitary set to the supremum can be used.\\\\
+The inversion determines, whether the (Fourier-like) transform is inverted $operation^{-1}$ or forward.\\\\
+\begin{align}
+woodpecker^{-1}(\phi)=\sin(\arctan(\cot(\phi))) + \mathrm{i} \cos(\arctan(\cot(\phi)))\\
+operation(\phi) \circ impossiblefigure(a,b)=impossiblefigure(a,b)*woodpecker
+\end{align}
 \subsection{Parseval Theorem}
 A geometric proof.\\\\
 Consider the $z_{n}$ of a $waveform$ \cite{Grapher}[3.1] representing two consecutive, perfect half circles facing opposite orientation $ori$ on the $xaxis$, where $t_{1}=0$ is the start of the first half-circle and $t_{2}=2\pi$ is the end of the second half-circle. This is the maximum signal $r(t)$ to be expected from the Analyzer.
@@ -291,12 +301,6 @@ $phaseprofile$ $bs$ removes artifact (Fourier transform window function), $phase
 Instead of the signal expansion from the outer Fourier transform integral, the Stopeight Analyzer is doing a polynomial signal expansion. It is not doing it on a smooth generic $\phi$ base, but getting smooth $r(t)$ from normalisation in the non-orthogonal coordinate transform.\\\\
 Note: A Fourier transform is an attempt to make the continuous, but non-smooth function $s(t)$ integrable, but it does $not$ provide an antiderivative?\\\\
 Note: Only when $s(t)$ is smooth (and continuous), there can be a corresponding Fourier Series for that signal.
-
-\section{Neural Networks}
-The presence of a signal base is a requirement for neural networks. Both the points in $Y\cup Z$ and the coordinate transforms provide bases. The oriented manifold $dir_{Y}$ of the approximation is a limitation for use in neural networks.\\\\
-Note: A norm is a constraint on a space affecting a prospective differential. A base is an affine or non-affine transform mapping the prospective integrand. A norm for a frequency is a polar norm. A base for signal energy has a cartesian norm and is composed of the sum of local bases.\\\\
-The key to achieving a good neural network inference rate lies in finding a consistent autocalibration $bs,sn$ algorithm for both inference and training data. Because the antiderivative in \eqref{eq:3} does not exist, a scalogram with $xaxis=bs$ and $yaxis=sn$ has to be calculated for each individual signal $s(t)$.\\\\
-Note: $sn$ is fully defined (continuous) in $[1,\infty)$. $bs$ can theoretically be made continuous by interpolation, but it is only defined in $[4,m]$ and has the irregularities when $(m\mod n) > 0$.
 
 \chapter{Signal}
 \section{Graph Inverse}
