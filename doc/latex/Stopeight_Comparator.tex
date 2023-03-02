@@ -87,6 +87,7 @@ Consider: A vectorgraph resembling the solution for an ordinary differential equ
 
 \chapter{Coordinate Transforms}
 The coordinate transforms break the global affine space $(AffineSpace,(X,\mathbb{R}^2,\oplus,\odot),\overrightarrow{\text{ }})$ into charts $U_{m}$. For the orthogonal coordinate transform $\upsilon$ the transversality remains the same. For the non-orthogonal coordinate transform $\vartheta$, a slightly adjusted transversality is created.
+Note: There is no more zero vector $\overrightarrow{0}$ for the entire space as required by the $\oplus$ verification operator.
 
 \subsubsection*{Simulation}
 In order to get from function graph analysis to the Stopeigh Analyzer, geometric analysis was required. In order to understand Visibility and Isolation, the Stopeight Analyzer is not enough, and some of the phenomena in Simulation have to be looked at beforehand.
@@ -142,7 +143,7 @@ To make the complex angle $\phi$ smooth connecting the charts $U_{m}\cap U_{m-1}
 \end{align}
 Notation: Here, $\phi (U_{m})$ is short for $\{\upsilon (z) \}_{z \in U_{m}}$
 \subsection{Non-Orthogonal}
-If the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $\overrightarrow{VE(U_{m}')}/\lvert \overrightarrow{VE(U_{m}')}\rvert$ and $\overrightarrow{VC(U_{m}')}/\lvert \overrightarrow{VC(U_{m}')}\rvert$, the complex sum of a positive $ori(\xi)=1$ $backsidecrest$ and its mirror negative $ori(\xi)=-1$ $backsidecrest$ zero out in the imaginary dimension.\\
+If the global coordinates with the basis vectors $(1,0)$ and $(0,1)$ are transformed into the local coordinates of each chart with the basis vectors $\overrightarrow{VE(U_{m}')}$ and $\overrightarrow{VC(U_{m}')}$ (pseudo-norm), the complex sum of a positive $ori(\xi)=1$ $backsidecrest$ and its mirror negative $ori(\xi)=-1$ $backsidecrest$ zero out in the imaginary dimension.\\
 Likewise two consecutive half-circles facing opposite orientations $ori$ zero out in the real part within a single chart and zero out in the imaginary part over the two consecutive charts.
 \begin{align}
 \phi_{y}(P_{1},P_{2}) = ori(\frac{\pi}{2}-\lvert \mathrm{arccos}(x(P_{2})/\lvert \overrightarrow{P_{1}P_{2}}\rvert)\rvert)\\
@@ -177,14 +178,17 @@ Even though Visibility and Isolation are present in the two examples above ($Fak
 
 \subsection{Breaking The Transversality}
 Changing from global to local coordinates $\mathrm{d}t\rightarrow\mathrm{dx}\mathrm{dy}$, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this is that you can get back data. Data that has been previously removed by $\xi$. Applying this to anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
-Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ is already smooth (stetig) and could be integrated using the non-orthogonal coordinate transform $\vartheta$, thus giving complex visibility and isolation.\\
-Note: It is not advisable to switch to a norm of the complex angle $\norm{\phi} = \phi_{m}-\phi_{m-1}$ in this buoy example, because complex isolation would disappear. $sn$ would be more accurately represented by linear regression and $bs$ would create angular distortion.\\\\
-Impossible Figures break the transversality $Y$. The original Euclidean norm $\norm{\cdot}_2 = \lvert z_{m+1}-z_{m} \rvert$ is still the same. But the taxicab norm $\norm{\cdot}_1 = \sum \lvert z_{m} \rvert$ works on bounds $T \not \in Y,Z; T \in X$.\\\\
-Here it is used on the non-orthogonal transform $\vartheta$
+Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ is already smooth (stetig) or can be made smooth by interpolation and could be integrated using the non-orthogonal coordinate transform $\vartheta$, thus giving complex visibility and isolation.\\
+Note: It is not advisable to switch to a norm of the complex angle $\norm{\phi_{m+1}-\phi_{m}}=\mathrm{d}\phi$ in this buoy example, because complex isolation would disappear. $sn$ would be more accurately represented by linear regression and $bs$ would create angular distortion.\\\\
+Impossible Figures break the transversality $Y$. The original Euclidean norm $\norm{(x,y)_{m+1}-(x,y)_{m}}_2 = \lvert z_{m+1}-z_{m} \rvert$ is still the same. But the taxicab norm $\norm{(x,y)_{m}}_1 = \sum \limits _{i=0}^{m} \lvert z_{m} \rvert$ now works on bounds $T \not \in Y,Z; T \in X$.\\\\
+The integration of $\iota_{X}$ relies on finding a new approximation $\xi_{\infty}$. Here it is used on the non-orthogonal transform $\vartheta$
 \begin{align}
-C_{\infty}=\inf_{Cliff \in X} \lvert \iota_{X}(t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert; [a,b] \in Cliff\\
-impossiblefigure(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \lvert\vartheta \circ \iota_{X}(t)\rvert\mathrm{d}x\mathrm{d}y
+C_{\infty}=\inf_{legalSegment \in X} \lvert \xi_{\infty}(t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert; [a,b] \in legalSegment\\
+impossiblefigure(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \lvert\vartheta \circ \xi_{\infty} (t)\rvert\mathrm{d}x\mathrm{d}y
 \end{align}
+For example, a Gaussian could be used as approximation $\xi$.\\\\
+To create local spaces, the knots of a Graph could be used.\\
+Notation: Graph refers to Graph Theory here, not the Vector Graph from Grapher.
 
 \section{2D Spectrogram}
 \subsection{Complex Isolation}
@@ -193,23 +197,23 @@ To make the non-orthogonal transform integrable, a change of variable is needed.
 \int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d}t\\
 \mathrm{d} t = \mathrm{d}x \mathrm{d}y
 \end{align}
-There are two main modes of integration. The cartesian mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together. Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
+There are two main modes of integration. The cartesian (not interpolated) mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together (See Plancherel Identity). Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
 \begin{align}
 isolation(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \lvert \vartheta (x(t)+\mathrm{i}y(t)) * (\frac{\mathrm{d}}{\mathrm{d}x(t)}+\frac{\mathrm{d}}{\mathrm{d}y(t)}) \rvert \mathrm{d}x(t) \mathrm{d}y(t)\\
-interpolation: \phi = arclength(Umkreisradius-Inkreisradius)*t/Polygonseite; \int \lvert \vartheta (\xi (t(\phi)))\frac{\mathrm{d}}{\mathrm{d}t} \rvert e^{\mathrm{i}\phi}\mathrm{d}\phi\\
+interpolation: \phi = arclength(Umkreisradius)*t/Polygonseite(Inkreisradius); \int \lvert \vartheta (\xi (t(\phi)))\frac{\mathrm{d}}{\mathrm{d}t} \rvert e^{\mathrm{i}\phi}\mathrm{d}\phi\\
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
 \end{align}
 Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The total derivative is obsolete, because coordinates are local $\frac{\mathrm{d}}{\mathrm{d} x(t)}\frac{\mathrm{d}}{\mathrm{d} y(t)}\not = \frac{\mathrm{d}}{\mathrm{d}t}$ (not a chain rule).\\
 Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\\\
 \subsection{Complex Visibility}
-The polar mode is
+This is also a cartesian (not interpolated) mode.
 \begin{align}
 visibility(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \upsilon (x(t)+\mathrm{i}y(t)) \mathrm{d}x(t)\mathrm{d}y(t)\\
 interpolation: \phi = 2\pi\frac{\overline{SE}}{2}t/(bs); \int \lvert \upsilon (\xi (t(\phi)))\rvert e^{\mathrm{i}\phi}\mathrm{d}\phi\\
 (((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)\Rightarrow \norm{r}_1 \sim \norm{\phi}
 \end{align}
-Note: If expansion is not needed, it is enough to have an indicator. Interchanging Fourier-like bases needs a modulator (interpolation).\\
-Note: 1.5 circles is in there, because we have smooth $\phi$. Visibility has it from $\xi$ (and isolation has it from $\iota_{W}$. By definition, the discretisation of visibility and isolation match.\\
+Note: If expansion is not needed, it is enough to have an indicator. Interchanging Fourier-like bases (see below) needs a modulator (interpolation).\\
+Note: Cloud idiom ($1.5 circles \rightarrow \frac{4 quadratics}{3 sections}$) is in there, because we have smooth $\phi$. Visibility has it from $\xi$ (and isolation has it from $\iota_{W}$). By definition, the discretisation of visibility and isolation match.\\
 Note: This is not a double integral! A double integral would be $\int \int \mathrm{d}y\mathrm{d}x$ with $(\mathbb{R}^2,\norm{x},\norm{y})$.\\
 Note: To make the discrete notation from the Grapher consistent with this infinitesimal notation, the norm from the Comparator Constraint is extended to the path integral of an approximation $\norm{vectorgraph_{(m/n)}}_1=\int \lvert \gamma (t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t$.
 Note: $X,A$ norms are on $transversality_{\gamma}$ from Analyzer, not $transversality_{vectorgraph}$ from Grapher.
@@ -230,7 +234,7 @@ In some cases, such as pen-stroke or sensor device calibration, straightness $sn
 \end{align}
 Note: In discrete notation (Stopeight Grapher), $bs$ and $sn$ are proportional. This hides the fact that straightness is resolution independent.
 
-\subsection{Scalogram}
+\subsubsection{Scalogram}
 The presence of a signal base is a requirement for neural networks. Both the points in $Y\cup Z$ and the coordinate transforms provide bases. The oriented manifold $dir_{Y}$ of the approximation is a limitation for use in neural networks.\\\\
 Note: A norm is a constraint on a space affecting a prospective differential. A base is an affine or non-affine transform mapping the prospective integrand. A norm for a frequency is a polar norm. A base for signal energy has a cartesian norm and is composed of the sum of local bases.\\\\
 The key to achieving a good neural network inference rate lies in finding a consistent autocalibration $bs,sn$ algorithm for both inference and training data. Because the antiderivative in \eqref{eq:3} does not exist, a scalogram with $xaxis=bs$ and $yaxis=sn$ has to be calculated for each individual signal $s(t)$.\\\\
@@ -243,16 +247,17 @@ The Plancherel identity only applies to Fourier Series. Fouries Series imply tha
 \subsection{Signal Decomposition}
 A viable signal decomposition of the $vectorgraphs$ is now possible based on a particular blocksize and signal graph inverse (See below). Moreover the signal decomposition is retaining the bounds of the underlying $vectorgraph$. However it is still not a full blown signal expansion. The bin-size doesn't matter at practical resolutions. It could be desirable to use different colors for Spirals, Swells and ZigZags.
 
-\section{Composed Signal}
+\section{Composed Signal Fingerprint}
 \subsection{Fourier Basis Alternative}
 The $woodpecker$ can be used for switching bases in Fourier-like transforms. The angle $\phi$ has to be defined to the required scale, for example the diameter in Analyzer (change of variable). The $woodpecker$ is an artificially constructed (periodic signal) for $t \in [a,b]$.\\\\
 Any base can be made periodic if the pseudo-periodic sections are expressed in local coordinates and the angle (no overlap) and the radius are made smooth (normed).\\\\
 To keep the integration from maxing out, usually a complex basis with an absolute value of 1 is used. Many (periodic) bases can be made to be within that range by inverting them, or for non-periodic bases a local transform with a unitary set to the supremum can be used.\\\\
-The inversion determines, whether the (Fourier-like) transform is inverted $operation^{-1}$ or forward.\\\\
+The inversion determines, whether the (Fourier-like) transform is inverted $operation^{-1}$ or forward. The sole purpose of using a forward woodpecker instead of a Fourier transform is different arithmetic behaviour. Here it is used on impossiblefigures.
 \begin{align}
-woodpecker^{-1}(\phi)=\sin(\arctan(\cot(\phi))) + \mathrm{i} \cos(\arctan(\cot(\phi)))\\
-operation(\phi) \circ impossiblefigure(a,b)=impossiblefigure(a,b)*woodpecker
+woodpecker^{-1}(\phi)=\int \limits _{-\infty}^{\infty}\sin(\arctan(\cot(\phi))) + \mathrm{i} \cos(\arctan(\cot(\phi)))\mathrm{d}\phi\\
+woodpecker(\phi) \circ impossiblefigure(a,b)=impossiblefigure(a,b)*\frac{1}{woodpecker^{-1}(\phi)}
 \end{align}
+Note: A Fourier-like basis has the same $\norm{s(t)}=\mathcal{L}$ requirements on a signal $s(t)$ as the Fourier Transform.
 \subsection{Parseval Theorem}
 A geometric proof.\\\\
 Consider the $z_{n}$ of a $waveform$ \cite{Grapher}[3.1] representing two consecutive, perfect half circles facing opposite orientation $ori$ on the $xaxis$, where $t_{1}=0$ is the start of the first half-circle and $t_{2}=2\pi$ is the end of the second half-circle. This is the maximum signal $r(t)$ to be expected from the Analyzer.
