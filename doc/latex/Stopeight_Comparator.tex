@@ -17,14 +17,17 @@
 \author{Fassio Blatter}
 \maketitle
 
-\chapter{Introduction}
+\chapter{Abstract}
 (Formula are work in progress. The present state of the software implementation includes working overlay comparison.)\\\\
 This file is in the Stopeight repository on Github. Please edit here:\\
 https://github.com/specpose/stopeight/tree/master/doc/latex/Stopeight\_Comparator.tex\\
 The DOI can be found here ~\cite{Analyzer}.\\\\
-Initially the aim of this paper was to make a dataset from each of two $separated$ signal sources comparable. The sources stem from two mixed signals, becoming comparable using geometric overlay comparison (currently implemented). Following the simple time-based example in the Sphinx docs, this happens regardless of the scale of correlated time and amplitude stretch, but preserving frequency modulation and amplitude ratios (More in theory of Grapher).\\
-It has now become evident that the methods in this paper can provide the $separation$ task itself to some extent. The content of this paper now generally applies to datasets in the Cartesian plane. Specifically it refers to addition operations in the Complex plane, such as the Fourier integrands in Stopeight Grapher\cite{Grapher}[1.1] .\\
-In the course of specifying the Stopeight Analyzer transversality, which serves as foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition Isolation and Visibility. They are an indication of the fractal dimension ~\cite{Widon} and cutoff of the approximation. On the other hand the methods described in Antis \cite{Antis} may provide an alternative separation indicator not relying on the Stopeight Analyzer transversality.\\
+The first part of this paper introduces the concept of Isolation and Visibility on top of a Vector Graph as defined in the Stopeight Analyzer\cite{Analyzer} . The formula from differential geometry are easier to grasp, thus they are provided, even though their are fake.\\\\
+The middle part defines them in the space of complex numbers and shows how to build various products like the spectrogram, the scalogram and the algebra of derivatives. It also includes excursions into other types of approximations and machine learning merely for extending the context of this paper.\\\\
+The third part explains the use of the inverse Fourier transform applied to the quartic approximations of the Stopeight Analyzer\cite{Analyzer}. It also covers inversion of the original graphs from the Stopeight Grapher\cite{Grapher} . This last chapter provides a fully featured algebra and signal reconstruction.
+\section{Introduction}
+Initially the aim of this paper was to make a dataset from each of two $separated$ signal sources comparable. The sources stem from two mixed signals, becoming comparable using geometric overlay comparison (currently implemented). Following the simple time-based example in the Sphinx docs, this happens regardless of the scale of correlated time and amplitude stretch, but preserving frequency modulation and amplitude ratios (More in theory of Grapher).\\\\
+In the course of specifying the Stopeight Analyzer transversality, which serves as foundation for the subsequent procedures, some more aspects have taken shape. These aspects are encapsulated in the definition Isolation and Visibility. They are an indication of the fractal dimension ~\cite{Widon} and cutoff of the approximation. It has now become evident that the methods in this paper can provide the $separation$ task itself to some extent. On the other hand the methods described in Antis \cite{Antis} may provide an alternative separation indicator not relying on the Stopeight Analyzer transversality.\\\\
 Finally, the role of Compact Covers has become part of a speculation, that signals ultimately need bounds of a maximal polynomial degree for comparison and that the Turns $T_{4}$ and Corners $C_{4}$ could be viable for neural networks. The reason for this assumption is founded on the theory that the Stopeight Analyzer transversality exhibits a Causal Structure.
 
 \chapter{Multiresolution}
