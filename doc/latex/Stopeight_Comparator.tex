@@ -141,8 +141,8 @@ Translation((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 Note: The coordinate transform with an orthogonal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a polar to cartesian transform $r\circ (Translation\circ \iota_{T}(t_{S},t_{E})),\phi \circ (Rotation\circ (\iota_{T}(t_{S},t_{E}),Translation(r)))$.\\\\
 To make the complex angle $\phi$ smooth connecting the charts $U_{m}\cap U_{m-1}$ we take the angle of the last vector $E\in U_{m-1}$.
 \begin{align}
-\phi (U_{m}) = \phi (E \in U_{m-1})+\phi(U_{m})\\
-\phi (U_{0})=\phi(U_{0}) -\pi
+\phi (U_{m}) := \phi (E \in U_{m-1})+\phi(U_{m})\\
+\phi (U_{0}):=\phi(U_{0}) -\pi
 \end{align}
 Notation: Here, $\phi (U_{m})$ is short for $\{\upsilon (z) \}_{z \in U_{m}}$
 \subsection{Non-Orthogonal}
@@ -202,8 +202,9 @@ To make the non-orthogonal transform integrable, a change of variable is needed.
 \end{align}
 There are two main modes of integration. The cartesian (not interpolated) mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together (See Plancherel Identity). Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
 \begin{align}
-isolation(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \lvert \vartheta (x(t)+\mathrm{i}y(t)) * (\frac{\mathrm{d}}{\mathrm{d}x(t)}+\frac{\mathrm{d}}{\mathrm{d}y(t)}) \rvert \mathrm{d}x(t) \mathrm{d}y(t)\\
-interpolation: \phi = arclength(Umkreisradius)*t/Polygonseite(Inkreisradius); \int \lvert \vartheta (\xi (t(\phi)))\frac{\mathrm{d}}{\mathrm{d}t} \rvert e^{\mathrm{i}\phi}\mathrm{d}\phi\\
+isolation(a,b)= \int \limits _{a}^{b} \lvert \vartheta (x(t)+\mathrm{i}y(t)) \frac{\mathrm{d}}{\mathrm{d}t}\rvert \mathrm{d}t\\
+interpolation: \phi = arclength(Umkreisradius)*t/Polygonseite(Inkreisradius)\\
+interpolation: \phi = (2\pi\frac{\overline{SE}}{2}/(sn))t;\int \lvert \vartheta (\iota_{W} (t))\frac{\mathrm{d}}{\mathrm{d}t} \rvert e^{\mathrm{i}\phi}\mathrm{d}t\\
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
 \end{align}
 Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The total derivative is obsolete, because coordinates are local $\frac{\mathrm{d}}{\mathrm{d} x(t)}\frac{\mathrm{d}}{\mathrm{d} y(t)}\not = \frac{\mathrm{d}}{\mathrm{d}t}$ (not a chain rule).\\
@@ -211,8 +212,8 @@ Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^
 \subsection{Complex Visibility}
 This is also a cartesian (not interpolated) mode.
 \begin{align}
-visibility(a,b)=\int \limits _{a}^{b} \int \limits _{a}^{b} \upsilon (x(t)+\mathrm{i}y(t)) \mathrm{d}x(t)\mathrm{d}y(t)\\
-interpolation: \phi = 2\pi\frac{\overline{SE}}{2}t/(bs); \int \lvert \upsilon (\xi (t(\phi)))\rvert e^{\mathrm{i}\phi}\mathrm{d}\phi\\
+visibility(a,b)=\int \limits _{a}^{b} \upsilon (x(t)+\mathrm{i}y(t)) \mathrm{d}t\\
+interpolation: \phi = \frac{2\pi\overline{VC}}{(bs)}t; \int \lvert \upsilon (\xi (t)\rvert e^{\mathrm{i}\phi}\mathrm{d}t\\
 (((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)\Rightarrow \norm{r}_1 \sim \norm{\phi}
 \end{align}
 Note: If expansion is not needed, it is enough to have an indicator. Interchanging Fourier-like bases (see below) needs a modulator (interpolation).\\
@@ -224,7 +225,7 @@ Note: $X,A$ norms are on $transversality_{\gamma}$ from Analyzer, not $transvers
 \subsection{Indicator}
 Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable).
 \begin{align}
-\frac{\log isolation_{\iota_{X}}}{dir_{Y}\log\overline{\vartheta (VC)}} \odot \frac{visibility_{\xi}}{\overline{\upsilon (SE)}}
+\frac{\log isolation_{\iota_{X}}}{dir_{Y}\log\overline{\vartheta (SVE')}} \odot \frac{visibility_{\xi}}{\overline{\upsilon (VE)}+\mathrm{i}\overline{y(\upsilon (VC))}}
 \end{align}
 Eventually a forward operation can be applied for separation.\\\\
 The combination should now show $Isolation$ as the intensity of the single, combined 2D spectrogram and $Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
