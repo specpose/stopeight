@@ -81,6 +81,17 @@ vectorgraph_{1}: (x,y)_{n}=
 \subsection{Legal Segment}
 (~\cite[Riemann Integrable?]{Widon})
 
+\subsection{Non-Oriented}
+The curve functions $ \gamma (t)$ of any degree can be interprated as $\gamma(x(t),y(t))$. The derivative in the following is meant to be the total derivative. (chain rule)
+\begin{align}
+\frac{\mathrm{d}}{\mathrm{d} t} \gamma (t) = \frac{\mathrm{d}}{\mathrm{d} t} \gamma (x(t),y(t)) = \gamma(t)* (\frac{\partial}{\partial x}  \frac{\mathrm{d} x}{\mathrm{d}t} + \frac{\partial}{\partial y} \frac{\mathrm{d} y}{\mathrm{d}t})
+\end{align}\\
+The second order total derivative. (product rule)
+\begin{align}
+\frac{\mathrm{d}^2}{\mathrm{d}t^2}\gamma(t)= \gamma(t)* (\frac{\partial^2}{\partial x^2}\frac{\mathrm{d}x}{\mathrm{d}t} + \frac{\partial}{\partial x}\frac{\mathrm{d}^2x}{\mathrm{d}t^2} + \frac{\partial^2}{\partial y^2}\frac{\mathrm{d}y}{\mathrm{d}t} + \frac{\partial}{\partial y}\frac{\mathrm{d}^2y}{\mathrm{d}t^2})
+\end{align}
+Note: The total derivative is used in physics (Zustandsraumdarstellung).
+
 \subsection{Straight}
 A Straight is a segment $[a,b]$ where $straightness(a,b)$ is smaller or equal to the ratio of the arc length of a hyperbola $1/x$ to the arc length of its direct connecting line $-\frac{x}{\mathrm{e}}+\frac{1+\mathrm{e}}{\mathrm{e}}$ from $1$ to $\mathrm{e}$. It is a part of a Spike, or transfering the Straight half of an Edge to an adjacent ZigZag, or being used as part of Edge detection. A Corner is $inserted$ .
 \begin{align}
