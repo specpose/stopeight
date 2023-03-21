@@ -68,17 +68,18 @@ Note: This implicit definition uses differential geometry. For a discrete implem
 This is true if the outer bounds $S_{0},E_{n}$ of the Compact Cover are enforced. $t_{0}$ and $t_{m}$ have to be aligned with these bounds.
 This approach is also not viable.
 
-\section{Total Derivative}
-The total derivative here is relatively simple, unlike ~\cite{Analyzer}[3.1] the parameters $sn,bs$ don't depend on $t$.
+\section{Partial Derivatives}
+The partial derivative with parametrisation scaling $\frac{\mathrm{d}}{\mathrm{d} t}$ is relatively simple here, unlike ~\cite{Analyzer}[3.1] the parameters $sn,bs$ don't depend on $t$.
 \begin{align}
 \frac{\mathrm{d}}{\mathrm{d} t} function(t,sn,bs)\\
 = \frac{\mathrm{d}}{\mathrm{d} t} function(t) \circ Analyzer(sn) \circ vectorgraph(bs)\\
-= \frac{\partial}{\partial t} function(t) \circ ( \frac{\partial}{\partial sn}  \frac{\mathrm{d} }{\mathrm{d}t} * Analyzer(sn) \circ (\frac{\partial}{\partial bs} \frac{\mathrm{d}}{\mathrm{d}t}*vectorgraph(bs)) )
+= \frac{\partial}{\partial t} function(t) \circ ( \frac{\partial}{\partial sn}\frac{\mathrm{d}sn}{\mathrm{d}bs}* Analyzer(sn) \circ (\frac{\mathrm{d}}{\mathrm{d} bs} *vectorgraph(bs)) )
 \end{align}
-Note: The derivative is continuous (kompakter traeger), but not smooth (stetig). Therefore the antiderivative does not exist.\\\\
-But the outcome of $Analyzer$ still depends on $vectorgraph$, so for every interval $[a,b]$, there are two variables $\partial sn$ and $\partial bs$ for each function $fake visibility, fake isolation$, so this approach is not viable for a combined 2D spectrogram!
+Note: The derivative is continuous (kompakter traeger), but not smooth (stetig). Therefore the antiderivative does not exist.\\
+Notation: $\frac{\mathrm{d}}{\mathrm{d} t}$ is not the total derivative as in physics.\\\\
+But the outcome of $Analyzer$ still depends on $vectorgraph$, so for every interval $[a,b]$, there are still two separate functions $fake visibility$ and $fake isolation$, so this approach is not viable for a combined 2D scalogram!
 \begin{align}
-\frac{\partial}{\partial bs\partial sn} fakevisibility(a,b),\frac{\partial}{\partial sn\partial bs} fakeisolation(a,b)
+\frac{\partial^{2}}{\partial bs\partial sn} fakevisibility(a,b),\frac{\partial^{2}}{\partial sn\partial bs} fakeisolation(a,b)
 \end{align}
 
 \section{Hausdorff Dimension}
@@ -194,7 +195,7 @@ To create local spaces, the knots of a Graph could be used.\\
 Notation: Graph refers to Graph Theory here, not the Vector Graph from Grapher.
 
 \section{2D Spectrogram}
-\subsection{Complex Isolation}
+\subsection{Local Isolation}
 To make the non-orthogonal transform integrable, a change of variable is needed.
 \begin{align}
 \int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d}t\\
@@ -202,17 +203,17 @@ To make the non-orthogonal transform integrable, a change of variable is needed.
 \end{align}
 There are two main modes of integration. The cartesian (not interpolated) mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together (See Plancherel Identity). Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
 \begin{align}
-isolation(a,b)= \int \limits _{a}^{b} \lvert \vartheta (x(t)+\mathrm{i}y(t)) \frac{\mathrm{d}}{\mathrm{d}t}\rvert \mathrm{d}t\\
+isolation(a,b)= \int \limits _{y(a)}^{y(b)} \int \limits _{x(a)}^{x(b)} \lvert \vartheta (\iota_{W} (t))*(\frac{\mathrm{d}}{\mathrm{d}x},\frac{\mathrm{d}}{\mathrm{d}y})\rvert \mathrm{d}x\mathrm{d}y\\
 interpolation: \phi = arclength(Umkreisradius)*t/Polygonseite(Inkreisradius)\\
 interpolation: \phi = (2\pi\frac{\overline{SE}}{2}/(sn))t;\int \lvert \vartheta (\iota_{W} (t))\frac{\mathrm{d}}{\mathrm{d}t} \rvert e^{\mathrm{i}\phi}\mathrm{d}t\\
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
 \end{align}
-Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The total derivative is obsolete, because coordinates are local $\frac{\mathrm{d}}{\mathrm{d} x(t)}\frac{\mathrm{d}}{\mathrm{d} y(t)}\not = \frac{\mathrm{d}}{\mathrm{d}t}$ (not a chain rule).\\
+Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The parametric scaling of the derivative is obsolete, because coordinates are local $(\frac{\mathrm{d}}{\mathrm{d} x},\frac{\mathrm{d}}{\mathrm{d} y})\not =(\frac{\mathrm{d}}{\mathrm{d} x(t)},\frac{\mathrm{d}}{\mathrm{d} y(t)})\not = \frac{\mathrm{d}}{\mathrm{d}t}$ Stopeight Analyzer\cite{Analyzer}[3.1].\\
 Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\\\
 \subsection{Complex Visibility}
 This is also a cartesian (not interpolated) mode.
 \begin{align}
-visibility(a,b)=\int \limits _{a}^{b} \upsilon (x(t)+\mathrm{i}y(t)) \mathrm{d}t\\
+visibility(a,b)=\int \limits _{a}^{b} \upsilon (\xi (t))*(1+\mathrm{i}) \mathrm{d}t\\
 interpolation: \phi = \frac{2\pi\overline{VC}}{(bs)}t; \int \lvert \upsilon (\xi (t)\rvert e^{\mathrm{i}\phi}\mathrm{d}t\\
 (((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)\Rightarrow \norm{r}_1 \sim \norm{\phi}
 \end{align}
@@ -225,7 +226,7 @@ Note: $X,A$ norms are on $transversality_{\gamma}$ from Analyzer, not $transvers
 \subsection{Indicator}
 Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable).
 \begin{align}
-\frac{\log isolation_{\iota_{X}}}{dir_{Y}\log\overline{\vartheta (SVE')}} \odot \frac{visibility_{\xi}}{\overline{\upsilon (VE)}+\mathrm{i}\overline{y(\upsilon (VC))}}
+\frac{\log isolation_{\iota_{X}}}{dir_{Y}\log\overline{\vartheta (SVE')}} \odot \frac{visibility_{\xi}}{\lvert \cos\upsilon (VE)+\mathrm{i}\sin\upsilon (VE)\rvert}
 \end{align}
 Eventually a forward operation can be applied for separation.\\\\
 The combination should now show $Isolation$ as the intensity of the single, combined 2D spectrogram and $Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
