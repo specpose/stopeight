@@ -84,10 +84,9 @@ But the outcome of $Analyzer$ still depends on $vectorgraph$, so for every inter
 
 \section{Hausdorff Dimension}
 
-From a geometric point of view, Visibility is the area under the curve. Intuitively it also appears that Isolation is simply the formula of Straightness, but applied on the approximation $\xi$ instead of the original Vector Graph $\iota_{X}$.\\\\
-Think of Isolation as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two path integrals with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two non overlying approximations. Remember that Isolation is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.\\
-The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V\circ U_{m}(Analyzer)$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Visibility is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact at a certain level.\\\\
-Consider: A vectorgraph resembling the solution for an ordinary differential equation of one variable. The vectorgraph has a start because it is a Anfangswertproblem and a blocksize $bs$ corresponding to the differential $\mathrm{d}$. The straightness calibration $sn$ would simplify the solution.
+From a geometric point of view, Visibility is the area under the curve. Intuitively it also appears that Isolation is simply the formula of Straightness, but applied on the approximation $\iota_{T}$ instead of the original Vector Graph $legalsegment \circ \iota_{X}$.\\\\
+Think of Isolation as a Koch Curve. The Hausdorff Dimension of two path integrals would be the ratio of two Vector Graphs with different blocksize $bs$. However this may become difficult to compare as bounds are inevitably shifting with two non overlying approximations. Remember that Isolation is $directly$ depending on straightness $sn$. Straightness calibration $omits$ artefact at a certain level.\\
+The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V\circ U_{m}(Analyzer)$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Visibility is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.
 
 \chapter{Coordinate Transforms}
 The coordinate transforms break the global affine space $(AffineSpace,(X,\mathbb{R}^2,\oplus,\odot),\overrightarrow{\text{ }})$ into charts $U_{m}$. For the orthogonal coordinate transform $\upsilon$ the transversality remains the same. For the non-orthogonal coordinate transform $\vartheta$, a slightly adjusted transversality is created.
@@ -203,7 +202,7 @@ To make the non-orthogonal transform integrable, a change of variable is needed.
 \end{align}
 There are two main modes of integration. The cartesian (not interpolated) mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together (See Plancherel Identity). Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
 \begin{align}
-isolation(a,b)= \int \limits _{y(a)}^{y(b)} \int \limits _{x(a)}^{x(b)} \lvert \vartheta (\iota_{W} (t))*(\frac{\mathrm{d}}{\mathrm{d}x},\frac{\mathrm{d}}{\mathrm{d}y})\rvert \mathrm{d}x\mathrm{d}y\\
+isolation(a,b)= dir_{Y}\int \limits _{y(a)}^{y(b)} \int \limits _{x(a)}^{x(b)} \lvert \vartheta (\iota_{W} (t))*(\frac{\mathrm{d}}{\mathrm{d}x},\frac{\mathrm{d}}{\mathrm{d}y})\rvert \mathrm{d}x\mathrm{d}y\\
 interpolation: \phi = arclength(Umkreisradius)*t/Polygonseite(Inkreisradius)\\
 interpolation: \phi = (2\pi\frac{\overline{SE}}{2}/(sn))t;\int \lvert \vartheta (\iota_{W} (t))\frac{\mathrm{d}}{\mathrm{d}t} \rvert e^{\mathrm{i}\phi}\mathrm{d}t\\
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
@@ -224,9 +223,13 @@ Note: To make the discrete notation from the Grapher consistent with this infini
 Note: $X,A$ norms are on $transversality_{\gamma}$ from Analyzer, not $transversality_{vectorgraph}$ from Grapher.
 
 \subsection{Indicator}
+The composition of visibility and isolation is purely based on expected range.
+\begin{align}
+visibility(a,b)*e^{-\mathrm{i}\phi}/isolation(a,b)
+\end{align}
 Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable).
 \begin{align}
-\frac{\log isolation_{\iota_{X}}}{dir_{Y}\log\overline{\vartheta (SVE')}} \odot \frac{visibility_{\xi}}{\lvert \cos\upsilon (VE)+\mathrm{i}\sin\upsilon (VE)\rvert}
+(\frac{\log isolation}{dir_{Y}\log\overline{\vartheta (S)\vartheta (V)\vartheta (E')}} \odot \frac{visibility}{\lvert \cos\overline{\upsilon (V)\upsilon (E)}+\mathrm{i}\sin\overline{\upsilon (V)\upsilon (E)}\rvert})*\int \limits _{a}^{b} e^{\mathrm{i}\pi\overline{\upsilon (S)\upsilon (E)}t/(bs)}\mathrm{d}t
 \end{align}
 Eventually a forward operation can be applied for separation.\\\\
 The combination should now show $Isolation$ as the intensity of the single, combined 2D spectrogram and $Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.

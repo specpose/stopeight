@@ -167,6 +167,10 @@ $times$ is the product of a function over a interval space $dom(\iota,\xi)=T_{n}
 times(\mu_{+},function) = \prod_{\inf \limits _{\mu_{+}} (b-a)}^{\sup \limits _{\mu_{+}} (b-a)} function(a,b)
 \end{equation}
 
+\subsection{Hausdorff Dimension}
+Consider: A vectorgraph resembling the solution for an ordinary differential equation of one variable. The vectorgraph has a start because it is a Anfangswertproblem and a blocksize $bs$ corresponding to the differential $\mathrm{d}$. The straightness calibration $sn$ would simplify the solution.
+
+
 \subsection{Orthogonal}
 Looking at a chart from $V(U_{m}')$ (rotated to the x-axis and centered at $V$), the more obvious observation is that a vector $\overrightarrow{VC(U_{m}')}$, multiplied by a complex conjugate $\overrightarrow{VC(U_{m+1}')}$ in the same analytic direction $dir_{Y}=1\lor dir_{Y}=-1$ is entirely real. This implies that also all the other points in the two charts eventually abandon their imaginary part.\\\\
 Aditionally, we flip the complex axes, so that the upward-facing $ori(\iota_{T})=1$ half circles lie to the complex real positive side and the downward-facing $ori(\iota_{T})=-1$ half circles lie to the complex real negative side. The Turns $T$, should cancel each other when multiplying or adding the complex numbers, the Corners $C$ should grow if the $vectorgraph$ is not symmetric.\\\\
@@ -174,14 +178,6 @@ Modulate the complex radius of the orthogonal coordinate transform $\upsilon$ by
 \begin{align}
 z_{n} = \int \limits _{t_{1}}^{t_{2}} \sin \underbrace{\frac{2\pi}{(t_{2}-t_{1})}t}_{\approx \text{numerator }Max_{Straight}} * \underbrace{\lvert \upsilon (x(t)+\mathrm{i}y(t)) \rvert}_{1\text{ in this case}} \mathrm{d}t \label{eq:4}
 \end{align}
-
-\subsection{Non-Orthogonal}
-To make the radius $r$ smooth (stetig), the integration bounds $E(U_{m})=S(U_{m+1}$ after the local Corner $C(U_{m})$ and before the next Corner $C(U_{m+1})$ have to be adjusted to $T'$, so that
-\begin{align}
-\lvert T' - V(U_{m}) \rvert = \lvert V(U_{m+1}) -T' \rvert\label{eq:2}
-\end{align}
-These new bounds are only for integration purposes. Note that they are set before the non-orthogonal coordinate transform $\vartheta$, but after the transversality $Y$ is calculated. Shifting them would break the quartic approximation in some cases.\\
-Bounds with the length condition above can always be found, but they may fall before the local Corner $t(T') < t\circ C(U_{m})$ or after the next Corner $t(T') > t\circ C(U_{m+1})$.
 
 \subsection{Imaginary Visibility}
 Visibility is an increase of the polynomial Coefficients(?) of a curve segment.
