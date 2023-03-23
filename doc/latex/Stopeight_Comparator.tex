@@ -89,8 +89,8 @@ Think of Isolation as a Koch Curve. The Hausdorff Dimension of two path integral
 The area function under the curve is the Nautilus area. Instead of a ratio, we take the difference of two approximations on their own respective chart centers $V\circ U_{m}(Analyzer)$. This performs even worse under shifting bounds as we calibrate straightness $sn$. Remember that Visibility is $directly$ depending on blocksize $bs$. Blocksize adjustment $removes$ artefact.
 
 \chapter{Coordinate Transforms}
-The coordinate transforms break the global affine space $(AffineSpace,(X,\mathbb{R}^2,\oplus,\odot),\overrightarrow{\text{ }})$ into charts $U_{m}$. For the orthogonal coordinate transform $\upsilon$ the transversality remains the same. For the non-orthogonal coordinate transform $\vartheta$, a slightly adjusted transversality is created.
-Note: There is no more zero vector $\overrightarrow{0}$ for the entire space as required by the $\oplus$ verification operator.
+The coordinate transforms break the global affine space $(AffineSpace,(X,\mathbb{R}^2,\oplus,\odot),\overrightarrow{\text{ }})$ into charts $U_{m}$. For the orthogonal coordinate transform $\upsilon$ the transversality remains the same. For the non-orthogonal coordinate transform $\vartheta$, a slightly adjusted transversality with different bounds is created.\\
+Note: The shearing map obliterates the linear dependence of the two linear dependent dimensions of the target (generative=polynomial) system (plane).
 
 \subsubsection*{Simulation}
 In order to get from function graph analysis to the Stopeigh Analyzer, geometric analysis was required. In order to understand Visibility and Isolation, the Stopeight Analyzer is not enough, and some of the phenomena in Simulation have to be looked at beforehand.
@@ -103,7 +103,7 @@ Example: In an electronic circuit, this would have to be implemented using a fee
 A $carriage wheel$ can get hitched if it bumps against a tree-root. Prediciting where this increased Visibility will reduce the Isolation of the wheel can not be ultimately concluded, just by looking at the wheel. There is only a probability that the wheel will start to break, when it encounters a backward thrust against its wooden spines. It is therefore not at all a neighboring relationship of cause and effect.
 
 \subsection{Orthogonal}
-The point of view transformation $V(U_{m}')$ to $\overrightarrow{SE}/2$ is a rotation to the x-axis and a Translation to the center. The adjustment of the complex radius $r=\sqrt{x^2+y^2}$ is performed by the Translation.
+Transformations are applied to the coordinates obtained from an approximation $\xi$ (Spline Axioms\cite{Axioms}[1.5]) or coordinates from the original data $\iota_{X}$ where $S,C,E$ have been previously determined by the Stopeight Analyzer. The point of view transformation $V(U_{m}')$ to $\overrightarrow{SE}/2$ is a rotation to the x-axis and a Translation to the center. The adjustment of the radius $r=\sqrt{x^2+y^2}$ is performed by the Translation.
 \begin{align}
 \underbrace{
 \begin{pmatrix}
@@ -138,7 +138,7 @@ The rotation angle $\phi$ is applied afterwards using the translated coordinates
 }_{Rotation}*
 Translation((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
-Note: The coordinate transform with an orthogonal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a polar to cartesian transform $r\circ (Translation\circ \iota_{T}(t_{S},t_{E})),\phi \circ (Rotation\circ (\iota_{T}(t_{S},t_{E}),Translation(r)))$.\\\\
+Note: The coordinate transform with an orthogonal, but individual and local basis is followed by identifying $\mathbb{R}^2=\mathbb{C}$. This is a cartesian to polar transform $r\circ (Translation\circ \iota_{T}(t_{S},t_{E})),\phi \circ (Rotation\circ (\iota_{T}(t_{S},t_{E}),Translation(r)))$.\\\\
 To make the complex angle $\phi$ smooth connecting the charts $U_{m}\cap U_{m-1}$ we take the angle of the last vector $E\in U_{m-1}$.
 \begin{align}
 \phi (U_{m}) := \phi (E \in U_{m-1})+\phi(U_{m})\\
@@ -163,8 +163,8 @@ Likewise two consecutive half-circles facing opposite orientations $ori$ zero ou
 }_{Rotation}*
 Translation((MH)^{-1}\begin{bmatrix} x \\ y \\ 0 \\ 0 \\ 0 \end{bmatrix})
 \end{align}
-Note: The coordinate transform to a non-orthogonal basis is the equivalent of a cartesian to polar transform $y\circ (Rotation\circ (Translation(r),\xi(t_{C}))),x\circ (Rotation\circ (Translation(r),\iota_{T}(t_{S},t_{E})))$.\\\\
-To make the radius $r$ smooth (stetig), the integration bounds $E(U_{m})=S(U_{m+1}$ after the local Corner $C(U_{m})$ and before the next Corner $C(U_{m+1})$ have to be adjusted to $T'$, so that
+Note: The coordinate transform to a non-orthogonal basis is the equivalent of a polar to cartesian transform $y\circ (Rotation\circ (Translation(r),\xi(t_{C}))),x\circ (Rotation\circ (Translation(r),\iota_{T}(t_{S},t_{E})))$.\\\\
+To make the complex radius $r$ smooth (stetig), the integration bounds $E(U_{m})=S(U_{m+1}$ after the local Corner $C(U_{m})$ and before the next Corner $C(U_{m+1})$ have to be adjusted to $T'$, so that
 \begin{align}
 \lvert T' - V(U_{m}) \rvert = \lvert V(U_{m+1}) -T' \rvert\label{eq:2}
 \end{align}
@@ -175,12 +175,12 @@ Note: The function $r(t)$ is continuous (auf Kompaktem Traeger) $and$ smooth (st
 \section{Impossible Figures}
 
 \subsection*{Compact Cover}
-If you would happen to try to run the Stopeight Analyzer recursively on a ZigZag, you would find out that you get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically you would have treated Turns $T$ as Corners $C$ (see Spiral). The result is that you are realigning focal axes $\overline{VC}$. Essentially you would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative you could try the Woodpecker Transform (See below) on a ZigZag.\\\\
-If you would happen to look for a signal expansion on a coordinate transform in a Spiral, you would probably try to look for a common center of all the Cliffs. You would then have a function $\phi (r)$, which would have an analytic meaning, for example on a signal base $e^{ik};k \in \mathbb{Z}$.\\\\
+If we would happen to try to run the Stopeight Analyzer recursively on a ZigZag, we would find out that we get a valid result from the output as well, because the output from the Stopeight Analyzer still contains original points from $\iota_{X}$ (except for inserted Corners in Straights). But acknowledge that theoretically we would have treated Turns $T$ as Corners $C$ (see Spiral). The result is that we are realigning focal axes $\overline{VC}$. Essentially we would have increased the polynomial degree of the approximation, but this is not desirable in ZigZags. As an alternative we could try the Woodpecker Transform (See below) on a ZigZag.\\\\
+If we would happen to look for a signal expansion on a coordinate transform in a Spiral, we would probably try to look for a common center of all the Cliffs. We would then have a function $\phi (r)$, which would have an analytic meaning, for example on a signal base $e^{ik};k \in \mathbb{Z}$.\\\\
 Even though Visibility and Isolation are present in the two examples above ($Fake Visibility=0$ for ZigZag and $Fake Visibility=\infty$ for a repeating perfect circle), they $directly$ depend on each other only in Swells.
 
 \subsection{Breaking The Transversality}
-Changing from global to local coordinates $\mathrm{d}t\rightarrow\mathrm{dx}\mathrm{dy}$, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this is that you can get back data. Data that has been previously removed by $\xi$. Applying this to anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
+Changing from global to local coordinates $\mathrm{d}t\rightarrow\mathrm{dx}\mathrm{dy}$, it is now possible to not only integrate and multiply $\xi$, but also $\iota_{X}$. The benefit of this is that we can get back data. Data that has been previously removed by $\xi$. Applying this to anything that is too far off from what can be approximated by a quartic polynomial spline of a single variable, should be avoided. While it is desirable to increase the polynomial degree of an approximation, this should not come at the loss of a causal structure.\\\\
 Consider: Buoy data is not inherently well suited for quartic approximations. The Stopeight Analyzer is useless. But with large $r$ representing the infimum of the path integral of a $C_{\infty}$ approximation, the infimum corresponds to Corners. All the data lying between local $T_{\infty}$ is already smooth (stetig) or can be made smooth by interpolation and could be integrated using the non-orthogonal coordinate transform $\vartheta$, thus giving complex visibility and isolation.\\
 Note: It is not advisable to switch to a norm of the complex angle $\norm{\phi_{m+1}-\phi_{m}}=\mathrm{d}\phi$ in this buoy example, because complex isolation would disappear. $sn$ would be more accurately represented by linear regression and $bs$ would create angular distortion.\\\\
 Impossible Figures break the transversality $Y$. The original Euclidean norm $\norm{(x,y)_{m+1}-(x,y)_{m}}_2 = \lvert z_{m+1}-z_{m} \rvert$ is still the same. But the taxicab norm $\norm{(x,y)_{m}}_1 = \sum \limits _{i=0}^{m} \lvert z_{m} \rvert$ now works on bounds $T \not \in Y,Z; T \in X$.\\\\
@@ -194,15 +194,19 @@ To create local spaces, the knots of a Graph could be used.\\
 Notation: Graph refers to Graph Theory here, not the Vector Graph from Grapher.
 
 \section{2D Spectrogram}
-\subsection{Local Isolation}
-To make the non-orthogonal transform integrable, a change of variable is needed.
+To $deparametrise$ a local transform, a change of variable is needed.
 \begin{align}
-\int \limits _{a}^{b} \vartheta (x(t)+\mathrm{i}y(t)) \mathrm{d}t\\
-\mathrm{d} t = \mathrm{d}x \mathrm{d}y
+\int \limits _{a}^{b} \lvert\vartheta (x(t)+\mathrm{i}y(t))\rvert \mathrm{d}t\\
+\mathrm{d} t = \mathrm{d}x \mathrm{d}y;x(a),x(b),y(a),y(b)\\
+\int \limits _{a}^{b} \upsilon (x(t)+\mathrm{i}y(t)) \mathrm{d}t\\
+\mathrm{d} t = \mathrm{d}\phi;\phi(a),\phi(b)
 \end{align}
+Note: Even if Analyzer and the non-orthogonal transform have been applied correctly, the possibility of negative $\mathrm{d}x$ can not be excluded, so $\int \lvert y(x(\vartheta (\iota_{W}(t)))) \frac{\mathrm{d}}{\mathrm{d}x} \rvert \mathrm{d}t$ is not possible. For $\mathrm{d}\phi$ a negative angle doesn't matter, the complex space handles it correctly.\\
+Note: For the function $\upsilon (\phi)$, $\upsilon$ is surjective only if applied to the approximation $\xi$, not the original data $\iota_{W}$.
+\subsection{Local Isolation}
 There are two main modes of integration. The cartesian (not interpolated) mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together (See Plancherel Identity). Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
 \begin{align}
-isolation(a,b)= dir_{Y}\int \limits _{y(a)}^{y(b)} \int \limits _{x(a)}^{x(b)} \lvert \vartheta (\iota_{W} (t))*(\frac{\mathrm{d}}{\mathrm{d}x},\frac{\mathrm{d}}{\mathrm{d}y})\rvert \mathrm{d}x\mathrm{d}y\\
+isolation(a,b)= dir_{Y}\int \limits _{a}^{b} \lvert \vartheta (\iota_{W} (t))*(\frac{\partial}{\partial x},\frac{\partial}{\partial y})\rvert \mathrm{d}t\\
 interpolation: \phi = arclength(Umkreisradius)*t/Polygonseite(Inkreisradius)\\
 interpolation: \phi = (2\pi\frac{\overline{SE}}{2}/(sn))t;\int \lvert \vartheta (\iota_{W} (t))\frac{\mathrm{d}}{\mathrm{d}t} \rvert e^{\mathrm{i}\phi}\mathrm{d}t\\
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
@@ -212,7 +216,7 @@ Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^
 \subsection{Complex Visibility}
 This is also a cartesian (not interpolated) mode.
 \begin{align}
-visibility(a,b)=\int \limits _{a}^{b} \upsilon (\xi (t))*(1+\mathrm{i}) \mathrm{d}t\\
+visibility(a,b)=\int \limits _{\phi(a)}^{\phi(b)} \upsilon (\xi (\phi)) \mathrm{d}\phi;\phi=\arctan (\frac{y}{x})\\
 interpolation: \phi = \frac{2\pi\overline{VC}}{(bs)}t; \int \lvert \upsilon (\xi (t)\rvert e^{\mathrm{i}\phi}\mathrm{d}t\\
 (((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)\Rightarrow \norm{r}_1 \sim \norm{\phi}
 \end{align}
@@ -227,11 +231,11 @@ The composition of visibility and isolation is purely based on expected range.
 \begin{align}
 visibility(a,b)*e^{-\mathrm{i}\phi}/isolation(a,b)
 \end{align}
-Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable).
+Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable). Eventually a inverse operation can be applied for separation.
 \begin{align}
-(\frac{\log isolation}{dir_{Y}\log\overline{\vartheta (S)\vartheta (V)\vartheta (E')}} \odot \frac{visibility}{\lvert \cos\overline{\upsilon (V)\upsilon (E)}+\mathrm{i}\sin\overline{\upsilon (V)\upsilon (E)}\rvert})*\int \limits _{a}^{b} e^{\mathrm{i}\pi\overline{\upsilon (S)\upsilon (E)}t/(bs)}\mathrm{d}t
+(\frac{\log isolation}{dir_{Y}\log\overline{\vartheta (S)\vartheta (V)\vartheta (E')}} \odot \frac{visibility}{\lvert \cos\overline{\upsilon (V)\upsilon (E)}+\mathrm{i}\sin\overline{\upsilon (V)\upsilon (E)}\rvert})*\int \limits _{a}^{b} e^{\mathrm{i}\pi\overline{\upsilon (S)\upsilon (E)}t/(bs)}\mathrm{d}t\\
+\frac{b-a}{\mathrm{d}\phi}=\frac{b-a}{\mathrm{d}x}\not =\frac{b-a}{\mathrm{d}y}
 \end{align}
-Eventually a forward operation can be applied for separation.\\\\
 The combination should now show $Isolation$ as the intensity of the single, combined 2D spectrogram and $Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
 \begin{align}
 \frac{\partial}{\partial bs\partial sn}\label{eq:3}
