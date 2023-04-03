@@ -1,23 +1,22 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>Grapher &#8212; stopeight 0.1.1 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
@@ -73,37 +72,45 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
-  <div class="section" id="grapher">
-<h1>Grapher<a class="headerlink" href="#grapher" title="Permalink to this headline">¶</a></h1>
+  <section id="grapher">
+<h1>Grapher<a class="headerlink" href="#grapher" title="Permalink to this heading">¶</a></h1>
 <p>The continuous function within the interval.</p>
 <div class="math">
-<p><img src="_images/math/ba13ba208a902f4b9c8ae3f9a68d13ca2ed4be1b.svg" alt="r: t\longmapsto r(t), t \in \left[ t_{0}, t_{n} \right], t \in \mathbb{D}, n \in \mathbb{N}"/></p>
+<p><img src="_images/math/a5d1f374e2eaa008a955475b29959a6310713a91.svg" alt="r: t\longmapsto r(t), t \in \left[ t_{0}, t_{n} \right], t \in \mathbb{D}, n \in \mathbb{N}"/></p>
 </div><a class="reference internal image-reference" href="_images/function_graph.svg"><img alt="_images/function_graph.svg" height="350pt" src="_images/function_graph.svg" /></a>
 <p>These two entities are being used to construct a planar graph of consecutive vectors (Banach space).</p>
 <div class="math">
-<p><img src="_images/math/8905335494c384a3c8f447b64f1c406ee449c81c.svg" alt="t_{n}-t_{n-1}\text{: Distance between two elements in r(t)}"/></p>
+<p><img src="_images/math/0a52e4070ebe86b58daf268286f574e8f2671c25.svg" alt="t_{n}-t_{n-1}\text{: Distance between two elements in r(t)}"/></p>
 </div><div class="math">
-<p><img src="_images/math/22dbad49711df939e3ad75f815908b3f9adf2170.svg" alt="\alpha (t):\text{Angle between two elements in r(t)}"/></p>
+<p><img src="_images/math/3a4ac4a990756643719b235e236ed99c72b718a8.svg" alt="\alpha (t):\text{Angle between two elements in r(t)}"/></p>
 </div><p>Building the vector graph starting at origin.</p>
 <div class="math">
-<p><img src="_images/math/832097d16484a1d896a7c1f49cdf74f1e547c55c.svg" alt="\mathbf{v_{0}} = \begin{pmatrix}
+<p><img src="_images/math/51d63fac7a2ab5f67f54f1f8e08ee1cd9f4d2c69.svg" alt="\mathbf{v_{0}} = \begin{pmatrix}
 0 \\
 0
 \end{pmatrix}
@@ -112,7 +119,7 @@
 </div><a class="reference internal image-reference" href="_images/vector_graph.svg"><img alt="_images/vector_graph.svg" height="350pt" src="_images/vector_graph.svg" /></a>
 <p>The vector for each element of r(t) built from the rotation of all preceding element-vectors, its own angle and distance.</p>
 <div class="math">
-<p><img src="_images/math/d9cfdf43362416fc92e717bd708ba0d6a71c664f.svg" alt="\mathbf{v}(t) = M(\int\limits_{t_{0}}^{t_{n}}\alpha(t))\mathrm{d}t \cdot \begin{pmatrix}
+<p><img src="_images/math/9ac1537d3fa4726f9c37f6c1919f8be0651b0cf6.svg" alt="\mathbf{v}(t) = M(\int\limits_{t_{0}}^{t_{n}}\alpha(t))\mathrm{d}t \cdot \begin{pmatrix}
 \mathrm{d}t \\
 0
 \end{pmatrix}
@@ -121,24 +128,24 @@ t_{n}-t_{n-1} \\
 0
 \end{pmatrix}, n \neq 0"/></p>
 </div><div class="math">
-<p><img src="_images/math/dc593bc2749e021ee085fabc611e9467825666b3.svg" alt="\alpha(t) = \arctan \frac{a * r'(t)}{t} \approx \arctan \frac{a(r(t_{n})-r(t_{n-1}))}{t_{n}-t_{n-1}}, n \neq 0"/></p>
+<p><img src="_images/math/a685ca9b74f4b3ee1ae56ed2cd0556ba2288e30b.svg" alt="\alpha(t) = \arctan \frac{a * r'(t)}{t} \approx \arctan \frac{a(r(t_{n})-r(t_{n-1}))}{t_{n}-t_{n-1}}, n \neq 0"/></p>
 </div><div class="math">
-<p><img src="_images/math/1e107fa64d659ecb6cf16526894f6812fa108442.svg" alt="M(\alpha):\text{2x2 rotation matrix of angle }\alpha"/></p>
+<p><img src="_images/math/57bb8fdb507a5c80c09b1593ff4470ba8cc79e2e.svg" alt="M(\alpha):\text{2x2 rotation matrix of angle }\alpha"/></p>
 </div><div class="math">
-<p><img src="_images/math/f79cb0a7c74630f346428717377e37476c25e226.svg" alt="M(\alpha) = \begin{pmatrix}
+<p><img src="_images/math/1cd81157524f5852acf2d8269d9c63703aaf4a39.svg" alt="M(\alpha) = \begin{pmatrix}
 \cos \alpha &amp; -\sin \alpha \\
 \sin \alpha &amp; \cos \alpha
 \end{pmatrix}"/></p>
 </div><p>In the example given below, for simplicity r(t) is not time-variant. Otherwise step-length could vary.</p>
 <div class="math">
-<p><img src="_images/math/5fdcf1321e95523b57695424a07589e8bf539d57.svg" alt="\Delta q=\Delta t"/></p>
+<p><img src="_images/math/52e271819dc5fd240a4501de84603bf479ff6696.svg" alt="\Delta q=\Delta t"/></p>
 </div><a class="reference internal image-reference" href="_images/vector_construction.svg"><img alt="_images/vector_construction.svg" height="400pt" src="_images/vector_construction.svg" /></a>
 <p>Within the interval satisfying the condition,</p>
 <div class="math">
-<p><img src="_images/math/944122a73be6010642fb440357882af132bb14fa.svg" alt="q \in \left[ t_{x}, t_{y} \right], k * \Delta q=t_{n}-t_{n-1}, k \in \mathbb{N}, k \neq 0"/></p>
+<p><img src="_images/math/829a1ec8916f699f5e8d73eea7bc712a876e2975.svg" alt="q \in \left[ t_{x}, t_{y} \right], k * \Delta q=t_{n}-t_{n-1}, k \in \mathbb{N}, k \neq 0"/></p>
 </div><p>the scaling factor using the arithmetic mean of changes in value of r(t) is.</p>
 <div class="math">
-<p><img src="_images/math/a0c5a0a7a6e7f91412c05a366a297db7413ce4c7.svg" alt="a = \frac{1}{\frac{\int\limits_{t_{x}}^{t_{y}}\left|r'(q)\right|\mathrm{d}q}{\frac{t_{y}-t_{x}}{t}}} \approx \frac{1}{\frac{\displaystyle\sum_{t_{x}}^{t_{y}}\left|r(t_{y})-r(t_{y-1})\right|}{\frac{t_{y}-t_{x}}{t_{n}-t_{n-1}}}}, n \neq 0
+<p><img src="_images/math/a100e88e1697e336b5febff45111b9afd95bda6e.svg" alt="a = \frac{1}{\frac{\int\limits_{t_{x}}^{t_{y}}\left|r'(q)\right|\mathrm{d}q}{\frac{t_{y}-t_{x}}{t}}} \approx \frac{1}{\frac{\displaystyle\sum_{t_{x}}^{t_{y}}\left|r(t_{y})-r(t_{y-1})\right|}{\frac{t_{y}-t_{x}}{t_{n}-t_{n-1}}}}, n \neq 0
 \quad
 a \in \mathbb{R}"/></p>
 </div><p>A different scaling factor can be chosen. The criteria for choosing a scaling factor is whether the shortest impulse in the non time-variant function r(q) forms a distinguishable shape in the planar graph.</p>
@@ -147,10 +154,11 @@ a \in \mathbb{R}"/></p>
 <p>And something similar using an even bigger factor.</p>
 <a class="reference internal image-reference" href="_images/vector_graph3.svg"><img alt="_images/vector_graph3.svg" height="300pt" src="_images/vector_graph3.svg" /></a>
 <p>Once the vector graph has been calculated, it can be used as input for the Analyzer.</p>
-</div>
+</section>
 
 
           </div>
+          
         </div>
       </div>
     <div class="clearer"></div>
@@ -159,8 +167,8 @@ a \in \mathbb{R}"/></p>
       
       
       
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
       <a href="_sources/vector-graph.txt"
