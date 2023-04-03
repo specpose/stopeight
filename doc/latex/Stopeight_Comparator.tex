@@ -194,48 +194,37 @@ To create local spaces, the knots of a Graph could be used.\\
 Notation: Graph refers to Graph Theory here, not the Vector Graph from Grapher.
 
 \section{2D Spectrogram}
-To $deparametrise$ a local transform, a change of variable is needed.
-\begin{align}
-\int \limits _{a}^{b} \lvert\vartheta (x(t)+\mathrm{i}y(t))\rvert \mathrm{d}t\\
-\mathrm{d} t = \mathrm{d}x \mathrm{d}y;x(a),x(b),y(a),y(b)\\
-\int \limits _{a}^{b} \upsilon (x(t)+\mathrm{i}y(t)) \mathrm{d}t\\
-\mathrm{d} t = \mathrm{d}\phi;\phi(a),\phi(b)
-\end{align}
-Note: Even if Analyzer and the non-orthogonal transform have been applied correctly, the possibility of negative $\mathrm{d}x$ can not be excluded, so $\int \lvert y(x(\vartheta (\iota_{W}(t)))) \frac{\mathrm{d}}{\mathrm{d}x} \rvert \mathrm{d}t$ is not possible. For $\mathrm{d}\phi$ a negative angle doesn't matter, the complex space handles it correctly.\\
-Note: For the function $\upsilon (\phi)$, $\upsilon$ is surjective only if applied to the approximation $\xi$, not the original data $\iota_{W}$.
 \subsection{Local Isolation}
-There are two main modes of integration. The cartesian (not interpolated) mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together (See Plancherel Identity). Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
+Because the space is $local$, the parametrisation can be $descaled$.
 \begin{align}
-isolation(a,b)= dir_{Y}\int \limits _{a}^{b} \lvert \vartheta (\iota_{W} (t))*(\frac{\partial}{\partial x},\frac{\partial}{\partial y})\rvert \mathrm{d}t\\
-interpolation: \phi = arclength(Umkreisradius)*t/Polygonseite(Inkreisradius)\\
-interpolation: \phi = (2\pi\frac{\overline{SE}}{2}/(sn))t;\int \lvert \vartheta (\iota_{W} (t))\frac{\mathrm{d}}{\mathrm{d}t} \rvert e^{\mathrm{i}\phi}\mathrm{d}t\\
+isolation_{\gamma}(a,b)= dir_{Y}\int \limits _{a}^{b} \lvert \vartheta\circ\gamma (t)*(\frac{\partial}{\partial x},\frac{\partial}{\partial y})\rvert \mathrm{d}t\\
 (((\int,\norm{z}=\norm{z}_2),\oplus),\norm{t}=\norm{z}_1)
 \end{align}
-Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The parametric scaling of the derivative is obsolete, because coordinates are local $(\frac{\mathrm{d}}{\mathrm{d} x},\frac{\mathrm{d}}{\mathrm{d} y})\not =(\frac{\mathrm{d}}{\mathrm{d} x(t)},\frac{\mathrm{d}}{\mathrm{d} y(t)})\not = \frac{\mathrm{d}}{\mathrm{d}t}$ Stopeight Analyzer\cite{Analyzer}[3.1].\\
-Notation: There is absolutely no difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation if a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined. A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\\\
+Note: Even if Analyzer and the non-orthogonal transform have been applied correctly, the possibility of negative $\mathrm{d}x$ can not be excluded, so $\int \lvert y(x(\vartheta (\iota_{W}(t)))) \frac{\mathrm{d}}{\mathrm{d}x} \rvert \mathrm{d}t$ is not possible. For $\mathrm{d}\phi$ a negative angle doesn't matter, the complex space handles it correctly.\\
+Note: The angle transform in the non-orthogonal transform $\vartheta$ is a shearing operation which breaks the derivative's norm $\norm{z_{n+1}-z_{n}}_2$. The parametric scaling of the derivative is obsolete, because coordinates are local $(\frac{\partial}{\partial x},\frac{\partial}{\partial y})\not = \frac{\mathrm{d}}{\mathrm{d}t}$ Stopeight Analyzer\cite{Analyzer}[3.1].\\
+Notation: If a metric space with a distance norm $(\mathbb{R},\norm{i}=d(a,b))$ is defined, the only difference in infinitesimal $\int \limits _{a}^{b} \mathrm{d}i$ notation and discrete $\sum  \limits _{i=a}^{b}$ notation is that $d(a,b) = d(b,c)$ is not guaranteed, thus an analytic function can not be derived (eventually not continuous). A set $\mathbb{R}$ with bounds $a,b$ has to be open $a,b \not \in \mathbb{R}$, closed $a,b \in \mathbb{R}$ or clopen $a \in \mathbb{R}, b \not \in \mathbb{R} \lor a \not \in \mathbb{R},b \in \mathbb{R}$.\\\\
 \subsection{Complex Visibility}
-This is also a cartesian (not interpolated) mode.
+Integration can either occur on $\mathrm{d}t$ or $\mathrm{d}\phi$. To integrate on $\mathrm{d}\phi$, interpolation is needed. The linear equation of the orthogonal transform $\upsilon$ has to be solved locally, so that
 \begin{align}
-visibility(a,b)=\int \limits _{\phi(a)}^{\phi(b)} \upsilon (\xi (\phi)) \mathrm{d}\phi;\phi=\arctan (\frac{y}{x})\\
-interpolation: \phi = \frac{2\pi\overline{VC}}{(bs)}t; \int \lvert \upsilon (\xi (t)\rvert e^{\mathrm{i}\phi}\mathrm{d}t\\
+\arctan\frac{y(\upsilon (\xi (t)))}{x(\upsilon (\xi (t)))}=\phi
+\end{align}
+Integrating on $\mathrm{d}\phi$ instead of $\mathrm{d}t$ has the benefit that the differential does not depend on the polynomial degree of the spline.
+\begin{align}
+visibility(a,b)=\int \limits _{\phi(a)}^{\phi(b)} \upsilon\circ\xi (t) \mathrm{d}\phi\\
 (((\int,\norm{z}=\norm{r}_1),\odot),\norm{\phi}= \norm{t}_2)\Rightarrow \norm{r}_1 \sim \norm{\phi}
 \end{align}
-Note: If expansion is not needed, it is enough to have an indicator. Interchanging Fourier-like bases (see below) needs a modulator (interpolation).\\
+Note: For the function $\upsilon (\phi)$, $\upsilon$ is surjective only if applied to the approximation $\xi$, not the original data $\iota_{W}$.\\
 Note: Cloud idiom ($1.5 circles \rightarrow \frac{4 quadratics}{3 sections}$) is in there, because we have smooth $\phi$. Visibility has it from $\xi$ (and isolation has it from $\iota_{W}$). By definition, the discretisation of visibility and isolation match.\\
 Note: This is not a double integral! A double integral would be $\int \int \mathrm{d}y\mathrm{d}x$ with $(\mathbb{R}^2,\norm{x},\norm{y})$.\\
 Note: To make the discrete notation from the Grapher consistent with this infinitesimal notation, the norm from the Comparator Constraint is extended to the path integral of an approximation $\norm{vectorgraph_{(m/n)}}_1=\int \lvert \gamma (t) \frac{\mathrm{d}}{\mathrm{d}t} \rvert \mathrm{d}t$.
 Note: $X,A$ norms are on $transversality_{\gamma}$ from Analyzer, not $transversality_{vectorgraph}$ from Grapher.
 
 \subsection{Indicator}
-The composition of visibility and isolation is purely based on expected range.
+(1) The Hausdorff-like ratio is treated as a signal and convolved with a range-normed, Fourier-like basis.
 \begin{align}
-visibility(a,b)*e^{-\mathrm{i}\phi}/isolation(a,b)
+\frac{isolation_{\iota_{W}}}{isolation_{\xi}}(a,b)\odot\frac{visibility}{\lvert \cos\overline{\upsilon (V)\upsilon (E)}+\mathrm{i}\sin\overline{\upsilon (V)\upsilon (E)}\rvert}(a,b)
 \end{align}
-Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable). Eventually a inverse operation can be applied for separation.
-\begin{align}
-(\frac{\log isolation}{dir_{Y}\log\overline{\vartheta (S)\vartheta (V)\vartheta (E')}} \odot \frac{visibility}{\lvert \cos\overline{\upsilon (V)\upsilon (E)}+\mathrm{i}\sin\overline{\upsilon (V)\upsilon (E)}\rvert})*\int \limits _{a}^{b} e^{\mathrm{i}\pi\overline{\upsilon (S)\upsilon (E)}t/(bs)}\mathrm{d}t\\
-\frac{b-a}{\mathrm{d}\phi}=\frac{b-a}{\mathrm{d}x}\not =\frac{b-a}{\mathrm{d}y}
-\end{align}
+Note: If expansion is not needed, it is enough to have an indicator. Interchanging Fourier-like bases (see below) needs a modulator.\\\\
 The combination should now show $Isolation$ as the intensity of the single, combined 2D spectrogram and $Visibility$ as the vertical shift. However, its derivative is still not smooth (stetig). A spectrogram can be achieved, but it does not lead to an algebra based on its antiderivative.
 \begin{align}
 \frac{\partial}{\partial bs\partial sn}\label{eq:3}

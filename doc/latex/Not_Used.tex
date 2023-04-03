@@ -179,6 +179,13 @@ Modulate the complex radius of the orthogonal coordinate transform $\upsilon$ by
 z_{n} = \int \limits _{t_{1}}^{t_{2}} \sin \underbrace{\frac{2\pi}{(t_{2}-t_{1})}t}_{\approx \text{numerator }Max_{Straight}} * \underbrace{\lvert \upsilon (x(t)+\mathrm{i}y(t)) \rvert}_{1\text{ in this case}} \mathrm{d}t \label{eq:4}
 \end{align}
 
+\subsection{Local Isolation}
+There are two main modes of integration. The cartesian (not interpolated) mode is also useful for simulation. Forward and backward $dir_{Y}$ signals can be added together (See Plancherel Identity). Also consider multiplying TCT points of a forward $dir_{Y}=1$ and backward $dir_{Y}=-1$ approximation in Stopeight Simulation.
+\begin{align}
+interpolation: \phi = arclength(Umkreisradius)*t/Polygonseite(Inkreisradius)\\
+interpolation: \phi = (2\pi\frac{\overline{SE}}{2}/(sn))t;\int \lvert \vartheta (\iota_{W} (t))\frac{\mathrm{d}}{\mathrm{d}t} \rvert e^{\mathrm{i}\phi}\mathrm{d}t
+\end{align}
+
 \subsection{Imaginary Visibility}
 Visibility is an increase of the polynomial Coefficients(?) of a curve segment.
 (No: When visibility is increased in a Spiral, it creates more subsegments/scale spaces). Points in $Y$ become uncertain at around $2\pi/3$. It is a Cantor-like diminishing isolation.
@@ -222,6 +229,21 @@ isolation(a,b) = ori(a,b)*times(\mu,straightness(a,b))(?)
 \subsection*{Interval Space}
 $jitter$ grows, but $diameter$ constant.
 Note: The antiderivative exists. It is smooth (~\cite[Riemann Integrable]{Widon}).\\\\
+
+\subsection{Indicator}
+(2) Populate the frequency domain with offset unnormed visibility.
+\begin{align}
+expansion: \phi = \frac{2\pi\overline{VC}}{(bs)}t; \int \lvert \upsilon (\xi (\tau - t))\rvert e^{\mathrm{i}\phi}\mathrm{d}t
+\end{align}
+(3) The composition of visibility and isolation is purely based on expected range.
+\begin{align}
+visibility(a,b)*e^{-\mathrm{i}\phi}/isolation(a,b)
+\end{align}\\
+(4) Visibility contains the inverse of a Fourier-like base. This is a inverse (as in function theory, not analytic direction) operation. It is providing a smooth, global angle $\phi(t)$ (change of variable). Eventually a inverse operation can be applied for separation.\\\\
+\begin{align}
+(\frac{\log isolation}{dir_{Y}\log\overline{\vartheta (S)\vartheta (V)\vartheta (E')}} \odot \frac{visibility}{\lvert \cos\overline{\upsilon (V)\upsilon (E)}+\mathrm{i}\sin\overline{\upsilon (V)\upsilon (E)}\rvert})*\int \limits _{a}^{b} e^{\mathrm{i}\pi\overline{\upsilon (S)\upsilon (E)}t/(bs)}\mathrm{d}t\\
+\frac{b-a}{\mathrm{d}\phi}=\frac{b-a}{\mathrm{d}x}\not =\frac{b-a}{\mathrm{d}y}
+\end{align}
 
 \chapter{Factorisation}
 Axiom: Complex multiplication preserves signal characteristics even in time-variant scenario. Rescaling is just a single factor, but depending on the sampling rate, the frames are affected differently.
