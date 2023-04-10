@@ -3,7 +3,7 @@
 from stopeight.util.editor import runnable
 from sys import modules as loader
 
-from PyQt5.QtWidgets import QComboBox,QPushButton
+from PySide2.QtWidgets import QComboBox,QPushButton
 
 import stopeight.logging as log
 _LOGDIR = '.stopeight' # this is not for logging messages; it is for data files
@@ -102,7 +102,7 @@ class Algorithm_Run:
                     pass
         return outputdata
     
-from PyQt5.QtCore import Qt
+from PySide2.QtCore import Qt
 from contextlib import redirect_stdout,redirect_stderr
 #def zoo(a: str)->int:
     #if (signature(zoo).return_annotation!=Signature.empty):

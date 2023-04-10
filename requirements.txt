@@ -3,7 +3,6 @@ kiwisolver==1.2.0
 matplotlib==3.2.1
 numpy==1.22.0
 pyparsing==3.0.0a1
-PyQt5==5.14.2
-PyQt5-sip==12.7.2
+PySide2==5.15.2.1
 python-dateutil==2.8.1
 six==1.14.0

@@ -24,7 +24,7 @@ def _convert(legacy_data):
 
 def open_SP()->ScribbleData:
     from stopeight.util.editor.runnable import EditorApp
-    from PyQt5.QtWidgets import QFileDialog
+    from PySide2.QtWidgets import QFileDialog
     filename = QFileDialog.getOpenFileName(EditorApp().window)
     assert type(filename[0]) == str
     assert len(filename[0]) != 0

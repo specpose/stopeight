@@ -21,7 +21,7 @@ setup( use_scm_version=True,
        install_requires=[
           'numpy',
           'matplotlib',
-          'PyQt5',# >5.11.0: install with pip, not easy_setup!
+          'PySide2',
           ],
 #pip end - not in cmake_examples
 #cmake start

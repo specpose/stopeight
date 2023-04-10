@@ -1,6 +1,6 @@
 # Copyright (C) 2017 Fassio Blatter
 
-from PyQt5.QtWidgets import QFileDialog,QInputDialog
+from PySide2.QtWidgets import QFileDialog,QInputDialog
 from stopeight.util.editor.data import WaveData
 
 import numpy as np

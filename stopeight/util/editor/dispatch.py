@@ -6,8 +6,8 @@ log.basicConfig(level=log.DEBUG)
 
 from stopeight.util.editor.runnable import EditorApp
 
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QToolBar,QGroupBox,QHBoxLayout
+from PySide2 import QtWidgets
+from PySide2.QtWidgets import QToolBar,QGroupBox,QHBoxLayout
 
 # False: Is part of a compiled library
 _DATA = {'Modules': [
@@ -69,7 +69,7 @@ def main():
     from stopeight.util.editor.scribble import ScribbleArea
     scribble = ScribbleArea()
     outputs.append(scribble)
-    from PyQt5.QtCore import Qt
+    from PySide2.QtCore import Qt
     scribble.setAllowedAreas(Qt.AllDockWidgetAreas)
     EditorApp().window.addDockWidget(Qt.RightDockWidgetArea,scribble)
 

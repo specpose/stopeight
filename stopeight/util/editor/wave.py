@@ -4,8 +4,8 @@
 import sys
 import numpy
 
-from PyQt5 import QtGui,QtWidgets
-from PyQt5.QtWidgets import QGroupBox
+from PySide2 import QtGui,QtWidgets
+from PySide2.QtWidgets import QGroupBox
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure

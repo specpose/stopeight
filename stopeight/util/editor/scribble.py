@@ -43,14 +43,14 @@
 #############################################################################
 
 
-from PyQt5.QtCore import QPoint, QRect, QSize, Qt
-from PyQt5.QtGui import QImage, QPainter, QPen, qRgb
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import (QColorDialog,
+from PySide2.QtCore import QPoint, QRect, QSize, Qt
+from PySide2.QtGui import QImage, QPainter, QPen, qRgb
+from PySide2 import QtWidgets
+from PySide2.QtWidgets import (QColorDialog,
         QInputDialog)
-from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
+from PySide2.QtPrintSupport import QPrintDialog, QPrinter
 
-from PyQt5.QtCore import QEvent
+from PySide2.QtCore import QEvent
 
 from stopeight.util.editor.runnable import EditorApp
 from stopeight.util.editor.data import ScribbleData
