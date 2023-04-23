@@ -24,7 +24,6 @@ setup( use_scm_version=True,
            'pybind11>=2.5.0',
            'setuptools_scm',
            ],
-       zip_safe=False,
 #distutils start
 #pip start
        install_requires=[
