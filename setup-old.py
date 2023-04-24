@@ -1,19 +1,14 @@
 #!/usr/bin/env python
 
 import os
-#distutils start
-__import__('python')
-from python import get_pybind_include, BuildExt
 _include_dirs=[
     os.path.join('stopeight-clibs','cmake-git-version-tracking','better-example'),
-    # Path to pybind11 headers
-    get_pybind_include(),
 ]
 _qt5_include_dirs=_include_dirs
 _library_dirs=[]
-#distutils end
 
-from setuptools import setup, Extension, find_namespace_packages
+from pybind11.setup_helpers import Pybind11Extension, build_ext
+from setuptools import setup, find_namespace_packages
 
 setup( use_scm_version=True,
        packages=find_namespace_packages(include=['stopeight.*']),
@@ -21,10 +16,9 @@ setup( use_scm_version=True,
            'setuptools.installation':['eggsecutable = stopeight.util.editor.dispatch:main_func',]
            },
        setup_requires=[
-           'pybind11<=3.10.6',
+           'pybind11',
            'setuptools_scm',
            ],
-#distutils start
 #pip start
        install_requires=[
           'numpy',
@@ -33,9 +27,9 @@ setup( use_scm_version=True,
           ],
 #pip end
        ext_modules = [
-           Extension(
+           Pybind11Extension(
                'stopeight.grapher',
-               [os.path.join('stopeight-clibs','grapher-wrappers','IFPyGrapher.cpp')],
+               [os.path.join('stopeight-clibs','grapher','python','IFPyGrapher.cpp')],
                include_dirs=_include_dirs + [
                    os.path.join('stopeight-clibs','include'),
                    os.path.join('stopeight-clibs','grapher')
@@ -46,9 +40,9 @@ setup( use_scm_version=True,
                language='c++',
                optional=True
            ),
-           Extension(
+           Pybind11Extension(
                'stopeight.matrix',
-               [os.path.join('stopeight-clibs','matrix-wrappers','IFPyMatrix.cpp')],
+               [os.path.join('stopeight-clibs','matrix','python','IFPyMatrix.cpp')],
                include_dirs=_include_dirs + [
                    os.path.join('stopeight-clibs','include'),
                    os.path.join('stopeight-clibs','matrix')
@@ -58,9 +52,9 @@ setup( use_scm_version=True,
                language='c++',
                optional=True
            ),
-           Extension(
+           Pybind11Extension(
                'stopeight.analyzer',
-               [os.path.join('stopeight-clibs','analyzer-wrappers','IFPyAnalyzer.cpp')],
+               [os.path.join('stopeight-clibs','analyzer','python','IFPyAnalyzer.cpp')],
                include_dirs=_include_dirs + [
                    os.path.join('stopeight-clibs','include'),
                    os.path.join('stopeight-clibs','analyzer')
@@ -70,46 +64,45 @@ setup( use_scm_version=True,
                language='c++',
                optional=True
            ),
-           Extension(
-              'stopeight.legacy',
-               [os.path.join('stopeight-clibs','legacy-wrappers','interfacepython.cpp'),
-               ],
-               include_dirs=_qt5_include_dirs + [
-                   os.path.join('stopeight-clibs','legacy/include'),
-                   os.path.join('stopeight-clibs','legacy-wrappers')
-               ],
-               library_dirs=_library_dirs,
-               libraries=['stopeight-clibs-legacy','Qt5Core'],#Qt5Core needed for old wrapper
-               language='c++',
-               optional=True
-              ),
-            Extension(
-              'stopeight.getters',
-               [os.path.join('stopeight-clibs','legacy-wrappers','IFPyGetters.cpp'),
-               os.path.join('stopeight-clibs','legacy-wrappers','IFPyShared.cpp')],
-               include_dirs=_qt5_include_dirs + [
-                   os.path.join('stopeight-clibs','legacy/include'),
-                   os.path.join('stopeight-clibs','legacy-wrappers')
-               ],
-               library_dirs=_library_dirs,
-               libraries=['stopeight-clibs-legacy','stopeight-clibs-matrix','Qt5Core'],#Qt5Core needed for old wrapper
-               language='c++',
-               optional=True
-              ),
-            Extension(
-              'stopeight.finders',
-               [os.path.join('stopeight-clibs','legacy-wrappers','IFPyFinders.cpp'),
-               os.path.join('stopeight-clibs','legacy-wrappers','IFPyShared.cpp')],
-               include_dirs=_qt5_include_dirs + [
-                   os.path.join('stopeight-clibs','legacy/include'),
-                   os.path.join('stopeight-clibs','legacy-wrappers')
-               ],
-               library_dirs=_library_dirs,
-               libraries=['stopeight-clibs-legacy','stopeight-clibs-matrix','Qt5Core'],#Qt5Core needed for old wrapper
-               language='c++',
-               optional=True
-              ),
+#           Pybind11Extension(
+#              'stopeight.legacy',
+#               [os.path.join('stopeight-clibs','legacy','python','interfacepython.cpp'),
+#               ],
+#               include_dirs=_qt5_include_dirs + [
+#                   os.path.join('stopeight-clibs','legacy/include'),
+#                   os.path.join('stopeight-clibs','legacy','python')
+#               ],
+#               library_dirs=_library_dirs,
+#               libraries=['stopeight-clibs-legacy','Qt5Core'],#Qt5Core needed for old wrapper
+#               language='c++',
+#               optional=True
+#              ),
+#            Pybind11Extension(
+#              'stopeight.getters',
+#               [os.path.join('stopeight-clibs','legacy','python','IFPyGetters.cpp'),
+#               os.path.join('stopeight-clibs','legacy','python','IFPyShared.cpp')],
+#               include_dirs=_qt5_include_dirs + [
+#                   os.path.join('stopeight-clibs','legacy/include'),
+#                   os.path.join('stopeight-clibs','legacy','python')
+#               ],
+#               library_dirs=_library_dirs,
+#               libraries=['stopeight-clibs-legacy','stopeight-clibs-matrix','Qt5Core'],#Qt5Core needed for old wrapper
+#               language='c++',
+#               optional=True
+#              ),
+#            Pybind11Extension(
+#              'stopeight.finders',
+#               [os.path.join('stopeight-clibs','legacy','python','IFPyFinders.cpp'),
+#               os.path.join('stopeight-clibs','legacy','python','IFPyShared.cpp')],
+#               include_dirs=_qt5_include_dirs + [
+#                   os.path.join('stopeight-clibs','legacy/include'),
+#                   os.path.join('stopeight-clibs','legacy','python')
+#               ],
+#               library_dirs=_library_dirs,
+#               libraries=['stopeight-clibs-legacy','stopeight-clibs-matrix','Qt5Core'],#Qt5Core needed for old wrapper
+#               language='c++',
+#               optional=True
+#              ),
        ],
-       cmdclass={'build_ext': BuildExt},
-#distutils end
+       cmdclass={'build_ext': build_ext},
 )
