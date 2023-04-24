@@ -32,7 +32,7 @@ Create a virtual environment::
     
 And finally::
 
-    $ python setup.py install
+    $ python setup-dev.py install
 
 Try the editor for a start. PyQt5 may segfault when running from inside a snap or an IDE-bound shell::
 
