@@ -16,7 +16,6 @@ setup( use_scm_version=True,
        setup_requires=[
            'setuptools_scm',
            ],
-       zip_safe=False,
 #pip start - not in cmake_examples
        install_requires=[
           'numpy',
@@ -25,7 +24,9 @@ setup( use_scm_version=True,
           ],
 #pip end - not in cmake_examples
 #cmake start
-       ext_modules=[CMakeExtension('stopeight.matrix',libraries=['stopeight-clibs-matrix']),CMakeExtension('stopeight.grapher',libraries=['stopeight-clibs-grapher']),CMakeExtension('stopeight.analyzer',libraries=['stopeight-clibs-analyzer']),CMakeExtension('stopeight.legacy',libraries=['stopeight-clibs-legacy'])],
+#Hack for faster compile. --inplace and copy_extensions_to_source to working anyway
+#       ext_modules=[CMakeExtension('stopeight.matrix',''),CMakeExtension('stopeight.grapher',''),CMakeExtension('stopeight.analyzer',''),CMakeExtension('stopeight.legacy','')],
+       ext_modules=[CMakeExtension('stopeight.stopeight-clibs','')],
        cmdclass=dict(build_ext=CMakeBuild),
 #cmake end
 )

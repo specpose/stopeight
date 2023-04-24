@@ -21,7 +21,7 @@ setup( use_scm_version=True,
            'setuptools.installation':['eggsecutable = stopeight.util.editor.dispatch:main_func',]
            },
        setup_requires=[
-           'pybind11>=2.5.0',
+           'pybind11<=3.10.6',
            'setuptools_scm',
            ],
 #distutils start

@@ -22,15 +22,9 @@ PLAT_TO_CMAKE = {
 # The name must be the _single_ output extension from the CMake build.
 # If you need multiple extensions, see scikit-build.
 class CMakeExtension(Extension):
-#LINUX
-    def __init__(self, name: str, sourcedir: str = "", library_dirs: list[str] = [], libraries: list[str] = []) -> None:
-#LINUX
+    def __init__(self, name: str, sourcedir: str = "") -> None:
         super().__init__(name, sources=[])
         self.sourcedir = os.fspath(Path(sourcedir).resolve())
-#LINUX
-        self.library_dirs = library_dirs
-        self.libraries = libraries
-#LINUX
 
 
 class CMakeBuild(build_ext):
@@ -123,6 +117,9 @@ class CMakeBuild(build_ext):
         if not build_temp.exists():
             build_temp.mkdir(parents=True)
 
+#        cmake_args += [
+#            f"-DEXT_NAME={ext.name.upper()}"
+#        ]
         subprocess.run(
             ["cmake", ext.sourcedir, *cmake_args], cwd=build_temp, check=True
         )
