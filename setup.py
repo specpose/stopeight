@@ -2,8 +2,8 @@
 
 import os
 #cmake start
-__import__('cmake')
-from cmake import CMakeExtension, CMakeBuild
+__import__('cmake_example')
+from cmake_example import CMakeExtension, CMakeBuild
 #cmake end
 
 from setuptools import setup, Extension, find_namespace_packages

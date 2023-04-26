@@ -1,6 +1,6 @@
 #sdist package descriptor
 include README.md LICENSE.txt
-include cmake.py
+include cmake_example.py
 global-include CMakeLists.txt *.cmake
 recursive-include stopeight-clibs/pybind11/include *.h
 include stopeight-clibs/cmake-git-version-tracking/git_watcher.cmake
