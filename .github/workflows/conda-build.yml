@@ -23,17 +23,12 @@ jobs:
         run: |
           eval "$($CONDA/condabin/conda shell.zsh hook)"
           conda init bash
-          conda activate base
+          conda create --name btest
+          conda activate btest
       - name: Install stopeight-clibs
         shell: bash -l {0}
         run: |
           conda install --channel specpose python stopeight-clibs
-      - name: Activate conda
-        shell: bash -l {0}
-        run: |
-          eval "$($CONDA/condabin/conda shell.zsh hook)"
-          conda init bash
-          conda activate base
       - name: Test Python Build
         shell: bash -l {0}
         run: |
@@ -63,18 +58,12 @@ jobs:
           sudo chown -R 501:20 /usr/local/miniconda
           eval "$($CONDA/condabin/conda shell.zsh hook)"
           conda init zsh
-          conda activate base
+          conda create --name btest
+          conda activate btest
       - name: Install stopeight-clibs
         shell: zsh -l {0}
         run: |
           conda install --channel specpose python stopeight-clibs
-      - name: Activate conda
-        shell: zsh -l {0}
-        run: |
-          sudo chown -R 501:20 /usr/local/miniconda
-          eval "$($CONDA/condabin/conda shell.zsh hook)"
-          conda init zsh
-          conda activate base
       - name: Test Python Build
         shell: zsh -l {0}
         run: |
@@ -103,17 +92,12 @@ jobs:
         run: |
           (& $env:CONDA"\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
           conda init powershell
-          conda activate base
+          conda create --name btest
+          conda activate btest
       - name: Install stopeight-clibs
         shell: powershell
         run: |
           conda install --channel specpose python stopeight-clibs
-      - name: Activate conda
-        shell: powershell
-        run: |
-          (& $env:CONDA"\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
-          conda init powershell
-          conda activate base
       - name: Test Python Build
         shell: powershell
         run: |
