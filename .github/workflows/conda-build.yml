@@ -28,6 +28,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda install --channel specpose python stopeight-clibs
+          conda init bash
           conda activate base
       - name: Test Python Build
         shell: bash -l {0}
@@ -63,6 +64,7 @@ jobs:
         shell: zsh -l {0}
         run: |
           conda install --channel specpose python stopeight-clibs
+          conda init zsh
           conda activate base
       - name: Test Python Build
         shell: zsh -l {0}
@@ -97,6 +99,7 @@ jobs:
         shell: powershell
         run: |
           conda install --channel specpose python stopeight-clibs
+          conda init powershell
           conda activate base
       - name: Test Python Build
         shell: powershell
