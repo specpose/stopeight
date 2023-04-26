@@ -131,9 +131,9 @@ class CMakeBuild(build_ext):
 setup( use_scm_version=True,
        packages=find_namespace_packages(include=['stopeight.*']),
 #cmake start
-       ext_modules=[CMakeExtension('stopeight.matrix',''),CMakeExtension('stopeight.grapher',''),CMakeExtension('stopeight.analyzer','')],#,CMakeExtension('stopeight.legacy','')],
-#Hack for faster compile. --inplace and copy_extensions_to_source dont work anymore
-#       ext_modules=[CMakeExtension('stopeight.stopeight-clibs','')],
+#       ext_modules=[CMakeExtension('stopeight.matrix',''),CMakeExtension('stopeight.grapher',''),CMakeExtension('stopeight.analyzer',''),CMakeExtension('stopeight.legacy','')],
+#Hack because libs dont get packed. --inplace and copy_extensions_to_source dont work anymore
+       ext_modules=[CMakeExtension('stopeight.stopeight-clibs','')],
        cmdclass=dict(build_ext=CMakeBuild),
 #cmake end
 )
