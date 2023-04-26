@@ -25,10 +25,7 @@ The stopeight repository contains stopeight-clibs (Github)::
     $ cd /path/to/where/stopeight
     $ git submodule update --init --recursive
 
-Create a virtual environment::
-
-    $ python3 -m venv ~/stopeight-test
-    $ source ~/stopeight-test/bin/activate
+Uncomment additional modules in (stopeight/stopeight/util/editor/dispatch.py).
     
 And finally::
 

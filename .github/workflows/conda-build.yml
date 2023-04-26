@@ -22,7 +22,7 @@ jobs:
           conda activate btest
           conda install --channel specpose python stopeight-clibs
           python -m pip install -r requirements.txt
-          python -m pip install --upgrade build setuptools wheel
+          python -m pip install --upgrade build
           python -m build --sdist --wheel
 
   conda-build-mac:
@@ -48,7 +48,7 @@ jobs:
           conda activate btest
           conda install --channel specpose python stopeight-clibs
           python -m pip install -r requirements.txt
-          python -m pip install --upgrade build setuptools wheel
+          python -m pip install --upgrade build
           python -m build --sdist --wheel
 
   conda-build-win:
@@ -76,5 +76,5 @@ jobs:
           conda activate btest
           conda install --channel specpose python stopeight-clibs
           python -m pip install -r requirements.txt
-          python -m pip install --upgrade build setuptools wheel
+          python -m pip install --upgrade build
           python -m build --sdist --wheel
