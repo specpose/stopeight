@@ -29,7 +29,7 @@ Uncomment additional modules in (stopeight/stopeight/util/editor/dispatch.py).
     
 And finally::
 
-    $ python setup-dev.py install
+    $ python setup.py install
 
 Try the editor for a start. PyQt5 may segfault when running from inside a snap or an IDE-bound shell::
 
