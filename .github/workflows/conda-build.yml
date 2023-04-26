@@ -21,7 +21,7 @@ jobs:
       - name: Activate conda
         shell: bash -l {0}
         run: |
-          cd $CONDA_PREFIX
+          eval "$($CONDA/condabin/conda shell.zsh hook)"
           conda init bash
           conda activate base
       - name: Install stopeight-clibs
@@ -31,12 +31,11 @@ jobs:
       - name: Test Python Build
         shell: bash -l {0}
         run: |
-           python -m pip install --upgrade pip
-           python -m pip install -r requirements.txt
-           python -m pip install --upgrade build
-           python -m build --sdist --wheel
-
-
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install --upgrade build
+          python -m build --sdist --wheel
+           
   conda-build-mac:
     name: Conda Build Mac
     runs-on: ${{ matrix.os }}
@@ -58,19 +57,18 @@ jobs:
           sudo chown -R 501:20 /usr/local/miniconda
           eval "$($CONDA/condabin/conda shell.zsh hook)"
           conda init zsh
-          conda install --update conda
           conda activate base
       - name: Install stopeight-clibs
-        shell: bash -l {0}
+        shell: zsh -l {0}
         run: |
           conda install --channel specpose python stopeight-clibs
       - name: Test Python Build
         shell: zsh -l {0}
         run: |
-           python -m pip install --upgrade pip
-           python -m pip install -r requirements.txt
-           python -m pip install --upgrade build
-           python -m build --sdist --wheel
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install --upgrade build
+          python -m build --sdist --wheel
 
   conda-build-win:
     name: Conda Build Windows
@@ -94,13 +92,13 @@ jobs:
           conda init powershell
           conda activate base
       - name: Install stopeight-clibs
-        shell: bash -l {0}
+        shell: powershell
         run: |
           conda install --channel specpose python stopeight-clibs
       - name: Test Python Build
         shell: powershell
         run: |
-           python -m pip install --upgrade pip
-           python -m pip install -r requirements.txt
-           python -m pip install --upgrade build
-           python -m build --sdist --wheel
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install --upgrade build
+          python -m build --sdist --wheel
