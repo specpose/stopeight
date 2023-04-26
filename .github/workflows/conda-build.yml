@@ -21,6 +21,7 @@ jobs:
           conda create --name btest
           conda activate btest
           conda install --channel specpose python stopeight-clibs
+          python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install --upgrade build
           python -m build --sdist --wheel
@@ -47,6 +48,7 @@ jobs:
           conda create --name btest
           conda activate btest
           conda install --channel specpose python stopeight-clibs
+          python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install --upgrade build
           python -m build --sdist --wheel
@@ -75,6 +77,7 @@ jobs:
           conda create --name btest
           conda activate btest
           conda install --channel specpose python stopeight-clibs
+          python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install --upgrade build
           python -m build --sdist --wheel
