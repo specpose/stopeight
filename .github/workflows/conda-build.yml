@@ -4,80 +4,103 @@ on: [push, pull_request]
 
 jobs:
   conda-build-ubuntu:
-    name: Ubuntu Conda Build
-    runs-on: 'ubuntu-latest'
+    name: Conda Build Ubuntu
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: 'false'
+          update-conda: true
       - name: Checkout submodules
         shell: bash -l {0}
         run: |
           git submodule update --init --recursive
-      - name: Bash
+      - name: Activate conda
         shell: bash -l {0}
         run: |
-          eval "$($CONDA/condabin/conda shell.bash hook)"
-          conda create --name btest
-          conda activate btest
+          cd $CONDA_PREFIX
+          conda init bash
+          conda activate base
+      - name: Install stopeight-clibs
+        shell: bash -l {0}
+        run: |
           conda install --channel specpose python stopeight-clibs
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-          python -m pip install --upgrade build
-          python -m build --sdist --wheel
+      - name: Test Python Build
+        shell: bash -l {0}
+        run: |
+           python -m pip install --upgrade pip
+           python -m pip install -r requirements.txt
+           python -m pip install --upgrade build
+           python -m build --sdist --wheel
+
 
   conda-build-mac:
-    name: Mac Conda Build
-    runs-on: 'macos-latest'
+    name: Conda Build Mac
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macOS-latest]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: 'false'
+          update-conda: true
       - name: Checkout submodules
         shell: zsh -l {0}
         run: |
           git submodule update --init --recursive
-      - name: Zsh
+      - name: Activate conda
         shell: zsh -l {0}
         run: |
-          echo `ls -alF /usr/bin/gcc`
-          echo `clang --version`
-          echo "Activating conda version 4.8.x"
           sudo chown -R 501:20 /usr/local/miniconda
           eval "$($CONDA/condabin/conda shell.zsh hook)"
-          conda create --name btest
-          conda activate btest
+          conda init zsh
+          conda install --update conda
+          conda activate base
+      - name: Install stopeight-clibs
+        shell: bash -l {0}
+        run: |
           conda install --channel specpose python stopeight-clibs
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-          python -m pip install --upgrade build
-          python -m build --sdist --wheel
+      - name: Test Python Build
+        shell: zsh -l {0}
+        run: |
+           python -m pip install --upgrade pip
+           python -m pip install -r requirements.txt
+           python -m pip install --upgrade build
+           python -m build --sdist --wheel
 
   conda-build-win:
-    name: Windows Conda Build
-    runs-on: 'windows-latest'
+    name: Conda Build Windows
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           persist-credentials: 'false'
+          update-conda: true
       - name: Checkout submodules
         shell: powershell
         run: |
           git submodule update --init --recursive
-      - name: PowerShell
+      - name: Activate conda
         shell: powershell
         run: |
-          $ErrorActionPreference = 'Continue'
-          echo $ErrorActionPreference
-          Get-ExecutionPolicy
-          Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-          Get-ExecutionPolicy
-          echo "Activating conda version 4.6.x"
           (& $env:CONDA"\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
-          conda create --name btest
-          conda activate btest
+          conda init powershell
+          conda activate base
+      - name: Install stopeight-clibs
+        shell: bash -l {0}
+        run: |
           conda install --channel specpose python stopeight-clibs
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-          python -m pip install --upgrade build
-          python -m build --sdist --wheel
+      - name: Test Python Build
+        shell: powershell
+        run: |
+           python -m pip install --upgrade pip
+           python -m pip install -r requirements.txt
+           python -m pip install --upgrade build
+           python -m build --sdist --wheel
