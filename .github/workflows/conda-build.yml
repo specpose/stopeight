@@ -28,6 +28,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda install --channel specpose python stopeight-clibs
+          conda activate base
       - name: Test Python Build
         shell: bash -l {0}
         run: |
@@ -35,7 +36,7 @@ jobs:
           python -m pip install -r requirements.txt
           python -m pip install --upgrade build
           python -m build --sdist --wheel
-           
+
   conda-build-mac:
     name: Conda Build Mac
     runs-on: ${{ matrix.os }}
@@ -62,6 +63,7 @@ jobs:
         shell: zsh -l {0}
         run: |
           conda install --channel specpose python stopeight-clibs
+          conda activate base
       - name: Test Python Build
         shell: zsh -l {0}
         run: |
@@ -95,6 +97,7 @@ jobs:
         shell: powershell
         run: |
           conda install --channel specpose python stopeight-clibs
+          conda activate base
       - name: Test Python Build
         shell: powershell
         run: |
