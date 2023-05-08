@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-#wget -O cmake.py https://raw.githubusercontent.com/pybind/cmake_example/master/setup.py
+#wget -O setup-dev.py https://raw.githubusercontent.com/pybind/cmake_example/master/setup.py
 
 import os
 import re
@@ -118,9 +117,6 @@ class CMakeBuild(build_ext):
         if not build_temp.exists():
             build_temp.mkdir(parents=True)
 
-#        cmake_args += [
-#            f"-DEXT_NAME={ext.name.upper()}"
-#        ]
         subprocess.run(
             ["cmake", ext.sourcedir, *cmake_args], cwd=build_temp, check=True
         )
