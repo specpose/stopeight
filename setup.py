@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
+from setuptools_scm import get_version
 import os
-_include_dirs=[
-    os.path.join('stopeight-clibs','cmake-git-version-tracking','better-example'),
-]
+_include_dirs=[]
 _qt5_include_dirs=_include_dirs
+_define_macros = [ ("__VERSION__","\""+get_version(root='stopeight-clibs')+"\"")]
 _library_dirs = []
 
 from pybind11.setup_helpers import Pybind11Extension, build_ext
@@ -20,6 +20,7 @@ setup( use_scm_version=True,
                    os.path.join('stopeight-clibs','include'),
                    os.path.join('stopeight-clibs','grapher')
                ],
+               define_macros=_define_macros,
                library_dirs=_library_dirs,
                libraries=['stopeight-clibs-grapher',
                'stopeight-clibs-matrix'],
@@ -33,6 +34,7 @@ setup( use_scm_version=True,
                    os.path.join('stopeight-clibs','include'),
                    os.path.join('stopeight-clibs','matrix')
                ],
+               define_macros=_define_macros,
                library_dirs=_library_dirs,
                libraries=['stopeight-clibs-matrix'],
                language='c++',
@@ -45,6 +47,7 @@ setup( use_scm_version=True,
                    os.path.join('stopeight-clibs','include'),
                    os.path.join('stopeight-clibs','analyzer')
                ],
+               define_macros=_define_macros,
                library_dirs=_library_dirs,
                libraries=['stopeight-clibs-analyzer'],
                language='c++',
@@ -71,6 +74,7 @@ setup( use_scm_version=True,
                    os.path.join('stopeight-clibs','legacy/include'),
                    os.path.join('stopeight-clibs','legacy','python')
                ],
+               define_macros=_define_macros,
                library_dirs=_library_dirs,
                libraries=['stopeight-clibs-legacy','stopeight-clibs-matrix','Qt5Core'],#Qt5Core needed for old wrapper
                language='c++',
@@ -84,6 +88,7 @@ setup( use_scm_version=True,
                    os.path.join('stopeight-clibs','legacy/include'),
                    os.path.join('stopeight-clibs','legacy','python')
                ],
+               define_macros=_define_macros,
                library_dirs=_library_dirs,
                libraries=['stopeight-clibs-legacy','stopeight-clibs-matrix','Qt5Core'],#Qt5Core needed for old wrapper
                language='c++',
