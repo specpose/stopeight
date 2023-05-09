@@ -12,7 +12,7 @@ Minimal Requirements (main repository)::
 
 To run the editor, legacy tests and install to a separate environment (universe repository)::
 
-    $ sudo apt-get install qtbase5-dev
+    $ sudo apt-get install qtbase5-dev pybind11-dev
 
 Create a virtual environment::
 

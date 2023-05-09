@@ -127,9 +127,11 @@ class CMakeBuild(build_ext):
 setup( use_scm_version=True,
        packages=find_namespace_packages(include=['stopeight.*']),
 #cmake start: All Not working because modules need to be specified with separate source directories and matching name
-#       ext_modules=[CMakeExtension('stopeight.matrix',''),CMakeExtension('stopeight.grapher',''),CMakeExtension('stopeight.analyzer',''),CMakeExtension('stopeight.legacy','')],
-#Not working Hack because libs get compiled multiple times and dont get packed. --inplace and copy_extensions_to_source dont work anymore
-       ext_modules=[CMakeExtension('stopeight.stopeight-clibs','')],
+       ext_modules=[CMakeExtension('stopeight.matrix',os.path.join('stopeight-clibs','matrix','python')),
+                    CMakeExtension('stopeight.analyzer',os.path.join('stopeight-clibs','analyzer','python')),
+                    CMakeExtension('stopeight.grapher',os.path.join('stopeight-clibs','grapher','python')),
+                    CMakeExtension('stopeight.legacy',os.path.join('stopeight-clibs','legacy','python'))
+                    ],
        cmdclass=dict(build_ext=CMakeBuild),
 #cmake end
 )

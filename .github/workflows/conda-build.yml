@@ -28,13 +28,24 @@ jobs:
         shell: bash -l {0}
         run: |
           conda install --channel specpose python stopeight-clibs
-      - name: Test Python Build
+      - name: Install Build Requirements
         shell: bash -l {0}
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install --upgrade build
+      - name: Test pypa build
+        shell: bash -l {0}
+        run: |
           python -m build --sdist --wheel
+      - name: Test sdist build
+        shell: bash -l {0}
+        run: |
+          python setup.py sdist
+      - name: Test compile
+        shell: bash -l {0}
+        run: |
+          python -m pip install -v
 
   conda-build-mac:
     name: Conda Build Mac
@@ -62,13 +73,24 @@ jobs:
         shell: zsh -l {0}
         run: |
           conda install --channel specpose python stopeight-clibs
-      - name: Test Python Build
+      - name: Install Build Requirements
         shell: zsh -l {0}
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install --upgrade build
+      - name: Test pypa Build
+        shell: zsh -l {0}
+        run: |
           python -m build --sdist --wheel
+      - name: Test sdist Build
+        shell: zsh -l {0}
+        run: |
+          python setup.py sdist
+      - name: Test compile
+        shell: zsh -l {0}
+        run: |
+          python -m pip install -v
 
   conda-build-win:
     name: Conda Build Windows
@@ -95,10 +117,21 @@ jobs:
         shell: powershell
         run: |
           conda install --channel specpose python stopeight-clibs
-      - name: Test Python Build
+      - name: Install Build Requirements
         shell: powershell
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install --upgrade build
+      - name: Test pypa Build
+        shell: powershell
+        run: |
           python -m build --sdist --wheel
+      - name: Test sdist Build
+        shell: powershell
+        run: |
+          python setup.py sdist
+      - name: Test compile
+        shell: powershell
+        run: |
+          python -m pip install -v
