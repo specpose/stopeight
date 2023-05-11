@@ -74,6 +74,7 @@ class CMakeBuild(build_ext):
                     cmake_args += [
                         "-GNinja",
                         f"-DCMAKE_MAKE_PROGRAM:FILEPATH={ninja_executable_path}",
+                        f"-DCMAKE_CXX_VISIBILITY_PRESET=hidden",
                     ]
                 except ImportError:
                     pass

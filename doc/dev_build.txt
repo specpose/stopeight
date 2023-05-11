@@ -1,7 +1,11 @@
 Stopeight
 =========
 
-Instructions have been tested on Ubuntu 22.04 Focal Fossa.
+Instructions have been tested on Ubuntu 22.10 Kinetic Kudu.
+
+Note: The cmake FindPython module is currently broken because it does not find the NumPy headers if running in a venv and there is no install candidate for a native NumPy-dev package. The Numpy dtype symbols are required for Python module interop.
+
+Note: The cmake based build system in setup-dev.py provides Qt5 headers for compiling stopeight-clibs-legacy.
 
 Installation
 ------------
