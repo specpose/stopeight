@@ -11,11 +11,11 @@ from PySide2.QtWidgets import QToolBar,QGroupBox,QHBoxLayout
 
 # False: Is part of a compiled library
 _DATA = {'Modules': [
-#                            ('stopeight.util.editor.modules.legacy', False),
-                            ('stopeight.util.editor.modules.file', True),
-                            ('stopeight.util.editor.modules.file_wave',True),
-                            ('stopeight.util.editor.modules.grapher', False),
-#                            ('stopeight.util.editor.modules.analyzer', False),
+                            ('stopeight.util.editor.modules.legacy'),#, False),
+                            ('stopeight.util.editor.modules.file'),#, True),
+                            ('stopeight.util.editor.modules.file_wave'),#,True),
+                            ('stopeight.util.editor.modules.grapher'),#, False),
+                            ('stopeight.util.editor.modules.analyzer'),#, False),
                     ]
          }
 
@@ -23,14 +23,14 @@ import importlib
 active=[]
 for module in _DATA['Modules']:
     try:
-        importlib.import_module(module[0])
+        importlib.import_module(module)
         active.append(module)
-        log.warning("Successfully imported module "+module[0])
+        log.warning("Successfully imported module "+module)
     except ImportError as ie:
         log.warning(ie)
-        log.warning("Install stopeight-clibs or external library and reinstall stopeight afterwards to use module "+module[0])
+        log.warning("Install stopeight-clibs or external library and reinstall stopeight afterwards to use module "+module)
     except:
-        log.warning("Module "+module[0]+" not loaded!")
+        log.warning("Module "+module+" not loaded!")
 _DATA['Modules']=active
                 
 def main():

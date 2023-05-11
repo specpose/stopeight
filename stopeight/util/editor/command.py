@@ -1,7 +1,8 @@
-# Copyright (C) 2018 Fassio Blatter
+# Copyright (C) 2023 Fassio Blatter
 
 from stopeight.util.editor import runnable
 from sys import modules as loader
+import inspect
 
 from PySide2.QtWidgets import QComboBox,QPushButton
 
@@ -13,19 +14,20 @@ class Algorithm_Select(dict):
     def __init__(self, module, **kwargs):
         super(Algorithm_Select,self).__init__(**kwargs)
         self._module = module
-        module_name = self._module[0]
+        module_name = self._module
         import importlib
         importlib.import_module(module_name)
         import types
         for key in dir(loader[module_name]):
             if not key.startswith('_'):
-                builtin = isinstance(loader[module_name].__dict__[key],types.BuiltinFunctionType)
-                dynamic = isinstance(loader[module_name].__dict__[key],types.FunctionType)
-                if builtin or dynamic:
+                # Bug: As of 3.10 inspect.isbuiltin is not "written in C"
+                builtin = inspect.isbuiltin(loader[module_name].__dict__[key])
+                dynamic = inspect.isfunction(loader[module_name].__dict__[key])
+                if dynamic:
                     name = loader[module_name].__dict__[key].__name__
                     if builtin:
                         log.debug("Function "+name+" is C")
-                    if dynamic:
+                    else:
                         log.debug("Function "+name+" is Python")
                     try:
                         return_type=signature(loader[module_name].__dict__[key]).return_annotation
@@ -43,12 +45,13 @@ import sys,traceback
 class Algorithm_Run:
 
     @staticmethod
-    def _auto_out(module_name,package_type,function_name):
+    def _auto_out(module_name,function_name):
         top = module_name+'.'+function_name
         import os
         sub = 'HEAD'
         import pkg_resources
-        if (package_type==True):
+        # A module in an external library needs a version attribute
+        if not (hasattr(loader[module_name],'version')):
             #get head from current directory (os.getcwd()).endswith('stopeight')
             if pkg_resources.require('stopeight')[0].version.find('+g'):
                 sub=pkg_resources.require('stopeight')[0].version.split('+g')[1].split('.')[0]
@@ -75,22 +78,22 @@ class Algorithm_Run:
                     backup = inputdata.data[:]
                     log.info("Invoking "+currentText+" with custom input data type"+str(type(inputdata))+".")
                 log.debug(str(inputdata))
-                outputdata = loader[module[0]].__dict__[currentText](inputdata)
+                outputdata = loader[module].__dict__[currentText](inputdata)
             else:
                 backup = None
                 log.info("Invoking "+currentText+" without inputdata.")
-                outputdata = loader[module[0]].__dict__[currentText]()
+                outputdata = loader[module].__dict__[currentText]()
                 log.info("Size after call: Output "+str(len(outputdata)))
 
         #except:
         except AssertionError as ass:
             log.error(str(traceback.extract_tb(sys.exc_info()[2],limit=2).format()[1]))
         except BaseException as be:
-            log.critical(str(sys.exc_info()[1])+" during method invokation: "+module[0]+'.'+currentText)
+            log.critical(str(sys.exc_info()[1])+" during method invokation: "+module+'.'+currentText)
             from stopeight.util.editor.modules import file
             from os.path import expanduser,join
             file._write(backup,time,outdir=join(expanduser("~"),_LOGDIR
-                                                ,Algorithm_Run._auto_out(module[0],module[1],currentText)
+                                                ,Algorithm_Run._auto_out(module,currentText)
                                                 ,customsubpath
                                                 ))
             if outputdata!=None:
