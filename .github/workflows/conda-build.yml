@@ -22,8 +22,8 @@ jobs:
         shell: bash -l {0}
         run: |
           eval "$($CONDA/condabin/conda shell.zsh hook)"
-          conda create --name btest
-          conda activate btest
+          conda init bash
+          conda activate base
       - name: Install stopeight-clibs
         shell: bash -l {0}
         run: |
@@ -67,8 +67,8 @@ jobs:
         run: |
           sudo chown -R 501:20 /usr/local/miniconda
           eval "$($CONDA/condabin/conda shell.zsh hook)"
-          conda create --name btest
-          conda activate btest
+          conda init zsh
+          conda activate base
       - name: Install stopeight-clibs
         shell: zsh -l {0}
         run: |
@@ -111,8 +111,8 @@ jobs:
         shell: powershell
         run: |
           (& $env:CONDA"\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | Invoke-Expression
-          conda create --name btest
-          conda activate btest
+          conda init powershell
+          conda activate base
       - name: Install stopeight-clibs
         shell: powershell
         run: |
